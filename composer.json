@@ -1,0 +1,25 @@
+{
+  "name": "contentful/contentful-management",
+  "description": "SDK for the Contentful Content Management API",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^5.5.9|^7.0",
+    "contentful/contentful": "~0.7@beta"
+  },
+  "require-dev": {
+    "php-vcr/phpunit-testlistener-vcr": "^1.1",
+    "jakub-onderka/php-parallel-lint": "^0.9.2",
+    "jakub-onderka/php-console-highlighter": "^0.3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Contentful\\": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.6.0-dev"
+    }
+  }
+}
