@@ -39,6 +39,116 @@ class SpaceManager
         $this->spaceId = $spaceId;
     }
 
+    public function getAsset($assetId): Asset
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets/' . $assetId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    public function getAssets(): ResourceArray
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets');
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    public function createAsset(Asset $asset, string $id = null)
+    {
+        $body = $this->client->encodeJson($this->client->prepareObjectForApi($asset));
+
+        $path = 'spaces/' . $this->spaceId . '/assets';
+        if ($id !== null) {
+            $path .= '/' . $id;
+        }
+
+        $response = $this->client->request('POST', $path, ['body' => $body]);
+        $this->builder->updateObjectFromRawData($asset, $response);
+    }
+
+    public function updateAsset(Asset $asset)
+    {
+        $sys = $asset->getSystemProperties();
+        $body = $this->client->encodeJson($this->client->prepareObjectForApi($asset));
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId(), [
+            'additionalHeaders' => $additionalHeaders,
+            'body' => $body
+        ]);
+
+        $this->builder->updateObjectFromRawData($asset, $response);
+    }
+
+    public function processAsset(Asset $asset, string $locale)
+    {
+        $sys = $asset->getSystemProperties();
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $this->client->request('PUT', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/files/' . $locale . '/process', [
+            'additionalHeaders' => $additionalHeaders
+        ]);
+
+        // Fetch the Asset because it's not returned from the above API call
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId());
+
+        $this->builder->updateObjectFromRawData($asset, $response);
+    }
+
+    public function publishAsset(Asset $asset)
+    {
+        $sys = $asset->getSystemProperties();
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/published', [
+            'additionalHeaders' => $additionalHeaders
+        ]);
+
+        $this->builder->updateObjectFromRawData($asset, $response);
+    }
+
+    public function unpublishAsset(Asset $asset)
+    {
+        $sys = $asset->getSystemProperties();
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $response = $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/published', [
+            'additionalHeaders' => $additionalHeaders
+        ]);
+
+        $this->builder->updateObjectFromRawData($asset, $response);
+    }
+
+    public function archiveAsset(Asset $asset)
+    {
+        $sys = $asset->getSystemProperties();
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/archived', [
+            'additionalHeaders' => $additionalHeaders
+        ]);
+
+        $this->builder->updateObjectFromRawData($asset, $response);
+    }
+
+    public function unarchiveAsset(Asset $asset)
+    {
+        $sys = $asset->getSystemProperties();
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $response = $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/archived', [
+            'additionalHeaders' => $additionalHeaders
+        ]);
+
+        $this->builder->updateObjectFromRawData($asset, $response);
+    }
+
+    public function deleteAsset(Asset $asset)
+    {
+        $sys = $asset->getSystemProperties();
+        $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId());
+    }
+
     public function getLocale(string $localeId): Locale
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/locales/' . $localeId);

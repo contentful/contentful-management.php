@@ -6,6 +6,7 @@
 
 namespace Contentful\Management;
 
+use Contentful\File;
 use Contentful\Management\Field\Validation;
 use Contentful\ResourceArray;
 
@@ -27,7 +28,7 @@ class ResourceBuilder
 
     /**
      * @param  array $data
-     * @return Space|ContentType|Locale|ResourceArray
+     * @return Space|Asset|ContentType|Locale|ResourceArray
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -36,6 +37,8 @@ class ResourceBuilder
         switch ($type) {
             case 'Array':
                 return $this->buildArray($data);
+            case 'Asset':
+                return $this->buildAsset($data);
             case 'ContentType':
                 return $this->buildContentType($data);
             case 'Locale':
@@ -59,6 +62,9 @@ class ResourceBuilder
             case 'Space':
                 $this->updateSpace($object, $data);
                 break;
+            case 'Asset':
+                $this->updateAsset($object, $data);
+                break;
             case 'ContentType':
                 $this->updateContentType($object, $data);
                 break;
@@ -68,6 +74,56 @@ class ResourceBuilder
             default:
                 throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to update object.');
         }
+    }
+
+    /**
+     * @param  array $data
+     *
+     * @return Asset
+     */
+    private function buildAsset(array $data): Asset
+    {
+        $fields = $data['fields'];
+
+        return $this->createObject(Asset::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'title' => isset($fields['title']) ? $fields['title'] : null,
+            'description' => isset($fields['description']) ? $fields['description'] : null,
+            'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null
+        ]);
+    }
+
+    private function updateAsset(Asset $asset, array $data)
+    {
+        $fields = $data['fields'];
+
+        return $this->updateObject(Asset::class, $asset, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'title' => isset($fields['title']) ? $fields['title'] : null,
+            'description' => isset($fields['description']) ? $fields['description'] : null,
+            'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null
+        ]);
+    }
+
+    private function buildFile(array $data): File\FileInterface
+    {
+        if (isset($data['upload'])) {
+            return new File\UploadFile($data['fileName'], $data['contentType'], $data['upload']);
+        }
+
+        $details = $data['details'];
+        if (isset($details['image'])) {
+            return new File\ImageFile(
+                $data['fileName'],
+                $data['contentType'],
+                $data['url'],
+                $details['size'],
+                $details['image']['width'],
+                $details['image']['height']
+            );
+        }
+
+        return new File\File($data['fileName'], $data['contentType'], $data['url'], $details['size']);
     }
 
     private function buildContentType(array $data): ContentType

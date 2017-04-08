@@ -76,6 +76,21 @@ class SystemProperties implements \JsonSerializable
     private $publishedVersion;
 
     /**
+     * @var \DateTimeImmutable|null
+     */
+    private $archivedAt;
+
+    /**
+     * @var Link|null
+     */
+    private $archivedBy;
+
+    /**
+     * @var int|null
+     */
+    private $archivedVersion;
+
+    /**
      * SystemProperties constructor.
      *
      * @param  array $sys Associative array of sys properties
@@ -88,13 +103,16 @@ class SystemProperties implements \JsonSerializable
         $this->createdAt = isset($sys['createdAt']) ? new \DateTimeImmutable($sys['createdAt']) : null;
         $this->updatedAt = isset($sys['updatedAt']) ? new \DateTimeImmutable($sys['updatedAt']) : null;
         $this->publishedAt = isset($sys['publishedAt']) ? new \DateTimeImmutable($sys['publishedAt']) : null;
+        $this->archivedAt = isset($sys['archivedAt']) ? new \DateTimeImmutable($sys['archivedAt']) : null;
         $this->firstPublishedAt = isset($sys['firstPublishedAt']) ? new \DateTimeImmutable($sys['firstPublishedAt']) : null;
         $this->version = isset($sys['version']) ? $sys['version'] : null;
         $this->publishedCounter = isset($sys['publishedCounter']) ? $sys['publishedCounter'] : null;
         $this->publishedVersion = isset($sys['publishedVersion']) ? $sys['publishedVersion'] : null;
+        $this->archivedVersion = isset($sys['archivedVersion']) ? $sys['archivedVersion'] : null;
         $this->createdBy = isset($sys['createdBy']) ? $this->buildLink($sys['createdBy']) : null;
         $this->updatedBy = isset($sys['updatedBy']) ? $this->buildLink($sys['updatedBy']) : null;
         $this->publishedBy = isset($sys['publishedBy']) ? $this->buildLink($sys['publishedBy']) : null;
+        $this->archivedBy = isset($sys['archivedBy']) ? $this->buildLink($sys['archivedBy']) : null;
     }
 
     public static function withType(string $type)
@@ -155,6 +173,14 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getArchivedAt()
+    {
+        return $this->archivedAt;
+    }
+
+    /**
      * @return int|null
      */
     public function getVersion()
@@ -203,6 +229,14 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
+     * @return Link|null
+     */
+    public function getArchivedBy()
+    {
+        return $this->archivedBy;
+    }
+
+    /**
      * @return int|null
      */
     public function getPublishedCounter()
@@ -216,6 +250,14 @@ class SystemProperties implements \JsonSerializable
     public function getPublishedVersion()
     {
         return $this->publishedVersion;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getArchivedVersion()
+    {
+        return $this->archivedVersion;
     }
 
     /**
@@ -244,6 +286,9 @@ class SystemProperties implements \JsonSerializable
         if ($this->updatedAt !== null) {
             $obj->updatedAt = $this->formatDateForJson($this->updatedAt);
         }
+        if ($this->archivedAt !== null) {
+            $obj->archivedAt = $this->formatDateForJson($this->archivedAt);
+        }
         if ($this->publishedAt !== null) {
             $obj->publishedAt = $this->formatDateForJson($this->publishedAt);
         }
@@ -262,11 +307,17 @@ class SystemProperties implements \JsonSerializable
         if ($this->publishedBy !== null) {
             $obj->publishedBy = $this->publishedBy;
         }
+        if ($this->archivedBy !== null) {
+            $obj->archivedBy = $this->archivedBy;
+        }
         if ($this->publishedCounter !== null) {
             $obj->publishedCounter = $this->publishedCounter;
         }
         if ($this->publishedVersion !== null) {
             $obj->publishedVersion = $this->publishedVersion;
+        }
+        if ($this->archivedVersion !== null) {
+            $obj->archivedVersion = $this->archivedVersion;
         }
 
         return $obj;
