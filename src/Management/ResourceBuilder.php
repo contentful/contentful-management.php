@@ -6,6 +6,7 @@
 
 namespace Contentful\Management;
 
+use Contentful\Management\Field\Validation;
 use Contentful\ResourceArray;
 
 class ResourceBuilder
@@ -26,7 +27,7 @@ class ResourceBuilder
 
     /**
      * @param  array $data
-     * @return Space|Locale|ResourceArray
+     * @return Space|ContentType|Locale|ResourceArray
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -35,6 +36,8 @@ class ResourceBuilder
         switch ($type) {
             case 'Array':
                 return $this->buildArray($data);
+            case 'ContentType':
+                return $this->buildContentType($data);
             case 'Locale':
                 return $this->buildLocale($data);
             case 'Space':
@@ -56,12 +59,109 @@ class ResourceBuilder
             case 'Space':
                 $this->updateSpace($object, $data);
                 break;
+            case 'ContentType':
+                $this->updateContentType($object, $data);
+                break;
             case 'Locale':
                 $this->updateLocale($object, $data);
                 break;
             default:
                 throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to update object.');
         }
+    }
+
+    private function buildContentType(array $data): ContentType
+    {
+        return $this->createObject(ContentType::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'description' => isset($data['description']) ? $data['description'] : null,
+            'displayField' => isset($data['displayField']) ? $data['displayField'] : null,
+            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields'])
+        ]);
+    }
+
+    private function updateContentType(ContentType $contentType, array $data)
+    {
+        $this->updateObject(ContentType::class, $contentType, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'description' => isset($data['description']) ? $data['description'] : null,
+            'displayField' => isset($data['displayField']) ? $data['displayField'] : null,
+            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields'])
+        ]);
+    }
+
+    /**
+     * @param  array $data
+     *
+     * @return Field\FieldInterface
+     */
+    private function buildContentTypeField(array $data): Field\FieldInterface
+    {
+        $fieldTypes = [
+            'Array' => Field\ArrayField::class,
+            'Boolean' => Field\BooleanField::class,
+            'Date' => Field\DateField::class,
+            'Integer' => Field\IntegerField::class,
+            'Link' => Field\LinkField::class,
+            'Location' => Field\LocationField::class,
+            'Number' => Field\NumberField::class,
+            'Object' => Field\ObjectField::class,
+            'Symbol' => Field\SymbolField::class,
+            'Text' => Field\TextField::class
+        ];
+
+        $type = $data['type'];
+
+        $hydratorData = [
+            'id' => $data['id'],
+            'name' => $data['name'],
+            'required' => $data['required'],
+            'localized' => $data['localized'],
+            'disabled' => isset($data['disabled']) ? $data['disabled'] : null,
+            'omitted' => isset($data['omitted']) ? $data['omitted'] : null,
+            'validations' => isset($data['validations']) ? array_map([$this, 'buildFieldValidation'], $data['validations']) : null
+        ];
+
+        if ($type === 'Link') {
+            $hydratorData['linkType'] = $data['linkType'];
+        }
+
+        if ($type === 'Array') {
+            $items = $data['items'];
+            $hydratorData['itemsType'] = $items['type'];
+            $hydratorData['itemsLinkType'] = isset($items['linkType']) ? $items['linkType'] : null;
+            $hydratorData['itemsValidations'] = isset($items['validations']) ? array_map([$this, 'buildFieldValidation'], $items['validations']) : null;
+        }
+
+        return $this->createObject($fieldTypes[$type], $hydratorData);
+    }
+
+    /**
+     * @param  array $data
+     *
+     * @return Validation\ValidationInterface
+     */
+    private function buildFieldValidation(array $data): Validation\ValidationInterface
+    {
+        $validations = [
+            'size' => Validation\SizeValidation::class,
+            'in' => Validation\InValidation::class,
+            'linkContentType' => Validation\LinkContentTypeValidation::class,
+            'linkMimetypeGroup' => Validation\LinkMimetypeGroupValidation::class,
+            'range' => Validation\RangeValidation::class,
+            'regexp' => Validation\RegexpValidation::class,
+            'unique' => Validation\UniqueValidation::class,
+            'dateRange' => Validation\DateRangeValidation::class,
+            'assetImageDimensions' => Validation\AssetImageDimensionsValidation::class,
+            'assetFileSize' => Validation\AssetFileSizeValidation::class
+        ];
+
+        $type = array_keys($data)[0];
+        $class = $validations[$type];
+
+        return $class::fromApiResponse($data);
     }
 
     private function buildLocale(array $data): Locale

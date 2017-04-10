@@ -85,4 +85,75 @@ class SpaceManager
         $sys = $locale->getSystemProperties();
         $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/locales/' . $sys->getId());
     }
+
+    public function getContentType($contentTypeId): ContentType
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/content_types/' . $contentTypeId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    public function getContentTypes(): ResourceArray
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/content_types');
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    public function createContentType(ContentType $contentType, string $id = null)
+    {
+        $body = $this->client->encodeJson($this->client->prepareObjectForApi($contentType));
+
+        $path = 'spaces/' . $this->spaceId . '/content_types';
+        if ($id !== null) {
+            $path .= '/' . $id;
+        }
+
+        $response = $this->client->request('POST', $path, ['body' => $body]);
+        $this->builder->updateObjectFromRawData($contentType, $response);
+    }
+
+    public function updateContentType(ContentType $contentType)
+    {
+        $sys = $contentType->getSystemProperties();
+        $body = $this->client->encodeJson($this->client->prepareObjectForApi($contentType));
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/content_types/' . $sys->getId(), [
+            'additionalHeaders' => $additionalHeaders,
+            'body' => $body
+        ]);
+
+        $this->builder->updateObjectFromRawData($contentType, $response);
+    }
+
+    public function activateContentType(ContentType $contentType)
+    {
+        $sys = $contentType->getSystemProperties();
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/content_types/' . $sys->getId() . '/published', [
+            'additionalHeaders' => $additionalHeaders
+        ]);
+
+        $this->builder->updateObjectFromRawData($contentType, $response);
+    }
+
+    public function deactivateContentType(ContentType $contentType)
+    {
+        $sys = $contentType->getSystemProperties();
+        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
+        $response = $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/content_types/' . $sys->getId() . '/published', [
+            'additionalHeaders' => $additionalHeaders
+        ]);
+
+        $this->builder->updateObjectFromRawData($contentType, $response);
+    }
+
+    public function deleteContentType(ContentType $contentType)
+    {
+        $sys = $contentType->getSystemProperties();
+        $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/content_types/' . $sys->getId());
+    }
 }
