@@ -7,8 +7,6 @@
 namespace Contentful\Management;
 
 use Contentful\Client as BaseClient;
-use Contentful\Log\LoggerInterface;
-use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 
 class Client extends BaseClient
 {
