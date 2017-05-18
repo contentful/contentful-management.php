@@ -4,7 +4,7 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": "^5.5.9|^7.0",
+    "php": "^7.0",
     "contentful/contentful": "dev-feature/cma-prep@dev"
   },
   "require-dev": {

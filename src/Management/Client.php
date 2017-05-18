@@ -20,7 +20,7 @@ class Client extends BaseClient
      *
      * @api
      */
-    public function __construct($token, array $options = [])
+    public function __construct(string $token, array $options = [])
     {
         $baseUri = 'https://api.contentful.com/';
         $api = 'MANAGEMENT';

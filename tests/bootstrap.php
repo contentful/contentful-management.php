@@ -8,16 +8,17 @@ require_once __DIR__ . '/../vendor/autoload.php';
  * @return array
  */
 function clean_headers_array(\VCR\Request $request) {
-    // @todo This can be done much more nicely with PHP 5.6 and ARRAY_FILTER_USE_BOTH
-    $headers = array_filter($request->getHeaders());
-
-    foreach ($headers as $name => $value) {
-        if (strtolower($name) === 'user-agent' || strtolower($name) === 'x-contentful-user-agent') {
-            unset($headers[$name]);
+    return array_filter($request->getHeaders(), function ($value, $name) {
+        if ($value == false) {
+            return false;
         }
-    }
 
-    return $headers;
+        if (strtolower($name) === 'user-agent' || strtolower($name) === 'x-contentful-user-agent') {
+            return false;
+        }
+
+        return true;
+    }, ARRAY_FILTER_USE_BOTH);
 }
 
 // The VCR needs to be loaded before the Client is loaded for the first time or it will fail
