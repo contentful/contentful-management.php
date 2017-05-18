@@ -50,8 +50,8 @@ class Client extends BaseClient
      *
      * @return string
      */
-    protected function getUserAgentAppName()
+    protected function getSdkNameAndVersion()
     {
-        return 'ContentfulCMA/' . self::VERSION;
+        return 'contentful-management.php/' . self::VERSION;
     }
 }

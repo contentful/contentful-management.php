@@ -12,7 +12,7 @@ function clean_headers_array(\VCR\Request $request) {
     $headers = array_filter($request->getHeaders());
 
     foreach ($headers as $name => $value) {
-        if (strtolower($name) === 'user-agent') {
+        if (strtolower($name) === 'user-agent' || strtolower($name) === 'x-contentful-user-agent') {
             unset($headers[$name]);
         }
     }
