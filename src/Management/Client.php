@@ -50,6 +50,16 @@ class Client extends BaseClient
         $this->builder = new ResourceBuilder;
     }
 
+    /**
+     * @param  string $spaceId
+     *
+     * @return SpaceManager
+     */
+    public function getSpaceManager(string $spaceId): SpaceManager
+    {
+        return new SpaceManager($this, $this->builder, $spaceId);
+    }
+
     public function request($method, $path, array $options = [])
     {
         return parent::request($method, $path, $options);
