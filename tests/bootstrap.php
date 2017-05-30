@@ -7,7 +7,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
  *
  * @return array
  */
-function clean_headers_array(\VCR\Request $request) {
+function clean_headers_array(\VCR\Request $request)
+{
     return array_filter($request->getHeaders(), function ($value, $name) {
         if ($value == false) {
             return false;
@@ -25,14 +26,13 @@ function clean_headers_array(\VCR\Request $request) {
 \VCR\VCR::configure()
     ->setMode('once')
     ->setStorage('json')
-    ->addRequestMatcher('custom_headers', function(\VCR\Request $first, \VCR\Request $second) {
+    ->addRequestMatcher('custom_headers', function (\VCR\Request $first, \VCR\Request $second) {
         $first = clean_headers_array($first);
         $second = clean_headers_array($second);
 
         return $first == $second;
     })
-    ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers']);;
+    ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers']);
 
 \VCR\VCR::turnOn();
 \VCR\VCR::turnOff();
-
