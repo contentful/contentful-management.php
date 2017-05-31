@@ -63,28 +63,28 @@ class EntryTest extends \PHPUnit_Framework_TestCase
     {
         $manager = $this->client->getSpaceManager('34luz0flcmxt');
 
-        $entry = (new Entry())
+        $entry = (new Entry('testCt'))
             ->setField('name', 'A name', 'en-US');
 
-        $manager->createEntry($entry, 'testCt');
+        $manager->create($entry);
         $this->assertNotNull($entry->getSystemProperties()->getId());
 
         $entry->setField('name', 'A better name', 'en-US');
 
-        $manager->updateEntry($entry);
+        $manager->update($entry);
 
-        $manager->archiveEntry($entry);
+        $manager->archive($entry);
         $this->assertEquals(2, $entry->getSystemProperties()->getArchivedVersion());
 
-        $manager->unarchiveEntry($entry);
+        $manager->unarchive($entry);
         $this->assertNull($entry->getSystemProperties()->getArchivedVersion());
 
-        $manager->publishEntry($entry);
+        $manager->publish($entry);
         $this->assertEquals(4, $entry->getSystemProperties()->getPublishedVersion());
 
-        $manager->unpublishEntry($entry);
+        $manager->unpublish($entry);
         $this->assertNull($entry->getSystemProperties()->getPublishedVersion());
 
-        $manager->deleteEntry($entry);
+        $manager->delete($entry);
     }
 }

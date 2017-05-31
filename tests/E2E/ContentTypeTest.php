@@ -101,19 +101,19 @@ class ContentTypeTest extends \PHPUnit_Framework_TestCase
         $contentType = (new ContentType('Test CT'))
             ->setDescription('THE best content type');
 
-        $manager->createContentType($contentType);
+        $manager->create($contentType);
         $this->assertNotNull($contentType->getSystemProperties()->getId());
 
         $contentType->setName('Test CT - Updates');
-        $manager->updateContentType($contentType);
+        $manager->update($contentType);
 
-        $manager->activateContentType($contentType);
+        $manager->publish($contentType);
         $this->assertEquals(1, $contentType->getSystemProperties()->getPublishedCounter());
         $this->assertEquals(2, $contentType->getSystemProperties()->getPublishedVersion());
 
-        $manager->deactivateContentType($contentType);
+        $manager->unpublish($contentType);
         $this->assertNull($contentType->getSystemProperties()->getPublishedVersion());
 
-        $manager->deleteContentType($contentType);
+        $manager->delete($contentType);
     }
 }

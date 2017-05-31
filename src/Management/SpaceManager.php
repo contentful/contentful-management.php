@@ -6,6 +6,7 @@
 
 namespace Contentful\Management;
 
+use Contentful\Exception\SpaceMismatchException;
 use Contentful\ResourceArray;
 
 class SpaceManager
@@ -39,6 +40,158 @@ class SpaceManager
         $this->spaceId = $spaceId;
     }
 
+    public function checkSpaceMismatch(ResourceInterface $resource)
+    {
+        $sys = $resource->getSystemProperties();
+        if ($resource instanceof Space) {
+            $resourceSpaceId = $sys->getId();
+        } else {
+            $resourceSpaceId = $sys->getSpace()->getId();
+        }
+
+        if ($resourceSpaceId !== $this->spaceId) {
+            throw new SpaceMismatchException('Can\'t perform action on space ' . $resource->getSystemProperties()->getSpace()->getId() . ' with a SpaceManager responsible for ' . $this->spaceId . '.');
+        }
+    }
+
+    public function publish(Publishable $resource)
+    {
+        $this->checkSpaceMismatch($resource);
+
+        $sys = $resource->getSystemProperties();
+        $urlParts = [
+            'spaces',
+            $this->spaceId,
+            $resource->getResourceUrlPart(),
+            $sys->getId(),
+            'published'
+        ];
+
+        $response = $this->client->request('PUT', implode('/', $urlParts), [
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
+        ]);
+
+        $this->builder->updateObjectFromRawData($resource, $response);
+    }
+
+    public function unpublish(Publishable $resource)
+    {
+        $this->checkSpaceMismatch($resource);
+
+        $sys = $resource->getSystemProperties();
+        $urlParts = [
+            'spaces',
+            $this->spaceId,
+            $resource->getResourceUrlPart(),
+            $sys->getId(),
+            'published'
+        ];
+
+        $response = $this->client->request('DELETE', implode('/', $urlParts), [
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
+        ]);
+
+        $this->builder->updateObjectFromRawData($resource, $response);
+    }
+
+    public function archive(Archivable $resource)
+    {
+        $this->checkSpaceMismatch($resource);
+
+        $sys = $resource->getSystemProperties();
+        $urlParts = [
+            'spaces',
+            $this->spaceId,
+            $resource->getResourceUrlPart(),
+            $sys->getId(),
+            'archived'
+        ];
+
+        $response = $this->client->request('PUT', implode('/', $urlParts), [
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
+        ]);
+
+        $this->builder->updateObjectFromRawData($resource, $response);
+    }
+
+    public function unarchive(Archivable $resource)
+    {
+        $this->checkSpaceMismatch($resource);
+
+        $sys = $resource->getSystemProperties();
+        $urlParts = [
+            'spaces',
+            $this->spaceId,
+            $resource->getResourceUrlPart(),
+            $sys->getId(),
+            'archived'
+        ];
+
+        $response = $this->client->request('DELETE', implode('/', $urlParts), [
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
+        ]);
+
+        $this->builder->updateObjectFromRawData($resource, $response);
+    }
+
+    public function delete(Deletable $resource)
+    {
+        $sys = $resource->getSystemProperties();
+        $urlParts = [
+            'spaces',
+            $this->spaceId,
+            $resource->getResourceUrlPart(),
+            $sys->getId()
+        ];
+
+        $this->client->request('DELETE', implode('/', $urlParts));
+    }
+
+    public function update(Updatable $resource)
+    {
+        $sys = $resource->getSystemProperties();
+        $body = $this->client->encodeJson($this->client->prepareObjectForApi($resource));
+        $urlParts = [
+            'spaces',
+            $this->spaceId,
+            $resource->getResourceUrlPart(),
+            $sys->getId()
+        ];
+
+        $response = $this->client->request('PUT', implode('/', $urlParts), [
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
+            'body' => $body
+        ]);
+
+        $this->builder->updateObjectFromRawData($resource, $response);
+    }
+
+    public function create(Creatable $resource, string $id = null)
+    {
+        $body = $this->client->encodeJson($this->client->prepareObjectForApi($resource));
+        $additionalHeaders = [];
+        $urlParts = [
+            'spaces',
+            $this->spaceId,
+            $resource->getResourceUrlPart(),
+        ];
+
+        if ($id !== null) {
+            $urlParts[] = $id;
+        }
+
+        if ($resource instanceof Entry) {
+            $additionalHeaders = ['X-Contentful-Content-Type' => $resource->getSystemProperties()->getContentType()->getId()];
+        }
+
+        $response = $this->client->request('POST', implode('/', $urlParts), [
+            'additionalHeaders' => $additionalHeaders,
+            'body' => $body
+        ]);
+
+        $this->builder->updateObjectFromRawData($resource, $response);
+    }
+
     public function getAsset($assetId): Asset
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets/' . $assetId);
@@ -51,33 +204,6 @@ class SpaceManager
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets');
 
         return $this->builder->buildObjectsFromRawData($response);
-    }
-
-    public function createAsset(Asset $asset, string $id = null)
-    {
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($asset));
-
-        $path = 'spaces/' . $this->spaceId . '/assets';
-        if ($id !== null) {
-            $path .= '/' . $id;
-        }
-
-        $response = $this->client->request('POST', $path, ['body' => $body]);
-        $this->builder->updateObjectFromRawData($asset, $response);
-    }
-
-    public function updateAsset(Asset $asset)
-    {
-        $sys = $asset->getSystemProperties();
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($asset));
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId(), [
-            'additionalHeaders' => $additionalHeaders,
-            'body' => $body
-        ]);
-
-        $this->builder->updateObjectFromRawData($asset, $response);
     }
 
     public function processAsset(Asset $asset, string $locale)
@@ -95,60 +221,6 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($asset, $response);
     }
 
-    public function publishAsset(Asset $asset)
-    {
-        $sys = $asset->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/published', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($asset, $response);
-    }
-
-    public function unpublishAsset(Asset $asset)
-    {
-        $sys = $asset->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/published', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($asset, $response);
-    }
-
-    public function archiveAsset(Asset $asset)
-    {
-        $sys = $asset->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/archived', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($asset, $response);
-    }
-
-    public function unarchiveAsset(Asset $asset)
-    {
-        $sys = $asset->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/archived', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($asset, $response);
-    }
-
-    public function deleteAsset(Asset $asset)
-    {
-        $sys = $asset->getSystemProperties();
-        $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId());
-    }
-
     public function getLocale(string $localeId): Locale
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/locales/' . $localeId);
@@ -163,40 +235,7 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
-    public function createLocale(Locale $locale, string $id = null)
-    {
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($locale));
-
-        $path = 'spaces/' . $this->spaceId . '/locales';
-        if ($id !== null) {
-            $path .= '/' . $id;
-        }
-
-        $response = $this->client->request('POST', $path, ['body' => $body]);
-        $this->builder->updateObjectFromRawData($locale, $response);
-    }
-
-    public function updateLocale(Locale $locale)
-    {
-        $sys = $locale->getSystemProperties();
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($locale));
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/locales/' . $sys->getId(), [
-            'additionalHeaders' => $additionalHeaders,
-            'body' => $body
-        ]);
-
-        $this->builder->updateObjectFromRawData($locale, $response);
-    }
-
-    public function deleteLocale(Locale $locale)
-    {
-        $sys = $locale->getSystemProperties();
-        $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/locales/' . $sys->getId());
-    }
-
-    public function getContentType($contentTypeId): ContentType
+    public function getContentType(string $contentTypeId): ContentType
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/content_types/' . $contentTypeId);
 
@@ -210,64 +249,7 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
-    public function createContentType(ContentType $contentType, string $id = null)
-    {
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($contentType));
-
-        $path = 'spaces/' . $this->spaceId . '/content_types';
-        if ($id !== null) {
-            $path .= '/' . $id;
-        }
-
-        $response = $this->client->request('POST', $path, ['body' => $body]);
-        $this->builder->updateObjectFromRawData($contentType, $response);
-    }
-
-    public function updateContentType(ContentType $contentType)
-    {
-        $sys = $contentType->getSystemProperties();
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($contentType));
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/content_types/' . $sys->getId(), [
-            'additionalHeaders' => $additionalHeaders,
-            'body' => $body
-        ]);
-
-        $this->builder->updateObjectFromRawData($contentType, $response);
-    }
-
-    public function activateContentType(ContentType $contentType)
-    {
-        $sys = $contentType->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/content_types/' . $sys->getId() . '/published', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($contentType, $response);
-    }
-
-    public function deactivateContentType(ContentType $contentType)
-    {
-        $sys = $contentType->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/content_types/' . $sys->getId() . '/published', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($contentType, $response);
-    }
-
-    public function deleteContentType(ContentType $contentType)
-    {
-        $sys = $contentType->getSystemProperties();
-        $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/content_types/' . $sys->getId());
-    }
-
-    public function getEntry($entryId): Entry
+    public function getEntry(string $entryId): Entry
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/entries/' . $entryId);
 
@@ -279,91 +261,5 @@ class SpaceManager
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/entries');
 
         return $this->builder->buildObjectsFromRawData($response);
-    }
-
-    public function createEntry(Entry $entry, string $contentTypeID, string $id = null)
-    {
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($entry));
-
-        $path = 'spaces/' . $this->spaceId . '/entries';
-        if ($id !== null) {
-            $path .= '/' . $id;
-        }
-
-        $additionalHeaders = ['X-Contentful-Content-Type' => $contentTypeID];
-
-        $response = $this->client->request('POST', $path, [
-            'additionalHeaders' => $additionalHeaders,
-            'body' => $body
-        ]);
-        $this->builder->updateObjectFromRawData($entry, $response);
-    }
-
-    public function updateEntry(Entry $entry)
-    {
-        $sys = $entry->getSystemProperties();
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($entry));
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/entries/' . $sys->getId(), [
-            'additionalHeaders' => $additionalHeaders,
-            'body' => $body
-        ]);
-
-        $this->builder->updateObjectFromRawData($entry, $response);
-    }
-
-    public function publishEntry(Entry $entry)
-    {
-        $sys = $entry->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/entries/' . $sys->getId() . '/published', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($entry, $response);
-    }
-
-    public function unpublishEntry(Entry $entry)
-    {
-        $sys = $entry->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/entries/' . $sys->getId() . '/published', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($entry, $response);
-    }
-
-    public function archiveEntry(Entry $entry)
-    {
-        $sys = $entry->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('PUT', 'spaces/' . $this->spaceId . '/entries/' . $sys->getId() . '/archived', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($entry, $response);
-    }
-
-    public function unarchiveEntry(Entry $entry)
-    {
-        $sys = $entry->getSystemProperties();
-        $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-
-        $response = $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/entries/' . $sys->getId() . '/archived', [
-            'additionalHeaders' => $additionalHeaders
-        ]);
-
-        $this->builder->updateObjectFromRawData($entry, $response);
-    }
-
-    public function deleteEntry(Entry $entry)
-    {
-        $sys = $entry->getSystemProperties();
-        $this->client->request('DELETE', 'spaces/' . $this->spaceId . '/entries/' . $sys->getId());
     }
 }

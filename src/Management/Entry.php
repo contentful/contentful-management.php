@@ -6,7 +6,7 @@
 
 namespace Contentful\Management;
 
-class Entry implements \JsonSerializable
+class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
 {
     /**
      * @var SystemProperties
@@ -18,9 +18,9 @@ class Entry implements \JsonSerializable
      */
     private $fields = [];
 
-    public function __construct()
+    public function __construct(string $contentTypeId)
     {
-        $this->sys = SystemProperties::withType('Entry');
+        $this->sys = new SystemProperties(['type' => 'Entry', 'contentType' => ['sys' => ['id' => $contentTypeId, 'linkType' => 'ContentType']]]);
     }
 
     /**
@@ -29,6 +29,11 @@ class Entry implements \JsonSerializable
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
+    }
+
+    public function getResourceUrlPart(): string
+    {
+        return 'entries';
     }
 
     public function getField(string $name, string $locale)

@@ -85,7 +85,7 @@ class AssetTest extends \PHPUnit_Framework_TestCase
 
         $asset->setFile($file, 'en-US');
 
-        $manager->createAsset($asset);
+        $manager->create($asset);
         $this->assertNotNull($asset->getSystemProperties()->getId());
 
         $manager->processAsset($asset, 'en-US');
@@ -99,20 +99,20 @@ class AssetTest extends \PHPUnit_Framework_TestCase
 
         $asset->setTitle('Even better asset', 'en-US');
 
-        $manager->updateAsset($asset);
+        $manager->update($asset);
 
-        $manager->archiveAsset($asset);
+        $manager->archive($asset);
         $this->assertEquals(3, $asset->getSystemProperties()->getArchivedVersion());
 
-        $manager->unarchiveAsset($asset);
+        $manager->unarchive($asset);
         $this->assertNull($asset->getSystemProperties()->getArchivedVersion());
 
-        $manager->publishAsset($asset);
+        $manager->publish($asset);
         $this->assertEquals(5, $asset->getSystemProperties()->getPublishedVersion());
 
-        $manager->unpublishAsset($asset);
+        $manager->unpublish($asset);
         $this->assertNull($asset->getSystemProperties()->getPublishedVersion());
 
-        $manager->deleteAsset($asset);
+        $manager->delete($asset);
     }
 }

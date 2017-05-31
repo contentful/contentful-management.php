@@ -77,12 +77,12 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
 
         $locale = new Locale('Swiss German', 'de-CH');
 
-        $manager->createLocale($locale);
+        $manager->create($locale);
         $this->assertNotNull($locale->getSystemProperties()->getId());
 
         $locale->setName('Really Swiss German');
-        $manager->updateLocale($locale);
+        $manager->update($locale);
 
-        $manager->deleteLocale($locale);
+        $manager->delete($locale);
     }
 }

@@ -6,7 +6,7 @@
 
 namespace Contentful\Management;
 
-class Locale implements ResourceInterface
+class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Creatable
 {
     /**
      * @var SystemProperties
@@ -69,6 +69,11 @@ class Locale implements ResourceInterface
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
+    }
+
+    public function getResourceUrlPart(): string
+    {
+        return 'locales';
     }
 
     /**

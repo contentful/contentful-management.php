@@ -9,7 +9,7 @@ namespace Contentful\Management;
 use Contentful\File\FileInterface;
 use Contentful\File\UploadFile;
 
-class Asset implements \JsonSerializable
+class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
 {
     /**
      * @var SystemProperties
@@ -42,6 +42,11 @@ class Asset implements \JsonSerializable
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
+    }
+
+    public function getResourceUrlPart(): string
+    {
+        return 'assets';
     }
 
     /**
