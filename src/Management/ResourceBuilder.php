@@ -28,7 +28,7 @@ class ResourceBuilder
 
     /**
      * @param  array $data
-     * @return Space|Asset|ContentType|Locale|ResourceArray
+     * @return Space|Asset|ContentType|Entry|Locale|ResourceArray
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -41,6 +41,8 @@ class ResourceBuilder
                 return $this->buildAsset($data);
             case 'ContentType':
                 return $this->buildContentType($data);
+            case 'Entry':
+                return $this->buildEntry($data);
             case 'Locale':
                 return $this->buildLocale($data);
             case 'Space':
@@ -67,6 +69,9 @@ class ResourceBuilder
                 break;
             case 'ContentType':
                 $this->updateContentType($object, $data);
+                break;
+            case 'Entry':
+                $this->updateEntry($object, $data);
                 break;
             case 'Locale':
                 $this->updateLocale($object, $data);
@@ -192,6 +197,22 @@ class ResourceBuilder
         }
 
         return $this->createObject($fieldTypes[$type], $hydratorData);
+    }
+
+    private function buildEntry(array $data): Entry
+    {
+        return $this->createObject(Entry::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'fields' => $data['fields']
+        ]);
+    }
+
+    private function updateEntry(Entry $entry, array $data)
+    {
+        return $this->updateObject(Entry::class, $entry, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'fields' => $data['fields']
+        ]);
     }
 
     /**

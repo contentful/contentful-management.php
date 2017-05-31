@@ -26,6 +26,11 @@ class SystemProperties implements \JsonSerializable
     private $space;
 
     /**
+     * @var Link|null
+     */
+    private $contentType;
+
+    /**
      * @var \DateTimeImmutable|null
      */
     private $createdAt;
@@ -100,6 +105,7 @@ class SystemProperties implements \JsonSerializable
         $this->id = isset($sys['id']) ? $sys['id'] : null;
         $this->type = isset($sys['type']) ? $sys['type'] : null;
         $this->space = isset($sys['space']) ? $this->buildLink($sys['space']) : null;
+        $this->contentType = isset($sys['contentType']) ? $this->buildLink($sys['contentType']) : null;
         $this->createdAt = isset($sys['createdAt']) ? new \DateTimeImmutable($sys['createdAt']) : null;
         $this->updatedAt = isset($sys['updatedAt']) ? new \DateTimeImmutable($sys['updatedAt']) : null;
         $this->publishedAt = isset($sys['publishedAt']) ? new \DateTimeImmutable($sys['publishedAt']) : null;
@@ -154,6 +160,14 @@ class SystemProperties implements \JsonSerializable
     public function getSpace()
     {
         return $this->space;
+    }
+
+    /**
+     * @return Link|null
+     */
+    public function getContentType()
+    {
+        return $this->contentType;
     }
 
     /**
@@ -279,6 +293,9 @@ class SystemProperties implements \JsonSerializable
         }
         if ($this->space !== null) {
             $obj->space = $this->space;
+        }
+        if ($this->contentType !== null) {
+            $obj->contentType = $this->contentType;
         }
         if ($this->createdAt !== null) {
             $obj->createdAt = $this->formatDateForJson($this->createdAt);
