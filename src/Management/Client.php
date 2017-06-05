@@ -38,7 +38,6 @@ class Client extends BaseClient
         if ($uriOverride !== null) {
             $baseUri = $uriOverride;
         }
-        $baseUri .= 'spaces/';
 
         parent::__construct($token, $baseUri, $api, $logger, $guzzle);
     }
