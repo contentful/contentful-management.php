@@ -11,6 +11,7 @@ use Contentful\Management\Client;
 use Contentful\Management\ContentType;
 use Contentful\Management\Field\TextField;
 use Contentful\Management\Field\Validation\SizeValidation;
+use Contentful\Management\Query;
 
 class ContentTypeTest extends \PHPUnit_Framework_TestCase
 {
@@ -86,9 +87,15 @@ class ContentTypeTest extends \PHPUnit_Framework_TestCase
     public function testGetAssets()
     {
         $manager = $this->client->getSpaceManager('cfexampleapi');
-        $assets = $manager->getContentTypes();
+        $contentTypes = $manager->getContentTypes();
 
-        $this->assertInstanceOf(ContentType::class, $assets[0]);
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
+
+        $query = (new Query)
+            ->setLimit(1);
+        $contentTypes = $manager->getContentTypes($query);
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
+        $this->assertCount(1, $contentTypes);
     }
 
     /**

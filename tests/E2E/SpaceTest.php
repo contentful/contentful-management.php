@@ -9,6 +9,7 @@ namespace Contentful\Tests\E2E;
 use Contentful\Exception\NotFoundException;
 use Contentful\Link;
 use Contentful\Management\Client;
+use Contentful\Management\Query;
 use Contentful\Management\Space;
 use Contentful\ResourceArray;
 
@@ -61,6 +62,12 @@ class SpaceTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(ResourceArray::class, $spaces);
         $this->assertInstanceOf(Space::class, $spaces[0]);
+
+        $query = (new Query)
+            ->setLimit(1);
+        $spaces = $this->client->getSpaces($query);
+        $this->assertInstanceOf(Space::class, $spaces[0]);
+        $this->assertCount(1, $spaces);
     }
 
     /**

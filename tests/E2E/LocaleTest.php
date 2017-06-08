@@ -9,6 +9,7 @@ namespace Contentful\Tests\E2E;
 use Contentful\Link;
 use Contentful\Management\Client;
 use Contentful\Management\Locale;
+use Contentful\Management\Query;
 
 class LocaleTest extends \PHPUnit_Framework_TestCase
 {
@@ -60,12 +61,13 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
     /**
      * @vcr e2e_locale_get_collection.json
      */
-    public function testGetContentTypes()
+    public function testGetLocales()
     {
         $manager = $this->client->getSpaceManager('cfexampleapi');
 
         $locales = $manager->getLocales();
         $this->assertCount(2, $locales);
+        $this->assertInstanceOf(Locale::class, $locales[0]);
     }
 
     /**
