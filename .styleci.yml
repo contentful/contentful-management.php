@@ -26,6 +26,7 @@ enabled:
  - no_whitespace_in_blank_line
  - normalize_index_brace
  - object_operator_without_whitespace
+ - alpha_ordered_imports
  - return_type_declaration
  - self_accessor
  - short_scalar_cast

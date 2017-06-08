@@ -36,6 +36,7 @@ return Config::create()
       'no_whitespace_in_blank_line' => true,
       'normalize_index_brace' => true,
       'object_operator_without_whitespace' => true,
+      'ordered_imports' => true,
       'return_type_declaration' => true,
       'self_accessor' => true,
       'short_scalar_cast' => true,
