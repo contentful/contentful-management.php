@@ -7,30 +7,14 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
-use Contentful\Management\Client;
 use Contentful\Management\ContentType;
 use Contentful\Management\Field\TextField;
 use Contentful\Management\Field\Validation\SizeValidation;
 use Contentful\Management\Query;
+use Contentful\Tests\End2EndTestCase;
 
-class ContentTypeTest extends \PHPUnit_Framework_TestCase
+class ContentTypeTest extends End2EndTestCase
 {
-    /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    public function setUp()
-    {
-        $this->token = getenv('CONTENTFUL_CMA_TEST_TOKEN');
-        $this->client = new Client($this->token);
-    }
-
     /**
      * @vcr e2e_content_type_get.json
      */

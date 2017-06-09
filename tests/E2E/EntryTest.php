@@ -7,28 +7,12 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
-use Contentful\Management\Client;
 use Contentful\Management\Entry;
 use Contentful\Management\Query;
+use Contentful\Tests\End2EndTestCase;
 
-class EntryTest extends \PHPUnit_Framework_TestCase
+class EntryTest extends End2EndTestCase
 {
-    /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    public function setUp()
-    {
-        $this->token = getenv('CONTENTFUL_CMA_TEST_TOKEN');
-        $this->client = new Client($this->token);
-    }
-
     /**
      * @vcr e2e_entry_get.json
      */

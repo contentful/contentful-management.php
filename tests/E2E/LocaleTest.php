@@ -7,27 +7,11 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
-use Contentful\Management\Client;
 use Contentful\Management\Locale;
+use Contentful\Tests\End2EndTestCase;
 
-class LocaleTest extends \PHPUnit_Framework_TestCase
+class LocaleTest extends End2EndTestCase
 {
-    /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    public function setUp()
-    {
-        $this->token = getenv('CONTENTFUL_CMA_TEST_TOKEN');
-        $this->client = new Client($this->token);
-    }
-
     /**
      * @vcr e2e_locale_get_one.json
      */
