@@ -9,7 +9,6 @@ namespace Contentful\Tests\E2E;
 use Contentful\Link;
 use Contentful\Management\Client;
 use Contentful\Management\Locale;
-use Contentful\Management\Query;
 
 class LocaleTest extends \PHPUnit_Framework_TestCase
 {
