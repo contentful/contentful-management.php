@@ -10,6 +10,7 @@ use Contentful\File\UploadFile;
 use Contentful\Link;
 use Contentful\Management\Asset;
 use Contentful\Management\Client;
+use Contentful\Management\Query;
 
 class AssetTest extends \PHPUnit_Framework_TestCase
 {
@@ -68,6 +69,12 @@ class AssetTest extends \PHPUnit_Framework_TestCase
         $assets = $manager->getAssets();
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
+
+        $query = (new Query)
+            ->setLimit(1);
+        $assets = $manager->getAssets($query);
+        $this->assertInstanceOf(Asset::class, $assets[0]);
+        $this->assertCount(1, $assets);
     }
 
     /**

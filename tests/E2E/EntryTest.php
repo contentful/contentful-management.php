@@ -9,6 +9,7 @@ namespace Contentful\Tests\E2E;
 use Contentful\Link;
 use Contentful\Management\Client;
 use Contentful\Management\Entry;
+use Contentful\Management\Query;
 
 class EntryTest extends \PHPUnit_Framework_TestCase
 {
@@ -54,6 +55,23 @@ class EntryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, $sys->getPublishedCounter());
         $this->assertEquals(new \DateTimeImmutable('2013-09-04T09:19:39.027'), $sys->getPublishedAt());
         $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:19.513'), $sys->getFirstPublishedAt());
+    }
+
+    /**
+     * @vcr e2e_entry_get_collection.json
+     */
+    public function testGetEntries()
+    {
+        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $entries = $manager->getEntries();
+
+        $this->assertInstanceOf(Entry::class, $entries[0]);
+
+        $query = (new Query)
+            ->setLimit(1);
+        $entries = $manager->getEntries($query);
+        $this->assertInstanceOf(Entry::class, $entries[0]);
+        $this->assertCount(1, $entries);
     }
 
     /**

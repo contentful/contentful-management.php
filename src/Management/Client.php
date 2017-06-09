@@ -83,11 +83,18 @@ class Client extends BaseClient
     }
 
     /**
+     * @param  Query $query
+     *
      * @return ResourceArray
      */
-    public function getSpaces(): ResourceArray
+    public function getSpaces(Query $query = null): ResourceArray
     {
-        $response = $this->request('GET', 'spaces');
+        $query = $query !== null ? $query : new Query;
+        $queryData = $query->getQueryData();
+
+        $response = $this->request('GET', 'spaces', [
+            'query' => $queryData
+        ]);
 
         return $this->builder->buildObjectsFromRawData($response);
     }

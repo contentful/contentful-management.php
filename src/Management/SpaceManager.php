@@ -199,11 +199,9 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
-    public function getAssets(): ResourceArray
+    public function getAssets(Query $query = null): ResourceArray
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets');
-
-        return $this->builder->buildObjectsFromRawData($response);
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/assets', $query);
     }
 
     public function processAsset(Asset $asset, string $locale)
@@ -230,9 +228,7 @@ class SpaceManager
 
     public function getLocales(): ResourceArray
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/locales');
-
-        return $this->builder->buildObjectsFromRawData($response);
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/locales');
     }
 
     public function getContentType(string $contentTypeId): ContentType
@@ -242,11 +238,9 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
-    public function getContentTypes(): ResourceArray
+    public function getContentTypes(Query $query = null): ResourceArray
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/content_types');
-
-        return $this->builder->buildObjectsFromRawData($response);
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/content_types', $query);
     }
 
     public function getEntry(string $entryId): Entry
@@ -256,9 +250,18 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
-    public function getEntries(): ResourceArray
+    public function getEntries(Query $query = null): ResourceArray
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/entries');
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/entries', $query);
+    }
+
+    public function getAndBuildCollection(string $path, Query $query = null): ResourceArray
+    {
+        $queryData = $query !== null ? $query->getQueryData() : [];
+
+        $response = $this->client->request('GET', $path, [
+            'query' => $queryData
+        ]);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
