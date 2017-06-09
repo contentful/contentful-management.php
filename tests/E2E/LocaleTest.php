@@ -39,7 +39,7 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
         $locale = $manager->getLocale('2oQPjMCL9bQkylziydLh57');
         $this->assertEquals('English', $locale->getName());
         $this->assertEquals('en-US', $locale->getCode());
-        $this->assertEquals('', $locale->getFallbackCode());
+        $this->assertNull($locale->getFallbackCode());
         $this->assertTrue($locale->isContentDeliveryApi());
         $this->assertTrue($locale->isContentManagementApi());
         $this->assertFalse($locale->isOptional());
