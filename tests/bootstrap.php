@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/End2EndTestCase.php';
 
 use VCR\Event\BeforeRecordEvent;
 

@@ -9,27 +9,11 @@ namespace Contentful\Tests\E2E;
 use Contentful\File\UploadFile;
 use Contentful\Link;
 use Contentful\Management\Asset;
-use Contentful\Management\Client;
 use Contentful\Management\Query;
+use Contentful\Tests\End2EndTestCase;
 
-class AssetTest extends \PHPUnit_Framework_TestCase
+class AssetTest extends End2EndTestCase
 {
-    /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    public function setUp()
-    {
-        $this->token = getenv('CONTENTFUL_CMA_TEST_TOKEN');
-        $this->client = new Client($this->token);
-    }
-
     /**
      * @vcr e2e_asset_get.json
      */

@@ -8,29 +8,13 @@ namespace Contentful\Tests\E2E;
 
 use Contentful\Exception\NotFoundException;
 use Contentful\Link;
-use Contentful\Management\Client;
 use Contentful\Management\Query;
 use Contentful\Management\Space;
 use Contentful\ResourceArray;
+use Contentful\Tests\End2EndTestCase;
 
-class SpaceTest extends \PHPUnit_Framework_TestCase
+class SpaceTest extends End2EndTestCase
 {
-    /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    public function setUp()
-    {
-        $this->token = getenv('CONTENTFUL_CMA_TEST_TOKEN');
-        $this->client = new Client($this->token);
-    }
-
     /**
      * @vcr e2e_space_get.json
      */
