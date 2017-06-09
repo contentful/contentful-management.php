@@ -8,7 +8,7 @@ namespace Contentful\Tests\Unit;
 
 use Contentful\Management\SystemProperties;
 
-class SyatemPropertiesTest extends \PHPUnit_Framework_TestCase
+class SystemPropertiesTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateWithType()
     {
