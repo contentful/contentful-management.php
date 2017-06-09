@@ -102,7 +102,7 @@ class ResourceBuilder
     {
         $fields = $data['fields'];
 
-        return $this->updateObject(Asset::class, $asset, [
+        $this->updateObject(Asset::class, $asset, [
             'sys' => $this->buildSystemProperties($data['sys']),
             'title' => isset($fields['title']) ? $fields['title'] : null,
             'description' => isset($fields['description']) ? $fields['description'] : null,
@@ -209,7 +209,7 @@ class ResourceBuilder
 
     private function updateEntry(Entry $entry, array $data)
     {
-        return $this->updateObject(Entry::class, $entry, [
+        $this->updateObject(Entry::class, $entry, [
             'sys' => $this->buildSystemProperties($data['sys']),
             'fields' => $data['fields']
         ]);
@@ -256,7 +256,7 @@ class ResourceBuilder
 
     private function updateLocale(Locale $locale, array $data)
     {
-        return $this->updateObject(Locale::class, $locale, [
+        $this->updateObject(Locale::class, $locale, [
             'name' => $data['name'],
             'code' => $data['code'],
             'contentDeliveryApi' => $data['contentDeliveryApi'],
