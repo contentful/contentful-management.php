@@ -19,7 +19,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testGetAsset()
     {
-        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $manager = $this->getReadOnlySpaceManager();
 
         $asset = $manager->getAsset('nyancat');
         $this->assertEquals('Nyan Cat', $asset->getTitle('en-US'));
@@ -30,7 +30,7 @@ class AssetTest extends End2EndTestCase
         $this->assertEquals('nyancat', $sys->getId());
         $this->assertEquals('Asset', $sys->getType());
         $this->assertEquals(2, $sys->getVersion());
-        $this->assertEquals(new Link('cfexampleapi', 'Space'), $sys->getSpace());
+        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:54:17.868'), $sys->getCreatedAt());
         $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.264'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
@@ -49,7 +49,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testGetAssets()
     {
-        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $manager = $this->getReadOnlySpaceManager();
         $assets = $manager->getAssets();
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
@@ -66,7 +66,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testCreateUpdateProcessPublishUnpublishArchiveUnarchiveDelete()
     {
-        $manager = $this->client->getSpaceManager('34luz0flcmxt');
+        $manager = $this->getReadWriteSpaceManager();
 
         $asset = (new Asset())
             ->setTitle('An asset', 'en-US')

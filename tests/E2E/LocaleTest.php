@@ -17,7 +17,7 @@ class LocaleTest extends End2EndTestCase
      */
     public function testGetLocale()
     {
-        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $manager = $this->getReadOnlySpaceManager();
 
         $locale = $manager->getLocale('2oQPjMCL9bQkylziydLh57');
         $this->assertEquals('English', $locale->getName());
@@ -32,7 +32,7 @@ class LocaleTest extends End2EndTestCase
         $this->assertEquals('2oQPjMCL9bQkylziydLh57', $sys->getId());
         $this->assertEquals('Locale', $sys->getType());
         $this->assertEquals(1, $sys->getVersion());
-        $this->assertEquals(new Link('cfexampleapi', 'Space'), $sys->getSpace());
+        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(new \DateTimeImmutable('2013-06-23T19:02:00'), $sys->getCreatedAt());
         $this->assertEquals(new \DateTimeImmutable('2013-06-25T12:13:56'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
@@ -46,7 +46,7 @@ class LocaleTest extends End2EndTestCase
      */
     public function testGetLocales()
     {
-        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $manager = $this->getReadOnlySpaceManager();
 
         $locales = $manager->getLocales();
         $this->assertCount(2, $locales);
@@ -58,7 +58,7 @@ class LocaleTest extends End2EndTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $manager = $this->client->getSpaceManager('34luz0flcmxt');
+        $manager = $this->getReadWriteSpaceManager();
 
         $locale = new Locale('Swiss German', 'de-CH');
 
