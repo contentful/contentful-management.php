@@ -7,7 +7,7 @@ PHP SDK for [Contentful's][1] Content Management API.
 
 The SDK requires at least PHP 7.0.
 
-The SDK is currently in beta. The API might change at any time.
+The SDK is currently in an alpha state. The API might change at any time. It should not be used in production.
 
 Setup
 =====
@@ -22,6 +22,35 @@ Then, if not already done, include the Composer autoloader:
 
 ```php
 require_once 'vendor/autoload.php';
+```
+
+Usage
+=====
+
+The first thing that needs to be done is initiating an instance of `Contentful\Management\Client` by giving it an
+access token. All actions performed using this instance of the `Client` will be performed with the privileges
+of the user this token belongs to.
+
+```php
+$client = new \Contentful\Management\Client('access-token');
+```
+
+The client itself allows creating, updating and deleting spaces. For any operation that happens within a space, a
+`SpaceManager` needs to be retrieved for that one space.
+
+```php
+$spaceManager = $client->getSpaceManager('spaceID');
+```
+
+Retrieving and updating an asset might look like this:
+
+```php
+$client = new \Contentful\Management\Client('access-token');
+$spaceManager = $client->getSpaceManager('spaceID');
+
+$asset = $spaceManager->getAsset('assetID');
+$asset->setTitle('Better Title', 'en-US');
+$spaceManager->update($asset);
 ```
 
 License
