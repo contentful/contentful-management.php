@@ -20,11 +20,11 @@ class SpaceTest extends End2EndTestCase
      */
     public function testGetSpace()
     {
-        $space = $this->client->getSpace('cfexampleapi');
+        $space = $this->client->getSpace($this->readOnlySpaceId);
 
         $this->assertInstanceOf(Space::class, $space);
         $sys = $space->getSystemProperties();
-        $this->assertEquals('cfexampleapi', $sys->getId());
+        $this->assertEquals($this->readOnlySpaceId, $sys->getId());
         $this->assertEquals('Space', $sys->getType());
         $this->assertEquals(new \DateTimeImmutable('2013-06-23T19:02:00'), $sys->getCreatedAt());
         $this->assertEquals(new \DateTimeImmutable('2016-02-25T09:57:25'), $sys->getUpdatedAt());

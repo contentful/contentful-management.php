@@ -20,7 +20,7 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testGetContentType()
     {
-        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $manager = $this->getReadOnlySpaceManager();
 
         $contentType = $manager->getContentType('cat');
 
@@ -28,7 +28,7 @@ class ContentTypeTest extends End2EndTestCase
         $this->assertEquals('cat', $sys->getId());
         $this->assertEquals('ContentType', $sys->getType());
         $this->assertEquals(29, $sys->getVersion());
-        $this->assertEquals(new Link('cfexampleapi', 'Space'), $sys->getSpace());
+        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:10.704'), $sys->getCreatedAt());
         $this->assertEquals(new \DateTimeImmutable('2016-11-21T15:01:43.873'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
@@ -70,7 +70,7 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testGetAssets()
     {
-        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $manager = $this->getReadOnlySpaceManager();
         $contentTypes = $manager->getContentTypes();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
@@ -87,7 +87,7 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testCreateUpdateActivateDeleteContentType()
     {
-        $manager = $this->client->getSpaceManager('34luz0flcmxt');
+        $manager = $this->getReadWriteSpaceManager();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('THE best content type');

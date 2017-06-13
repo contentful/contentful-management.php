@@ -18,7 +18,7 @@ class EntryTest extends End2EndTestCase
      */
     public function testGetEntry()
     {
-        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $manager = $this->getReadOnlySpaceManager();
 
         $entry = $manager->getEntry('nyancat');
 
@@ -30,7 +30,7 @@ class EntryTest extends End2EndTestCase
         $this->assertEquals('Entry', $sys->getType());
         $this->assertEquals(new Link('cat', 'ContentType'), $sys->getContentType());
         $this->assertEquals(15, $sys->getVersion());
-        $this->assertEquals(new Link('cfexampleapi', 'Space'), $sys->getSpace());
+        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:15.91'), $sys->getCreatedAt());
         $this->assertEquals(new \DateTimeImmutable('2016-05-19T11:40:57.752'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
@@ -46,7 +46,7 @@ class EntryTest extends End2EndTestCase
      */
     public function testGetEntries()
     {
-        $manager = $this->client->getSpaceManager('cfexampleapi');
+        $manager = $this->getReadOnlySpaceManager();
         $entries = $manager->getEntries();
 
         $this->assertInstanceOf(Entry::class, $entries[0]);
@@ -63,7 +63,7 @@ class EntryTest extends End2EndTestCase
      */
     public function testCreateUpdatePublishUnpublishArchiveUnarchiveDelete()
     {
-        $manager = $this->client->getSpaceManager('34luz0flcmxt');
+        $manager = $this->getReadWriteSpaceManager();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'A name', 'en-US');
