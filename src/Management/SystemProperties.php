@@ -6,6 +6,7 @@
 
 namespace Contentful\Management;
 
+use Contentful\DateHelper;
 use Contentful\Link;
 
 class SystemProperties implements \JsonSerializable
@@ -298,19 +299,19 @@ class SystemProperties implements \JsonSerializable
             $obj->contentType = $this->contentType;
         }
         if ($this->createdAt !== null) {
-            $obj->createdAt = $this->formatDateForJson($this->createdAt);
+            $obj->createdAt = DateHelper::formatForJson($this->createdAt);
         }
         if ($this->updatedAt !== null) {
-            $obj->updatedAt = $this->formatDateForJson($this->updatedAt);
+            $obj->updatedAt = DateHelper::formatForJson($this->updatedAt);
         }
         if ($this->archivedAt !== null) {
-            $obj->archivedAt = $this->formatDateForJson($this->archivedAt);
+            $obj->archivedAt = DateHelper::formatForJson($this->archivedAt);
         }
         if ($this->publishedAt !== null) {
-            $obj->publishedAt = $this->formatDateForJson($this->publishedAt);
+            $obj->publishedAt = DateHelper::formatForJson($this->publishedAt);
         }
         if ($this->firstPublishedAt !== null) {
-            $obj->firstPublishedAt = $this->formatDateForJson($this->firstPublishedAt);
+            $obj->firstPublishedAt = DateHelper::formatForJson($this->firstPublishedAt);
         }
         if ($this->version !== null) {
             $obj->version = $this->version;
@@ -338,25 +339,5 @@ class SystemProperties implements \JsonSerializable
         }
 
         return $obj;
-    }
-
-    /**
-     * Unfortunately PHP has no easy way to create a nice, ISO 8601 formatted date string with milliseconds and Z
-     * as the time zone specifier. Thus this hack.
-     *
-     * @param  \DateTimeImmutable $dt
-     *
-     * @return string ISO 8601 formatted date
-     */
-    private function formatDateForJson(\DateTimeImmutable $dt): string
-    {
-        $dt = $dt->setTimezone(new \DateTimeZone('Etc/UTC'));
-        $result = $dt->format('Y-m-d\TH:i:s') ;
-        $milliseconds =floor($dt->format('u')/1000);
-        if ($milliseconds > 0) {
-            $result .= '.' . str_pad($milliseconds, 3, '0', STR_PAD_LEFT);
-        }
-
-        return $result . 'Z';
     }
 }

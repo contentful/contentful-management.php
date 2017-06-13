@@ -6,6 +6,8 @@
 
 namespace Contentful\Management;
 
+use Contentful\DateHelper;
+
 class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
 {
     /**
@@ -70,12 +72,19 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
         foreach ($this->fields as $fieldName => $fieldData) {
             $formattedData = [];
             foreach ($fieldData as $locale => $data) {
-                if ($data instanceof \DateTimeInterface) {
-                    $value = $this->formatDateForJson($data);
+                if ($data instanceof \DateTimeImmutable) {
+                    $value = DateHelper::formatForJson($data);
+                } elseif ($data instanceof \DateTime) {
+                    $dt = \DateTimeImmutable::createFromMutable($data);
+                    $value = DateHelper::formatForJson($dt);
                 } elseif (is_array($data)) {
                     $value = array_map(function ($value) {
-                        if ($value instanceof \DateTimeInterface) {
-                            return $this->formatDateForJson($value);
+                        if ($value instanceof \DateTimeImmutable) {
+                            return DateHelper::formatForJson($value);
+                        }
+                        if ($value instanceof \DateTime) {
+                            $dt = \DateTimeImmutable::createFromMutable($value);
+                            return DateHelper::formatForJson($dt);
                         }
 
                         return $value;
@@ -92,24 +101,5 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
             'fields' => (object) $fields,
             'sys' => $this->sys
         ];
-    }
-
-    /**
-     * Unfortunately PHP has no easy way to create a nice, ISO 8601 formatted date string with milliseconds and Z
-     * as the time zone specifier. Thus this hack.
-     *
-     * @param  \DateTimeInterface $dt
-     *
-     * @return string ISO 8601 formatted date
-     */
-    private function formatDateForJson(\DateTimeInterface $dt)
-    {
-        if ($dt instanceof \DateTime) {
-            $dt = \DateTimeImmutable::createFromMutable($dt);
-        }
-
-        $dt = $dt->setTimezone(new \DateTimeZone('Etc/UTC'));
-
-        return $dt->format('Y-m-d\TH:i:s.') . str_pad(floor($dt->format('u')/1000), 3, '0', STR_PAD_LEFT) . 'Z';
     }
 }
