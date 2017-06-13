@@ -84,6 +84,7 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
                         }
                         if ($value instanceof \DateTime) {
                             $dt = \DateTimeImmutable::createFromMutable($value);
+
                             return DateHelper::formatForJson($dt);
                         }
 

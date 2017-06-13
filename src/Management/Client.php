@@ -7,8 +7,8 @@
 namespace Contentful\Management;
 
 use Contentful\Client as BaseClient;
-use Contentful\ResourceArray;
 use Contentful\JsonHelper;
+use Contentful\ResourceArray;
 
 class Client extends BaseClient
 {
