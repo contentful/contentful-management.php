@@ -7,6 +7,7 @@
 namespace Contentful\Management;
 
 use Contentful\Exception\SpaceMismatchException;
+use Contentful\JsonHelper;
 use Contentful\ResourceArray;
 
 class SpaceManager
@@ -150,7 +151,7 @@ class SpaceManager
     public function update(Updatable $resource)
     {
         $sys = $resource->getSystemProperties();
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($resource));
+        $body = JsonHelper::encode($this->client->prepareObjectForApi($resource));
         $urlParts = [
             'spaces',
             $this->spaceId,
@@ -168,7 +169,7 @@ class SpaceManager
 
     public function create(Creatable $resource, string $id = null)
     {
-        $body = $this->client->encodeJson($this->client->prepareObjectForApi($resource));
+        $body = JsonHelper::encode($this->client->prepareObjectForApi($resource));
         $additionalHeaders = [];
         $urlParts = [
             'spaces',

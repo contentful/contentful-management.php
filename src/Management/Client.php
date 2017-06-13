@@ -8,6 +8,7 @@ namespace Contentful\Management;
 
 use Contentful\Client as BaseClient;
 use Contentful\ResourceArray;
+use Contentful\JsonHelper;
 
 class Client extends BaseClient
 {
@@ -65,11 +66,6 @@ class Client extends BaseClient
         return parent::request($method, $path, $options);
     }
 
-    public function encodeJson($object)
-    {
-        return parent::encodeJson($object);
-    }
-
     /**
      * @param  string $spaceId
      *
@@ -111,7 +107,7 @@ class Client extends BaseClient
         if ($defaultLocale !== 'en-US') {
             $bodyData->defaultLocale = $defaultLocale;
         }
-        $body = $this->encodeJson($bodyData);
+        $body = JsonHelper::encode($bodyData);
 
         $response = $this->request('POST', 'spaces', [
             'additionalHeaders' => $additionalHeaders,
@@ -126,7 +122,7 @@ class Client extends BaseClient
     public function updateSpace(Space $space)
     {
         $sys = $space->getSystemProperties();
-        $body = $this->encodeJson($this->prepareObjectForApi($space));
+        $body = JsonHelper::encode($this->prepareObjectForApi($space));
         $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
         $response = $this->request('PUT', 'spaces/' . $sys->getId(), [
             'additionalHeaders' => $additionalHeaders,
@@ -159,8 +155,18 @@ class Client extends BaseClient
      *
      * @return string
      */
-    protected function getSdkNameAndVersion()
+    protected function getSdkName()
     {
-        return 'contentful-management.php/' . self::VERSION;
+        return 'contentful-management.php/';
+    }
+
+    /**
+     * The version of the library to be used in the User-Agent header.
+     *
+     * @return string
+     */
+    protected function getSdkVersion()
+    {
+        return self::VERSION;
     }
 }
