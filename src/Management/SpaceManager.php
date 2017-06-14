@@ -256,6 +256,63 @@ class SpaceManager
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/entries', $query);
     }
 
+    /**
+     * @param string $webhookId
+     *
+     * @return Webhook
+     */
+    public function getWebhook(string $webhookId): Webhook
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/webhook_definitions/' . $webhookId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param Query $query
+     *
+     * @return ResourceArray
+     */
+    public function getWebhooks(Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/webhook_definitions', $query);
+    }
+
+    /**
+     * @param string $webhookId
+     *
+     * @return WebhookHealth
+     */
+    public function getWebhookHealth(string $webhookId): WebhookHealth
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/webhooks/' . $webhookId . '/health');
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param string $webhookId
+     *
+     * @return ResourceArray
+     */
+    public function getWebhookCalls(string $webhookId, Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/webhooks/' . $webhookId . '/calls', $query);
+    }
+
+    /**
+     * @param string $webhookId
+     * @param string $webhookCallId
+     *
+     * @return WebhookCallDetails
+     */
+    public function getWebhookCallDetails(string $webhookId, string $webhookCallId)
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/webhooks/' . $webhookId . '/calls/' . $webhookCallId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
     public function getAndBuildCollection(string $path, Query $query = null): ResourceArray
     {
         $queryData = $query !== null ? $query->getQueryData() : [];
