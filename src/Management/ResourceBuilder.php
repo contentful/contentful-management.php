@@ -28,7 +28,7 @@ class ResourceBuilder
 
     /**
      * @param  array $data
-     * @return Space|Asset|ContentType|Entry|Locale|ResourceArray
+     * @return Space|Asset|ContentType|Entry|Locale|Webhook|ResourceArray
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -47,6 +47,8 @@ class ResourceBuilder
                 return $this->buildLocale($data);
             case 'Space':
                 return $this->buildSpace($data);
+            case 'WebhookDefinition':
+                return $this->buildWebhook($data);
             default:
                 throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to build object.');
         }
@@ -75,6 +77,9 @@ class ResourceBuilder
                 break;
             case 'Locale':
                 $this->updateLocale($object, $data);
+                break;
+            case 'WebhookDefinition':
+                $this->updateWebhook($object, $data);
                 break;
             default:
                 throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to update object.');
@@ -296,6 +301,45 @@ class ResourceBuilder
         }
 
         return new ResourceArray($items, $data['total'], $data['limit'], $data['skip']);
+    }
+
+    private function buildWebhook(array $data): Webhook
+    {
+        $headers = [];
+        foreach ($data['headers'] as $header) {
+            $headers[$header['key']] = $header['value'];
+        }
+
+        return $this->createObject(Webhook::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'url' => $data['url'],
+            'httpBasicUsername' => $data['httpBasicUsername'] ?? null,
+            'httpBasicPassword' => null,
+            'topics' => $data['topics'],
+            'headers' => $headers,
+        ]);
+    }
+
+    private function updateWebhook(Webhook $webhook, array $data)
+    {
+        $headers = [];
+        foreach ($data['headers'] as $header) {
+            $headers[$header['key']] = $header['value'];
+        }
+
+        // The API never returns the password in the response.
+        // This means that the object that the user requested will have its `httpBasicPassword` field set to null.
+        // It's a destructive behavior, but it's consinstent with the way the API works.
+        $this->updateObject(Webhook::class, $webhook, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'url' => $data['url'],
+            'httpBasicUsername' => $data['httpBasicUsername'] ?? null,
+            'httpBasicPassword' => null,
+            'topics' => $data['topics'],
+            'headers' => $data['headers'],
+        ]);
     }
 
     /**

@@ -256,6 +256,28 @@ class SpaceManager
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/entries', $query);
     }
 
+    /**
+     * @param string $webhookId
+     *
+     * @return Webhook
+     */
+    public function getWebhook(string $webhookId): Webhook
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/webhook_definitions/' . $webhookId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param Query $query
+     *
+     * @return ResourceArray
+     */
+    public function getWebhooks(Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/webhook_definitions', $query);
+    }
+
     public function getAndBuildCollection(string $path, Query $query = null): ResourceArray
     {
         $queryData = $query !== null ? $query->getQueryData() : [];
