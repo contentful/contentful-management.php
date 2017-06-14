@@ -45,6 +45,13 @@ class ResourceBuilder
                 return $this->buildContentType($data);
             case 'Entry':
                 return $this->buildEntry($data);
+            case 'Snapshot':
+                switch ($data['sys']['snapshotEntityType']) {
+                    case 'Entry':
+                        return $this->buildEntrySnapshot($data);
+                    default:
+                        throw new \InvalidArgumentException('Unexpected type "' . $data['snapshotEntityType'] . '" when trying to build snapshot.');
+                }
             case 'Locale':
                 return $this->buildLocale($data);
             case 'Space':
@@ -229,6 +236,20 @@ class ResourceBuilder
     }
 
     /**
+     * @param array $data
+     *
+     * @return EntrySnapshot
+     */
+    private function buildEntrySnapshot(array $data): EntrySnapshot
+    {
+        return $this->createObject(EntrySnapshot::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'fields' => $data['snapshot']['fields'],
+            'entrySys' => $this->buildSystemProperties($data['snapshot']['sys']),
+        ]);
+    }
+
+    /**
      * @param  array $data
      *
      * @return Validation\ValidationInterface
@@ -308,7 +329,10 @@ class ResourceBuilder
             $items[] = $this->buildObjectsFromRawData($item);
         }
 
-        return new ResourceArray($items, $data['total'], $data['limit'], $data['skip']);
+        // Some endpoints don't have a `total` key, so we default it to zero
+        $total = $data['total'] ?? 0;
+
+        return new ResourceArray($items, $total, $data['limit'], $data['skip']);
     }
 
     private function buildWebhook(array $data): Webhook
