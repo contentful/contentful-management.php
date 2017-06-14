@@ -9,6 +9,8 @@ namespace Contentful\Management;
 use Contentful\File;
 use Contentful\Management\Field\Validation;
 use Contentful\ResourceArray;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 class ResourceBuilder
 {
@@ -28,7 +30,7 @@ class ResourceBuilder
 
     /**
      * @param  array $data
-     * @return Space|Asset|ContentType|Entry|Locale|Webhook|ResourceArray
+     * @return Space|Asset|ContentType|Entry|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -49,6 +51,12 @@ class ResourceBuilder
                 return $this->buildSpace($data);
             case 'WebhookDefinition':
                 return $this->buildWebhook($data);
+            case 'WebhookCallDetails':
+                return $this->buildWebhookCallDetails($data);
+            case 'WebhookCallOverview':
+                return $this->buildWebhookCall($data);
+            case 'Webhook':
+                return $this->buildWebhookHealth($data);
             default:
                 throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to build object.');
         }
@@ -339,6 +347,52 @@ class ResourceBuilder
             'httpBasicPassword' => null,
             'topics' => $data['topics'],
             'headers' => $data['headers'],
+        ]);
+    }
+
+    private function buildWebhookCallDetails(array $data): WebhookCallDetails
+    {
+        return $this->createObject(WebhookCallDetails::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'request' => new Request(
+                $data['request']['method'],
+                $data['request']['url'],
+                $data['request']['headers'],
+                $data['request']['body']
+            ),
+            'response' => new Response(
+                $data['response']['statusCode'],
+                $data['response']['headers'],
+                $data['response']['body']
+            ),
+            'statusCode' => $data['statusCode'],
+            'eventType' => $data['eventType'],
+            'url' => $data['url'],
+            'error' => $data['errors'] ? $data['errors'][0] : null,
+            'requestAt' => new \DateTimeImmutable($data['requestAt']),
+            'responseAt' => new \DateTimeImmutable($data['responseAt']),
+        ]);
+    }
+
+    private function buildWebhookCall(array $data): WebhookCall
+    {
+        return $this->createObject(WebhookCall::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'statusCode' => $data['statusCode'],
+            'eventType' => $data['eventType'],
+            'error' => $data['errors'] ? $data['errors'][0] : null,
+            'url' => $data['url'],
+            'requestAt' => new \DateTimeImmutable($data['requestAt']),
+            'responseAt' => new \DateTimeImmutable($data['responseAt']),
+        ]);
+    }
+
+    private function buildWebhookHealth(array $data): WebhookHealth
+    {
+        return $this->createObject(WebhookHealth::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'total' => $data['calls']['total'],
+            'healthy' => $data['calls']['healthy'],
         ]);
     }
 

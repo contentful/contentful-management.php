@@ -79,6 +79,61 @@ class WebhookTest extends End2EndTestCase
 
     /**
      * @depends testCreateWebhook
+     * @vcr e2e_webhook_events_fired_and_logged.json
+     */
+    public function testWebhookEventsFiredAndLogged(Webhook $webhook)
+    {
+        $manager = $this->getReadWriteSpaceManager();
+
+        $entry1 = (new Entry('person'))
+            ->setField('name', 'Burt Macklin', 'en-US')
+            ->setField('jobTitle', 'FBI', 'en-US')
+        ;
+        $manager->create($entry1);
+        $manager->delete($entry1);
+
+        $entry2 = (new Entry('person'))
+            ->setField('name', 'Dwight Schrute', 'en-US')
+            ->setField('jobTitle', 'Assistant Regional Manager', 'en-US')
+        ;
+        $manager->create($entry2);
+        $manager->delete($entry2);
+
+        $webhookId = $webhook->getSystemProperties()->getId();
+
+        $health = $manager->getWebhookHealth($webhookId);
+        $this->assertEquals(2, $health->getTotal());
+        $this->assertEquals(0, $health->getHealthy());
+
+        $webhookCalls = $manager->getWebhookCalls($webhookId);
+
+        $this->assertInstanceOf(WebhookCall::class, $webhookCalls[0]);
+        $this->assertEquals('create', $webhookCalls[0]->getEventType());
+        $this->assertEquals('https://www.example.com/cf-xrLThVn5uBzHqB6tIbpV4aycgyisr5UAEQSafzkG', $webhookCalls[0]->getUrl());
+
+        $query = (new Query())
+            ->setLimit(1);
+        $webhookCalls = $manager->getWebhookCalls($webhookId, $query);
+        $this->assertInstanceOf(WebhookCall::class, $webhookCalls[0]);
+        $this->assertCount(1, $webhookCalls);
+
+        $webhookCallId = $webhookCalls[0]->getSystemProperties()->getId();
+
+        $webhookCallDetails = $manager->getWebhookCallDetails($webhookId, $webhookCallId);
+        $requestPayload = json_decode($webhookCallDetails->getRequest()->getBody(), true);
+        $this->assertEquals('Dwight Schrute', $requestPayload['fields']['name']['en-US']);
+        $this->assertEquals('ContentManagement.Entry.create', $webhookCallDetails->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
+        $this->assertEquals('ClientError', $webhookCallDetails->getError());
+        $this->assertEquals('create', $webhookCallDetails->getEventType());
+        $this->assertEquals(404, $webhookCallDetails->getStatusCode());
+        $this->assertEquals('https://www.example.com/cf-xrLThVn5uBzHqB6tIbpV4aycgyisr5UAEQSafzkG', $webhookCallDetails->getUrl());
+        $this->assertEquals(404, $webhookCallDetails->getResponse()->getStatusCode());
+
+        return $webhook;
+    }
+
+    /**
+     * @depends testWebhookEventsFiredAndLogged
      * @vcr e2e_webhook_delete.json
      */
     public function testDeleteWebhook(Webhook $webhook)
