@@ -97,6 +97,16 @@ class SystemProperties implements \JsonSerializable
     private $archivedVersion;
 
     /**
+     * @var string|null
+     */
+    private $snapshotType;
+
+    /**
+     * @var string|null
+     */
+    private $snapshotEntityType;
+
+    /**
      * SystemProperties constructor.
      *
      * @param  array $sys Associative array of sys properties
@@ -120,6 +130,8 @@ class SystemProperties implements \JsonSerializable
         $this->updatedBy = isset($sys['updatedBy']) ? $this->buildLink($sys['updatedBy']) : null;
         $this->publishedBy = isset($sys['publishedBy']) ? $this->buildLink($sys['publishedBy']) : null;
         $this->archivedBy = isset($sys['archivedBy']) ? $this->buildLink($sys['archivedBy']) : null;
+        $this->snapshotType = $sys['snapshotType'] ?? null;
+        $this->snapshotEntityType = $sys['snapshotEntityType'] ?? null;
     }
 
     public static function withType(string $type)
@@ -276,6 +288,22 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
+     * @return string|null
+     */
+    public function getSnapshotType()
+    {
+        return $this->snapshotType;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSnapshotEntityType()
+    {
+        return $this->snapshotEntityType;
+    }
+
+    /**
      * Returns an object to be used by `json_encode` to serialize objects of this class.
      *
      * @return object
@@ -336,6 +364,12 @@ class SystemProperties implements \JsonSerializable
         }
         if ($this->archivedVersion !== null) {
             $obj->archivedVersion = $this->archivedVersion;
+        }
+        if ($this->snapshotType !== null) {
+            $obj->snapshotType = $this->snapshotType;
+        }
+        if ($this->snapshotEntityType !== null) {
+            $obj->snapshotEntityType = $this->snapshotEntityType;
         }
 
         return $obj;

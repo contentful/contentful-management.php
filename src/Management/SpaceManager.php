@@ -257,6 +257,30 @@ class SpaceManager
     }
 
     /**
+     * @param string $entryId
+     * @param string $snapshotId
+     *
+     * @return EntrySnapshot
+     */
+    public function getEntrySnapshot(string $entryId, string $snapshotId): EntrySnapshot
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/entries/' . $entryId . '/snapshots/' . $snapshotId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param string $entryId
+     * @param Query $query
+     *
+     * @return ResourceArray
+     */
+    public function getEntrySnapshots(string $entryId, Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/entries/' . $entryId . '/snapshots', $query);
+    }
+
+    /**
      * @param string $webhookId
      *
      * @return Webhook
