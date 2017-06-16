@@ -193,7 +193,7 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($resource, $response);
     }
 
-    public function getAsset($assetId): Asset
+    public function getAsset(string $assetId): Asset
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets/' . $assetId);
 
