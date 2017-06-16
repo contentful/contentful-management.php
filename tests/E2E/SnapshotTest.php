@@ -7,8 +7,8 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
-use Contentful\Management\Query;
 use Contentful\Management\EntrySnapshot;
+use Contentful\Management\Query;
 use Contentful\Tests\End2EndTestCase;
 
 class SnapshotTest extends End2EndTestCase
@@ -51,6 +51,5 @@ class SnapshotTest extends End2EndTestCase
         $snapshots = $manager->getEntrySnapshots('3LM5FlCdGUIM0Miqc664q6', $query);
         $this->assertInstanceOf(EntrySnapshot::class, $snapshots[0]);
         $this->assertCount(1, $snapshots);
-
     }
 }

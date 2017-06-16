@@ -14,7 +14,7 @@ class EntrySnapshotTest extends \PHPUnit_Framework_TestCase
     {
         $builder = new ResourceBuilder();
 
-         $data = [
+        $data = [
             'sys' => [
                 'type' => 'Snapshot',
                 'snapshotEntityType' => 'Entry',
