@@ -79,8 +79,8 @@ class RangeValidation implements ValidationInterface
     {
         $values = $data['range'];
 
-        $min = isset($values['min']) ? $values['min'] : null;
-        $max = isset($values['max']) ? $values['max'] : null;
+        $min = $values['min'] ?? null;
+        $max = $values['max'] ?? null;
 
         return new self($min, $max);
     }

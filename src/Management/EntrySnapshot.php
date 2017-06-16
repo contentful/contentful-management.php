@@ -60,11 +60,7 @@ class EntrySnapshot implements SpaceScopedResourceInterface
      */
     public function getField(string $name, string $locale)
     {
-        if (!isset($this->fields[$name][$locale])) {
-            return null;
-        }
-
-        return $this->fields[$name][$locale];
+        return $this->fields[$name][$locale] ?? null;
     }
 
     /**

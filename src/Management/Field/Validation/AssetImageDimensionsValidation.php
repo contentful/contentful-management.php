@@ -139,13 +139,13 @@ class AssetImageDimensionsValidation implements ValidationInterface
 
         if (isset($values['width'])) {
             $widthValues = $values['width'];
-            $minWidth = isset($widthValues['min']) ? $widthValues['min'] : null;
-            $maxWidth = isset($widthValues['max']) ? $widthValues['max'] : null;
+            $minWidth = $widthValues['min'] ?? null;
+            $maxWidth = $widthValues['max'] ?? null;
         }
         if (isset($values['height'])) {
             $heightValues = $values['height'];
-            $minHeight = isset($heightValues['min']) ? $heightValues['min'] : null;
-            $maxHeight = isset($heightValues['max']) ? $heightValues['max'] : null;
+            $minHeight = $heightValues['min'] ?? null;
+            $maxHeight = $heightValues['max'] ?? null;
         }
 
         return new self($minWidth, $maxWidth, $minHeight, $maxHeight);
