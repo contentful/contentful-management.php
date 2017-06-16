@@ -112,8 +112,8 @@ class ResourceBuilder
 
         return $this->createObject(Asset::class, [
             'sys' => $this->buildSystemProperties($data['sys']),
-            'title' => isset($fields['title']) ? $fields['title'] : null,
-            'description' => isset($fields['description']) ? $fields['description'] : null,
+            'title' => $fields['title'] ?? null,
+            'description' => $fields['description'] ?? null,
             'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null
         ]);
     }
@@ -124,8 +124,8 @@ class ResourceBuilder
 
         $this->updateObject(Asset::class, $asset, [
             'sys' => $this->buildSystemProperties($data['sys']),
-            'title' => isset($fields['title']) ? $fields['title'] : null,
-            'description' => isset($fields['description']) ? $fields['description'] : null,
+            'title' => $fields['title'] ?? null,
+            'description' => $fields['description'] ?? null,
             'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null
         ]);
     }
@@ -156,8 +156,8 @@ class ResourceBuilder
         return $this->createObject(ContentType::class, [
             'sys' => $this->buildSystemProperties($data['sys']),
             'name' => $data['name'],
-            'description' => isset($data['description']) ? $data['description'] : null,
-            'displayField' => isset($data['displayField']) ? $data['displayField'] : null,
+            'description' => $data['description'] ?? null,
+            'displayField' => $data['displayField'] ?? null,
             'fields' => array_map([$this, 'buildContentTypeField'], $data['fields'])
         ]);
     }
@@ -167,8 +167,8 @@ class ResourceBuilder
         $this->updateObject(ContentType::class, $contentType, [
             'sys' => $this->buildSystemProperties($data['sys']),
             'name' => $data['name'],
-            'description' => isset($data['description']) ? $data['description'] : null,
-            'displayField' => isset($data['displayField']) ? $data['displayField'] : null,
+            'description' => $data['description'] ?? null,
+            'displayField' => $data['displayField'] ?? null,
             'fields' => array_map([$this, 'buildContentTypeField'], $data['fields'])
         ]);
     }
@@ -200,8 +200,8 @@ class ResourceBuilder
             'name' => $data['name'],
             'required' => $data['required'],
             'localized' => $data['localized'],
-            'disabled' => isset($data['disabled']) ? $data['disabled'] : null,
-            'omitted' => isset($data['omitted']) ? $data['omitted'] : null,
+            'disabled' => $data['disabled'] ?? null,
+            'omitted' => $data['omitted'] ?? null,
             'validations' => isset($data['validations']) ? array_map([$this, 'buildFieldValidation'], $data['validations']) : null
         ];
 
@@ -212,7 +212,7 @@ class ResourceBuilder
         if ($type === 'Array') {
             $items = $data['items'];
             $hydratorData['itemsType'] = $items['type'];
-            $hydratorData['itemsLinkType'] = isset($items['linkType']) ? $items['linkType'] : null;
+            $hydratorData['itemsLinkType'] = $items['linkType'] ?? null;
             $hydratorData['itemsValidations'] = isset($items['validations']) ? array_map([$this, 'buildFieldValidation'], $items['validations']) : null;
         }
 

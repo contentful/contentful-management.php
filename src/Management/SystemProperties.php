@@ -113,8 +113,8 @@ class SystemProperties implements \JsonSerializable
      */
     public function __construct(array $sys = [])
     {
-        $this->id = isset($sys['id']) ? $sys['id'] : null;
-        $this->type = isset($sys['type']) ? $sys['type'] : null;
+        $this->id = $sys['id'] ?? null;
+        $this->type = $sys['type'] ?? null;
         $this->space = isset($sys['space']) ? $this->buildLink($sys['space']) : null;
         $this->contentType = isset($sys['contentType']) ? $this->buildLink($sys['contentType']) : null;
         $this->createdAt = isset($sys['createdAt']) ? new \DateTimeImmutable($sys['createdAt']) : null;
@@ -122,10 +122,10 @@ class SystemProperties implements \JsonSerializable
         $this->publishedAt = isset($sys['publishedAt']) ? new \DateTimeImmutable($sys['publishedAt']) : null;
         $this->archivedAt = isset($sys['archivedAt']) ? new \DateTimeImmutable($sys['archivedAt']) : null;
         $this->firstPublishedAt = isset($sys['firstPublishedAt']) ? new \DateTimeImmutable($sys['firstPublishedAt']) : null;
-        $this->version = isset($sys['version']) ? $sys['version'] : null;
-        $this->publishedCounter = isset($sys['publishedCounter']) ? $sys['publishedCounter'] : null;
-        $this->publishedVersion = isset($sys['publishedVersion']) ? $sys['publishedVersion'] : null;
-        $this->archivedVersion = isset($sys['archivedVersion']) ? $sys['archivedVersion'] : null;
+        $this->version = $sys['version'] ?? null;
+        $this->publishedCounter = $sys['publishedCounter'] ?? null;
+        $this->publishedVersion = $sys['publishedVersion'] ?? null;
+        $this->archivedVersion = $sys['archivedVersion'] ?? null;
         $this->createdBy = isset($sys['createdBy']) ? $this->buildLink($sys['createdBy']) : null;
         $this->updatedBy = isset($sys['updatedBy']) ? $this->buildLink($sys['updatedBy']) : null;
         $this->publishedBy = isset($sys['publishedBy']) ? $this->buildLink($sys['publishedBy']) : null;

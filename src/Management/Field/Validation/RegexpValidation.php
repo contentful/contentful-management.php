@@ -65,8 +65,8 @@ class RegexpValidation implements ValidationInterface
     {
         $values = $data['regexp'];
 
-        $pattern = isset($values['pattern']) ? $values['pattern'] : null;
-        $flags = isset($values['flags']) ? $values['flags'] : null;
+        $pattern = $values['pattern'] ?? null;
+        $flags = $values['flags'] ?? null;
 
         return new self($pattern, $flags);
     }

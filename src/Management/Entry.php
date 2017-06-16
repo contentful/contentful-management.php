@@ -40,11 +40,7 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
 
     public function getField(string $name, string $locale)
     {
-        if (!isset($this->fields[$name][$locale])) {
-            return null;
-        }
-
-        return $this->fields[$name][$locale];
+        return $this->fields[$name][$locale] ?? null;
     }
 
     public function setField(string $name, $value, string $locale)
