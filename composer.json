@@ -5,7 +5,7 @@
   "license": "MIT",
   "require": {
     "php": "^7.0",
-    "contentful/contentful": "dev-feature/cma-prep@dev"
+    "contentful/contentful": "dev-master@dev"
   },
   "require-dev": {
     "php-vcr/phpunit-testlistener-vcr": "^1.1",
