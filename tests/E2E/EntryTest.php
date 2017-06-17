@@ -89,4 +89,20 @@ class EntryTest extends End2EndTestCase
 
         $manager->delete($entry);
     }
+
+    /**
+     * @vcr e2e_entry_create_with_id.json
+     */
+    public function testCreateEntryWithGivenId()
+    {
+        $manager = $this->getReadWriteSpaceManager();
+
+        $entry = (new Entry('testCt'))
+            ->setField('name', 'A name', 'en-US');
+
+        $manager->create($entry, 'myCustomTestEntry');
+        $this->assertEquals('myCustomTestEntry', $entry->getSystemProperties()->getId());
+
+        $manager->delete($entry);
+    }
 }

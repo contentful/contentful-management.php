@@ -185,7 +185,8 @@ class SpaceManager
             $additionalHeaders = ['X-Contentful-Content-Type' => $resource->getSystemProperties()->getContentType()->getId()];
         }
 
-        $response = $this->client->request('POST', implode('/', $urlParts), [
+        $method = $id === null ? 'POST' : 'PUT';
+        $response = $this->client->request($method, implode('/', $urlParts), [
             'additionalHeaders' => $additionalHeaders,
             'body' => $body
         ]);

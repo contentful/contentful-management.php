@@ -106,4 +106,21 @@ class AssetTest extends End2EndTestCase
 
         $manager->delete($asset);
     }
+
+    /**
+     * @vcr e2e_asset_create_with_id.json
+     */
+    public function testCreateAssetWithGivenId()
+    {
+        $manager = $this->getReadWriteSpaceManager();
+
+        $asset = (new Asset())
+            ->setTitle('An asset', 'en-US')
+            ->setDescription('A really cool asset', 'en-US');
+
+        $manager->create($asset, 'myCustomTestAsset');
+        $this->assertEquals('myCustomTestAsset', $asset->getSystemProperties()->getId());
+
+        $manager->delete($asset);
+    }
 }
