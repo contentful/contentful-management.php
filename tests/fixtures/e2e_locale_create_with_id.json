@@ -1,0 +1,51 @@
+[{
+    "request": {
+        "method": "PUT",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales\/swiss_french",
+        "headers": {
+            "Host": "api.contentful.com",
+            "Expect": null,
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.5",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.5; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json"
+        },
+        "body": "{\"name\":\"Swiss French\",\"code\":\"fr-CH\",\"fallbackCode\":null,\"contentDeliveryApi\":true,\"contentManagementApi\":true,\"optional\":false}"
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "403",
+            "message": "Forbidden"
+        },
+        "headers": {
+            "Accept-Ranges": "bytes",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "Cache-Control": "max-age=0",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Mon, 19 Jun 2017 14:53:46 GMT",
+            "Server": "Contentful",
+            "Set-Cookie": "_auth_new_session=8a1f82036e423fdc61029dd466eff482; path=\/; expires=Mon, 03 Jul 2017 14:53:46 -0000; secure; HttpOnly, visid_incap_673446=4MrEAIJkQ1KXnZn2AwTPtHnlR1kAAAAAQUIPAAAAAAA4ayESHltpkeMLeOg46jXQ; expires=Tue, 19 Jun 2018 10:03:10 GMT; path=\/; Domain=.contentful.com, nlbi_673446=f5SKCHPE7TyeGa\/y6lKYhQAAAAAZpSAXuu9duHS3xUpQ49qs; path=\/; Domain=.contentful.com, incap_ses_457_673446=X2RoeeQTyTFGhtJDlJdXBnnlR1kAAAAAwcn1kKlrcOIoLcn0PTX8rw==; path=\/; Domain=.contentful.com",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179903",
+            "X-Contentful-RateLimit-Reset": "0",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "9812806e0020a466434d352436dcb08f",
+            "X-Frame-Options": "ALLOWALL",
+            "X-XSS-Protection": "1; mode=block",
+            "Content-Length": "211",
+            "Connection": "keep-alive",
+            "X-Iinfo": "7-74331767-74320627 PNNN RT(1497884024800 162) q(0 0 0 -1) r(2 2) U5",
+            "X-CDN": "Incapsula"
+        },
+        "body": "{\n  \"requestId\":\"9812806e0020a466434d352436dcb08f\",\n  \"message\":\"Cannot change the code of a locale which is fallback of another one\",\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"FallbackLocaleNotRenameable\"\n  }\n}\n\n"
+    }
+}]

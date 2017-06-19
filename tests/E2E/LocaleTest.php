@@ -70,4 +70,19 @@ class LocaleTest extends End2EndTestCase
 
         $manager->delete($locale);
     }
+
+    /**
+     * @vcr e2e_locale_create_with_id.json
+     */
+    public function testCreateLocaleWithGivenId()
+    {
+        $manager = $this->getReadWriteSpaceManager();
+
+        $locale = new Locale('Swiss French', 'fr-CH');
+
+        $manager->create($locale, 'swiss_french');
+        $this->assertEquals('swiss_french', $locale->getSystemProperties()->getId());
+
+        $manager->delete($locale);
+    }
 }
