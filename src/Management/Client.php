@@ -177,6 +177,7 @@ class Client extends BaseClient
     {
         return array_merge(parent::getExceptionMap(), [
             'BadRequest' => Exception\BadRequestException::class,
+            'InternalServerError' => Exception\InternalServerErrorException::class,
             'MissingKey' => Exception\MissingKeyException::class,
             'RateLimitExceeded' => Exception\RateLimitExceededException::class, // Overrides the generic exception
             'UnknownKey' => Exception\UnknownKeyException::class,
