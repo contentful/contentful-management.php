@@ -223,7 +223,7 @@ class ResourceBuilder
     {
         return $this->createObject(Entry::class, [
             'sys' => $this->buildSystemProperties($data['sys']),
-            'fields' => $data['fields']
+            'fields' => $data['fields'] ?? [],
         ]);
     }
 
@@ -231,7 +231,7 @@ class ResourceBuilder
     {
         $this->updateObject(Entry::class, $entry, [
             'sys' => $this->buildSystemProperties($data['sys']),
-            'fields' => $data['fields']
+            'fields' => $data['fields'] ?? [],
         ]);
     }
 
