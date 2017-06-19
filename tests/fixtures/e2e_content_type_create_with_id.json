@@ -1,0 +1,91 @@
+[{
+    "request": {
+        "method": "PUT",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/content_types\/myCustomTestCt",
+        "headers": {
+            "Host": "api.contentful.com",
+            "Expect": null,
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.5",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.5; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json"
+        },
+        "body": "{\"name\":\"Test CT\",\"fields\":[],\"description\":\"This content type will have `myCustomTestCt` as ID\"}"
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "201",
+            "message": "Created"
+        },
+        "headers": {
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "CF-Space-Id": "34luz0flcmxt",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Sat, 17 Jun 2017 15:48:38 GMT",
+            "ETag": "\"199b2b7ce2fbcec19fce7a5d9e188996\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179995",
+            "X-Contentful-RateLimit-Reset": "0",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "ddd4f430f961cefc4a340dc250990c4d",
+            "Content-Length": "696",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=AIdrscIQQZ60uex39x5zxRZPRVkAAAAAQUIPAAAAAAA9FdTSvR8YEwBJI0eaGHaR; expires=Sun, 17 Jun 2018 09:13:59 GMT; path=\/; Domain=.contentful.com, nlbi_673446=CReqLgFbMmTfL9T36lKYhQAAAAD2Qv7KzPgFe7UESRpyGGw8; path=\/; Domain=.contentful.com, incap_ses_259_673446=HwZ+WzOTrAPdhAr+4SeYA1VPRVkAAAAAF683SMCTPbNJel5ZZzGvtw==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "2-23982380-23982420 NNNN CT(89 89 0) RT(1497714516836 361) q(0 0 2 0) r(4 4) U5",
+            "X-CDN": "Incapsula"
+        },
+        "body": "{\n  \"name\": \"Test CT\",\n  \"fields\": [],\n  \"description\": \"This content type will have `myCustomTestCt` as ID\",\n  \"sys\": {\n    \"id\": \"myCustomTestCt\",\n    \"type\": \"ContentType\",\n    \"version\": 1,\n    \"createdAt\": \"2017-06-17T15:48:38.298Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"updatedAt\": \"2017-06-17T15:48:38.298Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
+    }
+},{
+    "request": {
+        "method": "DELETE",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/content_types\/myCustomTestCt",
+        "headers": {
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.5",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.5; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "204",
+            "message": "No Content"
+        },
+        "headers": {
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "CF-Space-Id": "34luz0flcmxt",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Sat, 17 Jun 2017 15:48:39 GMT",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179994",
+            "X-Contentful-RateLimit-Reset": "0",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "85945fe203e8a57c784e51aaf51bbc2e",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=eWNddqEORAiMB9Oqsh2EEVZPRVkAAAAAQUIPAAAAAADxtDVydfHDFSEm8cZU3X7r; expires=Sun, 17 Jun 2018 09:13:59 GMT; path=\/; Domain=.contentful.com, nlbi_673446=XeJsBoNI2VFC7KQo6lKYhQAAAAAGoNiUap1hlvgco0vzWVms; path=\/; Domain=.contentful.com, incap_ses_259_673446=IISzMIUrMXaC+Qr+4SeYA1ZPRVkAAAAAqCr0AwOnjk7oibz81xyEow==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "7-67386341-67386394 NNNN CT(87 93 0) RT(1497714518009 197) q(0 0 1 -1) r(6 6) U5",
+            "X-CDN": "Incapsula"
+        }
+    }
+}]

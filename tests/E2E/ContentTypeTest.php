@@ -106,5 +106,22 @@ class ContentTypeTest extends End2EndTestCase
         $this->assertNull($contentType->getSystemProperties()->getPublishedVersion());
 
         $manager->delete($contentType);
+
+    }
+
+    /**
+     * @vcr e2e_content_type_create_with_id.json
+     */
+    public function testCreateContentTypeWithGivenId()
+    {
+        $manager = $this->getReadWriteSpaceManager();
+
+        $contentType = (new ContentType('Test CT'))
+            ->setDescription('This content type will have `myCustomTestCt` as ID');
+
+        $manager->create($contentType, 'myCustomTestCt');
+        $this->assertEquals('myCustomTestCt', $contentType->getSystemProperties()->getId());
+
+        $manager->delete($contentType);
     }
 }
