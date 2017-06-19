@@ -169,4 +169,19 @@ class Client extends BaseClient
     {
         return self::VERSION;
     }
+
+    /**
+     * @return string[]
+     */
+    protected function getExceptionMap()
+    {
+        return array_merge(parent::getExceptionMap(), [
+            'BadRequest' => Exception\BadRequestException::class,
+            'MissingKey' => Exception\MissingKeyException::class,
+            'UnknownKey' => Exception\UnknownKeyException::class,
+            'UnsupportedMediaType' => Exception\UnsupportedMediaTypeException::class,
+            'ValidationFailed' => Exception\ValidationFailedException::class,
+            'VersionMismatch' => Exception\VersionMismatchException::class,
+        ]);
+    }
 }
