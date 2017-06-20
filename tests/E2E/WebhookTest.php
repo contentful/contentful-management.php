@@ -104,6 +104,7 @@ class WebhookTest extends End2EndTestCase
         $health = $manager->getWebhookHealth($webhookId);
         $this->assertEquals(2, $health->getTotal());
         $this->assertEquals(0, $health->getHealthy());
+        $this->assertEquals($webhookId, $health->getSystemProperties()->getId());
 
         $webhookCalls = $manager->getWebhookCalls($webhookId);
 
@@ -115,9 +116,16 @@ class WebhookTest extends End2EndTestCase
             ->setLimit(1);
         $webhookCalls = $manager->getWebhookCalls($webhookId, $query);
         $this->assertInstanceOf(WebhookCall::class, $webhookCalls[0]);
+        $this->assertEquals(404, $webhookCalls[0]->getStatusCode());
+        $this->assertEquals('ClientError', $webhookCalls[0]->getError());
+        // This is actually guaranteed thanks to type safety,
+        // but it's the only meaningful test we can have
+        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCalls[0]->getRequestAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCalls[0]->getResponseAt());
         $this->assertCount(1, $webhookCalls);
 
         $webhookCallId = $webhookCalls[0]->getSystemProperties()->getId();
+        $this->assertNotNull($webhookCallId);
 
         $webhookCallDetails = $manager->getWebhookCallDetails($webhookId, $webhookCallId);
         $requestPayload = json_decode($webhookCallDetails->getRequest()->getBody(), true);
@@ -128,6 +136,11 @@ class WebhookTest extends End2EndTestCase
         $this->assertEquals(404, $webhookCallDetails->getStatusCode());
         $this->assertEquals('https://www.example.com/cf-xrLThVn5uBzHqB6tIbpV4aycgyisr5UAEQSafzkG', $webhookCallDetails->getUrl());
         $this->assertEquals(404, $webhookCallDetails->getResponse()->getStatusCode());
+        $this->assertEquals($webhookCallId, $webhookCallDetails->getSystemProperties()->getId());
+        // This is actually guaranteed thanks to type safety,
+        // but it's the only meaningful test we can have
+        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCallDetails->getRequestAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCallDetails->getResponseAt());
 
         return $webhook;
     }
