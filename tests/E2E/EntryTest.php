@@ -105,4 +105,18 @@ class EntryTest extends End2EndTestCase
 
         $manager->delete($entry);
     }
+
+    /**
+     * @vcr e2e_entry_create_without_fields.json
+     */
+    public function testCreateEntryWithoutFields()
+    {
+        $manager = $this->getReadWriteSpaceManager();
+
+        // This entry has nothing in its `fields` property,
+        // and because of this, Contentful omits the property altogether.
+        // Without a default value in the ResourceBuilder, this call would cause a
+        // "Undefined index: fields" error message
+        $manager->getEntry('2cOd0Aho3WkowMgk2C02iy');
+    }
 }
