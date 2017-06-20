@@ -106,7 +106,6 @@ class ContentTypeTest extends End2EndTestCase
         $this->assertNull($contentType->getSystemProperties()->getPublishedVersion());
 
         $manager->delete($contentType);
-
     }
 
     /**

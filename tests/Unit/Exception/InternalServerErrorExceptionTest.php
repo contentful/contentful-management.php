@@ -31,6 +31,6 @@ class InternalServerErrorExceptionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
         $this->assertEquals('6bf16c2ec5df8bbac2cb64feeb719558', $exception->getRequestId());
-        $this->assertEquals('Missing object', $exception->getMessage());
+        $this->assertEquals('This is an error', $exception->getMessage());
     }
 }
