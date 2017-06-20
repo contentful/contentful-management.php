@@ -84,6 +84,45 @@ class ErrorTest extends End2EndTestCase
 
         $this->fail('Did not throw VersionMismatchException');
     }
+
+    /**
+     * @expectedException \Contentful\Management\Exception\DefaultLocaleNotDeletableException
+     * @vcr e2e_error_default_locale_not_deletable.json
+     */
+    public function testDefaultLocaleNotDeletableError()
+    {
+        $spaceManager = $this->getReadWriteSpaceManager();
+        $defaultLocale = $spaceManager->getLocale('6khdsfQbtrObkbrgWDTGe8');
+
+        $spaceManager->delete($defaultLocale);
+    }
+
+    /**
+     * @expectedException \Contentful\Management\Exception\FallbackLocaleNotDeletableException
+     * @vcr e2e_error_fallback_locale_not_deletable.json
+     */
+    public function testFallbackLocaleNotDeletableError()
+    {
+        $spaceManager = $this->getReadWriteSpaceManager();
+        // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
+        $enGbLocale = $spaceManager->getLocale('71wkZKqgktY9Uzg76CtsBK');
+
+        $spaceManager->delete($enGbLocale);
+    }
+
+    /**
+     * @expectedException \Contentful\Management\Exception\FallbackLocaleNotRenameableException
+     * @vcr e2e_error_fallback_locale_not_renameable.json
+     */
+    public function testFallbackLocaleNotRenameableError()
+    {
+        $spaceManager = $this->getReadWriteSpaceManager();
+        // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
+        $enGbLocale = $spaceManager->getLocale('71wkZKqgktY9Uzg76CtsBK');
+
+        $enGbLocale->setCode('en-NZ');
+        $spaceManager->update($enGbLocale);
+    }
 }
 
 class UnknownKeyLocale extends Locale
