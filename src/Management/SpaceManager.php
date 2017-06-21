@@ -245,6 +245,18 @@ class SpaceManager
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/content_types', $query);
     }
 
+    public function getPublishedContentType(string $contentTypeId): PublishedContentType
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/public/content_types/' . $contentTypeId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    public function getPublishedContentTypes(Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/public/content_types', $query);
+    }
+
     public function getEntry(string $entryId): Entry
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/entries/' . $entryId);

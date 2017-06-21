@@ -30,7 +30,7 @@ class ResourceBuilder
 
     /**
      * @param  array $data
-     * @return Space|Asset|ContentType|Entry|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray
+     * @return Space|Asset|ContentType|Entry|EntrySnapshot|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray|PublishedContentType
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -42,6 +42,12 @@ class ResourceBuilder
             case 'Asset':
                 return $this->buildAsset($data);
             case 'ContentType':
+                // The /public/content_types endpoint is a weird exception that returns
+                // data in a mix of CDA and CMA formats. We have to special case it.
+                if (isset($data['sys']['revision'])) {
+                    return $this->buildPublishedContentType($data);
+                }
+
                 return $this->buildContentType($data);
             case 'Entry':
                 return $this->buildEntry($data);
@@ -50,7 +56,7 @@ class ResourceBuilder
                     case 'Entry':
                         return $this->buildEntrySnapshot($data);
                     default:
-                        throw new \InvalidArgumentException('Unexpected type "' . $data['snapshotEntityType'] . '" when trying to build snapshot.');
+                        throw new \InvalidArgumentException('Unexpected snapshot entity type "' . $data['snapshotEntityType'] . '" when trying to build snapshot.');
                 }
             case 'Locale':
                 return $this->buildLocale($data);
@@ -155,6 +161,17 @@ class ResourceBuilder
     {
         return $this->createObject(ContentType::class, [
             'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'description' => $data['description'] ?? null,
+            'displayField' => $data['displayField'] ?? null,
+            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields'])
+        ]);
+    }
+
+    private function buildPublishedContentType(array $data): PublishedContentType
+    {
+        return $this->createObject(PublishedContentType::class, [
+            'sys' => new PublishedSystemProperties($data['sys']),
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'displayField' => $data['displayField'] ?? null,

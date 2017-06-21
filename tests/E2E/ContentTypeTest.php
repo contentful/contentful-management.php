@@ -68,7 +68,7 @@ class ContentTypeTest extends End2EndTestCase
     /**
      * @vcr e2e_content_type_get_collection.json
      */
-    public function testGetAssets()
+    public function testGetContentTypes()
     {
         $manager = $this->getReadOnlySpaceManager();
         $contentTypes = $manager->getContentTypes();
