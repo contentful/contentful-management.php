@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -8,6 +11,14 @@ namespace Contentful\Management;
 
 use Contentful\DateHelper;
 
+/**
+ * EntrySnapshot class.
+ *
+ * This class represents a resource with type "Snapshot" and entity type "Entry" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
+ * @see https://www.contentful.com/faq/versioning/
+ */
 class EntrySnapshot implements SpaceScopedResourceInterface
 {
     /**
@@ -25,6 +36,9 @@ class EntrySnapshot implements SpaceScopedResourceInterface
      */
     private $entrySys;
 
+    /**
+     * EntrySnapshot constructor.
+     */
     public function __construct()
     {
         $this->sys = new SystemProperties(['type' => 'Snapshot', 'snapshotEntityType' => 'Entry']);
@@ -32,13 +46,16 @@ class EntrySnapshot implements SpaceScopedResourceInterface
     }
 
     /**
-     * @return SystemProperties
+     * {@inheritDoc}
      */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getResourceUrlPart(): string
     {
         return 'entries';

@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -50,7 +53,7 @@ class LinkField extends AbstractField
     }
 
     /**
-     * @param  string $linkType
+     * @param string $linkType
      *
      * @return $this
      */
@@ -66,7 +69,7 @@ class LinkField extends AbstractField
     }
 
     /**
-     * @param  string $type
+     * @param string $type
      *
      * @return bool
      */

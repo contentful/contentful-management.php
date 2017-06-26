@@ -1,11 +1,21 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
 namespace Contentful\Management;
 
+/**
+ * WebhookHealth class.
+ *
+ * This class represents a resource with type "Webhook" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health
+ */
 class WebhookHealth implements SpaceScopedResourceInterface
 {
     /**
@@ -23,19 +33,25 @@ class WebhookHealth implements SpaceScopedResourceInterface
      */
     private $healthy = 0;
 
+    /**
+     * WebhookHealth constructor.
+     */
     public function __construct()
     {
         $this->sys = SystemProperties::withType('Webhook');
     }
 
     /**
-     * @return SystemProperties
+     * {@inheritDoc}
      */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getResourceUrlPart(): string
     {
         return 'webhooks';

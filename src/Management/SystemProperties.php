@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -9,6 +12,11 @@ namespace Contentful\Management;
 use Contentful\DateHelper;
 use Contentful\Link;
 
+/**
+ * SystemProperties class.
+ *
+ * This class represents a `sys` object in Contentful's responses.
+ */
 class SystemProperties implements \JsonSerializable
 {
     /**
@@ -109,7 +117,7 @@ class SystemProperties implements \JsonSerializable
     /**
      * SystemProperties constructor.
      *
-     * @param  array $sys Associative array of sys properties
+     * @param array $sys Associative array of sys properties
      */
     public function __construct(array $sys = [])
     {
@@ -134,13 +142,20 @@ class SystemProperties implements \JsonSerializable
         $this->snapshotEntityType = $sys['snapshotEntityType'] ?? null;
     }
 
+    /**
+     * Creates an instance using the given `type` value.
+     *
+     * @param string $type
+     *
+     * @return SystemProperties
+     */
     public static function withType(string $type)
     {
         return new self(['type' => $type]);
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Link
      */

@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -10,6 +13,12 @@ use Contentful\Exception\SpaceMismatchException;
 use Contentful\JsonHelper;
 use Contentful\ResourceArray;
 
+/**
+ * SpaceManager class.
+ *
+ * This class is responsible for executing operations on a space level,
+ * such as creating and deleting of resources, as well as retrieval of specific resource types.
+ */
 class SpaceManager
 {
     /**
@@ -30,9 +39,9 @@ class SpaceManager
     /**
      * SpaceManager constructor.
      *
-     * @param  Client          $client
-     * @param  ResourceBuilder $builder
-     * @param  string          $spaceId
+     * @param Client          $client
+     * @param ResourceBuilder $builder
+     * @param string          $spaceId
      */
     public function __construct(Client $client, ResourceBuilder $builder, $spaceId)
     {
@@ -41,6 +50,13 @@ class SpaceManager
         $this->spaceId = $spaceId;
     }
 
+    /**
+     * Checks that the given resource is compatible with the currently-managend space.
+     *
+     * @param ResourceInterface $resource
+     *
+     * @throws SpaceMismatchException
+     */
     public function checkSpaceMismatch(ResourceInterface $resource)
     {
         $sys = $resource->getSystemProperties();
