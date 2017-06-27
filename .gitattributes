@@ -8,3 +8,4 @@
 /.php_cs export-ignore
 /phpunit.xml.dist export-ignore
 /tests export-ignore
+/sami.php export-ignore
