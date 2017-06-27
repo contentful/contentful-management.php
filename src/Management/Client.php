@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -10,6 +13,12 @@ use Contentful\Client as BaseClient;
 use Contentful\JsonHelper;
 use Contentful\ResourceArray;
 
+/**
+ * Client class.
+ *
+ * This class is responsible for querying Contentful's API,
+ * and for lower level operations such as space management.
+ */
 class Client extends BaseClient
 {
     const VERSION = '0.6.0-dev';
@@ -52,7 +61,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  string $spaceId
+     * @param string $spaceId
      *
      * @return SpaceManager
      */
@@ -67,7 +76,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  string $spaceId
+     * @param string $spaceId
      *
      * @return Space
      */
@@ -79,7 +88,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  Query $query
+     * @param Query $query
      *
      * @return ResourceArray
      */
@@ -96,9 +105,9 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  Space       $space
-     * @param  string|null $organizationId
-     * @param  string      $defaultLocale
+     * @param Space       $space
+     * @param string|null $organizationId
+     * @param string      $defaultLocale
      */
     public function createSpace(Space $space, string $organizationId = null, string $defaultLocale = 'en-US')
     {
@@ -117,7 +126,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  Space $space
+     * @param Space $space
      */
     public function updateSpace(Space $space)
     {
@@ -132,7 +141,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  Space $space
+     * @param Space $space
      */
     public function deleteSpace(Space $space)
     {

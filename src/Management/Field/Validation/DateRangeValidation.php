@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -39,7 +42,7 @@ class DateRangeValidation implements ValidationInterface
     }
 
     /**
-     * @param  string|null $min
+     * @param string|null $min
      *
      * @return $this
      */
@@ -59,7 +62,7 @@ class DateRangeValidation implements ValidationInterface
     }
 
     /**
-     * @param  string|null $max
+     * @param string|null $max
      *
      * @return $this
      */

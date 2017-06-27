@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -8,6 +11,13 @@ namespace Contentful\Management;
 
 use Contentful\DateHelper;
 
+/**
+ * WebhookCall class.
+ *
+ * This class represents a resource with type "WebhookCallOverview" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
+ */
 class WebhookCall implements SpaceScopedResourceInterface
 {
     /**
@@ -45,19 +55,25 @@ class WebhookCall implements SpaceScopedResourceInterface
      */
     private $responseAt;
 
+    /**
+     * WebhookCallOverview constructor.
+     */
     public function __construct()
     {
         $this->sys = SystemProperties::withType('WebhookCallOverview');
     }
 
     /**
-     * @return SystemProperties
+     * {@inheritDoc}
      */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getResourceUrlPart(): string
     {
         return 'webhooks';

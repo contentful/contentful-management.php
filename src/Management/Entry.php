@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -8,6 +11,13 @@ namespace Contentful\Management;
 
 use Contentful\DateHelper;
 
+/**
+ * Entry class.
+ *
+ * This class represents a resource with type "Entry" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
+ */
 class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
 {
     /**
@@ -20,29 +30,48 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
      */
     private $fields = [];
 
+    /**
+     * Entry constructor.
+     *
+     * @param string $contentTypeId
+     */
     public function __construct(string $contentTypeId)
     {
         $this->sys = new SystemProperties(['type' => 'Entry', 'contentType' => ['sys' => ['id' => $contentTypeId, 'linkType' => 'ContentType']]]);
     }
 
     /**
-     * @return SystemProperties
+     * {@inheritDoc}
      */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getResourceUrlPart(): string
     {
         return 'entries';
     }
 
+    /**
+     * @param string $name
+     * @param string $locale
+     *
+     * @return mixed
+     */
     public function getField(string $name, string $locale)
     {
         return $this->fields[$name][$locale] ?? null;
     }
 
+    /**
+     * @param string $name
+     * @param mixed $value
+     * @param string $locale
+     */
     public function setField(string $name, $value, string $locale)
     {
         if (!isset($this->fields[$name])) {

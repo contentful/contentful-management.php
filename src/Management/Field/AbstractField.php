@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -198,7 +201,7 @@ abstract class AbstractField implements FieldInterface
     }
 
     /**
-     * @param  ValidationInterface $validation
+     * @param ValidationInterface $validation
      *
      * @return $this
      */

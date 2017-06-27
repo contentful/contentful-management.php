@@ -1,6 +1,9 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
@@ -130,7 +133,7 @@ class ArrayField extends AbstractField
     }
 
     /**
-     * @param  ValidationInterface $validation
+     * @param ValidationInterface $validation
      *
      * @return $this
      */
@@ -146,7 +149,7 @@ class ArrayField extends AbstractField
     }
 
     /**
-     * @param  string $type
+     * @param string $type
      *
      * @return bool
      */
@@ -156,7 +159,7 @@ class ArrayField extends AbstractField
     }
 
     /**
-     * @param  string $type
+     * @param string $type
      *
      * @return bool
      */

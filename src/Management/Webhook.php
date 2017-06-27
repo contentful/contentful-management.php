@@ -1,11 +1,21 @@
 <?php
+
 /**
- * @copyright 2015-2017 Contentful GmbH
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2017 Contentful GmbH
  * @license   MIT
  */
 
 namespace Contentful\Management;
 
+/**
+ * Webhook class.
+ *
+ * This class represents a resource with type "WebhookDefinition" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks
+ */
 class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Deletable
 {
     /**
@@ -44,6 +54,8 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     private $headers = [];
 
     /**
+     * Webhook constructor.
+     *
      * @param string $name
      * @param string $url
      * @param string[] $topics
@@ -57,13 +69,16 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     }
 
     /**
-     * @return SystemProperties
+     * {@inheritDoc}
      */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getResourceUrlPart(): string
     {
         return 'webhook_definitions';
