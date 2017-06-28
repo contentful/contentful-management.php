@@ -35,7 +35,7 @@ class InValidation implements ValidationInterface
     }
 
     /**
-     * @param  string[] $values
+     * @param string[] $values
      *
      * @return $this
      */

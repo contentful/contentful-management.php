@@ -9,6 +9,14 @@
 
 namespace Contentful\Management;
 
+/**
+ * Space class.
+ *
+ * This class represents a resource with type "Space" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces
+ * @see https://www.contentful.com/r/knowledgebase/spaces-and-organizations/
+ */
 class Space implements ResourceInterface
 {
     /**
@@ -21,10 +29,23 @@ class Space implements ResourceInterface
      */
     private $sys;
 
+    /**
+     * Space constructor.
+     *
+     * @param string $name
+     */
     public function __construct(string $name)
     {
         $this->name = $name;
         $this->sys = SystemProperties::withType('Space');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
     }
 
     /**
@@ -36,7 +57,7 @@ class Space implements ResourceInterface
     }
 
     /**
-     * @param  string $name
+     * @param string $name
      *
      * @return $this
      */
@@ -45,14 +66,6 @@ class Space implements ResourceInterface
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * @return SystemProperties
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
     }
 
     /**

@@ -96,7 +96,7 @@ interface FieldInterface extends \JsonSerializable
     public function setValidations(array $validations);
 
     /**
-     * @param  ValidationInterface $validation
+     * @param ValidationInterface $validation
      *
      * @return $this
      */
