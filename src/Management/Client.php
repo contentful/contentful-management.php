@@ -23,6 +23,10 @@ class Client extends BaseClient
 {
     const VERSION = '0.6.0-dev';
 
+    const URI_MANAGEMENT = 'https://api.contentful.com';
+
+    const URI_UPLOAD = 'https://upload.contentful.com';
+
     /**
      * @var ResourceBuilder
      */
@@ -38,7 +42,7 @@ class Client extends BaseClient
      */
     public function __construct(string $token, array $options = [])
     {
-        $baseUri = 'https://api.contentful.com/';
+        $baseUri = self::URI_MANAGEMENT;
         $api = 'MANAGEMENT';
 
         $options = array_replace([
