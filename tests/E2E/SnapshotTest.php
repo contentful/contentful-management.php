@@ -25,10 +25,11 @@ class SnapshotTest extends End2EndTestCase
 
         $snapshot = $manager->getEntrySnapshot('3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
         $this->assertInstanceOf(EntrySnapshot::class, $snapshot);
-        $this->assertEquals('Josh Lyman', $snapshot->getField('name', 'en-US'));
-        $this->assertEquals('Deputy Chief of Staff', $snapshot->getField('jobTitle', 'en-US'));
-        $this->assertEquals(new Link('person', 'ContentType'), $snapshot->getEntrySystemProperties()->getContentType());
-        $this->assertEquals(1, $snapshot->getEntrySystemProperties()->getPublishedCounter());
+        $entry = $snapshot->getEntry();
+        $this->assertEquals('Josh Lyman', $entry->getField('name', 'en-US'));
+        $this->assertEquals('Deputy Chief of Staff', $entry->getField('jobTitle', 'en-US'));
+        $this->assertEquals(new Link('person', 'ContentType'), $entry->getSystemProperties()->getContentType());
+        $this->assertEquals(1, $entry->getSystemProperties()->getPublishedCounter());
 
         $sys = $snapshot->getSystemProperties();
         $this->assertEquals('Entry', $sys->getSnapshotEntityType());
