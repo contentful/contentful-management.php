@@ -10,7 +10,7 @@
 namespace Contentful\Management;
 
 use Contentful\File\FileInterface;
-use Contentful\File\UploadFile;
+use Contentful\File\UnprocessedFileInterface;
 
 /**
  * Asset class.
@@ -50,7 +50,7 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -58,7 +58,7 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUrlPart(): string
     {
@@ -108,7 +108,7 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
 
     /**
      * @param string|null $description
-     * @param string       $locale
+     * @param string      $locale
      *
      * @return $this
      */
@@ -134,12 +134,12 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * @param UploadFile|null $file
-     * @param string          $locale
+     * @param UnprocessedFileInterface|null $file
+     * @param string                        $locale
      *
      * @return $this
      */
-    public function setFile(UploadFile $file = null, string $locale)
+    public function setFile(UnprocessedFileInterface $file = null, string $locale)
     {
         $this->file[$locale] = $file;
 

@@ -196,7 +196,12 @@ class SpaceManager
             $sys->getId()
         ];
 
-        $this->client->request('DELETE', implode('/', $urlParts));
+        $options = [];
+        if ($resource instanceof Upload) {
+            $options['baseUri'] = Client::URI_UPLOAD;
+        }
+
+        $this->client->request('DELETE', implode('/', $urlParts), $options);
     }
 
     /**
@@ -234,8 +239,21 @@ class SpaceManager
      */
     public function create(Creatable $resource, string $id = null)
     {
-        $body = JsonHelper::encode($this->client->prepareObjectForApi($resource));
-        $additionalHeaders = [];
+        $options = [
+            'body' => JsonHelper::encode($this->client->prepareObjectForApi($resource)),
+            'additionalHeaders' => [],
+        ];
+
+        if ($resource instanceof Entry) {
+            $options['additionalHeaders']['X-Contentful-Content-Type'] = $resource->getSystemProperties()->getContentType()->getId();
+        }
+
+        if ($resource instanceof Upload) {
+            $options['baseUri'] = Client::URI_UPLOAD;
+            $options['additionalHeaders']['Content-Type'] = 'application/octet-stream';
+            $options['body'] = $resource->getBody();
+        }
+
         $urlParts = [
             'spaces',
             $this->spaceId,
@@ -246,15 +264,8 @@ class SpaceManager
             $urlParts[] = $id;
         }
 
-        if ($resource instanceof Entry) {
-            $additionalHeaders = ['X-Contentful-Content-Type' => $resource->getSystemProperties()->getContentType()->getId()];
-        }
-
         $method = $id === null ? 'POST' : 'PUT';
-        $response = $this->client->request($method, implode('/', $urlParts), [
-            'additionalHeaders' => $additionalHeaders,
-            'body' => $body
-        ]);
+        $response = $this->client->request($method, implode('/', $urlParts), $options);
 
         $this->builder->updateObjectFromRawData($resource, $response);
     }
@@ -304,6 +315,24 @@ class SpaceManager
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId());
 
         $this->builder->updateObjectFromRawData($asset, $response);
+    }
+
+    /**
+     * @param string $uploadId
+     *
+     * @return Upload
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads/retrieving-an-upload
+     */
+    public function getUpload(string $uploadId): Upload
+    {
+        $response = $this->client->request(
+            'GET',
+            'spaces/' . $this->spaceId . '/uploads/' . $uploadId,
+            ['baseUri' => Client::URI_UPLOAD]
+        );
+
+        return $this->builder->buildObjectsFromRawData($response);
     }
 
     /**

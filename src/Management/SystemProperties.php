@@ -115,6 +115,11 @@ class SystemProperties implements \JsonSerializable
     private $snapshotEntityType;
 
     /**
+     * @var \DateTimeImmutable|null
+     */
+    private $expiresAt;
+
+    /**
      * SystemProperties constructor.
      *
      * @param array $sys Associative array of sys properties
@@ -140,6 +145,7 @@ class SystemProperties implements \JsonSerializable
         $this->archivedBy = isset($sys['archivedBy']) ? $this->buildLink($sys['archivedBy']) : null;
         $this->snapshotType = $sys['snapshotType'] ?? null;
         $this->snapshotEntityType = $sys['snapshotEntityType'] ?? null;
+        $this->expiresAt = isset($sys['expiresAt']) ? new \DateTimeImmutable($sys['expiresAt']) : null;
     }
 
     /**
@@ -319,6 +325,14 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
+
+    /**
      * Returns an object to be used by `json_encode` to serialize objects of this class.
      *
      * @return object
@@ -385,6 +399,9 @@ class SystemProperties implements \JsonSerializable
         }
         if ($this->snapshotEntityType !== null) {
             $obj->snapshotEntityType = $this->snapshotEntityType;
+        }
+        if ($this->expiresAt !== null) {
+            $obj->expiresAt = $this->expiresAt;
         }
 
         return $obj;

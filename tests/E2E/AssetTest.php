@@ -9,11 +9,14 @@
 
 namespace Contentful\Tests\E2E;
 
+use Contentful\File\LocalUploadFile;
 use Contentful\File\UploadFile;
 use Contentful\Link;
 use Contentful\Management\Asset;
 use Contentful\Management\Query;
+use Contentful\Management\Upload;
 use Contentful\Tests\End2EndTestCase;
+use function GuzzleHttp\Psr7\stream_for;
 
 class AssetTest extends End2EndTestCase
 {
@@ -83,13 +86,10 @@ class AssetTest extends End2EndTestCase
         $this->assertNotNull($asset->getSystemProperties()->getId());
 
         $manager->processAsset($asset, 'en-US');
-        $id = $asset->getSystemProperties()->getId();
 
-        // Poll the API until processing is complete
-        while ($asset->getFile('en-US') instanceof UploadFile) {
-            sleep(1);
-            $asset = $manager->getAsset($id);
-        }
+        // Wait for the file to be processed
+        sleep(5);
+        $asset = $manager->getAsset($asset->getSystemProperties()->getId());
 
         $asset->setTitle('Even better asset', 'en-US');
 
@@ -124,6 +124,58 @@ class AssetTest extends End2EndTestCase
         $manager->create($asset, 'myCustomTestAsset');
         $this->assertEquals('myCustomTestAsset', $asset->getSystemProperties()->getId());
 
+        $manager->delete($asset);
+    }
+
+    /**
+     * @vcr e2e_asset_upload.json
+     */
+    public function testUploadAsset()
+    {
+        $manager = $this->getReadWriteSpaceManager();
+
+        // Creates upload using fopen
+        $fopenUpload = new Upload(fopen(__DIR__ . '/../fixtures/contentful-lab.svg', 'r'));
+        $manager->create($fopenUpload);
+        $this->assertNotNull($fopenUpload->getSystemProperties()->getId());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());
+        $manager->delete($fopenUpload);
+
+        // Creates upload using stream
+        $stream = stream_for(file_get_contents(__DIR__ . '/../fixtures/contentful-logo.svg'));
+        $streamUpload = new Upload($stream);
+        $manager->create($streamUpload);
+        $this->assertNotNull($streamUpload->getSystemProperties()->getId());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $streamUpload->getSystemProperties()->getExpiresAt());
+        $manager->delete($streamUpload);
+
+        // Creates upload using string
+        $upload = new Upload(file_get_contents(__DIR__ . '/../fixtures/contentful-name.svg'));
+        $manager->create($upload);
+        $this->assertNotNull($upload->getSystemProperties()->getId());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $upload->getSystemProperties()->getExpiresAt());
+
+        $link = new Link($upload->getSystemProperties()->getId(), 'Upload');
+        $uploadFromFile = new LocalUploadFile('contentful.svg', 'image/svg+xml', $link);
+
+        $asset = new Asset();
+        $asset->setTitle('Contentful', 'en-US');
+        $asset->setFile($uploadFromFile, 'en-US');
+
+        $manager->create($asset);
+        $manager->processAsset($asset, 'en-US');
+
+        // Wait for the file to be processed
+        sleep(5);
+        $asset = $manager->getAsset($asset->getSystemProperties()->getId());
+
+        $this->assertEquals('contentful.svg', $asset->getFile('en-US')->getFileName());
+        $this->assertEquals('image/svg+xml', $asset->getFile('en-US')->getContentType());
+        $this->assertContains('contentful.com', $asset->getFile('en-US')->getUrl());
+
+        $upload = $manager->getUpload($upload->getSystemProperties()->getId());
+
+        $manager->delete($upload);
         $manager->delete($asset);
     }
 }
