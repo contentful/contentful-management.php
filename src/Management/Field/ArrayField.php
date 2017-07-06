@@ -133,7 +133,7 @@ class ArrayField extends AbstractField
     }
 
     /**
-     * @param  ValidationInterface $validation
+     * @param ValidationInterface $validation
      *
      * @return $this
      */
@@ -149,7 +149,7 @@ class ArrayField extends AbstractField
     }
 
     /**
-     * @param  string $type
+     * @param string $type
      *
      * @return bool
      */
@@ -159,7 +159,7 @@ class ArrayField extends AbstractField
     }
 
     /**
-     * @param  string $type
+     * @param string $type
      *
      * @return bool
      */

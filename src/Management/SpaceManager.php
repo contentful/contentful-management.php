@@ -13,6 +13,12 @@ use Contentful\Exception\SpaceMismatchException;
 use Contentful\JsonHelper;
 use Contentful\ResourceArray;
 
+/**
+ * SpaceManager class.
+ *
+ * This class is responsible for executing operations on a space level,
+ * such as creating and deleting of resources, as well as retrieval of specific resource types.
+ */
 class SpaceManager
 {
     /**
@@ -33,9 +39,9 @@ class SpaceManager
     /**
      * SpaceManager constructor.
      *
-     * @param  Client          $client
-     * @param  ResourceBuilder $builder
-     * @param  string          $spaceId
+     * @param Client          $client
+     * @param ResourceBuilder $builder
+     * @param string          $spaceId
      */
     public function __construct(Client $client, ResourceBuilder $builder, $spaceId)
     {
@@ -44,6 +50,13 @@ class SpaceManager
         $this->spaceId = $spaceId;
     }
 
+    /**
+     * Checks that the given resource is compatible with the currently-managend space.
+     *
+     * @param ResourceInterface $resource
+     *
+     * @throws SpaceMismatchException
+     */
     public function checkSpaceMismatch(ResourceInterface $resource)
     {
         $sys = $resource->getSystemProperties();
@@ -58,6 +71,13 @@ class SpaceManager
         }
     }
 
+    /**
+     * Publishes a resource.
+     *
+     * @param Publishable $resource
+     *
+     * @see Publishable
+     */
     public function publish(Publishable $resource)
     {
         $this->checkSpaceMismatch($resource);
@@ -78,6 +98,13 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($resource, $response);
     }
 
+    /**
+     * Unpublishes a resource.
+     *
+     * @param Publishable $resource
+     *
+     * @see Publishable
+     */
     public function unpublish(Publishable $resource)
     {
         $this->checkSpaceMismatch($resource);
@@ -98,6 +125,13 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($resource, $response);
     }
 
+    /**
+     * Archives a resource.
+     *
+     * @param Archivable $resource
+     *
+     * @see Archivable
+     */
     public function archive(Archivable $resource)
     {
         $this->checkSpaceMismatch($resource);
@@ -118,6 +152,13 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($resource, $response);
     }
 
+    /**
+     * Unarchives a resource.
+     *
+     * @param Archivable $resource
+     *
+     * @see Archivable
+     */
     public function unarchive(Archivable $resource)
     {
         $this->checkSpaceMismatch($resource);
@@ -138,6 +179,13 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($resource, $response);
     }
 
+    /**
+     * Deletes a resource.
+     *
+     * @param Deletable $resource
+     *
+     * @see Deletable
+     */
     public function delete(Deletable $resource)
     {
         $sys = $resource->getSystemProperties();
@@ -151,6 +199,13 @@ class SpaceManager
         $this->client->request('DELETE', implode('/', $urlParts));
     }
 
+    /**
+     * Updates a resource.
+     *
+     * @param Updatable $resource
+     *
+     * @see Updatable
+     */
     public function update(Updatable $resource)
     {
         $sys = $resource->getSystemProperties();
@@ -170,6 +225,13 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($resource, $response);
     }
 
+    /**
+     * Creates a resource.
+     *
+     * @param Creatable $resource
+     *
+     * @see Creatable
+     */
     public function create(Creatable $resource, string $id = null)
     {
         $body = JsonHelper::encode($this->client->prepareObjectForApi($resource));
@@ -197,6 +259,13 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($resource, $response);
     }
 
+    /**
+     * @param string $assetId
+     *
+     * @return Asset
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset
+     */
     public function getAsset(string $assetId): Asset
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets/' . $assetId);
@@ -204,11 +273,24 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * @param Query $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/published-assets-collection
+     */
     public function getAssets(Query $query = null): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/assets', $query);
     }
 
+    /**
+     * @param Asset $asset
+     * @param string $locale
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
+     */
     public function processAsset(Asset $asset, string $locale)
     {
         $sys = $asset->getSystemProperties();
@@ -224,6 +306,13 @@ class SpaceManager
         $this->builder->updateObjectFromRawData($asset, $response);
     }
 
+    /**
+     * @param string $localeId
+     *
+     * @return Locale
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale
+     */
     public function getLocale(string $localeId): Locale
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/locales/' . $localeId);
@@ -231,11 +320,23 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale-collection
+     */
     public function getLocales(): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/locales');
     }
 
+    /**
+     * @param string $contentTypeId [ption]
+     *
+     * @return ContentType
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type
+     */
     public function getContentType(string $contentTypeId): ContentType
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/content_types/' . $contentTypeId);
@@ -243,11 +344,25 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * @param Query $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection
+     */
     public function getContentTypes(Query $query = null): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/content_types', $query);
     }
 
+    /**
+     * @param string $contentTypeId
+     *
+     * @return PublishedContentType
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
+     */
     public function getPublishedContentType(string $contentTypeId): PublishedContentType
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/public/content_types/' . $contentTypeId);
@@ -255,11 +370,25 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * @param Query $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
+     */
     public function getPublishedContentTypes(Query $query = null): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/public/content_types', $query);
     }
 
+    /**
+     * @param string $entryId
+     *
+     * @return Entry
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry
+     */
     public function getEntry(string $entryId): Entry
     {
         $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/entries/' . $entryId);
@@ -267,6 +396,13 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * @param Query $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection
+     */
     public function getEntries(Query $query = null): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/entries', $query);
@@ -277,6 +413,8 @@ class SpaceManager
      * @param string $snapshotId
      *
      * @return EntrySnapshot
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshot
      */
     public function getEntrySnapshot(string $entryId, string $snapshotId): EntrySnapshot
     {
@@ -290,6 +428,8 @@ class SpaceManager
      * @param Query $query
      *
      * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
      */
     public function getEntrySnapshots(string $entryId, Query $query = null): ResourceArray
     {
@@ -300,6 +440,8 @@ class SpaceManager
      * @param string $webhookId
      *
      * @return Webhook
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhook
      */
     public function getWebhook(string $webhookId): Webhook
     {
@@ -312,6 +454,8 @@ class SpaceManager
      * @param Query $query
      *
      * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhooks-collection
      */
     public function getWebhooks(Query $query = null): ResourceArray
     {
@@ -322,6 +466,8 @@ class SpaceManager
      * @param string $webhookId
      *
      * @return WebhookHealth
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health
      */
     public function getWebhookHealth(string $webhookId): WebhookHealth
     {
@@ -334,6 +480,8 @@ class SpaceManager
      * @param string $webhookId
      *
      * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
      */
     public function getWebhookCalls(string $webhookId, Query $query = null): ResourceArray
     {
@@ -345,6 +493,8 @@ class SpaceManager
      * @param string $webhookCallId
      *
      * @return WebhookCallDetails
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details
      */
     public function getWebhookCallDetails(string $webhookId, string $webhookCallId)
     {

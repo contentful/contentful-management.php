@@ -15,6 +15,11 @@ use Contentful\ResourceArray;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
+/**
+ * ResourceBuilder class.
+ *
+ * This class is responsible for populating PHP objects using data received from Contentful's API.
+ */
 class ResourceBuilder
 {
     /**
@@ -32,7 +37,8 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
+     *
      * @return Space|Asset|ContentType|Entry|EntrySnapshot|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray|PublishedContentType
      */
     public function buildObjectsFromRawData(array $data)
@@ -79,8 +85,11 @@ class ResourceBuilder
     }
 
     /**
-     * @param  object $object
-     * @param  array  $data
+     * Updates an object using given data.
+     * This method will overwrite properties of the $object parameter.
+     *
+     * @param object $object
+     * @param array  $data
      */
     public function updateObjectFromRawData($object, array $data)
     {
@@ -111,7 +120,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Asset
      */
@@ -194,7 +203,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Field\FieldInterface
      */
@@ -270,7 +279,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Validation\ValidationInterface
      */
@@ -322,7 +331,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Space
      */
@@ -441,8 +450,8 @@ class ResourceBuilder
     }
 
     /**
-     * @param  string $class
-     * @param  array  $properties
+     * @param string $class
+     * @param array  $properties
      *
      * @return object
      */
@@ -458,9 +467,9 @@ class ResourceBuilder
     }
 
     /**
-     * @param  string $class
-     * @param  object $object
-     * @param  array  $properties
+     * @param string $class
+     * @param object $object
+     * @param array  $properties
      */
     private function updateObject(string $class, $object, array $properties)
     {
@@ -469,8 +478,8 @@ class ResourceBuilder
     }
 
     /**
-     * @param  string $class
-     * @param  object $object
+     * @param string $class
+     * @param object $object
      *
      * @return \Closure
      */

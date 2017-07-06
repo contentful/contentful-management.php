@@ -9,6 +9,14 @@
 
 namespace Contentful\Management;
 
+/**
+ * Locale class.
+ *
+ * This class represents a resource with type "Locale" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales
+ * @see https://www.contentful.com/developers/docs/concepts/locales/
+ */
 class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Creatable
 {
     /**
@@ -67,13 +75,16 @@ class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Crea
     }
 
     /**
-     * @return SystemProperties
+     * {@inheritDoc}
      */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getResourceUrlPart(): string
     {
         return 'locales';
@@ -196,7 +207,7 @@ class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Crea
     }
 
     /**
-     * @param  bool $optional
+     * @param bool $optional
      *
      * @return $this
      */

@@ -11,6 +11,14 @@ namespace Contentful\Management;
 
 use Contentful\Management\Field\FieldInterface;
 
+/**
+ * ContentType class.
+ *
+ * This class represents a resource with type "ContentType" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types
+ * @see https://www.contentful.com/developers/docs/concepts/data-model/
+ */
 class ContentType implements SpaceScopedResourceInterface, Publishable, Deletable, Updatable, Creatable
 {
     /**
@@ -19,7 +27,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     private $sys;
 
     /**
-     * @param string
+     * @var string
      */
     private $name;
 
@@ -41,7 +49,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     /**
      * ContentType constructor.
      *
-     * @param  string $name
+     * @param string $name
      */
     public function __construct($name)
     {
@@ -50,13 +58,16 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * @return SystemProperties
+     * {@inheritDoc}
      */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getResourceUrlPart(): string
     {
         return 'content_types';
@@ -71,7 +82,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * @param  string $name
+     * @param string $name
      *
      * @return $this
      */
@@ -91,7 +102,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * @param  string|null $description
+     * @param string|null $description
      *
      * @return $this
      */
@@ -142,6 +153,11 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
         return $this;
     }
 
+    /**
+     * @param FieldInterface $contentTypeField
+     *
+     * @return $this
+     */
     public function addField(FieldInterface $contentTypeField)
     {
         $this->fields[] = $contentTypeField;
