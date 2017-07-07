@@ -26,23 +26,23 @@
             "Access-Control-Expose-Headers": "Etag",
             "Access-Control-Max-Age": "1728000",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 16 Jun 2017 16:10:24 GMT",
+            "Date": "Fri, 07 Jul 2017 13:00:19 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179900",
+            "X-Contentful-RateLimit-Hour-Remaining": "179842",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
-            "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "65af11a800e5f67af57a2082eb9a405c",
+            "X-Contentful-RateLimit-Second-Remaining": "47",
+            "X-Contentful-Request-Id": "7822d13004309a864292a6a71d2ddf31",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=PJ\/LGpXpR8WybBp\/tn4n2vACRFkAAAAAQUIPAAAAAACwOTBAIaelIw4VtgKVTQV9; expires=Sat, 16 Jun 2018 08:58:07 GMT; path=\/; Domain=.contentful.com, nlbi_673446=3E4VVGhXcXhvPn7b6lKYhQAAAADd09dTqxvdSSQ93QAclj2L; path=\/; Domain=.contentful.com, incap_ses_108_673446=\/n+dQDbU3C+oXTVUB7N\/AfACRFkAAAAAL+K7KYt4X0suffxD3r+Nkg==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "4-46910544-46910568 NNNN CT(91 89 0) RT(1497629422735 126) q(0 0 2 -1) r(20 20) U5",
+            "Set-Cookie": "visid_incap_673446=4t\/Jxc7CSRC43mh6x7VXYuOFX1kAAAAAQUIPAAAAAADzAKY6EN+Q9oM\/FiFGsr3o; expires=Fri, 06 Jul 2018 17:40:03 GMT; path=\/; Domain=.contentful.com, nlbi_673446=qGsCQi+9SC\/SKdXW6lKYhQAAAADmX0MDEj4uNbl0loFKcUJ\/; path=\/; Domain=.contentful.com, incap_ses_259_673446=NCZHATdE4HFYWGVI6yeYA+OFX1kAAAAABFsdP\/KrFIYZA3M7dZ3ZJQ==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-28298074-28297941 PNNN RT(1499432419257 25) q(0 0 0 -1) r(2 2) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"sys\": {\n    \"type\": \"Error\",\n    \"id\": \"BadRequest\"\n  },\n  \"message\": \"Missing object\",\n  \"requestId\": \"65af11a800e5f67af57a2082eb9a405c\"\n}\n"
+        "body": "{\n  \"sys\": {\n    \"type\": \"Error\",\n    \"id\": \"BadRequest\"\n  },\n  \"message\": \"Missing object\",\n  \"requestId\": \"7822d13004309a864292a6a71d2ddf31\"\n}\n"
     }
 }]

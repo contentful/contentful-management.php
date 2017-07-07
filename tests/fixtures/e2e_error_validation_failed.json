@@ -30,25 +30,25 @@
             "CF-Organization-Id": "3ubGFD1MWA6VgVYbIwSBg8",
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 16 Jun 2017 16:40:50 GMT",
+            "Date": "Fri, 07 Jul 2017 13:00:20 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179900",
+            "X-Contentful-RateLimit-Hour-Remaining": "179841",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "e60465b1bdeae58b22a4d3cac520356c",
+            "X-Contentful-Request-Id": "044bb23356babe4f11a3f7f1e77c762a",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=\/LHR5BlFTRmnR3aZJ5MtUBIKRFkAAAAAQUIPAAAAAADbK5bhGZLwYt3minL\/cm6F; expires=Sat, 16 Jun 2018 08:57:56 GMT; path=\/; Domain=.contentful.com, nlbi_673446=GrLcRIfspmftgvpH6lKYhQAAAAB3kZneHKv7k3kWSwcAJ1wr; path=\/; Domain=.contentful.com, incap_ses_108_673446=5RhcckDf9gHML0NUB7N\/ARIKRFkAAAAAPfjVpgJy7Qm6JkYRgagp1g==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "6-40741731-40741741 NNNN CT(93 96 0) RT(1497631249889 112) q(0 0 1 -1) r(3 3) U5",
+            "Set-Cookie": "visid_incap_673446=827xLKH3R6uvJ+tHKXR9CuOFX1kAAAAAQUIPAAAAAAAV8PecJflkLXqaINn0w14v; expires=Fri, 06 Jul 2018 17:40:03 GMT; path=\/; Domain=.contentful.com, nlbi_673446=VFhyGXBE9Dl4EFN76lKYhQAAAAAqjhsSsjuWmAyLZMCmQgJs; path=\/; Domain=.contentful.com, incap_ses_259_673446=wpo\/YPvc+iPoWGVI6yeYA+OFX1kAAAAAueBWpEzYaiC1yLZ0env5\/g==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "10-48672753-48672759 NNNN CT(0 0 0) RT(1499432419551 19) q(0 0 0 -1) r(2 2) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"requestId\":\"e60465b1bdeae58b22a4d3cac520356c\",\n  \"message\":\"The resource you sent in the body is invalid.\",\n  \"details\":{\n    \"errors\":[\n      {\n        \"name\":\"taken\",\n        \"path\":\"display_code\",\n        \"value\":\"en-US\"\n      },\n      {\n        \"name\":\"fallback locale creates a loop\",\n        \"path\":\"fallback_code\",\n        \"value\":\"en-US\"\n      }\n    ]\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"ValidationFailed\"\n  }\n}\n\n"
+        "body": "{\n  \"requestId\":\"044bb23356babe4f11a3f7f1e77c762a\",\n  \"message\":\"The resource you sent in the body is invalid.\",\n  \"details\":{\n    \"errors\":[\n      {\n        \"name\":\"taken\",\n        \"path\":\"display_code\",\n        \"value\":\"en-US\"\n      },\n      {\n        \"name\":\"fallback locale creates a loop\",\n        \"path\":\"fallback_code\",\n        \"value\":\"en-US\"\n      }\n    ]\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"ValidationFailed\"\n  }\n}\n\n"
     }
 }]

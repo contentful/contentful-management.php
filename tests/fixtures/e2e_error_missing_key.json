@@ -28,25 +28,25 @@
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 16 Jun 2017 16:31:02 GMT",
+            "Date": "Fri, 07 Jul 2017 13:00:19 GMT",
             "Server": "Contentful",
-            "Set-Cookie": "_auth_new_session=e93cf7f65579f4f957f5f9b6210fbf8b; path=\/; expires=Fri, 30 Jun 2017 16:31:02 -0000; secure; HttpOnly, visid_incap_673446=cctsNBXwRqGODW75+JTvbsYHRFkAAAAAQUIPAAAAAAChc6dwIVkmnY1u4HaQij32; expires=Sat, 16 Jun 2018 08:58:07 GMT; path=\/; Domain=.contentful.com, nlbi_673446=H+r\/ABdwbAQpi3W96lKYhQAAAACDBdiUpJnXeGO90TL6Ox3z; path=\/; Domain=.contentful.com, incap_ses_108_673446=R\/c4HWDuszgq8T5UB7N\/AcYHRFkAAAAAx6ETJvTOqKtwb0oINRWq0Q==; path=\/; Domain=.contentful.com",
+            "Set-Cookie": "_auth_new_session=ad7e8949c7cabd7551333bfeeda2a636; path=\/; expires=Fri, 21 Jul 2017 13:00:19 -0000; secure; HttpOnly, visid_incap_673446=yIiaJxKKSYCdAwNFhzVvJ+OFX1kAAAAAQUIPAAAAAACE8r\/SpczfqdcAxDzFd028; expires=Fri, 06 Jul 2018 17:40:03 GMT; path=\/; Domain=.contentful.com, nlbi_673446=jFnfPJtOnAZSe7YY6lKYhQAAAACz+TtPhcH0h5sf62R0iUBx; path=\/; Domain=.contentful.com, incap_ses_259_673446=gce+KJc1S0TVV2VI6yeYA+OFX1kAAAAAndts4TtRyhU\/Wy+QkYCPsw==; path=\/; Domain=.contentful.com",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179902",
+            "X-Contentful-RateLimit-Hour-Remaining": "179843",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
-            "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "8fd6db91c7bd73feffaa88edb61d5227",
+            "X-Contentful-RateLimit-Second-Remaining": "48",
+            "X-Contentful-Request-Id": "e307f40f8752564bcf01af54418ced1b",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "X-Iinfo": "3-40022274-40022286 NNNN CT(212 231 0) RT(1497630661757 124) q(0 0 5 -1) r(6 6) U5",
+            "X-Iinfo": "10-48672558-48667739 PNNN RT(1499432418978 19) q(0 0 0 -1) r(2 2) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"requestId\":\"8fd6db91c7bd73feffaa88edb61d5227\",\n  \"details\":{\n    \"key\":\"resource\"\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"MissingKey\"\n  }\n}\n\n"
+        "body": "{\n  \"requestId\":\"e307f40f8752564bcf01af54418ced1b\",\n  \"details\":{\n    \"key\":\"resource\"\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"MissingKey\"\n  }\n}\n\n"
     }
 }]

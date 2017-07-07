@@ -28,25 +28,25 @@
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 16 Jun 2017 15:39:57 GMT",
+            "Date": "Fri, 07 Jul 2017 13:00:19 GMT",
             "Server": "Contentful",
-            "Set-Cookie": "_auth_new_session=bad2bf2b3053410f03e147becddb0e04; path=\/; expires=Fri, 30 Jun 2017 15:39:57 -0000; secure; HttpOnly, visid_incap_673446=ecdR09GMSbqplWXAE\/txtc37Q1kAAAAAQUIPAAAAAAB0T+fT69Z+OepeHxXMDhVe; expires=Sat, 16 Jun 2018 08:57:56 GMT; path=\/; Domain=.contentful.com, nlbi_673446=4lchMV5j7n7fkqye6lKYhQAAAAB37wZbUUp4gijis53NKDTt; path=\/; Domain=.contentful.com, incap_ses_108_673446=1eSzLmiMAzi9XydUB7N\/Ac37Q1kAAAAA6IZr17n8ITCRANHxUGwZZA==; path=\/; Domain=.contentful.com",
+            "Set-Cookie": "_auth_new_session=7e88bc67517884581f756c60f25d1327; path=\/; expires=Fri, 21 Jul 2017 13:00:19 -0000; secure; HttpOnly, visid_incap_673446=UK0D0WyOSmWaz7h2QCyRJuKFX1kAAAAAQUIPAAAAAADEoY6zEx6JAI6vE9MxhsCf; expires=Fri, 06 Jul 2018 17:40:03 GMT; path=\/; Domain=.contentful.com, nlbi_673446=T5VuDykzQziU0joi6lKYhQAAAABiyW7JzxqIbp3NhkZSLRdB; path=\/; Domain=.contentful.com, incap_ses_259_673446=lE4FeKQ+FV5RV2VI6yeYA+KFX1kAAAAATvxAhfAfp+hSJVxFhjkigg==; path=\/; Domain=.contentful.com",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179974",
+            "X-Contentful-RateLimit-Hour-Remaining": "179844",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "62949be6a2c439273d4e7536ad7a9b20",
+            "X-Contentful-Request-Id": "172716900fc6eae3c6edfb3189984545",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "X-Iinfo": "2-33305670-33298423 PNNN RT(1497627597289 318) q(0 0 0 -1) r(1 1) U5",
+            "X-Iinfo": "5-28297931-28297941 NNNN CT(0 0 0) RT(1499432418695 29) q(0 0 0 -1) r(1 1) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"requestId\":\"62949be6a2c439273d4e7536ad7a9b20\",\n  \"message\":\"The body you sent contains an unknown key.\",\n  \"details\":{\n    \"keys\":[\n      \"default\",\n      \"avx\"\n    ]\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"UnknownKey\"\n  }\n}\n\n"
+        "body": "{\n  \"requestId\":\"172716900fc6eae3c6edfb3189984545\",\n  \"message\":\"The body you sent contains an unknown key.\",\n  \"details\":{\n    \"keys\":[\n      \"default\",\n      \"avx\"\n    ]\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"UnknownKey\"\n  }\n}\n\n"
     }
 }]
