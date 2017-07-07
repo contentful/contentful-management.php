@@ -10,11 +10,17 @@
 namespace Contentful\Management;
 
 use Contentful\File;
+use Contentful\Link;
 use Contentful\Management\Field\Validation;
 use Contentful\ResourceArray;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
+/**
+ * ResourceBuilder class.
+ *
+ * This class is responsible for populating PHP objects using data received from Contentful's API.
+ */
 class ResourceBuilder
 {
     /**
@@ -32,8 +38,9 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
-     * @return Space|Asset|ContentType|Entry|EntrySnapshot|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray|PublishedContentType
+     * @param array $data
+     *
+     * @return Space|Asset|Upload|ContentType|Entry|EntrySnapshot|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray|PublishedContentType
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -44,6 +51,8 @@ class ResourceBuilder
                 return $this->buildArray($data);
             case 'Asset':
                 return $this->buildAsset($data);
+            case 'Upload':
+                return $this->buildUpload($data);
             case 'ContentType':
                 // The /public/content_types endpoint is a weird exception that returns
                 // data in a mix of CDA and CMA formats. We have to special case it.
@@ -79,8 +88,11 @@ class ResourceBuilder
     }
 
     /**
-     * @param  object $object
-     * @param  array  $data
+     * Updates an object using given data.
+     * This method will overwrite properties of the $object parameter.
+     *
+     * @param object $object
+     * @param array  $data
      */
     public function updateObjectFromRawData($object, array $data)
     {
@@ -92,6 +104,9 @@ class ResourceBuilder
                 break;
             case 'Asset':
                 $this->updateAsset($object, $data);
+                break;
+            case 'Upload':
+                $this->updateUpload($object, $data);
                 break;
             case 'ContentType':
                 $this->updateContentType($object, $data);
@@ -111,7 +126,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Asset
      */
@@ -127,6 +142,10 @@ class ResourceBuilder
         ]);
     }
 
+    /**
+     * @param Asset $asset
+     * @param array $data
+     */
     private function updateAsset(Asset $asset, array $data)
     {
         $fields = $data['fields'];
@@ -141,6 +160,14 @@ class ResourceBuilder
 
     private function buildFile(array $data): File\FileInterface
     {
+        if (isset($data['uploadFrom'])) {
+            return new File\LocalUploadFile(
+                $data['fileName'],
+                $data['contentType'],
+                new Link($data['uploadFrom']['sys']['id'], $data['uploadFrom']['sys']['linkType'])
+            );
+        }
+
         if (isset($data['upload'])) {
             return new File\UploadFile($data['fileName'], $data['contentType'], $data['upload']);
         }
@@ -158,6 +185,31 @@ class ResourceBuilder
         }
 
         return new File\File($data['fileName'], $data['contentType'], $data['url'], $details['size']);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Upload
+     */
+    private function buildUpload(array $data): Upload
+    {
+        return $this->createObject(Upload::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'body' => null,
+        ]);
+    }
+
+    /**
+     * @param Upload $upload
+     * @param array $data
+     */
+    private function updateUpload(Upload $upload, array $data)
+    {
+        $this->updateObject(Upload::class, $upload, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'body' => null,
+        ]);
     }
 
     private function buildContentType(array $data): ContentType
@@ -194,7 +246,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Field\FieldInterface
      */
@@ -270,7 +322,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Validation\ValidationInterface
      */
@@ -322,7 +374,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Space
      */
@@ -441,8 +493,8 @@ class ResourceBuilder
     }
 
     /**
-     * @param  string $class
-     * @param  array  $properties
+     * @param string $class
+     * @param array  $properties
      *
      * @return object
      */
@@ -458,9 +510,9 @@ class ResourceBuilder
     }
 
     /**
-     * @param  string $class
-     * @param  object $object
-     * @param  array  $properties
+     * @param string $class
+     * @param object $object
+     * @param array  $properties
      */
     private function updateObject(string $class, $object, array $properties)
     {
@@ -469,8 +521,8 @@ class ResourceBuilder
     }
 
     /**
-     * @param  string $class
-     * @param  object $object
+     * @param string $class
+     * @param object $object
      *
      * @return \Closure
      */

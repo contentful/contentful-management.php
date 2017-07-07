@@ -10,8 +10,15 @@
 namespace Contentful\Management;
 
 use Contentful\File\FileInterface;
-use Contentful\File\UploadFile;
+use Contentful\File\UnprocessedFileInterface;
 
+/**
+ * Asset class.
+ *
+ * This class represents a resource with type "Asset" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
+ */
 class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
 {
     /**
@@ -34,26 +41,32 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
      */
     private $file;
 
+    /**
+     * Asset constructor.
+     */
     public function __construct()
     {
         $this->sys = SystemProperties::withType('Asset');
     }
 
     /**
-     * @return SystemProperties
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getResourceUrlPart(): string
     {
         return 'assets';
     }
 
     /**
-     * @param  string $locale
+     * @param string $locale
      *
      * @return string|null
      */
@@ -67,8 +80,8 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * @param  string|null $title
-     * @param  string      $locale
+     * @param string|null $title
+     * @param string      $locale
      *
      * @return $this
      */
@@ -80,7 +93,7 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * @param  string $locale
+     * @param string $locale
      *
      * @return string|null
      */
@@ -95,7 +108,7 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
 
     /**
      * @param string|null $description
-     * @param string       $locale
+     * @param string      $locale
      *
      * @return $this
      */
@@ -107,7 +120,7 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * @param  string $locale
+     * @param string $locale
      *
      * @return FileInterface|null
      */
@@ -121,12 +134,12 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * @param  UploadFile|null $file
-     * @param  string          $locale
+     * @param UnprocessedFileInterface|null $file
+     * @param string                        $locale
      *
      * @return $this
      */
-    public function setFile(UploadFile $file = null, string $locale)
+    public function setFile(UnprocessedFileInterface $file = null, string $locale)
     {
         $this->file[$locale] = $file;
 

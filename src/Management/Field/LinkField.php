@@ -53,7 +53,7 @@ class LinkField extends AbstractField
     }
 
     /**
-     * @param  string $linkType
+     * @param string $linkType
      *
      * @return $this
      */
@@ -69,7 +69,7 @@ class LinkField extends AbstractField
     }
 
     /**
-     * @param  string $type
+     * @param string $type
      *
      * @return bool
      */

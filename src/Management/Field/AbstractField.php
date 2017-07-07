@@ -201,7 +201,7 @@ abstract class AbstractField implements FieldInterface
     }
 
     /**
-     * @param  ValidationInterface $validation
+     * @param ValidationInterface $validation
      *
      * @return $this
      */

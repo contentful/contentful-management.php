@@ -13,9 +13,19 @@ use Contentful\Client as BaseClient;
 use Contentful\JsonHelper;
 use Contentful\ResourceArray;
 
+/**
+ * Client class.
+ *
+ * This class is responsible for querying Contentful's API,
+ * and for lower level operations such as space management.
+ */
 class Client extends BaseClient
 {
     const VERSION = '0.6.0-dev';
+
+    const URI_MANAGEMENT = 'https://api.contentful.com';
+
+    const URI_UPLOAD = 'https://upload.contentful.com';
 
     /**
      * @var ResourceBuilder
@@ -32,7 +42,7 @@ class Client extends BaseClient
      */
     public function __construct(string $token, array $options = [])
     {
-        $baseUri = 'https://api.contentful.com/';
+        $baseUri = self::URI_MANAGEMENT;
         $api = 'MANAGEMENT';
 
         $options = array_replace([
@@ -55,7 +65,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  string $spaceId
+     * @param string $spaceId
      *
      * @return SpaceManager
      */
@@ -70,7 +80,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  string $spaceId
+     * @param string $spaceId
      *
      * @return Space
      */
@@ -82,7 +92,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  Query $query
+     * @param Query $query
      *
      * @return ResourceArray
      */
@@ -99,9 +109,9 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  Space       $space
-     * @param  string|null $organizationId
-     * @param  string      $defaultLocale
+     * @param Space       $space
+     * @param string|null $organizationId
+     * @param string      $defaultLocale
      */
     public function createSpace(Space $space, string $organizationId = null, string $defaultLocale = 'en-US')
     {
@@ -120,7 +130,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  Space $space
+     * @param Space $space
      */
     public function updateSpace(Space $space)
     {
@@ -135,7 +145,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param  Space $space
+     * @param Space $space
      */
     public function deleteSpace(Space $space)
     {

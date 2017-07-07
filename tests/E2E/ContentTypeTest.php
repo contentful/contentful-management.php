@@ -30,16 +30,16 @@ class ContentTypeTest extends End2EndTestCase
         $sys = $contentType->getSystemProperties();
         $this->assertEquals('cat', $sys->getId());
         $this->assertEquals('ContentType', $sys->getType());
-        $this->assertEquals(29, $sys->getVersion());
+        $this->assertEquals(33, $sys->getVersion());
         $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:10.704'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2016-11-21T15:01:43.873'), $sys->getUpdatedAt());
+        $this->assertEquals(new \DateTimeImmutable('2017-07-06T09:58:52.710'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('0PCYk22mt1xD7gTKZhHycN', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals(new Link('0PCYk22mt1xD7gTKZhHycN', 'User'), $sys->getPublishedBy());
-        $this->assertEquals(28, $sys->getPublishedVersion());
-        $this->assertEquals(6, $sys->getPublishedCounter());
-        $this->assertEquals(new \DateTimeImmutable('2016-11-21T15:01:43.86'), $sys->getPublishedAt());
+        $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getUpdatedBy());
+        $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getPublishedBy());
+        $this->assertEquals(32, $sys->getPublishedVersion());
+        $this->assertEquals(8, $sys->getPublishedCounter());
+        $this->assertEquals(new \DateTimeImmutable('2017-07-06T09:58:52.691'), $sys->getPublishedAt());
         $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:12.852'), $sys->getFirstPublishedAt());
 
         $this->assertEquals('Cat', $contentType->getName());
@@ -64,7 +64,7 @@ class ContentTypeTest extends End2EndTestCase
         $this->assertInstanceOf(SizeValidation::class, $field0validation0);
         $this->assertEquals(3, $field0validation0->getMin());
 
-        $json = '{"name":"Cat","fields": [{"id":"name","name":"Name","type":"Text","required": true,"localized": true,"validations": [{"size": {"min": 3}}]},{"id":"likes","name":"Likes","type":"Array","required": false,"localized": false,"items": {"type":"Symbol"}},{"id":"color","name":"Color","type":"Symbol","required": false,"localized": false},{"id":"bestFriend","name":"Best Friend","type":"Link","required": false,"localized": false,"linkType":"Entry"},{"id":"birthday","name":"Birthday","type":"Date","required": false,"localized": false},{"id":"lifes","name":"Lifes left","type":"Integer","required": false,"localized": false,"disabled": true,"omitted": false},{"id":"lives","name":"Lives left","type":"Integer","required": false,"localized": false},{"id":"image","name":"Image","required": false,"localized": false,"type":"Link","linkType":"Asset"}],"displayField":"name","description":"Meow.","sys": {"id":"cat","type":"ContentType","space": {"sys": {  "type":"Link",  "linkType":"Space",  "id":"cfexampleapi" }},"createdAt":"2013-06-27T22:46:10.704Z","createdBy": {"sys": {  "type":"Link",  "linkType":"User",  "id":"7BslKh9TdKGOK41VmLDjFZ" }},"firstPublishedAt":"2013-06-27T22:46:12.852Z","publishedCounter": 6,"publishedAt":"2016-11-21T15:01:43.860Z","publishedBy": {"sys": {  "type":"Link",  "linkType":"User",  "id":"0PCYk22mt1xD7gTKZhHycN" }},"publishedVersion": 28,"version": 29,"updatedAt":"2016-11-21T15:01:43.873Z","updatedBy": {"sys":{"type":"Link","linkType":"User","id":"0PCYk22mt1xD7gTKZhHycN"}}}}';
+        $json = '{"name":"Cat","fields": [{"id":"name","name":"Name","type":"Text","required": true,"localized": true,"validations": [{"size": {"min": 3}}]},{"id":"likes","name":"Likes","type":"Array","required": false,"localized": false,"items": {"type":"Symbol"}},{"id":"color","name":"Color","type":"Symbol","required": false,"localized": false},{"id":"bestFriend","name":"Best Friend","type":"Link","required": false,"localized": false,"linkType":"Entry"},{"id":"birthday","name":"Birthday","type":"Date","required": false,"localized": false},{"id":"lifes","name":"Lifes left","type":"Integer","required": false,"localized": false,"disabled": true,"omitted": false},{"id":"lives","name":"Lives left","type":"Integer","required": false,"localized": false},{"id":"image","name":"Image","required": false,"localized": false,"type":"Link","linkType":"Asset"}],"displayField":"name","description":"Meow.","sys": {"id":"cat","type":"ContentType","space": {"sys": {  "type":"Link",  "linkType":"Space",  "id":"cfexampleapi" }},"createdAt":"2013-06-27T22:46:10.704Z","createdBy": {"sys": {  "type":"Link",  "linkType":"User",  "id":"7BslKh9TdKGOK41VmLDjFZ" }},"firstPublishedAt":"2013-06-27T22:46:12.852Z","publishedCounter": 8,"publishedAt":"2017-07-06T09:58:52.691Z","publishedBy": {"sys": {  "type":"Link",  "linkType":"User",  "id":"5wTIctqPekjOi9TGctNW7L" }},"publishedVersion": 32,"version": 33,"updatedAt":"2017-07-06T09:58:52.710Z","updatedBy": {"sys":{"type":"Link","linkType":"User","id":"5wTIctqPekjOi9TGctNW7L"}}}}';
         $this->assertJsonStringEqualsJsonString($json, json_encode($contentType));
     }
 

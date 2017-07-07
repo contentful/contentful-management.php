@@ -12,6 +12,11 @@ namespace Contentful\Management;
 use Contentful\DateHelper;
 use Contentful\Link;
 
+/**
+ * SystemProperties class.
+ *
+ * This class represents a `sys` object in Contentful's responses for published resources.
+ */
 class PublishedSystemProperties implements \JsonSerializable
 {
     /**
@@ -44,6 +49,11 @@ class PublishedSystemProperties implements \JsonSerializable
      */
     private $revision;
 
+    /**
+     * PublishedSystemProperties constructor.
+     *
+     * @param array $sys Associative array of sys properties
+     */
     public function __construct(array $sys)
     {
         $this->id = $sys['id'] ?? null;
@@ -54,13 +64,20 @@ class PublishedSystemProperties implements \JsonSerializable
         $this->revision = $sys['revision'] ?? null;
     }
 
+    /**
+     * Creates an instance using the given `type` value.
+     *
+     * @param string $type
+     *
+     * @return SystemProperties
+     */
     public static function withType(string $type)
     {
         return new self(['type' => $type]);
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Link
      */

@@ -42,7 +42,7 @@ class DateRangeValidation implements ValidationInterface
     }
 
     /**
-     * @param  string|null $min
+     * @param string|null $min
      *
      * @return $this
      */
@@ -62,7 +62,7 @@ class DateRangeValidation implements ValidationInterface
     }
 
     /**
-     * @param  string|null $max
+     * @param string|null $max
      *
      * @return $this
      */
