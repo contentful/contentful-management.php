@@ -49,7 +49,7 @@ class ContentTypeTest extends End2EndTestCase
         $this->assertCount(8, $fields);
 
         $field0 = $fields[0];
-        $this->AssertInstanceof(TextField::class, $field0);
+        $this->assertInstanceof(TextField::class, $field0);
         $this->assertEquals('name', $field0->getId());
         $this->assertEquals('Name', $field0->getName());
         $this->assertTrue($field0->isRequired());
