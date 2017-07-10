@@ -10,7 +10,7 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\File\LocalUploadFile;
-use Contentful\File\UploadFile;
+use Contentful\File\RemoteUploadFile;
 use Contentful\Link;
 use Contentful\Management\Asset;
 use Contentful\Management\Query;
@@ -78,7 +78,7 @@ class AssetTest extends End2EndTestCase
             ->setTitle('An asset', 'en-US')
             ->setDescription('A really cool asset', 'en-US');
 
-        $file = new UploadFile('contentful.svg', 'image/svg+xml', 'https://pbs.twimg.com/profile_images/488880764323250177/CrqV-RjR_normal.jpeg');
+        $file = new RemoteUploadFile('contentful.svg', 'image/svg+xml', 'https://pbs.twimg.com/profile_images/488880764323250177/CrqV-RjR_normal.jpeg');
 
         $asset->setFile($file, 'en-US');
 
@@ -87,9 +87,23 @@ class AssetTest extends End2EndTestCase
 
         $manager->processAsset($asset, 'en-US');
 
-        // Wait for the file to be processed
-        sleep(5);
-        $asset = $manager->getAsset($asset->getSystemProperties()->getId());
+        // Calls the API until the file is processed.
+        // Limit is used because repeated requests will be recorded
+        // and the same response will be returned
+        $query = (new Query())
+            ->where('sys.id', $asset->getSystemProperties()->getId())
+        ;
+        $limit = 0;
+        while ($asset->getFile('en-US') instanceof RemoteUploadFile) {
+            $limit++;
+            $query->setLimit($limit);
+            $asset = $manager->getAssets($query)[0];
+
+            // This is arbitrary
+            if ($limit > 50) {
+                throw new \RuntimeException('Repeated requests are not yielding a processed file, something is wrong');
+            }
+        }
 
         $asset->setTitle('Even better asset', 'en-US');
 
@@ -165,9 +179,23 @@ class AssetTest extends End2EndTestCase
         $manager->create($asset);
         $manager->processAsset($asset, 'en-US');
 
-        // Wait for the file to be processed
-        sleep(5);
-        $asset = $manager->getAsset($asset->getSystemProperties()->getId());
+        // Calls the API until the file is processed.
+        // Limit is used because repeated requests will be recorded
+        // and the same response will be returned
+        $query = (new Query())
+            ->where('sys.id', $asset->getSystemProperties()->getId())
+        ;
+        $limit = 0;
+        while ($asset->getFile('en-US') instanceof LocalUploadFile) {
+            $limit++;
+            $query->setLimit($limit);
+            $asset = $manager->getAssets($query)[0];
+
+            // This is arbitrary
+            if ($limit > 50) {
+                throw new \RuntimeException('Repeated requests are not yielding a processed file, something is wrong');
+            }
+        }
 
         $this->assertEquals('contentful.svg', $asset->getFile('en-US')->getFileName());
         $this->assertEquals('image/svg+xml', $asset->getFile('en-US')->getContentType());

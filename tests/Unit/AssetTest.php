@@ -9,7 +9,7 @@
 
 namespace Contentful\Tests\Unit;
 
-use Contentful\File\UploadFile;
+use Contentful\File\RemoteUploadFile;
 use Contentful\Management\Asset;
 
 class AssetTest extends \PHPUnit_Framework_TestCase
@@ -28,7 +28,7 @@ class AssetTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('This asset is really cool', $asset->getDescription('en-US'));
         $this->assertNull($asset->getDescription('de-DE'));
 
-        $file = new UploadFile('testfile.jpg', 'image/jpeg', 'https://www.example.com/testfile.jpeg');
+        $file = new RemoteUploadFile('testfile.jpg', 'image/jpeg', 'https://www.example.com/testfile.jpeg');
         $asset->setFile($file, 'en-US');
         $this->assertSame($file, $asset->getFile('en-US'));
         $this->assertNull($asset->getFile('de-DE'));
@@ -36,7 +36,7 @@ class AssetTest extends \PHPUnit_Framework_TestCase
 
     public function testJsonSerialize()
     {
-        $file = new UploadFile('testfile.jpg', 'image/jpeg', 'https://www.example.com/testfile.jpeg');
+        $file = new RemoteUploadFile('testfile.jpg', 'image/jpeg', 'https://www.example.com/testfile.jpeg');
         $asset = (new Asset)
             ->setTitle('A cool asset', 'en-US')
             ->setDescription('This asset is really cool', 'en-US')
