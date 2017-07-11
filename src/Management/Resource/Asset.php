@@ -7,10 +7,16 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Resource;
 
 use Contentful\File\FileInterface;
 use Contentful\File\UnprocessedFileInterface;
+use Contentful\Management\Behavior\Archivable;
+use Contentful\Management\Behavior\Creatable;
+use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Publishable;
+use Contentful\Management\Behavior\Updatable;
+use Contentful\Management\SystemProperties;
 
 /**
  * Asset class.

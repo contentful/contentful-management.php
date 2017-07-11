@@ -9,8 +9,8 @@
 
 namespace Contentful\Tests\Unit;
 
+use Contentful\Management\Resource\WebhookHealth;
 use Contentful\Management\ResourceBuilder;
-use Contentful\Management\WebhookHealth;
 
 class WebhookHealthTest extends \PHPUnit_Framework_TestCase
 {

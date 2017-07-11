@@ -7,7 +7,9 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Resource;
+
+use Contentful\Management\SystemProperties;
 
 class User implements ResourceInterface
 {

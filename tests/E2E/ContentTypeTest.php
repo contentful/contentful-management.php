@@ -10,10 +10,10 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
-use Contentful\Management\ContentType;
 use Contentful\Management\Field\TextField;
 use Contentful\Management\Field\Validation\SizeValidation;
 use Contentful\Management\Query;
+use Contentful\Management\Resource\ContentType;
 use Contentful\Tests\End2EndTestCase;
 
 class ContentTypeTest extends End2EndTestCase

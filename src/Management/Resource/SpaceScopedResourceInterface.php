@@ -7,7 +7,7 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Resource;
 
 /**
  * SpaceScopedResourceInterface.

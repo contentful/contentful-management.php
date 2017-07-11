@@ -7,9 +7,10 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Resource;
 
 use Contentful\DateHelper;
+use Contentful\Management\SystemProperties;
 
 /**
  * WebhookCall class.

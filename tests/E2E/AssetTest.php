@@ -12,9 +12,9 @@ namespace Contentful\Tests\E2E;
 use Contentful\File\LocalUploadFile;
 use Contentful\File\RemoteUploadFile;
 use Contentful\Link;
-use Contentful\Management\Asset;
 use Contentful\Management\Query;
-use Contentful\Management\Upload;
+use Contentful\Management\Resource\Asset;
+use Contentful\Management\Resource\Upload;
 use Contentful\Tests\End2EndTestCase;
 use function GuzzleHttp\Psr7\stream_for;
 

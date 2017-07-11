@@ -9,9 +9,9 @@
 
 namespace Contentful\Tests\E2E;
 
-use Contentful\Management\Asset;
 use Contentful\Management\Exception\VersionMismatchException;
-use Contentful\Management\Locale;
+use Contentful\Management\Resource\Asset;
+use Contentful\Management\Resource\Locale;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\End2EndTestCase;
 

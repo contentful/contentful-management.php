@@ -9,10 +9,12 @@
 
 namespace Contentful\Management;
 
+use Contentful\Management\Resource\SpaceScopedResourceInterface;
+
 /**
  * Updatable interface.
  *
- * Represents an entity which can be updated.
+ * Represents a resource which can be updated.
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset Updating assets
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type Updating content types

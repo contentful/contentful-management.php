@@ -11,6 +11,18 @@ namespace Contentful\Management;
 
 use Contentful\Exception\SpaceMismatchException;
 use Contentful\JsonHelper;
+use Contentful\Management\Resource\Asset;
+use Contentful\Management\Resource\ContentType;
+use Contentful\Management\Resource\Entry;
+use Contentful\Management\Resource\EntrySnapshot;
+use Contentful\Management\Resource\Locale;
+use Contentful\Management\Resource\PublishedContentType;
+use Contentful\Management\Resource\ResourceInterface;
+use Contentful\Management\Resource\Space;
+use Contentful\Management\Resource\Upload;
+use Contentful\Management\Resource\Webhook;
+use Contentful\Management\Resource\WebhookCallDetails;
+use Contentful\Management\Resource\WebhookHealth;
 use Contentful\ResourceArray;
 
 /**
@@ -51,7 +63,7 @@ class SpaceManager
     }
 
     /**
-     * Checks that the given resource is compatible with the currently-managend space.
+     * Checks that the given resource is compatible with the currently-managed space.
      *
      * @param ResourceInterface $resource
      *

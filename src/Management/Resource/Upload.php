@@ -7,8 +7,11 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Resource;
 
+use Contentful\Management\Behavior\Creatable;
+use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\SystemProperties;
 use Psr\Http\Message\StreamInterface;
 
 /**

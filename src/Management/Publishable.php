@@ -9,10 +9,12 @@
 
 namespace Contentful\Management;
 
+use Contentful\Management\Resource\SpaceScopedResourceInterface;
+
 /**
  * Publishable interface.
  *
- * Represents an entity which can be published.
+ * Represents a resource which can be published.
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-publishing Publishing assets
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-activation Publishing content types

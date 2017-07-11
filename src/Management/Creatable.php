@@ -9,10 +9,12 @@
 
 namespace Contentful\Management;
 
+use Contentful\Management\Resource\SpaceScopedResourceInterface;
+
 /**
  * Creatable interface.
  *
- * Represents an entity which can be created.
+ * Represents a resource which can be created.
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset Creating assets
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type Creating content types

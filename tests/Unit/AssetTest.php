@@ -10,7 +10,7 @@
 namespace Contentful\Tests\Unit;
 
 use Contentful\File\RemoteUploadFile;
-use Contentful\Management\Asset;
+use Contentful\Management\Resource\Asset;
 
 class AssetTest extends \PHPUnit_Framework_TestCase
 {
