@@ -219,7 +219,7 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     public function setHeaders(array $headers)
     {
         foreach ($headers as $key => $value) {
-            if (!is_string($key) or !is_string($value)) {
+            if (!is_string($key) || !is_string($value)) {
                 throw new \InvalidArgumentException('Argument of Webhook::setHeaders() must be an array where all keys and values are strings');
             }
         }
