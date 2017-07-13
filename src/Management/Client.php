@@ -153,6 +153,16 @@ class Client extends BaseClient
         $this->request('DELETE', 'spaces/' . $sys->getId());
     }
 
+    /**
+     * @return User
+     */
+    public function getOwnUser(): User
+    {
+        $response = $this->request('GET', 'users/me');
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
     public function prepareObjectForApi(\JsonSerializable $serializable)
     {
         $data = $serializable->jsonSerialize();
