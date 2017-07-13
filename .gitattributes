@@ -6,6 +6,7 @@
 /.gitignore export-ignore
 /.editorconfig export-ignore
 /.php_cs export-ignore
+/.sensiolabs.yml export-ignore
 /phpunit.xml.dist export-ignore
 /tests export-ignore
 /sami.php export-ignore
