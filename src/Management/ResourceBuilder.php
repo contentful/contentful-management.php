@@ -40,7 +40,7 @@ class ResourceBuilder
     /**
      * @param array $data
      *
-     * @return Space|Asset|Upload|ContentType|Entry|EntrySnapshot|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray|PublishedContentType
+     * @return Space|Asset|Upload|ContentType|Entry|EntrySnapshot|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray|PublishedContentType|User
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -82,6 +82,8 @@ class ResourceBuilder
                 return $this->buildWebhookCall($data);
             case 'Webhook':
                 return $this->buildWebhookHealth($data);
+            case 'User':
+                return $this->buildUser($data);
             default:
                 throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to build object.');
         }
@@ -390,6 +392,20 @@ class ResourceBuilder
     {
         $this->updateObject(Space::class, $space, [
             'name' => $data['name'],
+            'sys' => $this->buildSystemProperties($data['sys'])
+        ]);
+    }
+
+    private function buildUser(array $data): User
+    {
+        return $this->createObject(User::class, [
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
+            'avatarUrl' => $data['avatarUrl'],
+            'email' => $data['email'],
+            'activated' => $data['activated'],
+            'signInCount' => $data['signInCount'],
+            'confirmed' => $data['confirmed'],
             'sys' => $this->buildSystemProperties($data['sys'])
         ]);
     }
