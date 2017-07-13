@@ -64,7 +64,7 @@ class SpaceTest extends End2EndTestCase
     {
         $space = new Space('PHP CMA German Test Space');
 
-        $this->client->createSpace($space, '2vsR8xMXNBmgAuCFdFXG5e', 'de-DE');
+        $this->client->createSpace($space, $this->testOrganizationId, 'de-DE');
 
         $id = $space->getSystemProperties()->getId();
         $this->assertNotNull($id);
@@ -85,7 +85,7 @@ class SpaceTest extends End2EndTestCase
     {
         $space = new Space('PHP CMA Test Space');
 
-        $this->client->createSpace($space, '2vsR8xMXNBmgAuCFdFXG5e');
+        $this->client->createSpace($space, $this->testOrganizationId);
 
         $id = $space->getSystemProperties()->getId();
         $this->assertNotNull($id);

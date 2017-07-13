@@ -34,6 +34,8 @@ class End2EndTestCase extends \PHPUnit_Framework_TestCase
      */
     protected $readWriteSpaceId = '34luz0flcmxt';
 
+    protected $testOrganizationId = '4Q3Lza73mxcjmluLU7V5EG';
+
     public function setUp()
     {
         $this->token = getenv('CONTENTFUL_CMA_TEST_TOKEN');

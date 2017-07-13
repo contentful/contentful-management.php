@@ -7,6 +7,8 @@ Spaces:
 - Contentful Example API (`cfexampleapi`): this is a read-only space, and is to be used only for testing `GET` requests.
 - PHP CMA (`34luz0flcmxt`): this space can be used for testing requests for all HTTP methods. Every test should clean up after itself, meaning that the space will be left in the same conditions as it was before the test was executed.
 
+The user used to record the tests is specific to the SDK. The user has access to a test organization with the ID `4Q3Lza73mxcjmluLU7V5EG`. Any spaces that appear in that organization are like vestiges of failed test runs.
+
 ## Contentful Example API (`cfexampleapi`)
 
 ### Assets
