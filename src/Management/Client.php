@@ -165,6 +165,23 @@ class Client extends BaseClient
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * @param Query $query
+     *
+     * @return ResourceArray
+     */
+    public function getOrganizations(Query $query = null): ResourceArray
+    {
+        $query = $query !== null ? $query : new Query;
+        $queryData = $query->getQueryData();
+
+        $response = $this->request('GET', 'organizations', [
+            'query' => $queryData
+        ]);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
     public function prepareObjectForApi(\JsonSerializable $serializable)
     {
         $data = $serializable->jsonSerialize();
