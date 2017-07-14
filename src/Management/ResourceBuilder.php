@@ -318,8 +318,7 @@ class ResourceBuilder
     {
         return $this->createObject(EntrySnapshot::class, [
             'sys' => $this->buildSystemProperties($data['sys']),
-            'fields' => $data['snapshot']['fields'],
-            'entrySys' => $this->buildSystemProperties($data['snapshot']['sys']),
+            'entry' => $this->buildEntry($data['snapshot']),
         ]);
     }
 
