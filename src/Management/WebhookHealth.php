@@ -52,7 +52,7 @@ class WebhookHealth implements SpaceScopedResourceInterface
     /**
      * {@inheritDoc}
      */
-    public function getResourceUrlPart(): string
+    public function getResourceUriPart(): string
     {
         return 'webhooks';
     }

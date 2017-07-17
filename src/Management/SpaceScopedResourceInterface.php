@@ -23,5 +23,5 @@ interface SpaceScopedResourceInterface extends ResourceInterface
      *
      * @return string
      */
-    public function getResourceUrlPart(): string;
+    public function getResourceUriPart(): string;
 }

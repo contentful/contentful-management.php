@@ -48,7 +48,7 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
     /**
      * {@inheritDoc}
      */
-    public function getResourceUrlPart(): string
+    public function getResourceUriPart(): string
     {
         return 'uploads';
     }

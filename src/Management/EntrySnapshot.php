@@ -48,7 +48,7 @@ class EntrySnapshot implements SpaceScopedResourceInterface
     /**
      * {@inheritDoc}
      */
-    public function getResourceUrlPart(): string
+    public function getResourceUriPart(): string
     {
         return 'entries';
     }

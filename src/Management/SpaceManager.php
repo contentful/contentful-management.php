@@ -83,15 +83,15 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $urlParts = [
+        $uriParts = [
             'spaces',
             $this->spaceId,
-            $resource->getResourceUrlPart(),
+            $resource->getResourceUriPart(),
             $sys->getId(),
             'published'
         ];
 
-        $response = $this->client->request('PUT', implode('/', $urlParts), [
+        $response = $this->client->request('PUT', implode('/', $uriParts), [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
         ]);
 
@@ -110,15 +110,15 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $urlParts = [
+        $uriParts = [
             'spaces',
             $this->spaceId,
-            $resource->getResourceUrlPart(),
+            $resource->getResourceUriPart(),
             $sys->getId(),
             'published'
         ];
 
-        $response = $this->client->request('DELETE', implode('/', $urlParts), [
+        $response = $this->client->request('DELETE', implode('/', $uriParts), [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
         ]);
 
@@ -137,15 +137,15 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $urlParts = [
+        $uriParts = [
             'spaces',
             $this->spaceId,
-            $resource->getResourceUrlPart(),
+            $resource->getResourceUriPart(),
             $sys->getId(),
             'archived'
         ];
 
-        $response = $this->client->request('PUT', implode('/', $urlParts), [
+        $response = $this->client->request('PUT', implode('/', $uriParts), [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
         ]);
 
@@ -164,15 +164,15 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $urlParts = [
+        $uriParts = [
             'spaces',
             $this->spaceId,
-            $resource->getResourceUrlPart(),
+            $resource->getResourceUriPart(),
             $sys->getId(),
             'archived'
         ];
 
-        $response = $this->client->request('DELETE', implode('/', $urlParts), [
+        $response = $this->client->request('DELETE', implode('/', $uriParts), [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
         ]);
 
@@ -189,10 +189,10 @@ class SpaceManager
     public function delete(Deletable $resource)
     {
         $sys = $resource->getSystemProperties();
-        $urlParts = [
+        $uriParts = [
             'spaces',
             $this->spaceId,
-            $resource->getResourceUrlPart(),
+            $resource->getResourceUriPart(),
             $sys->getId()
         ];
 
@@ -201,7 +201,7 @@ class SpaceManager
             $options['baseUri'] = Client::URI_UPLOAD;
         }
 
-        $this->client->request('DELETE', implode('/', $urlParts), $options);
+        $this->client->request('DELETE', implode('/', $uriParts), $options);
     }
 
     /**
@@ -215,14 +215,14 @@ class SpaceManager
     {
         $sys = $resource->getSystemProperties();
         $body = JsonHelper::encode($this->client->prepareObjectForApi($resource));
-        $urlParts = [
+        $uriParts = [
             'spaces',
             $this->spaceId,
-            $resource->getResourceUrlPart(),
+            $resource->getResourceUriPart(),
             $sys->getId()
         ];
 
-        $response = $this->client->request('PUT', implode('/', $urlParts), [
+        $response = $this->client->request('PUT', implode('/', $uriParts), [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
             'body' => $body
         ]);
@@ -254,18 +254,18 @@ class SpaceManager
             $options['body'] = $resource->getBody();
         }
 
-        $urlParts = [
+        $uriParts = [
             'spaces',
             $this->spaceId,
-            $resource->getResourceUrlPart(),
+            $resource->getResourceUriPart(),
         ];
 
         if ($id !== null) {
-            $urlParts[] = $id;
+            $uriParts[] = $id;
         }
 
         $method = $id === null ? 'POST' : 'PUT';
-        $response = $this->client->request($method, implode('/', $urlParts), $options);
+        $response = $this->client->request($method, implode('/', $uriParts), $options);
 
         $this->builder->updateObjectFromRawData($resource, $response);
     }
