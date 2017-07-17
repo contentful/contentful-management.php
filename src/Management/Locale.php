@@ -85,7 +85,7 @@ class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Crea
     /**
      * {@inheritDoc}
      */
-    public function getResourceUrlPart(): string
+    public function getResourceUriPart(): string
     {
         return 'locales';
     }

@@ -68,7 +68,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     /**
      * {@inheritDoc}
      */
-    public function getResourceUrlPart(): string
+    public function getResourceUriPart(): string
     {
         return 'content_types';
     }

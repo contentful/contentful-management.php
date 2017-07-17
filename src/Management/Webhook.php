@@ -79,7 +79,7 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     /**
      * {@inheritDoc}
      */
-    public function getResourceUrlPart(): string
+    public function getResourceUriPart(): string
     {
         return 'webhook_definitions';
     }
