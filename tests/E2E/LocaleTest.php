@@ -10,7 +10,7 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
-use Contentful\Management\Locale;
+use Contentful\Management\Resource\Locale;
 use Contentful\Tests\End2EndTestCase;
 
 class LocaleTest extends End2EndTestCase

@@ -10,7 +10,7 @@
 namespace Contentful\Tests\Unit;
 
 use Contentful\Link;
-use Contentful\Management\Entry;
+use Contentful\Management\Resource\Entry;
 
 class EntryTest extends \PHPUnit_Framework_TestCase
 {

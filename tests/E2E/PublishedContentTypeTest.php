@@ -10,8 +10,8 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
-use Contentful\Management\PublishedContentType;
 use Contentful\Management\Query;
+use Contentful\Management\Resource\PublishedContentType;
 use Contentful\Tests\End2EndTestCase;
 
 class PublishedContentTypeTest extends End2EndTestCase

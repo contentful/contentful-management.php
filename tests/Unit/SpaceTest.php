@@ -9,7 +9,7 @@
 
 namespace Contentful\Tests\Unit;
 
-use Contentful\Management\Space;
+use Contentful\Management\Resource\Space;
 
 class SpaceTest extends \PHPUnit_Framework_TestCase
 {

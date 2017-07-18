@@ -7,9 +7,14 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Resource;
 
+use Contentful\Management\Behavior\Creatable;
+use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Publishable;
+use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\Field\FieldInterface;
+use Contentful\Management\SystemProperties;
 
 /**
  * ContentType class.

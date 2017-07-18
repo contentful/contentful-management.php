@@ -11,6 +11,8 @@ namespace Contentful\Management;
 
 use Contentful\Client as BaseClient;
 use Contentful\JsonHelper;
+use Contentful\Management\Resource\Space;
+use Contentful\Management\Resource\User;
 use Contentful\ResourceArray;
 
 /**

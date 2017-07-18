@@ -9,7 +9,7 @@
 
 namespace Contentful\Tests\Unit;
 
-use Contentful\Management\Webhook;
+use Contentful\Management\Resource\Webhook;
 
 class WebhookTest extends \PHPUnit_Framework_TestCase
 {

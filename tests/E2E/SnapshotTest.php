@@ -10,8 +10,8 @@
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
-use Contentful\Management\EntrySnapshot;
 use Contentful\Management\Query;
+use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Tests\End2EndTestCase;
 
 class SnapshotTest extends End2EndTestCase

@@ -9,7 +9,7 @@
 
 namespace Contentful\Tests\Unit;
 
-use Contentful\Management\Locale;
+use Contentful\Management\Resource\Locale;
 
 class LocaleTest extends \PHPUnit_Framework_TestCase
 {

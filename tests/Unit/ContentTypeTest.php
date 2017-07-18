@@ -9,9 +9,9 @@
 
 namespace Contentful\Tests\Unit;
 
-use Contentful\Management\ContentType;
 use Contentful\Management\Field\NumberField;
 use Contentful\Management\Field\SymbolField;
+use Contentful\Management\Resource\ContentType;
 
 class ContentTypeTest extends \PHPUnit_Framework_TestCase
 {

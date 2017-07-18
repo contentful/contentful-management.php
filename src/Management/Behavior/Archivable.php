@@ -7,12 +7,14 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Behavior;
+
+use Contentful\Management\Resource\SpaceScopedResourceInterface;
 
 /**
  * Archivable interface.
  *
- * Represents an entity which can be archived.
+ * Represents a resource which can be archived.
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-archiving Archiving assets
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry-archiving Archiving entries

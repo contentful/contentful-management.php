@@ -7,7 +7,12 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Resource;
+
+use Contentful\Management\Behavior\Creatable;
+use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Updatable;
+use Contentful\Management\SystemProperties;
 
 /**
  * Webhook class.
