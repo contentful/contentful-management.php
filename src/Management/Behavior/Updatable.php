@@ -7,7 +7,7 @@
  * @license   MIT
  */
 
-namespace Contentful\Management;
+namespace Contentful\Management\Behavior;
 
 use Contentful\Management\Resource\SpaceScopedResourceInterface;
 

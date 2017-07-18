@@ -11,6 +11,11 @@ namespace Contentful\Management;
 
 use Contentful\Exception\SpaceMismatchException;
 use Contentful\JsonHelper;
+use Contentful\Management\Behavior\Archivable;
+use Contentful\Management\Behavior\Creatable;
+use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Publishable;
+use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\Entry;
