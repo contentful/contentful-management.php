@@ -229,9 +229,15 @@ abstract class AbstractField implements FieldInterface
             'name' => $this->name,
             'id' => $this->id,
             'type' => $this->getType(),
-            'required' => $this->required,
-            'localized' => $this->localized
         ];
+
+        if ($this->required !== null) {
+            $data['required'] = $this->required;
+        }
+
+        if ($this->localized !== null) {
+            $data['localized'] = $this->localized;
+        }
 
         if ($this->disabled !== null) {
             $data['disabled'] = $this->disabled;
