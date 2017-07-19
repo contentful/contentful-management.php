@@ -18,6 +18,7 @@ use Contentful\Management\Behavior\Publishable;
 use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
+use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Locale;
@@ -480,6 +481,30 @@ class SpaceManager
     public function getEntrySnapshots(string $entryId, Query $query = null): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/entries/' . $entryId . '/snapshots', $query);
+    }
+
+    /**
+     * @param string $contentTypeId
+     * @param string $snapshotId
+     *
+     * @return ContentTypeSnapshot
+     */
+    public function getContentTypeSnapshot(string $contentTypeId, string $snapshotId): ContentTypeSnapshot
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/content_types/' . $contentTypeId . '/snapshots/' . $snapshotId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param string $entryId
+     * @param Query $query
+     *
+     * @return ResourceArray
+     */
+    public function getContentTypeSnapshots(string $contentTypeId, Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/content_types/' . $contentTypeId . '/snapshots', $query);
     }
 
     /**

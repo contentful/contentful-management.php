@@ -14,6 +14,7 @@ use Contentful\Link;
 use Contentful\Management\Field\Validation;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
+use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Locale;
@@ -78,6 +79,8 @@ class ResourceBuilder
                 return $this->buildEntry($data);
             case 'Snapshot':
                 switch ($data['sys']['snapshotEntityType']) {
+                    case 'ContentType':
+                        return $this->buildContentTypeSnapshot($data);
                     case 'Entry':
                         return $this->buildEntrySnapshot($data);
                     default:
@@ -285,8 +288,8 @@ class ResourceBuilder
         $hydratorData = [
             'id' => $data['id'],
             'name' => $data['name'],
-            'required' => $data['required'],
-            'localized' => $data['localized'],
+            'required' => $data['required'] ?? null,
+            'localized' => $data['localized'] ?? null,
             'disabled' => $data['disabled'] ?? null,
             'omitted' => $data['omitted'] ?? null,
             'validations' => isset($data['validations']) ? array_map([$this, 'buildFieldValidation'], $data['validations']) : null
@@ -337,6 +340,19 @@ class ResourceBuilder
 
     /**
      * @param array $data
+     *
+     * @return ContentTypeSnapshot
+     */
+    private function buildContentTypeSnapshot(array $data): ContentTypeSnapshot
+    {
+        return $this->createObject(ContentTypeSnapshot::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'contentType' => $this->buildContentType($data['snapshot']),
+        ]);
+    }
+
+    /**
+     * @param  array $data
      *
      * @return Validation\ValidationInterface
      */
