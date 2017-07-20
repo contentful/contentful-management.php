@@ -7,7 +7,7 @@
  * @license   MIT
  */
 
-namespace Contentful\Tests\Unit;
+namespace Contentful\Tests\Unit\Resource;
 
 use Contentful\File\RemoteUploadFile;
 use Contentful\Management\Resource\Asset;
