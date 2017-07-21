@@ -24,6 +24,7 @@ use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Locale;
 use Contentful\Management\Resource\PublishedContentType;
 use Contentful\Management\Resource\ResourceInterface;
+use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\Upload;
 use Contentful\Management\Resource\Webhook;
@@ -252,6 +253,7 @@ class SpaceManager
      * Creates a resource.
      *
      * @param Creatable $resource
+     * @param string|null $id
      *
      * @see Creatable
      */
@@ -303,7 +305,7 @@ class SpaceManager
     }
 
     /**
-     * @param Query $query
+     * @param Query|null $query
      *
      * @return ResourceArray
      *
@@ -392,7 +394,7 @@ class SpaceManager
     }
 
     /**
-     * @param Query $query
+     * @param Query|null $query
      *
      * @return ResourceArray
      *
@@ -418,7 +420,7 @@ class SpaceManager
     }
 
     /**
-     * @param Query $query
+     * @param Query|null $query
      *
      * @return ResourceArray
      *
@@ -444,7 +446,7 @@ class SpaceManager
     }
 
     /**
-     * @param Query $query
+     * @param Query|null $query
      *
      * @return ResourceArray
      *
@@ -472,7 +474,7 @@ class SpaceManager
 
     /**
      * @param string $entryId
-     * @param Query $query
+     * @param Query|null $query
      *
      * @return ResourceArray
      *
@@ -497,14 +499,40 @@ class SpaceManager
     }
 
     /**
-     * @param string $entryId
-     * @param Query $query
+     * @param string $contentTypeId
+     * @param Query|null $query
      *
      * @return ResourceArray
      */
     public function getContentTypeSnapshots(string $contentTypeId, Query $query = null): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/content_types/' . $contentTypeId . '/snapshots', $query);
+    }
+
+    /**
+     * @param string $roleId
+     *
+     * @return Role
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/role
+     */
+    public function getRole(string $roleId): Role
+    {
+        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/roles/' . $roleId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/roles-collection
+     */
+    public function getRoles(Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/roles', $query);
     }
 
     /**
@@ -522,7 +550,7 @@ class SpaceManager
     }
 
     /**
-     * @param Query $query
+     * @param Query|null $query
      *
      * @return ResourceArray
      *
@@ -549,6 +577,7 @@ class SpaceManager
 
     /**
      * @param string $webhookId
+     * @param Query|null $query
      *
      * @return ResourceArray
      *

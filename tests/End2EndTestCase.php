@@ -34,6 +34,9 @@ class End2EndTestCase extends \PHPUnit_Framework_TestCase
      */
     protected $readWriteSpaceId = '34luz0flcmxt';
 
+    /**
+     * @var string
+     */
     protected $testOrganizationId = '4Q3Lza73mxcjmluLU7V5EG';
 
     public function setUp()
