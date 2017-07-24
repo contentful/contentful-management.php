@@ -18,7 +18,9 @@ use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Locale;
+use Contentful\Management\Resource\Organization;
 use Contentful\Management\Resource\PublishedContentType;
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\Upload;
@@ -62,7 +64,7 @@ class ResourceBuilder
     /**
      * @param array $data
      *
-     * @return Space|Asset|Upload|ContentType|Entry|EntrySnapshot|Locale|Webhook|WebhookCall|WebhookCallDetails|WebhookHealth|ResourceArray|PublishedContentType|User
+     * @return ResourceInterface|ResourceArray
      */
     public function buildObjectsFromRawData(array $data)
     {
@@ -110,6 +112,8 @@ class ResourceBuilder
                 return $this->buildWebhookHealth($data);
             case 'User':
                 return $this->buildUser($data);
+            case 'Organization':
+                return $this->buildOrganization($data);
             default:
                 throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to build object.');
         }
@@ -448,6 +452,19 @@ class ResourceBuilder
             'signInCount' => $data['signInCount'],
             'confirmed' => $data['confirmed'],
             'sys' => $this->buildSystemProperties($data['sys'])
+        ]);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Organization
+     */
+    private function buildOrganization(array $data): Organization
+    {
+        return $this->createObject(Organization::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
         ]);
     }
 

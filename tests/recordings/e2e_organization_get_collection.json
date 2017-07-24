@@ -1,0 +1,45 @@
+[{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/api.contentful.com\/organizations",
+        "headers": {
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.4",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.4; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Accept-Ranges": "bytes",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "Cache-Control": "max-age=0",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Thu, 13 Jul 2017 21:16:28 GMT",
+            "ETag": "W\/\"8799524848e8872702114aa42c1a3e7d\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-Request-Id": "67240cd58858280244d2063ace63f272",
+            "X-Frame-Options": "ALLOWALL",
+            "X-XSS-Protection": "1; mode=block",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=gjokNOGNSROO\/UwxSDz12yzjZ1kAAAAAQUIPAAAAAADhkI7UFXJS+mUUJQsogEFh; expires=Fri, 13 Jul 2018 13:13:09 GMT; path=\/; Domain=.contentful.com, nlbi_673446=Glu+TKpm1m5Un21T6lKYhQAAAADhR5ET4Et+m9R4oZQFjWAq; path=\/; Domain=.contentful.com, incap_ses_533_673446=pqowM5glUWBLb5Ct1JhlByzjZ1kAAAAAESVoJbFrCuVy+XNBKWMWsA==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "6-37803761-37803773 NNNN CT(94 94 0) RT(1499980588316 126) q(0 0 2 -1) r(3 3) U5",
+            "X-CDN": "Incapsula",
+            "Content-Encoding": "gzip",
+            "Transfer-Encoding": "chunked"
+        },
+        "body": "{\n  \"total\":3,\n  \"limit\":25,\n  \"skip\":0,\n  \"sys\":{\n    \"type\":\"Array\"\n  },\n  \"items\":[\n    {\n      \"name\":\"[Production] Contentful\",\n      \"sys\":{\n        \"type\":\"Organization\",\n        \"id\":\"7BLDDu2FYCNoN4QIWys1BR\",\n        \"version\":55,\n        \"createdAt\":\"2013-05-06T07:53:34Z\",\n        \"updatedAt\":\"2017-06-30T11:57:20Z\"\n      }\n    },\n    {\n      \"name\":\"Contentful-SDK-Tests\",\n      \"sys\":{\n        \"type\":\"Organization\",\n        \"id\":\"3ubGFD1MWA6VgVYbIwSBg8\",\n        \"version\":0,\n        \"createdAt\":\"2017-04-19T08:59:40Z\",\n        \"updatedAt\":\"2017-04-19T08:59:40Z\"\n      }\n    },\n    {\n      \"name\":\"Contentful PHP SDK Testing\",\n      \"sys\":{\n        \"type\":\"Organization\",\n        \"id\":\"4Q3Lza73mxcjmluLU7V5EG\",\n        \"version\":1,\n        \"createdAt\":\"2017-07-12T13:04:54Z\",\n        \"updatedAt\":\"2017-07-13T09:35:27Z\"\n      }\n    }\n  ]\n}\n\n"
+    }
+}]

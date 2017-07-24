@@ -104,3 +104,13 @@ The user used to record the tests is specific to the SDK. The user has access to
 | `3tilCowN1lI1rDCe9vhK0C` | `WebhookTest::testGetWebhook` | Testing of properties |
 | `*` | `WebhookTest::testGetWebhooks` | Retrieval of all webhooks |
 | - | `WebhookTest::testCreateWebhook` | Webhook used in `WebhookTest::testWebhookEventsFiredAndLogged`, cleaned up in `WebhookTest::testDeleteWebhook` |
+
+
+
+## No space
+
+### Organizations
+
+| ID | Location | Description |
+| - | - | - |
+| `4Q3Lza73mxcjmluLU7V5EG` | `OrganizationTest::testGetOrganizations`, `OrganizationTest::testGetOrganizationsWithQuery` | Testing of properties |
