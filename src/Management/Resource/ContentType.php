@@ -79,6 +79,17 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
+     * Returns whether this ContentType object is published.
+     * It is `false` by default, and it is meant to be overridden.
+     *
+     * @return bool
+     */
+    public function isPublished(): bool
+    {
+        return false;
+    }
+
+    /**
      * @return string
      */
     public function getName(): string

@@ -55,6 +55,14 @@ class SystemProperties implements \JsonSerializable
     private $version;
 
     /**
+     * This property is only present when dealing
+     * with published content types.
+     *
+     * @var int|null
+     */
+    private $revision;
+
+    /**
      * @var Link|null
      */
     private $createdBy;
@@ -136,6 +144,7 @@ class SystemProperties implements \JsonSerializable
         $this->archivedAt = isset($sys['archivedAt']) ? new \DateTimeImmutable($sys['archivedAt']) : null;
         $this->firstPublishedAt = isset($sys['firstPublishedAt']) ? new \DateTimeImmutable($sys['firstPublishedAt']) : null;
         $this->version = $sys['version'] ?? null;
+        $this->revision = $sys['revision'] ?? null;
         $this->publishedCounter = $sys['publishedCounter'] ?? null;
         $this->publishedVersion = $sys['publishedVersion'] ?? null;
         $this->archivedVersion = $sys['archivedVersion'] ?? null;
@@ -234,6 +243,14 @@ class SystemProperties implements \JsonSerializable
     public function getVersion()
     {
         return $this->version;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getRevision()
+    {
+        return $this->revision;
     }
 
     /**
@@ -372,6 +389,9 @@ class SystemProperties implements \JsonSerializable
         }
         if ($this->version !== null) {
             $sys['version'] = $this->version;
+        }
+        if ($this->revision !== null) {
+            $sys['revision'] = $this->revision;
         }
         if ($this->createdBy !== null) {
             $sys['createdBy'] = $this->createdBy;

@@ -83,7 +83,7 @@ class ResourceBuilder
                 return $this->buildAsset($data);
             case 'ContentType':
                 // The /public/content_types endpoint is a weird exception that returns
-                // data in a mix of CDA and CMA formats. We have to special case it.
+                // data in a mix of CDA and CMA formats
                 if (isset($data['sys']['revision'])) {
                     return $this->buildPublishedContentType($data);
                 }
@@ -335,7 +335,7 @@ class ResourceBuilder
     private function buildPublishedContentType(array $data): PublishedContentType
     {
         return $this->createObject(PublishedContentType::class, [
-            'sys' => new PublishedSystemProperties($data['sys']),
+            'sys' => $this->buildSystemProperties($data['sys']),
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'displayField' => $data['displayField'] ?? null,
