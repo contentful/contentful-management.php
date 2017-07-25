@@ -9,7 +9,7 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\DateHelper;
+use function Contentful\format_date_for_json;
 use Contentful\Management\Behavior\Archivable;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
@@ -124,11 +124,11 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     private function getFormattedData($data)
     {
         if ($data instanceof \DateTimeImmutable) {
-            return DateHelper::formatForJson($data);
+            return format_date_for_json($data);
         }
 
         if ($data instanceof \DateTime) {
-            return DateHelper::formatForJson(\DateTimeImmutable::createFromMutable($data));
+            return format_date_for_json(\DateTimeImmutable::createFromMutable($data));
         }
 
         if (is_array($data)) {

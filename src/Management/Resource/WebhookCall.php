@@ -9,7 +9,7 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\DateHelper;
+use function Contentful\format_date_for_json;
 use Contentful\Management\SystemProperties;
 
 /**
@@ -143,8 +143,8 @@ class WebhookCall implements SpaceScopedResourceInterface
             'errors' => $this->error ? [$this->error] : [],
             'eventType' => $this->eventType,
             'url' => $this->url,
-            'requestAt' => DateHelper::formatForJson($this->requestAt),
-            'responseAt' => DateHelper::formatForJson($this->responseAt),
+            'requestAt' => format_date_for_json($this->requestAt),
+            'responseAt' => format_date_for_json($this->responseAt),
         ];
     }
 }

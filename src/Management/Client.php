@@ -9,8 +9,8 @@
 
 namespace Contentful\Management;
 
+use function GuzzleHttp\json_encode;
 use Contentful\Client as BaseClient;
-use Contentful\JsonHelper;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\User;
 use Contentful\ResourceArray;
@@ -120,7 +120,7 @@ class Client extends BaseClient
         if ($defaultLocale !== 'en-US') {
             $bodyData['defaultLocale'] = $defaultLocale;
         }
-        $body = JsonHelper::encode($bodyData);
+        $body = json_encode($bodyData, JSON_UNESCAPED_UNICODE);
 
         $response = $this->request('POST', 'spaces', [
             'additionalHeaders' => $additionalHeaders,
@@ -135,7 +135,7 @@ class Client extends BaseClient
     public function updateSpace(Space $space)
     {
         $sys = $space->getSystemProperties();
-        $body = JsonHelper::encode($this->prepareObjectForApi($space));
+        $body = json_encode($this->prepareObjectForApi($space), JSON_UNESCAPED_UNICODE);
         $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
         $response = $this->request('PUT', 'spaces/'.$sys->getId(), [
             'additionalHeaders' => $additionalHeaders,

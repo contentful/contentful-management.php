@@ -9,8 +9,8 @@
 
 namespace Contentful\Management\Exception;
 
+use function GuzzleHttp\json_decode;
 use Contentful\Exception\ApiException;
-use Contentful\JsonHelper;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 
 /**
@@ -27,7 +27,7 @@ class MissingKeyException extends ApiException
     {
         parent::__construct($previous, $message);
 
-        $result = JsonHelper::decode($this->getResponse()->getBody());
+        $result = json_decode($this->getResponse()->getBody(), true);
 
         $this->key = $result['details']['key'];
     }

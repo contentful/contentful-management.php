@@ -9,8 +9,8 @@
 
 namespace Contentful\Management;
 
+use function GuzzleHttp\json_encode;
 use Contentful\Exception\SpaceMismatchException;
-use Contentful\JsonHelper;
 use Contentful\Management\Behavior\Archivable;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
@@ -231,7 +231,7 @@ class SpaceManager
     public function update(Updatable $resource)
     {
         $sys = $resource->getSystemProperties();
-        $body = JsonHelper::encode($this->client->prepareObjectForApi($resource));
+        $body = json_encode($this->client->prepareObjectForApi($resource), JSON_UNESCAPED_UNICODE);
         $uriParts = [
             'spaces',
             $this->spaceId,
@@ -258,7 +258,7 @@ class SpaceManager
     public function create(Creatable $resource, string $id = null)
     {
         $options = [
-            'body' => JsonHelper::encode($this->client->prepareObjectForApi($resource)),
+            'body' => json_encode($this->client->prepareObjectForApi($resource), JSON_UNESCAPED_UNICODE),
             'additionalHeaders' => [],
         ];
 

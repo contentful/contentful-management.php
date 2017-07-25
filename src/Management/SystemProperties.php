@@ -9,7 +9,7 @@
 
 namespace Contentful\Management;
 
-use Contentful\DateHelper;
+use function Contentful\format_date_for_json;
 use Contentful\Link;
 
 /**
@@ -373,19 +373,19 @@ class SystemProperties implements \JsonSerializable
             $sys['contentType'] = $this->contentType;
         }
         if ($this->createdAt !== null) {
-            $sys['createdAt'] = DateHelper::formatForJson($this->createdAt);
+            $sys['createdAt'] = format_date_for_json($this->createdAt);
         }
         if ($this->updatedAt !== null) {
-            $sys['updatedAt'] = DateHelper::formatForJson($this->updatedAt);
+            $sys['updatedAt'] = format_date_for_json($this->updatedAt);
         }
         if ($this->archivedAt !== null) {
-            $sys['archivedAt'] = DateHelper::formatForJson($this->archivedAt);
+            $sys['archivedAt'] = format_date_for_json($this->archivedAt);
         }
         if ($this->publishedAt !== null) {
-            $sys['publishedAt'] = DateHelper::formatForJson($this->publishedAt);
+            $sys['publishedAt'] = format_date_for_json($this->publishedAt);
         }
         if ($this->firstPublishedAt !== null) {
-            $sys['firstPublishedAt'] = DateHelper::formatForJson($this->firstPublishedAt);
+            $sys['firstPublishedAt'] = format_date_for_json($this->firstPublishedAt);
         }
         if ($this->version !== null) {
             $sys['version'] = $this->version;
