@@ -24,12 +24,12 @@ class EntrySnapshot implements SpaceScopedResourceInterface
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var Entry
      */
-    private $entry;
+    protected $entry;
 
     /**
      * EntrySnapshot constructor.

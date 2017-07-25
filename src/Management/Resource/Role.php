@@ -28,27 +28,27 @@ class Role implements SpaceScopedResourceInterface, Creatable, Updatable, Deleta
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @var string
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * @var Policy[]
      */
-    private $policies;
+    protected $policies;
 
     /**
      * @var Permissions
      */
-    private $permissions;
+    protected $permissions;
 
     /**
      * Role constructor.

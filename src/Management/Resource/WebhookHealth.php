@@ -23,17 +23,17 @@ class WebhookHealth implements SpaceScopedResourceInterface
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var int
      */
-    private $total = 0;
+    protected $total = 0;
 
     /**
      * @var int
      */
-    private $healthy = 0;
+    protected $healthy = 0;
 
     /**
      * WebhookHealth constructor.

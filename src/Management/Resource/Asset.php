@@ -30,22 +30,22 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string[]
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string[]
      */
-    private $description;
+    protected $description;
 
     /**
      * @var FileInterface[]
      */
-    private $file;
+    protected $file;
 
     /**
      * Asset constructor.

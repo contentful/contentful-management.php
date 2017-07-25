@@ -26,12 +26,12 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string|resource|StreamInterface|null
      */
-    private $body;
+    protected $body;
 
     /**
      * Upload constructor.

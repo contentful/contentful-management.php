@@ -24,12 +24,12 @@ class ContentTypeSnapshot implements SpaceScopedResourceInterface
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var ContentType
      */
-    private $contentType;
+    protected $contentType;
 
     /**
      * ContentTypeSnapshot constructor.

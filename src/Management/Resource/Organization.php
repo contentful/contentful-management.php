@@ -24,12 +24,12 @@ class Organization implements ResourceInterface
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Organization constructor.

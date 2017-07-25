@@ -24,12 +24,12 @@ class Space implements ResourceInterface
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * Space constructor.

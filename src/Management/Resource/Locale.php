@@ -27,42 +27,42 @@ class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Crea
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      */
-    private $code;
+    protected $code;
 
     /**
      * @var string|null
      */
-    private $fallbackCode;
+    protected $fallbackCode;
 
     /**
      * @var bool
      */
-    private $contentDeliveryApi = true;
+    protected $contentDeliveryApi = true;
 
     /**
      * @var bool
      */
-    private $contentManagementApi = true;
+    protected $contentManagementApi = true;
 
     /**
      * @var bool
      */
-    private $default = false;
+    protected $default = false;
 
     /**
      * @var bool
      */
-    private $optional = false;
+    protected $optional = false;
 
     /**
      * Locale constructor.

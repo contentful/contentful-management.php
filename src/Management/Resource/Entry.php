@@ -29,12 +29,12 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var array[]
      */
-    private $fields = [];
+    protected $fields = [];
 
     /**
      * Entry constructor.

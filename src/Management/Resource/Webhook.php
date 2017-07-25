@@ -26,37 +26,37 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var string|null
      */
-    private $httpBasicUsername;
+    protected $httpBasicUsername;
 
     /**
      * @var string|null
      */
-    private $httpBasicPassword;
+    protected $httpBasicPassword;
 
     /**
      * @var string[]
      */
-    private $topics = [];
+    protected $topics = [];
 
     /**
      * @var string[]
      */
-    private $headers = [];
+    protected $headers = [];
 
     /**
      * Webhook constructor.

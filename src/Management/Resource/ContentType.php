@@ -29,27 +29,27 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string|null
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string|null
      */
-    private $displayField;
+    protected $displayField;
 
     /**
      * @var FieldInterface[]
      */
-    private $fields = [];
+    protected $fields = [];
 
     /**
      * ContentType constructor.

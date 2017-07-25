@@ -24,37 +24,37 @@ class WebhookCall implements SpaceScopedResourceInterface
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var int
      */
-    private $statusCode;
+    protected $statusCode;
 
     /**
      * @var string|null
      */
-    private $error;
+    protected $error;
 
     /**
      * @var string
      */
-    private $eventType;
+    protected $eventType;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var \DateTimeImmutable
      */
-    private $requestAt;
+    protected $requestAt;
 
     /**
      * @var \DateTimeImmutable
      */
-    private $responseAt;
+    protected $responseAt;
 
     /**
      * WebhookCallOverview constructor.
