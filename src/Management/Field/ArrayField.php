@@ -169,13 +169,13 @@ class ArrayField extends AbstractField
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = parent::jsonSerialize();
 
@@ -184,7 +184,7 @@ class ArrayField extends AbstractField
             $items['linkType'] = $this->itemsLinkType;
         }
 
-        $data->items = (object) $items;
+        $data['items'] = $items;
 
         return $data;
     }

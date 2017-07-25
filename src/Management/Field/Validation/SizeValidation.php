@@ -88,7 +88,14 @@ class SizeValidation implements ValidationInterface
         return new self($min, $max);
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
         $data = [];
         if ($this->min !== null) {
@@ -98,8 +105,8 @@ class SizeValidation implements ValidationInterface
             $data['max'] = $this->max;
         }
 
-        return (object) [
-            'size' => (object) $data
+        return [
+            'size' => $data,
         ];
     }
 }

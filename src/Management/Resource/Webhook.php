@@ -315,13 +315,13 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $headers = [];
         foreach ($this->headers as $key => $value) {
@@ -346,6 +346,6 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
             }
         }
 
-        return (object) $values;
+        return $values;
     }
 }

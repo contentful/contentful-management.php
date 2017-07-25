@@ -58,10 +58,17 @@ class InValidation implements ValidationInterface
         return new self($values);
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
-        return (object) [
-            'in' => $this->values
+        return [
+            'in' => $this->values,
         ];
     }
 }

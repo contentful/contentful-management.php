@@ -130,12 +130,12 @@ class ErrorTest extends End2EndTestCase
 
 class UnknownKeyLocale extends Locale
 {
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = parent::jsonSerialize();
 
-        $data->default = true;
-        $data->avx = 'def';
+        $data['default'] = true;
+        $data['avx'] = 'def';
 
         return $data;
     }
@@ -161,8 +161,8 @@ class ValidationFailedLocale extends Locale
 {
     public function jsonSerialize()
     {
-        return (object) [
-            'name' => 'A cool locale'
+        return [
+            'name' => 'A cool locale',
         ];
     }
 }

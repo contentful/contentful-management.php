@@ -137,35 +137,35 @@ class PublishedSystemProperties implements \JsonSerializable
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        $obj = new \stdClass;
+        $sys = [];
 
         if ($this->id !== null) {
-            $obj->id = $this->id;
+            $sys['id'] = $this->id;
         }
         if ($this->type !== null) {
-            $obj->type = $this->type;
+            $sys['type'] = $this->type;
         }
         if ($this->space !== null) {
-            $obj->space = $this->space;
+            $sys['space'] = $this->space;
         }
         if ($this->createdAt !== null) {
-            $obj->createdAt = DateHelper::formatForJson($this->createdAt);
+            $sys['createdAt'] = DateHelper::formatForJson($this->createdAt);
         }
         if ($this->updatedAt !== null) {
-            $obj->updatedAt = DateHelper::formatForJson($this->updatedAt);
+            $sys['updatedAt'] = DateHelper::formatForJson($this->updatedAt);
         }
         if ($this->revision !== null) {
-            $obj->revision = $this->revision;
+            $sys['revision'] = $this->revision;
         }
 
-        return $obj;
+        return $sys;
     }
 }

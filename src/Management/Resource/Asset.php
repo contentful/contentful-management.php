@@ -153,30 +153,31 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        $fields = (object) [];
+        $asset = [
+            'sys' => $this->sys,
+            'fields' => new \stdClass(),
+        ];
+
         if ($this->file !== null) {
-            $fields->file = $this->file;
+            $asset['fields']->file = $this->file;
         }
 
         if ($this->title !== null) {
-            $fields->title = $this->title;
+            $asset['fields']->title = $this->title;
         }
 
         if ($this->description !== null) {
-            $fields->description = $this->description;
+            $asset['fields']->description = $this->description;
         }
 
-        return (object) [
-            'fields' => $fields,
-            'sys' => $this->sys
-        ];
+        return $asset;
     }
 }

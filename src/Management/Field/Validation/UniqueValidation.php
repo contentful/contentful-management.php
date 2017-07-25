@@ -30,8 +30,17 @@ class UniqueValidation implements ValidationInterface
         return ['Symbol', 'Integer', 'Number'];
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
-        return (object) ["unique" => true];
+        return [
+            'unique' => true,
+        ];
     }
 }

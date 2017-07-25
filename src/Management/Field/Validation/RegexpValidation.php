@@ -74,7 +74,14 @@ class RegexpValidation implements ValidationInterface
         return new self($pattern, $flags);
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
         $data = [];
         if ($this->pattern !== null) {
@@ -84,8 +91,8 @@ class RegexpValidation implements ValidationInterface
             $data['flags'] = $this->flags;
         }
 
-        return (object) [
-            'regexp' => (object) $data
+        return [
+            'regexp' => $data,
         ];
     }
 }

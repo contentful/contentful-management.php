@@ -64,17 +64,17 @@ class EntrySnapshot implements SpaceScopedResourceInterface
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        return (object) [
-            'snapshot' => $this->entry,
+        return [
             'sys' => $this->sys,
+            'snapshot' => $this->entry,
         ];
     }
 }

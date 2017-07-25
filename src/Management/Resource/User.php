@@ -123,15 +123,15 @@ class User implements ResourceInterface
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        return (object) [
+        return [
             'sys' => $this->sys,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
@@ -139,7 +139,7 @@ class User implements ResourceInterface
             'email' => $this->email,
             'activated' => $this->activated,
             'signInCount' => $this->signInCount,
-            'confirmed' => $this->confirmed
+            'confirmed' => $this->confirmed,
         ];
     }
 }

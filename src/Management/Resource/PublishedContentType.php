@@ -94,20 +94,20 @@ class PublishedContentType implements \JsonSerializable
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      *
      * @api
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = [
             'sys' => $this->sys,
             'name' => $this->name,
-            'fields' => $this->fields
+            'fields' => $this->fields,
         ];
 
         if ($this->description !== null) {
@@ -118,6 +118,6 @@ class PublishedContentType implements \JsonSerializable
             $data['displayField'] = $this->displayField;
         }
 
-        return (object) $data;
+        return $data;
     }
 }

@@ -157,13 +157,13 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         // The request object automatically adds a `Host` header, which we don't need
         $headers = $this->formatPsr7Headers($this->request->getHeaders());
@@ -182,7 +182,7 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
             'body' => (string) $this->response->getBody(),
         ];
 
-        return (object) [
+        return [
             'sys' => $this->sys,
             'request' => $request,
             'response' => $response,

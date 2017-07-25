@@ -224,25 +224,25 @@ class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Crea
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      *
      * @api
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         // The property 'default' has to be omitted for the API to work.
-        return (object) [
+        return [
             'sys' => $this->sys,
             'name' => $this->name,
             'code' => $this->code,
             'fallbackCode' => $this->fallbackCode,
             'contentDeliveryApi' => $this->contentDeliveryApi,
             'contentManagementApi' => $this->contentManagementApi,
-            'optional' => $this->optional
+            'optional' => $this->optional,
         ];
     }
 }
