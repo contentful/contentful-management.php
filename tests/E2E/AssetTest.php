@@ -75,12 +75,12 @@ class AssetTest extends End2EndTestCase
         $manager = $this->getReadWriteSpaceManager();
 
         $asset = (new Asset())
-            ->setTitle('An asset', 'en-US')
-            ->setDescription('A really cool asset', 'en-US');
+            ->setTitle('en-US', 'An asset')
+            ->setDescription('en-US', 'A really cool asset');
 
         $file = new RemoteUploadFile('contentful.svg', 'image/svg+xml', 'https://pbs.twimg.com/profile_images/488880764323250177/CrqV-RjR_normal.jpeg');
 
-        $asset->setFile($file, 'en-US');
+        $asset->setFile('en-US', $file);
 
         $manager->create($asset);
         $this->assertNotNull($asset->getSystemProperties()->getId());
@@ -105,7 +105,7 @@ class AssetTest extends End2EndTestCase
             }
         }
 
-        $asset->setTitle('Even better asset', 'en-US');
+        $asset->setTitle('en-US', 'Even better asset');
 
         $manager->update($asset);
 
@@ -132,8 +132,8 @@ class AssetTest extends End2EndTestCase
         $manager = $this->getReadWriteSpaceManager();
 
         $asset = (new Asset())
-            ->setTitle('An asset', 'en-US')
-            ->setDescription('A really cool asset', 'en-US');
+            ->setTitle('en-US', 'An asset')
+            ->setDescription('en-US', 'A really cool asset');
 
         $manager->create($asset, 'myCustomTestAsset');
         $this->assertEquals('myCustomTestAsset', $asset->getSystemProperties()->getId());
@@ -173,8 +173,8 @@ class AssetTest extends End2EndTestCase
         $uploadFromFile = new LocalUploadFile('contentful.svg', 'image/svg+xml', $link);
 
         $asset = new Asset();
-        $asset->setTitle('Contentful', 'en-US');
-        $asset->setFile($uploadFromFile, 'en-US');
+        $asset->setTitle('en-US', 'Contentful');
+        $asset->setFile('en-US', $uploadFromFile);
 
         $manager->create($asset);
         $manager->processAsset($asset, 'en-US');

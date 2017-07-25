@@ -86,12 +86,12 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * @param string|null $title
      * @param string      $locale
+     * @param string|null $title
      *
      * @return $this
      */
-    public function setTitle(string $title = null, string $locale)
+    public function setTitle(string $locale, string $title = null)
     {
         $this->title[$locale] = $title;
 
@@ -113,12 +113,12 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * @param string|null $description
      * @param string      $locale
+     * @param string|null $description
      *
      * @return $this
      */
-    public function setDescription(string $description = null, string $locale)
+    public function setDescription(string $locale, string $description = null)
     {
         $this->description[$locale] = $description;
 
@@ -140,12 +140,12 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * @param UnprocessedFileInterface|null $file
      * @param string                        $locale
+     * @param UnprocessedFileInterface|null $file
      *
      * @return $this
      */
-    public function setFile(UnprocessedFileInterface $file = null, string $locale)
+    public function setFile(string $locale, UnprocessedFileInterface $file = null)
     {
         $this->file[$locale] = $file;
 

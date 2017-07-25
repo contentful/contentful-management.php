@@ -69,12 +69,12 @@ class EntryTest extends End2EndTestCase
         $manager = $this->getReadWriteSpaceManager();
 
         $entry = (new Entry('testCt'))
-            ->setField('name', 'A name', 'en-US');
+            ->setField('name', 'en-US', 'A name');
 
         $manager->create($entry);
         $this->assertNotNull($entry->getSystemProperties()->getId());
 
-        $entry->setField('name', 'A better name', 'en-US');
+        $entry->setField('name', 'en-US', 'A better name');
 
         $manager->update($entry);
 
@@ -101,7 +101,7 @@ class EntryTest extends End2EndTestCase
         $manager = $this->getReadWriteSpaceManager();
 
         $entry = (new Entry('testCt'))
-            ->setField('name', 'A name', 'en-US');
+            ->setField('name', 'en-US', 'A name');
 
         $manager->create($entry, 'myCustomTestEntry');
         $this->assertEquals('myCustomTestEntry', $entry->getSystemProperties()->getId());

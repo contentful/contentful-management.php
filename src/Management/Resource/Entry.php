@@ -75,10 +75,10 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
 
     /**
      * @param string $name
-     * @param mixed $value
      * @param string $locale
+     * @param mixed $value
      */
-    public function setField(string $name, $value, string $locale)
+    public function setField(string $name, string $locale, $value)
     {
         if (!isset($this->fields[$name])) {
             $this->fields[$name] = [];

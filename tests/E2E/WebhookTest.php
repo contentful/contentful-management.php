@@ -89,15 +89,15 @@ class WebhookTest extends End2EndTestCase
         $manager = $this->getReadWriteSpaceManager();
 
         $entry1 = (new Entry('person'))
-            ->setField('name', 'Burt Macklin', 'en-US')
-            ->setField('jobTitle', 'FBI', 'en-US')
+            ->setField('name', 'en-US', 'Burt Macklin')
+            ->setField('jobTitle', 'en-US', 'FBI')
         ;
         $manager->create($entry1);
         $manager->delete($entry1);
 
         $entry2 = (new Entry('person'))
-            ->setField('name', 'Dwight Schrute', 'en-US')
-            ->setField('jobTitle', 'Assistant Regional Manager', 'en-US')
+            ->setField('name', 'en-US', 'Dwight Schrute')
+            ->setField('jobTitle', 'en-US', 'Assistant Regional Manager')
         ;
         $manager->create($entry2);
         $manager->delete($entry2);
