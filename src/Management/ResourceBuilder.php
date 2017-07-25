@@ -19,6 +19,7 @@ use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Locale;
 use Contentful\Management\Resource\PublishedContentType;
+use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\Upload;
 use Contentful\Management\Resource\User;
@@ -26,6 +27,13 @@ use Contentful\Management\Resource\Webhook;
 use Contentful\Management\Resource\WebhookCall;
 use Contentful\Management\Resource\WebhookCallDetails;
 use Contentful\Management\Resource\WebhookHealth;
+use Contentful\Management\Role\Constraint\AndConstraint;
+use Contentful\Management\Role\Constraint\ConstraintInterface;
+use Contentful\Management\Role\Constraint\EqualityConstraint;
+use Contentful\Management\Role\Constraint\NotConstraint;
+use Contentful\Management\Role\Constraint\OrConstraint;
+use Contentful\Management\Role\Permissions;
+use Contentful\Management\Role\Policy;
 use Contentful\ResourceArray;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -88,6 +96,8 @@ class ResourceBuilder
                 }
             case 'Locale':
                 return $this->buildLocale($data);
+            case 'Role':
+                return $this->buildRole($data);
             case 'Space':
                 return $this->buildSpace($data);
             case 'WebhookDefinition':
@@ -134,6 +144,9 @@ class ResourceBuilder
                 break;
             case 'Locale':
                 $this->updateLocale($object, $data);
+                break;
+            case 'Role':
+                $this->updateRole($object, $data);
                 break;
             case 'WebhookDefinition':
                 $this->updateWebhook($object, $data);
@@ -449,6 +462,109 @@ class ResourceBuilder
         $total = $data['total'] ?? 0;
 
         return new ResourceArray($items, $total, $data['limit'], $data['skip']);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Role
+     */
+    private function buildRole(array $data): Role
+    {
+        return $this->createObject(Role::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'policies' => array_map([$this, 'buildPolicy'], $data['policies']),
+            'permissions' => $this->buildPermissions($data['permissions']),
+        ]);
+    }
+
+    /**
+     * @param Role  $role
+     * @param array $data
+     */
+    private function updateRole(Role $role, array $data)
+    {
+        $this->updateObject(Role::class, $role, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'policies' => array_map([$this, 'buildPolicy'], $data['policies']),
+            'permissions' => $this->buildPermissions($data['permissions']),
+        ]);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Policy
+     */
+    private function buildPolicy(array $data): Policy
+    {
+        return $this->createObject(Policy::class, [
+            'effect' => $data['effect'],
+            'actions' => $data['actions'],
+            'constraint' => isset($data['constraint']) ? $this->buildConstraint($data['constraint']) : null,
+        ]);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return ConstraintInterface
+     */
+    public function buildConstraint(array $data): ConstraintInterface
+    {
+        reset($data);
+        $key = key($data);
+
+        switch ($key) {
+            case 'and':
+                return $this->createObject(AndConstraint::class, [
+                    'children' => array_map([$this, 'buildConstraint'], $data[$key]),
+                ]);
+            case 'or':
+                return $this->createObject(OrConstraint::class, [
+                    'children' => array_map([$this, 'buildConstraint'], $data[$key]),
+                ]);
+            case 'not':
+                return $this->createObject(NotConstraint::class, [
+                    'child' => $this->buildConstraint($data[$key][0]),
+                ]);
+            case 'equals':
+                /**
+                 * The $data[$key] array *should* be in the form
+                 * [{"doc": "sys.type"}, "Entry"]
+                 * with the object with the "doc" property in the first position,
+                 * and the actual value in the second position.
+                 * Just to be safe, we check whether the 'doc' key exists in the first element,
+                 * so we know that *that* element is the doc, and the other contains the value.
+                 */
+                $docKey = isset($data[$key][0]['doc']) ? 0 : 1;
+                $valueKey = 1 - $docKey;
+
+                return $this->createObject(EqualityConstraint::class, [
+                    'doc' => $data[$key][$docKey]['doc'],
+                    'value' => $data[$key][$valueKey],
+                ]);
+            default:
+                throw new \RuntimeException('Could not determine the constraint type');
+        }
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Permissions
+     */
+    private function buildPermissions(array $data): Permissions
+    {
+        return $this->createObject(Permissions::class, [
+            'contentDelivery' => $data['ContentDelivery'],
+            'contentModel' => $data['ContentModel'],
+            'settings' => $data['Settings'],
+        ]);
     }
 
     private function buildWebhook(array $data): Webhook

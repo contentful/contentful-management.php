@@ -83,6 +83,13 @@ The user used to record the tests is specific to the SDK. The user has access to
 | `71wkZKqgktY9Uzg76CtsBK` | `ErrorTest::testFallbackLocaleNotRenameableError` | Expects `FallbackLocaleNotRenameableException` |
 
 
+### Roles
+
+| ID | Location | Description |
+| - | - | - |
+| `6khUMmsfVslYd7tRcThTgE` | `RoleTest::testGetRole` | Testing of properties |
+
+
 ### Snapshots
 
 | ID | Location | Description |
