@@ -38,7 +38,7 @@ class Client extends BaseClient
      * Client constructor.
      *
      * @param string $token
-     * @param array $options
+     * @param array  $options
      */
     public function __construct(string $token, array $options = [])
     {
@@ -48,7 +48,7 @@ class Client extends BaseClient
         $options = array_replace([
             'guzzle' => null,
             'logger' => null,
-            'uriOverride' => null
+            'uriOverride' => null,
         ], $options);
 
         $guzzle = $options['guzzle'];
@@ -61,7 +61,7 @@ class Client extends BaseClient
 
         parent::__construct($token, $baseUri, $api, $logger, $guzzle);
 
-        $this->builder = new ResourceBuilder;
+        $this->builder = new ResourceBuilder();
     }
 
     /**
@@ -86,7 +86,7 @@ class Client extends BaseClient
      */
     public function getSpace($spaceId): Space
     {
-        $response = $this->request('GET', 'spaces/' . $spaceId);
+        $response = $this->request('GET', 'spaces/'.$spaceId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
@@ -98,11 +98,11 @@ class Client extends BaseClient
      */
     public function getSpaces(Query $query = null): ResourceArray
     {
-        $query = $query !== null ? $query : new Query;
+        $query = $query !== null ? $query : new Query();
         $queryData = $query->getQueryData();
 
         $response = $this->request('GET', 'spaces', [
-            'query' => $queryData
+            'query' => $queryData,
         ]);
 
         return $this->builder->buildObjectsFromRawData($response);
@@ -124,7 +124,7 @@ class Client extends BaseClient
 
         $response = $this->request('POST', 'spaces', [
             'additionalHeaders' => $additionalHeaders,
-            'body' => $body
+            'body' => $body,
         ]);
         $this->builder->updateObjectFromRawData($space, $response);
     }
@@ -137,9 +137,9 @@ class Client extends BaseClient
         $sys = $space->getSystemProperties();
         $body = JsonHelper::encode($this->prepareObjectForApi($space));
         $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-        $response = $this->request('PUT', 'spaces/' . $sys->getId(), [
+        $response = $this->request('PUT', 'spaces/'.$sys->getId(), [
             'additionalHeaders' => $additionalHeaders,
-            'body' => $body
+            'body' => $body,
         ]);
         $this->builder->updateObjectFromRawData($space, $response);
     }
@@ -150,7 +150,7 @@ class Client extends BaseClient
     public function deleteSpace(Space $space)
     {
         $sys = $space->getSystemProperties();
-        $this->request('DELETE', 'spaces/' . $sys->getId());
+        $this->request('DELETE', 'spaces/'.$sys->getId());
     }
 
     /**

@@ -77,7 +77,7 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -85,7 +85,7 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {

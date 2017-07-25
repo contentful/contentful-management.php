@@ -44,7 +44,7 @@ class WebhookHealth implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -52,7 +52,7 @@ class WebhookHealth implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {

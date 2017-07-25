@@ -39,7 +39,7 @@ class EqualityConstraint implements ConstraintInterface
     /**
      * InConstraint constructor.
      *
-     * @param string $doc
+     * @param string     $doc
      * @param mixed|null $value
      */
     public function __construct(string $doc = '', $value = null)

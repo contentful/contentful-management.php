@@ -16,7 +16,7 @@ class AssetTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetSetData()
     {
-        $asset = new Asset;
+        $asset = new Asset();
 
         $this->assertEquals('Asset', $asset->getSystemProperties()->getType());
 
@@ -37,7 +37,7 @@ class AssetTest extends \PHPUnit_Framework_TestCase
     public function testJsonSerialize()
     {
         $file = new RemoteUploadFile('testfile.jpg', 'image/jpeg', 'https://www.example.com/testfile.jpeg');
-        $asset = (new Asset)
+        $asset = (new Asset())
             ->setTitle('en-US', 'A cool asset')
             ->setDescription('en-US', 'This asset is really cool')
             ->setFile('en-US', $file);

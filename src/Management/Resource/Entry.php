@@ -47,7 +47,7 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -55,7 +55,7 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {
@@ -76,7 +76,7 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     /**
      * @param string $name
      * @param string $locale
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function setField(string $name, string $locale, $value)
     {

@@ -72,7 +72,7 @@ class ErrorTest extends End2EndTestCase
     {
         $spaceManager = $this->getReadWriteSpaceManager();
 
-        $asset = new Asset;
+        $asset = new Asset();
         $spaceManager->create($asset);
 
         $fakeAsset = new FakeAsset($asset->getSystemProperties()->getId());
@@ -178,7 +178,7 @@ class FakeAsset extends Asset
         $this->fakeSys = new SystemProperties([
             'type' => 'Asset',
             'id' => $id,
-            'version' => 23
+            'version' => 23,
         ]);
     }
 

@@ -61,8 +61,8 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     /**
      * Webhook constructor.
      *
-     * @param string $name
-     * @param string $url
+     * @param string   $name
+     * @param string   $url
      * @param string[] $topics
      */
     public function __construct(string $name, string $url, array $topics = [])
@@ -74,7 +74,7 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -82,7 +82,7 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {

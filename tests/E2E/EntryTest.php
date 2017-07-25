@@ -54,7 +54,7 @@ class EntryTest extends End2EndTestCase
 
         $this->assertInstanceOf(Entry::class, $entries[0]);
 
-        $query = (new Query)
+        $query = (new Query())
             ->setLimit(1);
         $entries = $manager->getEntries($query);
         $this->assertInstanceOf(Entry::class, $entries[0]);

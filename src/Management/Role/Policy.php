@@ -56,8 +56,8 @@ class Policy implements \JsonSerializable
     /**
      * Policy constructor.
      *
-     * @param string $effect Either "allow" or "deny"
-     * @param string|array $actions Either "all" or an array
+     * @param string                   $effect     Either "allow" or "deny"
+     * @param string|array             $actions    Either "all" or an array
      * @param ConstraintInterface|null $constraint
      */
     public function __construct(string $effect, $actions = [], ConstraintInterface $constraint = null)
@@ -114,7 +114,7 @@ class Policy implements \JsonSerializable
             (is_string($actions) && $actions !== 'all') ||
             (is_array($actions) && array_diff($actions, self::ACTIONS))
         ) {
-            throw new \InvalidArgumentException('Argument $actions in Policy::setActions must be either a string "all", or an array containing a subset of these values: ' . implode(',', self::ACTIONS));
+            throw new \InvalidArgumentException('Argument $actions in Policy::setActions must be either a string "all", or an array containing a subset of these values: '.implode(',', self::ACTIONS));
         }
 
         $this->actions = $actions;
@@ -134,7 +134,7 @@ class Policy implements \JsonSerializable
         }
 
         if (!in_array($action, self::ACTIONS)) {
-            throw new \InvalidArgumentException('Argument $action in Policy::addAction must be one of these values: ' . implode(',', self::ACTIONS));
+            throw new \InvalidArgumentException('Argument $action in Policy::addAction must be one of these values: '.implode(',', self::ACTIONS));
         }
 
         $this->actions[] = $action;

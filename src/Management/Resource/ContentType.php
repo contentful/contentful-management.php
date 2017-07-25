@@ -63,7 +63,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -71,7 +71,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {

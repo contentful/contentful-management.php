@@ -40,7 +40,7 @@ class EntrySnapshot implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -48,7 +48,7 @@ class EntrySnapshot implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {

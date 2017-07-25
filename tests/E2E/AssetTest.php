@@ -60,7 +60,7 @@ class AssetTest extends End2EndTestCase
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
 
-        $query = (new Query)
+        $query = (new Query())
             ->setLimit(1);
         $assets = $manager->getAssets($query);
         $this->assertInstanceOf(Asset::class, $assets[0]);
@@ -95,7 +95,7 @@ class AssetTest extends End2EndTestCase
         ;
         $limit = 0;
         while ($asset->getFile('en-US') instanceof RemoteUploadFile) {
-            $limit++;
+            ++$limit;
             $query->setLimit($limit);
             $asset = $manager->getAssets($query)[0];
 
@@ -149,14 +149,14 @@ class AssetTest extends End2EndTestCase
         $manager = $this->getReadWriteSpaceManager();
 
         // Creates upload using fopen
-        $fopenUpload = new Upload(fopen(__DIR__ . '/../fixtures/contentful-lab.svg', 'r'));
+        $fopenUpload = new Upload(fopen(__DIR__.'/../fixtures/contentful-lab.svg', 'r'));
         $manager->create($fopenUpload);
         $this->assertNotNull($fopenUpload->getSystemProperties()->getId());
         $this->assertInstanceOf(\DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());
         $manager->delete($fopenUpload);
 
         // Creates upload using stream
-        $stream = stream_for(file_get_contents(__DIR__ . '/../fixtures/contentful-logo.svg'));
+        $stream = stream_for(file_get_contents(__DIR__.'/../fixtures/contentful-logo.svg'));
         $streamUpload = new Upload($stream);
         $manager->create($streamUpload);
         $this->assertNotNull($streamUpload->getSystemProperties()->getId());
@@ -164,7 +164,7 @@ class AssetTest extends End2EndTestCase
         $manager->delete($streamUpload);
 
         // Creates upload using string
-        $upload = new Upload(file_get_contents(__DIR__ . '/../fixtures/contentful-name.svg'));
+        $upload = new Upload(file_get_contents(__DIR__.'/../fixtures/contentful-name.svg'));
         $manager->create($upload);
         $this->assertNotNull($upload->getSystemProperties()->getId());
         $this->assertInstanceOf(\DateTimeImmutable::class, $upload->getSystemProperties()->getExpiresAt());
@@ -187,7 +187,7 @@ class AssetTest extends End2EndTestCase
         ;
         $limit = 0;
         while ($asset->getFile('en-US') instanceof LocalUploadFile) {
-            $limit++;
+            ++$limit;
             $query->setLimit($limit);
             $asset = $manager->getAssets($query)[0];
 

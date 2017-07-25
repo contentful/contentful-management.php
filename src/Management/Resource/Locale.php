@@ -80,7 +80,7 @@ class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Crea
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -88,7 +88,7 @@ class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Crea
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {

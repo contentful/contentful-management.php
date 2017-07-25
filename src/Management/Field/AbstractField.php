@@ -191,7 +191,7 @@ abstract class AbstractField implements FieldInterface
     {
         foreach ($validations as $validation) {
             if (!in_array($this->getType(), $validation::getValidFieldTypes())) {
-                throw new \RuntimeException('The validation ' . get_class($validation) . ' can not be used for fields of type ' . $this->getType() . '.');
+                throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
             }
         }
 
@@ -208,7 +208,7 @@ abstract class AbstractField implements FieldInterface
     public function addValidation(ValidationInterface $validation)
     {
         if (!in_array($this->getType(), $validation::getValidFieldTypes())) {
-            throw new \RuntimeException('The validation ' . get_class($validation) . ' can not be used for fields of type ' . $this->getType() . '.');
+            throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
         }
 
         $this->validations[] = $validation;

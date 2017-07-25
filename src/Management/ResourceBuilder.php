@@ -104,7 +104,7 @@ class ResourceBuilder
                     case 'Entry':
                         return $this->buildEntrySnapshot($data);
                     default:
-                        throw new \InvalidArgumentException('Unexpected snapshot entity type "' . $data['snapshotEntityType'] . '" when trying to build snapshot.');
+                        throw new \InvalidArgumentException('Unexpected snapshot entity type "'.$data['snapshotEntityType'].'" when trying to build snapshot.');
                 }
             case 'Space':
                 return $this->buildSpace($data);
@@ -121,7 +121,7 @@ class ResourceBuilder
             case 'WebhookDefinition':
                 return $this->buildWebhook($data);
             default:
-                throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to build object.');
+                throw new \InvalidArgumentException('Unexpected type "'.$type.'"" while trying to build object.');
         }
     }
 
@@ -154,7 +154,7 @@ class ResourceBuilder
             case 'WebhookDefinition':
                 return $this->updateWebhook($object, $data);
             default:
-                throw new \InvalidArgumentException('Unexpected type "' . $type . '"" while trying to update object.');
+                throw new \InvalidArgumentException('Unexpected type "'.$type.'"" while trying to update object.');
         }
     }
 
@@ -252,15 +252,13 @@ class ResourceBuilder
             'sys' => $this->buildSystemProperties($data['sys']),
             'title' => $fields['title'] ?? null,
             'description' => $fields['description'] ?? null,
-            'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null
+            'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null,
         ]);
     }
 
     /**
      * @param Asset $asset
      * @param array $data
-     *
-     * @uses self::buildFile()
      */
     private function updateAsset(Asset $asset, array $data)
     {
@@ -270,7 +268,7 @@ class ResourceBuilder
             'sys' => $this->buildSystemProperties($data['sys']),
             'title' => $fields['title'] ?? null,
             'description' => $fields['description'] ?? null,
-            'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null
+            'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null,
         ]);
     }
 
@@ -325,7 +323,7 @@ class ResourceBuilder
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'displayField' => $data['displayField'] ?? null,
-            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields'])
+            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields']),
         ]);
     }
 
@@ -341,15 +339,13 @@ class ResourceBuilder
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'displayField' => $data['displayField'] ?? null,
-            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields'])
+            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields']),
         ]);
     }
 
     /**
      * @param ContentType $contentType
      * @param array       $data
-     *
-     * @uses self::buildContentTypeField()
      */
     private function updateContentType(ContentType $contentType, array $data)
     {
@@ -358,7 +354,7 @@ class ResourceBuilder
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'displayField' => $data['displayField'] ?? null,
-            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields'])
+            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields']),
         ]);
     }
 
@@ -366,8 +362,6 @@ class ResourceBuilder
      * @param array $data
      *
      * @return Field\FieldInterface
-     *
-     * @uses self::buildFieldValidation()
      */
     private function buildContentTypeField(array $data): FieldInterface
     {
@@ -381,7 +375,7 @@ class ResourceBuilder
             'Number' => Field\NumberField::class,
             'Object' => Field\ObjectField::class,
             'Symbol' => Field\SymbolField::class,
-            'Text' => Field\TextField::class
+            'Text' => Field\TextField::class,
         ];
 
         $type = $data['type'];
@@ -393,7 +387,7 @@ class ResourceBuilder
             'localized' => $data['localized'] ?? null,
             'disabled' => $data['disabled'] ?? null,
             'omitted' => $data['omitted'] ?? null,
-            'validations' => isset($data['validations']) ? array_map([$this, 'buildFieldValidation'], $data['validations']) : null
+            'validations' => isset($data['validations']) ? array_map([$this, 'buildFieldValidation'], $data['validations']) : null,
         ];
 
         if ($type === 'Link') {
@@ -411,7 +405,7 @@ class ResourceBuilder
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      *
      * @return Validation\ValidationInterface
      */
@@ -427,7 +421,7 @@ class ResourceBuilder
             'unique' => Validation\UniqueValidation::class,
             'dateRange' => Validation\DateRangeValidation::class,
             'assetImageDimensions' => Validation\AssetImageDimensionsValidation::class,
-            'assetFileSize' => Validation\AssetFileSizeValidation::class
+            'assetFileSize' => Validation\AssetFileSizeValidation::class,
         ];
 
         $type = array_keys($data)[0];
@@ -528,8 +522,6 @@ class ResourceBuilder
     /**
      * @param Role  $role
      * @param array $data
-     *
-     * @uses self::buildPolicy()
      */
     private function updateRole(Role $role, array $data)
     {
@@ -680,7 +672,7 @@ class ResourceBuilder
 
     /**
      * @param Upload $upload
-     * @param array $data
+     * @param array  $data
      */
     private function updateUpload(Upload $upload, array $data)
     {
@@ -734,7 +726,7 @@ class ResourceBuilder
 
     /**
      * @param Webhook $webhook
-     * @param array $data
+     * @param array   $data
      */
     private function updateWebhook(Webhook $webhook, array $data)
     {
