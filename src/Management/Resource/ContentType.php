@@ -176,8 +176,6 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
      * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     *
-     * @api
      */
     public function jsonSerialize(): array
     {

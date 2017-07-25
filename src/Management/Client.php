@@ -39,8 +39,6 @@ class Client extends BaseClient
      *
      * @param string $token
      * @param array $options
-     *
-     * @api
      */
     public function __construct(string $token, array $options = [])
     {
