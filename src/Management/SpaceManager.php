@@ -79,11 +79,9 @@ class SpaceManager
     public function checkSpaceMismatch(ResourceInterface $resource)
     {
         $sys = $resource->getSystemProperties();
-        if ($resource instanceof Space) {
-            $resourceSpaceId = $sys->getId();
-        } else {
-            $resourceSpaceId = $sys->getSpace()->getId();
-        }
+        $resourceSpaceId = $resource instanceof Space
+            ? $sys->getId()
+            : $sys->getSpace()->getId();
 
         if ($resourceSpaceId !== $this->spaceId) {
             throw new SpaceMismatchException('Can\'t perform action on space '.$resource->getSystemProperties()->getSpace()->getId().' with a SpaceManager responsible for '.$this->spaceId.'.');

@@ -101,37 +101,40 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
         $fields = [];
 
         foreach ($this->fields as $fieldName => $fieldData) {
-            $formattedData = [];
+            $fields[$fieldName] = [];
+
             foreach ($fieldData as $locale => $data) {
-                if ($data instanceof \DateTimeImmutable) {
-                    $value = DateHelper::formatForJson($data);
-                } elseif ($data instanceof \DateTime) {
-                    $dt = \DateTimeImmutable::createFromMutable($data);
-                    $value = DateHelper::formatForJson($dt);
-                } elseif (is_array($data)) {
-                    $value = array_map(function ($value) {
-                        if ($value instanceof \DateTimeImmutable) {
-                            return DateHelper::formatForJson($value);
-                        }
-                        if ($value instanceof \DateTime) {
-                            $dt = \DateTimeImmutable::createFromMutable($value);
-
-                            return DateHelper::formatForJson($dt);
-                        }
-
-                        return $value;
-                    }, $data);
-                } else {
-                    $value = $data;
-                }
-                $formattedData[$locale] = $value;
+                $fields[$fieldName][$locale] = $this->getFormattedData($data);
             }
-            $fields[$fieldName] = $formattedData;
         }
 
         return [
             'sys' => $this->sys,
             'fields' => (object) $fields,
         ];
+    }
+
+    /**
+     * Formats data for JSON encoding.
+     *
+     * @param mixed $data
+     *
+     * @return mixed
+     */
+    private function getFormattedData($data)
+    {
+        if ($data instanceof \DateTimeImmutable) {
+            return DateHelper::formatForJson($data);
+        }
+
+        if ($data instanceof \DateTime) {
+            return DateHelper::formatForJson(\DateTimeImmutable::createFromMutable($data));
+        }
+
+        if (is_array($data)) {
+            return array_map([$this, 'getFormattedData'], $data);
+        }
+
+        return $data;
     }
 }
