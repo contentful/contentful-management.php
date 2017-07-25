@@ -48,10 +48,10 @@ class ArrayField extends AbstractField
         parent::__construct($id, $name);
 
         if (!self::isValidItemType($itemsType)) {
-            throw new \RuntimeException('Invalid items type '.$itemsType.'. Valid values are '.join(', ', self::VALID_ITEM_TYPES).'.');
+            throw new \RuntimeException('Invalid items type '.$itemsType.'. Valid values are '.implode(', ', self::VALID_ITEM_TYPES).'.');
         }
         if ($itemsType === 'Link' && !self::isValidLinkType($itemsLinkType)) {
-            throw new \RuntimeException('Invalid items link type '.$itemsLinkType.'. Valid values are '.join(', ', self::VALID_LINK_TYPES).'.');
+            throw new \RuntimeException('Invalid items link type '.$itemsLinkType.'. Valid values are '.implode(', ', self::VALID_LINK_TYPES).'.');
         }
 
         $this->itemsType = $itemsType;

@@ -38,7 +38,7 @@ class LinkField extends AbstractField
         parent::__construct($id, $name);
 
         if (!self::isValidLinkType($linkType)) {
-            throw new \RuntimeException('Invalid link type '.$linkType.'. Valid values are '.join(', ', self::VALID_LINK_TYPES).'.');
+            throw new \RuntimeException('Invalid link type '.$linkType.'. Valid values are '.implode(', ', self::VALID_LINK_TYPES).'.');
         }
 
         $this->linkType = $linkType;
@@ -60,7 +60,7 @@ class LinkField extends AbstractField
     public function setLinkType(string $linkType)
     {
         if (!self::isValidLinkType($linkType)) {
-            throw new \RuntimeException('Invalid link type '.$linkType.'. Valid values are '.join(', ', self::VALID_LINK_TYPES).'.');
+            throw new \RuntimeException('Invalid link type '.$linkType.'. Valid values are '.implode(', ', self::VALID_LINK_TYPES).'.');
         }
 
         $this->linkType = $linkType;
