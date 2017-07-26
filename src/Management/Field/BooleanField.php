@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field;
 
+/**
+ * BooleanField class.
+ */
 class BooleanField extends AbstractField
 {
     /**

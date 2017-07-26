@@ -11,6 +11,9 @@ namespace Contentful\Management\Field;
 
 use Contentful\Management\Field\Validation\ValidationInterface;
 
+/**
+ * FieldInterface.
+ */
 interface FieldInterface extends \JsonSerializable
 {
     /**

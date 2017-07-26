@@ -9,8 +9,8 @@
 
 namespace Contentful\Management;
 
+use function GuzzleHttp\json_encode;
 use Contentful\Exception\SpaceMismatchException;
-use Contentful\JsonHelper;
 use Contentful\Management\Behavior\Archivable;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
@@ -79,14 +79,12 @@ class SpaceManager
     public function checkSpaceMismatch(ResourceInterface $resource)
     {
         $sys = $resource->getSystemProperties();
-        if ($resource instanceof Space) {
-            $resourceSpaceId = $sys->getId();
-        } else {
-            $resourceSpaceId = $sys->getSpace()->getId();
-        }
+        $resourceSpaceId = $resource instanceof Space
+            ? $sys->getId()
+            : $sys->getSpace()->getId();
 
         if ($resourceSpaceId !== $this->spaceId) {
-            throw new SpaceMismatchException('Can\'t perform action on space ' . $resource->getSystemProperties()->getSpace()->getId() . ' with a SpaceManager responsible for ' . $this->spaceId . '.');
+            throw new SpaceMismatchException('Can\'t perform action on space '.$resource->getSystemProperties()->getSpace()->getId().' with a SpaceManager responsible for '.$this->spaceId.'.');
         }
     }
 
@@ -107,11 +105,11 @@ class SpaceManager
             $this->spaceId,
             $resource->getResourceUriPart(),
             $sys->getId(),
-            'published'
+            'published',
         ];
 
         $response = $this->client->request('PUT', implode('/', $uriParts), [
-            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
         ]);
 
         $this->builder->updateObjectFromRawData($resource, $response);
@@ -134,11 +132,11 @@ class SpaceManager
             $this->spaceId,
             $resource->getResourceUriPart(),
             $sys->getId(),
-            'published'
+            'published',
         ];
 
         $response = $this->client->request('DELETE', implode('/', $uriParts), [
-            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
         ]);
 
         $this->builder->updateObjectFromRawData($resource, $response);
@@ -161,11 +159,11 @@ class SpaceManager
             $this->spaceId,
             $resource->getResourceUriPart(),
             $sys->getId(),
-            'archived'
+            'archived',
         ];
 
         $response = $this->client->request('PUT', implode('/', $uriParts), [
-            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
         ]);
 
         $this->builder->updateObjectFromRawData($resource, $response);
@@ -188,11 +186,11 @@ class SpaceManager
             $this->spaceId,
             $resource->getResourceUriPart(),
             $sys->getId(),
-            'archived'
+            'archived',
         ];
 
         $response = $this->client->request('DELETE', implode('/', $uriParts), [
-            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()]
+            'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
         ]);
 
         $this->builder->updateObjectFromRawData($resource, $response);
@@ -212,7 +210,7 @@ class SpaceManager
             'spaces',
             $this->spaceId,
             $resource->getResourceUriPart(),
-            $sys->getId()
+            $sys->getId(),
         ];
 
         $options = [];
@@ -233,17 +231,17 @@ class SpaceManager
     public function update(Updatable $resource)
     {
         $sys = $resource->getSystemProperties();
-        $body = JsonHelper::encode($this->client->prepareObjectForApi($resource));
+        $body = json_encode($this->client->prepareObjectForApi($resource), JSON_UNESCAPED_UNICODE);
         $uriParts = [
             'spaces',
             $this->spaceId,
             $resource->getResourceUriPart(),
-            $sys->getId()
+            $sys->getId(),
         ];
 
         $response = $this->client->request('PUT', implode('/', $uriParts), [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
-            'body' => $body
+            'body' => $body,
         ]);
 
         $this->builder->updateObjectFromRawData($resource, $response);
@@ -252,7 +250,7 @@ class SpaceManager
     /**
      * Creates a resource.
      *
-     * @param Creatable $resource
+     * @param Creatable   $resource
      * @param string|null $id
      *
      * @see Creatable
@@ -260,7 +258,7 @@ class SpaceManager
     public function create(Creatable $resource, string $id = null)
     {
         $options = [
-            'body' => JsonHelper::encode($this->client->prepareObjectForApi($resource)),
+            'body' => json_encode($this->client->prepareObjectForApi($resource), JSON_UNESCAPED_UNICODE),
             'additionalHeaders' => [],
         ];
 
@@ -299,7 +297,7 @@ class SpaceManager
      */
     public function getAsset(string $assetId): Asset
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets/' . $assetId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/assets/'.$assetId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
@@ -313,11 +311,11 @@ class SpaceManager
      */
     public function getAssets(Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/assets', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/assets', $query);
     }
 
     /**
-     * @param Asset $asset
+     * @param Asset  $asset
      * @param string $locale
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
@@ -327,12 +325,12 @@ class SpaceManager
         $sys = $asset->getSystemProperties();
         $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
 
-        $this->client->request('PUT', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId() . '/files/' . $locale . '/process', [
-            'additionalHeaders' => $additionalHeaders
+        $this->client->request('PUT', 'spaces/'.$this->spaceId.'/assets/'.$sys->getId().'/files/'.$locale.'/process', [
+            'additionalHeaders' => $additionalHeaders,
         ]);
 
         // Fetch the Asset because it's not returned from the above API call
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/assets/' . $sys->getId());
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/assets/'.$sys->getId());
 
         $this->builder->updateObjectFromRawData($asset, $response);
     }
@@ -348,7 +346,7 @@ class SpaceManager
     {
         $response = $this->client->request(
             'GET',
-            'spaces/' . $this->spaceId . '/uploads/' . $uploadId,
+            'spaces/'.$this->spaceId.'/uploads/'.$uploadId,
             ['baseUri' => Client::URI_UPLOAD]
         );
 
@@ -364,7 +362,7 @@ class SpaceManager
      */
     public function getLocale(string $localeId): Locale
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/locales/' . $localeId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/locales/'.$localeId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
@@ -376,7 +374,7 @@ class SpaceManager
      */
     public function getLocales(): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/locales');
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/locales');
     }
 
     /**
@@ -388,7 +386,7 @@ class SpaceManager
      */
     public function getContentType(string $contentTypeId): ContentType
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/content_types/' . $contentTypeId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/content_types/'.$contentTypeId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
@@ -402,7 +400,7 @@ class SpaceManager
      */
     public function getContentTypes(Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/content_types', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/content_types', $query);
     }
 
     /**
@@ -414,7 +412,7 @@ class SpaceManager
      */
     public function getPublishedContentType(string $contentTypeId): PublishedContentType
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/public/content_types/' . $contentTypeId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/public/content_types/'.$contentTypeId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
@@ -428,7 +426,7 @@ class SpaceManager
      */
     public function getPublishedContentTypes(Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/public/content_types', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/public/content_types', $query);
     }
 
     /**
@@ -440,7 +438,7 @@ class SpaceManager
      */
     public function getEntry(string $entryId): Entry
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/entries/' . $entryId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/entries/'.$entryId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
@@ -454,7 +452,7 @@ class SpaceManager
      */
     public function getEntries(Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/entries', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/entries', $query);
     }
 
     /**
@@ -467,13 +465,13 @@ class SpaceManager
      */
     public function getEntrySnapshot(string $entryId, string $snapshotId): EntrySnapshot
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/entries/' . $entryId . '/snapshots/' . $snapshotId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/entries/'.$entryId.'/snapshots/'.$snapshotId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
 
     /**
-     * @param string $entryId
+     * @param string     $entryId
      * @param Query|null $query
      *
      * @return ResourceArray
@@ -482,7 +480,7 @@ class SpaceManager
      */
     public function getEntrySnapshots(string $entryId, Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/entries/' . $entryId . '/snapshots', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/entries/'.$entryId.'/snapshots', $query);
     }
 
     /**
@@ -493,20 +491,20 @@ class SpaceManager
      */
     public function getContentTypeSnapshot(string $contentTypeId, string $snapshotId): ContentTypeSnapshot
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/content_types/' . $contentTypeId . '/snapshots/' . $snapshotId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/content_types/'.$contentTypeId.'/snapshots/'.$snapshotId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
 
     /**
-     * @param string $contentTypeId
+     * @param string     $contentTypeId
      * @param Query|null $query
      *
      * @return ResourceArray
      */
     public function getContentTypeSnapshots(string $contentTypeId, Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/content_types/' . $contentTypeId . '/snapshots', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/content_types/'.$contentTypeId.'/snapshots', $query);
     }
 
     /**
@@ -518,7 +516,7 @@ class SpaceManager
      */
     public function getRole(string $roleId): Role
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/roles/' . $roleId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/roles/'.$roleId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
@@ -532,7 +530,7 @@ class SpaceManager
      */
     public function getRoles(Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/roles', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/roles', $query);
     }
 
     /**
@@ -544,7 +542,7 @@ class SpaceManager
      */
     public function getWebhook(string $webhookId): Webhook
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/webhook_definitions/' . $webhookId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/webhook_definitions/'.$webhookId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
@@ -558,7 +556,7 @@ class SpaceManager
      */
     public function getWebhooks(Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/webhook_definitions', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/webhook_definitions', $query);
     }
 
     /**
@@ -570,13 +568,13 @@ class SpaceManager
      */
     public function getWebhookHealth(string $webhookId): WebhookHealth
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/webhooks/' . $webhookId . '/health');
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/webhooks/'.$webhookId.'/health');
 
         return $this->builder->buildObjectsFromRawData($response);
     }
 
     /**
-     * @param string $webhookId
+     * @param string     $webhookId
      * @param Query|null $query
      *
      * @return ResourceArray
@@ -585,7 +583,7 @@ class SpaceManager
      */
     public function getWebhookCalls(string $webhookId, Query $query = null): ResourceArray
     {
-        return $this->getAndBuildCollection('spaces/' . $this->spaceId . '/webhooks/' . $webhookId . '/calls', $query);
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/webhooks/'.$webhookId.'/calls', $query);
     }
 
     /**
@@ -598,17 +596,26 @@ class SpaceManager
      */
     public function getWebhookCallDetails(string $webhookId, string $webhookCallId)
     {
-        $response = $this->client->request('GET', 'spaces/' . $this->spaceId . '/webhooks/' . $webhookId . '/calls/' . $webhookCallId);
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/webhooks/'.$webhookId.'/calls/'.$webhookCallId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * Makes a GET call to a collection endpoint in the API,
+     * and returns the build collection of objects.
+     *
+     * @param string     $path
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     */
     public function getAndBuildCollection(string $path, Query $query = null): ResourceArray
     {
         $queryData = $query !== null ? $query->getQueryData() : [];
 
         $response = $this->client->request('GET', $path, [
-            'query' => $queryData
+            'query' => $queryData,
         ]);
 
         return $this->builder->buildObjectsFromRawData($response);

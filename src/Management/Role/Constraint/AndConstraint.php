@@ -102,6 +102,8 @@ class AndConstraint implements ConstraintInterface
      */
     public function jsonSerialize(): array
     {
-        return ['and' => $this->children];
+        return [
+            'and' => $this->children,
+        ];
     }
 }

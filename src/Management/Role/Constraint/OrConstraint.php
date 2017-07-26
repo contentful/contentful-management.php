@@ -103,6 +103,8 @@ class OrConstraint implements ConstraintInterface
      */
     public function jsonSerialize(): array
     {
-        return ['or' => $this->children];
+        return [
+            'or' => $this->children,
+        ];
     }
 }

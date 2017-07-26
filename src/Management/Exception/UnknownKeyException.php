@@ -9,12 +9,13 @@
 
 namespace Contentful\Management\Exception;
 
+use function GuzzleHttp\json_decode;
 use Contentful\Exception\ApiException;
-use Contentful\JsonHelper;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 
 /**
- * An UnknownKeyException is thrown when persisting an object with a key that is not recognized by the API.
+ * An UnknownKeyException is thrown when persisting an object with a key
+ * that is not recognized by the API.
  */
 class UnknownKeyException extends ApiException
 {
@@ -23,11 +24,17 @@ class UnknownKeyException extends ApiException
      */
     private $keys = [];
 
+    /**
+     * UnknownKeyException constructor.
+     *
+     * @param GuzzleRequestException $previous
+     * @param string                 $message
+     */
     public function __construct(GuzzleRequestException $previous, $message = '')
     {
         parent::__construct($previous, $message);
 
-        $result = JsonHelper::decode($this->getResponse()->getBody());
+        $result = json_decode($this->getResponse()->getBody(), true);
 
         $this->keys = $result['details']['keys'];
     }

@@ -50,7 +50,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
                 new OrConstraint([
                     new EqualityConstraint('sys.type', 'Asset'),
                     new NotConstraint(new EqualityConstraint('sys.type', 'ContentType')),
-                ])
+                ]),
             ])
         ));
 

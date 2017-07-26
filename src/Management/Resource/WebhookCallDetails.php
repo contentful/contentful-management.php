@@ -9,7 +9,7 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\DateHelper;
+use function Contentful\format_date_for_json;
 use Contentful\Management\SystemProperties;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -26,47 +26,47 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var Request
      */
-    private $request;
+    protected $request;
 
     /**
      * @var Response
      */
-    private $response;
+    protected $response;
 
     /**
      * @var int
      */
-    private $statusCode;
+    protected $statusCode;
 
     /**
      * @var string|null
      */
-    private $error;
+    protected $error;
 
     /**
      * @var string
      */
-    private $eventType;
+    protected $eventType;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var \DateTimeImmutable
      */
-    private $requestAt;
+    protected $requestAt;
 
     /**
      * @var \DateTimeImmutable
      */
-    private $responseAt;
+    protected $responseAt;
 
     /**
      * WebhookCallDetails constructor.
@@ -77,7 +77,7 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -85,7 +85,7 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {
@@ -157,13 +157,13 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         // The request object automatically adds a `Host` header, which we don't need
         $headers = $this->formatPsr7Headers($this->request->getHeaders());
@@ -182,7 +182,7 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
             'body' => (string) $this->response->getBody(),
         ];
 
-        return (object) [
+        return [
             'sys' => $this->sys,
             'request' => $request,
             'response' => $response,
@@ -190,8 +190,8 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
             'errors' => $this->error ? [$this->error] : [],
             'eventType' => $this->eventType,
             'url' => $this->url,
-            'requestAt' => DateHelper::formatForJson($this->requestAt),
-            'responseAt' => DateHelper::formatForJson($this->responseAt),
+            'requestAt' => format_date_for_json($this->requestAt),
+            'responseAt' => format_date_for_json($this->responseAt),
         ];
     }
 

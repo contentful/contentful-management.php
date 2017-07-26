@@ -9,7 +9,7 @@
 
 namespace Contentful\Management;
 
-use Contentful\DateHelper;
+use function Contentful\format_date_for_json;
 use Contentful\Link;
 
 /**
@@ -53,6 +53,14 @@ class SystemProperties implements \JsonSerializable
      * @var int|null
      */
     private $version;
+
+    /**
+     * This property is only present when dealing
+     * with published content types.
+     *
+     * @var int|null
+     */
+    private $revision;
 
     /**
      * @var Link|null
@@ -136,6 +144,7 @@ class SystemProperties implements \JsonSerializable
         $this->archivedAt = isset($sys['archivedAt']) ? new \DateTimeImmutable($sys['archivedAt']) : null;
         $this->firstPublishedAt = isset($sys['firstPublishedAt']) ? new \DateTimeImmutable($sys['firstPublishedAt']) : null;
         $this->version = $sys['version'] ?? null;
+        $this->revision = $sys['revision'] ?? null;
         $this->publishedCounter = $sys['publishedCounter'] ?? null;
         $this->publishedVersion = $sys['publishedVersion'] ?? null;
         $this->archivedVersion = $sys['archivedVersion'] ?? null;
@@ -237,6 +246,14 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
+     * @return int|null
+     */
+    public function getRevision()
+    {
+        return $this->revision;
+    }
+
+    /**
      * @return Link|null
      */
     public function getCreatedBy()
@@ -333,77 +350,80 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        $obj = new \stdClass;
+        $sys = [];
 
         if ($this->id !== null) {
-            $obj->id = $this->id;
+            $sys['id'] = $this->id;
         }
         if ($this->type !== null) {
-            $obj->type = $this->type;
+            $sys['type'] = $this->type;
         }
         if ($this->space !== null) {
-            $obj->space = $this->space;
+            $sys['space'] = $this->space;
         }
         if ($this->contentType !== null) {
-            $obj->contentType = $this->contentType;
+            $sys['contentType'] = $this->contentType;
         }
         if ($this->createdAt !== null) {
-            $obj->createdAt = DateHelper::formatForJson($this->createdAt);
+            $sys['createdAt'] = format_date_for_json($this->createdAt);
         }
         if ($this->updatedAt !== null) {
-            $obj->updatedAt = DateHelper::formatForJson($this->updatedAt);
+            $sys['updatedAt'] = format_date_for_json($this->updatedAt);
         }
         if ($this->archivedAt !== null) {
-            $obj->archivedAt = DateHelper::formatForJson($this->archivedAt);
+            $sys['archivedAt'] = format_date_for_json($this->archivedAt);
         }
         if ($this->publishedAt !== null) {
-            $obj->publishedAt = DateHelper::formatForJson($this->publishedAt);
+            $sys['publishedAt'] = format_date_for_json($this->publishedAt);
         }
         if ($this->firstPublishedAt !== null) {
-            $obj->firstPublishedAt = DateHelper::formatForJson($this->firstPublishedAt);
+            $sys['firstPublishedAt'] = format_date_for_json($this->firstPublishedAt);
         }
         if ($this->version !== null) {
-            $obj->version = $this->version;
+            $sys['version'] = $this->version;
+        }
+        if ($this->revision !== null) {
+            $sys['revision'] = $this->revision;
         }
         if ($this->createdBy !== null) {
-            $obj->createdBy = $this->createdBy;
+            $sys['createdBy'] = $this->createdBy;
         }
         if ($this->updatedBy !== null) {
-            $obj->updatedBy = $this->updatedBy;
+            $sys['updatedBy'] = $this->updatedBy;
         }
         if ($this->publishedBy !== null) {
-            $obj->publishedBy = $this->publishedBy;
+            $sys['publishedBy'] = $this->publishedBy;
         }
         if ($this->archivedBy !== null) {
-            $obj->archivedBy = $this->archivedBy;
+            $sys['archivedBy'] = $this->archivedBy;
         }
         if ($this->publishedCounter !== null) {
-            $obj->publishedCounter = $this->publishedCounter;
+            $sys['publishedCounter'] = $this->publishedCounter;
         }
         if ($this->publishedVersion !== null) {
-            $obj->publishedVersion = $this->publishedVersion;
+            $sys['publishedVersion'] = $this->publishedVersion;
         }
         if ($this->archivedVersion !== null) {
-            $obj->archivedVersion = $this->archivedVersion;
+            $sys['archivedVersion'] = $this->archivedVersion;
         }
         if ($this->snapshotType !== null) {
-            $obj->snapshotType = $this->snapshotType;
+            $sys['snapshotType'] = $this->snapshotType;
         }
         if ($this->snapshotEntityType !== null) {
-            $obj->snapshotEntityType = $this->snapshotEntityType;
+            $sys['snapshotEntityType'] = $this->snapshotEntityType;
         }
         if ($this->expiresAt !== null) {
-            $obj->expiresAt = $this->expiresAt;
+            $sys['expiresAt'] = $this->expiresAt;
         }
 
-        return $obj;
+        return $sys;
     }
 }

@@ -20,7 +20,7 @@ class ContentTypeTest extends \PHPUnit_Framework_TestCase
         $contentType = (new ContentType('Test CT'))
             ->setDescription('A cool new content type.')
             ->setFields([
-                new SymbolField('name', 'Name')
+                new SymbolField('name', 'Name'),
             ])
             ->setDisplayField('name');
 
@@ -41,7 +41,7 @@ class ContentTypeTest extends \PHPUnit_Framework_TestCase
             ->setDescription('A cool new content type.')
             ->setFields([
                 new SymbolField('name', 'Name'),
-                new NumberField('number', 'Number')
+                new NumberField('number', 'Number'),
             ])
             ->setDisplayField('name');
 

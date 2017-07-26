@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field;
 
+/**
+ * DateField class.
+ */
 class DateField extends AbstractField
 {
     /**

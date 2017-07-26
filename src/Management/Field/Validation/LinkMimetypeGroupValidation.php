@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * LinkMimetypeGroupValidation class.
+ */
 class LinkMimetypeGroupValidation implements ValidationInterface
 {
     /**
@@ -46,11 +49,17 @@ class LinkMimetypeGroupValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $mimeTypeGroups = $data['linkMimetypeGroup'];
@@ -58,10 +67,17 @@ class LinkMimetypeGroupValidation implements ValidationInterface
         return new self($mimeTypeGroups);
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
-        return (object) [
-            'linkMimetypeGroup' => $this->mimeTypeGroups
+        return [
+            'linkMimetypeGroup' => $this->mimeTypeGroups,
         ];
     }
 }

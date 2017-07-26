@@ -9,8 +9,8 @@
 
 namespace Contentful\Management;
 
+use function GuzzleHttp\json_encode;
 use Contentful\Client as BaseClient;
-use Contentful\JsonHelper;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\User;
 use Contentful\ResourceArray;
@@ -23,10 +23,19 @@ use Contentful\ResourceArray;
  */
 class Client extends BaseClient
 {
+    /**
+     * @var string
+     */
     const VERSION = '0.6.0-dev';
 
+    /**
+     * @var string
+     */
     const URI_MANAGEMENT = 'https://api.contentful.com';
 
+    /**
+     * @var string
+     */
     const URI_UPLOAD = 'https://upload.contentful.com';
 
     /**
@@ -38,9 +47,7 @@ class Client extends BaseClient
      * Client constructor.
      *
      * @param string $token
-     * @param array $options
-     *
-     * @api
+     * @param array  $options
      */
     public function __construct(string $token, array $options = [])
     {
@@ -50,7 +57,7 @@ class Client extends BaseClient
         $options = array_replace([
             'guzzle' => null,
             'logger' => null,
-            'uriOverride' => null
+            'uriOverride' => null,
         ], $options);
 
         $guzzle = $options['guzzle'];
@@ -63,7 +70,7 @@ class Client extends BaseClient
 
         parent::__construct($token, $baseUri, $api, $logger, $guzzle);
 
-        $this->builder = new ResourceBuilder;
+        $this->builder = new ResourceBuilder();
     }
 
     /**
@@ -88,23 +95,23 @@ class Client extends BaseClient
      */
     public function getSpace($spaceId): Space
     {
-        $response = $this->request('GET', 'spaces/' . $spaceId);
+        $response = $this->request('GET', 'spaces/'.$spaceId);
 
         return $this->builder->buildObjectsFromRawData($response);
     }
 
     /**
-     * @param Query $query
+     * @param Query|null $query
      *
      * @return ResourceArray
      */
     public function getSpaces(Query $query = null): ResourceArray
     {
-        $query = $query !== null ? $query : new Query;
+        $query = $query !== null ? $query : new Query();
         $queryData = $query->getQueryData();
 
         $response = $this->request('GET', 'spaces', [
-            'query' => $queryData
+            'query' => $queryData,
         ]);
 
         return $this->builder->buildObjectsFromRawData($response);
@@ -122,11 +129,11 @@ class Client extends BaseClient
         if ($defaultLocale !== 'en-US') {
             $bodyData->defaultLocale = $defaultLocale;
         }
-        $body = JsonHelper::encode($bodyData);
+        $body = json_encode($bodyData, JSON_UNESCAPED_UNICODE);
 
         $response = $this->request('POST', 'spaces', [
             'additionalHeaders' => $additionalHeaders,
-            'body' => $body
+            'body' => $body,
         ]);
         $this->builder->updateObjectFromRawData($space, $response);
     }
@@ -137,11 +144,11 @@ class Client extends BaseClient
     public function updateSpace(Space $space)
     {
         $sys = $space->getSystemProperties();
-        $body = JsonHelper::encode($this->prepareObjectForApi($space));
+        $body = json_encode($this->prepareObjectForApi($space), JSON_UNESCAPED_UNICODE);
         $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
-        $response = $this->request('PUT', 'spaces/' . $sys->getId(), [
+        $response = $this->request('PUT', 'spaces/'.$sys->getId(), [
             'additionalHeaders' => $additionalHeaders,
-            'body' => $body
+            'body' => $body,
         ]);
         $this->builder->updateObjectFromRawData($space, $response);
     }
@@ -152,7 +159,7 @@ class Client extends BaseClient
     public function deleteSpace(Space $space)
     {
         $sys = $space->getSystemProperties();
-        $this->request('DELETE', 'spaces/' . $sys->getId());
+        $this->request('DELETE', 'spaces/'.$sys->getId());
     }
 
     /**
@@ -182,9 +189,14 @@ class Client extends BaseClient
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * @param \JsonSerializable $serializable
+     *
+     * @return object
+     */
     public function prepareObjectForApi(\JsonSerializable $serializable)
     {
-        $data = $serializable->jsonSerialize();
+        $data = (object) $serializable->jsonSerialize();
         if (isset($data->sys)) {
             unset($data->sys);
         }

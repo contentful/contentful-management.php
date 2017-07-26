@@ -78,7 +78,7 @@ class ContentTypeTest extends End2EndTestCase
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
-        $query = (new Query)
+        $query = (new Query())
             ->setLimit(1);
         $contentTypes = $manager->getContentTypes($query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);

@@ -24,12 +24,12 @@ class Space implements ResourceInterface
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * Space constructor.
@@ -43,7 +43,7 @@ class Space implements ResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -71,17 +71,17 @@ class Space implements ResourceInterface
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        return (object) [
+        return [
             'sys' => $this->sys,
-            'name' => $this->name
+            'name' => $this->name,
         ];
     }
 }

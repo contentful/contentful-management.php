@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field;
 
+/**
+ * SymbolField class.
+ */
 class SymbolField extends AbstractField
 {
     /**

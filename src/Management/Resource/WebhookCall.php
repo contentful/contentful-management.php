@@ -9,7 +9,7 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\DateHelper;
+use function Contentful\format_date_for_json;
 use Contentful\Management\SystemProperties;
 
 /**
@@ -24,37 +24,37 @@ class WebhookCall implements SpaceScopedResourceInterface
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var int
      */
-    private $statusCode;
+    protected $statusCode;
 
     /**
      * @var string|null
      */
-    private $error;
+    protected $error;
 
     /**
      * @var string
      */
-    private $eventType;
+    protected $eventType;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var \DateTimeImmutable
      */
-    private $requestAt;
+    protected $requestAt;
 
     /**
      * @var \DateTimeImmutable
      */
-    private $responseAt;
+    protected $responseAt;
 
     /**
      * WebhookCallOverview constructor.
@@ -65,7 +65,7 @@ class WebhookCall implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -73,7 +73,7 @@ class WebhookCall implements SpaceScopedResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {
@@ -129,22 +129,22 @@ class WebhookCall implements SpaceScopedResourceInterface
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        return (object) [
+        return [
             'sys' => $this->sys,
             'statusCode' => $this->statusCode,
             'errors' => $this->error ? [$this->error] : [],
             'eventType' => $this->eventType,
             'url' => $this->url,
-            'requestAt' => DateHelper::formatForJson($this->requestAt),
-            'responseAt' => DateHelper::formatForJson($this->responseAt),
+            'requestAt' => format_date_for_json($this->requestAt),
+            'responseAt' => format_date_for_json($this->responseAt),
         ];
     }
 }

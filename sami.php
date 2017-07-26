@@ -10,7 +10,7 @@
 use Sami\Sami;
 use Symfony\Component\Finder\Finder;
 
-$dir = __DIR__ . '/src';
+$dir = __DIR__.'/src';
 
 $iterator = Finder::create()
     ->files()
@@ -19,7 +19,7 @@ $iterator = Finder::create()
 ;
 
 return new Sami($iterator, [
-    'title'     => 'Contentful CDA SDK for PHP',
-    'build_dir' => __DIR__ . '/build/docs',
-    'cache_dir' => __DIR__ . '/build/doc_cache',
+    'title' => 'Contentful CDA SDK for PHP',
+    'build_dir' => __DIR__.'/build/docs',
+    'cache_dir' => __DIR__.'/build/doc_cache',
 ]);

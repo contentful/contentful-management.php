@@ -26,43 +26,43 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var string|null
      */
-    private $httpBasicUsername;
+    protected $httpBasicUsername;
 
     /**
      * @var string|null
      */
-    private $httpBasicPassword;
+    protected $httpBasicPassword;
 
     /**
      * @var string[]
      */
-    private $topics = [];
+    protected $topics = [];
 
     /**
      * @var string[]
      */
-    private $headers = [];
+    protected $headers = [];
 
     /**
      * Webhook constructor.
      *
-     * @param string $name
-     * @param string $url
+     * @param string   $name
+     * @param string   $url
      * @param string[] $topics
      */
     public function __construct(string $name, string $url, array $topics = [])
@@ -74,7 +74,7 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -82,7 +82,7 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {
@@ -315,13 +315,13 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $headers = [];
         foreach ($this->headers as $key => $value) {
@@ -346,6 +346,6 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
             }
         }
 
-        return (object) $values;
+        return $values;
     }
 }

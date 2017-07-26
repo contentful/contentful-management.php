@@ -11,6 +11,9 @@ namespace Contentful\Management\Exception;
 
 use Contentful\Exception\ApiException;
 
+/**
+ * FallbackLocaleNotDeletableException class.
+ */
 class FallbackLocaleNotDeletableException extends ApiException
 {
 }

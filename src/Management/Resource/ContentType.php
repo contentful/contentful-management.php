@@ -29,27 +29,27 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string|null
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string|null
      */
-    private $displayField;
+    protected $displayField;
 
     /**
      * @var FieldInterface[]
      */
-    private $fields = [];
+    protected $fields = [];
 
     /**
      * ContentType constructor.
@@ -63,7 +63,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -71,11 +71,22 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {
         return 'content_types';
+    }
+
+    /**
+     * Returns whether this ContentType object is published.
+     * It is `false` by default, and it is meant to be overridden.
+     *
+     * @return bool
+     */
+    public function isPublished(): bool
+    {
+        return false;
     }
 
     /**
@@ -87,7 +98,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return $this
      */
@@ -171,20 +182,18 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     *
-     * @api
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = [
             'sys' => $this->sys,
             'name' => $this->name,
-            'fields' => $this->fields
+            'fields' => $this->fields,
         ];
 
         if ($this->description !== null) {
@@ -195,6 +204,6 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
             $data['displayField'] = $this->displayField;
         }
 
-        return (object) $data;
+        return $data;
     }
 }

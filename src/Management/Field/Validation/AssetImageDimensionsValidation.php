@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * AssetImageDimensionsValidation class.
+ */
 class AssetImageDimensionsValidation implements ValidationInterface
 {
     /**
@@ -47,6 +50,9 @@ class AssetImageDimensionsValidation implements ValidationInterface
         $this->maxHeight = $maxHeight;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
@@ -132,6 +138,9 @@ class AssetImageDimensionsValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $values = $data['assetImageDimensions'];
@@ -154,7 +163,14 @@ class AssetImageDimensionsValidation implements ValidationInterface
         return new self($minWidth, $maxWidth, $minHeight, $maxHeight);
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
         $data = [];
         if ($this->minWidth !== null || $this->maxWidth !== null) {
@@ -166,7 +182,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
                 $withData['max'] = $this->maxWidth;
             }
 
-            $data['width'] = (object) $withData;
+            $data['width'] = $withData;
         }
         if ($this->minHeight !== null || $this->maxHeight !== null) {
             $heightData = [];
@@ -177,11 +193,11 @@ class AssetImageDimensionsValidation implements ValidationInterface
                 $heightData['max'] = $this->maxHeight;
             }
 
-            $data['height'] = (object) $heightData;
+            $data['height'] = $heightData;
         }
 
-        return (object) [
-            'assetImageDimensions' => (object) $data
+        return [
+            'assetImageDimensions' => $data,
         ];
     }
 }

@@ -26,19 +26,19 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string|resource|StreamInterface|null
      */
-    private $body;
+    protected $body;
 
     /**
      * Upload constructor.
      *
      * @param string|resource|StreamInterface $body Internally this is the value that is passed to Guzzle's request body,
-     *     which means that all values accepted by Guzzle are allowed. These include an actual `string`,
-     *     a `resource` such as the result of a `fopen('file.txt', 'r')` call, an object implementing StreamInterface, etc.
+     *                                              which means that all values accepted by Guzzle are allowed. These include an actual `string`,
+     *                                              a `resource` such as the result of a `fopen('file.txt', 'r')` call, an object implementing StreamInterface, etc.
      *
      * @see http://docs.guzzlephp.org/en/stable/request-options.html#body For more un Guzzle's internal options
      */
@@ -49,7 +49,7 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {
@@ -57,7 +57,7 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -73,15 +73,15 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        return (object) [
+        return [
             'sys' => $this->sys,
         ];
     }

@@ -50,7 +50,7 @@ class SpaceTest extends End2EndTestCase
         $this->assertInstanceOf(ResourceArray::class, $spaces);
         $this->assertInstanceOf(Space::class, $spaces[0]);
 
-        $query = (new Query)
+        $query = (new Query())
             ->setLimit(1);
         $spaces = $this->client->getSpaces($query);
         $this->assertInstanceOf(Space::class, $spaces[0]);

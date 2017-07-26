@@ -42,18 +42,6 @@ class ErrorTest extends End2EndTestCase
     }
 
     /**
-     * @expectedException \Contentful\Management\Exception\BadRequestException
-     * @vcr e2e_error_bad_request.json
-     */
-    public function testBadRequestError()
-    {
-        $spaceManager = $this->getReadWriteSpaceManager();
-
-        $asset = new NoBodyAsset();
-        $spaceManager->create($asset);
-    }
-
-    /**
      * @expectedException \Contentful\Management\Exception\ValidationFailedException
      * @vcr e2e_error_validation_failed.json
      */
@@ -72,7 +60,7 @@ class ErrorTest extends End2EndTestCase
     {
         $spaceManager = $this->getReadWriteSpaceManager();
 
-        $asset = new Asset;
+        $asset = new Asset();
         $spaceManager->create($asset);
 
         $fakeAsset = new FakeAsset($asset->getSystemProperties()->getId());
@@ -130,22 +118,14 @@ class ErrorTest extends End2EndTestCase
 
 class UnknownKeyLocale extends Locale
 {
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = parent::jsonSerialize();
 
-        $data->default = true;
-        $data->avx = 'def';
+        $data['default'] = true;
+        $data['avx'] = 'def';
 
         return $data;
-    }
-}
-
-class NoBodyAsset extends Asset
-{
-    public function jsonSerialize()
-    {
-        return null;
     }
 }
 
@@ -153,7 +133,7 @@ class EmptyBodyLocale extends Locale
 {
     public function jsonSerialize()
     {
-        return (object) [];
+        return [];
     }
 }
 
@@ -161,8 +141,8 @@ class ValidationFailedLocale extends Locale
 {
     public function jsonSerialize()
     {
-        return (object) [
-            'name' => 'A cool locale'
+        return [
+            'name' => 'A cool locale',
         ];
     }
 }
@@ -178,7 +158,7 @@ class FakeAsset extends Asset
         $this->fakeSys = new SystemProperties([
             'type' => 'Asset',
             'id' => $id,
-            'version' => 23
+            'version' => 23,
         ]);
     }
 

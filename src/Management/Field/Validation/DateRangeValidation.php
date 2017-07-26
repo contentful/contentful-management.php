@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * DateRangeValidation class.
+ */
 class DateRangeValidation implements ValidationInterface
 {
     /**
@@ -73,11 +76,17 @@ class DateRangeValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Date'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $values = $data['dateRange'];
@@ -88,7 +97,14 @@ class DateRangeValidation implements ValidationInterface
         return new self($min, $max);
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
         $data = [];
         if ($this->min !== null) {
@@ -98,8 +114,8 @@ class DateRangeValidation implements ValidationInterface
             $data['max'] = $this->max;
         }
 
-        return (object) [
-            'dateRange' => (object) $data
+        return [
+            'dateRange' => $data,
         ];
     }
 }

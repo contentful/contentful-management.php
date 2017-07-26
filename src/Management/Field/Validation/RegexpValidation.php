@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * RegexpValidation class.
+ */
 class RegexpValidation implements ValidationInterface
 {
     /**
@@ -21,6 +24,12 @@ class RegexpValidation implements ValidationInterface
      */
     private $flags;
 
+    /**
+     * RegexpValidation constructor.
+     *
+     * @param string|null $pattern
+     * @param string|null $flags
+     */
     public function __construct(string $pattern = null, string $flags = null)
     {
         $this->pattern = $pattern;
@@ -59,11 +68,17 @@ class RegexpValidation implements ValidationInterface
         $this->pattern = $pattern;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Text', 'Symbol'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $values = $data['regexp'];
@@ -74,7 +89,14 @@ class RegexpValidation implements ValidationInterface
         return new self($pattern, $flags);
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
         $data = [];
         if ($this->pattern !== null) {
@@ -84,8 +106,8 @@ class RegexpValidation implements ValidationInterface
             $data['flags'] = $this->flags;
         }
 
-        return (object) [
-            'regexp' => (object) $data
+        return [
+            'regexp' => $data,
         ];
     }
 }

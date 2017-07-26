@@ -11,9 +11,19 @@ namespace Contentful\Management\Field;
 
 use Contentful\Management\Field\Validation\ValidationInterface;
 
+/**
+ * ArrayField class.
+ */
 class ArrayField extends AbstractField
 {
+    /**
+     * @var string[]
+     */
     const VALID_ITEM_TYPES = ['Symbol', 'Link'];
+
+    /**
+     * @var string[]
+     */
     const VALID_LINK_TYPES = ['Asset', 'Entry'];
 
     /**
@@ -43,15 +53,23 @@ class ArrayField extends AbstractField
      */
     private $itemsValidations = [];
 
+    /**
+     * ArrayField constructor.
+     *
+     * @param string      $id
+     * @param string      $name
+     * @param string      $itemsType
+     * @param string|null $itemsLinkType
+     */
     public function __construct(string $id, string $name, string $itemsType, string $itemsLinkType = null)
     {
         parent::__construct($id, $name);
 
         if (!self::isValidItemType($itemsType)) {
-            throw new \RuntimeException('Invalid items type ' . $itemsType . '. Valid values are ' . join(', ', self::VALID_ITEM_TYPES) . '.');
+            throw new \RuntimeException('Invalid items type '.$itemsType.'. Valid values are '.implode(', ', self::VALID_ITEM_TYPES).'.');
         }
         if ($itemsType === 'Link' && !self::isValidLinkType($itemsLinkType)) {
-            throw new \RuntimeException('Invalid items link type ' . $itemsLinkType . '. Valid values are ' . join(', ', self::VALID_LINK_TYPES) . '.');
+            throw new \RuntimeException('Invalid items link type '.$itemsLinkType.'. Valid values are '.implode(', ', self::VALID_LINK_TYPES).'.');
         }
 
         $this->itemsType = $itemsType;
@@ -123,7 +141,7 @@ class ArrayField extends AbstractField
     {
         foreach ($itemsValidations as $validation) {
             if (!in_array($this->getItemsType(), $validation::getValidFieldTypes())) {
-                throw new \RuntimeException('The validation ' . get_class($validation) . ' can not be used for fields of type ' . $this->getType() . '.');
+                throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
             }
         }
 
@@ -140,7 +158,7 @@ class ArrayField extends AbstractField
     public function addItemsValidation(ValidationInterface $validation)
     {
         if (!in_array($this->getItemsType(), $validation::getValidFieldTypes())) {
-            throw new \RuntimeException('The validation ' . get_class($validation) . ' can not be used for fields of type ' . $this->getType() . '.');
+            throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
         }
 
         $this->validations[] = $validation;
@@ -169,13 +187,13 @@ class ArrayField extends AbstractField
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = parent::jsonSerialize();
 
@@ -184,7 +202,7 @@ class ArrayField extends AbstractField
             $items['linkType'] = $this->itemsLinkType;
         }
 
-        $data->items = (object) $items;
+        $data['items'] = $items;
 
         return $data;
     }

@@ -11,48 +11,58 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\SystemProperties;
 
+/**
+ * User class.
+ *
+ * This class represents a resource with type "User" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/users/user
+ */
 class User implements ResourceInterface
 {
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var string
      */
-    private $firstName = '';
+    protected $firstName = '';
 
     /**
      * @var string
      */
-    private $lastName = '';
+    protected $lastName = '';
 
     /**
      * @var string
      */
-    private $avatarUrl = '';
+    protected $avatarUrl = '';
 
     /**
      * @var string
      */
-    private $email = '';
+    protected $email = '';
 
     /**
      * @var bool
      */
-    private $activated = false;
+    protected $activated = false;
 
     /**
      * @var int
      */
-    private $signInCount = 0;
+    protected $signInCount = 0;
 
     /**
      * @var bool
      */
-    private $confirmed = false;
+    protected $confirmed = false;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         $this->sys = SystemProperties::withType('User');
@@ -123,15 +133,15 @@ class User implements ResourceInterface
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        return (object) [
+        return [
             'sys' => $this->sys,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
@@ -139,7 +149,7 @@ class User implements ResourceInterface
             'email' => $this->email,
             'activated' => $this->activated,
             'signInCount' => $this->signInCount,
-            'confirmed' => $this->confirmed
+            'confirmed' => $this->confirmed,
         ];
     }
 }

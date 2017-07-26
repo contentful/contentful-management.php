@@ -11,6 +11,11 @@ namespace Contentful\Management\Field;
 
 use Contentful\Management\Field\Validation\ValidationInterface;
 
+/**
+ * AbstractField class.
+ *
+ * This class is the shared base for concrete field implementations.
+ */
 abstract class AbstractField implements FieldInterface
 {
     /**
@@ -60,6 +65,12 @@ abstract class AbstractField implements FieldInterface
      */
     protected $validations = [];
 
+    /**
+     * AbstractField constructor.
+     *
+     * @param string $id
+     * @param string $name
+     */
     public function __construct(string $id, string $name)
     {
         $this->id = $id;
@@ -191,7 +202,7 @@ abstract class AbstractField implements FieldInterface
     {
         foreach ($validations as $validation) {
             if (!in_array($this->getType(), $validation::getValidFieldTypes())) {
-                throw new \RuntimeException('The validation ' . get_class($validation) . ' can not be used for fields of type ' . $this->getType() . '.');
+                throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
             }
         }
 
@@ -208,7 +219,7 @@ abstract class AbstractField implements FieldInterface
     public function addValidation(ValidationInterface $validation)
     {
         if (!in_array($this->getType(), $validation::getValidFieldTypes())) {
-            throw new \RuntimeException('The validation ' . get_class($validation) . ' can not be used for fields of type ' . $this->getType() . '.');
+            throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
         }
 
         $this->validations[] = $validation;
@@ -217,13 +228,13 @@ abstract class AbstractField implements FieldInterface
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = [
             'name' => $this->name,
@@ -251,6 +262,6 @@ abstract class AbstractField implements FieldInterface
             $data['validations'] = $this->validations;
         }
 
-        return (object) $data;
+        return $data;
     }
 }

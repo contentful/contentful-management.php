@@ -9,7 +9,7 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\DateHelper;
+use function Contentful\format_date_for_json;
 use Contentful\Management\Behavior\Archivable;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
@@ -29,12 +29,12 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     /**
      * @var SystemProperties
      */
-    private $sys;
+    protected $sys;
 
     /**
      * @var array[]
      */
-    private $fields = [];
+    protected $fields = [];
 
     /**
      * Entry constructor.
@@ -47,7 +47,7 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
     {
@@ -55,7 +55,7 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getResourceUriPart(): string
     {
@@ -75,10 +75,10 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
 
     /**
      * @param string $name
-     * @param mixed $value
      * @param string $locale
+     * @param mixed  $value
      */
-    public function setField(string $name, $value, string $locale)
+    public function setField(string $name, string $locale, $value)
     {
         if (!isset($this->fields[$name])) {
             $this->fields[$name] = [];
@@ -90,48 +90,51 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $fields = [];
 
         foreach ($this->fields as $fieldName => $fieldData) {
-            $formattedData = [];
+            $fields[$fieldName] = [];
+
             foreach ($fieldData as $locale => $data) {
-                if ($data instanceof \DateTimeImmutable) {
-                    $value = DateHelper::formatForJson($data);
-                } elseif ($data instanceof \DateTime) {
-                    $dt = \DateTimeImmutable::createFromMutable($data);
-                    $value = DateHelper::formatForJson($dt);
-                } elseif (is_array($data)) {
-                    $value = array_map(function ($value) {
-                        if ($value instanceof \DateTimeImmutable) {
-                            return DateHelper::formatForJson($value);
-                        }
-                        if ($value instanceof \DateTime) {
-                            $dt = \DateTimeImmutable::createFromMutable($value);
-
-                            return DateHelper::formatForJson($dt);
-                        }
-
-                        return $value;
-                    }, $data);
-                } else {
-                    $value = $data;
-                }
-                $formattedData[$locale] = $value;
+                $fields[$fieldName][$locale] = $this->getFormattedData($data);
             }
-            $fields[$fieldName] = (object) $formattedData;
         }
 
-        return (object) [
+        return [
+            'sys' => $this->sys,
             'fields' => (object) $fields,
-            'sys' => $this->sys
         ];
+    }
+
+    /**
+     * Formats data for JSON encoding.
+     *
+     * @param mixed $data
+     *
+     * @return mixed
+     */
+    private function getFormattedData($data)
+    {
+        if ($data instanceof \DateTimeImmutable) {
+            return format_date_for_json($data);
+        }
+
+        if ($data instanceof \DateTime) {
+            return format_date_for_json(\DateTimeImmutable::createFromMutable($data));
+        }
+
+        if (is_array($data)) {
+            return array_map([$this, 'getFormattedData'], $data);
+        }
+
+        return $data;
     }
 }

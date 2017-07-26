@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field;
 
+/**
+ * IntegerField class.
+ */
 class IntegerField extends AbstractField
 {
     /**

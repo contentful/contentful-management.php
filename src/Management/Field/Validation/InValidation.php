@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * InValidation class.
+ */
 class InValidation implements ValidationInterface
 {
     /**
@@ -46,11 +49,17 @@ class InValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Text', 'Symbol', 'Integer', 'Number'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $values = $data['in'];
@@ -58,10 +67,17 @@ class InValidation implements ValidationInterface
         return new self($values);
     }
 
-    public function jsonSerialize()
+    /**
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     *
+     * @return array
+     *
+     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     */
+    public function jsonSerialize(): array
     {
-        return (object) [
-            'in' => $this->values
+        return [
+            'in' => $this->values,
         ];
     }
 }

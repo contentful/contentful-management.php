@@ -50,7 +50,7 @@ class PublishedContentTypeTest extends End2EndTestCase
 
         $this->assertInstanceOf(PublishedContentType::class, $contentTypes[0]);
 
-        $query = (new Query)
+        $query = (new Query())
             ->setLimit(1);
         $contentTypes = $manager->getPublishedContentTypes($query);
         $this->assertInstanceOf(PublishedContentType::class, $contentTypes[0]);

@@ -9,9 +9,24 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * ValidationInterface.
+ */
 interface ValidationInterface extends \JsonSerializable
 {
+    /**
+     * Returns an array of allowed field types for the current validation.
+     *
+     * @return string[]
+     */
     public static function getValidFieldTypes(): array;
 
+    /**
+     * Returns a ValidationInterface implementation created from data from the API.
+     *
+     * @param array $data
+     *
+     * @return ValidationInterface
+     */
     public static function fromApiResponse(array $data): ValidationInterface;
 }

@@ -9,8 +9,14 @@
 
 namespace Contentful\Management\Field;
 
+/**
+ * LinkField class.
+ */
 class LinkField extends AbstractField
 {
+    /**
+     * @var string[]
+     */
     const VALID_LINK_TYPES = ['Asset', 'Entry'];
 
     /**
@@ -38,7 +44,7 @@ class LinkField extends AbstractField
         parent::__construct($id, $name);
 
         if (!self::isValidLinkType($linkType)) {
-            throw new \RuntimeException('Invalid link type ' . $linkType . '. Valid values are ' . join(', ', self::VALID_LINK_TYPES) . '.');
+            throw new \RuntimeException('Invalid link type '.$linkType.'. Valid values are '.implode(', ', self::VALID_LINK_TYPES).'.');
         }
 
         $this->linkType = $linkType;
@@ -60,7 +66,7 @@ class LinkField extends AbstractField
     public function setLinkType(string $linkType)
     {
         if (!self::isValidLinkType($linkType)) {
-            throw new \RuntimeException('Invalid link type ' . $linkType . '. Valid values are ' . join(', ', self::VALID_LINK_TYPES) . '.');
+            throw new \RuntimeException('Invalid link type '.$linkType.'. Valid values are '.implode(', ', self::VALID_LINK_TYPES).'.');
         }
 
         $this->linkType = $linkType;
@@ -87,17 +93,17 @@ class LinkField extends AbstractField
     }
 
     /**
-     * Returns an object to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
-     * @return object
+     * @return array
      *
      * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = parent::jsonSerialize();
 
-        $data->linkType = $this->linkType;
+        $data['linkType'] = $this->linkType;
 
         return $data;
     }
