@@ -127,7 +127,7 @@ class Client extends BaseClient
         $additionalHeaders = $organizationId ? ['X-Contentful-Organization' => $organizationId] : [];
         $bodyData = $this->prepareObjectForApi($space);
         if ($defaultLocale !== 'en-US') {
-            $bodyData['defaultLocale'] = $defaultLocale;
+            $bodyData->defaultLocale = $defaultLocale;
         }
         $body = json_encode($bodyData, JSON_UNESCAPED_UNICODE);
 
@@ -192,15 +192,12 @@ class Client extends BaseClient
     /**
      * @param \JsonSerializable $serializable
      *
-     * @return array|object
+     * @return object
      */
     public function prepareObjectForApi(\JsonSerializable $serializable)
     {
-        $data = $serializable->jsonSerialize();
-        if (is_array(($data)) && isset($data['sys'])) {
-            unset($data['sys']);
-        }
-        if (is_object(($data)) && isset($data->sys)) {
+        $data = (object) $serializable->jsonSerialize();
+        if (isset($data->sys)) {
             unset($data->sys);
         }
 

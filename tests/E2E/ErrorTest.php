@@ -42,18 +42,6 @@ class ErrorTest extends End2EndTestCase
     }
 
     /**
-     * @expectedException \Contentful\Management\Exception\BadRequestException
-     * @vcr e2e_error_bad_request.json
-     */
-    public function testBadRequestError()
-    {
-        $spaceManager = $this->getReadWriteSpaceManager();
-
-        $asset = new NoBodyAsset();
-        $spaceManager->create($asset);
-    }
-
-    /**
      * @expectedException \Contentful\Management\Exception\ValidationFailedException
      * @vcr e2e_error_validation_failed.json
      */
@@ -141,19 +129,11 @@ class UnknownKeyLocale extends Locale
     }
 }
 
-class NoBodyAsset extends Asset
-{
-    public function jsonSerialize()
-    {
-        return null;
-    }
-}
-
 class EmptyBodyLocale extends Locale
 {
     public function jsonSerialize()
     {
-        return (object) [];
+        return [];
     }
 }
 
