@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field;
 
+/**
+ * TextField class.
+ */
 class TextField extends AbstractField
 {
     /**

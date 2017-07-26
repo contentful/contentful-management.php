@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * RangeValidation class.
+ */
 class RangeValidation implements ValidationInterface
 {
     /**
@@ -73,11 +76,17 @@ class RangeValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Number', 'Integer'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $values = $data['range'];

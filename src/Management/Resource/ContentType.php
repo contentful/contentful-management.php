@@ -98,7 +98,7 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return $this
      */

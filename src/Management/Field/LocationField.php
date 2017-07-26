@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field;
 
+/**
+ * LocationField class.
+ */
 class LocationField extends AbstractField
 {
     /**

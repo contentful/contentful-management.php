@@ -23,10 +23,19 @@ use Contentful\ResourceArray;
  */
 class Client extends BaseClient
 {
+    /**
+     * @var string
+     */
     const VERSION = '0.6.0-dev';
 
+    /**
+     * @var string
+     */
     const URI_MANAGEMENT = 'https://api.contentful.com';
 
+    /**
+     * @var string
+     */
     const URI_UPLOAD = 'https://upload.contentful.com';
 
     /**
@@ -92,7 +101,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param Query $query
+     * @param Query|null $query
      *
      * @return ResourceArray
      */
@@ -180,6 +189,11 @@ class Client extends BaseClient
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * @param \JsonSerializable $serializable
+     *
+     * @return array|object
+     */
     public function prepareObjectForApi(\JsonSerializable $serializable)
     {
         $data = $serializable->jsonSerialize();

@@ -11,6 +11,9 @@ namespace Contentful\Management\Exception;
 
 use Contentful\Exception\ApiException;
 
+/**
+ * FallbackLocaleNotRenameableException class.
+ */
 class FallbackLocaleNotRenameableException extends ApiException
 {
 }

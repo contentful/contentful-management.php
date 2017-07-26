@@ -9,8 +9,14 @@
 
 namespace Contentful\Management\Field;
 
+/**
+ * LinkField class.
+ */
 class LinkField extends AbstractField
 {
+    /**
+     * @var string[]
+     */
     const VALID_LINK_TYPES = ['Asset', 'Entry'];
 
     /**

@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * LinkContentTypeValidation class.
+ */
 class LinkContentTypeValidation implements ValidationInterface
 {
     /**
@@ -46,11 +49,17 @@ class LinkContentTypeValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $contentTypes = $data['linkContentType'];

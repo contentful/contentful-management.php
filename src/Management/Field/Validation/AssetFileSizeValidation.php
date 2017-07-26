@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * AssetFileSizeValidation class.
+ */
 class AssetFileSizeValidation implements ValidationInterface
 {
     /**
@@ -73,11 +76,17 @@ class AssetFileSizeValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $values = $data['assetFileSize'];

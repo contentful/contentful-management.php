@@ -11,9 +11,19 @@ namespace Contentful\Management\Field;
 
 use Contentful\Management\Field\Validation\ValidationInterface;
 
+/**
+ * ArrayField class.
+ */
 class ArrayField extends AbstractField
 {
+    /**
+     * @var string[]
+     */
     const VALID_ITEM_TYPES = ['Symbol', 'Link'];
+
+    /**
+     * @var string[]
+     */
     const VALID_LINK_TYPES = ['Asset', 'Entry'];
 
     /**
@@ -43,6 +53,14 @@ class ArrayField extends AbstractField
      */
     private $itemsValidations = [];
 
+    /**
+     * ArrayField constructor.
+     *
+     * @param string      $id
+     * @param string      $name
+     * @param string      $itemsType
+     * @param string|null $itemsLinkType
+     */
     public function __construct(string $id, string $name, string $itemsType, string $itemsLinkType = null)
     {
         parent::__construct($id, $name);

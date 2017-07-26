@@ -12,7 +12,8 @@ namespace Contentful\Management\Exception;
 use Contentful\Exception\ApiException;
 
 /**
- * A VersionMismatchException is thrown when persisting an object that has changed on the server since it's been fetched.
+ * A VersionMismatchException is thrown when persisting an object
+ * that has changed on the server since it's been fetched.
  */
 class VersionMismatchException extends ApiException
 {

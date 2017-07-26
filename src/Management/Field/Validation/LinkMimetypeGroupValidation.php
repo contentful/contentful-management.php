@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * LinkMimetypeGroupValidation class.
+ */
 class LinkMimetypeGroupValidation implements ValidationInterface
 {
     /**
@@ -46,11 +49,17 @@ class LinkMimetypeGroupValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $mimeTypeGroups = $data['linkMimetypeGroup'];

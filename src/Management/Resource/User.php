@@ -11,6 +11,13 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\SystemProperties;
 
+/**
+ * User class.
+ *
+ * This class represents a resource with type "User" in Contentful.
+ *
+ * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/users/user
+ */
 class User implements ResourceInterface
 {
     /**
@@ -53,6 +60,9 @@ class User implements ResourceInterface
      */
     protected $confirmed = false;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         $this->sys = SystemProperties::withType('User');

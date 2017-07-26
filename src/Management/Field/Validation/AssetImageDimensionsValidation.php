@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * AssetImageDimensionsValidation class.
+ */
 class AssetImageDimensionsValidation implements ValidationInterface
 {
     /**
@@ -47,6 +50,9 @@ class AssetImageDimensionsValidation implements ValidationInterface
         $this->maxHeight = $maxHeight;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
@@ -132,6 +138,9 @@ class AssetImageDimensionsValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $values = $data['assetImageDimensions'];

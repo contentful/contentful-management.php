@@ -601,6 +601,15 @@ class SpaceManager
         return $this->builder->buildObjectsFromRawData($response);
     }
 
+    /**
+     * Makes a GET call to a collection endpoint in the API,
+     * and returns the build collection of objects.
+     *
+     * @param string     $path
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     */
     public function getAndBuildCollection(string $path, Query $query = null): ResourceArray
     {
         $queryData = $query !== null ? $query->getQueryData() : [];

@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * DateRangeValidation class.
+ */
 class DateRangeValidation implements ValidationInterface
 {
     /**
@@ -73,11 +76,17 @@ class DateRangeValidation implements ValidationInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Date'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         $values = $data['dateRange'];

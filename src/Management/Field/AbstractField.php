@@ -11,6 +11,11 @@ namespace Contentful\Management\Field;
 
 use Contentful\Management\Field\Validation\ValidationInterface;
 
+/**
+ * AbstractField class.
+ *
+ * This class is the shared base for concrete field implementations.
+ */
 abstract class AbstractField implements FieldInterface
 {
     /**
@@ -60,6 +65,12 @@ abstract class AbstractField implements FieldInterface
      */
     protected $validations = [];
 
+    /**
+     * AbstractField constructor.
+     *
+     * @param string $id
+     * @param string $name
+     */
     public function __construct(string $id, string $name)
     {
         $this->id = $id;

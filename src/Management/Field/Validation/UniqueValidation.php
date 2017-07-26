@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Field\Validation;
 
+/**
+ * UniqueValidation class.
+ */
 class UniqueValidation implements ValidationInterface
 {
     /**
@@ -20,11 +23,17 @@ class UniqueValidation implements ValidationInterface
     {
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromApiResponse(array $data): ValidationInterface
     {
         return new self();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getValidFieldTypes(): array
     {
         return ['Symbol', 'Integer', 'Number'];

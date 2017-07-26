@@ -52,6 +52,9 @@ class Role implements SpaceScopedResourceInterface, Creatable, Updatable, Deleta
 
     /**
      * Role constructor.
+     *
+     * @param string $name
+     * @param string $description
      */
     public function __construct(string $name = '', string $description = '')
     {

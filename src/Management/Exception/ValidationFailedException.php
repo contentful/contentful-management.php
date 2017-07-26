@@ -12,7 +12,8 @@ namespace Contentful\Management\Exception;
 use Contentful\Exception\ApiException;
 
 /**
- * A ValidationFailedException is thrown when persisting an object that's in an invalid state.
+ * A ValidationFailedException is thrown when persisting an object
+ * that's in an invalid state.
  */
 class ValidationFailedException extends ApiException
 {

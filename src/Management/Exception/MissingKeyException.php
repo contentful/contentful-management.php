@@ -14,7 +14,8 @@ use Contentful\Exception\ApiException;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 
 /**
- * A MissingKeyException is thrown when persisting an object without a key that is required.
+ * A MissingKeyException is thrown when persisting an object
+ * without a key that is required.
  */
 class MissingKeyException extends ApiException
 {
@@ -23,6 +24,9 @@ class MissingKeyException extends ApiException
      */
     private $key;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(GuzzleRequestException $previous, $message = '')
     {
         parent::__construct($previous, $message);
@@ -32,6 +36,9 @@ class MissingKeyException extends ApiException
         $this->key = $result['details']['key'];
     }
 
+    /**
+     * @return string
+     */
     public function getKey(): string
     {
         return $this->key;
