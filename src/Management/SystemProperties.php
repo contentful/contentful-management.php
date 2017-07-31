@@ -136,25 +136,27 @@ class SystemProperties implements \JsonSerializable
     {
         $this->id = $sys['id'] ?? null;
         $this->type = $sys['type'] ?? null;
-        $this->space = isset($sys['space']) ? $this->buildLink($sys['space']) : null;
-        $this->contentType = isset($sys['contentType']) ? $this->buildLink($sys['contentType']) : null;
-        $this->createdAt = isset($sys['createdAt']) ? new \DateTimeImmutable($sys['createdAt']) : null;
-        $this->updatedAt = isset($sys['updatedAt']) ? new \DateTimeImmutable($sys['updatedAt']) : null;
-        $this->publishedAt = isset($sys['publishedAt']) ? new \DateTimeImmutable($sys['publishedAt']) : null;
-        $this->archivedAt = isset($sys['archivedAt']) ? new \DateTimeImmutable($sys['archivedAt']) : null;
-        $this->firstPublishedAt = isset($sys['firstPublishedAt']) ? new \DateTimeImmutable($sys['firstPublishedAt']) : null;
         $this->version = $sys['version'] ?? null;
         $this->revision = $sys['revision'] ?? null;
         $this->publishedCounter = $sys['publishedCounter'] ?? null;
         $this->publishedVersion = $sys['publishedVersion'] ?? null;
         $this->archivedVersion = $sys['archivedVersion'] ?? null;
-        $this->createdBy = isset($sys['createdBy']) ? $this->buildLink($sys['createdBy']) : null;
-        $this->updatedBy = isset($sys['updatedBy']) ? $this->buildLink($sys['updatedBy']) : null;
-        $this->publishedBy = isset($sys['publishedBy']) ? $this->buildLink($sys['publishedBy']) : null;
-        $this->archivedBy = isset($sys['archivedBy']) ? $this->buildLink($sys['archivedBy']) : null;
         $this->snapshotType = $sys['snapshotType'] ?? null;
         $this->snapshotEntityType = $sys['snapshotEntityType'] ?? null;
-        $this->expiresAt = isset($sys['expiresAt']) ? new \DateTimeImmutable($sys['expiresAt']) : null;
+
+        $this->createdAt = $this->checkAndBuildDate($sys, 'createdAt');
+        $this->updatedAt = $this->checkAndBuildDate($sys, 'updatedAt');
+        $this->publishedAt = $this->checkAndBuildDate($sys, 'publishedAt');
+        $this->archivedAt = $this->checkAndBuildDate($sys, 'archivedAt');
+        $this->firstPublishedAt = $this->checkAndBuildDate($sys, 'firstPublishedAt');
+        $this->expiresAt = $this->checkAndBuildDate($sys, 'expiresAt');
+
+        $this->space = $this->checkAndBuildLink($sys, 'space');
+        $this->contentType = $this->checkAndBuildLink($sys, 'contentType');
+        $this->createdBy = $this->checkAndBuildLink($sys, 'createdBy');
+        $this->updatedBy = $this->checkAndBuildLink($sys, 'updatedBy');
+        $this->publishedBy = $this->checkAndBuildLink($sys, 'publishedBy');
+        $this->archivedBy = $this->checkAndBuildLink($sys, 'archivedBy');
     }
 
     /**
@@ -170,15 +172,29 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @param array $data
+     * @param array  $data
+     * @param string $field
      *
-     * @return Link
+     * @return \DateTimeImmutable|null
      */
-    private function buildLink(array $data)
+    private function checkAndBuildDate(array $data, string $field)
     {
-        $sys = $data['sys'];
+        return isset($data[$field])
+            ? new \DateTimeImmutable($data[$field])
+            : null;
+    }
 
-        return new Link($sys['id'], $sys['linkType']);
+    /**
+     * @param array  $data
+     * @param string $field
+     *
+     * @return Link|null
+     */
+    private function checkAndBuildLink(array $data, string $field)
+    {
+        return isset($data[$field])
+            ? new Link($data[$field]['sys']['id'], $data[$field]['sys']['linkType'])
+            : null;
     }
 
     /**
