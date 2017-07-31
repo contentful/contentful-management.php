@@ -18,6 +18,8 @@ use Contentful\Management\Behavior\Publishable;
 use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
+use Contentful\Management\Resource\PreviewApiKey;
+use Contentful\Management\Resource\DeliveryApiKey;
 use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
@@ -312,6 +314,58 @@ class SpaceManager
     public function getAssets(Query $query = null): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/assets', $query);
+    }
+
+    /**
+     * @param string $deliveryApiKeyId
+     *
+     * @return DeliveryApiKey
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys
+     */
+    public function getDeliveryApiKey(string $deliveryApiKeyId): DeliveryApiKey
+    {
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/api_keys/'.$deliveryApiKeyId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys
+     */
+    public function getDeliveryApiKeys(Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/api_keys', $query);
+    }
+
+    /**
+     * @param string $previewApiKeyId
+     *
+     * @return PreviewApiKey
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys
+     */
+    public function getPreviewApiKey(string $previewApiKeyId): PreviewApiKey
+    {
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/preview_api_keys/'.$previewApiKeyId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys
+     */
+    public function getPreviewApiKeys(Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/preview_api_keys', $query);
     }
 
     /**

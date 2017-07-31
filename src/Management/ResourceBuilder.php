@@ -20,6 +20,8 @@ use Contentful\Management\Field\Validation;
 use Contentful\Management\Field\Validation\ValidationInterface;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
+use Contentful\Management\Resource\PreviewApiKey;
+use Contentful\Management\Resource\DeliveryApiKey;
 use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
@@ -79,6 +81,8 @@ class ResourceBuilder
         switch ($type) {
             case 'Array':
                 return $this->buildArray($data);
+            case 'ApiKey':
+                return $this->buildDeliveryApiKey($data);
             case 'Asset':
                 return $this->buildAsset($data);
             case 'ContentType':
@@ -95,6 +99,8 @@ class ResourceBuilder
                 return $this->buildLocale($data);
             case 'Organization':
                 return $this->buildOrganization($data);
+            case 'PreviewApiKey':
+                return $this->buildPreviewApiKey($data);
             case 'Role':
                 return $this->buildRole($data);
             case 'Snapshot':
@@ -137,6 +143,8 @@ class ResourceBuilder
         $type = $data['sys']['type'];
 
         switch ($type) {
+            case 'ApiKey':
+                return $this->updateDeliveryApiKey($object, $data);
             case 'Asset':
                 return $this->updateAsset($object, $data);
             case 'ContentType':
@@ -237,6 +245,39 @@ class ResourceBuilder
         $total = $data['total'] ?? 0;
 
         return new ResourceArray($items, $total, $data['limit'], $data['skip']);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return DeliveryApiKey
+     */
+    private function buildDeliveryApiKey(array $data): DeliveryApiKey
+    {
+        return $this->createObject(DeliveryApiKey::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'accessToken' => $data['accessToken'],
+            'description' => $data['description'],
+            'previewApiKey' => isset($data['preview_api_key'])
+                ? new Link($data['preview_api_key']['sys']['id'], 'PreviewApiKey')
+                : null,
+        ]);
+    }
+
+    /**
+     * @param DeliveryApiKey $deliveryApiKey
+     * @param array          $data
+     */
+    private function updateDeliveryApiKey(DeliveryApiKey $deliveryApiKey, array $data)
+    {
+        $this->updateObject(DeliveryApiKey::class, $deliveryApiKey, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'accessToken' => $data['accessToken'],
+            'description' => $data['description'],
+            'previewApiKey' => new Link($data['preview_api_key']['sys']['id'], 'PreviewApiKey'),
+        ]);
     }
 
     /**
@@ -500,6 +541,21 @@ class ResourceBuilder
         return $this->createObject(Organization::class, [
             'sys' => $this->buildSystemProperties($data['sys']),
             'name' => $data['name'],
+        ]);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return PreviewApiKey
+     */
+    private function buildPreviewApiKey(array $data): PreviewApiKey
+    {
+        return $this->createObject(PreviewApiKey::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'name' => $data['name'],
+            'accessToken' => $data['accessToken'],
+            'description' => $data['description'],
         ]);
     }
 
