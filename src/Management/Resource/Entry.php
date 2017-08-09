@@ -9,10 +9,12 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
 use function Contentful\format_date_for_json;
 use Contentful\Management\Behavior\Archivable;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Linkable;
 use Contentful\Management\Behavior\Publishable;
 use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\SystemProperties;
@@ -24,7 +26,7 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
  */
-class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
+class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable, Linkable
 {
     /**
      * @var SystemProperties
@@ -60,6 +62,14 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     public function getResourceUriPart(): string
     {
         return 'entries';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asLink(): Link
+    {
+        return new Link($this->sys->getId(), 'Entry');
     }
 
     /**

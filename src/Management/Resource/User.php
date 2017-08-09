@@ -9,6 +9,8 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
+use Contentful\Management\Behavior\Linkable;
 use Contentful\Management\SystemProperties;
 
 /**
@@ -18,7 +20,7 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/users/user
  */
-class User implements ResourceInterface
+class User implements ResourceInterface, Linkable
 {
     /**
      * @var SystemProperties
@@ -74,6 +76,14 @@ class User implements ResourceInterface
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asLink(): Link
+    {
+        return new Link($this->sys->getId(), 'User');
     }
 
     /**

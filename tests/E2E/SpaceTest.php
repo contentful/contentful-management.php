@@ -26,6 +26,7 @@ class SpaceTest extends End2EndTestCase
         $space = $this->client->getSpace($this->readOnlySpaceId);
 
         $this->assertInstanceOf(Space::class, $space);
+        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $space->asLink());
         $sys = $space->getSystemProperties();
         $this->assertEquals($this->readOnlySpaceId, $sys->getId());
         $this->assertEquals('Space', $sys->getType());

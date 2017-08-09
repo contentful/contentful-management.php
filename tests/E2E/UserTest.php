@@ -9,6 +9,7 @@
 
 namespace Contentful\Tests\E2E;
 
+use Contentful\Link;
 use Contentful\Tests\End2EndTestCase;
 
 class UserTest extends End2EndTestCase
@@ -28,6 +29,7 @@ class UserTest extends End2EndTestCase
         $this->assertEquals(true, $user->isConfirmed());
         $this->assertInternalType('integer', $user->getSignInCount());
         $this->assertGreaterThan(1, $user->getSignInCount());
+        $this->assertEquals(new Link('4Q3e6duhma7V6czH7UXHzE', 'User'), $user->asLink());
         $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $user->getSystemProperties()->getId());
         $this->assertEquals('User', $user->getSystemProperties()->getType());
 

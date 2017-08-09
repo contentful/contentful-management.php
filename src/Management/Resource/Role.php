@@ -9,8 +9,10 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Linkable;
 use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\Role\Permissions;
 use Contentful\Management\Role\Policy;
@@ -23,7 +25,7 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles
  */
-class Role implements SpaceScopedResourceInterface, Creatable, Updatable, Deletable
+class Role implements SpaceScopedResourceInterface, Creatable, Updatable, Deletable, Linkable
 {
     /**
      * @var SystemProperties
@@ -78,6 +80,14 @@ class Role implements SpaceScopedResourceInterface, Creatable, Updatable, Deleta
     public function getResourceUriPart(): string
     {
         return 'roles';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asLink(): Link
+    {
+        return new Link($this->sys->getId(), 'Role');
     }
 
     /**
