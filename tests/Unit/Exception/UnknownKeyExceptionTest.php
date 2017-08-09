@@ -13,8 +13,9 @@ use Contentful\Management\Exception\UnknownKeyException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class UnknownKeyExceptionTest extends \PHPUnit_Framework_TestCase
+class UnknownKeyExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

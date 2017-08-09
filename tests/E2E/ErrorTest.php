@@ -68,6 +68,8 @@ class ErrorTest extends End2EndTestCase
         try {
             $spaceManager->update($fakeAsset);
         } catch (VersionMismatchException $e) {
+            $this->markTestAsPassed();
+
             return;
         } finally {
             $spaceManager->delete($asset);

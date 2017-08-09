@@ -10,8 +10,9 @@
 namespace Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\LinkContentTypeValidation;
+use PHPUnit\Framework\TestCase;
 
-class LinkContentTypeValidationTest extends \PHPUnit_Framework_TestCase
+class LinkContentTypeValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {

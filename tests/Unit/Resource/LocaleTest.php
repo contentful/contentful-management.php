@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Resource;
 
 use Contentful\Management\Resource\Locale;
+use PHPUnit\Framework\TestCase;
 
-class LocaleTest extends \PHPUnit_Framework_TestCase
+class LocaleTest extends TestCase
 {
     public function testGetSetData()
     {

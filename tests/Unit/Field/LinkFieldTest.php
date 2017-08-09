@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Field;
 
 use Contentful\Management\Field\LinkField;
+use PHPUnit\Framework\TestCase;
 
-class LinkFieldTest extends \PHPUnit_Framework_TestCase
+class LinkFieldTest extends TestCase
 {
     public function testEntryLinkGetSetData()
     {

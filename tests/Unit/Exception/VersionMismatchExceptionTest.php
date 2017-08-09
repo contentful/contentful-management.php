@@ -13,8 +13,9 @@ use Contentful\Management\Exception\VersionMismatchException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class VersionMismatchExceptionTest extends \PHPUnit_Framework_TestCase
+class VersionMismatchExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

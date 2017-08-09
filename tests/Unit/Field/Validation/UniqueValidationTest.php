@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\UniqueValidation;
+use PHPUnit\Framework\TestCase;
 
-class UniqueValidationTest extends \PHPUnit_Framework_TestCase
+class UniqueValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {

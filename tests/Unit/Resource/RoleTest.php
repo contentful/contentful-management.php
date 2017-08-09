@@ -16,8 +16,9 @@ use Contentful\Management\Role\Constraint\NotConstraint;
 use Contentful\Management\Role\Constraint\OrConstraint;
 use Contentful\Management\Role\Permissions;
 use Contentful\Management\Role\Policy;
+use PHPUnit\Framework\TestCase;
 
-class RoleTest extends \PHPUnit_Framework_TestCase
+class RoleTest extends TestCase
 {
     public function testGetSetData()
     {

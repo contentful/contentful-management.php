@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Integration;
 
 use Contentful\Management\ResourceBuilder;
+use PHPUnit\Framework\TestCase;
 
-class ContentTypeSnapshotTest extends \PHPUnit_Framework_TestCase
+class ContentTypeSnapshotTest extends TestCase
 {
     public function testJsonSerialize()
     {

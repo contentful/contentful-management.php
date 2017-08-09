@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Resource;
 
 use Contentful\Management\Resource\Space;
+use PHPUnit\Framework\TestCase;
 
-class SpaceTest extends \PHPUnit_Framework_TestCase
+class SpaceTest extends TestCase
 {
     public function testGetSetData()
     {

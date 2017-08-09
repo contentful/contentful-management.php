@@ -13,8 +13,9 @@ use Contentful\Management\Exception\MissingKeyException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class MissingKeyExceptionTest extends \PHPUnit_Framework_TestCase
+class MissingKeyExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

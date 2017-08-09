@@ -10,8 +10,9 @@
 namespace Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\SizeValidation;
+use PHPUnit\Framework\TestCase;
 
-class SizeValidationTest extends \PHPUnit_Framework_TestCase
+class SizeValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {

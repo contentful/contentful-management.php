@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Field;
 
 use Contentful\Management\Field;
+use PHPUnit\Framework\TestCase;
 
-class FieldJsonSerializationTest extends \PHPUnit_Framework_TestCase
+class FieldJsonSerializationTest extends TestCase
 {
     /**
      * @dataProvider fieldProvider

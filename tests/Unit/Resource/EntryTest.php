@@ -11,8 +11,9 @@ namespace Contentful\Tests\Unit\Resource;
 
 use Contentful\Link;
 use Contentful\Management\Resource\Entry;
+use PHPUnit\Framework\TestCase;
 
-class EntryTest extends \PHPUnit_Framework_TestCase
+class EntryTest extends TestCase
 {
     public function testGetSetData()
     {

@@ -10,8 +10,9 @@
 namespace Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\RegexpValidation;
+use PHPUnit\Framework\TestCase;
 
-class RegexpValidationTest extends \PHPUnit_Framework_TestCase
+class RegexpValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {

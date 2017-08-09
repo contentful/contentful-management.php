@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Constraint;
 
 use Contentful\Management\Role\Constraint\EqualityConstraint;
+use PHPUnit\Framework\TestCase;
 
-class EqualityConstraintTest extends \PHPUnit_Framework_TestCase
+class EqualityConstraintTest extends TestCase
 {
     public function testGetSetData()
     {

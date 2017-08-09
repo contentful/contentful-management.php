@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit;
 
 use Contentful\Management\Role\Permissions;
+use PHPUnit\Framework\TestCase;
 
-class PermissionsTest extends \PHPUnit_Framework_TestCase
+class PermissionsTest extends TestCase
 {
     public function testGetSetData()
     {

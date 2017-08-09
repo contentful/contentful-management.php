@@ -74,6 +74,25 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
     }
 
     /**
+     * @param string|null $locale
+     *
+     * @return array
+     */
+    public function getFields(string $locale = null): array
+    {
+        if ($locale === null) {
+            return $this->fields;
+        }
+
+        $fields = [];
+        foreach ($this->fields as $name => $field) {
+            $fields[$name] = $field[$locale] ?? null;
+        }
+
+        return $fields;
+    }
+
+    /**
      * @param string $name
      * @param string $locale
      * @param mixed  $value

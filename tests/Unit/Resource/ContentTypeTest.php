@@ -12,8 +12,9 @@ namespace Contentful\Tests\Unit\Resource;
 use Contentful\Management\Field\NumberField;
 use Contentful\Management\Field\SymbolField;
 use Contentful\Management\Resource\ContentType;
+use PHPUnit\Framework\TestCase;
 
-class ContentTypeTest extends \PHPUnit_Framework_TestCase
+class ContentTypeTest extends TestCase
 {
     public function testGetSetData()
     {

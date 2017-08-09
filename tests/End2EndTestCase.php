@@ -11,8 +11,9 @@ namespace Contentful\Tests;
 
 use Contentful\Management\Client;
 use Contentful\Management\SpaceManager;
+use PHPUnit\Framework\TestCase;
 
-class End2EndTestCase extends \PHPUnit_Framework_TestCase
+class End2EndTestCase extends TestCase
 {
     /**
      * @var string
@@ -59,5 +60,16 @@ class End2EndTestCase extends \PHPUnit_Framework_TestCase
     protected function getReadWriteSpaceManager(): SpaceManager
     {
         return $this->client->getSpaceManager($this->readWriteSpaceId);
+    }
+
+    /**
+     * Creates an empty assertion (true == true).
+     * This is done to mark tests that are expected to simply work (i.e. not throw exceptions).
+     * As PHPUnit does not provide convenience methods for marking a test as passed,
+     * we define one.
+     */
+    protected function markTestAsPassed()
+    {
+        $this->assertTrue(true, 'Test case did not throw an exception and passed.');
     }
 }

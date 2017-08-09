@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Constraint;
 
 use Contentful\Management\Role\Constraint\OrConstraint;
+use PHPUnit\Framework\TestCase;
 
-class OrConstraintTest extends \PHPUnit_Framework_TestCase
+class OrConstraintTest extends TestCase
 {
     public function testGetSetData()
     {

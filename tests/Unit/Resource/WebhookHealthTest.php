@@ -11,8 +11,9 @@ namespace Contentful\Tests\Unit\Resource;
 
 use Contentful\Management\Resource\WebhookHealth;
 use Contentful\Management\ResourceBuilder;
+use PHPUnit\Framework\TestCase;
 
-class WebhookHealthTest extends \PHPUnit_Framework_TestCase
+class WebhookHealthTest extends TestCase
 {
     public function testJsonSerialize()
     {

@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Resource;
 
 use Contentful\Management\ResourceBuilder;
+use PHPUnit\Framework\TestCase;
 
-class WebhookCallTest extends \PHPUnit_Framework_TestCase
+class WebhookCallTest extends TestCase
 {
     public function testJsonSerialize()
     {

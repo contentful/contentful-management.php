@@ -10,8 +10,9 @@
 namespace Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\RangeValidation;
+use PHPUnit\Framework\TestCase;
 
-class RangeValidationTest extends \PHPUnit_Framework_TestCase
+class RangeValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {

@@ -11,8 +11,9 @@ namespace Contentful\Tests\Unit;
 
 use Contentful\Management\Role\Constraint\EqualityConstraint;
 use Contentful\Management\Role\Policy;
+use PHPUnit\Framework\TestCase;
 
-class PolicyTest extends \PHPUnit_Framework_TestCase
+class PolicyTest extends TestCase
 {
     public function testGetSetData()
     {

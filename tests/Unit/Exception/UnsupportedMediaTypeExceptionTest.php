@@ -13,8 +13,9 @@ use Contentful\Management\Exception\UnsupportedMediaTypeException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class UnsupportedMediaTypeExceptionTest extends \PHPUnit_Framework_TestCase
+class UnsupportedMediaTypeExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

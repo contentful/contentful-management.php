@@ -13,8 +13,9 @@ use Contentful\Management\Exception\ValidationFailedException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class ValidationFailedExceptionTest extends \PHPUnit_Framework_TestCase
+class ValidationFailedExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {
