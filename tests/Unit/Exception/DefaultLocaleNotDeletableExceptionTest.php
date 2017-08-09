@@ -13,8 +13,9 @@ use Contentful\Management\Exception\DefaultLocaleNotDeletableException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class DefaultLocaleNotDeletableExceptionTest extends \PHPUnit_Framework_TestCase
+class DefaultLocaleNotDeletableExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

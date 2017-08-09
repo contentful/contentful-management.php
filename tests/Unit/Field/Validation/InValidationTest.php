@@ -10,8 +10,9 @@
 namespace Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\InValidation;
+use PHPUnit\Framework\TestCase;
 
-class InValidationTest extends \PHPUnit_Framework_TestCase
+class InValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {

@@ -13,8 +13,9 @@ use Contentful\Management\Exception\RateLimitExceededException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class RateLimitExceededExceptionTest extends \PHPUnit_Framework_TestCase
+class RateLimitExceededExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

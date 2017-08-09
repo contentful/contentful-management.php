@@ -10,8 +10,9 @@
 namespace Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\AssetFileSizeValidation;
+use PHPUnit\Framework\TestCase;
 
-class AssetFileSizeValidationTest extends \PHPUnit_Framework_TestCase
+class AssetFileSizeValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {

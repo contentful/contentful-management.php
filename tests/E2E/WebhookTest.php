@@ -157,5 +157,7 @@ class WebhookTest extends End2EndTestCase
         $manager = $this->getReadWriteSpaceManager();
 
         $manager->delete($webhook);
+
+        $this->markTestAsPassed();
     }
 }

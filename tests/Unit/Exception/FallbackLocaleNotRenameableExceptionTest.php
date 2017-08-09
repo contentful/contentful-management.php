@@ -13,8 +13,9 @@ use Contentful\Management\Exception\FallbackLocaleNotRenameableException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class FallbackLocaleNotRenameableExceptionTest extends \PHPUnit_Framework_TestCase
+class FallbackLocaleNotRenameableExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

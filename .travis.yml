@@ -13,7 +13,6 @@ branches:
 
 before_install:
  - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
- - wget -O phpunit.phar https://phar.phpunit.de/phpunit-5.7.phar
 
 install:
   - composer self-update
@@ -22,7 +21,7 @@ install:
 script:
  - vendor/bin/parallel-lint src/
  - vendor/bin/parallel-lint tests/
- - php phpunit.phar -v
+ - vendor/bin/phpunit
 
 after_success:
  - travis_retry php coveralls.phar -v

@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Resource;
 
 use Contentful\Management\Resource\Webhook;
+use PHPUnit\Framework\TestCase;
 
-class WebhookTest extends \PHPUnit_Framework_TestCase
+class WebhookTest extends TestCase
 {
     public function testGetSetData()
     {

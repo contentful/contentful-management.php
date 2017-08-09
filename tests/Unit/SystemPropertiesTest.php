@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit;
 
 use Contentful\Management\SystemProperties;
+use PHPUnit\Framework\TestCase;
 
-class SystemPropertiesTest extends \PHPUnit_Framework_TestCase
+class SystemPropertiesTest extends TestCase
 {
     public function testCreateWithType()
     {

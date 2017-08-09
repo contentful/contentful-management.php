@@ -10,8 +10,9 @@
 namespace Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\AssetImageDimensionsValidation;
+use PHPUnit\Framework\TestCase;
 
-class AssetImageDimensionsValidationTest extends \PHPUnit_Framework_TestCase
+class AssetImageDimensionsValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {

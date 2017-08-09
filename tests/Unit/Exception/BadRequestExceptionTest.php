@@ -13,8 +13,9 @@ use Contentful\Management\Exception\BadRequestException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class BadRequestExceptionTest extends \PHPUnit_Framework_TestCase
+class BadRequestExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Constraint;
 
 use Contentful\Management\Role\Constraint\AndConstraint;
+use PHPUnit\Framework\TestCase;
 
-class AndConstraintTest extends \PHPUnit_Framework_TestCase
+class AndConstraintTest extends TestCase
 {
     public function testGetSetData()
     {

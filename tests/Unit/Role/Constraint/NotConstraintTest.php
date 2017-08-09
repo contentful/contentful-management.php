@@ -10,8 +10,9 @@
 namespace Contentful\Tests\Unit\Constraint;
 
 use Contentful\Management\Role\Constraint\NotConstraint;
+use PHPUnit\Framework\TestCase;
 
-class NotConstraintTest extends \PHPUnit_Framework_TestCase
+class NotConstraintTest extends TestCase
 {
     public function testGetSetData()
     {

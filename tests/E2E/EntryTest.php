@@ -73,6 +73,8 @@ class EntryTest extends End2EndTestCase
 
         $manager->create($entry);
         $this->assertNotNull($entry->getSystemProperties()->getId());
+        $this->assertEquals(['name' => 'A name'], $entry->getFields('en-US'));
+        $this->assertEquals(['name' => ['en-US' => 'A name']], $entry->getFields());
 
         $entry->setField('name', 'en-US', 'A better name');
 
@@ -121,5 +123,7 @@ class EntryTest extends End2EndTestCase
         // Without a default value in the ResourceBuilder, this call would cause a
         // "Undefined index: fields" error message
         $manager->getEntry('2cOd0Aho3WkowMgk2C02iy');
+
+        $this->markTestAsPassed();
     }
 }

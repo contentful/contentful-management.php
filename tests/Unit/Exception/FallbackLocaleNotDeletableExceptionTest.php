@@ -13,8 +13,9 @@ use Contentful\Management\Exception\FallbackLocaleNotDeletableException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class FallbackLocaleNotDeletableExceptionTest extends \PHPUnit_Framework_TestCase
+class FallbackLocaleNotDeletableExceptionTest extends TestCase
 {
     public function testExceptionStructure()
     {

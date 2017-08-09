@@ -10,8 +10,9 @@
 namespace Unit\FieldValidation;
 
 use Contentful\Management\Field\Validation\DateRangeValidation;
+use PHPUnit\Framework\TestCase;
 
-class DateRangeValidationTest extends \PHPUnit_Framework_TestCase
+class DateRangeValidationTest extends TestCase
 {
     public function testFromJsonToJsonSerialization()
     {
