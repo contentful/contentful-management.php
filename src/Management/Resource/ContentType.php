@@ -9,8 +9,10 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Linkable;
 use Contentful\Management\Behavior\Publishable;
 use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\Field\FieldInterface;
@@ -24,7 +26,7 @@ use Contentful\Management\SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types
  * @see https://www.contentful.com/developers/docs/concepts/data-model/
  */
-class ContentType implements SpaceScopedResourceInterface, Publishable, Deletable, Updatable, Creatable
+class ContentType implements SpaceScopedResourceInterface, Publishable, Deletable, Updatable, Creatable, Linkable
 {
     /**
      * @var SystemProperties
@@ -76,6 +78,14 @@ class ContentType implements SpaceScopedResourceInterface, Publishable, Deletabl
     public function getResourceUriPart(): string
     {
         return 'content_types';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asLink(): Link
+    {
+        return new Link($this->sys->getId(), 'ContentType');
     }
 
     /**

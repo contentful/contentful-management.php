@@ -9,8 +9,10 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Linkable;
 use Contentful\Management\SystemProperties;
 use Psr\Http\Message\StreamInterface;
 
@@ -21,7 +23,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads
  */
-class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
+class Upload implements SpaceScopedResourceInterface, Creatable, Deletable, Linkable
 {
     /**
      * @var SystemProperties
@@ -62,6 +64,14 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asLink(): Link
+    {
+        return new Link($this->sys->getId(), 'Upload');
     }
 
     /**

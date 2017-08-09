@@ -9,11 +9,13 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
 use Contentful\File\FileInterface;
 use Contentful\File\UnprocessedFileInterface;
 use Contentful\Management\Behavior\Archivable;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Linkable;
 use Contentful\Management\Behavior\Publishable;
 use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\SystemProperties;
@@ -25,7 +27,7 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
  */
-class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
+class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable, Linkable
 {
     /**
      * @var SystemProperties
@@ -69,6 +71,14 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
     public function getResourceUriPart(): string
     {
         return 'assets';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asLink(): Link
+    {
+        return new Link($this->sys->getId(), 'Asset');
     }
 
     /**

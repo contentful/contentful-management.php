@@ -9,8 +9,10 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
+use Contentful\Management\Behavior\Linkable;
 use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\SystemProperties;
 
@@ -21,7 +23,7 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks
  */
-class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Deletable
+class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Deletable, Linkable
 {
     /**
      * @var SystemProperties
@@ -87,6 +89,14 @@ class Webhook implements SpaceScopedResourceInterface, Creatable, Updatable, Del
     public function getResourceUriPart(): string
     {
         return 'webhook_definitions';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asLink(): Link
+    {
+        return new Link($this->sys->getId(), 'WebhookDefinition');
     }
 
     /**

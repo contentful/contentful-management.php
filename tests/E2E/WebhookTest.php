@@ -35,6 +35,7 @@ class WebhookTest extends End2EndTestCase
             'X-Second-Test' => 'Another Value',
         ], $webhook->getHeaders());
         $this->assertEquals(['Entry.auto_save'], $webhook->getTopics());
+        $this->assertEquals(new Link('3tilCowN1lI1rDCe9vhK0C', 'WebhookDefinition'), $webhook->asLink());
 
         $sys = $webhook->getSystemProperties();
         $this->assertEquals(new Link($this->readWriteSpaceId, 'Space'), $sys->getSpace());

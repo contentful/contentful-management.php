@@ -9,6 +9,8 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
+use Contentful\Management\Behavior\Linkable;
 use Contentful\Management\SystemProperties;
 
 /**
@@ -19,7 +21,7 @@ use Contentful\Management\SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces
  * @see https://www.contentful.com/r/knowledgebase/spaces-and-organizations/
  */
-class Space implements ResourceInterface
+class Space implements ResourceInterface, Linkable
 {
     /**
      * @var string
@@ -48,6 +50,14 @@ class Space implements ResourceInterface
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asLink(): Link
+    {
+        return new Link($this->sys->getId(), 'Space');
     }
 
     /**

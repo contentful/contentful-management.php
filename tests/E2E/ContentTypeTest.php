@@ -44,6 +44,7 @@ class ContentTypeTest extends End2EndTestCase
 
         $this->assertEquals('Cat', $contentType->getName());
         $this->assertEquals('Meow.', $contentType->getDescription());
+        $this->assertEquals(new Link('cat', 'ContentType'), $contentType->asLink());
 
         $fields = $contentType->getFields();
         $this->assertCount(8, $fields);
