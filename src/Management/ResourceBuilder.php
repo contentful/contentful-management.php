@@ -745,7 +745,7 @@ class ResourceBuilder
             'httpBasicUsername' => $data['httpBasicUsername'] ?? null,
             'httpBasicPassword' => null,
             'topics' => $data['topics'],
-            'headers' => $data['headers'],
+            'headers' => $headers,
         ]);
     }
 

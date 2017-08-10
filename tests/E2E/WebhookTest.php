@@ -68,14 +68,34 @@ class WebhookTest extends End2EndTestCase
 
         $webhook = (new Webhook('cf-webhook-X7v4Cy26RJ', 'https://www.example.com/cf-EtumCxGYNobexO7BCi6I6HSaxlpFf3d9YWNvRGb4'))
             ->addTopic('Entry.create')
+            ->addHeader('X-Test-Header', 'Test Value')
+            ->setHttpBasicUsername('cf-test-username')
+            ->setHttpBasicPassword('cf-test-password')
         ;
+
+        $startingWebhook = clone $webhook;
 
         $manager->create($webhook);
         $this->assertNotNull($webhook->getSystemProperties()->getId());
 
+        $this->assertEquals($startingWebhook->getName(), $webhook->getName());
+        $this->assertEquals($startingWebhook->getUrl(), $webhook->getUrl());
+        $this->assertEquals($startingWebhook->getHttpBasicUsername(), $webhook->getHttpBasicUsername());
+        $this->assertEquals(null, $webhook->getHttpBasicPassword());
+        $this->assertEquals($startingWebhook->getHeaders(), $webhook->getHeaders());
+        $this->assertEquals($startingWebhook->getTopics(), $webhook->getTopics());
+
         $webhook->setUrl('https://www.example.com/cf-xrLThVn5uBzHqB6tIbpV4aycgyisr5UAEQSafzkG');
+        $startingWebhook = clone $webhook;
+
         $manager->update($webhook);
         $this->assertEquals(1, $webhook->getSystemProperties()->getVersion());
+        $this->assertEquals($startingWebhook->getName(), $webhook->getName());
+        $this->assertEquals($startingWebhook->getUrl(), $webhook->getUrl());
+        $this->assertEquals($startingWebhook->getHttpBasicUsername(), $webhook->getHttpBasicUsername());
+        $this->assertEquals(null, $webhook->getHttpBasicPassword());
+        $this->assertEquals($startingWebhook->getHeaders(), $webhook->getHeaders());
+        $this->assertEquals($startingWebhook->getTopics(), $webhook->getTopics());
 
         return $webhook;
     }
