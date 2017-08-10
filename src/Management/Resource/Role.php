@@ -14,7 +14,6 @@ use Contentful\Management\Behavior\Deletable;
 use Contentful\Management\Behavior\Updatable;
 use Contentful\Management\Role\Permissions;
 use Contentful\Management\Role\Policy;
-use Contentful\Management\SystemProperties;
 
 /**
  * Role class.
@@ -23,13 +22,8 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles
  */
-class Role implements SpaceScopedResourceInterface, Creatable, Updatable, Deletable
+class Role extends BaseResource implements Creatable, Updatable, Deletable
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var string
      */
@@ -58,18 +52,10 @@ class Role implements SpaceScopedResourceInterface, Creatable, Updatable, Deleta
      */
     public function __construct(string $name = '', string $description = '')
     {
-        $this->sys = SystemProperties::withType('Role');
+        parent::__construct('Role');
         $this->name = $name;
         $this->description = $description;
         $this->permissions = new Permissions();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
     }
 
     /**

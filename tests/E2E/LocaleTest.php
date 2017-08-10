@@ -23,6 +23,7 @@ class LocaleTest extends End2EndTestCase
         $manager = $this->getReadOnlySpaceManager();
 
         $locale = $manager->getLocale('2oQPjMCL9bQkylziydLh57');
+        $this->assertEquals(new Link('2oQPjMCL9bQkylziydLh57', 'Locale'), $locale->asLink());
         $this->assertEquals('English', $locale->getName());
         $this->assertEquals('en-US', $locale->getCode());
         $this->assertNull($locale->getFallbackCode());
@@ -40,8 +41,6 @@ class LocaleTest extends End2EndTestCase
         $this->assertEquals(new \DateTimeImmutable('2013-06-25T12:13:56'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getUpdatedBy());
-
-        $this->assertJsonStringEqualsJsonString('{"name":"English","code":"en-US","fallbackCode":null,"contentManagementApi":true,"contentDeliveryApi":true,"optional":false,"sys":{"type":"Locale","id":"2oQPjMCL9bQkylziydLh57","version":1,"space":{"sys":{"type":"Link","linkType":"Space","id":"cfexampleapi"}},"createdBy":{"sys":{"type":"Link","linkType":"User","id":"7BslKh9TdKGOK41VmLDjFZ"}},"createdAt":"2013-06-23T19:02:00Z","updatedBy":{"sys":{"type":"Link","linkType":"User","id":"7BslKh9TdKGOK41VmLDjFZ"}},"updatedAt":"2013-06-25T12:13:56Z"}}', json_encode($locale));
     }
 
     /**

@@ -20,6 +20,8 @@ class WebhookTest extends TestCase
 
         $this->assertEquals('Test Webhook', $webhook->getName());
         $this->assertEquals('https://www.example.com/webhook', $webhook->getUrl());
+        $webhook->setName('Another name');
+        $this->assertEquals('Another name', $webhook->getName());
 
         $sys = $webhook->getSystemProperties();
         $this->assertEquals('WebhookDefinition', $sys->getType());

@@ -25,6 +25,7 @@ class SnapshotTest extends End2EndTestCase
         $manager = $this->getReadWriteSpaceManager();
 
         $snapshot = $manager->getEntrySnapshot('3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
+        $this->assertEquals(new Link('3omuk8H8M8wUuqHhxddXtp', 'Snapshot'), $snapshot->asLink());
         $this->assertInstanceOf(EntrySnapshot::class, $snapshot);
         $entry = $snapshot->getEntry();
         $this->assertEquals('Josh Lyman', $entry->getField('name', 'en-US'));
@@ -67,6 +68,7 @@ class SnapshotTest extends End2EndTestCase
 
         $snapshot = $manager->getContentTypeSnapshot('versionedContentType', '1Qvx64r3Nq0MOtftdcAXJO');
 
+        $this->assertEquals(new Link('1Qvx64r3Nq0MOtftdcAXJO', 'Snapshot'), $snapshot->asLink());
         $contentType = $snapshot->getContentType();
         $this->assertEquals('Versioned Content Type', $contentType->getName());
         $this->assertEquals('title', $contentType->getDisplayField());

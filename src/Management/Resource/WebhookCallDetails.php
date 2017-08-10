@@ -10,7 +10,6 @@
 namespace Contentful\Management\Resource;
 
 use function Contentful\format_date_for_json;
-use Contentful\Management\SystemProperties;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
@@ -21,13 +20,8 @@ use GuzzleHttp\Psr7\Response;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details
  */
-class WebhookCallDetails implements SpaceScopedResourceInterface
+class WebhookCallDetails extends BaseResource
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var Request
      */
@@ -71,25 +65,9 @@ class WebhookCallDetails implements SpaceScopedResourceInterface
     /**
      * WebhookCallDetails constructor.
      */
-    public function __construct()
+    final public function __construct()
     {
-        $this->sys = SystemProperties::withType('WebhookCallDetails');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getResourceUriPart(): string
-    {
-        return 'webhooks';
+        throw new \LogicException(sprintf('Class %s can only be instantiated as a result of an API call, manual creation is not allowed.', static::class));
     }
 
     /**

@@ -9,8 +9,6 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\SystemProperties;
-
 /**
  * ContentTypeSnapshot class.
  *
@@ -19,13 +17,8 @@ use Contentful\Management\SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
  * @see https://www.contentful.com/faq/versioning/
  */
-class ContentTypeSnapshot implements SpaceScopedResourceInterface
+class ContentTypeSnapshot extends BaseResource
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var ContentType
      */
@@ -34,25 +27,9 @@ class ContentTypeSnapshot implements SpaceScopedResourceInterface
     /**
      * ContentTypeSnapshot constructor.
      */
-    public function __construct()
+    final public function __construct()
     {
-        $this->sys = new SystemProperties(['type' => 'Snapshot', 'snapshotEntityType' => 'ContentType']);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getResourceUriPart(): string
-    {
-        return 'content_types';
+        throw new \LogicException(sprintf('Class %s can only be instantiated as a result of an API call, manual creation is not allowed.', static::class));
     }
 
     /**

@@ -11,7 +11,6 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
-use Contentful\Management\SystemProperties;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -21,13 +20,8 @@ use Psr\Http\Message\StreamInterface;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads
  */
-class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
+class Upload extends BaseResource implements Creatable, Deletable
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var string|resource|StreamInterface|null
      */
@@ -44,7 +38,7 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
      */
     public function __construct($body)
     {
-        $this->sys = SystemProperties::withType('Upload');
+        parent::__construct('Upload');
         $this->body = $body;
     }
 
@@ -54,14 +48,6 @@ class Upload implements SpaceScopedResourceInterface, Creatable, Deletable
     public function getResourceUriPart(): string
     {
         return 'uploads';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
     }
 
     /**

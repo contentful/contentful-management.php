@@ -10,17 +10,25 @@
 namespace Contentful\Tests\Unit\Resource;
 
 use Contentful\Management\ResourceBuilder;
+use Contentful\Management\Resource\EntrySnapshot;
 use PHPUnit\Framework\TestCase;
 
 class EntrySnapshotTest extends TestCase
 {
+    /**
+     * @expectedException \LogicException
+     */
+    public function testInvalidCreation()
+    {
+        new EntrySnapshot();
+    }
+
     public function testJsonSerialize()
     {
-        $builder = new ResourceBuilder();
-
-        $data = [
+        $entrySnapshot = (new ResourceBuilder())->buildObjectsFromRawData([
             'sys' => [
                 'type' => 'Snapshot',
+                'snapshotType' => 'publish',
                 'snapshotEntityType' => 'Entry',
             ],
             'snapshot' => [
@@ -36,10 +44,9 @@ class EntrySnapshotTest extends TestCase
                     'type' => 'Entry',
                 ],
             ],
-        ];
+        ]);
 
-        $entrySnapshot = $builder->buildObjectsFromRawData($data);
-        $json = '{"snapshot":{"sys":{"type":"Entry"},"fields":{"name":{"en-US":"Consuela Bananahammock"},"jobTitle":{"en-US":"Princess"}}},"sys":{"type":"Snapshot","snapshotEntityType":"Entry"}}';
+        $json = '{"snapshot":{"sys":{"type":"Entry"},"fields":{"name":{"en-US":"Consuela Bananahammock"},"jobTitle":{"en-US":"Princess"}}},"sys":{"type":"Snapshot","snapshotType":"publish","snapshotEntityType":"Entry"}}';
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($entrySnapshot));
     }

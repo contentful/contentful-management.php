@@ -9,8 +9,6 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\SystemProperties;
-
 /**
  * Organization class.
  *
@@ -19,13 +17,8 @@ use Contentful\Management\SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/organizations
  * @see https://www.contentful.com/r/knowledgebase/spaces-and-organizations/
  */
-class Organization implements ResourceInterface
+class Organization extends BaseResource
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var string
      */
@@ -34,17 +27,9 @@ class Organization implements ResourceInterface
     /**
      * Organization constructor.
      */
-    public function __construct()
+    final public function __construct()
     {
-        $this->sys = SystemProperties::withType('Organization');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
+        throw new \LogicException(sprintf('Class %s can only be instantiated as a result of an API call, manual creation is not allowed.', static::class));
     }
 
     /**

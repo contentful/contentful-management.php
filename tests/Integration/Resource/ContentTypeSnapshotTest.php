@@ -10,17 +10,25 @@
 namespace Contentful\Tests\Integration;
 
 use Contentful\Management\ResourceBuilder;
+use Contentful\Management\Resource\ContentTypeSnapshot;
 use PHPUnit\Framework\TestCase;
 
 class ContentTypeSnapshotTest extends TestCase
 {
+    /**
+     * @expectedException \LogicException
+     */
+    public function testInvalidCreation()
+    {
+        new ContentTypeSnapshot();
+    }
+
     public function testJsonSerialize()
     {
-        $builder = new ResourceBuilder();
-
-        $data = [
+        $contentTypeSnapshot = (new ResourceBuilder())->buildObjectsFromRawData([
             'sys' => [
                 'type' => 'Snapshot',
+                'snapshotType' => 'publish',
                 'snapshotEntityType' => 'ContentType',
             ],
             'snapshot' => [
@@ -43,11 +51,10 @@ class ContentTypeSnapshotTest extends TestCase
                     'type' => 'ContentType',
                 ],
             ],
-        ];
+        ]);
 
-        $entrySnapshot = $builder->buildObjectsFromRawData($data);
-        $json = '{"sys":{"type":"Snapshot","snapshotEntityType":"ContentType"},"snapshot":{"name":"Versioned Content Type","displayField":"title","fields":[{"name":"Title","id":"title","type":"Symbol"},{"name":"Description","id":"description","type":"Text"}],"sys":{"id":"versionedContentType","type":"ContentType"}}}';
+        $json = '{"sys":{"type":"Snapshot","snapshotType":"publish","snapshotEntityType":"ContentType"},"snapshot":{"name":"Versioned Content Type","displayField":"title","fields":[{"name":"Title","id":"title","type":"Symbol"},{"name":"Description","id":"description","type":"Text"}],"sys":{"id":"versionedContentType","type":"ContentType"}}}';
 
-        $this->assertJsonStringEqualsJsonString($json, json_encode($entrySnapshot));
+        $this->assertJsonStringEqualsJsonString($json, json_encode($contentTypeSnapshot));
     }
 }

@@ -12,7 +12,6 @@ namespace Contentful\Management\Resource;
 use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
 use Contentful\Management\Behavior\Updatable;
-use Contentful\Management\SystemProperties;
 
 /**
  * Locale class.
@@ -22,13 +21,8 @@ use Contentful\Management\SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales
  * @see https://www.contentful.com/developers/docs/concepts/locales/
  */
-class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Creatable
+class Locale extends BaseResource implements Deletable, Updatable, Creatable
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var string
      */
@@ -73,18 +67,10 @@ class Locale implements SpaceScopedResourceInterface, Deletable, Updatable, Crea
      */
     public function __construct(string $name, string $code, string $fallbackCode = null)
     {
-        $this->sys = SystemProperties::withType('Locale');
+        parent::__construct('Locale');
         $this->name = $name;
         $this->code = $code;
         $this->fallbackCode = $fallbackCode;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
     }
 
     /**

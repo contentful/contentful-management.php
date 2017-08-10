@@ -26,6 +26,7 @@ class SpaceTest extends End2EndTestCase
         $space = $this->client->getSpace($this->readOnlySpaceId);
 
         $this->assertInstanceOf(Space::class, $space);
+        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $space->asLink());
         $sys = $space->getSystemProperties();
         $this->assertEquals($this->readOnlySpaceId, $sys->getId());
         $this->assertEquals('Space', $sys->getType());
@@ -35,9 +36,6 @@ class SpaceTest extends End2EndTestCase
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getUpdatedBy());
         $this->assertEquals('Contentful Example API', $space->getName());
-
-        $json = '{"name":"Contentful Example API","sys":{"type":"Space","id":"cfexampleapi","version":4,"createdBy":{"sys":{"type":"Link","linkType":"User","id":"7BslKh9TdKGOK41VmLDjFZ"}},"createdAt":"2013-06-23T19:02:00Z","updatedBy":{"sys":{"type":"Link","linkType":"User","id":"7BslKh9TdKGOK41VmLDjFZ"}},"updatedAt":"2016-02-25T09:57:25Z"}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($space));
     }
 
     /**

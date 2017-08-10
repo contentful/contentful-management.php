@@ -9,8 +9,6 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\SystemProperties;
-
 /**
  * WebhookHealth class.
  *
@@ -18,13 +16,8 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health
  */
-class WebhookHealth implements SpaceScopedResourceInterface
+class WebhookHealth extends BaseResource
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var int
      */
@@ -38,25 +31,9 @@ class WebhookHealth implements SpaceScopedResourceInterface
     /**
      * WebhookHealth constructor.
      */
-    public function __construct()
+    final public function __construct()
     {
-        $this->sys = SystemProperties::withType('Webhook');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getResourceUriPart(): string
-    {
-        return 'webhooks';
+        throw new \LogicException(sprintf('Class %s can only be instantiated as a result of an API call, manual creation is not allowed.', static::class));
     }
 
     /**

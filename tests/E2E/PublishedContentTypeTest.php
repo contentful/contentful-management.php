@@ -26,6 +26,8 @@ class PublishedContentTypeTest extends End2EndTestCase
 
         $this->assertEquals('Cat', $contentType->getName());
         $this->assertEquals('name', $contentType->getDisplayField());
+        $this->assertEquals(new Link('cat', 'ContentType'), $contentType->asLink());
+        $this->assertEquals(true, $contentType->isPublished());
         $this->assertCount(8, $contentType->getFields());
 
         $sys = $contentType->getSystemProperties();
@@ -35,9 +37,6 @@ class PublishedContentTypeTest extends End2EndTestCase
         $this->assertEquals(new \DateTimeImmutable('2017-07-06T09:58:52.691'), $sys->getUpdatedAt());
         $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(8, $sys->getRevision());
-
-        $json = '{"sys": {"space": {"sys": {"type": "Link","linkType": "Space","id": "cfexampleapi"}},"id": "cat","type": "ContentType","createdAt": "2013-06-27T22:46:12.852Z","updatedAt": "2017-07-06T09:58:52.691Z","revision": 8},"displayField": "name","name": "Cat","description": "Meow.","fields": [{"id": "name","name": "Name","type": "Text","localized": true,"required": true,"validations": [{"size": {"min": 3}}],"disabled": false,"omitted": false},{"id": "likes","name": "Likes","type": "Array","localized": false,"required": false,"disabled": false,"omitted": false,"items": {"type": "Symbol"}},{"id": "color","name": "Color","type": "Symbol","localized": false,"required": false,"disabled": false,"omitted": false},{"id": "bestFriend","name": "Best Friend","type": "Link","localized": false,"required": false,"disabled": false,"omitted": false,"linkType": "Entry"},{"id": "birthday","name": "Birthday","type": "Date","localized": false,"required": false,"disabled": false,"omitted": false},{"id": "lifes","name": "Lifes left","type": "Integer","localized": false,"required": false,"disabled": true,"omitted": false},{"id": "lives","name": "Lives left","type": "Integer","localized": false,"required": false,"disabled": false,"omitted": false},{"id": "image","name": "Image","type": "Link","localized": false,"required": false,"disabled": false,"omitted": false,"linkType": "Asset"}]}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($contentType));
     }
 
     /**
