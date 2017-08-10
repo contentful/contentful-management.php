@@ -46,9 +46,6 @@ class AssetTest extends End2EndTestCase
         $this->assertEquals(1, $sys->getPublishedCounter());
         $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.24'), $sys->getPublishedAt());
         $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.24'), $sys->getFirstPublishedAt());
-
-        $json = '{"fields":{"title":{"en-US":"Nyan Cat"},"file":{"en-US":{"fileName":"Nyan_cat_250px_frame.png","contentType":"image\/png","details":{"image":{"width": 250,"height": 250},"size": 12273},"url":"\/\/images.contentful.com\/cfexampleapi\/4gp6taAwW4CmSgumq2ekUm\/9da0cd1936871b8d72343e895a00d611\/Nyan_cat_250px_frame.png"}}},"sys":{"id": "nyancat","type": "Asset","space":{"sys":{"type":"Link","linkType": "Space", "id":"cfexampleapi"}},"createdAt":"2013-09-02T14:54:17.868Z","createdBy":{"sys":{"type": "Link","linkType":"User","id": "7BslKh9TdKGOK41VmLDjFZ"}},"firstPublishedAt": "2013-09-02T14:56:34.240Z","publishedCounter": 1,"publishedAt":"2013-09-02T14:56:34.240Z","publishedBy":{"sys":{"type": "Link","linkType": "User","id":"7BslKh9TdKGOK41VmLDjFZ"}},"publishedVersion": 1,"version": 2,"updatedAt":"2013-09-02T14:56:34.264Z","updatedBy":{"sys":{"type":"Link","linkType": "User","id": "7BslKh9TdKGOK41VmLDjFZ"}}}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($asset));
     }
 
     /**

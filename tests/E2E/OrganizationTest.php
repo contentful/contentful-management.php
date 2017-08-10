@@ -34,8 +34,6 @@ class OrganizationTest extends End2EndTestCase
         $this->assertEquals(1, $sys->getVersion());
         $this->assertEquals(new \DateTimeImmutable('2017-07-12T13:04:54'), $sys->getCreatedAt());
         $this->assertEquals(new \DateTimeImmutable('2017-07-13T09:35:27'), $sys->getUpdatedAt());
-
-        $this->assertJsonStringEqualsJsonString('{"sys":{"id":"4Q3Lza73mxcjmluLU7V5EG","type":"Organization","createdAt":"2017-07-12T13:04:54Z","updatedAt":"2017-07-13T09:35:27Z","version":1},"name":"Contentful PHP SDK Testing"}', json_encode($organization));
     }
 
     /**

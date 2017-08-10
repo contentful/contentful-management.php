@@ -19,6 +19,14 @@ namespace Contentful\Management\Resource;
 class PublishedContentType extends ContentType
 {
     /**
+     * PublishedContentType constructor.
+     */
+    final public function __construct()
+    {
+        throw new \LogicException(sprintf('Class %s can only be instantiated as a result of an API call, manual creation is not allowed.', static::class));
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function isPublished(): bool

@@ -32,7 +32,5 @@ class UserTest extends End2EndTestCase
         $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $user->getSystemProperties()->getId());
         $this->assertEquals(new Link('4Q3e6duhma7V6czH7UXHzE', 'User'), $user->asLink());
         $this->assertEquals('User', $user->getSystemProperties()->getType());
-
-        $this->assertJsonStringEqualsJsonString('{"firstName":"PHP SDK","lastName":"Tests","avatarUrl":"https:\/\/www.gravatar.com\/avatar\/6474b043cb2a58f34b0576ccf83d56e2?s=50&d=https%3A%2F%2Fstatic.contentful.com%2Fgatekeeper%2Fusers%2Fdefault-43783205a36955c723acfe0a32bcf72eebe709cac2067249bc80385b78ccc70d.png","email":"cidevdocs+php@contentful.com","activated":true,"signInCount":2,"confirmed":true,"sys":{"type":"User","id":"4Q3e6duhma7V6czH7UXHzE","version":3,"createdAt":"2017-07-12T13:04:54Z","updatedAt":"2017-07-12T13:21:26Z"}}', json_encode($user));
     }
 }

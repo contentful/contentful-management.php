@@ -31,17 +31,9 @@ class WebhookHealth extends BaseResource implements SpaceScopedResourceInterface
     /**
      * WebhookHealth constructor.
      */
-    public function __construct()
+    final public function __construct()
     {
-        parent::__construct('Webhook');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getResourceUriPart(): string
-    {
-        return 'webhooks';
+        throw new \LogicException(sprintf('Class %s can only be instantiated as a result of an API call, manual creation is not allowed.', static::class));
     }
 
     /**

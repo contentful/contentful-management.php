@@ -9,22 +9,34 @@
 
 namespace Contentful\Tests\Unit\Resource;
 
-use Contentful\Management\Resource\WebhookHealth;
 use Contentful\Management\ResourceBuilder;
+use Contentful\Management\Resource\WebhookHealth;
 use PHPUnit\Framework\TestCase;
 
 class WebhookHealthTest extends TestCase
 {
+    /**
+     * @expectedException \LogicException
+     */
+    public function testInvalidCreation()
+    {
+        new WebhookHealth();
+    }
+
     public function testJsonSerialize()
     {
-        $webhookHealth = new WebhookHealth();
-        $json = '{"sys":{"type":"Webhook"},"calls":{"total":0,"healthy":0}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($webhookHealth));
+        $webhookHealth = (new ResourceBuilder())->buildObjectsFromRawData([
+            'sys' => [
+                'type' => 'Webhook',
+            ],
+            'calls' => [
+                'total' => 233,
+                'healthy' => 102,
+                ],
+            ]
+        );
 
         $json = '{"sys":{"type":"Webhook"},"calls":{"total":233,"healthy":102}}';
-
-        $webhookHealth = (new ResourceBuilder())
-            ->buildObjectsFromRawData(['sys' => ['type' => 'Webhook'], 'calls' => ['total' => 233, 'healthy' => 102]]);
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($webhookHealth));
     }
