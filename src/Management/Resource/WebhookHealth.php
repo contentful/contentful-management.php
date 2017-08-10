@@ -16,7 +16,7 @@ namespace Contentful\Management\Resource;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health
  */
-class WebhookHealth extends BaseResource implements SpaceScopedResourceInterface
+class WebhookHealth extends BaseResource
 {
     /**
      * @var int

@@ -22,7 +22,7 @@ use Contentful\Management\Role\Policy;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles
  */
-class Role extends BaseResource implements SpaceScopedResourceInterface, Creatable, Updatable, Deletable
+class Role extends BaseResource implements Creatable, Updatable, Deletable
 {
     /**
      * @var string

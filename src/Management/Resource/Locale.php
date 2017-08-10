@@ -21,7 +21,7 @@ use Contentful\Management\Behavior\Updatable;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales
  * @see https://www.contentful.com/developers/docs/concepts/locales/
  */
-class Locale extends BaseResource implements SpaceScopedResourceInterface, Deletable, Updatable, Creatable
+class Locale extends BaseResource implements Deletable, Updatable, Creatable
 {
     /**
      * @var string

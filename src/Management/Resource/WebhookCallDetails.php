@@ -20,7 +20,7 @@ use GuzzleHttp\Psr7\Response;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details
  */
-class WebhookCallDetails extends BaseResource implements SpaceScopedResourceInterface
+class WebhookCallDetails extends BaseResource
 {
     /**
      * @var Request

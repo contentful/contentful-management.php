@@ -24,7 +24,7 @@ use Contentful\Management\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
  */
-class Asset extends BaseResource implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
+class Asset extends BaseResource implements Publishable, Archivable, Deletable, Updatable, Creatable
 {
     /**
      * @var string[]

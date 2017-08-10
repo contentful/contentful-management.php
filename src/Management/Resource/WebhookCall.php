@@ -18,7 +18,7 @@ use function Contentful\format_date_for_json;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
  */
-class WebhookCall extends BaseResource implements SpaceScopedResourceInterface
+class WebhookCall extends BaseResource
 {
     /**
      * @var int

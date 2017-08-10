@@ -17,7 +17,7 @@ namespace Contentful\Management\Resource;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
  * @see https://www.contentful.com/faq/versioning/
  */
-class EntrySnapshot extends BaseResource implements SpaceScopedResourceInterface
+class EntrySnapshot extends BaseResource
 {
     /**
      * @var Entry

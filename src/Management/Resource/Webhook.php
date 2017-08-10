@@ -20,7 +20,7 @@ use Contentful\Management\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks
  */
-class Webhook extends BaseResource implements SpaceScopedResourceInterface, Creatable, Updatable, Deletable
+class Webhook extends BaseResource implements Creatable, Updatable, Deletable
 {
     /**
      * @var string

@@ -20,7 +20,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads
  */
-class Upload extends BaseResource implements SpaceScopedResourceInterface, Creatable, Deletable
+class Upload extends BaseResource implements Creatable, Deletable
 {
     /**
      * @var string|resource|StreamInterface|null

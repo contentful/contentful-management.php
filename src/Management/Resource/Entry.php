@@ -23,7 +23,7 @@ use Contentful\Management\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
  */
-class Entry extends BaseResource implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
+class Entry extends BaseResource implements Publishable, Archivable, Deletable, Updatable, Creatable
 {
     /**
      * @var array[]
