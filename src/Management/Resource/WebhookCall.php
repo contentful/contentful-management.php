@@ -10,7 +10,6 @@
 namespace Contentful\Management\Resource;
 
 use function Contentful\format_date_for_json;
-use Contentful\Management\SystemProperties;
 
 /**
  * WebhookCall class.
@@ -19,13 +18,8 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
  */
-class WebhookCall implements SpaceScopedResourceInterface
+class WebhookCall extends BaseResource implements SpaceScopedResourceInterface
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var int
      */
@@ -61,15 +55,7 @@ class WebhookCall implements SpaceScopedResourceInterface
      */
     public function __construct()
     {
-        $this->sys = SystemProperties::withType('WebhookCallOverview');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
+        parent::__construct('WebhookCallOverview');
     }
 
     /**

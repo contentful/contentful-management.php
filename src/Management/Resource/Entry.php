@@ -15,7 +15,6 @@ use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
 use Contentful\Management\Behavior\Publishable;
 use Contentful\Management\Behavior\Updatable;
-use Contentful\Management\SystemProperties;
 
 /**
  * Entry class.
@@ -24,13 +23,8 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
  */
-class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
+class Entry extends BaseResource implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var array[]
      */
@@ -43,15 +37,7 @@ class Entry implements SpaceScopedResourceInterface, Publishable, Archivable, De
      */
     public function __construct(string $contentTypeId)
     {
-        $this->sys = new SystemProperties(['type' => 'Entry', 'contentType' => ['sys' => ['id' => $contentTypeId, 'linkType' => 'ContentType']]]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
+        parent::__construct('Entry', ['contentType' => ['sys' => ['id' => $contentTypeId, 'linkType' => 'ContentType']]]);
     }
 
     /**

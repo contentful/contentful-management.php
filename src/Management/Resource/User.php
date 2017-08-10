@@ -9,8 +9,6 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\SystemProperties;
-
 /**
  * User class.
  *
@@ -18,13 +16,8 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/users/user
  */
-class User implements ResourceInterface
+class User extends BaseResource
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var string
      */
@@ -65,15 +58,7 @@ class User implements ResourceInterface
      */
     public function __construct()
     {
-        $this->sys = SystemProperties::withType('User');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
+        parent::__construct('User');
     }
 
     /**

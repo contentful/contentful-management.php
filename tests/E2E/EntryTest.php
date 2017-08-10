@@ -27,6 +27,7 @@ class EntryTest extends End2EndTestCase
 
         $this->assertEquals('Nyan Cat', $entry->getField('name', 'en-US'));
         $this->assertEquals('Nyan vIghro\'', $entry->getField('name', 'tlh'));
+        $this->assertEquals(new Link('nyancat', 'Entry'), $entry->asLink());
 
         $sys = $entry->getSystemProperties();
         $this->assertEquals('nyancat', $sys->getId());

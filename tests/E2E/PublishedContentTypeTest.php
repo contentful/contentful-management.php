@@ -26,6 +26,8 @@ class PublishedContentTypeTest extends End2EndTestCase
 
         $this->assertEquals('Cat', $contentType->getName());
         $this->assertEquals('name', $contentType->getDisplayField());
+        $this->assertEquals(new Link('cat', 'ContentType'), $contentType->asLink());
+        $this->assertEquals(true, $contentType->isPublished());
         $this->assertCount(8, $contentType->getFields());
 
         $sys = $contentType->getSystemProperties();

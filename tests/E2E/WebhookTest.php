@@ -27,6 +27,7 @@ class WebhookTest extends End2EndTestCase
 
         $webhook = $manager->getWebhook('3tilCowN1lI1rDCe9vhK0C');
 
+        $this->assertEquals(new Link('3tilCowN1lI1rDCe9vhK0C', 'WebhookDefinition'), $webhook->asLink());
         $this->assertEquals('Default Webhook', $webhook->getName());
         $this->assertEquals('https://www.example.com/default-webhook', $webhook->getUrl());
         $this->assertEquals('default_username', $webhook->getHttpBasicUsername());
@@ -60,9 +61,11 @@ class WebhookTest extends End2EndTestCase
     }
 
     /**
+     * @return Webhook
+     *
      * @vcr e2e_webhook_create_update.json
      */
-    public function testCreateWebhook()
+    public function testCreateWebhook(): Webhook
     {
         $manager = $this->getReadWriteSpaceManager();
 
@@ -101,10 +104,14 @@ class WebhookTest extends End2EndTestCase
     }
 
     /**
+     * @param Webhook $webook
+     *
+     * @return Webhook
+     *
      * @depends testCreateWebhook
      * @vcr e2e_webhook_events_fired_and_logged.json
      */
-    public function testWebhookEventsFiredAndLogged(Webhook $webhook)
+    public function testWebhookEventsFiredAndLogged(Webhook $webhook): Webhook
     {
         $manager = $this->getReadWriteSpaceManager();
 
@@ -125,6 +132,7 @@ class WebhookTest extends End2EndTestCase
         $webhookId = $webhook->getSystemProperties()->getId();
 
         $health = $manager->getWebhookHealth($webhookId);
+        $this->assertEquals(new Link($health->getSystemProperties()->getId(), 'Webhook'), $health->asLink());
         $this->assertEquals(2, $health->getTotal());
         $this->assertEquals(0, $health->getHealthy());
         $this->assertEquals($webhookId, $health->getSystemProperties()->getId());
@@ -132,6 +140,7 @@ class WebhookTest extends End2EndTestCase
         $webhookCalls = $manager->getWebhookCalls($webhookId);
 
         $this->assertInstanceOf(WebhookCall::class, $webhookCalls[0]);
+        $this->assertEquals(new Link($webhookCalls[0]->getSystemProperties()->getId(), 'WebhookCallOverview'), $webhookCalls[0]->asLink());
         $this->assertEquals('create', $webhookCalls[0]->getEventType());
         $this->assertEquals('https://www.example.com/cf-xrLThVn5uBzHqB6tIbpV4aycgyisr5UAEQSafzkG', $webhookCalls[0]->getUrl());
 
@@ -151,6 +160,7 @@ class WebhookTest extends End2EndTestCase
         $this->assertNotNull($webhookCallId);
 
         $webhookCallDetails = $manager->getWebhookCallDetails($webhookId, $webhookCallId);
+        $this->assertEquals(new Link($webhookCallDetails->getSystemProperties()->getId(), 'WebhookCallDetails'), $webhookCallDetails->asLink());
         $requestPayload = json_decode($webhookCallDetails->getRequest()->getBody(), true);
         $this->assertEquals('Dwight Schrute', $requestPayload['fields']['name']['en-US']);
         $this->assertEquals('ContentManagement.Entry.create', $webhookCallDetails->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
@@ -169,6 +179,8 @@ class WebhookTest extends End2EndTestCase
     }
 
     /**
+     * @param Webhook $webook
+     *
      * @depends testWebhookEventsFiredAndLogged
      * @vcr e2e_webhook_delete.json
      */

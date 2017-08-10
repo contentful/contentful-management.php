@@ -23,6 +23,7 @@ class LocaleTest extends End2EndTestCase
         $manager = $this->getReadOnlySpaceManager();
 
         $locale = $manager->getLocale('2oQPjMCL9bQkylziydLh57');
+        $this->assertEquals(new Link('2oQPjMCL9bQkylziydLh57', 'Locale'), $locale->asLink());
         $this->assertEquals('English', $locale->getName());
         $this->assertEquals('en-US', $locale->getCode());
         $this->assertNull($locale->getFallbackCode());

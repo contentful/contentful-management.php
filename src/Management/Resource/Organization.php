@@ -9,8 +9,6 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\SystemProperties;
-
 /**
  * Organization class.
  *
@@ -19,13 +17,8 @@ use Contentful\Management\SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/organizations
  * @see https://www.contentful.com/r/knowledgebase/spaces-and-organizations/
  */
-class Organization implements ResourceInterface
+class Organization extends BaseResource
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var string
      */
@@ -36,15 +29,7 @@ class Organization implements ResourceInterface
      */
     public function __construct()
     {
-        $this->sys = SystemProperties::withType('Organization');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
+        parent::__construct('Organization');
     }
 
     /**

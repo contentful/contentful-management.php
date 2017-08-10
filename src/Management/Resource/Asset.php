@@ -16,7 +16,6 @@ use Contentful\Management\Behavior\Creatable;
 use Contentful\Management\Behavior\Deletable;
 use Contentful\Management\Behavior\Publishable;
 use Contentful\Management\Behavior\Updatable;
-use Contentful\Management\SystemProperties;
 
 /**
  * Asset class.
@@ -25,13 +24,8 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
  */
-class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
+class Asset extends BaseResource implements SpaceScopedResourceInterface, Publishable, Archivable, Deletable, Updatable, Creatable
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var string[]
      */
@@ -52,15 +46,7 @@ class Asset implements SpaceScopedResourceInterface, Publishable, Archivable, De
      */
     public function __construct()
     {
-        $this->sys = SystemProperties::withType('Asset');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
+        parent::__construct('Asset');
     }
 
     /**

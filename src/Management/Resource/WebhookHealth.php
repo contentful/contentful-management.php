@@ -9,8 +9,6 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\SystemProperties;
-
 /**
  * WebhookHealth class.
  *
@@ -18,13 +16,8 @@ use Contentful\Management\SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health
  */
-class WebhookHealth implements SpaceScopedResourceInterface
+class WebhookHealth extends BaseResource implements SpaceScopedResourceInterface
 {
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
-
     /**
      * @var int
      */
@@ -40,15 +33,7 @@ class WebhookHealth implements SpaceScopedResourceInterface
      */
     public function __construct()
     {
-        $this->sys = SystemProperties::withType('Webhook');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
+        parent::__construct('Webhook');
     }
 
     /**

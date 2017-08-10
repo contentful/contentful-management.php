@@ -31,6 +31,7 @@ class AssetTest extends End2EndTestCase
         $this->assertEquals('Nyan Cat', $asset->getTitle('en-US'));
         $this->assertNull($asset->getTitle('tlh'));
         $this->assertNull($asset->getDescription('en-US'));
+        $this->assertEquals(new Link('nyancat', 'Asset'), $asset->asLink());
 
         $sys = $asset->getSystemProperties();
         $this->assertEquals('nyancat', $sys->getId());
@@ -166,11 +167,11 @@ class AssetTest extends End2EndTestCase
         // Creates upload using string
         $upload = new Upload(file_get_contents(__DIR__.'/../fixtures/contentful-name.svg'));
         $manager->create($upload);
+        $this->assertEquals(new Link($upload->getSystemProperties()->getId(), 'Upload'), $upload->asLink());
         $this->assertNotNull($upload->getSystemProperties()->getId());
         $this->assertInstanceOf(\DateTimeImmutable::class, $upload->getSystemProperties()->getExpiresAt());
 
-        $link = new Link($upload->getSystemProperties()->getId(), 'Upload');
-        $uploadFromFile = new LocalUploadFile('contentful.svg', 'image/svg+xml', $link);
+        $uploadFromFile = new LocalUploadFile('contentful.svg', 'image/svg+xml', $upload->asLink());
 
         $asset = new Asset();
         $asset->setTitle('en-US', 'Contentful');

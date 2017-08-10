@@ -9,8 +9,6 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\SystemProperties;
-
 /**
  * Space class.
  *
@@ -19,17 +17,12 @@ use Contentful\Management\SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces
  * @see https://www.contentful.com/r/knowledgebase/spaces-and-organizations/
  */
-class Space implements ResourceInterface
+class Space extends BaseResource
 {
     /**
      * @var string
      */
     protected $name;
-
-    /**
-     * @var SystemProperties
-     */
-    protected $sys;
 
     /**
      * Space constructor.
@@ -38,16 +31,8 @@ class Space implements ResourceInterface
      */
     public function __construct(string $name)
     {
+        parent::__construct('Space');
         $this->name = $name;
-        $this->sys = SystemProperties::withType('Space');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
     }
 
     /**

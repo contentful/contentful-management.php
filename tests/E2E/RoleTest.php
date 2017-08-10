@@ -9,6 +9,7 @@
 
 namespace Contentful\Tests\E2E;
 
+use Contentful\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Role;
 use Contentful\Management\Role\Constraint\AndConstraint;
@@ -32,6 +33,7 @@ class RoleTest extends End2EndTestCase
 
         $this->assertEquals('Developer', $role->getName());
         $this->assertEquals('Allows reading Entries and managing API Keys', $role->getDescription());
+        $this->assertEquals(new Link('6khUMmsfVslYd7tRcThTgE', 'Role'), $role->asLink());
 
         $policies = $role->getPolicies();
         $this->assertCount(2, $policies);
