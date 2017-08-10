@@ -1,11 +1,11 @@
 [{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/webhook_definitions\/1yUXEDYE8eY04VF8e6RleC",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/webhook_definitions\/5jkX7lLHWnFYEXsISyspee",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.4",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.4; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.8; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -18,7 +18,7 @@
         },
         "headers": {
             "Accept-Ranges": "bytes",
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
@@ -27,21 +27,21 @@
             "CF-Organization-Id": "3ubGFD1MWA6VgVYbIwSBg8",
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Type": "application\/octet-stream",
-            "Date": "Fri, 07 Jul 2017 13:00:52 GMT",
+            "Date": "Thu, 10 Aug 2017 09:25:00 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179812",
+            "X-Contentful-RateLimit-Hour-Remaining": "179923",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
-            "X-Contentful-RateLimit-Second-Remaining": "48",
-            "X-Contentful-Request-Id": "a76f44bcf96ef3c17c73c1c4aa59a75a",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "8c10c6b48d197641b940ac0650a16a9c",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=njokQ6HVSnu4H6hYYJy9kQSGX1kAAAAAQUIPAAAAAAAY+6zHPMVEoO3UqfeyFyU0; expires=Fri, 06 Jul 2018 17:40:03 GMT; path=\/; Domain=.contentful.com, nlbi_673446=U5TtTrI6CljM\/s6O6lKYhQAAAADovsZDufcnfGQqXu3ZYnsM; path=\/; Domain=.contentful.com, incap_ses_259_673446=AP2NL7y80nGTlGVI6yeYAwSGX1kAAAAAdIM0dkiAy2PxdvSWaLlSNQ==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "9-45049047-45049058 NNNN CT(0 0 0) RT(1499432452155 29) q(0 0 0 -1) r(2 2) U5",
+            "Set-Cookie": "visid_incap_673446=l4fTO6IcTv+hgdey+AygNmwmjFkAAAAAQUIPAAAAAABF5yKQLLgodBHOi9vVUg9G; expires=Thu, 09 Aug 2018 13:09:16 GMT; path=\/; Domain=.contentful.com, nlbi_673446=UjC0b54350bSAzh86lKYhQAAAADQCRoNH4SpNvgBrZzTF2EO; path=\/; Domain=.contentful.com, incap_ses_477_673446=xreFEm\/vJyslBMhbl6WeBmwmjFkAAAAAn76CIF5ftrZ9guXDQM3lEA==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "3-8760987-8760991 NNNN CT(113 113 0) RT(1502357099525 49) q(0 0 3 -1) r(5 5) U5",
             "X-CDN": "Incapsula"
         }
     }
