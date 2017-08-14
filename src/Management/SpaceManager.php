@@ -20,6 +20,7 @@ use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Management\Resource\DeliveryApiKey;
+use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
@@ -585,6 +586,32 @@ class SpaceManager
     public function getRoles(Query $query = null): ResourceArray
     {
         return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/roles', $query);
+    }
+
+    /**
+     * @param string $spaceMembershipId
+     *
+     * @return SpaceMembership
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships/space-membership
+     */
+    public function getSpaceMembership(string $spaceMembershipId): SpaceMembership
+    {
+        $response = $this->client->request('GET', 'spaces/'.$this->spaceId.'/space_memberships/'.$spaceMembershipId);
+
+        return $this->builder->buildObjectsFromRawData($response);
+    }
+
+    /**
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships
+     */
+    public function getSpaceMemberships(Query $query = null): ResourceArray
+    {
+        return $this->getAndBuildCollection('spaces/'.$this->spaceId.'/space_memberships', $query);
     }
 
     /**

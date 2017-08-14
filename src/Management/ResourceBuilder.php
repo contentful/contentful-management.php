@@ -31,6 +31,7 @@ use Contentful\Management\Resource\PublishedContentType;
 use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\Space;
+use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Management\Resource\Upload;
 use Contentful\Management\Resource\User;
 use Contentful\Management\Resource\Webhook;
@@ -114,6 +115,8 @@ class ResourceBuilder
                 }
             case 'Space':
                 return $this->buildSpace($data);
+            case 'SpaceMembership':
+                return $this->buildSpaceMembership($data);
             case 'Upload':
                 return $this->buildUpload($data);
             case 'User':
@@ -157,6 +160,8 @@ class ResourceBuilder
                 return $this->updateRole($object, $data);
             case 'Space':
                 return $this->updateSpace($object, $data);
+            case 'SpaceMembership':
+                return $this->updateSpaceMembership($object, $data);
             case 'Upload':
                 return $this->updateUpload($object, $data);
             case 'WebhookDefinition':
@@ -710,6 +715,41 @@ class ResourceBuilder
         $this->updateObject(Space::class, $space, [
             'sys' => $this->buildSystemProperties($data['sys']),
             'name' => $data['name'],
+        ]);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return SpaceMembership
+     */
+    private function buildSpaceMembership(array $data): SpaceMembership
+    {
+        return $this->createObject(SpaceMembership::class, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'admin' => $data['admin'],
+            'email' => $data['email'] ?? null,
+            'roles' => array_map(function (array $role) {
+                return new Link($role['sys']['id'], 'Role');
+            }, $data['roles'] ?? []),
+            'user' => new Link($data['user']['sys']['id'], 'User'),
+        ]);
+    }
+
+    /**
+     * @param SpaceMembership $spaceMembership
+     * @param array           $data
+     */
+    private function updateSpaceMembership(SpaceMembership $spaceMembership, array $data)
+    {
+        $this->updateObject(SpaceMembership::class, $spaceMembership, [
+            'sys' => $this->buildSystemProperties($data['sys']),
+            'admin' => $data['admin'],
+            'email' => $data['email'] ?? null,
+            'roles' => array_map(function (array $role) {
+                return new Link($role['sys']['id'], 'Role');
+            }, $data['roles'] ?? []),
+            'user' => new Link($data['user']['sys']['id'], 'User'),
         ]);
     }
 
