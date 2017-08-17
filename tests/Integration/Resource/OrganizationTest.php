@@ -6,8 +6,9 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Resource;
+namespace Contentful\Tests\Integration\Resource;
 
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\Organization;
@@ -23,9 +24,12 @@ class OrganizationTest extends TestCase
         new Organization();
     }
 
-    public function testJsonSerialize()
+    /**
+     * @return Organization
+     */
+    public function testJsonSerialize(): Organization
     {
-        $organization = (new ResourceBuilder())->buildObjectsFromRawData([
+        $organization = (new ResourceBuilder())->build([
             'sys' => [
                 'type' => 'Organization',
             ],
@@ -35,5 +39,21 @@ class OrganizationTest extends TestCase
         $json = '{"sys":{"type":"Organization"},"name":"Test Org"}';
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($organization));
+
+        return $organization;
+    }
+
+    /**
+     * @param Organization $organization
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     */
+    public function testInvalidUpdate(Organization $organization)
+    {
+        (new ResourceBuilder())
+            ->build(['sys' => [
+                'type' => 'Organization',
+            ]], $organization);
     }
 }

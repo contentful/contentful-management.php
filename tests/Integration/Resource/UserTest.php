@@ -6,8 +6,9 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Resource;
+namespace Contentful\Tests\Integration\Resource;
 
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\User;
@@ -23,9 +24,12 @@ class UserTest extends TestCase
         new User();
     }
 
-    public function testJsonSerialize()
+    /**
+     * @return User
+     */
+    public function testJsonSerialize(): User
     {
-        $user = (new ResourceBuilder())->buildObjectsFromRawData([
+        $user = (new ResourceBuilder())->build([
             'sys' => [
                 'type' => 'User',
             ],
@@ -41,5 +45,21 @@ class UserTest extends TestCase
         $json = '{"sys":{"type":"User"},"firstName":"Titus","lastName":"Andromedon","avatarUrl":"https://www.example.com/avatar.jpg","email":"pinotnoir@example.com","activated":true,"signInCount":10,"confirmed":true}';
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($user));
+
+        return $user;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     */
+    public function testInvalidUpdate(User $user)
+    {
+        (new ResourceBuilder())
+            ->build(['sys' => [
+                'type' => 'User',
+            ]], $user);
     }
 }

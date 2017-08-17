@@ -46,6 +46,11 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     protected $fields = [];
 
     /**
+     * @var bool|null
+     */
+    protected $isPublished = false;
+
+    /**
      * ContentType constructor.
      *
      * @param string $name
@@ -62,17 +67,6 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     public function getResourceUriPart(): string
     {
         return 'content_types';
-    }
-
-    /**
-     * Returns whether this ContentType object is published.
-     * It is `false` by default, and it is meant to be overridden.
-     *
-     * @return bool
-     */
-    public function isPublished(): bool
-    {
-        return false;
     }
 
     /**
@@ -165,6 +159,14 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
         $this->fields[] = $contentTypeField;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublished(): bool
+    {
+        return $this->isPublished;
     }
 
     /**
