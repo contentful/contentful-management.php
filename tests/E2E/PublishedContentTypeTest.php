@@ -6,12 +6,13 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
 namespace Contentful\Tests\E2E;
 
 use Contentful\Link;
 use Contentful\Management\Query;
-use Contentful\Management\Resource\PublishedContentType;
+use Contentful\Management\Resource\ContentType;
 use Contentful\Tests\End2EndTestCase;
 
 class PublishedContentTypeTest extends End2EndTestCase
@@ -47,12 +48,12 @@ class PublishedContentTypeTest extends End2EndTestCase
         $manager = $this->getReadOnlySpaceManager();
         $contentTypes = $manager->getPublishedContentTypes();
 
-        $this->assertInstanceOf(PublishedContentType::class, $contentTypes[0]);
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
         $query = (new Query())
             ->setLimit(1);
         $contentTypes = $manager->getPublishedContentTypes($query);
-        $this->assertInstanceOf(PublishedContentType::class, $contentTypes[0]);
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
     }
 }

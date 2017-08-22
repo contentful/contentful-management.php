@@ -6,6 +6,7 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
 namespace Contentful\Tests\E2E;
 
@@ -63,7 +64,7 @@ class ErrorTest extends End2EndTestCase
         $asset = new Asset();
         $spaceManager->create($asset);
 
-        $fakeAsset = new FakeAsset($asset->getSystemProperties()->getId());
+        $fakeAsset = new FakeAsset($asset->getSystemProperties()->getId(), $this->readWriteSpaceId);
 
         try {
             $spaceManager->update($fakeAsset);
@@ -153,7 +154,7 @@ class FakeAsset extends Asset
 {
     private $fakeSys;
 
-    public function __construct(string $id)
+    public function __construct(string $id, string $spaceId)
     {
         parent::__construct();
 
@@ -161,6 +162,13 @@ class FakeAsset extends Asset
             'type' => 'Asset',
             'id' => $id,
             'version' => 23,
+            'space' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Space',
+                    'id' => $spaceId,
+                ],
+            ],
         ]);
     }
 

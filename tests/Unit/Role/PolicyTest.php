@@ -6,6 +6,7 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
 namespace Contentful\Tests\Unit;
 
@@ -35,6 +36,7 @@ class PolicyTest extends TestCase
         }
 
         $policy->setActions('all');
+
         try {
             $policy->addAction('read');
             $this->fail('Action can not be added when it is currently configured as "all"');
@@ -42,6 +44,7 @@ class PolicyTest extends TestCase
         }
 
         $policy->setActions([]);
+
         try {
             $policy->addAction('invalid');
             $this->fail('Invalid action should throw an exception');

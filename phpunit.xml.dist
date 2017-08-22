@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-        bootstrap="tests/bootstrap.php">
+<phpunit bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="unit">
             <directory>tests/Unit</directory>
@@ -16,7 +15,7 @@
     <logging>
         <log type="coverage-html" target="build/coverage" title="contentful-management.php" charset="UTF-8" yui="true" highlight="true"
              lowUpperBound="35" highLowerBound="70" />
-        <log type="coverage-clover" target="build/clover/tests.xml"/>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
 
     <listeners>
@@ -24,7 +23,7 @@
     </listeners>
 
     <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
+        <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
         </whitelist>
     </filter>

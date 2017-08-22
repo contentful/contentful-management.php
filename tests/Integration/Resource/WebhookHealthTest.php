@@ -6,8 +6,9 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Resource;
+namespace Contentful\Tests\Integration\Resource;
 
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\WebhookHealth;
@@ -23,9 +24,12 @@ class WebhookHealthTest extends TestCase
         new WebhookHealth();
     }
 
-    public function testJsonSerialize()
+    /**
+     * @return WebhookHealth
+     */
+    public function testJsonSerialize(): WebhookHealth
     {
-        $webhookHealth = (new ResourceBuilder())->buildObjectsFromRawData([
+        $webhookHealth = (new ResourceBuilder())->build([
             'sys' => [
                 'type' => 'Webhook',
             ],
@@ -39,5 +43,21 @@ class WebhookHealthTest extends TestCase
         $json = '{"sys":{"type":"Webhook"},"calls":{"total":233,"healthy":102}}';
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($webhookHealth));
+
+        return $webhookHealth;
+    }
+
+    /**
+     * @param WebhookHealth $webhookHealth
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     */
+    public function testInvalidUpdate(WebhookHealth $webhookHealth)
+    {
+        (new ResourceBuilder())
+            ->build(['sys' => [
+                'type' => 'Webhook',
+            ]], $webhookHealth);
     }
 }

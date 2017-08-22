@@ -9,7 +9,6 @@
 
 namespace Contentful\Management\Resource;
 
-use function Contentful\format_date_for_json;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
@@ -20,7 +19,7 @@ use GuzzleHttp\Psr7\Response;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details
  */
-class WebhookCallDetails extends BaseResource
+class WebhookCallDetails extends WebhookCall
 {
     /**
      * @var Request
@@ -31,44 +30,6 @@ class WebhookCallDetails extends BaseResource
      * @var Response
      */
     protected $response;
-
-    /**
-     * @var int
-     */
-    protected $statusCode;
-
-    /**
-     * @var string|null
-     */
-    protected $error;
-
-    /**
-     * @var string
-     */
-    protected $eventType;
-
-    /**
-     * @var string
-     */
-    protected $url;
-
-    /**
-     * @var \DateTimeImmutable
-     */
-    protected $requestAt;
-
-    /**
-     * @var \DateTimeImmutable
-     */
-    protected $responseAt;
-
-    /**
-     * WebhookCallDetails constructor.
-     */
-    final public function __construct()
-    {
-        throw new \LogicException(sprintf('Class %s can only be instantiated as a result of an API call, manual creation is not allowed.', static::class));
-    }
 
     /**
      * @return Request
@@ -87,54 +48,6 @@ class WebhookCallDetails extends BaseResource
     }
 
     /**
-     * @return int
-     */
-    public function getStatusCode(): int
-    {
-        return $this->statusCode;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getError()
-    {
-        return $this->error;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEventType(): string
-    {
-        return $this->eventType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getRequestAt(): \DateTimeImmutable
-    {
-        return $this->requestAt;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getResponseAt(): \DateTimeImmutable
-    {
-        return $this->responseAt;
-    }
-
-    /**
      * Returns an array to be used by `json_encode` to serialize objects of this class.
      *
      * @return array
@@ -143,34 +56,23 @@ class WebhookCallDetails extends BaseResource
      */
     public function jsonSerialize(): array
     {
-        // The request object automatically adds a `Host` header, which we don't need
-        $headers = $this->formatPsr7Headers($this->request->getHeaders());
-        unset($headers['Host']);
-        $request = [
+        $webhookCall = parent::jsonSerialize();
+
+        $webhookCall['request'] = [
             'url' => (string) $this->request->getUri(),
             'method' => $this->request->getMethod(),
-            'headers' => $headers,
+            'headers' => $this->formatPsr7Headers($this->request->getHeaders()),
             'body' => (string) $this->request->getBody(),
         ];
 
-        $response = [
+        $webhookCall['response'] = [
             'url' => (string) $this->request->getUri(),
             'statusCode' => $this->response->getStatusCode(),
             'headers' => $this->formatPsr7Headers($this->response->getHeaders()),
             'body' => (string) $this->response->getBody(),
         ];
 
-        return [
-            'sys' => $this->sys,
-            'request' => $request,
-            'response' => $response,
-            'statusCode' => $this->statusCode,
-            'errors' => $this->error ? [$this->error] : [],
-            'eventType' => $this->eventType,
-            'url' => $this->url,
-            'requestAt' => format_date_for_json($this->requestAt),
-            'responseAt' => format_date_for_json($this->responseAt),
-        ];
+        return $webhookCall;
     }
 
     /**
@@ -185,6 +87,11 @@ class WebhookCallDetails extends BaseResource
     {
         $returnHeaders = [];
         foreach ($headers as $key => $values) {
+            // The request object automatically adds a `Host` header, which we don't need
+            if ($key == 'Host') {
+                continue;
+            }
+
             $returnHeaders[$key] = $values[0];
         }
 

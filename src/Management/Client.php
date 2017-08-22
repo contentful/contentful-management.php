@@ -14,6 +14,7 @@ use Contentful\Client as BaseClient;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\User;
 use Contentful\ResourceArray;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * Client class.
@@ -51,26 +52,34 @@ class Client extends BaseClient
      */
     public function __construct(string $token, array $options = [])
     {
-        $baseUri = self::URI_MANAGEMENT;
         $api = 'MANAGEMENT';
-
-        $options = array_replace([
-            'guzzle' => null,
-            'logger' => null,
-            'uriOverride' => null,
-        ], $options);
-
-        $guzzle = $options['guzzle'];
-        $logger = $options['logger'];
-        $uriOverride = $options['uriOverride'];
-
-        if ($uriOverride !== null) {
-            $baseUri = $uriOverride;
-        }
+        $guzzle = $options['guzzle'] ?? null;
+        $logger = $options['logger'] ?? null;
+        $baseUri = $options['uriOverride'] ?? self::URI_MANAGEMENT;
 
         parent::__construct($token, $baseUri, $api, $logger, $guzzle);
 
         $this->builder = new ResourceBuilder();
+    }
+
+    /**
+     * @return ResourceBuilder
+     */
+    public function getBuilder(): ResourceBuilder
+    {
+        return $this->builder;
+    }
+
+    /**
+     * @param ResourceBuilder $builder
+     *
+     * @return $this
+     */
+    public function setBuilder(ResourceBuilder $builder)
+    {
+        $this->builder = $builder;
+
+        return $this;
     }
 
     /**
@@ -83,9 +92,33 @@ class Client extends BaseClient
         return new SpaceManager($this, $this->builder, $spaceId);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function request($method, $path, array $options = [])
     {
         return parent::request($method, $path, $options);
+    }
+
+    /**
+     * Makes a GET call to an API endpoint,
+     * and returns the built object.
+     *
+     * @param string     $path
+     * @param Query|null $query
+     * @param array      $options
+     *
+     * @return ResourceArray|ResourceInterface
+     */
+    public function get(string $path, Query $query = null, $options = [])
+    {
+        $options['query'] = $query !== null
+            ? $query->getQueryData()
+            : [];
+
+        $response = $this->request('GET', $path, $options);
+
+        return $this->builder->build($response);
     }
 
     /**
@@ -95,9 +128,7 @@ class Client extends BaseClient
      */
     public function getSpace($spaceId): Space
     {
-        $response = $this->request('GET', 'spaces/'.$spaceId);
-
-        return $this->builder->buildObjectsFromRawData($response);
+        return $this->get('spaces/'.$spaceId);
     }
 
     /**
@@ -107,14 +138,7 @@ class Client extends BaseClient
      */
     public function getSpaces(Query $query = null): ResourceArray
     {
-        $query = $query !== null ? $query : new Query();
-        $queryData = $query->getQueryData();
-
-        $response = $this->request('GET', 'spaces', [
-            'query' => $queryData,
-        ]);
-
-        return $this->builder->buildObjectsFromRawData($response);
+        return $this->get('spaces', $query);
     }
 
     /**
@@ -126,6 +150,7 @@ class Client extends BaseClient
     {
         $additionalHeaders = $organizationId ? ['X-Contentful-Organization' => $organizationId] : [];
         $bodyData = $this->prepareObjectForApi($space);
+
         if ($defaultLocale !== 'en-US') {
             $bodyData->defaultLocale = $defaultLocale;
         }
@@ -135,7 +160,8 @@ class Client extends BaseClient
             'additionalHeaders' => $additionalHeaders,
             'body' => $body,
         ]);
-        $this->builder->updateObjectFromRawData($space, $response);
+
+        $this->builder->build($response, $space);
     }
 
     /**
@@ -144,13 +170,16 @@ class Client extends BaseClient
     public function updateSpace(Space $space)
     {
         $sys = $space->getSystemProperties();
+
         $body = json_encode($this->prepareObjectForApi($space), JSON_UNESCAPED_UNICODE);
         $additionalHeaders = ['X-Contentful-Version' => $sys->getVersion()];
+
         $response = $this->request('PUT', 'spaces/'.$sys->getId(), [
             'additionalHeaders' => $additionalHeaders,
             'body' => $body,
         ]);
-        $this->builder->updateObjectFromRawData($space, $response);
+
+        $this->builder->build($response, $space);
     }
 
     /**
@@ -167,9 +196,7 @@ class Client extends BaseClient
      */
     public function getOwnUser(): User
     {
-        $response = $this->request('GET', 'users/me');
-
-        return $this->builder->buildObjectsFromRawData($response);
+        return $this->get('users/me');
     }
 
     /**
@@ -179,14 +206,7 @@ class Client extends BaseClient
      */
     public function getOrganizations(Query $query = null): ResourceArray
     {
-        $query = $query !== null ? $query : new Query();
-        $queryData = $query->getQueryData();
-
-        $response = $this->request('GET', 'organizations', [
-            'query' => $queryData,
-        ]);
-
-        return $this->builder->buildObjectsFromRawData($response);
+        return $this->get('organizations', $query);
     }
 
     /**

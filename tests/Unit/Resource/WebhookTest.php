@@ -6,6 +6,7 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
 namespace Contentful\Tests\Unit\Resource;
 
@@ -42,6 +43,7 @@ class WebhookTest extends TestCase
         $this->assertTrue($webhook->hasHeader('X-Another-Header'));
 
         $this->assertEquals('Third test value', $webhook->getHeader('X-Another-Header'));
+
         try {
             $webhook->getHeader('X-Not-Existing');
             $this->fail('Accessing an non-existing header should result in an exception being thrown');
@@ -55,6 +57,7 @@ class WebhookTest extends TestCase
             'X-Another-Header' => 'Third test value',
         ], $webhook->getHeaders());
         $this->assertEquals('Third test value', $webhook->getHeader('X-Another-Header'));
+
         try {
             $webhook->removeHeader('X-Not-Existing');
             $this->fail('Accessing an non-existing header should result in an exception being thrown');

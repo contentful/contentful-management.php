@@ -91,6 +91,7 @@ abstract class ApiKey extends BaseResource
     public function jsonSerialize(): array
     {
         return [
+            'sys' => $this->sys,
             'name' => $this->name,
             'description' => $this->description,
         ];

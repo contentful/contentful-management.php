@@ -6,6 +6,7 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
 namespace Contentful\Tests\E2E;
 
@@ -83,6 +84,8 @@ class EntryTest extends End2EndTestCase
 
         $manager->archive($entry);
         $this->assertEquals(2, $entry->getSystemProperties()->getArchivedVersion());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $entry->getSystemProperties()->getArchivedAt());
+        $this->assertInstanceOf(Link::class, $entry->getSystemProperties()->getArchivedBy());
 
         $manager->unarchive($entry);
         $this->assertNull($entry->getSystemProperties()->getArchivedVersion());

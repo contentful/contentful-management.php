@@ -6,6 +6,7 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
 namespace Contentful\Tests\E2E;
 
@@ -161,7 +162,7 @@ class WebhookTest extends End2EndTestCase
 
         $webhookCallDetails = $manager->getWebhookCallDetails($webhookId, $webhookCallId);
         $this->assertEquals(new Link($webhookCallDetails->getSystemProperties()->getId(), 'WebhookCallDetails'), $webhookCallDetails->asLink());
-        $requestPayload = json_decode($webhookCallDetails->getRequest()->getBody(), true);
+        $requestPayload = json_decode((string) $webhookCallDetails->getRequest()->getBody(), true);
         $this->assertEquals('Dwight Schrute', $requestPayload['fields']['name']['en-US']);
         $this->assertEquals('ContentManagement.Entry.create', $webhookCallDetails->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
         $this->assertEquals('ClientError', $webhookCallDetails->getError());

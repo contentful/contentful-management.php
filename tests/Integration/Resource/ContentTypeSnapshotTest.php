@@ -6,8 +6,9 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
-namespace Contentful\Tests\Integration;
+namespace Contentful\Tests\Integration\Resource;
 
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\ContentTypeSnapshot;
@@ -23,9 +24,12 @@ class ContentTypeSnapshotTest extends TestCase
         new ContentTypeSnapshot();
     }
 
-    public function testJsonSerialize()
+    /**
+     * @return ContentTypeSnapshot
+     */
+    public function testJsonSerialize(): ContentTypeSnapshot
     {
-        $contentTypeSnapshot = (new ResourceBuilder())->buildObjectsFromRawData([
+        $contentTypeSnapshot = (new ResourceBuilder())->build([
             'sys' => [
                 'type' => 'Snapshot',
                 'snapshotType' => 'publish',
@@ -56,5 +60,22 @@ class ContentTypeSnapshotTest extends TestCase
         $json = '{"sys":{"type":"Snapshot","snapshotType":"publish","snapshotEntityType":"ContentType"},"snapshot":{"name":"Versioned Content Type","displayField":"title","fields":[{"name":"Title","id":"title","type":"Symbol"},{"name":"Description","id":"description","type":"Text"}],"sys":{"id":"versionedContentType","type":"ContentType"}}}';
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($contentTypeSnapshot));
+
+        return $contentTypeSnapshot;
+    }
+
+    /**
+     * @param ContentTypeSnapshot $contentTypeSnapshot
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     */
+    public function testInvalidUpdate(ContentTypeSnapshot $contentTypeSnapshot)
+    {
+        (new ResourceBuilder())
+            ->build(['sys' => [
+                'type' => 'Snapshot',
+                'snapshotEntityType' => 'ContentType',
+            ]], $contentTypeSnapshot);
     }
 }
