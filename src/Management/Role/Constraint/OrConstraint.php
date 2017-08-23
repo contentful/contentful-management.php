@@ -29,82 +29,13 @@ namespace Contentful\Management\Role\Constraint;
  * }
  * ```
  */
-class OrConstraint implements ConstraintInterface
+class OrConstraint extends LogicConstraint
 {
     /**
-     * @var ConstraintInterface[]
+     * {@inheritdoc}
      */
-    private $children = [];
-
-    /**
-     * OrConstraint constructor.
-     *
-     * @param ConstraintInterface[] $children
-     */
-    public function __construct(array $children = [])
+    protected function getOperator(): string
     {
-        $this->setChildren($children);
-    }
-
-    /**
-     * @return ConstraintInterface[]
-     */
-    public function getChildren(): array
-    {
-        return $this->children;
-    }
-
-    /**
-     * @param ConstraintInterface $child
-     *
-     * @return $this
-     */
-    public function addChild(ConstraintInterface $child)
-    {
-        $this->children[] = $child;
-
-        return $this;
-    }
-
-    /**
-     * @param ConstraintInterface[] $children
-     *
-     * @return $this
-     */
-    public function setChildren(array $children)
-    {
-        foreach ($children as $child) {
-            if (!$child instanceof ConstraintInterface) {
-                throw new \InvalidArgumentException('Argument $children of ChildrenConstraintTrait::setChildren must be an array of ConstraintInterface objects');
-            }
-        }
-
-        $this->children = $children;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function clearChildren()
-    {
-        $this->children = [];
-
-        return $this;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'or' => $this->children,
-        ];
+        return 'or';
     }
 }
