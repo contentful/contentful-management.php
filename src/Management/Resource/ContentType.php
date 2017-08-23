@@ -9,11 +9,11 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\Behavior\Creatable;
-use Contentful\Management\Behavior\Deletable;
-use Contentful\Management\Behavior\Publishable;
-use Contentful\Management\Behavior\Updatable;
-use Contentful\Management\Field\FieldInterface;
+use Contentful\Management\Resource\Behavior\Creatable;
+use Contentful\Management\Resource\Behavior\Deletable;
+use Contentful\Management\Resource\Behavior\Publishable;
+use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 
 /**
  * ContentType class.

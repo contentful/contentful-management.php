@@ -11,11 +11,11 @@ namespace Contentful\Management\Resource;
 
 use Contentful\File\FileInterface;
 use Contentful\File\UnprocessedFileInterface;
-use Contentful\Management\Behavior\Archivable;
-use Contentful\Management\Behavior\Creatable;
-use Contentful\Management\Behavior\Deletable;
-use Contentful\Management\Behavior\Publishable;
-use Contentful\Management\Behavior\Updatable;
+use Contentful\Management\Resource\Behavior\Archivable;
+use Contentful\Management\Resource\Behavior\Creatable;
+use Contentful\Management\Resource\Behavior\Deletable;
+use Contentful\Management\Resource\Behavior\Publishable;
+use Contentful\Management\Resource\Behavior\Updatable;
 
 /**
  * Asset class.

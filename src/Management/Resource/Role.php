@@ -9,11 +9,11 @@
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\Behavior\Creatable;
-use Contentful\Management\Behavior\Deletable;
-use Contentful\Management\Behavior\Updatable;
-use Contentful\Management\Role\Permissions;
-use Contentful\Management\Role\Policy;
+use Contentful\Management\Resource\Behavior\Creatable;
+use Contentful\Management\Resource\Behavior\Deletable;
+use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Resource\Role\Permissions;
+use Contentful\Management\Resource\Role\Policy;
 
 /**
  * Role class.

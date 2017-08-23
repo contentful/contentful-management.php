@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E;
+namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\Resource\Entry;

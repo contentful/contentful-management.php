@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Resource;
+namespace Contentful\Tests\Unit\Management\Resource;
 
 use Contentful\Link;
 use Contentful\Management\Resource\SpaceMembership;

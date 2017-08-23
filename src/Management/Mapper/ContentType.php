@@ -9,8 +9,8 @@
 
 namespace Contentful\Management\Mapper;
 
-use Contentful\Management\Field;
-use Contentful\Management\Field\Validation;
+use Contentful\Management\Resource\ContentType\Field;
+use Contentful\Management\Resource\ContentType\Validation;
 use Contentful\Management\Resource\ContentType as ResourceClass;
 use Contentful\Management\SystemProperties;
 

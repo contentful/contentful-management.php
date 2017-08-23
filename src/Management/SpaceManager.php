@@ -11,11 +11,11 @@ namespace Contentful\Management;
 
 use function GuzzleHttp\json_encode;
 use Contentful\Exception\SpaceMismatchException;
-use Contentful\Management\Behavior\Archivable;
-use Contentful\Management\Behavior\Creatable;
-use Contentful\Management\Behavior\Deletable;
-use Contentful\Management\Behavior\Publishable;
-use Contentful\Management\Behavior\Updatable;
+use Contentful\Management\Resource\Behavior\Archivable;
+use Contentful\Management\Resource\Behavior\Creatable;
+use Contentful\Management\Resource\Behavior\Deletable;
+use Contentful\Management\Resource\Behavior\Publishable;
+use Contentful\Management\Resource\Behavior\Updatable;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\PreviewApiKey;

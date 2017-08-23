@@ -10,14 +10,14 @@
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\Role as ResourceClass;
+use Contentful\Management\Resource\Role\Policy;
+use Contentful\Management\Resource\Role\Permissions;
+use Contentful\Management\Resource\Role\Constraint\OrConstraint;
+use Contentful\Management\Resource\Role\Constraint\NotConstraint;
+use Contentful\Management\Resource\Role\Constraint\AndConstraint;
+use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
+use Contentful\Management\Resource\Role\Constraint\ConstraintInterface;
 use Contentful\Management\SystemProperties;
-use Contentful\Management\Role\Policy;
-use Contentful\Management\Role\Permissions;
-use Contentful\Management\Role\Constraint\OrConstraint;
-use Contentful\Management\Role\Constraint\NotConstraint;
-use Contentful\Management\Role\Constraint\AndConstraint;
-use Contentful\Management\Role\Constraint\EqualityConstraint;
-use Contentful\Management\Role\Constraint\ConstraintInterface;
 
 /**
  * Role class.

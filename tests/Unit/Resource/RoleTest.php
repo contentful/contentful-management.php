@@ -8,15 +8,15 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Resource;
+namespace Contentful\Tests\Unit\Management\Resource;
 
 use Contentful\Management\Resource\Role;
-use Contentful\Management\Role\Constraint\AndConstraint;
-use Contentful\Management\Role\Constraint\EqualityConstraint;
-use Contentful\Management\Role\Constraint\NotConstraint;
-use Contentful\Management\Role\Constraint\OrConstraint;
-use Contentful\Management\Role\Permissions;
-use Contentful\Management\Role\Policy;
+use Contentful\Management\Resource\Role\Constraint\AndConstraint;
+use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
+use Contentful\Management\Resource\Role\Constraint\NotConstraint;
+use Contentful\Management\Resource\Role\Constraint\OrConstraint;
+use Contentful\Management\Resource\Role\Permissions;
+use Contentful\Management\Resource\Role\Policy;
 use PHPUnit\Framework\TestCase;
 
 class RoleTest extends TestCase
