@@ -1,0 +1,137 @@
+[{
+    "request": {
+        "method": "POST",
+        "url": "https:\/\/api.contentful.com\/users\/me\/access_tokens",
+        "headers": {
+            "Host": "api.contentful.com",
+            "Expect": null,
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.8; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json"
+        },
+        "body": "{\"name\":\"Test access token\",\"scopes\":[\"content_management_read\"]}"
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "201",
+            "message": "Created"
+        },
+        "headers": {
+            "Accept-Ranges": "bytes",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "Cache-Control": "max-age=0",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Wed, 23 Aug 2017 17:10:13 GMT",
+            "ETag": "W\/\"38d53c6bf77436cbd96c477ba03b6184\"",
+            "Location": "https:\/\/api.contentful.com\/users\/me\/access_tokens\/6CwBPSYBSi5bPdx45JSvaA",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-Request-Id": "5bbb9a3be49c25b23362d44c4575ac20",
+            "X-Frame-Options": "ALLOWALL",
+            "X-XSS-Protection": "1; mode=block",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=9jaKirfTRcGkhDFO79bXY\/O2nVkAAAAAQUIPAAAAAAAXteuglcNGyO\/3yBn904AC; expires=Thu, 23 Aug 2018 08:11:11 GMT; path=\/; Domain=.contentful.com, nlbi_673446=1MvlW51kDA3yPQg26lKYhQAAAAAxIV47iQQosNPotToPcH3I; path=\/; Domain=.contentful.com, incap_ses_476_673446=eulQRfpPliWsufYJfxebBvS2nVkAAAAAHggWfaNoS\/BgT9tGyze0BA==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "6-2103564-2103574 NNNN CT(121 119 0) RT(1503508211596 144) q(0 0 2 0) r(4 4) U5",
+            "X-CDN": "Incapsula",
+            "Content-Encoding": "gzip",
+            "Transfer-Encoding": "chunked"
+        },
+        "body": "{\n  \"name\":\"Test access token\",\n  \"revokedAt\":null,\n  \"sys\":{\n    \"type\":\"PersonalAccessToken\",\n    \"id\":\"6CwBPSYBSi5bPdx45JSvaA\",\n    \"createdAt\":\"2017-08-23T17:10:13Z\",\n    \"updatedAt\":\"2017-08-23T17:10:13Z\"\n  },\n  \"scopes\":[\"content_management_read\"],\n  \"token\":\"CFPAT-0614d386673959037b4de26d2b4f6e57bc9c8de9fb43370e8c24f195c24a904a\"\n}\n\n"
+    }
+},{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/api.contentful.com\/users\/me\/access_tokens\/6CwBPSYBSi5bPdx45JSvaA",
+        "headers": {
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.8; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Accept-Ranges": "bytes",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "Cache-Control": "max-age=0",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Wed, 23 Aug 2017 17:10:13 GMT",
+            "ETag": "W\/\"84e656ef414a55e406a5de85a1b848a5\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-Request-Id": "900cd7f61ace7bdca9ef1e689fc50e0a",
+            "X-Frame-Options": "ALLOWALL",
+            "X-XSS-Protection": "1; mode=block",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=9jaKirfTRcGkhDFO79bXY\/O2nVkAAAAAQUIPAAAAAAAXteuglcNGyO\/3yBn904AC; expires=Thu, 23 Aug 2018 08:11:12 GMT; path=\/; Domain=.contentful.com, nlbi_673446=2vw5by8iryA9V41X6lKYhQAAAACypmIg9HqXiZNgnLv+hCjQ; path=\/; Domain=.contentful.com, incap_ses_476_673446=rcB7Vs7E8H2sufYJfxebBvS2nVkAAAAALyh2eu1T5b6Ch5EYYIclPQ==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "9-4318792-4313965 PNNN RT(1503508212311 48) q(0 1 1 101) r(3 3) U5",
+            "X-CDN": "Incapsula",
+            "Content-Encoding": "gzip",
+            "Transfer-Encoding": "chunked"
+        },
+        "body": "{\n  \"name\":\"Test access token\",\n  \"revokedAt\":null,\n  \"sys\":{\n    \"type\":\"PersonalAccessToken\",\n    \"id\":\"6CwBPSYBSi5bPdx45JSvaA\",\n    \"createdAt\":\"2017-08-23T17:10:13Z\",\n    \"updatedAt\":\"2017-08-23T17:10:13Z\"\n  },\n  \"scopes\":[\"content_management_read\"]\n}\n\n"
+    }
+},{
+    "request": {
+        "method": "PUT",
+        "url": "https:\/\/api.contentful.com\/users\/me\/access_tokens\/6CwBPSYBSi5bPdx45JSvaA\/revoked",
+        "headers": {
+            "Host": "api.contentful.com",
+            "Content-Length": "0",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.8; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Accept-Ranges": "bytes",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "Cache-Control": "max-age=0",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Wed, 23 Aug 2017 17:10:14 GMT",
+            "ETag": "W\/\"c0e3577e07e6294cb065cc23908301d3\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-Request-Id": "62f4b8fb925828733183306ccf13b371",
+            "X-Frame-Options": "ALLOWALL",
+            "X-XSS-Protection": "1; mode=block",
+            "Content-Length": "275",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=9jaKirfTRcGkhDFO79bXY\/O2nVkAAAAAQUIPAAAAAAAXteuglcNGyO\/3yBn904AC; expires=Thu, 23 Aug 2018 08:10:53 GMT; path=\/; Domain=.contentful.com, nlbi_673446=8qU6GFaYoicLwFGq6lKYhQAAAAAvQTsuitDKECd653\/lKN6Z; path=\/; Domain=.contentful.com, incap_ses_476_673446=4IQgFd7AdhKsufYJfxebBvW2nVkAAAAAQ5kqLO4hU1UA8s8WuT2AEw==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-3591538-3589433 PNNN RT(1503508212951 54) q(0 0 0 0) r(1 1) U5",
+            "X-CDN": "Incapsula"
+        },
+        "body": "{\n  \"name\":\"Test access token\",\n  \"revokedAt\":\"2017-08-23T17:10:14Z\",\n  \"sys\":{\n    \"type\":\"PersonalAccessToken\",\n    \"id\":\"6CwBPSYBSi5bPdx45JSvaA\",\n    \"createdAt\":\"2017-08-23T17:10:13Z\",\n    \"updatedAt\":\"2017-08-23T17:10:13Z\"\n  },\n  \"scopes\":[\"content_management_read\"]\n}\n\n"
+    }
+}]

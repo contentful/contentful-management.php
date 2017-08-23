@@ -131,6 +131,7 @@ class ResourceBuilder
             case 'Locale':
             case 'Organization':
             case 'Role':
+            case 'PersonalAccessToken':
             case 'PreviewApiKey':
             case 'Space':
             case 'SpaceMembership':

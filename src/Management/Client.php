@@ -12,6 +12,7 @@ namespace Contentful\Management;
 use function GuzzleHttp\json_encode;
 use Contentful\Link;
 use Contentful\Client as BaseClient;
+use Contentful\Management\Resource\PersonalAccessToken;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\User;
 use Contentful\ResourceArray;
@@ -250,6 +251,51 @@ class Client extends BaseClient
     public function getOwnUser(): User
     {
         return $this->get('users/me');
+    }
+
+    /**
+     * @param string $personalAccessTokenId
+     *
+     * @return PersonalAccessToken
+     */
+    public function getPersonalAccessToken(string $personalAccessTokenId): PersonalAccessToken
+    {
+        return $this->get('users/me/access_tokens/'.$personalAccessTokenId);
+    }
+
+    /**
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     */
+    public function getPersonalAccessTokens(Query $query = null): ResourceArray
+    {
+        return $this->get('users/me/access_tokens', $query);
+    }
+
+    /**
+     * @param PersonalAccessToken $personalAccessToken
+     */
+    public function createPersonalAccessToken(PersonalAccessToken $personalAccessToken)
+    {
+        $options = [
+            'body' => json_encode($this->prepareObjectForApi($personalAccessToken), JSON_UNESCAPED_UNICODE),
+        ];
+
+        $response = $this->request('POST', '/users/me/access_tokens', $options);
+
+        $this->builder->build($response, $personalAccessToken);
+    }
+
+    /**
+     * @param PersonalAccessToken $personalAccessToken
+     */
+    public function revokePersonalAccessToken(PersonalAccessToken $personalAccessToken)
+    {
+        $sys = $personalAccessToken->getSystemProperties();
+        $response = $this->request('PUT', 'users/me/access_tokens/'.$sys->getId().'/revoked');
+
+        $this->builder->build($response, $personalAccessToken);
     }
 
     /**
