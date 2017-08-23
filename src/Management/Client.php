@@ -10,6 +10,7 @@
 namespace Contentful\Management;
 
 use function GuzzleHttp\json_encode;
+use Contentful\Link;
 use Contentful\Client as BaseClient;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\User;
@@ -43,6 +44,11 @@ class Client extends BaseClient
      * @var ResourceBuilder
      */
     private $builder;
+
+    /**
+     * @var SpaceManager[]
+     */
+    private $spaceManagers = [];
 
     /**
      * Client constructor.
@@ -89,7 +95,11 @@ class Client extends BaseClient
      */
     public function getSpaceManager(string $spaceId): SpaceManager
     {
-        return new SpaceManager($this, $this->builder, $spaceId);
+        if (!isset($this->spaceManagers[$spaceId])) {
+            $this->spaceManagers[$spaceId] = new SpaceManager($this, $this->builder, $spaceId);
+        }
+
+        return $this->spaceManagers[$spaceId];
     }
 
     /**
@@ -119,6 +129,49 @@ class Client extends BaseClient
         $response = $this->request('GET', $path, $options);
 
         return $this->builder->build($response);
+    }
+
+    /**
+     * Resolves a Link object to the actual resource.
+     *
+     * @param Link        $link
+     * @param string|null $spaceId
+     *
+     * @return ResourceInterface
+     */
+    public function resolveLink(Link $link, string $spaceId = null): ResourceInterface
+    {
+        if ($link->getLinkType() == 'Space') {
+            return $this->getSpace($link->getId());
+        }
+
+        if ($spaceId === null) {
+            throw new \LogicException('Trying to resolve a link of a resource that is bound to a space, but not $spaceId parameter is given');
+        }
+
+        $spaceManager = $this->getSpaceManager($spaceId);
+
+        switch ($link->getLinkType()) {
+            case 'Asset':
+                return $spaceManager->getAsset($link->getId());
+            case 'ContentType':
+                return $spaceManager->getContentType($link->getId());
+            case 'Entry':
+                return $spaceManager->getEntry($link->getId());
+            case 'PreviewApiKey':
+                return $spaceManager->getPreviewApiKey($link->getId());
+            case 'Role':
+                return $spaceManager->getRole($link->getId());
+            case 'Upload':
+                return $spaceManager->getUpload($link->getId());
+            case 'WebhookDefinition':
+                return $spaceManager->getWebhook($link->getId());
+        }
+
+        throw new \InvalidArgumentException(sprintf(
+            'Unexpected system type "%s" while trying to resolve a Link',
+            $link->getLinkType()
+        ));
     }
 
     /**
