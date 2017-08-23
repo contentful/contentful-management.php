@@ -126,6 +126,7 @@ class ResourceBuilder
 
             case 'Asset':
             case 'ContentType':
+            case 'EditorInterface':
             case 'Entry':
             case 'Locale':
             case 'Organization':

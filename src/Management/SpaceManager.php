@@ -22,6 +22,7 @@ use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Management\Resource\DeliveryApiKey;
 use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Management\Resource\ContentTypeSnapshot;
+use Contentful\Management\Resource\EditorInterface;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Locale;
@@ -245,6 +246,16 @@ class SpaceManager
             $sys->getId(),
         ];
 
+        if ($resource instanceof EditorInterface) {
+            $uriParts = [
+                'spaces',
+                $this->spaceId,
+                $resource->getResourceUriPart(),
+                $sys->getContentType()->getId(),
+                'editor_interface',
+            ];
+        }
+
         $response = $this->client->request('PUT', implode('/', $uriParts), [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
             'body' => $body,
@@ -422,7 +433,7 @@ class SpaceManager
     }
 
     /**
-     * @param string $contentTypeId [ption]
+     * @param string $contentTypeId
      *
      * @return ContentType
      *
@@ -467,6 +478,18 @@ class SpaceManager
     public function getPublishedContentTypes(Query $query = null): ResourceArray
     {
         return $this->client->get('spaces/'.$this->spaceId.'/public/content_types', $query);
+    }
+
+    /**
+     * @param string $contentTypeId
+     *
+     * @return EditorInterface
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
+     */
+    public function getEditorInterface(string $contentTypeId): EditorInterface
+    {
+        return $this->client->get('spaces/'.$this->spaceId.'/content_types/'.$contentTypeId.'/editor_interface');
     }
 
     /**
