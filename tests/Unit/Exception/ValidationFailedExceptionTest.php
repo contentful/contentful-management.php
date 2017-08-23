@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Exception;
+namespace Contentful\Tests\Unit\Management\Exception;
 
 use Contentful\Management\Exception\ValidationFailedException;
 use GuzzleHttp\Exception\ClientException;

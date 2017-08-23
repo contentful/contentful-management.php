@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Integration\Resource;
+namespace Contentful\Tests\Integration\Management\Resource;
 
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\WebhookHealth;

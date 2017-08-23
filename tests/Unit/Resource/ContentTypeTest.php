@@ -8,11 +8,11 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Resource;
+namespace Contentful\Tests\Unit\Management\Resource;
 
-use Contentful\Management\Field\NumberField;
-use Contentful\Management\Field\SymbolField;
 use Contentful\Management\Resource\ContentType;
+use Contentful\Management\Resource\ContentType\Field\NumberField;
+use Contentful\Management\Resource\ContentType\Field\SymbolField;
 use PHPUnit\Framework\TestCase;
 
 class ContentTypeTest extends TestCase

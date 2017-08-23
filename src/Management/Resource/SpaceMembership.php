@@ -10,9 +10,9 @@
 namespace Contentful\Management\Resource;
 
 use Contentful\Link;
-use Contentful\Management\Behavior\Creatable;
-use Contentful\Management\Behavior\Deletable;
-use Contentful\Management\Behavior\Updatable;
+use Contentful\Management\Resource\Behavior\Creatable;
+use Contentful\Management\Resource\Behavior\Deletable;
+use Contentful\Management\Resource\Behavior\Updatable;
 
 /**
  * SpaceMembership class.

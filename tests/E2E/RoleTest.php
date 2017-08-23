@@ -8,17 +8,17 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E;
+namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Role;
-use Contentful\Management\Role\Constraint\AndConstraint;
-use Contentful\Management\Role\Constraint\EqualityConstraint;
-use Contentful\Management\Role\Constraint\NotConstraint;
-use Contentful\Management\Role\Constraint\OrConstraint;
-use Contentful\Management\Role\Permissions;
-use Contentful\Management\Role\Policy;
+use Contentful\Management\Resource\Role\Constraint\AndConstraint;
+use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
+use Contentful\Management\Resource\Role\Constraint\NotConstraint;
+use Contentful\Management\Resource\Role\Constraint\OrConstraint;
+use Contentful\Management\Resource\Role\Permissions;
+use Contentful\Management\Resource\Role\Policy;
 use Contentful\Tests\End2EndTestCase;
 
 class RoleTest extends End2EndTestCase

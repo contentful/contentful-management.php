@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit;
+namespace Contentful\Tests\Unit\Management;
 
 use Contentful\Management\SystemProperties;
 use PHPUnit\Framework\TestCase;
