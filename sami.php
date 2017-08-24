@@ -21,11 +21,12 @@ $iterator = Finder::create()
 
 $versions = GitVersionCollection::create($dir)
     ->addFromTags('*')
+    ->add('master', 'master branch')
 ;
 
 return new Sami($iterator, [
     'title' => 'Contentful CMA SDK for PHP',
     'versions' => $versions,
-    'build_dir' => __DIR__.'/build/docs',
-    'cache_dir' => __DIR__.'/build/doc_cache',
+    'build_dir' => __DIR__.'/build/docs/api/%version%',
+    'cache_dir' => __DIR__.'/build/doc_cache/%version%',
 ]);
