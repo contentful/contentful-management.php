@@ -18,6 +18,8 @@ usort($tags, function ($a, $b) {
     return version_compare($b, $a);
 });
 
+array_push($tags, 'master');
+
 $newestTag = $tags[0];
 $repoParts = explode('/', $travisRepoSlug);
 $repoOwner = $repoParts[0];
