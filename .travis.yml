@@ -3,6 +3,7 @@ language: php
 php:
   - 7.0
   - 7.1
+  - 7.2
 
 matrix:
   fast_finish: true
@@ -12,7 +13,7 @@ branches:
     - master
 
 before_install:
- - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
+ - if [[ $TRAVIS_TAG && "${TRAVIS_PHP_VERSION:0:3}" == "7.1" ]]; then wget -O sami.phar http://get.sensiolabs.org/sami.phar; fi
 
 install:
   - composer self-update
@@ -21,7 +22,17 @@ install:
 script:
  - vendor/bin/parallel-lint src/
  - vendor/bin/parallel-lint tests/
- - vendor/bin/phpunit
+ - vendor/bin/phpunit -v
+ - if [[ $TRAVIS_TAG && "${TRAVIS_PHP_VERSION:0:3}" == "7.1" ]]; then ./scripts/prepare-docs.sh; fi
 
 after_success:
- - travis_retry php coveralls.phar -v
+ - travis_retry bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: full/build/gh-pages
+  on:
+    php: 7.1
+    tags: true

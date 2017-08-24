@@ -8,6 +8,7 @@
 // https://github.com/FriendsOfPHP/Sami
 
 use Sami\Sami;
+use Sami\Version\GitVersionCollection;
 use Symfony\Component\Finder\Finder;
 
 $dir = __DIR__.'/src';
@@ -18,8 +19,13 @@ $iterator = Finder::create()
     ->in($dir)
 ;
 
+$versions = GitVersionCollection::create($dir)
+    ->addFromTags('*')
+;
+
 return new Sami($iterator, [
-    'title' => 'Contentful CDA SDK for PHP',
+    'title' => 'Contentful CMA SDK for PHP',
+    'versions' => $versions,
     'build_dir' => __DIR__.'/build/docs',
     'cache_dir' => __DIR__.'/build/doc_cache',
 ]);
