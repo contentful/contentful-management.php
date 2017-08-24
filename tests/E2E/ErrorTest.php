@@ -134,7 +134,7 @@ class UnknownKeyLocale extends Locale
 
 class EmptyBodyLocale extends Locale
 {
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [];
     }
@@ -142,7 +142,7 @@ class EmptyBodyLocale extends Locale
 
 class ValidationFailedLocale extends Locale
 {
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'name' => 'A cool locale',
