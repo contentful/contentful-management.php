@@ -200,7 +200,7 @@ class AssetTest extends End2EndTestCase
         $this->assertEquals('image/svg+xml', $asset->getFile('en-US')->getContentType());
         $this->assertContains('contentful.com', $asset->getFile('en-US')->getUrl());
 
-        $upload = $manager->getUpload($upload->getSystemProperties()->getId());
+        $upload = $manager->resolveLink($upload->asLink());
 
         $manager->delete($upload);
         $manager->delete($asset);

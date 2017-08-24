@@ -10,6 +10,7 @@
 namespace Contentful\Management;
 
 use function GuzzleHttp\json_encode;
+use Contentful\Link;
 use Contentful\Exception\SpaceMismatchException;
 use Contentful\Management\Resource\Behavior\Archivable;
 use Contentful\Management\Resource\Behavior\Creatable;
@@ -70,6 +71,19 @@ class SpaceManager
         $this->client = $client;
         $this->builder = $builder;
         $this->spaceId = $spaceId;
+    }
+
+    /**
+     * Resolves a Link object to the actual resource.
+     *
+     * @param Link        $link
+     * @param string|null $spaceId
+     *
+     * @return ResourceInterface
+     */
+    public function resolveLink(Link $link): ResourceInterface
+    {
+        return $this->client->resolveLink($link, $this->spaceId);
     }
 
     /**
