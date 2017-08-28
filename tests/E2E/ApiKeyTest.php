@@ -19,7 +19,7 @@ use Contentful\Tests\End2EndTestCase;
 class ApiKeyTest extends End2EndTestCase
 {
     /**
-     * @vcr e2e_api_key_delivery_get.json
+     * @vcr e2e_api_key_delivery_get_one_collection.json
      */
     public function testGetDeliveryApiKey()
     {
@@ -59,7 +59,7 @@ class ApiKeyTest extends End2EndTestCase
     }
 
     /**
-     * @vcr e2e_api_key_preview_get.json
+     * @vcr e2e_api_key_preview_get_one_collection.json
      */
     public function testGetPreviewApiKey()
     {

@@ -19,7 +19,7 @@ use Contentful\Tests\End2EndTestCase;
 class SnapshotTest extends End2EndTestCase
 {
     /**
-     * @vcr e2e_snapshot_entry_get.json
+     * @vcr e2e_snapshot_entry_get_one.json
      */
     public function testGetEntrySnapshot()
     {
@@ -61,7 +61,7 @@ class SnapshotTest extends End2EndTestCase
     }
 
     /**
-     * @vcr e2e_snapshot_content_type_get.json
+     * @vcr e2e_snapshot_content_type_get_one.json
      */
     public function testGetContentTypeSnapshot()
     {

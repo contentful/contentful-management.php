@@ -22,7 +22,7 @@ use function GuzzleHttp\Psr7\stream_for;
 class AssetTest extends End2EndTestCase
 {
     /**
-     * @vcr e2e_asset_get.json
+     * @vcr e2e_asset_get_one.json
      */
     public function testGetAsset()
     {

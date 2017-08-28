@@ -18,7 +18,7 @@ use Contentful\Tests\End2EndTestCase;
 class EntryTest extends End2EndTestCase
 {
     /**
-     * @vcr e2e_entry_get.json
+     * @vcr e2e_entry_get_one.json
      */
     public function testGetEntry()
     {
