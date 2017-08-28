@@ -84,4 +84,17 @@ class ClientTest extends End2EndTestCase
         $link = new Link('3LM5FlCdGUIM0Miqc664q6', 'Entry');
         $this->client->resolveLink($link);
     }
+
+    /**
+     * @expectedException \Contentful\Exception\SpaceMismatchException
+     * @expectedExceptionMessage Can not perform an action on a resource belonging to space "34luz0flcmxt" with a SpaceManager responsible for space "fakeSpaceId".
+     */
+    public function testSpaceManagerSpaceCheck()
+    {
+        $fakeSpaceManager = $this->client->getSpaceManager('fakeSpaceId');
+        $realSpaceManager = $this->getReadWriteSpaceManager();
+
+        $asset = $realSpaceManager->getAsset('2TEG7c2zYkSSuKmsqEwCS');
+        $fakeSpaceManager->update($asset);
+    }
 }

@@ -29,7 +29,7 @@ use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Locale;
 use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\Role;
-use Contentful\Management\Resource\Space;
+use Contentful\Management\Resource\SpaceScopedResourceInterface;
 use Contentful\Management\Resource\Upload;
 use Contentful\Management\Resource\Webhook;
 use Contentful\Management\Resource\WebhookCallDetails;
@@ -76,8 +76,7 @@ class SpaceManager
     /**
      * Resolves a Link object to the actual resource.
      *
-     * @param Link        $link
-     * @param string|null $spaceId
+     * @param Link $link
      *
      * @return ResourceInterface
      */
@@ -89,20 +88,17 @@ class SpaceManager
     /**
      * Checks that the given resource is compatible with the currently-managed space.
      *
-     * @param ResourceInterface $resource
+     * @param SpaceScopedResourceInterface $resource
      *
      * @throws SpaceMismatchException
      */
-    public function checkSpaceMismatch(ResourceInterface $resource)
+    public function checkSpaceMismatch(SpaceScopedResourceInterface $resource)
     {
-        $sys = $resource->getSystemProperties();
-        $resourceSpaceId = $resource instanceof Space
-            ? $sys->getId()
-            : $sys->getSpace()->getId();
+        $resourceSpaceId = $resource->getSystemProperties()->getSpace()->getId();
 
         if ($resourceSpaceId !== $this->spaceId) {
             throw new SpaceMismatchException(sprintf(
-                'Can not perform action on space "%s" with a SpaceManager responsible for space %s.',
+                'Can not perform an action on a resource belonging to space "%s" with a SpaceManager responsible for space "%s".',
                 $resource->getSystemProperties()->getSpace()->getId(),
                 $this->spaceId
             ));
