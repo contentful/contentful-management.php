@@ -74,6 +74,7 @@ class SpaceTest extends End2EndTestCase
             $this->client->getSpace($id);
         } catch (\Exception $e) {
             $this->assertInstanceOf(NotFoundException::class, $e);
+            $this->assertEquals('The resource could not be found.', $e->getMessage());
         }
     }
 
@@ -105,6 +106,7 @@ class SpaceTest extends End2EndTestCase
             $this->client->getSpace($id);
         } catch (\Exception $e) {
             $this->assertInstanceOf(NotFoundException::class, $e);
+            $this->assertEquals('The resource could not be found.', $e->getMessage());
         }
     }
 }

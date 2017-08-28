@@ -24,18 +24,18 @@ class FallbackLocaleNotDeletableExceptionTest extends TestCase
         $response = new Response(
             403,
             ['X-Contentful-Request-Id' => '0324c03ccf507f52515d39ab54e89516'],
-            '{"requestId":"0324c03ccf507f52515d39ab54e89516","message":"Cannot delete locale which is fallback of another one","sys":{"type":"Error","id":"FallbackLocaleNotDeletable"}}',
+            '{"requestId":"0324c03ccf507f52515d39ab54e89516","message":"Cannot delete locale which is fallback of another one.","sys":{"type":"Error","id":"FallbackLocaleNotDeletable"}}',
             1.1,
             'Forbidden'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new FallbackLocaleNotDeletableException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
         $this->assertEquals('0324c03ccf507f52515d39ab54e89516', $exception->getRequestId());
-        $this->assertEquals('Cannot delete locale which is fallback of another one', $exception->getMessage());
+        $this->assertEquals('Cannot delete locale which is fallback of another one.', $exception->getMessage());
     }
 }

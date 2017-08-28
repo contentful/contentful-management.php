@@ -24,8 +24,9 @@ class OrConstraintTest extends TestCase
 
         try {
             $constraint->setChildren(['invalid']);
-            $this->fail('Invalid child should throw an exception');
+            $this->fail('Invalid child should throw an exception.');
         } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('Argument "$children" of "Contentful\Management\Resource\Role\Constraint\OrConstraint::setChildren()" must be an array of "ConstraintInterface" objects.', $e->getMessage());
         }
 
         $constraint->clearChildren();

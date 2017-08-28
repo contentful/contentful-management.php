@@ -29,13 +29,13 @@ class InternalServerErrorExceptionTest extends TestCase
             'Bad Request'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new InternalServerErrorException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
         $this->assertEquals('6bf16c2ec5df8bbac2cb64feeb719558', $exception->getRequestId());
-        $this->assertEquals('This is an error', $exception->getMessage());
+        $this->assertEquals('This is an error.', $exception->getMessage());
     }
 }

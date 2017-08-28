@@ -101,7 +101,11 @@ class SpaceManager
             : $sys->getSpace()->getId();
 
         if ($resourceSpaceId !== $this->spaceId) {
-            throw new SpaceMismatchException('Can\'t perform action on space '.$resource->getSystemProperties()->getSpace()->getId().' with a SpaceManager responsible for '.$this->spaceId.'.');
+            throw new SpaceMismatchException(sprintf(
+                'Can not perform action on space "%s" with a SpaceManager responsible for space %s.',
+                $resource->getSystemProperties()->getSpace()->getId(),
+                $this->spaceId
+            ));
         }
     }
 

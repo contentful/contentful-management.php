@@ -46,9 +46,10 @@ class WebhookTest extends TestCase
 
         try {
             $webhook->getHeader('X-Not-Existing');
-            $this->fail('Accessing an non-existing header should result in an exception being thrown');
+            $this->fail('Accessing an non-existing header should result in an exception being thrown.');
         } catch (\Throwable $e) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+            $this->assertEquals('Invalid header key "X-Not-Existing" provided.', $e->getMessage());
         }
 
         $webhook->removeHeader('X-Test-Header');
@@ -60,9 +61,10 @@ class WebhookTest extends TestCase
 
         try {
             $webhook->removeHeader('X-Not-Existing');
-            $this->fail('Accessing an non-existing header should result in an exception being thrown');
+            $this->fail('Accessing an non-existing header should result in an exception being thrown.');
         } catch (\Throwable $e) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+            $this->assertEquals('Invalid header key "X-Not-Existing" provided.', $e->getMessage());
         }
 
         $webhook->setTopics(['Entry.create', '*.publish', 'invalid_key' => 'Asset.*']);
@@ -74,9 +76,10 @@ class WebhookTest extends TestCase
 
         try {
             $webhook->removeTopic('Entry.archive');
-            $this->fail('Accessing an non-existing topic should result in an exception being thrown');
+            $this->fail('Accessing an non-existing topic should result in an exception being thrown.');
         } catch (\Throwable $e) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+            $this->assertEquals('Invalid topic "Entry.archive" provided.', $e->getMessage());
         }
         $webhook->removeTopic('*.publish');
         $this->assertEquals(['Entry.create', 'Entry.publish', 'Asset.*'], $webhook->getTopics(), '', 0, 10, true);

@@ -29,14 +29,14 @@ class MissingKeyExceptionTest extends TestCase
             'Bad Request'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new MissingKeyException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
         $this->assertEquals('761a55845f700069f3c3b4dae6ad1117', $exception->getRequestId());
-        $this->assertEquals('This is an error', $exception->getMessage());
+        $this->assertEquals('Request body is missing a required key.', $exception->getMessage());
         $this->assertEquals('resource', $exception->getKey());
     }
 }

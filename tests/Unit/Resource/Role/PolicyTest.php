@@ -25,30 +25,34 @@ class PolicyTest extends TestCase
 
         try {
             $policy->setEffect('invalid');
-            $this->fail('Invalid effect should throw an exception');
+            $this->fail('Invalid effect should throw an exception.');
         } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('Parameter "$effect" in "Policy::setEffect()" must have either the value "allow" or "deny", "invalid" given.', $e->getMessage());
         }
 
         try {
             $policy->setActions('invalid');
-            $this->fail('Invalid actions should throw an exception');
+            $this->fail('Invalid actions should throw an exception.');
         } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('Argument "$actions" in "Policy::setActions()" must be either a string "all", or an array containing a subset of these values: read, create, update, delete, publish, unpublish, archive, unarchive.', $e->getMessage());
         }
 
         $policy->setActions('all');
 
         try {
             $policy->addAction('read');
-            $this->fail('Action can not be added when it is currently configured as "all"');
+            $this->fail('Action can not be added when it is currently configured as "all".');
         } catch (\LogicException $e) {
+            $this->assertEquals('Trying to add an action to a set, but the current value is a string. Use "Policy::setActions()" to initialize to an array.', $e->getMessage());
         }
 
         $policy->setActions([]);
 
         try {
             $policy->addAction('invalid');
-            $this->fail('Invalid action should throw an exception');
+            $this->fail('Invalid action should throw an exception.');
         } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('Argument "$action" in "Policy::addAction()" must be one of these values: read, create, update, delete, publish, unpublish, archive, unarchive.', $e->getMessage());
         }
 
         $policy->setActions([]);

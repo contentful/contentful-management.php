@@ -100,7 +100,9 @@ class AssetTest extends End2EndTestCase
 
             // This is arbitrary
             if ($limit > 50) {
-                throw new \RuntimeException('Repeated requests are not yielding a processed file, something is wrong');
+                throw new \RuntimeException(
+                    'Repeated requests are not yielding a processed file, something is wrong.'
+                );
             }
         }
 
@@ -192,7 +194,9 @@ class AssetTest extends End2EndTestCase
 
             // This is arbitrary
             if ($limit > 50) {
-                throw new \RuntimeException('Repeated requests are not yielding a processed file, something is wrong');
+                throw new \RuntimeException(
+                    'Repeated requests are not yielding a processed file, something is wrong.'
+                );
             }
         }
 

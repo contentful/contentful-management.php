@@ -18,6 +18,7 @@ class OrganizationTest extends TestCase
 {
     /**
      * @expectedException \LogicException
+     * @expectedExceptionMessage Class "Contentful\Management\Resource\Organization" can only be instantiated as a result of an API call, manual creation is not allowed.
      */
     public function testInvalidCreation()
     {
@@ -48,6 +49,7 @@ class OrganizationTest extends TestCase
      *
      * @depends testJsonSerialize
      * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\Organization", but only creation from scratch is supported.
      */
     public function testInvalidUpdate(Organization $organization)
     {

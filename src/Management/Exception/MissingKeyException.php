@@ -27,7 +27,7 @@ class MissingKeyException extends ApiException
     /**
      * {@inheritdoc}
      */
-    public function __construct(GuzzleRequestException $previous, $message = '')
+    public function __construct(GuzzleRequestException $previous, $message = 'Request body is missing a required key.')
     {
         parent::__construct($previous, $message);
 

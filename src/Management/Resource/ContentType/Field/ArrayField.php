@@ -66,10 +66,18 @@ class ArrayField extends BaseField
         parent::__construct($id, $name);
 
         if (!self::isValidItemType($itemsType)) {
-            throw new \RuntimeException('Invalid items type '.$itemsType.'. Valid values are '.implode(', ', self::VALID_ITEM_TYPES).'.');
+            throw new \RuntimeException(sprintf(
+                'Invalid items type "%s". Valid values are %s.',
+                $itemsType,
+                implode(', ', self::VALID_ITEM_TYPES)
+            ));
         }
         if ($itemsType === 'Link' && !self::isValidLinkType($itemsLinkType)) {
-            throw new \RuntimeException('Invalid items link type '.$itemsLinkType.'. Valid values are '.implode(', ', self::VALID_LINK_TYPES).'.');
+            throw new \RuntimeException(sprintf(
+                'Invalid items link type "%s". Valid values are %s.',
+                $itemsLinkType,
+                implode(', ', self::VALID_LINK_TYPES)
+            ));
         }
 
         $this->itemsType = $itemsType;
@@ -141,7 +149,11 @@ class ArrayField extends BaseField
     {
         foreach ($itemsValidations as $validation) {
             if (!in_array($this->getItemsType(), $validation::getValidFieldTypes())) {
-                throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
+                throw new \RuntimeException(sprintf(
+                    'The validation "%s" can not be used for fields of type "%s".',
+                    get_class($validation),
+                    $this->getType()
+                ));
             }
         }
 
@@ -158,7 +170,11 @@ class ArrayField extends BaseField
     public function addItemsValidation(ValidationInterface $validation)
     {
         if (!in_array($this->getItemsType(), $validation::getValidFieldTypes())) {
-            throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
+            throw new \RuntimeException(sprintf(
+                'The validation "%s" can not be used for fields of type "%s".',
+                get_class($validation),
+                $this->getType()
+            ));
         }
 
         $this->validations[] = $validation;

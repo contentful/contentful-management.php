@@ -27,7 +27,7 @@ class LinkFieldTest extends TestCase
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Invalid link type Invalid. Valid values are Asset, Entry.
+     * @expectedExceptionMessage Invalid link type "Invalid". Valid values are Asset, Entry.
      */
     public function testConstructorInvalidLinkType()
     {
@@ -36,7 +36,7 @@ class LinkFieldTest extends TestCase
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Invalid link type Invalid. Valid values are Asset, Entry.
+     * @expectedExceptionMessage Invalid link type "Invalid". Valid values are Asset, Entry.
      */
     public function testSetterInvalidLinkType()
     {

@@ -55,7 +55,9 @@ class Permissions implements \JsonSerializable
             (is_string($values) && $values !== 'all') ||
             (is_array($values) && array_diff($values, ['read', 'manage']))
         ) {
-            throw new \InvalidArgumentException('Argument $values in Permissions::setContentDelivery must be either a string "all", or an array containing a subset of ["read", "manage"]');
+            throw new \InvalidArgumentException(
+                'Argument "$values" in "Permissions::setContentDelivery()" must be either a string "all", or an array containing a subset of ["read", "manage"].'
+            );
         }
 
         $this->contentDelivery = $values;
@@ -83,7 +85,9 @@ class Permissions implements \JsonSerializable
             (is_string($values) && $values !== 'all') ||
             (is_array($values) && array_diff($values, ['read', 'manage']))
         ) {
-            throw new \InvalidArgumentException('Argument $values in Permissions::setContentModel must be either a string "all", or an array containing a subset of ["read", "manage"]');
+            throw new \InvalidArgumentException(
+                'Argument "$values" in "Permissions::setContentModel()" must be either a string "all", or an array containing a subset of ["read", "manage"].'
+            );
         }
 
         $this->contentModel = $values;
@@ -111,7 +115,9 @@ class Permissions implements \JsonSerializable
             (is_string($values) && $values !== 'all') ||
             (is_array($values) && array_diff($values, ['manage']))
         ) {
-            throw new \InvalidArgumentException('Argument $values in Permissions::setSettings must be either a string "all", or an array containing a subset of ["manage"]');
+            throw new \InvalidArgumentException(
+                'Argument "$values" in "Permissions::setSettings()" must be either a string "all", or an array containing a subset of ["manage"].'
+            );
         }
 
         $this->settings = $values;

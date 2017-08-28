@@ -29,7 +29,7 @@ class UnsupportedMediaTypeExceptionTest extends TestCase
             'Unsupported Media Type'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new UnsupportedMediaTypeException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());

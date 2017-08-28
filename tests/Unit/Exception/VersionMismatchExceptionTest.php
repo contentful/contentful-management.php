@@ -29,13 +29,13 @@ class VersionMismatchExceptionTest extends TestCase
             'Conflict'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new VersionMismatchException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
         $this->assertEquals('0b22bcf71e0d624fbd878bc398746d2e', $exception->getRequestId());
-        $this->assertEquals('This is an error', $exception->getMessage());
+        $this->assertEquals('The version number you supplied is invalid.', $exception->getMessage());
     }
 }

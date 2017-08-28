@@ -24,18 +24,18 @@ class BadRequestExceptionTest extends TestCase
         $response = new Response(
             400,
             ['X-Contentful-Request-Id' => '65af11a800e5f67af57a2082eb9a405c'],
-            '{"sys": {"type": "Error","id": "BadRequest"},"message": "Missing object","requestId": "65af11a800e5f67af57a2082eb9a405c"}',
+            '{"sys": {"type": "Error","id": "BadRequest"},"message": "Missing object.","requestId": "65af11a800e5f67af57a2082eb9a405c"}',
             1.1,
             'Bad Request'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new BadRequestException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
         $this->assertEquals('65af11a800e5f67af57a2082eb9a405c', $exception->getRequestId());
-        $this->assertEquals('Missing object', $exception->getMessage());
+        $this->assertEquals('Missing object.', $exception->getMessage());
     }
 }

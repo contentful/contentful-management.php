@@ -67,7 +67,7 @@ class ClientTest extends End2EndTestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Unexpected system type "InvalidSystemType" while trying to resolve a Link
+     * @expectedExceptionMessage Unexpected system type "InvalidSystemType" while trying to resolve a Link.
      */
     public function testInvalidLinkType()
     {
@@ -77,7 +77,7 @@ class ClientTest extends End2EndTestCase
 
     /**
      * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to resolve a link of a resource that is bound to a space, but not $spaceId parameter is given
+     * @expectedExceptionMessage Trying to resolve a link of a resource that is bound to a space, but no "$spaceId" parameter is given.
      */
     public function testResolveEntryNeedsSpaceId()
     {

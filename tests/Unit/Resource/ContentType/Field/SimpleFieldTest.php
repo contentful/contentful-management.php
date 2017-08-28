@@ -60,7 +60,7 @@ class SimpleFieldTest extends TestCase
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage The validation Contentful\Management\Resource\ContentType\Validation\RangeValidation can not be used for fields of type Symbol.
+     * @expectedExceptionMessage The validation "Contentful\Management\Resource\ContentType\Validation\RangeValidation" can not be used for fields of type "Symbol".
      */
     public function testAddInvalidValidation()
     {
@@ -71,7 +71,7 @@ class SimpleFieldTest extends TestCase
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage The validation Contentful\Management\Resource\ContentType\Validation\RangeValidation can not be used for fields of type Symbol.
+     * @expectedExceptionMessage The validation "Contentful\Management\Resource\ContentType\Validation\RangeValidation" can not be used for fields of type "Symbol".
      */
     public function testSetInvalidValidation()
     {
