@@ -173,7 +173,10 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     public function getHeader(string $key): string
     {
         if (!$this->hasHeader($key)) {
-            throw new \InvalidArgumentException(sprintf("Invalid header key provided: '%s'", $key));
+            throw new \InvalidArgumentException(sprintf(
+                'Invalid header key "%s" provided.',
+                $key
+            ));
         }
 
         return $this->headers[$key];
@@ -211,7 +214,9 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     {
         foreach ($headers as $key => $value) {
             if (!is_string($key) || !is_string($value)) {
-                throw new \InvalidArgumentException('Argument of Webhook::setHeaders() must be an array where all keys and values are strings');
+                throw new \InvalidArgumentException(
+                    'Argument "$headers" of "Webhook::setHeaders()" must be an array where all keys and values are strings.'
+                );
             }
         }
 
@@ -230,7 +235,10 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     public function removeHeader(string $key)
     {
         if (!$this->hasHeader($key)) {
-            throw new \InvalidArgumentException(sprintf("Invalid header key provided: '%s'", $key));
+            throw new \InvalidArgumentException(sprintf(
+                'Invalid header key "%s" provided.',
+                $key
+            ));
         }
 
         unset($this->headers[$key]);
@@ -292,7 +300,10 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     {
         $key = array_search($topic, $this->topics);
         if ($key === false) {
-            throw new \InvalidArgumentException(sprintf("Invalid header key provided: '%s'", $key));
+            throw new \InvalidArgumentException(sprintf(
+                'Invalid topic "%s" provided.',
+                $topic
+            ));
         }
 
         unset($this->topics[$key]);

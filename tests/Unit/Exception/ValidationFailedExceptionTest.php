@@ -29,7 +29,7 @@ class ValidationFailedExceptionTest extends TestCase
             'Unprocessable Entity'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new ValidationFailedException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());

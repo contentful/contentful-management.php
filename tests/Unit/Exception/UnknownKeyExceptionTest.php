@@ -29,7 +29,7 @@ class UnknownKeyExceptionTest extends TestCase
             'Bad Request'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new UnknownKeyException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());

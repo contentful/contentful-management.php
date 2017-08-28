@@ -10,17 +10,121 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Unit\Management;
 
+use Contentful\Link;
 use Contentful\Management\SystemProperties;
 use PHPUnit\Framework\TestCase;
 
 class SystemPropertiesTest extends TestCase
 {
-    public function testCreateWithType()
+    public function testGetSetData()
     {
-        $sys = SystemProperties::withType('Locale');
-        $this->assertEquals('Locale', $sys->getType());
+        $data = [
+            'id' => 'entryId',
+            'type' => 'Entry',
+            'version' => 1,
+            'revision' => 0,
+            'publishedCounter' => 10,
+            'publishedVersion' => 5,
+            'archivedVersion' => 15,
+            'snapshotType' => 'publish',
+            'snapshotEntityType' => 'Entry',
 
-        $sys = SystemProperties::withType('Space');
-        $this->assertEquals('Space', $sys->getType());
+            'createdAt' => '2017-01-01T12:30:15.000Z',
+            'updatedAt' => '2017-02-02T12:30:15.000Z',
+            'publishedAt' => '2017-03-03T12:30:15.000Z',
+            'archivedAt' => '2017-04-04T12:30:15.000Z',
+            'firstPublishedAt' => '2017-05-05T12:30:15.000Z',
+            'expiresAt' => '2017-06-06T12:30:15.000Z',
+
+            'space' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Space',
+                    'id' => 'spaceId',
+                ],
+            ],
+            'contentType' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'ContentType',
+                    'id' => 'contentTypeId',
+                ],
+            ],
+            'createdBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'userId',
+                ],
+            ],
+            'updatedBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'userId',
+                ],
+            ],
+            'publishedBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'userId',
+                ],
+            ],
+            'archivedBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'userId',
+                ],
+            ],
+        ];
+
+        $sys = new SystemProperties($data);
+
+        $this->assertEquals('entryId', $sys->getId());
+        $this->assertEquals('Entry', $sys->getType());
+        $this->assertEquals(1, $sys->getVersion());
+        $this->assertEquals(0, $sys->getRevision());
+        $this->assertEquals(10, $sys->getPublishedCounter());
+        $this->assertEquals(5, $sys->getPublishedVersion());
+        $this->assertEquals(15, $sys->getArchivedVersion());
+        $this->assertEquals('publish', $sys->getSnapshotType());
+        $this->assertEquals('Entry', $sys->getSnapshotEntityType());
+
+        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getCreatedAt());
+        $this->assertEquals(new \DateTimeImmutable('2017-01-01T12:30:15.000Z'), $sys->getCreatedAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getUpdatedAt());
+        $this->assertEquals(new \DateTimeImmutable('2017-02-02T12:30:15.000Z'), $sys->getUpdatedAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getPublishedAt());
+        $this->assertEquals(new \DateTimeImmutable('2017-03-03T12:30:15.000Z'), $sys->getPublishedAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getArchivedAt());
+        $this->assertEquals(new \DateTimeImmutable('2017-04-04T12:30:15.000Z'), $sys->getArchivedAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getFirstPublishedAt());
+        $this->assertEquals(new \DateTimeImmutable('2017-05-05T12:30:15.000Z'), $sys->getFirstPublishedAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getExpiresAt());
+        $this->assertEquals(new \DateTimeImmutable('2017-06-06T12:30:15.000Z'), $sys->getExpiresAt());
+
+        $this->assertInstanceOf(Link::class, $sys->getSpace());
+        $this->assertEquals('Space', $sys->getSpace()->getLinkType());
+        $this->assertEquals('spaceId', $sys->getSpace()->getId());
+        $this->assertInstanceOf(Link::class, $sys->getContentType());
+        $this->assertEquals('ContentType', $sys->getContentType()->getLinkType());
+        $this->assertEquals('contentTypeId', $sys->getContentType()->getId());
+        $this->assertInstanceOf(Link::class, $sys->getCreatedBy());
+        $this->assertEquals('User', $sys->getCreatedBy()->getLinkType());
+        $this->assertEquals('userId', $sys->getCreatedBy()->getId());
+        $this->assertInstanceOf(Link::class, $sys->getUpdatedBy());
+        $this->assertEquals('User', $sys->getUpdatedBy()->getLinkType());
+        $this->assertEquals('userId', $sys->getUpdatedBy()->getId());
+        $this->assertInstanceOf(Link::class, $sys->getPublishedBy());
+        $this->assertEquals('User', $sys->getPublishedBy()->getLinkType());
+        $this->assertEquals('userId', $sys->getPublishedBy()->getId());
+        $this->assertInstanceOf(Link::class, $sys->getArchivedBy());
+        $this->assertEquals('User', $sys->getArchivedBy()->getLinkType());
+        $this->assertEquals('userId', $sys->getArchivedBy()->getId());
+
+        $json = '{"id":"entryId","type":"Entry","space":{"sys":{"type":"Link","id":"spaceId","linkType":"Space"}},"contentType":{"sys":{"type":"Link","id":"contentTypeId","linkType":"ContentType"}},"createdAt":"2017-01-01T12:30:15Z","updatedAt":"2017-02-02T12:30:15Z","archivedAt":"2017-04-04T12:30:15Z","publishedAt":"2017-03-03T12:30:15Z","firstPublishedAt":"2017-05-05T12:30:15Z","version":1,"revision":0,"createdBy":{"sys":{"type":"Link","id":"userId","linkType":"User"}},"updatedBy":{"sys":{"type":"Link","id":"userId","linkType":"User"}},"publishedBy":{"sys":{"type":"Link","id":"userId","linkType":"User"}},"archivedBy":{"sys":{"type":"Link","id":"userId","linkType":"User"}},"publishedCounter":10,"publishedVersion":5,"archivedVersion":15,"snapshotType":"publish","snapshotEntityType":"Entry","expiresAt":"2017-06-06T12:30:15Z"}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($sys));
     }
 }

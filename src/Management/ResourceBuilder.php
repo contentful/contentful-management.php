@@ -85,7 +85,10 @@ class ResourceBuilder
             }
 
             if (!class_exists($matchedFqcn, true)) {
-                throw new \RuntimeException(sprintf('Mapper class "%s" does not exist', $matchedFqcn));
+                throw new \RuntimeException(sprintf(
+                    'Mapper class "%s" does not exist.',
+                    $matchedFqcn
+                ));
             }
 
             return $matchedFqcn;
@@ -154,7 +157,7 @@ class ResourceBuilder
         }
 
         throw new \InvalidArgumentException(sprintf(
-            'Unexpected system type "%s" while trying to build a resource',
+            'Unexpected system type "%s" while trying to build a resource.',
             $data['sys']['type']
         ));
     }

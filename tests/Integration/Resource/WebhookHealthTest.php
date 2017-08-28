@@ -18,6 +18,7 @@ class WebhookHealthTest extends TestCase
 {
     /**
      * @expectedException \LogicException
+     * @expectedExceptionMessage Class "Contentful\Management\Resource\WebhookHealth" can only be instantiated as a result of an API call, manual creation is not allowed.
      */
     public function testInvalidCreation()
     {
@@ -52,6 +53,7 @@ class WebhookHealthTest extends TestCase
      *
      * @depends testJsonSerialize
      * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\WebhookHealth", but only creation from scratch is supported.
      */
     public function testInvalidUpdate(WebhookHealth $webhookHealth)
     {

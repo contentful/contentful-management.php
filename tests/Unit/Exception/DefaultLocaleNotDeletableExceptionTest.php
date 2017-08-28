@@ -24,18 +24,18 @@ class DefaultLocaleNotDeletableExceptionTest extends TestCase
         $response = new Response(
             403,
             ['X-Contentful-Request-Id' => 'ba3ebdba60cc777f91746503330a6007'],
-            '{"requestId":"ba3ebdba60cc777f91746503330a6007","message":"Cannot delete a default locale","sys":{"type":"Error","id":"DefaultLocaleNotDeletable"}}',
+            '{"requestId":"ba3ebdba60cc777f91746503330a6007","message":"Cannot delete a default locale.","sys":{"type":"Error","id":"DefaultLocaleNotDeletable"}}',
             1.1,
             'Forbidden'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new DefaultLocaleNotDeletableException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
         $this->assertEquals('ba3ebdba60cc777f91746503330a6007', $exception->getRequestId());
-        $this->assertEquals('Cannot delete a default locale', $exception->getMessage());
+        $this->assertEquals('Cannot delete a default locale.', $exception->getMessage());
     }
 }

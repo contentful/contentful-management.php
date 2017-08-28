@@ -20,7 +20,7 @@ use Contentful\Tests\End2EndTestCase;
 class WebhookTest extends End2EndTestCase
 {
     /**
-     * @vcr e2e_webhook_get.json
+     * @vcr e2e_webhook_get_one.json
      */
     public function testGetWebhook()
     {

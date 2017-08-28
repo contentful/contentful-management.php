@@ -36,7 +36,7 @@ class RateLimitExceededExceptionTest extends TestCase
             ''
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
 
         $exception = new RateLimitExceededException($guzzleException);
 

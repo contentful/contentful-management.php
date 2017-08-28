@@ -24,18 +24,18 @@ class FallbackLocaleNotRenameableExceptionTest extends TestCase
         $response = new Response(
             403,
             ['X-Contentful-Request-Id' => 'ba4351a9e72616cffffc3c175bcc5271'],
-            '{"requestId":"ba4351a9e72616cffffc3c175bcc5271","message":"Cannot change the code of a locale which is fallback of another one","sys":{"type":"Error","id":"FallbackLocaleNotRenameable"}}',
+            '{"requestId":"ba4351a9e72616cffffc3c175bcc5271","message":"Cannot change the code of a locale which is fallback of another one.","sys":{"type":"Error","id":"FallbackLocaleNotRenameable"}}',
             1.1,
             'Forbidden'
         );
 
-        $guzzleException = new ClientException('This is an error', $request, $response);
+        $guzzleException = new ClientException('This is an error.', $request, $response);
         $exception = new FallbackLocaleNotRenameableException($guzzleException);
 
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
         $this->assertEquals('ba4351a9e72616cffffc3c175bcc5271', $exception->getRequestId());
-        $this->assertEquals('Cannot change the code of a locale which is fallback of another one', $exception->getMessage());
+        $this->assertEquals('Cannot change the code of a locale which is fallback of another one.', $exception->getMessage());
     }
 }

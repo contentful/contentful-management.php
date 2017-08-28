@@ -67,7 +67,7 @@ class ClientTest extends End2EndTestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Unexpected system type "InvalidSystemType" while trying to resolve a Link
+     * @expectedExceptionMessage Unexpected system type "InvalidSystemType" while trying to resolve a Link.
      */
     public function testInvalidLinkType()
     {
@@ -77,11 +77,24 @@ class ClientTest extends End2EndTestCase
 
     /**
      * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to resolve a link of a resource that is bound to a space, but not $spaceId parameter is given
+     * @expectedExceptionMessage Trying to resolve a link of a resource that is bound to a space, but no "$spaceId" parameter is given.
      */
     public function testResolveEntryNeedsSpaceId()
     {
         $link = new Link('3LM5FlCdGUIM0Miqc664q6', 'Entry');
         $this->client->resolveLink($link);
+    }
+
+    /**
+     * @expectedException \Contentful\Exception\SpaceMismatchException
+     * @expectedExceptionMessage Can not perform an action on a resource belonging to space "34luz0flcmxt" with a SpaceManager responsible for space "fakeSpaceId".
+     */
+    public function testSpaceManagerSpaceCheck()
+    {
+        $fakeSpaceManager = $this->client->getSpaceManager('fakeSpaceId');
+        $realSpaceManager = $this->getReadWriteSpaceManager();
+
+        $asset = $realSpaceManager->getAsset('2TEG7c2zYkSSuKmsqEwCS');
+        $fakeSpaceManager->update($asset);
     }
 }

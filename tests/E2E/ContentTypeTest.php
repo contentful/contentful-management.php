@@ -20,7 +20,7 @@ use Contentful\Tests\End2EndTestCase;
 class ContentTypeTest extends End2EndTestCase
 {
     /**
-     * @vcr e2e_content_type_get.json
+     * @vcr e2e_content_type_get_one.json
      */
     public function testGetContentType()
     {

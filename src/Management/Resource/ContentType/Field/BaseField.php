@@ -202,7 +202,11 @@ abstract class BaseField implements FieldInterface
     {
         foreach ($validations as $validation) {
             if (!in_array($this->getType(), $validation::getValidFieldTypes())) {
-                throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
+                throw new \RuntimeException(sprintf(
+                    'The validation "%s" can not be used for fields of type "%s".',
+                    get_class($validation),
+                    $this->getType()
+                ));
             }
         }
 
@@ -219,7 +223,11 @@ abstract class BaseField implements FieldInterface
     public function addValidation(ValidationInterface $validation)
     {
         if (!in_array($this->getType(), $validation::getValidFieldTypes())) {
-            throw new \RuntimeException('The validation '.get_class($validation).' can not be used for fields of type '.$this->getType().'.');
+            throw new \RuntimeException(sprintf(
+                'The validation "%s" can not be used for fields of type "%s".',
+                get_class($validation),
+                $this->getType()
+            ));
         }
 
         $this->validations[] = $validation;

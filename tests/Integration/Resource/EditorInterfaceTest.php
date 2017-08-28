@@ -18,6 +18,7 @@ class EditorInterfaceTest extends TestCase
 {
     /**
      * @expectedException \LogicException
+     * @expectedExceptionMessage Class "Contentful\Management\Resource\EditorInterface" can only be instantiated as a result of an API call, manual creation is not allowed.
      */
     public function testInvalidCreation()
     {

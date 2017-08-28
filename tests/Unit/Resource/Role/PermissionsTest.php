@@ -27,8 +27,9 @@ class PermissionsTest extends TestCase
 
         try {
             $permissions->setContentDelivery(['invalid']);
-            $this->fail('Invalid ContentDelivery should throw an exception');
+            $this->fail('Invalid ContentDelivery should throw an exception.');
         } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('Argument "$values" in "Permissions::setContentDelivery()" must be either a string "all", or an array containing a subset of ["read", "manage"].', $e->getMessage());
         }
 
         $permissions->setContentModel('all');
@@ -39,8 +40,9 @@ class PermissionsTest extends TestCase
 
         try {
             $permissions->setContentModel(['invalid']);
-            $this->fail('Invalid ContentModel should throw an exception');
+            $this->fail('Invalid ContentModel should throw an exception.');
         } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('Argument "$values" in "Permissions::setContentModel()" must be either a string "all", or an array containing a subset of ["read", "manage"].', $e->getMessage());
         }
 
         $permissions->setSettings('all');
@@ -51,8 +53,9 @@ class PermissionsTest extends TestCase
 
         try {
             $permissions->setSettings(['read']);
-            $this->fail('Invalid Settings should throw an exception');
+            $this->fail('Invalid Settings should throw an exception.');
         } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('Argument "$values" in "Permissions::setSettings()" must be either a string "all", or an array containing a subset of ["manage"].', $e->getMessage());
         }
     }
 

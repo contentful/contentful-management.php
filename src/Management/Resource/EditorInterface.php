@@ -31,7 +31,10 @@ class EditorInterface extends BaseResource implements Updatable
      */
     final public function __construct()
     {
-        throw new \LogicException(sprintf('Class %s can only be instantiated as a result of an API call, manual creation is not allowed.', static::class));
+        throw new \LogicException(sprintf(
+            'Class "%s" can only be instantiated as a result of an API call, manual creation is not allowed.',
+            static::class
+        ));
     }
 
     /**
@@ -55,7 +58,10 @@ class EditorInterface extends BaseResource implements Updatable
             }
         }
 
-        throw new \InvalidArgumentException(sprintf('Trying to access unavailable control "%s"', $fieldId));
+        throw new \InvalidArgumentException(sprintf(
+            'Trying to access unavailable control "%s".',
+            $fieldId
+        ));
     }
 
     /**

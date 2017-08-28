@@ -45,7 +45,7 @@ class EditorInterfaceTest extends End2EndTestCase
             $control = $editorInterface->getControl('invalidControl');
         } catch (\Exception $e) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $e);
-            $this->assertEquals('Trying to access unavailable control "invalidControl"', $e->getMessage());
+            $this->assertEquals('Trying to access unavailable control "invalidControl".', $e->getMessage());
         }
 
         $manager->update($editorInterface);

@@ -20,6 +20,7 @@ class ErrorTest extends End2EndTestCase
 {
     /**
      * @expectedException \Contentful\Management\Exception\UnknownKeyException
+     * @expectedExceptionMessage The body you sent contains an unknown key.
      * @vcr e2e_error_unknown_key.json
      */
     public function testUnknownKeyError()
@@ -32,6 +33,7 @@ class ErrorTest extends End2EndTestCase
 
     /**
      * @expectedException \Contentful\Management\Exception\MissingKeyException
+     * @expectedExceptionMessage Request body is missing a required key.
      * @vcr e2e_error_missing_key.json
      */
     public function testMissingKeyError()
@@ -44,6 +46,7 @@ class ErrorTest extends End2EndTestCase
 
     /**
      * @expectedException \Contentful\Management\Exception\ValidationFailedException
+     * @expectedExceptionMessage The resource you sent in the body is invalid.
      * @vcr e2e_error_validation_failed.json
      */
     public function testValidationFailedError()
@@ -69,18 +72,19 @@ class ErrorTest extends End2EndTestCase
         try {
             $spaceManager->update($fakeAsset);
         } catch (VersionMismatchException $e) {
-            $this->markTestAsPassed();
+            $this->assertEquals('The version number you supplied is invalid.', $e->getMessage());
 
             return;
         } finally {
             $spaceManager->delete($asset);
         }
 
-        $this->fail('Did not throw VersionMismatchException');
+        $this->fail('Did not throw VersionMismatchException.');
     }
 
     /**
      * @expectedException \Contentful\Management\Exception\DefaultLocaleNotDeletableException
+     * @expectedExceptionMessage Cannot delete a default locale
      * @vcr e2e_error_default_locale_not_deletable.json
      */
     public function testDefaultLocaleNotDeletableError()
@@ -93,6 +97,7 @@ class ErrorTest extends End2EndTestCase
 
     /**
      * @expectedException \Contentful\Management\Exception\FallbackLocaleNotDeletableException
+     * @expectedExceptionMessage Cannot delete locale which is fallback of another one
      * @vcr e2e_error_fallback_locale_not_deletable.json
      */
     public function testFallbackLocaleNotDeletableError()
@@ -106,6 +111,7 @@ class ErrorTest extends End2EndTestCase
 
     /**
      * @expectedException \Contentful\Management\Exception\FallbackLocaleNotRenameableException
+     * @expectedExceptionMessage Cannot change the code of a locale which is fallback of another one
      * @vcr e2e_error_fallback_locale_not_renameable.json
      */
     public function testFallbackLocaleNotRenameableError()

@@ -64,7 +64,7 @@ abstract class LogicConstraint implements ConstraintInterface
         foreach ($children as $child) {
             if (!$child instanceof ConstraintInterface) {
                 throw new \InvalidArgumentException(sprintf(
-                    'Argument $children of %s::setChildren() must be an array of ConstraintInterface objects',
+                    'Argument "$children" of "%s::setChildren()" must be an array of "ConstraintInterface" objects.',
                     static::class
                 ));
             }

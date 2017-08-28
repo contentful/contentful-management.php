@@ -147,7 +147,9 @@ class Client extends BaseClient
         }
 
         if ($spaceId === null) {
-            throw new \LogicException('Trying to resolve a link of a resource that is bound to a space, but not $spaceId parameter is given');
+            throw new \LogicException(
+                'Trying to resolve a link of a resource that is bound to a space, but no "$spaceId" parameter is given.'
+            );
         }
 
         $spaceManager = $this->getSpaceManager($spaceId);
@@ -170,7 +172,7 @@ class Client extends BaseClient
         }
 
         throw new \InvalidArgumentException(sprintf(
-            'Unexpected system type "%s" while trying to resolve a Link',
+            'Unexpected system type "%s" while trying to resolve a Link.',
             $link->getLinkType()
         ));
     }

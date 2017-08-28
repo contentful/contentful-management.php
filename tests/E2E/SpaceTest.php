@@ -20,7 +20,7 @@ use Contentful\Tests\End2EndTestCase;
 class SpaceTest extends End2EndTestCase
 {
     /**
-     * @vcr e2e_space_get.json
+     * @vcr e2e_space_get_one.json
      */
     public function testGetSpace()
     {
@@ -74,6 +74,7 @@ class SpaceTest extends End2EndTestCase
             $this->client->getSpace($id);
         } catch (\Exception $e) {
             $this->assertInstanceOf(NotFoundException::class, $e);
+            $this->assertEquals('The resource could not be found.', $e->getMessage());
         }
     }
 
@@ -105,6 +106,7 @@ class SpaceTest extends End2EndTestCase
             $this->client->getSpace($id);
         } catch (\Exception $e) {
             $this->assertInstanceOf(NotFoundException::class, $e);
+            $this->assertEquals('The resource could not be found.', $e->getMessage());
         }
     }
 }
