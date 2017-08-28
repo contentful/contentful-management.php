@@ -11,10 +11,6 @@ namespace Contentful\Management\Resource;
 
 /**
  * ApiKey class.
- *
- * This class represents a resource with type "ApiKey" in Contentful.
- *
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys
  */
 abstract class ApiKey extends BaseResource
 {
