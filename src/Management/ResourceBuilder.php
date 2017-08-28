@@ -149,6 +149,7 @@ class ResourceBuilder
             case 'ContentType':
             case 'EditorInterface':
             case 'Entry':
+            case 'Extension':
             case 'Locale':
             case 'Organization':
             case 'Role':
