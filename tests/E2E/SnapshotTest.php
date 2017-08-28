@@ -12,7 +12,9 @@ namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
 use Contentful\Management\Query;
+use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentTypeSnapshot;
+use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Tests\End2EndTestCase;
 
@@ -27,8 +29,9 @@ class SnapshotTest extends End2EndTestCase
 
         $snapshot = $manager->getEntrySnapshot('3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
         $this->assertEquals(new Link('3omuk8H8M8wUuqHhxddXtp', 'Snapshot'), $snapshot->asLink());
-        $this->assertInstanceOf(EntrySnapshot::class, $snapshot);
+        $this->assertSame($snapshot->getEntry(), $snapshot->getSnapshot());
         $entry = $snapshot->getEntry();
+        $this->assertInstanceOf(Entry::class, $entry);
         $this->assertEquals('Josh Lyman', $entry->getField('name', 'en-US'));
         $this->assertEquals('Deputy Chief of Staff', $entry->getField('jobTitle', 'en-US'));
         $this->assertEquals(new Link('person', 'ContentType'), $entry->getSystemProperties()->getContentType());
@@ -70,7 +73,9 @@ class SnapshotTest extends End2EndTestCase
         $snapshot = $manager->getContentTypeSnapshot('versionedContentType', '1Qvx64r3Nq0MOtftdcAXJO');
 
         $this->assertEquals(new Link('1Qvx64r3Nq0MOtftdcAXJO', 'Snapshot'), $snapshot->asLink());
+        $this->assertSame($snapshot->getContentType(), $snapshot->getSnapshot());
         $contentType = $snapshot->getContentType();
+        $this->assertInstanceOf(ContentType::class, $contentType);
         $this->assertEquals('Versioned Content Type', $contentType->getName());
         $this->assertEquals('title', $contentType->getDisplayField());
         $this->assertEquals(2, $contentType->getSystemProperties()->getVersion());

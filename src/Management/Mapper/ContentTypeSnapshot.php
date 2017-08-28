@@ -31,7 +31,7 @@ class ContentTypeSnapshot extends BaseMapper
 
         return $this->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
-            'contentType' => $this->builder->build($data['snapshot']),
+            'snapshot' => $this->builder->build($data['snapshot']),
         ]);
     }
 }
