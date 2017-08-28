@@ -38,6 +38,17 @@ class WebhookTest extends TestCase
         ]);
         $this->assertCount(2, $webhook->getHeaders());
         $this->assertFalse($webhook->hasHeader('X-Another-Header'));
+
+        try {
+            $webhook->setHeaders([
+                1 => new \stdClass(),
+            ]);
+            $this->fail('Setting an array of headers where either keys or values are not strings should result in an exception being thrown.');
+        } catch (\Throwable $e) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+            $this->assertEquals('Argument "$headers" of "Webhook::setHeaders()" must be an array where all keys and values are strings.', $e->getMessage());
+        }
+
         $webhook->addHeader('X-Another-Header', 'Third test value');
         $this->assertCount(3, $webhook->getHeaders());
         $this->assertTrue($webhook->hasHeader('X-Another-Header'));
