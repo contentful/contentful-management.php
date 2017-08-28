@@ -117,15 +117,9 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $uriParts = [
-            'spaces',
-            $this->spaceId,
-            $resource->getResourceUriPart(),
-            $sys->getId(),
-            'published',
-        ];
+        $uri = 'spaces/'.$this->spaceId.'/'.$resource->getResourceUriPart().'/'.$sys->getId().'/published';
 
-        $response = $this->client->request('PUT', implode('/', $uriParts), [
+        $response = $this->client->request('PUT', $uri, [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
         ]);
 
@@ -144,15 +138,9 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $uriParts = [
-            'spaces',
-            $this->spaceId,
-            $resource->getResourceUriPart(),
-            $sys->getId(),
-            'published',
-        ];
+        $uri = 'spaces/'.$this->spaceId.'/'.$resource->getResourceUriPart().'/'.$sys->getId().'/published';
 
-        $response = $this->client->request('DELETE', implode('/', $uriParts), [
+        $response = $this->client->request('DELETE', $uri, [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
         ]);
 
@@ -171,15 +159,9 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $uriParts = [
-            'spaces',
-            $this->spaceId,
-            $resource->getResourceUriPart(),
-            $sys->getId(),
-            'archived',
-        ];
+        $uri = 'spaces/'.$this->spaceId.'/'.$resource->getResourceUriPart().'/'.$sys->getId().'/archived';
 
-        $response = $this->client->request('PUT', implode('/', $uriParts), [
+        $response = $this->client->request('PUT', $uri, [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
         ]);
 
@@ -198,15 +180,9 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $uriParts = [
-            'spaces',
-            $this->spaceId,
-            $resource->getResourceUriPart(),
-            $sys->getId(),
-            'archived',
-        ];
+        $uri = 'spaces/'.$this->spaceId.'/'.$resource->getResourceUriPart().'/'.$sys->getId().'/archived';
 
-        $response = $this->client->request('DELETE', implode('/', $uriParts), [
+        $response = $this->client->request('DELETE', $uri, [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
         ]);
 
@@ -225,19 +201,14 @@ class SpaceManager
         $this->checkSpaceMismatch($resource);
 
         $sys = $resource->getSystemProperties();
-        $uriParts = [
-            'spaces',
-            $this->spaceId,
-            $resource->getResourceUriPart(),
-            $sys->getId(),
-        ];
+        $uri = 'spaces/'.$this->spaceId.'/'.$resource->getResourceUriPart().'/'.$sys->getId();
 
         $options = [];
         if ($resource instanceof Upload) {
             $options['baseUri'] = Client::URI_UPLOAD;
         }
 
-        $this->client->request('DELETE', implode('/', $uriParts), $options);
+        $this->client->request('DELETE', $uri, $options);
     }
 
     /**
@@ -253,24 +224,13 @@ class SpaceManager
 
         $sys = $resource->getSystemProperties();
         $body = json_encode($this->client->prepareObjectForApi($resource), JSON_UNESCAPED_UNICODE);
-        $uriParts = [
-            'spaces',
-            $this->spaceId,
-            $resource->getResourceUriPart(),
-            $sys->getId(),
-        ];
+        $uri = 'spaces/'.$this->spaceId.'/'.$resource->getResourceUriPart().'/'.$sys->getId();
 
         if ($resource instanceof EditorInterface) {
-            $uriParts = [
-                'spaces',
-                $this->spaceId,
-                $resource->getResourceUriPart(),
-                $sys->getContentType()->getId(),
-                'editor_interface',
-            ];
+            $uri = 'spaces/'.$this->spaceId.'/'.$resource->getResourceUriPart().'/'.$sys->getContentType()->getId().'/editor_interface';
         }
 
-        $response = $this->client->request('PUT', implode('/', $uriParts), [
+        $response = $this->client->request('PUT', $uri, [
             'additionalHeaders' => ['X-Contentful-Version' => $sys->getVersion()],
             'body' => $body,
         ]);
@@ -303,18 +263,14 @@ class SpaceManager
             $options['body'] = $resource->getBody();
         }
 
-        $uriParts = [
-            'spaces',
-            $this->spaceId,
-            $resource->getResourceUriPart(),
-        ];
-
+        $uri = 'spaces/'.$this->spaceId.'/'.$resource->getResourceUriPart();
         if ($id !== null) {
-            $uriParts[] = $id;
+            $uri .= '/'.$id;
         }
 
         $method = $id === null ? 'POST' : 'PUT';
-        $response = $this->client->request($method, implode('/', $uriParts), $options);
+
+        $response = $this->client->request($method, $uri, $options);
 
         $this->builder->build($response, $resource);
     }
