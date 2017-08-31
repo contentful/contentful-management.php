@@ -158,7 +158,6 @@ class ResourceBuilder
             case 'SpaceMembership':
             case 'Upload':
             case 'User':
-            case 'WebhookCallDetails':
                 return $data['sys']['type'];
 
             case 'Snapshot':
@@ -168,6 +167,7 @@ class ResourceBuilder
                 return 'DeliveryApiKey';
             case 'Webhook':
                 return 'WebhookHealth';
+            case 'WebhookCallDetails':
             case 'WebhookCallOverview':
                 return 'WebhookCall';
             case 'WebhookDefinition':

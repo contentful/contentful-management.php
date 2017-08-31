@@ -9,32 +9,31 @@
 
 namespace Contentful\Management;
 
-use function GuzzleHttp\json_encode;
-use Contentful\Link;
 use Contentful\Exception\SpaceMismatchException;
+use Contentful\Link;
+use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Behavior\Archivable;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Publishable;
 use Contentful\Management\Resource\Behavior\Updatable;
-use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
-use Contentful\Management\Resource\PreviewApiKey;
-use Contentful\Management\Resource\DeliveryApiKey;
-use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Management\Resource\ContentTypeSnapshot;
+use Contentful\Management\Resource\DeliveryApiKey;
 use Contentful\Management\Resource\EditorInterface;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Locale;
+use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\Role;
+use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Management\Resource\SpaceScopedResourceInterface;
 use Contentful\Management\Resource\Upload;
 use Contentful\Management\Resource\Webhook;
-use Contentful\Management\Resource\WebhookCallDetails;
 use Contentful\Management\Resource\WebhookHealth;
 use Contentful\ResourceArray;
+use function GuzzleHttp\json_encode;
 
 /**
  * SpaceManager class.
@@ -635,11 +634,11 @@ class SpaceManager
      * @param string $webhookId
      * @param string $webhookCallId
      *
-     * @return WebhookCallDetails
+     * @return WebhookCall
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details
      */
-    public function getWebhookCallDetails(string $webhookId, string $webhookCallId)
+    public function getWebhookCall(string $webhookId, string $webhookCallId)
     {
         return $this->client->get('spaces/'.$this->spaceId.'/webhooks/'.$webhookId.'/calls/'.$webhookCallId);
     }

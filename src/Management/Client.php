@@ -9,14 +9,14 @@
 
 namespace Contentful\Management;
 
-use function GuzzleHttp\json_encode;
-use Contentful\Link;
 use Contentful\Client as BaseClient;
+use Contentful\Link;
 use Contentful\Management\Resource\PersonalAccessToken;
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\User;
 use Contentful\ResourceArray;
-use Contentful\Management\Resource\ResourceInterface;
+use function GuzzleHttp\json_encode;
 
 /**
  * Client class.

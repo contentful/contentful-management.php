@@ -160,21 +160,21 @@ class WebhookTest extends End2EndTestCase
         $webhookCallId = $webhookCalls[0]->getSystemProperties()->getId();
         $this->assertNotNull($webhookCallId);
 
-        $webhookCallDetails = $manager->getWebhookCallDetails($webhookId, $webhookCallId);
-        $this->assertEquals(new Link($webhookCallDetails->getSystemProperties()->getId(), 'WebhookCallDetails'), $webhookCallDetails->asLink());
-        $requestPayload = json_decode((string) $webhookCallDetails->getRequest()->getBody(), true);
+        $webhookCall = $manager->getWebhookCall($webhookId, $webhookCallId);
+        $this->assertEquals(new Link($webhookCall->getSystemProperties()->getId(), 'WebhookCallDetails'), $webhookCall->asLink());
+        $requestPayload = json_decode((string) $webhookCall->getRequest()->getBody(), true);
         $this->assertEquals('Dwight Schrute', $requestPayload['fields']['name']['en-US']);
-        $this->assertEquals('ContentManagement.Entry.create', $webhookCallDetails->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
-        $this->assertEquals('ClientError', $webhookCallDetails->getError());
-        $this->assertEquals('create', $webhookCallDetails->getEventType());
-        $this->assertEquals(404, $webhookCallDetails->getStatusCode());
-        $this->assertEquals('https://www.example.com/cf-xrLThVn5uBzHqB6tIbpV4aycgyisr5UAEQSafzkG', $webhookCallDetails->getUrl());
-        $this->assertEquals(404, $webhookCallDetails->getResponse()->getStatusCode());
-        $this->assertEquals($webhookCallId, $webhookCallDetails->getSystemProperties()->getId());
+        $this->assertEquals('ContentManagement.Entry.create', $webhookCall->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
+        $this->assertEquals('ClientError', $webhookCall->getError());
+        $this->assertEquals('create', $webhookCall->getEventType());
+        $this->assertEquals(404, $webhookCall->getStatusCode());
+        $this->assertEquals('https://www.example.com/cf-xrLThVn5uBzHqB6tIbpV4aycgyisr5UAEQSafzkG', $webhookCall->getUrl());
+        $this->assertEquals(404, $webhookCall->getResponse()->getStatusCode());
+        $this->assertEquals($webhookCallId, $webhookCall->getSystemProperties()->getId());
         // This is actually guaranteed thanks to type safety,
         // but it's the only meaningful test we can have
-        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCallDetails->getRequestAt());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCallDetails->getResponseAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCall->getRequestAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCall->getResponseAt());
 
         return $webhook;
     }
