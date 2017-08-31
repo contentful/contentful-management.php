@@ -40,22 +40,6 @@ class WebhookHealth extends BaseResource
     }
 
     /**
-     * @return int
-     */
-    public function getTotal(): int
-    {
-        return $this->total;
-    }
-
-    /**
-     * @return int
-     */
-    public function getHealthy(): int
-    {
-        return $this->healthy;
-    }
-
-    /**
      * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
@@ -69,5 +53,32 @@ class WebhookHealth extends BaseResource
                 'healthy' => $this->healthy,
             ],
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asRequestBody()
+    {
+        throw new \LogicException(sprintf(
+            'Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.',
+            static::class
+        ));
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotal(): int
+    {
+        return $this->total;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHealthy(): int
+    {
+        return $this->healthy;
     }
 }

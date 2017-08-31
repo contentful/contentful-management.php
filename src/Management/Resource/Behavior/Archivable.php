@@ -9,16 +9,13 @@
 
 namespace Contentful\Management\Resource\Behavior;
 
-use Contentful\Management\Resource\SpaceScopedResourceInterface;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * Archivable interface.
  *
  * Represents a resource which can be archived.
- *
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-archiving Archiving assets
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry-archiving Archiving entries
  */
-interface Archivable extends SpaceScopedResourceInterface
+interface Archivable extends ResourceInterface
 {
 }

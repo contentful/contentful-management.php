@@ -22,8 +22,8 @@ class PublishedContentTypeTest extends End2EndTestCase
      */
     public function testGetPublishedContentType()
     {
-        $manager = $this->getReadOnlySpaceManager();
-        $contentType = $manager->getPublishedContentType('cat');
+        $client = $this->getReadOnlyClient();
+        $contentType = $client->publishedContentType->get('cat');
 
         $this->assertEquals('Cat', $contentType->getName());
         $this->assertEquals('name', $contentType->getDisplayField());
@@ -45,14 +45,14 @@ class PublishedContentTypeTest extends End2EndTestCase
      */
     public function testGetPublishedContentTypes()
     {
-        $manager = $this->getReadOnlySpaceManager();
-        $contentTypes = $manager->getPublishedContentTypes();
+        $client = $this->getReadOnlyClient();
+        $contentTypes = $client->publishedContentType->getAll();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $contentTypes = $manager->getPublishedContentTypes($query);
+        $contentTypes = $client->publishedContentType->getAll($query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
     }

@@ -33,7 +33,7 @@ class PersonalAccessTokenTest extends TestCase
     {
         $personalAccessToken = new PersonalAccessToken('Test token', true);
 
-        $json = '{"sys":{"type":"PersonalAccessToken"},"name":"Test token","scopes":["content_management_read"]}';
+        $json = '{"sys":{"type":"PersonalAccessToken"},"name":"Test token","scopes":["content_management_read"],"token":null,"revokedAt":null}';
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($personalAccessToken));
     }

@@ -9,6 +9,10 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Management\Resource\Behavior\Creatable;
+use Contentful\Management\Resource\Behavior\Deletable;
+use Contentful\Management\Resource\Behavior\Updatable;
+
 /**
  * Space class.
  *
@@ -17,7 +21,7 @@ namespace Contentful\Management\Resource;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces
  * @see https://www.contentful.com/r/knowledgebase/spaces-and-organizations/
  */
-class Space extends BaseResource
+class Space extends BaseResource implements Creatable, Updatable, Deletable
 {
     /**
      * @var string
@@ -25,14 +29,57 @@ class Space extends BaseResource
     protected $name;
 
     /**
+     * @var string|null
+     */
+    protected $organizationId;
+
+    /**
+     * @var string|null
+     */
+    protected $defaultLocale;
+
+    /**
      * Space constructor.
      *
-     * @param string $name
+     * @param string      $name
+     * @param string      $organizationId
+     * @param string|null $defaultLocale
      */
-    public function __construct(string $name)
+    public function __construct(string $name, string $organizationId, string $defaultLocale = null)
     {
         parent::__construct('Space');
         $this->name = $name;
+        $this->organizationId = $organizationId;
+        $this->defaultLocale = $defaultLocale;
+    }
+
+    /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'sys' => $this->sys,
+            'name' => $this->name,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asRequestBody(): string
+    {
+        $body = $this->jsonSerialize();
+
+        unset($body['sys']);
+
+        if ($this->defaultLocale) {
+            $body['defaultLocale'] = $this->defaultLocale;
+        }
+
+        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -56,15 +103,10 @@ class Space extends BaseResource
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * @return string|null
      */
-    public function jsonSerialize(): array
+    public function getOrganizationId()
     {
-        return [
-            'sys' => $this->sys,
-            'name' => $this->name,
-        ];
+        return $this->organizationId;
     }
 }

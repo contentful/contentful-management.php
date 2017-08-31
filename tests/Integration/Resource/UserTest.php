@@ -64,4 +64,16 @@ class UserTest extends TestCase
                 'type' => 'User',
             ]], $user);
     }
+
+    /**
+     * @param User $user
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\User" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(User $user)
+    {
+        $user->asRequestBody();
+    }
 }

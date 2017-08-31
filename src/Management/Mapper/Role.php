@@ -65,6 +65,12 @@ class Role extends BaseMapper
         reset($data);
         $key = key($data);
 
+        // There is no "default" action, as "and", "or", "not",
+        // and "equals" are the only supported constraints.
+        // If for whatever reason the value happened to be anything else,
+        // this method will throw a TypeError as it will not return
+        // an object implementing ConstraintInterface.
+        // This is the expected behavior.
         switch ($key) {
             case 'and':
                 return $this->hydrate(AndConstraint::class, [
@@ -79,14 +85,12 @@ class Role extends BaseMapper
                     'child' => $this->buildConstraint($data[$key][0]),
                 ]);
             case 'equals':
-                /**
-                 * The $data[$key] array *should* be in the form
-                 * [{"doc": "sys.type"}, "Entry"]
-                 * with the object with the "doc" property in the first position,
-                 * and the actual value in the second position.
-                 * Just to be safe, we check whether the 'doc' key exists in the first element,
-                 * so we know that *that* element is the doc, and the other contains the value.
-                 */
+                // The $data[$key] array *should* be in the form
+                // [{"doc": "sys.type"}, "Entry"]
+                // with the object with the "doc" property in the first position,
+                // and the actual value in the second position.
+                // Just to be safe, we check whether the 'doc' key exists in the first element,
+                // so we know that *that* element is the doc, and the other contains the value.
                 $docKey = isset($data[$key][0]['doc']) ? 0 : 1;
                 $valueKey = 1 - $docKey;
 
@@ -94,8 +98,6 @@ class Role extends BaseMapper
                     'doc' => $data[$key][$docKey]['doc'],
                     'value' => $data[$key][$valueKey],
                 ]);
-            default:
-                throw new \RuntimeException('Could not determine the constraint type');
         }
     }
 

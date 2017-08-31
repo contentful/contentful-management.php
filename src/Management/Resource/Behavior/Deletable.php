@@ -9,19 +9,13 @@
 
 namespace Contentful\Management\Resource\Behavior;
 
-use Contentful\Management\Resource\SpaceScopedResourceInterface;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * Deletable interface.
  *
  * Represents a resource which can be deleted.
- *
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset Deleting assets
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type Deleting content types
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry Deleting entries
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale Deleting locales
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhook Deleting webhooks
  */
-interface Deletable extends SpaceScopedResourceInterface
+interface Deletable extends ResourceInterface
 {
 }

@@ -22,12 +22,12 @@ class SpaceMembershipTest extends End2EndTestCase
      */
     public function testGetSpaceMembership()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $spaceMembership = $manager->getSpaceMembership('3pCRBWtdkT0HzQmQpRcitU');
+        $spaceMembership = $client->spaceMembership->get('3pCRBWtdkT0HzQmQpRcitU');
 
         $this->assertNull($spaceMembership->getEmail());
-        $this->assertNotNull($spaceMembership->getSystemProperties()->getId());
+        $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
         $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
@@ -39,9 +39,9 @@ class SpaceMembershipTest extends End2EndTestCase
      */
     public function testGetSpaceMemberships()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $spaceMemberships = $manager->getSpaceMemberships();
+        $spaceMemberships = $client->spaceMembership->getAll();
         $spaceMembership = $spaceMemberships[1];
 
         $this->assertInstanceOf(SpaceMembership::class, $spaceMembership);
@@ -53,7 +53,7 @@ class SpaceMembershipTest extends End2EndTestCase
         $this->assertCount($spaceMemberships->getTotal(), $spaceMemberships);
 
         $this->assertNull($spaceMembership->getEmail());
-        $this->assertNotNull($spaceMembership->getSystemProperties()->getId());
+        $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
         $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
@@ -61,7 +61,7 @@ class SpaceMembershipTest extends End2EndTestCase
 
         $query = (new Query())
             ->setLimit(2);
-        $spaceMemberships = $manager->getSpaceMemberships($query);
+        $spaceMemberships = $client->spaceMembership->getAll($query);
         $spaceMembership = $spaceMemberships[1];
 
         $this->assertInstanceOf(SpaceMembership::class, $spaceMembership);
@@ -73,7 +73,7 @@ class SpaceMembershipTest extends End2EndTestCase
         $this->assertCount($spaceMemberships->getTotal(), $spaceMemberships);
 
         $this->assertNull($spaceMembership->getEmail());
-        $this->assertNotNull($spaceMembership->getSystemProperties()->getId());
+        $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
         $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
@@ -85,17 +85,17 @@ class SpaceMembershipTest extends End2EndTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $spaceMembership = new SpaceMembership();
         $spaceMembership
             ->setEmail('php-cma-sdk-tests-eb2a4f5@contentful.com')
             ->setAdmin(true);
 
-        $manager->create($spaceMembership);
+        $client->spaceMembership->create($spaceMembership);
 
         $this->assertNull($spaceMembership->getEmail());
-        $this->assertNotNull($spaceMembership->getSystemProperties()->getId());
+        $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
         $this->assertEquals('2ZEuONMmCXSeGjl2CryAaM', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
@@ -106,15 +106,15 @@ class SpaceMembershipTest extends End2EndTestCase
             ->setAdmin(false)
             ->addRole($role);
 
-        $manager->update($spaceMembership);
+        $spaceMembership->update();
 
         $this->assertNull($spaceMembership->getEmail());
-        $this->assertNotNull($spaceMembership->getSystemProperties()->getId());
+        $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
         $this->assertEquals('2ZEuONMmCXSeGjl2CryAaM', $spaceMembership->getUser()->getId());
         $this->assertEquals([$role], $spaceMembership->getRoles());
         $this->assertFalse($spaceMembership->isAdmin());
 
-        $manager->delete($spaceMembership);
+        $spaceMembership->delete();
     }
 }
