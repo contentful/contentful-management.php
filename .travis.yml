@@ -21,13 +21,13 @@ install:
   - composer install
 
 script:
- - vendor/bin/parallel-lint src/
- - vendor/bin/parallel-lint tests/
- - vendor/bin/phpunit -v
+  - vendor/bin/parallel-lint src/
+  - vendor/bin/parallel-lint tests/
+  - vendor/bin/phpunit -v
 
 after_success:
- - travis_retry bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml
- - if [[ ($TRAVIS_PULL_REQUEST == false || $TRAVIS_TAG != false) && "${TRAVIS_PHP_VERSION:0:3}" == "7.1" ]]; then ./scripts/prepare-docs.sh; fi
+  - travis_retry bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml
+  - if [[ ($TRAVIS_PULL_REQUEST == false || $TRAVIS_TAG != false) && "${TRAVIS_PHP_VERSION:0:3}" == "7.1" ]]; then ./scripts/prepare-docs.sh; fi
 
 deploy:
   provider: pages
@@ -36,3 +36,7 @@ deploy:
   local_dir: build/docs
   on:
     condition: ($TRAVIS_PULL_REQUEST == false || $TRAVIS_TAG != false) && "${TRAVIS_PHP_VERSION:0:3}" == "7.1"
+
+notifications:
+  slack:
+    secure: VwV9TggMVDEuGcvklEhdlOHWG4uUSaw6tkPrOyaA2AJl8G+CYJ1/RwNXli8GGObWSdLi30uNUx1X1PXpW5dL2sN3+zMd4r2opbaWNQg8oQ1mB8U+z0wzVa3LVNufBNCJYeIvDsMrJG3S51ndzIk7NNKHcXB/bnLE0St3w8L18P7l3FknrQQUY4gIdTstscmLjQzxw1U7mAwELhigcUXJp9Ujm5MnnBqD3YDDojWt0M2n8FQVY/Ia9Ubk40kg+AGOAtBNbRteiaIGyxrvNjtTg33t4OcobjzgYEBIXFC796foNNp/AiH8cTeSB2UHMgUiLZbq7R2nuz1t2E6fOCrOD7Bg66okhz2hYV/sx8grlxinjwF5tjZS0ykC4RaIwVBkXlwgjH6J9zd5vS8dmQ1vP75RSER9kdksbvmhXAS7kAAKJ0dwRMFjKH/gMkx5vkz8FKlsuWs0n3x3IeWI0a2cGIJrRHvEJVhmWNJuHYliGHKH1Jw6DsjtqS3q5Xxv3zPJzHgjb0+NujRToGAgDj7jHy4diGbQKxVoydrJY1y2eLDQ2hF2uHA5LIIMI6Lb7Y/My/Op9p5RyH0HJ5uKdvT3Dc447n5q5LQXHxBh5otEM3t81NpPos62QmIq38JkYVx9A1YoogRz7J3GuChhOD5Ha/4I26cxjinmmJdbsm5akJg=
