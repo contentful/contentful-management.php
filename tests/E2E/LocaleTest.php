@@ -63,13 +63,13 @@ class LocaleTest extends End2EndTestCase
     {
         $manager = $this->getReadWriteSpaceManager();
 
-        $locale = new Locale('Swiss German', 'de-CH');
+        $locale = new Locale('Swiss Italian', 'it-CH');
 
         $manager->create($locale);
         $this->assertNotNull($locale->getSystemProperties()->getId());
 
-        $locale->setName('Really Swiss German');
         $manager->update($locale);
+        $locale->setName('Really Swiss Italian');
 
         $manager->delete($locale);
     }

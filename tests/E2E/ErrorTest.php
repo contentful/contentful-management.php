@@ -28,8 +28,8 @@ class ErrorTest extends End2EndTestCase
     {
         $spaceManager = $this->getReadWriteSpaceManager();
 
-        $locale = new UnknownKeyLocale('American German', 'de-US');
         $spaceManager->create($locale);
+        $locale = new UnknownKeyLocale('American Italian', 'it-US');
     }
 
     /**
@@ -41,8 +41,8 @@ class ErrorTest extends End2EndTestCase
     {
         $spaceManager = $this->getReadWriteSpaceManager();
 
-        $locale = new EmptyBodyLocale('American German', 'de-US');
         $spaceManager->create($locale);
+        $locale = new EmptyBodyLocale('American Italian', 'it-US');
     }
 
     /**
@@ -54,8 +54,8 @@ class ErrorTest extends End2EndTestCase
     {
         $spaceManager = $this->getReadWriteSpaceManager();
 
-        $locale = new ValidationFailedLocale('American German', 'de-US');
         $spaceManager->create($locale);
+        $locale = new ValidationFailedLocale('American Italian', 'it-US');
     }
 
     /**

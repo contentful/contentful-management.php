@@ -12,7 +12,7 @@
             "Content-Type": "application\/vnd.contentful.management.v1+json",
             "X-Contentful-Organization": "4Q3Lza73mxcjmluLU7V5EG"
         },
-        "body": "{\"name\":\"PHP CMA German Test Space\",\"defaultLocale\":\"de-DE\"}"
+        "body": "{\"name\":\"PHP CMA Italian Test Space\",\"defaultLocale\":\"it-IT\"}"
     },
     "response": {
         "status": {
@@ -45,7 +45,7 @@
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"name\":\"PHP CMA German Test Space\",\n  \"sys\":{\n    \"type\":\"Space\",\n    \"id\":\"ayubyfpxdowx\",\n    \"version\":1,\n    \"createdBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"createdAt\":\"2017-07-13T12:53:19Z\",\n    \"updatedBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"updatedAt\":\"2017-07-13T12:53:19Z\"\n  }\n}\n\n"
+        "body": "{\n  \"name\":\"PHP CMA Italian Test Space\",\n  \"sys\":{\n    \"type\":\"Space\",\n    \"id\":\"ayubyfpxdowx\",\n    \"version\":1,\n    \"createdBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"createdAt\":\"2017-07-13T12:53:19Z\",\n    \"updatedBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"updatedAt\":\"2017-07-13T12:53:19Z\"\n  }\n}\n\n"
     }
 },{
     "request": {

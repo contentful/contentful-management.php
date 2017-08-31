@@ -11,7 +11,7 @@
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json"
         },
-        "body": "{\"name\":\"Swiss German\",\"code\":\"de-CH\",\"fallbackCode\":null,\"contentDeliveryApi\":true,\"contentManagementApi\":true,\"optional\":false}"
+        "body": "{\"name\":\"Swiss Italian\",\"code\":\"it-CH\",\"fallbackCode\":null,\"contentDeliveryApi\":true,\"contentManagementApi\":true,\"optional\":false}"
     },
     "response": {
         "status": {
@@ -51,7 +51,7 @@
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"name\":\"Swiss German\",\n  \"internal_code\":\"zzz-BH\",\n  \"code\":\"de-CH\",\n  \"fallbackCode\":null,\n  \"default\":false,\n  \"contentManagementApi\":true,\n  \"contentDeliveryApi\":true,\n  \"optional\":false,\n  \"sys\":{\n    \"type\":\"Locale\",\n    \"id\":\"1in5S9PtqmpwcTjjSRxx4i\",\n    \"version\":0,\n    \"space\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"Space\",\n        \"id\":\"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"createdAt\":\"2017-07-07T13:00:25Z\",\n    \"updatedBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"updatedAt\":\"2017-07-07T13:00:25Z\"\n  }\n}\n\n"
+        "body": "{\n  \"name\":\"Swiss Italian\",\n  \"internal_code\":\"zzz-BH\",\n  \"code\":\"it-CH\",\n  \"fallbackCode\":null,\n  \"default\":false,\n  \"contentManagementApi\":true,\n  \"contentDeliveryApi\":true,\n  \"optional\":false,\n  \"sys\":{\n    \"type\":\"Locale\",\n    \"id\":\"1in5S9PtqmpwcTjjSRxx4i\",\n    \"version\":0,\n    \"space\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"Space\",\n        \"id\":\"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"createdAt\":\"2017-07-07T13:00:25Z\",\n    \"updatedBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"updatedAt\":\"2017-07-07T13:00:25Z\"\n  }\n}\n\n"
     }
 },{
     "request": {
@@ -67,7 +67,7 @@
             "Content-Type": "application\/vnd.contentful.management.v1+json",
             "X-Contentful-Version": "0"
         },
-        "body": "{\"name\":\"Really Swiss German\",\"code\":\"de-CH\",\"fallbackCode\":null,\"contentDeliveryApi\":true,\"contentManagementApi\":true,\"optional\":false}"
+        "body": "{\"name\":\"Really Swiss Italian\",\"code\":\"it-CH\",\"fallbackCode\":null,\"contentDeliveryApi\":true,\"contentManagementApi\":true,\"optional\":false}"
     },
     "response": {
         "status": {
@@ -105,7 +105,7 @@
             "X-Iinfo": "10-48674594-48667739 PNNN RT(1499432424933 24) q(0 0 0 -1) r(3 3) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"name\":\"Really Swiss German\",\n  \"internal_code\":\"zzz-BH\",\n  \"code\":\"de-CH\",\n  \"fallbackCode\":null,\n  \"default\":false,\n  \"contentManagementApi\":true,\n  \"contentDeliveryApi\":true,\n  \"optional\":false,\n  \"sys\":{\n    \"type\":\"Locale\",\n    \"id\":\"1in5S9PtqmpwcTjjSRxx4i\",\n    \"version\":1,\n    \"space\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"Space\",\n        \"id\":\"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"createdAt\":\"2017-07-07T13:00:25Z\",\n    \"updatedBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"updatedAt\":\"2017-07-07T13:00:25Z\"\n  }\n}\n\n"
+        "body": "{\n  \"name\":\"Really Swiss Italian\",\n  \"internal_code\":\"zzz-BH\",\n  \"code\":\"it-CH\",\n  \"fallbackCode\":null,\n  \"default\":false,\n  \"contentManagementApi\":true,\n  \"contentDeliveryApi\":true,\n  \"optional\":false,\n  \"sys\":{\n    \"type\":\"Locale\",\n    \"id\":\"1in5S9PtqmpwcTjjSRxx4i\",\n    \"version\":1,\n    \"space\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"Space\",\n        \"id\":\"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"createdAt\":\"2017-07-07T13:00:25Z\",\n    \"updatedBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"updatedAt\":\"2017-07-07T13:00:25Z\"\n  }\n}\n\n"
     }
 },{
     "request": {

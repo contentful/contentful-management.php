@@ -11,7 +11,7 @@
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json"
         },
-        "body": "{\"name\":\"American German\",\"code\":\"de-US\",\"fallbackCode\":null,\"contentDeliveryApi\":true,\"contentManagementApi\":true,\"optional\":false,\"default\":true,\"avx\":\"def\"}"
+        "body": "{\"name\":\"American Italian\",\"code\":\"it-US\",\"fallbackCode\":null,\"contentDeliveryApi\":true,\"contentManagementApi\":true,\"optional\":false,\"unknownKey\":\"unknownValue\"}"
     },
     "response": {
         "status": {

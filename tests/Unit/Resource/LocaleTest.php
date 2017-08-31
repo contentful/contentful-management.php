@@ -17,15 +17,15 @@ class LocaleTest extends TestCase
 {
     public function testGetSetData()
     {
-        $locale = new Locale('Swiss German', 'de-CH');
+        $locale = new Locale('Swiss Italian', 'it-CH');
 
-        $this->assertEquals('Swiss German', $locale->getName());
-        $locale->setName('Better German');
-        $this->assertEquals('Better German', $locale->getName());
+        $this->assertEquals('Swiss Italian', $locale->getName());
+        $locale->setName('Better Italian');
+        $this->assertEquals('Better Italian', $locale->getName());
 
-        $this->assertEquals('de-CH', $locale->getCode());
-        $locale->setCode('de-DE');
-        $this->assertEquals('de-DE', $locale->getCode());
+        $this->assertEquals('it-CH', $locale->getCode());
+        $locale->setCode('it-IT');
+        $this->assertEquals('it-IT', $locale->getCode());
 
         $this->assertFalse($locale->isOptional());
         $locale->setOptional(true);

@@ -61,9 +61,9 @@ class SpaceTest extends End2EndTestCase
      */
     public function testCreateDeleteSpaceNonEnglishLocale()
     {
-        $space = new Space('PHP CMA German Test Space');
+        $space = new Space('PHP CMA Italian Test Space');
 
-        $this->client->createSpace($space, $this->testOrganizationId, 'de-DE');
+        $this->client->createSpace($space, $this->testOrganizationId, 'it-IT');
 
         $id = $space->getSystemProperties()->getId();
         $this->assertNotNull($id);
