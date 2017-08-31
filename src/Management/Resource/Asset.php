@@ -75,7 +75,7 @@ class Asset extends BaseResource implements Publishable, Archivable, Deletable, 
      * @param string      $locale
      * @param string|null $title
      *
-     * @return $this
+     * @return static
      */
     public function setTitle(string $locale, string $title = null)
     {
@@ -102,7 +102,7 @@ class Asset extends BaseResource implements Publishable, Archivable, Deletable, 
      * @param string      $locale
      * @param string|null $description
      *
-     * @return $this
+     * @return static
      */
     public function setDescription(string $locale, string $description = null)
     {
@@ -129,7 +129,7 @@ class Asset extends BaseResource implements Publishable, Archivable, Deletable, 
      * @param string                        $locale
      * @param UnprocessedFileInterface|null $file
      *
-     * @return $this
+     * @return static
      */
     public function setFile(string $locale, UnprocessedFileInterface $file = null)
     {
@@ -139,11 +139,9 @@ class Asset extends BaseResource implements Publishable, Archivable, Deletable, 
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

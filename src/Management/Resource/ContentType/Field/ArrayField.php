@@ -103,7 +103,7 @@ class ArrayField extends BaseField
     /**
      * @param string $itemsType
      *
-     * @return $this
+     * @return static
      */
     public function setItemsType(string $itemsType)
     {
@@ -123,7 +123,7 @@ class ArrayField extends BaseField
     /**
      * @param string|null $itemsLinkType
      *
-     * @return $this
+     * @return static
      */
     public function setItemsLinkType(string $itemsLinkType = null)
     {
@@ -143,7 +143,7 @@ class ArrayField extends BaseField
     /**
      * @param ValidationInterface[] $itemsValidations
      *
-     * @return $this
+     * @return static
      */
     public function setItemsValidations(array $itemsValidations)
     {
@@ -165,7 +165,7 @@ class ArrayField extends BaseField
     /**
      * @param ValidationInterface $validation
      *
-     * @return $this
+     * @return static
      */
     public function addItemsValidation(ValidationInterface $validation)
     {
@@ -203,11 +203,9 @@ class ArrayField extends BaseField
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

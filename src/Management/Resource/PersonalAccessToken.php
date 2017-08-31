@@ -62,7 +62,7 @@ class PersonalAccessToken extends BaseResource
     /**
      * @param string $name
      *
-     * @return $this
+     * @return static
      */
     public function setName($name)
     {
@@ -106,11 +106,9 @@ class PersonalAccessToken extends BaseResource
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

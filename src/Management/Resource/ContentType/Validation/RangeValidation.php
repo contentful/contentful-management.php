@@ -47,7 +47,7 @@ class RangeValidation implements ValidationInterface
     /**
      * @param int|null $min
      *
-     * @return $this
+     * @return static
      */
     public function setMin(int $min = null)
     {
@@ -67,7 +67,7 @@ class RangeValidation implements ValidationInterface
     /**
      * @param int|null $max
      *
-     * @return $this
+     * @return static
      */
     public function setMax(int $max = null)
     {
@@ -98,11 +98,9 @@ class RangeValidation implements ValidationInterface
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

@@ -47,7 +47,7 @@ class DateRangeValidation implements ValidationInterface
     /**
      * @param string|null $min
      *
-     * @return $this
+     * @return static
      */
     public function setMin(string $min = null)
     {
@@ -67,7 +67,7 @@ class DateRangeValidation implements ValidationInterface
     /**
      * @param string|null $max
      *
-     * @return $this
+     * @return static
      */
     public function setMax(string $max = null)
     {
@@ -98,11 +98,9 @@ class DateRangeValidation implements ValidationInterface
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

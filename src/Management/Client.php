@@ -326,39 +326,33 @@ class Client extends BaseClient
     }
 
     /**
-     * The name of the library to be used in the User-Agent header.
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    protected function getSdkName()
+    protected function getSdkName(): string
     {
         return 'contentful-management.php/';
     }
 
     /**
-     * The version of the library to be used in the User-Agent header.
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    protected function getSdkVersion()
+    protected function getSdkVersion(): string
     {
         return self::VERSION;
     }
 
     /**
-     * Returns the Content-Type (MIME-Type) to be used when communication with the API.
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    protected function getApiContentType()
+    protected function getApiContentType(): string
     {
         return 'application/vnd.contentful.management.v1+json';
     }
 
     /**
-     * @return string[]
+     * {@inheritdoc}
      */
-    protected function getExceptionMap()
+    protected function getExceptionMap(): array
     {
         return array_merge(parent::getExceptionMap(), [
             'BadRequest' => Exception\BadRequestException::class,
@@ -367,7 +361,8 @@ class Client extends BaseClient
             'FallbackLocaleNotRenameable' => Exception\FallbackLocaleNotRenameableException::class,
             'InternalServerError' => Exception\InternalServerErrorException::class,
             'MissingKey' => Exception\MissingKeyException::class,
-            'RateLimitExceeded' => Exception\RateLimitExceededException::class, // Overrides the generic exception
+            // Overrides the generic exception
+            'RateLimitExceeded' => Exception\RateLimitExceededException::class,
             'UnknownKey' => Exception\UnknownKeyException::class,
             'UnsupportedMediaType' => Exception\UnsupportedMediaTypeException::class,
             'ValidationFailed' => Exception\ValidationFailedException::class,

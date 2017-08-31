@@ -70,7 +70,7 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
     /**
      * @param bool $admin
      *
-     * @return $this
+     * @return static
      */
     public function setAdmin(bool $admin)
     {
@@ -90,7 +90,7 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
     /**
      * @param string $email
      *
-     * @return $this
+     * @return static
      */
     public function setEmail(string $email)
     {
@@ -110,7 +110,7 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
     /**
      * @param Link $role
      *
-     * @return $this
+     * @return static
      */
     public function addRole(Link $role)
     {
@@ -122,7 +122,7 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
     /**
      * @param Link[] $roles
      *
-     * @return $this
+     * @return static
      */
     public function setRoles(array $roles = [])
     {
@@ -140,11 +140,9 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

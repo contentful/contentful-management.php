@@ -10,17 +10,20 @@
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\Role as ResourceClass;
-use Contentful\Management\Resource\Role\Policy;
-use Contentful\Management\Resource\Role\Permissions;
-use Contentful\Management\Resource\Role\Constraint\OrConstraint;
-use Contentful\Management\Resource\Role\Constraint\NotConstraint;
 use Contentful\Management\Resource\Role\Constraint\AndConstraint;
-use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
 use Contentful\Management\Resource\Role\Constraint\ConstraintInterface;
+use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
+use Contentful\Management\Resource\Role\Constraint\NotConstraint;
+use Contentful\Management\Resource\Role\Constraint\OrConstraint;
+use Contentful\Management\Resource\Role\Permissions;
+use Contentful\Management\Resource\Role\Policy;
 use Contentful\Management\SystemProperties;
 
 /**
  * Role class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\Role.
  */
 class Role extends BaseMapper
 {

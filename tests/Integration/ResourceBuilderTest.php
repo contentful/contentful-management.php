@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Integration\Management;
 
-use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Mapper\MapperInterface;
+use Contentful\Management\ResourceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class ResourceBuilderTest extends TestCase

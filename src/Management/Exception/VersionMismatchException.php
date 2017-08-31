@@ -13,6 +13,8 @@ use Contentful\Exception\ApiException;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 
 /**
+ * VersionMismatchException class.
+ *
  * A VersionMismatchException is thrown when persisting an object
  * that has changed on the server since it's been fetched.
  */

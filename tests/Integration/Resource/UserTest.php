@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Integration\Management\Resource;
 
-use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\User;
+use Contentful\Management\ResourceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase

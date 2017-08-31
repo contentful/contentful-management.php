@@ -11,12 +11,16 @@ declare(strict_types=1);
 namespace Contentful\Tests\Unit\Management\Resource\ContentType\Field;
 
 use Contentful\Management\Resource\ContentType\Field;
+use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 use PHPUnit\Framework\TestCase;
 
 class FieldJsonSerializationTest extends TestCase
 {
     /**
      * @dataProvider fieldProvider
+     *
+     * @param FieldInterface $field
+     * @param string         $expected
      */
     public function testJsonSerialization($field, $expected)
     {

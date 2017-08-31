@@ -14,6 +14,9 @@ use Contentful\Management\SystemProperties;
 
 /**
  * Upload class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\Upload.
  */
 class Upload extends BaseMapper
 {
