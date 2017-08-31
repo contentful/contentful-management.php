@@ -25,15 +25,18 @@ class AssetTest extends TestCase
         $asset->setTitle('en-US', 'A cool asset');
         $this->assertEquals('A cool asset', $asset->getTitle('en-US'));
         $this->assertNull($asset->getTitle('it-IT'));
+        $this->assertEquals(['en-US' => 'A cool asset'], $asset->getTitles());
 
         $asset->setDescription('en-US', 'This asset is really cool');
         $this->assertEquals('This asset is really cool', $asset->getDescription('en-US'));
         $this->assertNull($asset->getDescription('it-IT'));
+        $this->assertEquals(['en-US' => 'This asset is really cool'], $asset->getDescriptions());
 
         $file = new RemoteUploadFile('testfile.jpg', 'image/jpeg', 'https://www.example.com/testfile.jpeg');
         $asset->setFile('en-US', $file);
         $this->assertSame($file, $asset->getFile('en-US'));
         $this->assertNull($asset->getFile('it-IT'));
+        $this->assertEquals(['en-US' => $file], $asset->getFiles());
     }
 
     public function testJsonSerialize()

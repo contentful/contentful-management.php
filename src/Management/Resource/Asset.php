@@ -24,7 +24,7 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
  */
-class Asset extends BaseResource implements Publishable, Archivable, Deletable, Updatable, Creatable
+class Asset extends BaseResource implements Creatable, Updatable, Deletable, Publishable, Archivable
 {
     /**
      * @var string[]
@@ -50,11 +50,30 @@ class Asset extends BaseResource implements Publishable, Archivable, Deletable, 
     }
 
     /**
-     * {@inheritdoc}
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
      */
-    public function getResourceUriPart(): string
+    public function jsonSerialize(): array
     {
-        return 'assets';
+        $asset = [
+            'sys' => $this->sys,
+            'fields' => new \stdClass(),
+        ];
+
+        if ($this->file !== null) {
+            $asset['fields']->file = $this->file;
+        }
+
+        if ($this->title !== null) {
+            $asset['fields']->title = $this->title;
+        }
+
+        if ($this->description !== null) {
+            $asset['fields']->description = $this->description;
+        }
+
+        return $asset;
     }
 
     /**
@@ -85,6 +104,14 @@ class Asset extends BaseResource implements Publishable, Archivable, Deletable, 
     }
 
     /**
+     * @return string[]
+     */
+    public function getTitles(): array
+    {
+        return $this->title;
+    }
+
+    /**
      * @param string $locale
      *
      * @return string|null
@@ -109,6 +136,14 @@ class Asset extends BaseResource implements Publishable, Archivable, Deletable, 
         $this->description[$locale] = $description;
 
         return $this;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getDescriptions(): array
+    {
+        return $this->description;
     }
 
     /**
@@ -139,29 +174,10 @@ class Asset extends BaseResource implements Publishable, Archivable, Deletable, 
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * @return FileInterface[]
      */
-    public function jsonSerialize(): array
+    public function getFiles(): array
     {
-        $asset = [
-            'sys' => $this->sys,
-            'fields' => new \stdClass(),
-        ];
-
-        if ($this->file !== null) {
-            $asset['fields']->file = $this->file;
-        }
-
-        if ($this->title !== null) {
-            $asset['fields']->title = $this->title;
-        }
-
-        if ($this->description !== null) {
-            $asset['fields']->description = $this->description;
-        }
-
-        return $asset;
+        return $this->file;
     }
 }

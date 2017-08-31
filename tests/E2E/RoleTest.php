@@ -28,9 +28,9 @@ class RoleTest extends End2EndTestCase
      */
     public function testGetRole()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $role = $manager->getRole('6khUMmsfVslYd7tRcThTgE');
+        $role = $client->role->get('6khUMmsfVslYd7tRcThTgE');
 
         $this->assertEquals('Developer', $role->getName());
         $this->assertEquals('Allows reading Entries and managing API Keys', $role->getDescription());
@@ -57,9 +57,9 @@ class RoleTest extends End2EndTestCase
      */
     public function testGetRoles()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $roles = $manager->getRoles();
+        $roles = $client->role->getAll();
         $role = $roles[0];
 
         $this->assertInstanceOf(Role::class, $roles[0]);
@@ -75,7 +75,7 @@ class RoleTest extends End2EndTestCase
 
         $query = (new Query())
             ->setLimit(1);
-        $roles = $manager->getRoles($query);
+        $roles = $client->role->getAll($query);
         $role = $roles[0];
 
         $this->assertInstanceOf(Role::class, $role);
@@ -90,7 +90,7 @@ class RoleTest extends End2EndTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $role = new Role('Custom role', 'This is a custom test role');
 
@@ -111,9 +111,9 @@ class RoleTest extends End2EndTestCase
         ]);
         $policy->setConstraint($constraint);
 
-        $manager->create($role);
+        $client->role->create($role);
 
-        $this->assertNotNull($role->getSystemProperties()->getId());
+        $this->assertNotNull($role->getId());
         $this->assertEquals(0, $role->getSystemProperties()->getVersion());
 
         // The ResourceBuilder actually recreates from scratch all attributes,
@@ -141,7 +141,7 @@ class RoleTest extends End2EndTestCase
         );
         $role->addPolicy($secondPolicy);
 
-        $manager->update($role);
+        $role->update();
 
         $this->assertEquals(1, $role->getSystemProperties()->getVersion());
         $this->assertEquals('Custom role', $role->getName());
@@ -150,6 +150,6 @@ class RoleTest extends End2EndTestCase
         $this->assertEquals([$policy, $secondPolicy], $role->getPolicies());
         $this->assertEquals($permissions, $role->getPermissions());
 
-        $manager->delete($role);
+        $role->delete();
     }
 }

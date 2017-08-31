@@ -9,19 +9,21 @@
 
 namespace Contentful\Management\Resource\Behavior;
 
-use Contentful\Management\Resource\SpaceScopedResourceInterface;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * Creatable interface.
  *
  * Represents a resource which can be created.
- *
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset Creating assets
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type Creating content types
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry Creating entries
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale Creating locales
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhook Creating webhooks
  */
-interface Creatable extends SpaceScopedResourceInterface
+interface Creatable extends ResourceInterface
 {
+    /**
+     * Returns the resource in the form of request body.
+     * This can differ from regular serialization, as some fields
+     * may not be present in the request payload.
+     *
+     * @return mixed
+     */
+    public function asRequestBody();
 }

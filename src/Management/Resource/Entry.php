@@ -9,12 +9,12 @@
 
 namespace Contentful\Management\Resource;
 
-use function Contentful\format_date_for_json;
 use Contentful\Management\Resource\Behavior\Archivable;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Publishable;
 use Contentful\Management\Resource\Behavior\Updatable;
+use function Contentful\format_date_for_json;
 
 /**
  * Entry class.
@@ -23,7 +23,7 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
  */
-class Entry extends BaseResource implements Publishable, Archivable, Deletable, Updatable, Creatable
+class Entry extends BaseResource implements Creatable, Updatable, Deletable, Publishable, Archivable
 {
     /**
      * @var array[]
@@ -38,60 +38,6 @@ class Entry extends BaseResource implements Publishable, Archivable, Deletable, 
     public function __construct(string $contentTypeId)
     {
         parent::__construct('Entry', ['contentType' => ['sys' => ['id' => $contentTypeId, 'linkType' => 'ContentType']]]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getResourceUriPart(): string
-    {
-        return 'entries';
-    }
-
-    /**
-     * @param string $name
-     * @param string $locale
-     *
-     * @return mixed
-     */
-    public function getField(string $name, string $locale)
-    {
-        return $this->fields[$name][$locale] ?? null;
-    }
-
-    /**
-     * @param string|null $locale
-     *
-     * @return array
-     */
-    public function getFields(string $locale = null): array
-    {
-        if ($locale === null) {
-            return $this->fields;
-        }
-
-        $fields = [];
-        foreach ($this->fields as $name => $field) {
-            $fields[$name] = $field[$locale] ?? null;
-        }
-
-        return $fields;
-    }
-
-    /**
-     * @param string $name
-     * @param string $locale
-     * @param mixed  $value
-     */
-    public function setField(string $name, string $locale, $value)
-    {
-        if (!isset($this->fields[$name])) {
-            $this->fields[$name] = [];
-        }
-
-        $this->fields[$name][$locale] = $value;
-
-        return $this;
     }
 
     /**
@@ -130,14 +76,58 @@ class Entry extends BaseResource implements Publishable, Archivable, Deletable, 
             return format_date_for_json($data);
         }
 
-        if ($data instanceof \DateTime) {
-            return format_date_for_json(\DateTimeImmutable::createFromMutable($data));
-        }
-
         if (is_array($data)) {
             return array_map([$this, 'getFormattedData'], $data);
         }
 
         return $data;
+    }
+
+    /**
+     * @param string $name
+     * @param string $locale
+     *
+     * @return mixed
+     */
+    public function getField(string $name, string $locale)
+    {
+        return $this->fields[$name][$locale] ?? null;
+    }
+
+    /**
+     * @param string|null $locale
+     *
+     * @return array
+     */
+    public function getFields(string $locale = null): array
+    {
+        if ($locale === null) {
+            return $this->fields;
+        }
+
+        $fields = [];
+        foreach ($this->fields as $name => $field) {
+            $fields[$name] = $field[$locale] ?? null;
+        }
+
+        return $fields;
+    }
+
+    /**
+     * @param string $name
+     * @param string $locale
+     * @param mixed  $value
+     *
+     * @return static
+     */
+    public function setField(string $name, string $locale, $value)
+    {
+        if (!isset($this->fields[$name])) {
+            $this->fields[$name] = [];
+        }
+
+        $this->fields[$name][$locale] = $value;
+
+        return $this;
     }
 }

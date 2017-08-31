@@ -52,11 +52,23 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
     }
 
     /**
-     * {@inheritdoc}
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
      */
-    public function getResourceUriPart(): string
+    public function jsonSerialize(): array
     {
-        return 'space_memberships';
+        $spaceMembership = [
+            'sys' => $this->sys,
+            'admin' => $this->admin,
+            'roles' => $this->roles,
+        ];
+
+        if ($this->email) {
+            $spaceMembership['email'] = $this->email;
+        }
+
+        return $spaceMembership;
     }
 
     /**
@@ -137,25 +149,5 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
-     */
-    public function jsonSerialize(): array
-    {
-        $spaceMembership = [
-            'sys' => $this->sys,
-            'admin' => $this->admin,
-            'roles' => $this->roles,
-        ];
-
-        if ($this->email) {
-            $spaceMembership['email'] = $this->email;
-        }
-
-        return $spaceMembership;
     }
 }

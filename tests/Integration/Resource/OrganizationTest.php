@@ -58,4 +58,16 @@ class OrganizationTest extends TestCase
                 'type' => 'Organization',
             ]], $organization);
     }
+
+    /**
+     * @param Organization $organization
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\Organization" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(Organization $organization)
+    {
+        $organization->asRequestBody();
+    }
 }

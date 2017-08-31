@@ -9,19 +9,21 @@
 
 namespace Contentful\Management\Resource\Behavior;
 
-use Contentful\Management\Resource\SpaceScopedResourceInterface;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * Updatable interface.
  *
  * Represents a resource which can be updated.
- *
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset Updating assets
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type Updating content types
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry Updagint entries
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale Updating locales
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhook Updating webhooks
  */
-interface Updatable extends SpaceScopedResourceInterface
+interface Updatable extends ResourceInterface
 {
+    /**
+     * Returns the resource in the form of request body.
+     * This can differ from regular serialization, as some fields
+     * may not be present in the request payload.
+     *
+     * @return mixed
+     */
+    public function asRequestBody();
 }

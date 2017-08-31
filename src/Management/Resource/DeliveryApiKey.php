@@ -13,6 +13,7 @@ use Contentful\Link;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Updatable;
+use function GuzzleHttp\json_encode;
 
 /**
  * DeliveryApiKey class.
@@ -40,18 +41,35 @@ class DeliveryApiKey extends ApiKey implements Creatable, Updatable, Deletable
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getResourceUriPart(): string
-    {
-        return 'api_keys';
-    }
-
-    /**
      * @return Link|null
      */
     public function getPreviewApiKey()
     {
         return $this->previewApiKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize(): array
+    {
+        $deliveryApiKey = parent::jsonSerialize();
+        $deliveryApiKey['previewApiKey'] = $this->previewApiKey;
+
+        return $deliveryApiKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asRequestBody(): string
+    {
+        $body = $this->jsonSerialize();
+
+        unset($body['sys']);
+        unset($body['accessToken']);
+        unset($body['previewApiKey']);
+
+        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
     }
 }

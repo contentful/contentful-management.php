@@ -20,7 +20,7 @@ class UserTest extends End2EndTestCase
      */
     public function testGetOwnUser()
     {
-        $user = $this->client->getOwnUser();
+        $user = $this->getUnboundClient()->user->getMe();
 
         $this->assertEquals('PHP SDK', $user->getFirstName());
         $this->assertEquals('Tests', $user->getLastName());
@@ -30,7 +30,7 @@ class UserTest extends End2EndTestCase
         $this->assertEquals(true, $user->isConfirmed());
         $this->assertInternalType('integer', $user->getSignInCount());
         $this->assertGreaterThan(1, $user->getSignInCount());
-        $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $user->getSystemProperties()->getId());
+        $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $user->getId());
         $this->assertEquals(new Link('4Q3e6duhma7V6czH7UXHzE', 'User'), $user->asLink());
         $this->assertEquals('User', $user->getSystemProperties()->getType());
     }

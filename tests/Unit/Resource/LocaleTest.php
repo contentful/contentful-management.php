@@ -50,11 +50,13 @@ class LocaleTest extends TestCase
 
     public function testJsonSerialize()
     {
-        $locale = (new Locale('Swiss German', 'de-CH'))
+        $locale = (new Locale('Swiss Italian', 'it-CH'))
             ->setContentDeliveryApi(false)
             ->setOptional(true)
             ->setFallbackCode('en-US');
 
-        $this->assertJsonStringEqualsJsonString('{"sys": {"type": "Locale"}, "name": "Swiss German", "code": "de-CH", "fallbackCode": "en-US", "optional": true, "contentDeliveryApi": false, "contentManagementApi": true}', json_encode($locale));
+        $json = '{"sys":{"type":"Locale"},"name":"Swiss Italian","code":"it-CH","fallbackCode":"en-US","optional":true,"contentDeliveryApi":false,"contentManagementApi":true,"default":false}';
+
+        $this->assertJsonStringEqualsJsonString($json, json_encode($locale));
     }
 }

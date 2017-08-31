@@ -9,17 +9,13 @@
 
 namespace Contentful\Management\Resource\Behavior;
 
-use Contentful\Management\Resource\SpaceScopedResourceInterface;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * Publishable interface.
  *
  * Represents a resource which can be published.
- *
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-publishing Publishing assets
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-activation Publishing content types
- * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry-publishing Publishing entries
  */
-interface Publishable extends SpaceScopedResourceInterface
+interface Publishable extends ResourceInterface
 {
 }

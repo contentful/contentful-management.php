@@ -24,9 +24,9 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testGetContentType()
     {
-        $manager = $this->getReadOnlySpaceManager();
+        $client = $this->getReadOnlyClient();
 
-        $contentType = $manager->getContentType('cat');
+        $contentType = $client->contentType->get('cat');
 
         $sys = $contentType->getSystemProperties();
         $this->assertEquals('cat', $sys->getId());
@@ -76,14 +76,14 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testGetContentTypes()
     {
-        $manager = $this->getReadOnlySpaceManager();
-        $contentTypes = $manager->getContentTypes();
+        $client = $this->getReadOnlyClient();
+        $contentTypes = $client->contentType->getAll();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $contentTypes = $manager->getContentTypes($query);
+        $contentTypes = $client->contentType->getAll($query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
     }
@@ -93,25 +93,25 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testCreateUpdateActivateDeleteContentType()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('THE best content type');
 
-        $manager->create($contentType);
-        $this->assertNotNull($contentType->getSystemProperties()->getId());
+        $client->contentType->create($contentType);
+        $this->assertNotNull($contentType->getId());
 
         $contentType->setName('Test CT - Updates');
-        $manager->update($contentType);
+        $contentType->update();
 
-        $manager->publish($contentType);
+        $contentType->publish();
         $this->assertEquals(1, $contentType->getSystemProperties()->getPublishedCounter());
         $this->assertEquals(2, $contentType->getSystemProperties()->getPublishedVersion());
 
-        $manager->unpublish($contentType);
+        $contentType->unpublish();
         $this->assertNull($contentType->getSystemProperties()->getPublishedVersion());
 
-        $manager->delete($contentType);
+        $contentType->delete();
     }
 
     /**
@@ -119,14 +119,14 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testCreateContentTypeWithGivenId()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('This content type will have `myCustomTestCt` as ID');
 
-        $manager->create($contentType, 'myCustomTestCt');
-        $this->assertEquals('myCustomTestCt', $contentType->getSystemProperties()->getId());
+        $client->contentType->create($contentType, 'myCustomTestCt');
+        $this->assertEquals('myCustomTestCt', $contentType->getId());
 
-        $manager->delete($contentType);
+        $contentType->delete();
     }
 }

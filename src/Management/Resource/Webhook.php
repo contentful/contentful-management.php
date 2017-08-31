@@ -68,11 +68,36 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     }
 
     /**
-     * {@inheritdoc}
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
      */
-    public function getResourceUriPart(): string
+    public function jsonSerialize(): array
     {
-        return 'webhook_definitions';
+        $headers = [];
+        foreach ($this->headers as $key => $value) {
+            $headers[] = [
+                'key' => $key,
+                'value' => $value,
+            ];
+        }
+
+        $values = [
+            'sys' => $this->sys,
+            'name' => $this->name,
+            'url' => $this->url,
+            'topics' => $this->topics,
+            'headers' => $headers,
+        ];
+
+        if ($this->httpBasicUsername) {
+            $values['httpBasicUsername'] = $this->httpBasicUsername;
+            if ($this->httpBasicPassword) {
+                $values['httpBasicPassword'] = $this->httpBasicPassword;
+            }
+        }
+
+        return $values;
     }
 
     /**
@@ -309,38 +334,5 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
         unset($this->topics[$key]);
 
         return $this;
-    }
-
-    /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
-     */
-    public function jsonSerialize(): array
-    {
-        $headers = [];
-        foreach ($this->headers as $key => $value) {
-            $headers[] = [
-                'key' => $key,
-                'value' => $value,
-            ];
-        }
-
-        $values = [
-            'sys' => $this->sys,
-            'name' => $this->name,
-            'url' => $this->url,
-            'topics' => $this->topics,
-            'headers' => $headers,
-        ];
-
-        if ($this->httpBasicUsername) {
-            $values['httpBasicUsername'] = $this->httpBasicUsername;
-            if ($this->httpBasicPassword) {
-                $values['httpBasicPassword'] = $this->httpBasicPassword;
-            }
-        }
-
-        return $values;
     }
 }

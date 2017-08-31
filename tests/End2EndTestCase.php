@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace Contentful\Tests;
 
 use Contentful\Management\Client;
-use Contentful\Management\SpaceManager;
 use PHPUnit\Framework\TestCase;
 
 class End2EndTestCase extends TestCase
@@ -20,11 +19,6 @@ class End2EndTestCase extends TestCase
      * @var string
      */
     protected $token;
-
-    /**
-     * @var Client
-     */
-    protected $client;
 
     /**
      * @var string
@@ -44,23 +38,40 @@ class End2EndTestCase extends TestCase
     public function setUp()
     {
         $this->token = getenv('CONTENTFUL_CMA_TEST_TOKEN');
-        $this->client = new Client($this->token);
     }
 
     /**
-     * @return SpaceManager
+     * @param string|null $spaceId
+     *
+     * @return Client
      */
-    protected function getReadOnlySpaceManager(): SpaceManager
+    protected function getClient(string $spaceId = null): Client
     {
-        return $this->client->getSpaceManager($this->readOnlySpaceId);
+        return new Client($this->token, $spaceId);
     }
 
     /**
-     * @return SpaceManager
+     * @return Client
      */
-    protected function getReadWriteSpaceManager(): SpaceManager
+    protected function getUnboundClient(): Client
     {
-        return $this->client->getSpaceManager($this->readWriteSpaceId);
+        return $this->getClient(null);
+    }
+
+    /**
+     * @return Client
+     */
+    protected function getReadOnlyClient(): Client
+    {
+        return $this->getClient($this->readOnlySpaceId);
+    }
+
+    /**
+     * @return Client
+     */
+    protected function getReadWriteClient(): Client
+    {
+        return $this->getClient($this->readWriteSpaceId);
     }
 
     /**
