@@ -14,6 +14,9 @@ use Contentful\Management\SystemProperties;
 
 /**
  * Webhook class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\Webhook.
  */
 class Webhook extends BaseMapper
 {
@@ -23,7 +26,7 @@ class Webhook extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         // The API never returns the password in the response.
-        // This means that the object that the user requested will have its `httpBasicPassword` field set to null.
+        // This means that the object that the user requested will have its "httpBasicPassword" field set to null.
         // It's a destructive behavior, but it's consinstent with the way the API works.
         return $this->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),

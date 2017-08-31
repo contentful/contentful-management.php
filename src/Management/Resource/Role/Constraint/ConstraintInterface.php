@@ -10,7 +10,7 @@
 namespace Contentful\Management\Resource\Role\Constraint;
 
 /**
- * ConstraintInterface interface.
+ * ConstraintInterface.
  */
 interface ConstraintInterface extends \JsonSerializable
 {

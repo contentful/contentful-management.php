@@ -9,17 +9,20 @@
 
 namespace Contentful\Management\Mapper;
 
-use Contentful\Management\Resource\Asset as ResourceClass;
 use Contentful\File\File;
 use Contentful\File\FileInterface;
 use Contentful\File\ImageFile;
 use Contentful\File\LocalUploadFile;
 use Contentful\File\RemoteUploadFile;
-use Contentful\Management\SystemProperties;
 use Contentful\Link;
+use Contentful\Management\Resource\Asset as ResourceClass;
+use Contentful\Management\SystemProperties;
 
 /**
  * Asset class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\Asset.
  */
 class Asset extends BaseMapper
 {
@@ -39,7 +42,9 @@ class Asset extends BaseMapper
     }
 
     /**
-     * @param array $data
+     * Returns a PHP object representation of a file stored in Contentful.
+     *
+     * @param array $data The contents of the "asset.file.[locale]" array
      *
      * @return FileInterface
      */

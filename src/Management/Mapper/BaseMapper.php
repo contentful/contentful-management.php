@@ -9,7 +9,9 @@
 
 namespace Contentful\Management\Mapper;
 
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\ResourceBuilder;
+use Contentful\ResourceArray;
 
 /**
  * BaseMapper class.
@@ -40,7 +42,7 @@ abstract class BaseMapper implements MapperInterface
      * @param string|object $target either a FQCN, or an object whose class will be automatically inferred
      * @param array         $data
      *
-     * @return object
+     * @return ResourceInterface|ResourceArray
      */
     protected function hydrate($target, array $data)
     {

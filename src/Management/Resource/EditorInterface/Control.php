@@ -48,7 +48,7 @@ class Control implements \JsonSerializable
     /**
      * @param string $widgetId
      *
-     * @return $this
+     * @return static
      */
     public function setWidgetId(string $widgetId)
     {
@@ -68,7 +68,7 @@ class Control implements \JsonSerializable
     /**
      * @param array $settings
      *
-     * @return $this
+     * @return static
      */
     public function setSettings(array $settings)
     {
@@ -78,11 +78,9 @@ class Control implements \JsonSerializable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

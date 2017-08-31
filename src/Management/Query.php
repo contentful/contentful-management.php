@@ -11,6 +11,9 @@ namespace Contentful\Management;
 
 use Contentful\Query as BaseQuery;
 
+/**
+ * Query class.
+ */
 class Query extends BaseQuery
 {
 }

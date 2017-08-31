@@ -77,7 +77,7 @@ class Role extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string $name
      *
-     * @return $this
+     * @return static
      */
     public function setName(string $name)
     {
@@ -97,7 +97,7 @@ class Role extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string $description
      *
-     * @return $this
+     * @return static
      */
     public function setDescription($description)
     {
@@ -125,7 +125,7 @@ class Role extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param Policy[] $policies
      *
-     * @return $this
+     * @return static
      */
     public function setPolicies(array $policies)
     {
@@ -137,7 +137,7 @@ class Role extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param Policy $policy
      *
-     * @return $this
+     * @return static
      */
     public function addPolicy(Policy $policy)
     {
@@ -147,11 +147,9 @@ class Role extends BaseResource implements Creatable, Updatable, Deletable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

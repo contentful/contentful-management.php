@@ -15,6 +15,9 @@ use Contentful\Management\SystemProperties;
 
 /**
  * SpaceMembership class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\SpaceMembership.
  */
 class SpaceMembership extends BaseMapper
 {

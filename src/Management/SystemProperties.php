@@ -9,13 +9,13 @@
 
 namespace Contentful\Management;
 
-use function Contentful\format_date_for_json;
 use Contentful\Link;
+use function Contentful\format_date_for_json;
 
 /**
  * SystemProperties class.
  *
- * This class represents a `sys` object in Contentful's responses.
+ * This class represents a "sys" object in Contentful's responses.
  */
 class SystemProperties implements \JsonSerializable
 {
@@ -354,11 +354,9 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

@@ -40,7 +40,7 @@ class InValidation implements ValidationInterface
     /**
      * @param string[] $values
      *
-     * @return $this
+     * @return static
      */
     public function setValues(array $values)
     {
@@ -68,11 +68,9 @@ class InValidation implements ValidationInterface
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

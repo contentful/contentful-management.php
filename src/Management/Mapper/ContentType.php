@@ -9,13 +9,16 @@
 
 namespace Contentful\Management\Mapper;
 
+use Contentful\Management\Resource\ContentType as ResourceClass;
 use Contentful\Management\Resource\ContentType\Field;
 use Contentful\Management\Resource\ContentType\Validation;
-use Contentful\Management\Resource\ContentType as ResourceClass;
 use Contentful\Management\SystemProperties;
 
 /**
  * ContentType class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\ContentType.
  */
 class ContentType extends BaseMapper
 {

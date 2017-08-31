@@ -92,7 +92,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param string $name
      *
-     * @return $this;\
+     * @return static
      */
     public function setName(string $name)
     {
@@ -112,7 +112,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param string $code
      *
-     * @return $this;
+     * @return static
      */
     public function setCode(string $code)
     {
@@ -132,7 +132,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param string|null $fallbackCode
      *
-     * @return $this
+     * @return static
      */
     public function setFallbackCode(string $fallbackCode = null)
     {
@@ -152,7 +152,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param bool $contentDeliveryApi
      *
-     * @return $this
+     * @return static
      */
     public function setContentDeliveryApi(bool $contentDeliveryApi)
     {
@@ -172,7 +172,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param bool $contentManagementApi
      *
-     * @return $this
+     * @return static
      */
     public function setContentManagementApi(bool $contentManagementApi)
     {
@@ -200,7 +200,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param bool $optional
      *
-     * @return $this
+     * @return static
      */
     public function setOptional(bool $optional)
     {
@@ -210,11 +210,9 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

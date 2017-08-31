@@ -13,6 +13,9 @@ use Contentful\ResourceArray as ResourceClass;
 
 /**
  * ResourceArray class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\ResourceArray.
  */
 class ResourceArray extends BaseMapper
 {

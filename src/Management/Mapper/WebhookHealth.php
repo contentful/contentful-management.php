@@ -14,6 +14,9 @@ use Contentful\Management\SystemProperties;
 
 /**
  * WebhookHealth class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\WebhookHealth.
  */
 class WebhookHealth extends BaseMapper
 {

@@ -29,7 +29,7 @@ interface FieldInterface extends \JsonSerializable
     /**
      * @param string $name
      *
-     * @return $this
+     * @return static
      */
     public function setName(string $name);
 
@@ -46,7 +46,7 @@ interface FieldInterface extends \JsonSerializable
     /**
      * @param bool $required
      *
-     * @return $this;
+     * @return static
      */
     public function setRequired(bool $required);
 
@@ -58,7 +58,7 @@ interface FieldInterface extends \JsonSerializable
     /**
      * @param bool $localized
      *
-     * @return $this
+     * @return static
      */
     public function setLocalized(bool $localized);
 
@@ -70,7 +70,7 @@ interface FieldInterface extends \JsonSerializable
     /**
      * @param bool $disabled
      *
-     * @return $this
+     * @return static
      */
     public function setDisabled(bool $disabled);
 
@@ -82,7 +82,7 @@ interface FieldInterface extends \JsonSerializable
     /**
      * @param bool $omitted
      *
-     * @return $this
+     * @return static
      */
     public function setOmitted(bool $omitted);
 
@@ -94,14 +94,14 @@ interface FieldInterface extends \JsonSerializable
     /**
      * @param ValidationInterface[] $validations
      *
-     * @return $this
+     * @return static
      */
     public function setValidations(array $validations);
 
     /**
      * @param ValidationInterface $validation
      *
-     * @return $this
+     * @return static
      */
     public function addValidation(ValidationInterface $validation);
 }
