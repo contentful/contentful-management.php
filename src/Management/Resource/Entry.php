@@ -9,12 +9,12 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\Behavior\Archivable;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Publishable;
 use Contentful\Management\Resource\Behavior\Updatable;
-use function Contentful\format_date_for_json;
 
 /**
  * Entry class.
@@ -72,8 +72,8 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
      */
     private function getFormattedData($data)
     {
-        if ($data instanceof \DateTimeImmutable) {
-            return format_date_for_json($data);
+        if ($data instanceof ApiDateTime) {
+            return (string) $data;
         }
 
         if (is_array($data)) {

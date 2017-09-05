@@ -9,8 +9,8 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\Behavior\Creatable;
-use function Contentful\format_date_for_json;
 
 /**
  * PersonalAccessToken class.
@@ -27,7 +27,7 @@ class PersonalAccessToken extends BaseResource implements Creatable
     protected $name = '';
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var \Contentful\Management\ApiDateTime|null
      */
     protected $revokedAt;
 
@@ -68,7 +68,7 @@ class PersonalAccessToken extends BaseResource implements Creatable
                 ? ['content_management_read']
                 : ['content_management_manage'],
             'token' => $this->token,
-            'revokedAt' => $this->revokedAt ? format_date_for_json($this->revokedAt) : null,
+            'revokedAt' => $this->revokedAt ? (string) $this->revokedAt : null,
         ];
     }
 
@@ -107,7 +107,7 @@ class PersonalAccessToken extends BaseResource implements Creatable
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     public function getRevokedAt()
     {

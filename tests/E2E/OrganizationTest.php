@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Tests\End2EndTestCase;
 
@@ -33,8 +34,8 @@ class OrganizationTest extends End2EndTestCase
         $this->assertEquals('4Q3Lza73mxcjmluLU7V5EG', $sys->getId());
         $this->assertEquals(new Link('4Q3Lza73mxcjmluLU7V5EG', 'Organization'), $organization->asLink());
         $this->assertEquals(1, $sys->getVersion());
-        $this->assertEquals(new \DateTimeImmutable('2017-07-12T13:04:54'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-07-13T09:35:27'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2017-07-12T13:04:54'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-07-13T09:35:27'), $sys->getUpdatedAt());
     }
 
     /**

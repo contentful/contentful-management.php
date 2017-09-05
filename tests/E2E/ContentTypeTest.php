@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Field\TextField;
@@ -33,15 +34,15 @@ class ContentTypeTest extends End2EndTestCase
         $this->assertEquals('ContentType', $sys->getType());
         $this->assertEquals(33, $sys->getVersion());
         $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:10.704'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-07-06T09:58:52.710'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:10.704'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-07-06T09:58:52.710'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
         $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getUpdatedBy());
         $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getPublishedBy());
         $this->assertEquals(32, $sys->getPublishedVersion());
         $this->assertEquals(8, $sys->getPublishedCounter());
-        $this->assertEquals(new \DateTimeImmutable('2017-07-06T09:58:52.691'), $sys->getPublishedAt());
-        $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:12.852'), $sys->getFirstPublishedAt());
+        $this->assertEquals(new ApiDateTime('2017-07-06T09:58:52.691'), $sys->getPublishedAt());
+        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:12.852'), $sys->getFirstPublishedAt());
 
         $this->assertEquals('Cat', $contentType->getName());
         $this->assertEquals('Meow.', $contentType->getDescription());

@@ -9,9 +9,9 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Management\ApiDateTime;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use function Contentful\format_date_for_json;
 
 /**
  * WebhookCall class.
@@ -53,12 +53,12 @@ class WebhookCall extends BaseResource
     protected $url;
 
     /**
-     * @var \DateTimeImmutable
+     * @var ApiDateTime
      */
     protected $requestAt;
 
     /**
-     * @var \DateTimeImmutable
+     * @var ApiDateTime
      */
     protected $responseAt;
 
@@ -98,8 +98,8 @@ class WebhookCall extends BaseResource
             'errors' => $this->error ? [$this->error] : [],
             'eventType' => $this->eventType,
             'url' => $this->url,
-            'requestAt' => format_date_for_json($this->requestAt),
-            'responseAt' => format_date_for_json($this->responseAt),
+            'requestAt' => (string) $this->requestAt,
+            'responseAt' => (string) $this->responseAt,
         ];
     }
 
@@ -186,17 +186,17 @@ class WebhookCall extends BaseResource
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return ApiDateTime
      */
-    public function getRequestAt(): \DateTimeImmutable
+    public function getRequestAt(): ApiDateTime
     {
         return $this->requestAt;
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return ApiDateTime
      */
-    public function getResponseAt(): \DateTimeImmutable
+    public function getResponseAt(): ApiDateTime
     {
         return $this->responseAt;
     }

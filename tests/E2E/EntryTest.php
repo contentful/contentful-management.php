@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Entry;
 use Contentful\Tests\End2EndTestCase;
@@ -36,14 +37,14 @@ class EntryTest extends End2EndTestCase
         $this->assertEquals(new Link('cat', 'ContentType'), $sys->getContentType());
         $this->assertEquals(15, $sys->getVersion());
         $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:15.91'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2016-05-19T11:40:57.752'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:15.91'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2016-05-19T11:40:57.752'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
         $this->assertEquals(new Link('5NItczv8FWvPn5UTJpTOMM', 'User'), $sys->getUpdatedBy());
         $this->assertEquals(10, $sys->getPublishedVersion());
         $this->assertEquals(5, $sys->getPublishedCounter());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-04T09:19:39.027'), $sys->getPublishedAt());
-        $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:19.513'), $sys->getFirstPublishedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-04T09:19:39.027'), $sys->getPublishedAt());
+        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:19.513'), $sys->getFirstPublishedAt());
     }
 
     /**
@@ -84,7 +85,7 @@ class EntryTest extends End2EndTestCase
 
         $entry->archive();
         $this->assertEquals(2, $entry->getSystemProperties()->getArchivedVersion());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $entry->getSystemProperties()->getArchivedAt());
+        $this->assertInstanceOf(ApiDateTime::class, $entry->getSystemProperties()->getArchivedAt());
         $this->assertInstanceOf(Link::class, $entry->getSystemProperties()->getArchivedBy());
 
         $entry->unarchive();

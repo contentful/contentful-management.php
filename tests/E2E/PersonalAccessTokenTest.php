@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\E2E\Management;
 
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\PersonalAccessToken;
 use Contentful\Tests\End2EndTestCase;
@@ -37,7 +38,7 @@ class PersonalAccessTokenTest extends End2EndTestCase
         $this->assertTrue($personalAccessToken->isReadOnly());
 
         $personalAccessToken->revoke();
-        $this->assertInstanceOf(\DateTimeImmutable::class, $personalAccessToken->getRevokedAt());
+        $this->assertInstanceOf(ApiDateTime::class, $personalAccessToken->getRevokedAt());
     }
 
     /**

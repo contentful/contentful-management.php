@@ -9,6 +9,7 @@
 
 namespace Contentful\Management\Mapper;
 
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\WebhookCall as ResourceClass;
 use Contentful\Management\SystemProperties;
 use GuzzleHttp\Psr7\Request;
@@ -51,8 +52,8 @@ class WebhookCall extends BaseMapper
             'eventType' => $data['eventType'],
             'error' => $data['errors'] ? $data['errors'][0] : null,
             'url' => $data['url'],
-            'requestAt' => new \DateTimeImmutable($data['requestAt']),
-            'responseAt' => new \DateTimeImmutable($data['responseAt']),
+            'requestAt' => new ApiDateTime($data['requestAt']),
+            'responseAt' => new ApiDateTime($data['responseAt']),
         ]);
     }
 }
