@@ -31,8 +31,8 @@ class Upload extends BaseResource implements Creatable, Deletable
      * Upload constructor.
      *
      * @param string|resource|StreamInterface $body Internally this is the value that is passed to Guzzle's request body,
-     *                                              which means that all values accepted by Guzzle are allowed. These include an actual `string`,
-     *                                              a `resource` such as the result of a `fopen('file.txt', 'r')` call, an object implementing StreamInterface, etc.
+     *                                              which means that all values accepted by Guzzle are allowed. These include an actual "string",
+     *                                              a resource such as the result of a "fopen('file.txt', 'r')" call, an object implementing StreamInterface, etc.
      *
      * @see http://docs.guzzlephp.org/en/stable/request-options.html#body For more un Guzzle's internal options
      */
@@ -43,11 +43,23 @@ class Upload extends BaseResource implements Creatable, Deletable
     }
 
     /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'sys' => $this->sys,
+        ];
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function getResourceUriPart(): string
+    public function asRequestBody()
     {
-        return 'uploads';
+        return $this->body;
     }
 
     /**
@@ -59,16 +71,14 @@ class Upload extends BaseResource implements Creatable, Deletable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * @param string|resource|StreamInterface|null $body
      *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
+     * @return static
      */
-    public function jsonSerialize(): array
+    public function setBody($body)
     {
-        return [
-            'sys' => $this->sys,
-        ];
+        $this->body = $body;
+
+        return $this;
     }
 }

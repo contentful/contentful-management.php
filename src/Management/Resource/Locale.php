@@ -12,6 +12,7 @@ namespace Contentful\Management\Resource;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Updatable;
+use function GuzzleHttp\json_encode;
 
 /**
  * Locale class.
@@ -21,7 +22,7 @@ use Contentful\Management\Resource\Behavior\Updatable;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales
  * @see https://www.contentful.com/developers/docs/concepts/locales/
  */
-class Locale extends BaseResource implements Deletable, Updatable, Creatable
+class Locale extends BaseResource implements Creatable, Updatable, Deletable
 {
     /**
      * @var string
@@ -74,11 +75,36 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     }
 
     /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        // The property 'default' has to be omitted for the API to work.
+        return [
+            'sys' => $this->sys,
+            'name' => $this->name,
+            'code' => $this->code,
+            'fallbackCode' => $this->fallbackCode,
+            'contentDeliveryApi' => $this->contentDeliveryApi,
+            'contentManagementApi' => $this->contentManagementApi,
+            'default' => $this->default,
+            'optional' => $this->optional,
+        ];
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function getResourceUriPart(): string
+    public function asRequestBody(): string
     {
-        return 'locales';
+        $body = $this->jsonSerialize();
+
+        unset($body['sys']);
+        unset($body['default']);
+
+        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -92,7 +118,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param string $name
      *
-     * @return $this;\
+     * @return static
      */
     public function setName(string $name)
     {
@@ -112,7 +138,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param string $code
      *
-     * @return $this;
+     * @return static
      */
     public function setCode(string $code)
     {
@@ -132,7 +158,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param string|null $fallbackCode
      *
-     * @return $this
+     * @return static
      */
     public function setFallbackCode(string $fallbackCode = null)
     {
@@ -152,7 +178,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param bool $contentDeliveryApi
      *
-     * @return $this
+     * @return static
      */
     public function setContentDeliveryApi(bool $contentDeliveryApi)
     {
@@ -172,7 +198,7 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param bool $contentManagementApi
      *
-     * @return $this
+     * @return static
      */
     public function setContentManagementApi(bool $contentManagementApi)
     {
@@ -200,33 +226,12 @@ class Locale extends BaseResource implements Deletable, Updatable, Creatable
     /**
      * @param bool $optional
      *
-     * @return $this
+     * @return static
      */
     public function setOptional(bool $optional)
     {
         $this->optional = $optional;
 
         return $this;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        // The property 'default' has to be omitted for the API to work.
-        return [
-            'sys' => $this->sys,
-            'name' => $this->name,
-            'code' => $this->code,
-            'fallbackCode' => $this->fallbackCode,
-            'contentDeliveryApi' => $this->contentDeliveryApi,
-            'contentManagementApi' => $this->contentManagementApi,
-            'optional' => $this->optional,
-        ];
     }
 }

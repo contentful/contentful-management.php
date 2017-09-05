@@ -1,0 +1,47 @@
+[{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Gdj0yMYb60MuI6OCSkqMu",
+        "headers": {
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.8; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "CF-Space-Id": "34luz0flcmxt",
+            "Content-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Tue, 05 Sep 2017 10:46:25 GMT",
+            "ETag": "W\/\"6aba5ef5646be8d53e595cd44cb9fa00\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179981",
+            "X-Contentful-RateLimit-Reset": "0",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "4174317854bf05d1dd2ae04067fd00df",
+            "transfer-encoding": "chunked",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=UCKctyj7Rg238Q48tPpB54GArlkAAAAAQUIPAAAAAABRZvs0Sg3OhF21okel6J5J; expires=Tue, 04 Sep 2018 11:01:43 GMT; path=\/; Domain=.contentful.com, nlbi_673446=iMpEU58qj0ac5uji6lKYhQAAAAC+XnG77XB4V\/IXIFjZtQ36; path=\/; Domain=.contentful.com, incap_ses_477_673446=LmFibFxuyXbXfmEIo6WeBoGArlkAAAAAl+EHZ9Xfy4dVkjqE1UaaWA==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "4-40784420-40784433 NNNN CT(103 214 0) RT(1504608384749 106) q(0 0 3 -1) r(5 5) U5",
+            "X-CDN": "Incapsula"
+        },
+        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"1Gdj0yMYb60MuI6OCSkqMu\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-09-05T10:38:54.898Z\",\n    \"updatedAt\": \"2017-09-05T10:39:42.925Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedCounter\": 1,\n    \"version\": 16,\n    \"publishedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedVersion\": 15,\n    \"firstPublishedAt\": \"2017-09-05T10:39:42.925Z\",\n    \"publishedAt\": \"2017-09-05T10:39:42.925Z\"\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"MIT\"\n    },\n    \"description\": {\n      \"en-US\": \"This is the MIT license\"\n    },\n    \"file\": {\n      \"en-US\": {\n        \"url\": \"\/\/assets.contentful.com\/34luz0flcmxt\/1Gdj0yMYb60MuI6OCSkqMu\/4211a1a1c41d6e477e4f8bcaea8b68ab\/MIT.md\",\n        \"details\": {\n          \"size\": 1065\n        },\n        \"fileName\": \"MIT.md\",\n        \"contentType\": \"text\/plain\"\n      }\n    }\n  }\n}\n"
+    }
+}]

@@ -9,13 +9,12 @@
 
 namespace Contentful\Management;
 
-use function Contentful\format_date_for_json;
 use Contentful\Link;
 
 /**
  * SystemProperties class.
  *
- * This class represents a `sys` object in Contentful's responses.
+ * This class represents a "sys" object in Contentful's responses.
  */
 class SystemProperties implements \JsonSerializable
 {
@@ -40,12 +39,12 @@ class SystemProperties implements \JsonSerializable
     private $contentType;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var ApiDateTime|null
      */
     private $createdAt;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var ApiDateTime|null
      */
     private $updatedAt;
 
@@ -73,7 +72,7 @@ class SystemProperties implements \JsonSerializable
     private $updatedBy;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var ApiDateTime|null
      */
     private $firstPublishedAt;
 
@@ -83,7 +82,7 @@ class SystemProperties implements \JsonSerializable
     private $publishedCounter;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var ApiDateTime|null
      */
     private $publishedAt;
 
@@ -98,7 +97,7 @@ class SystemProperties implements \JsonSerializable
     private $publishedVersion;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var ApiDateTime|null
      */
     private $archivedAt;
 
@@ -123,7 +122,7 @@ class SystemProperties implements \JsonSerializable
     private $snapshotEntityType;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var ApiDateTime|null
      */
     private $expiresAt;
 
@@ -163,12 +162,12 @@ class SystemProperties implements \JsonSerializable
      * @param array  $data
      * @param string $field
      *
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     private function checkAndBuildDate(array $data, string $field)
     {
         return isset($data[$field])
-            ? new \DateTimeImmutable($data[$field])
+            ? new ApiDateTime($data[$field])
             : null;
     }
 
@@ -218,7 +217,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     public function getCreatedAt()
     {
@@ -226,7 +225,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     public function getUpdatedAt()
     {
@@ -234,7 +233,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     public function getArchivedAt()
     {
@@ -274,7 +273,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     public function getFirstPublishedAt()
     {
@@ -282,7 +281,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     public function getPublishedAt()
     {
@@ -346,7 +345,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     public function getExpiresAt()
     {
@@ -354,11 +353,9 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {
@@ -377,19 +374,19 @@ class SystemProperties implements \JsonSerializable
             $sys['contentType'] = $this->contentType;
         }
         if ($this->createdAt !== null) {
-            $sys['createdAt'] = format_date_for_json($this->createdAt);
+            $sys['createdAt'] = (string) $this->createdAt;
         }
         if ($this->updatedAt !== null) {
-            $sys['updatedAt'] = format_date_for_json($this->updatedAt);
+            $sys['updatedAt'] = (string) $this->updatedAt;
         }
         if ($this->archivedAt !== null) {
-            $sys['archivedAt'] = format_date_for_json($this->archivedAt);
+            $sys['archivedAt'] = (string) $this->archivedAt;
         }
         if ($this->publishedAt !== null) {
-            $sys['publishedAt'] = format_date_for_json($this->publishedAt);
+            $sys['publishedAt'] = (string) $this->publishedAt;
         }
         if ($this->firstPublishedAt !== null) {
-            $sys['firstPublishedAt'] = format_date_for_json($this->firstPublishedAt);
+            $sys['firstPublishedAt'] = (string) $this->firstPublishedAt;
         }
         if ($this->version !== null) {
             $sys['version'] = $this->version;
@@ -425,7 +422,7 @@ class SystemProperties implements \JsonSerializable
             $sys['snapshotEntityType'] = $this->snapshotEntityType;
         }
         if ($this->expiresAt !== null) {
-            $sys['expiresAt'] = format_date_for_json($this->expiresAt);
+            $sys['expiresAt'] = (string) $this->expiresAt;
         }
 
         return $sys;

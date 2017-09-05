@@ -46,7 +46,7 @@ class Permissions implements \JsonSerializable
     /**
      * @param string|string[] $values Either "all" or an array including a subset of ["read", "manage"]
      *
-     * @return $this
+     * @return static
      */
     public function setContentDelivery($values)
     {
@@ -76,7 +76,7 @@ class Permissions implements \JsonSerializable
     /**
      * @param string|array $values Either "all" or an array including a subset of ["read", "manage"]
      *
-     * @return $this
+     * @return static
      */
     public function setContentModel($values)
     {
@@ -106,7 +106,7 @@ class Permissions implements \JsonSerializable
     /**
      * @param string|array $values Either "all" or an array including a subset of ["manage"]
      *
-     * @return $this
+     * @return static
      */
     public function setSettings($values)
     {
@@ -126,11 +126,9 @@ class Permissions implements \JsonSerializable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

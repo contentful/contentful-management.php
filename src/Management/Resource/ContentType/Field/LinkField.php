@@ -43,15 +43,7 @@ class LinkField extends BaseField
     {
         parent::__construct($id, $name);
 
-        if (!self::isValidLinkType($linkType)) {
-            throw new \RuntimeException(sprintf(
-                'Invalid link type "%s". Valid values are %s.',
-                $linkType,
-                implode(', ', self::VALID_LINK_TYPES)
-            ));
-        }
-
-        $this->linkType = $linkType;
+        $this->setLinkType($linkType);
     }
 
     /**
@@ -65,7 +57,7 @@ class LinkField extends BaseField
     /**
      * @param string $linkType
      *
-     * @return $this
+     * @return static
      */
     public function setLinkType(string $linkType)
     {
@@ -87,7 +79,7 @@ class LinkField extends BaseField
      *
      * @return bool
      */
-    private static function isValidLinkType(string $type): bool
+    private function isValidLinkType(string $type): bool
     {
         return in_array($type, self::VALID_LINK_TYPES);
     }
@@ -101,11 +93,9 @@ class LinkField extends BaseField
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

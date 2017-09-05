@@ -40,7 +40,7 @@ abstract class ApiKey extends BaseResource
     /**
      * @param string $name
      *
-     * @return $this
+     * @return static
      */
     public function setName(string $name)
     {
@@ -60,7 +60,7 @@ abstract class ApiKey extends BaseResource
     /**
      * @param string $description
      *
-     * @return $this
+     * @return static
      */
     public function setDescription(string $description)
     {
@@ -78,11 +78,9 @@ abstract class ApiKey extends BaseResource
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {
@@ -90,6 +88,7 @@ abstract class ApiKey extends BaseResource
             'sys' => $this->sys,
             'name' => $this->name,
             'description' => $this->description,
+            'accessToken' => $this->accessToken,
         ];
     }
 }

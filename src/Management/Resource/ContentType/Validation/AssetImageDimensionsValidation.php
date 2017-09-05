@@ -69,7 +69,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * @param int|null $minWidth
      *
-     * @return $this
+     * @return static
      */
     public function setMinWidth(int $minWidth = null)
     {
@@ -89,7 +89,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * @param int|null $maxWidth
      *
-     * @return $this
+     * @return static
      */
     public function setMaxWidth(int $maxWidth = null)
     {
@@ -109,7 +109,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * @param int|null $minHeight
      *
-     * @return $this
+     * @return static
      */
     public function setMinHeight(int $minHeight = null)
     {
@@ -129,7 +129,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * @param int|null $maxHeight
      *
-     * @return $this
+     * @return static
      */
     public function setMaxHeight(int $maxHeight = null)
     {
@@ -164,11 +164,9 @@ class AssetImageDimensionsValidation implements ValidationInterface
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

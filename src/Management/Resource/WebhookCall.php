@@ -9,7 +9,9 @@
 
 namespace Contentful\Management\Resource;
 
-use function Contentful\format_date_for_json;
+use Contentful\Management\ApiDateTime;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * WebhookCall class.
@@ -20,6 +22,16 @@ use function Contentful\format_date_for_json;
  */
 class WebhookCall extends BaseResource
 {
+    /**
+     * @var Request|null
+     */
+    protected $request;
+
+    /**
+     * @var Response|null
+     */
+    protected $response;
+
     /**
      * @var int
      */
@@ -41,12 +53,12 @@ class WebhookCall extends BaseResource
     protected $url;
 
     /**
-     * @var \DateTimeImmutable
+     * @var ApiDateTime
      */
     protected $requestAt;
 
     /**
-     * @var \DateTimeImmutable
+     * @var ApiDateTime
      */
     protected $responseAt;
 
@@ -59,6 +71,86 @@ class WebhookCall extends BaseResource
             'Class "%s" can only be instantiated as a result of an API call, manual creation is not allowed.',
             static::class
         ));
+    }
+
+    /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'sys' => $this->sys,
+            'request' => [
+                'url' => (string) $this->request->getUri(),
+                'method' => $this->request->getMethod(),
+                'headers' => $this->formatPsr7Headers($this->request->getHeaders()),
+                'body' => (string) $this->request->getBody(),
+            ],
+            'response' => [
+                'url' => (string) $this->request->getUri(),
+                'statusCode' => $this->response->getStatusCode(),
+                'headers' => $this->formatPsr7Headers($this->response->getHeaders()),
+                'body' => (string) $this->response->getBody(),
+            ],
+            'statusCode' => $this->statusCode,
+            'errors' => $this->error ? [$this->error] : [],
+            'eventType' => $this->eventType,
+            'url' => $this->url,
+            'requestAt' => (string) $this->requestAt,
+            'responseAt' => (string) $this->responseAt,
+        ];
+    }
+
+    /**
+     * PSR-7 Headers can contain multiple values for every key.
+     * We simplify management by only defining one.
+     *
+     * @param array $headers
+     *
+     * @return \stdClass
+     */
+    private function formatPsr7Headers(array $headers): \stdClass
+    {
+        $returnHeaders = [];
+        foreach ($headers as $key => $values) {
+            // The request object automatically adds a `Host` header, which we don't need
+            if ($key == 'Host') {
+                continue;
+            }
+
+            $returnHeaders[$key] = $values[0];
+        }
+
+        return (object) $returnHeaders;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asRequestBody()
+    {
+        throw new \LogicException(sprintf(
+            'Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.',
+            static::class
+        ));
+    }
+
+    /**
+     * @return Request|null
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return Response|null
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 
     /**
@@ -94,38 +186,18 @@ class WebhookCall extends BaseResource
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return ApiDateTime
      */
-    public function getRequestAt(): \DateTimeImmutable
+    public function getRequestAt(): ApiDateTime
     {
         return $this->requestAt;
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return ApiDateTime
      */
-    public function getResponseAt(): \DateTimeImmutable
+    public function getResponseAt(): ApiDateTime
     {
         return $this->responseAt;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'sys' => $this->sys,
-            'statusCode' => $this->statusCode,
-            'errors' => $this->error ? [$this->error] : [],
-            'eventType' => $this->eventType,
-            'url' => $this->url,
-            'requestAt' => format_date_for_json($this->requestAt),
-            'responseAt' => format_date_for_json($this->responseAt),
-        ];
     }
 }

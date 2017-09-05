@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Integration\Management\Resource;
 
-use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\EntrySnapshot;
+use Contentful\Management\ResourceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class EntrySnapshotTest extends TestCase
@@ -79,5 +79,17 @@ class EntrySnapshotTest extends TestCase
                 'snapshotType' => 'publish',
                 'snapshotEntityType' => 'Entry',
             ]], $entrySnapshot);
+    }
+
+    /**
+     * @param EntrySnapshot $entrySnapshot
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\EntrySnapshot" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(EntrySnapshot $entrySnapshot)
+    {
+        $entrySnapshot->asRequestBody();
     }
 }

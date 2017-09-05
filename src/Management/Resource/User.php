@@ -65,6 +65,36 @@ class User extends BaseResource
     }
 
     /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'sys' => $this->sys,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'avatarUrl' => $this->avatarUrl,
+            'email' => $this->email,
+            'activated' => $this->activated,
+            'signInCount' => $this->signInCount,
+            'confirmed' => $this->confirmed,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asRequestBody()
+    {
+        throw new \LogicException(sprintf(
+            'Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.',
+            static::class
+        ));
+    }
+
+    /**
      * @return string
      */
     public function getFirstName(): string
@@ -118,26 +148,5 @@ class User extends BaseResource
     public function isConfirmed(): bool
     {
         return $this->confirmed;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'sys' => $this->sys,
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
-            'avatarUrl' => $this->avatarUrl,
-            'email' => $this->email,
-            'activated' => $this->activated,
-            'signInCount' => $this->signInCount,
-            'confirmed' => $this->confirmed,
-        ];
     }
 }

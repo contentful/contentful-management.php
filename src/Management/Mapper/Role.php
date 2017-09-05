@@ -10,17 +10,20 @@
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\Role as ResourceClass;
-use Contentful\Management\Resource\Role\Policy;
-use Contentful\Management\Resource\Role\Permissions;
-use Contentful\Management\Resource\Role\Constraint\OrConstraint;
-use Contentful\Management\Resource\Role\Constraint\NotConstraint;
 use Contentful\Management\Resource\Role\Constraint\AndConstraint;
-use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
 use Contentful\Management\Resource\Role\Constraint\ConstraintInterface;
+use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
+use Contentful\Management\Resource\Role\Constraint\NotConstraint;
+use Contentful\Management\Resource\Role\Constraint\OrConstraint;
+use Contentful\Management\Resource\Role\Permissions;
+use Contentful\Management\Resource\Role\Policy;
 use Contentful\Management\SystemProperties;
 
 /**
  * Role class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\Role.
  */
 class Role extends BaseMapper
 {
@@ -62,38 +65,39 @@ class Role extends BaseMapper
         reset($data);
         $key = key($data);
 
-        switch ($key) {
-            case 'and':
-                return $this->hydrate(AndConstraint::class, [
-                    'children' => array_map([$this, 'buildConstraint'], $data[$key]),
-                ]);
-            case 'or':
-                return $this->hydrate(OrConstraint::class, [
-                    'children' => array_map([$this, 'buildConstraint'], $data[$key]),
-                ]);
-            case 'not':
-                return $this->hydrate(NotConstraint::class, [
-                    'child' => $this->buildConstraint($data[$key][0]),
-                ]);
-            case 'equals':
-                /**
-                 * The $data[$key] array *should* be in the form
-                 * [{"doc": "sys.type"}, "Entry"]
-                 * with the object with the "doc" property in the first position,
-                 * and the actual value in the second position.
-                 * Just to be safe, we check whether the 'doc' key exists in the first element,
-                 * so we know that *that* element is the doc, and the other contains the value.
-                 */
-                $docKey = isset($data[$key][0]['doc']) ? 0 : 1;
-                $valueKey = 1 - $docKey;
-
-                return $this->hydrate(EqualityConstraint::class, [
-                    'doc' => $data[$key][$docKey]['doc'],
-                    'value' => $data[$key][$valueKey],
-                ]);
-            default:
-                throw new \RuntimeException('Could not determine the constraint type');
+        if ($key == 'and') {
+            return $this->hydrate(AndConstraint::class, [
+                'children' => array_map([$this, 'buildConstraint'], $data[$key]),
+            ]);
         }
+
+        if ($key == 'or') {
+            return $this->hydrate(OrConstraint::class, [
+                'children' => array_map([$this, 'buildConstraint'], $data[$key]),
+            ]);
+        }
+
+        if ($key == 'not') {
+            return $this->hydrate(NotConstraint::class, [
+                'child' => $this->buildConstraint($data[$key][0]),
+            ]);
+        }
+
+        // $key must equal "equals"
+        //
+        // The $data[$key] array should be in the form
+        // [{"doc": "sys.type"}, "Entry"]
+        // with the object with the "doc" property in the first position,
+        // and the actual value in the second position.
+        // Just to be safe, we check whether the 'doc' key exists in the first element,
+        // so we know that *that* element is the doc, and the other contains the value.
+        $docKey = isset($data[$key][0]['doc']) ? 0 : 1;
+        $valueKey = 1 - $docKey;
+
+        return $this->hydrate(EqualityConstraint::class, [
+            'doc' => $data[$key][$docKey]['doc'],
+            'value' => $data[$key][$valueKey],
+        ]);
     }
 
     /**

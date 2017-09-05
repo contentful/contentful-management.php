@@ -68,11 +68,36 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     }
 
     /**
-     * {@inheritdoc}
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
      */
-    public function getResourceUriPart(): string
+    public function jsonSerialize(): array
     {
-        return 'webhook_definitions';
+        $headers = [];
+        foreach ($this->headers as $key => $value) {
+            $headers[] = [
+                'key' => $key,
+                'value' => $value,
+            ];
+        }
+
+        $values = [
+            'sys' => $this->sys,
+            'name' => $this->name,
+            'url' => $this->url,
+            'topics' => $this->topics,
+            'headers' => $headers,
+        ];
+
+        if ($this->httpBasicUsername) {
+            $values['httpBasicUsername'] = $this->httpBasicUsername;
+            if ($this->httpBasicPassword) {
+                $values['httpBasicPassword'] = $this->httpBasicPassword;
+            }
+        }
+
+        return $values;
     }
 
     /**
@@ -86,7 +111,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string $name
      *
-     * @return $this
+     * @return static
      */
     public function setName(string $name)
     {
@@ -106,7 +131,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string $url
      *
-     * @return $this
+     * @return static
      */
     public function setUrl(string $url)
     {
@@ -126,7 +151,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string|null $httpBasicUsername
      *
-     * @return $this
+     * @return static
      */
     public function setHttpBasicUsername(string $httpBasicUsername = null)
     {
@@ -146,7 +171,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string|null $httpBasicPassword
      *
-     * @return $this
+     * @return static
      */
     public function setHttpBasicPassword(string $httpBasicPassword = null)
     {
@@ -166,9 +191,9 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string $key
      *
-     * @return string
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return string
      */
     public function getHeader(string $key): string
     {
@@ -208,7 +233,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string[] $headers An array in the form 'X-Header-Name' => 'Header Value'
      *
-     * @return $this
+     * @return static
      */
     public function setHeaders(array $headers)
     {
@@ -228,9 +253,9 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string $key
      *
-     * @return $this
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return static
      */
     public function removeHeader(string $key)
     {
@@ -257,7 +282,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string $topic
      *
-     * @return $this
+     * @return static
      */
     public function addTopic(string $topic)
     {
@@ -270,7 +295,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param array $topics A simple list of topics; array keys will be discarded
      *
-     * @return $this
+     * @return static
      */
     public function setTopics(array $topics)
     {
@@ -292,9 +317,9 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     /**
      * @param string $topic
      *
-     * @return $this
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return static
      */
     public function removeTopic(string $topic)
     {
@@ -309,40 +334,5 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
         unset($this->topics[$key]);
 
         return $this;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        $headers = [];
-        foreach ($this->headers as $key => $value) {
-            $headers[] = [
-                'key' => $key,
-                'value' => $value,
-            ];
-        }
-
-        $values = [
-            'sys' => $this->sys,
-            'name' => $this->name,
-            'url' => $this->url,
-            'topics' => $this->topics,
-            'headers' => $headers,
-        ];
-
-        if ($this->httpBasicUsername) {
-            $values['httpBasicUsername'] = $this->httpBasicUsername;
-            if ($this->httpBasicPassword) {
-                $values['httpBasicPassword'] = $this->httpBasicPassword;
-            }
-        }
-
-        return $values;
     }
 }

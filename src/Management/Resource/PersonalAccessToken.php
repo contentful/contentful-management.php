@@ -9,6 +9,9 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Management\ApiDateTime;
+use Contentful\Management\Resource\Behavior\Creatable;
+
 /**
  * PersonalAccessToken class.
  *
@@ -16,7 +19,7 @@ namespace Contentful\Management\Resource;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens
  */
-class PersonalAccessToken extends BaseResource
+class PersonalAccessToken extends BaseResource implements Creatable
 {
     /**
      * @var string
@@ -24,7 +27,7 @@ class PersonalAccessToken extends BaseResource
     protected $name = '';
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var \Contentful\Management\ApiDateTime|null
      */
     protected $revokedAt;
 
@@ -52,6 +55,38 @@ class PersonalAccessToken extends BaseResource
     }
 
     /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'sys' => $this->sys,
+            'name' => $this->name,
+            'scopes' => $this->isReadOnly
+                ? ['content_management_read']
+                : ['content_management_manage'],
+            'token' => $this->token,
+            'revokedAt' => $this->revokedAt ? (string) $this->revokedAt : null,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asRequestBody(): string
+    {
+        $body = $this->jsonSerialize();
+
+        unset($body['sys']);
+        unset($body['token']);
+        unset($body['revokedAt']);
+
+        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
      * @return string
      */
     public function getName()
@@ -62,7 +97,7 @@ class PersonalAccessToken extends BaseResource
     /**
      * @param string $name
      *
-     * @return $this
+     * @return static
      */
     public function setName($name)
     {
@@ -72,7 +107,7 @@ class PersonalAccessToken extends BaseResource
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return ApiDateTime|null
      */
     public function getRevokedAt()
     {
@@ -103,23 +138,5 @@ class PersonalAccessToken extends BaseResource
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'sys' => $this->sys,
-            'name' => $this->name,
-            'scopes' => $this->isReadOnly
-                ? ['content_management_read']
-                : ['content_management_manage'],
-        ];
     }
 }

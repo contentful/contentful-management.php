@@ -12,6 +12,8 @@ namespace Contentful\Management\Exception;
 use Contentful\Exception\ApiException;
 
 /**
+ * UnsupportedMediaTypeException class.
+ *
  * An UnsupportedMediaTypeException is thrown when the API encounters
  * an unknown content type.
  *

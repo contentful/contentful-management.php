@@ -45,7 +45,7 @@ abstract class LogicConstraint implements ConstraintInterface
     /**
      * @param ConstraintInterface $child
      *
-     * @return $this
+     * @return static
      */
     public function addChild(ConstraintInterface $child)
     {
@@ -57,7 +57,7 @@ abstract class LogicConstraint implements ConstraintInterface
     /**
      * @param ConstraintInterface[] $children
      *
-     * @return $this
+     * @return static
      */
     public function setChildren(array $children)
     {
@@ -76,7 +76,7 @@ abstract class LogicConstraint implements ConstraintInterface
     }
 
     /**
-     * @return $this
+     * @return static
      */
     public function clearChildren()
     {
@@ -86,11 +86,9 @@ abstract class LogicConstraint implements ConstraintInterface
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

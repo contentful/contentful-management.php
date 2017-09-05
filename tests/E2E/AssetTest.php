@@ -10,9 +10,11 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\E2E\Management;
 
+use Contentful\File\File;
 use Contentful\File\LocalUploadFile;
 use Contentful\File\RemoteUploadFile;
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Upload;
@@ -26,9 +28,9 @@ class AssetTest extends End2EndTestCase
      */
     public function testGetAsset()
     {
-        $manager = $this->getReadOnlySpaceManager();
+        $client = $this->getReadOnlyClient();
 
-        $asset = $manager->getAsset('nyancat');
+        $asset = $client->asset->get('nyancat');
         $this->assertEquals('Nyan Cat', $asset->getTitle('en-US'));
         $this->assertNull($asset->getTitle('tlh'));
         $this->assertNull($asset->getDescription('en-US'));
@@ -39,14 +41,14 @@ class AssetTest extends End2EndTestCase
         $this->assertEquals('Asset', $sys->getType());
         $this->assertEquals(2, $sys->getVersion());
         $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:54:17.868'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.264'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-02T14:54:17.868'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.264'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getUpdatedBy());
         $this->assertEquals(1, $sys->getPublishedVersion());
         $this->assertEquals(1, $sys->getPublishedCounter());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.24'), $sys->getPublishedAt());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.24'), $sys->getFirstPublishedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.24'), $sys->getPublishedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.24'), $sys->getFirstPublishedAt());
     }
 
     /**
@@ -54,14 +56,14 @@ class AssetTest extends End2EndTestCase
      */
     public function testGetAssets()
     {
-        $manager = $this->getReadOnlySpaceManager();
-        $assets = $manager->getAssets();
+        $client = $this->getReadOnlyClient();
+        $assets = $client->asset->getAll();
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $assets = $manager->getAssets($query);
+        $assets = $client->asset->getAll($query);
         $this->assertInstanceOf(Asset::class, $assets[0]);
         $this->assertCount(1, $assets);
     }
@@ -71,7 +73,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testCreateUpdateProcessPublishUnpublishArchiveUnarchiveDelete()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
@@ -81,22 +83,22 @@ class AssetTest extends End2EndTestCase
 
         $asset->setFile('en-US', $file);
 
-        $manager->create($asset);
-        $this->assertNotNull($asset->getSystemProperties()->getId());
+        $client->asset->create($asset);
+        $this->assertNotNull($asset->getId());
 
-        $manager->processAsset($asset, 'en-US');
+        $asset->process('en-US');
 
         // Calls the API until the file is processed.
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $query = (new Query())
-            ->where('sys.id', $asset->getSystemProperties()->getId())
+            ->where('sys.id', $asset->getId())
         ;
         $limit = 0;
         while ($asset->getFile('en-US') instanceof RemoteUploadFile) {
             ++$limit;
             $query->setLimit($limit);
-            $asset = $manager->getAssets($query)[0];
+            $asset = $client->asset->getAll($query)[0];
 
             // This is arbitrary
             if ($limit > 50) {
@@ -108,21 +110,21 @@ class AssetTest extends End2EndTestCase
 
         $asset->setTitle('en-US', 'Even better asset');
 
-        $manager->update($asset);
+        $asset->update();
 
-        $manager->archive($asset);
+        $asset->archive();
         $this->assertEquals(3, $asset->getSystemProperties()->getArchivedVersion());
 
-        $manager->unarchive($asset);
+        $asset->unarchive();
         $this->assertNull($asset->getSystemProperties()->getArchivedVersion());
 
-        $manager->publish($asset);
+        $asset->publish();
         $this->assertEquals(5, $asset->getSystemProperties()->getPublishedVersion());
 
-        $manager->unpublish($asset);
+        $asset->unpublish();
         $this->assertNull($asset->getSystemProperties()->getPublishedVersion());
 
-        $manager->delete($asset);
+        $asset->delete();
     }
 
     /**
@@ -130,16 +132,16 @@ class AssetTest extends End2EndTestCase
      */
     public function testCreateAssetWithGivenId()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
             ->setDescription('en-US', 'A really cool asset');
 
-        $manager->create($asset, 'myCustomTestAsset');
-        $this->assertEquals('myCustomTestAsset', $asset->getSystemProperties()->getId());
+        $client->asset->create($asset, 'myCustomTestAsset');
+        $this->assertEquals('myCustomTestAsset', $asset->getId());
 
-        $manager->delete($asset);
+        $asset->delete();
     }
 
     /**
@@ -147,29 +149,29 @@ class AssetTest extends End2EndTestCase
      */
     public function testUploadAsset()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         // Creates upload using fopen
         $fopenUpload = new Upload(fopen(__DIR__.'/../fixtures/contentful-lab.svg', 'r'));
-        $manager->create($fopenUpload);
-        $this->assertNotNull($fopenUpload->getSystemProperties()->getId());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());
-        $manager->delete($fopenUpload);
+        $client->upload->create($fopenUpload);
+        $this->assertNotNull($fopenUpload->getId());
+        $this->assertInstanceOf(ApiDateTime::class, $fopenUpload->getSystemProperties()->getExpiresAt());
+        $fopenUpload->delete();
 
         // Creates upload using stream
         $stream = stream_for(file_get_contents(__DIR__.'/../fixtures/contentful-logo.svg'));
         $streamUpload = new Upload($stream);
-        $manager->create($streamUpload);
-        $this->assertNotNull($streamUpload->getSystemProperties()->getId());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $streamUpload->getSystemProperties()->getExpiresAt());
-        $manager->delete($streamUpload);
+        $client->upload->create($streamUpload);
+        $this->assertNotNull($streamUpload->getId());
+        $this->assertInstanceOf(ApiDateTime::class, $streamUpload->getSystemProperties()->getExpiresAt());
+        $streamUpload->delete();
 
         // Creates upload using string
         $upload = new Upload(file_get_contents(__DIR__.'/../fixtures/contentful-name.svg'));
-        $manager->create($upload);
-        $this->assertEquals(new Link($upload->getSystemProperties()->getId(), 'Upload'), $upload->asLink());
-        $this->assertNotNull($upload->getSystemProperties()->getId());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $upload->getSystemProperties()->getExpiresAt());
+        $client->upload->create($upload);
+        $this->assertEquals(new Link($upload->getId(), 'Upload'), $upload->asLink());
+        $this->assertNotNull($upload->getId());
+        $this->assertInstanceOf(ApiDateTime::class, $upload->getSystemProperties()->getExpiresAt());
 
         $uploadFromFile = new LocalUploadFile('contentful.svg', 'image/svg+xml', $upload->asLink());
 
@@ -177,20 +179,20 @@ class AssetTest extends End2EndTestCase
         $asset->setTitle('en-US', 'Contentful');
         $asset->setFile('en-US', $uploadFromFile);
 
-        $manager->create($asset);
-        $manager->processAsset($asset, 'en-US');
+        $client->asset->create($asset);
+        $asset->process('en-US');
 
         // Calls the API until the file is processed.
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $query = (new Query())
-            ->where('sys.id', $asset->getSystemProperties()->getId())
+            ->where('sys.id', $asset->getId())
         ;
         $limit = 0;
         while ($asset->getFile('en-US') instanceof LocalUploadFile) {
             ++$limit;
             $query->setLimit($limit);
-            $asset = $manager->getAssets($query)[0];
+            $asset = $client->asset->getAll($query)[0];
 
             // This is arbitrary
             if ($limit > 50) {
@@ -204,9 +206,28 @@ class AssetTest extends End2EndTestCase
         $this->assertEquals('image/svg+xml', $asset->getFile('en-US')->getContentType());
         $this->assertContains('contentful.com', $asset->getFile('en-US')->getUrl());
 
-        $upload = $manager->resolveLink($upload->asLink());
+        $upload = $client->resolveLink($upload->asLink());
 
-        $manager->delete($upload);
-        $manager->delete($asset);
+        $upload->delete();
+        $asset->delete();
+    }
+
+    /**
+     * @vcr e2e_asset_text_file.json
+     */
+    public function testTextFileAsset()
+    {
+        $client = $this->getReadWriteClient();
+
+        $asset = $client->asset->get('1Gdj0yMYb60MuI6OCSkqMu');
+
+        $this->assertSame('MIT', $asset->getTitle('en-US'));
+        $this->assertSame('This is the MIT license', $asset->getDescription('en-US'));
+        $file = $asset->getFile('en-US');
+        $this->assertInstanceOf(File::class, $file);
+        $this->assertSame('MIT.md', $file->getFileName());
+        $this->assertSame('text/plain', $file->getContentType());
+        $this->assertSame('//assets.contentful.com/34luz0flcmxt/1Gdj0yMYb60MuI6OCSkqMu/4211a1a1c41d6e477e4f8bcaea8b68ab/MIT.md', $file->getUrl());
+        $this->assertSame(1065, $file->getSize());
     }
 }

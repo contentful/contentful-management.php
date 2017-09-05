@@ -40,6 +40,33 @@ class WebhookHealth extends BaseResource
     }
 
     /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'sys' => $this->sys,
+            'calls' => [
+                'total' => $this->total,
+                'healthy' => $this->healthy,
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asRequestBody()
+    {
+        throw new \LogicException(sprintf(
+            'Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.',
+            static::class
+        ));
+    }
+
+    /**
      * @return int
      */
     public function getTotal(): int
@@ -53,23 +80,5 @@ class WebhookHealth extends BaseResource
     public function getHealthy(): int
     {
         return $this->healthy;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'sys' => $this->sys,
-            'calls' => [
-                'total' => $this->total,
-                'healthy' => $this->healthy,
-            ],
-        ];
     }
 }

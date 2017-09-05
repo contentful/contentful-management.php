@@ -19,9 +19,9 @@ class EditorInterfaceTest extends End2EndTestCase
      */
     public function testGetUpdate()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $editorInterface = $manager->getEditorInterface('bookmark');
+        $editorInterface = $client->editorInterface->get('bookmark');
 
         $control = $editorInterface->getControl('name');
         $this->assertEquals('name', $control->getFieldId());
@@ -48,7 +48,7 @@ class EditorInterfaceTest extends End2EndTestCase
             $this->assertEquals('Trying to access unavailable control "invalidControl".', $e->getMessage());
         }
 
-        $manager->update($editorInterface);
+        $editorInterface->update();
 
         $controls = $editorInterface->getControls();
 
@@ -70,6 +70,6 @@ class EditorInterfaceTest extends End2EndTestCase
         $control->setWidgetId('numberEditor');
         $control->setSettings([]);
 
-        $manager->update($editorInterface);
+        $editorInterface->update();
     }
 }

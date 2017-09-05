@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Integration\Management\Resource;
 
-use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\PreviewApiKey;
+use Contentful\Management\ResourceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class PreviewApiKeyTest extends TestCase
@@ -36,10 +36,10 @@ class PreviewApiKeyTest extends TestCase
             ],
             'name' => 'Preview Key',
             'description' => null,
-            'accessToken' => 'ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f>',
+            'accessToken' => 'ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f',
         ]);
 
-        $json = '{"sys":{"type":"PreviewApiKey"},"name":"Preview Key","description":null}';
+        $json = '{"sys":{"type":"PreviewApiKey"},"name":"Preview Key","description":null,"accessToken":"ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f"}';
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($previewApiKey));
 
@@ -59,5 +59,17 @@ class PreviewApiKeyTest extends TestCase
             ->build(['sys' => [
                 'type' => 'PreviewApiKey',
             ]], $previewApiKey);
+    }
+
+    /**
+     * @param PreviewApiKey $previewApiKey
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\PreviewApiKey" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(PreviewApiKey $previewApiKey)
+    {
+        $previewApiKey->asRequestBody();
     }
 }

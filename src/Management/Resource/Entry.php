@@ -9,7 +9,7 @@
 
 namespace Contentful\Management\Resource;
 
-use function Contentful\format_date_for_json;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\Behavior\Archivable;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
@@ -23,7 +23,7 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
  */
-class Entry extends BaseResource implements Publishable, Archivable, Deletable, Updatable, Creatable
+class Entry extends BaseResource implements Creatable, Updatable, Deletable, Publishable, Archivable
 {
     /**
      * @var array[]
@@ -41,11 +41,46 @@ class Entry extends BaseResource implements Publishable, Archivable, Deletable, 
     }
 
     /**
-     * {@inheritdoc}
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
      */
-    public function getResourceUriPart(): string
+    public function jsonSerialize(): array
     {
-        return 'entries';
+        $fields = [];
+
+        foreach ($this->fields as $fieldName => $fieldData) {
+            $fields[$fieldName] = [];
+
+            foreach ($fieldData as $locale => $data) {
+                $fields[$fieldName][$locale] = $this->getFormattedData($data);
+            }
+        }
+
+        return [
+            'sys' => $this->sys,
+            'fields' => (object) $fields,
+        ];
+    }
+
+    /**
+     * Formats data for JSON encoding.
+     *
+     * @param mixed $data
+     *
+     * @return mixed
+     */
+    private function getFormattedData($data)
+    {
+        if ($data instanceof ApiDateTime) {
+            return (string) $data;
+        }
+
+        if (is_array($data)) {
+            return array_map([$this, 'getFormattedData'], $data);
+        }
+
+        return $data;
     }
 
     /**
@@ -82,6 +117,8 @@ class Entry extends BaseResource implements Publishable, Archivable, Deletable, 
      * @param string $name
      * @param string $locale
      * @param mixed  $value
+     *
+     * @return static
      */
     public function setField(string $name, string $locale, $value)
     {
@@ -92,54 +129,5 @@ class Entry extends BaseResource implements Publishable, Archivable, Deletable, 
         $this->fields[$name][$locale] = $value;
 
         return $this;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        $fields = [];
-
-        foreach ($this->fields as $fieldName => $fieldData) {
-            $fields[$fieldName] = [];
-
-            foreach ($fieldData as $locale => $data) {
-                $fields[$fieldName][$locale] = $this->getFormattedData($data);
-            }
-        }
-
-        return [
-            'sys' => $this->sys,
-            'fields' => (object) $fields,
-        ];
-    }
-
-    /**
-     * Formats data for JSON encoding.
-     *
-     * @param mixed $data
-     *
-     * @return mixed
-     */
-    private function getFormattedData($data)
-    {
-        if ($data instanceof \DateTimeImmutable) {
-            return format_date_for_json($data);
-        }
-
-        if ($data instanceof \DateTime) {
-            return format_date_for_json(\DateTimeImmutable::createFromMutable($data));
-        }
-
-        if (is_array($data)) {
-            return array_map([$this, 'getFormattedData'], $data);
-        }
-
-        return $data;
     }
 }

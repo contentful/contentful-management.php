@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Integration\Management\Resource;
 
-use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\Organization;
+use Contentful\Management\ResourceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class OrganizationTest extends TestCase
@@ -57,5 +57,17 @@ class OrganizationTest extends TestCase
             ->build(['sys' => [
                 'type' => 'Organization',
             ]], $organization);
+    }
+
+    /**
+     * @param Organization $organization
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\Organization" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(Organization $organization)
+    {
+        $organization->asRequestBody();
     }
 }

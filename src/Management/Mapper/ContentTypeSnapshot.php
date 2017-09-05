@@ -14,6 +14,9 @@ use Contentful\Management\SystemProperties;
 
 /**
  * ContentTypeSnapshot class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\ContentTypeSnapshot.
  */
 class ContentTypeSnapshot extends BaseMapper
 {

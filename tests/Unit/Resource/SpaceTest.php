@@ -17,7 +17,7 @@ class SpaceTest extends TestCase
 {
     public function testGetSetData()
     {
-        $space = new Space('A space');
+        $space = new Space('A space', 'organizationId');
 
         $this->assertEquals('A space', $space->getName());
 
@@ -31,7 +31,7 @@ class SpaceTest extends TestCase
 
     public function testJsonSerialize()
     {
-        $space = new Space('A space');
+        $space = new Space('A space', 'organizationId');
 
         $this->assertJsonStringEqualsJsonString('{"sys": {"type": "Space"}, "name": "A space"}', json_encode($space));
     }

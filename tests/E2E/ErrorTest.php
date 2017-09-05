@@ -15,6 +15,7 @@ use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Locale;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\End2EndTestCase;
+use function GuzzleHttp\json_encode;
 
 class ErrorTest extends End2EndTestCase
 {
@@ -25,10 +26,10 @@ class ErrorTest extends End2EndTestCase
      */
     public function testUnknownKeyError()
     {
-        $spaceManager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $locale = new UnknownKeyLocale('American German', 'de-US');
-        $spaceManager->create($locale);
+        $locale = new UnknownKeyLocale('American Italian', 'it-US');
+        $client->locale->create($locale);
     }
 
     /**
@@ -38,10 +39,10 @@ class ErrorTest extends End2EndTestCase
      */
     public function testMissingKeyError()
     {
-        $spaceManager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $locale = new EmptyBodyLocale('American German', 'de-US');
-        $spaceManager->create($locale);
+        $locale = new EmptyBodyLocale('American Italian', 'it-US');
+        $client->locale->create($locale);
     }
 
     /**
@@ -51,10 +52,10 @@ class ErrorTest extends End2EndTestCase
      */
     public function testValidationFailedError()
     {
-        $spaceManager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $locale = new ValidationFailedLocale('American German', 'de-US');
-        $spaceManager->create($locale);
+        $locale = new ValidationFailedLocale('American Italian', 'it-US');
+        $client->locale->create($locale);
     }
 
     /**
@@ -62,21 +63,22 @@ class ErrorTest extends End2EndTestCase
      */
     public function testVersionMismatchError()
     {
-        $spaceManager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $asset = new Asset();
-        $spaceManager->create($asset);
+        $client->asset->create($asset);
 
-        $fakeAsset = new FakeAsset($asset->getSystemProperties()->getId(), $this->readWriteSpaceId);
+        $fakeAsset = new FakeAsset($asset->getId(), $this->readWriteSpaceId);
+        $fakeAsset->setProxy($client->asset);
 
         try {
-            $spaceManager->update($fakeAsset);
+            $fakeAsset->update();
         } catch (VersionMismatchException $e) {
             $this->assertEquals('The version number you supplied is invalid.', $e->getMessage());
 
             return;
         } finally {
-            $spaceManager->delete($asset);
+            $asset->delete();
         }
 
         $this->fail('Did not throw VersionMismatchException.');
@@ -89,10 +91,10 @@ class ErrorTest extends End2EndTestCase
      */
     public function testDefaultLocaleNotDeletableError()
     {
-        $spaceManager = $this->getReadWriteSpaceManager();
-        $defaultLocale = $spaceManager->getLocale('6khdsfQbtrObkbrgWDTGe8');
+        $client = $this->getReadWriteClient();
+        $defaultLocale = $client->locale->get('6khdsfQbtrObkbrgWDTGe8');
 
-        $spaceManager->delete($defaultLocale);
+        $defaultLocale->delete();
     }
 
     /**
@@ -102,11 +104,11 @@ class ErrorTest extends End2EndTestCase
      */
     public function testFallbackLocaleNotDeletableError()
     {
-        $spaceManager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
-        $enGbLocale = $spaceManager->getLocale('71wkZKqgktY9Uzg76CtsBK');
+        $enGbLocale = $client->locale->get('71wkZKqgktY9Uzg76CtsBK');
 
-        $spaceManager->delete($enGbLocale);
+        $enGbLocale->delete();
     }
 
     /**
@@ -116,55 +118,53 @@ class ErrorTest extends End2EndTestCase
      */
     public function testFallbackLocaleNotRenameableError()
     {
-        $spaceManager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
-        $enGbLocale = $spaceManager->getLocale('71wkZKqgktY9Uzg76CtsBK');
+        $enGbLocale = $client->locale->get('71wkZKqgktY9Uzg76CtsBK');
 
         $enGbLocale->setCode('en-NZ');
-        $spaceManager->update($enGbLocale);
+        $enGbLocale->update();
     }
 }
 
 class UnknownKeyLocale extends Locale
 {
-    public function jsonSerialize(): array
+    public function asRequestBody(): string
     {
-        $data = parent::jsonSerialize();
+        $body = $this->jsonSerialize();
 
-        $data['default'] = true;
-        $data['avx'] = 'def';
+        unset($body['sys']);
+        unset($body['default']);
 
-        return $data;
+        $body['unknownKey'] = 'unknownValue';
+
+        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
     }
 }
 
 class EmptyBodyLocale extends Locale
 {
-    public function jsonSerialize(): array
+    public function asRequestBody(): string
     {
-        return [];
+        return '{}';
     }
 }
 
 class ValidationFailedLocale extends Locale
 {
-    public function jsonSerialize(): array
+    public function asRequestBody(): string
     {
-        return [
-            'name' => 'A cool locale',
-        ];
+        return '{"name":"A cool locale"}';
     }
 }
 
 class FakeAsset extends Asset
 {
-    private $fakeSys;
-
     public function __construct(string $id, string $spaceId)
     {
         parent::__construct();
 
-        $this->fakeSys = new SystemProperties([
+        $this->sys = new SystemProperties([
             'type' => 'Asset',
             'id' => $id,
             'version' => 23,
@@ -176,10 +176,5 @@ class FakeAsset extends Asset
                 ],
             ],
         ]);
-    }
-
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->fakeSys;
     }
 }

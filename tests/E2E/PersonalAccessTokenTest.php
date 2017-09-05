@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\E2E\Management;
 
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\PersonalAccessToken;
 use Contentful\Tests\End2EndTestCase;
@@ -21,21 +22,23 @@ class PersonalAccessTokenTest extends End2EndTestCase
      */
     public function testCreateGetRevoke()
     {
+        $client = $this->getUnboundClient();
+
         $personalAccessToken = new PersonalAccessToken('Test access token', true);
-        $this->client->createPersonalAccessToken($personalAccessToken);
+        $client->personalAccessToken->create($personalAccessToken);
 
         $this->assertNotNull($personalAccessToken->getToken());
         $this->assertEquals('Test access token', $personalAccessToken->getName());
         $this->assertTrue($personalAccessToken->isReadOnly());
 
-        $personalAccessToken = $this->client->getPersonalAccessToken($personalAccessToken->getSystemProperties()->getId());
+        $personalAccessToken = $client->personalAccessToken->get($personalAccessToken->getId());
 
         $this->assertNull($personalAccessToken->getToken());
         $this->assertEquals('Test access token', $personalAccessToken->getName());
         $this->assertTrue($personalAccessToken->isReadOnly());
 
-        $this->client->revokePersonalAccessToken($personalAccessToken);
-        $this->assertInstanceOf(\DateTimeImmutable::class, $personalAccessToken->getRevokedAt());
+        $personalAccessToken->revoke();
+        $this->assertInstanceOf(ApiDateTime::class, $personalAccessToken->getRevokedAt());
     }
 
     /**
@@ -45,7 +48,7 @@ class PersonalAccessTokenTest extends End2EndTestCase
     {
         $query = (new Query())
             ->setLimit(1);
-        $personalAccessTokens = $this->client->getPersonalAccessTokens($query);
+        $personalAccessTokens = $this->getUnboundClient()->personalAccessToken->getAll($query);
 
         $this->assertCount(1, $personalAccessTokens);
 

@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\Locale;
 use Contentful\Tests\End2EndTestCase;
 
@@ -21,9 +22,9 @@ class LocaleTest extends End2EndTestCase
      */
     public function testGetLocale()
     {
-        $manager = $this->getReadOnlySpaceManager();
+        $client = $this->getReadOnlyClient();
 
-        $locale = $manager->getLocale('2oQPjMCL9bQkylziydLh57');
+        $locale = $client->locale->get('2oQPjMCL9bQkylziydLh57');
         $this->assertEquals(new Link('2oQPjMCL9bQkylziydLh57', 'Locale'), $locale->asLink());
         $this->assertEquals('English', $locale->getName());
         $this->assertEquals('en-US', $locale->getCode());
@@ -38,8 +39,8 @@ class LocaleTest extends End2EndTestCase
         $this->assertEquals('Locale', $sys->getType());
         $this->assertEquals(1, $sys->getVersion());
         $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new \DateTimeImmutable('2013-06-23T19:02:00'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2013-06-25T12:13:56'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2013-06-23T19:02:00'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2013-06-25T12:13:56'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getUpdatedBy());
     }
@@ -49,9 +50,9 @@ class LocaleTest extends End2EndTestCase
      */
     public function testGetLocales()
     {
-        $manager = $this->getReadOnlySpaceManager();
+        $client = $this->getReadOnlyClient();
 
-        $locales = $manager->getLocales();
+        $locales = $client->locale->getAll();
         $this->assertCount(2, $locales);
         $this->assertInstanceOf(Locale::class, $locales[0]);
     }
@@ -61,16 +62,16 @@ class LocaleTest extends End2EndTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $locale = new Locale('Swiss German', 'de-CH');
+        $locale = new Locale('Swiss Italian', 'it-CH');
 
-        $manager->create($locale);
-        $this->assertNotNull($locale->getSystemProperties()->getId());
+        $client->locale->create($locale);
+        $this->assertNotNull($locale->getId());
 
-        $locale->setName('Really Swiss German');
-        $manager->update($locale);
+        $locale->setName('Really Swiss Italian');
+        $locale->update();
 
-        $manager->delete($locale);
+        $locale->delete();
     }
 }

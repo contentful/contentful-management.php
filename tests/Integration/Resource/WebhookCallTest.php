@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Integration\Management\Resource;
 
-use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\WebhookCall;
+use Contentful\Management\ResourceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class WebhookCallTest extends TestCase
@@ -32,7 +32,21 @@ class WebhookCallTest extends TestCase
     {
         $webhookCall = (new ResourceBuilder())->build([
             'sys' => [
-                'type' => 'WebhookCallOverview',
+                'type' => 'WebhookCallDetails',
+            ],
+            'request' => [
+                'method' => 'POST',
+                'url' => 'https://www.example.com',
+                'headers' => [],
+                'body' => '{}',
+            ],
+            'response' => [
+                'statusCode' => 200,
+                'headers' => [
+                    'Host' => 'www.example.com',
+                    'X-Breaking-Bad-Favorite-Character' => 'Jesse Pinkman',
+                ],
+                'body' => '',
             ],
             'statusCode' => 200,
             'errors' => [],
@@ -42,7 +56,7 @@ class WebhookCallTest extends TestCase
             'responseAt' => '2016-03-01T08:43:22.330Z',
         ]);
 
-        $json = '{"sys":{"type":"WebhookCallOverview"},"statusCode":200,"errors":[],"eventType":"publish","url":"https:\/\/webhooks.example.com\/endpoint","requestAt":"2016-03-01T08:43:22.024Z","responseAt":"2016-03-01T08:43:22.330Z"}';
+        $json = '{"sys":{"type":"WebhookCallDetails"},"request":{"method":"POST","url":"https://www.example.com","headers":[],"body":"{}"},"response":{"statusCode":200,"url":"https://www.example.com","headers":{"X-Breaking-Bad-Favorite-Character":"Jesse Pinkman"},"body":""},"statusCode":200,"errors":[],"eventType":"publish","url":"https:\/\/webhooks.example.com\/endpoint","requestAt":"2016-03-01T08:43:22.024Z","responseAt":"2016-03-01T08:43:22.330Z"}';
 
         $this->assertJsonStringEqualsJsonString($json, json_encode($webhookCall));
 
@@ -60,7 +74,19 @@ class WebhookCallTest extends TestCase
     {
         (new ResourceBuilder())
             ->build(['sys' => [
-                'type' => 'WebhookCallOverview',
+                'type' => 'WebhookCallDetails',
             ]], $webhookCall);
+    }
+
+    /**
+     * @param WebhookCall $webhookCall
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\WebhookCall" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(WebhookCall $webhookCall)
+    {
+        $webhookCall->asRequestBody();
     }
 }

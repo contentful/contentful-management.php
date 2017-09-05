@@ -9,11 +9,17 @@
 
 namespace Contentful\Management\Mapper;
 
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\WebhookCall as ResourceClass;
 use Contentful\Management\SystemProperties;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * WebhookCall class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\WebhookCall.
  */
 class WebhookCall extends BaseMapper
 {
@@ -31,12 +37,23 @@ class WebhookCall extends BaseMapper
 
         return $this->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
+            'request' => isset($data['request']) ? new Request(
+                $data['request']['method'],
+                $data['request']['url'],
+                $data['request']['headers'],
+                $data['request']['body']
+            ) : null,
+            'response' => isset($data['response']) ? new Response(
+                $data['response']['statusCode'],
+                $data['response']['headers'],
+                $data['response']['body']
+            ) : null,
             'statusCode' => $data['statusCode'],
             'eventType' => $data['eventType'],
             'error' => $data['errors'] ? $data['errors'][0] : null,
             'url' => $data['url'],
-            'requestAt' => new \DateTimeImmutable($data['requestAt']),
-            'responseAt' => new \DateTimeImmutable($data['responseAt']),
+            'requestAt' => new ApiDateTime($data['requestAt']),
+            'responseAt' => new ApiDateTime($data['responseAt']),
         ]);
     }
 }

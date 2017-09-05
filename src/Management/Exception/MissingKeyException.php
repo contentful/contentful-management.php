@@ -9,11 +9,13 @@
 
 namespace Contentful\Management\Exception;
 
-use function GuzzleHttp\json_decode;
 use Contentful\Exception\ApiException;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
+use function GuzzleHttp\json_decode;
 
 /**
+ * MissingKeyException class.
+ *
  * A MissingKeyException is thrown when persisting an object
  * without a key that is required.
  */

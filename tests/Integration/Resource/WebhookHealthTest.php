@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Integration\Management\Resource;
 
-use Contentful\Management\ResourceBuilder;
 use Contentful\Management\Resource\WebhookHealth;
+use Contentful\Management\ResourceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class WebhookHealthTest extends TestCase
@@ -61,5 +61,17 @@ class WebhookHealthTest extends TestCase
             ->build(['sys' => [
                 'type' => 'Webhook',
             ]], $webhookHealth);
+    }
+
+    /**
+     * @param WebhookHealth $webhookHealth
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\WebhookHealth" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(WebhookHealth $webhookHealth)
+    {
+        $webhookHealth->asRequestBody();
     }
 }
