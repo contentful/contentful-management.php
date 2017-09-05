@@ -12,6 +12,7 @@ namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Exception\NotFoundException;
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Space;
 use Contentful\ResourceArray;
@@ -31,8 +32,8 @@ class SpaceTest extends End2EndTestCase
         $sys = $space->getSystemProperties();
         $this->assertEquals($this->readOnlySpaceId, $sys->getId());
         $this->assertEquals('Space', $sys->getType());
-        $this->assertEquals(new \DateTimeImmutable('2013-06-23T19:02:00'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2016-02-25T09:57:25'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2013-06-23T19:02:00'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2016-02-25T09:57:25'), $sys->getUpdatedAt());
         $this->assertEquals(4, $sys->getVersion());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getUpdatedBy());

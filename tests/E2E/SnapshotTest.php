@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentTypeSnapshot;
@@ -41,8 +42,8 @@ class SnapshotTest extends End2EndTestCase
         $this->assertEquals('Entry', $sys->getSnapshotEntityType());
         $this->assertEquals('publish', $sys->getSnapshotType());
         $this->assertEquals(new Link($this->readWriteSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new \DateTimeImmutable('2017-06-14T14:11:20.189Z'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-06-14T14:11:20.189Z'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2017-06-14T14:11:20.189Z'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-06-14T14:11:20.189Z'), $sys->getUpdatedAt());
     }
 
     /**
@@ -85,8 +86,8 @@ class SnapshotTest extends End2EndTestCase
         $this->assertEquals('ContentType', $sys->getSnapshotEntityType());
         $this->assertEquals('publish', $sys->getSnapshotType());
         $this->assertEquals(new Link($this->readWriteSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new \DateTimeImmutable('2017-07-05T16:46:58.486Z'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-07-05T16:46:58.486Z'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2017-07-05T16:46:58.486Z'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-07-05T16:46:58.486Z'), $sys->getUpdatedAt());
     }
 
     /**
