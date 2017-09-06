@@ -20,7 +20,7 @@ interface ResourceInterface extends \JsonSerializable
 {
     /**
      * Returns the resource's system properties,
-     * defined in the object `sys` in Contentful's responses.
+     * defined in the object "sys" in Contentful's responses.
      *
      * @return SystemProperties
      */

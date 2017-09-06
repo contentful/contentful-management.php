@@ -96,7 +96,7 @@ abstract class BaseField implements FieldInterface
     /**
      * @param string $name
      *
-     * @return $this
+     * @return static
      */
     public function setName(string $name)
     {
@@ -116,7 +116,7 @@ abstract class BaseField implements FieldInterface
     /**
      * @param bool $required
      *
-     * @return $this;
+     * @return static
      */
     public function setRequired(bool $required)
     {
@@ -136,7 +136,7 @@ abstract class BaseField implements FieldInterface
     /**
      * @param bool $localized
      *
-     * @return $this
+     * @return static
      */
     public function setLocalized(bool $localized)
     {
@@ -156,7 +156,7 @@ abstract class BaseField implements FieldInterface
     /**
      * @param bool $disabled
      *
-     * @return $this
+     * @return static
      */
     public function setDisabled(bool $disabled)
     {
@@ -176,7 +176,7 @@ abstract class BaseField implements FieldInterface
     /**
      * @param bool $omitted
      *
-     * @return $this
+     * @return static
      */
     public function setOmitted(bool $omitted)
     {
@@ -196,7 +196,7 @@ abstract class BaseField implements FieldInterface
     /**
      * @param ValidationInterface[] $validations
      *
-     * @return $this
+     * @return static
      */
     public function setValidations(array $validations)
     {
@@ -218,7 +218,7 @@ abstract class BaseField implements FieldInterface
     /**
      * @param ValidationInterface $validation
      *
-     * @return $this
+     * @return static
      */
     public function addValidation(ValidationInterface $validation)
     {
@@ -236,11 +236,9 @@ abstract class BaseField implements FieldInterface
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

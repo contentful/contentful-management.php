@@ -78,7 +78,7 @@ class Policy implements \JsonSerializable
     /**
      * @param string $effect Either "allow" or "deny"
      *
-     * @return $this
+     * @return static
      */
     public function setEffect(string $effect)
     {
@@ -105,7 +105,7 @@ class Policy implements \JsonSerializable
     /**
      * @param string|string[] $actions Either the string "all", or an array with available actions
      *
-     * @return $this
+     * @return static
      */
     public function setActions($actions)
     {
@@ -128,7 +128,7 @@ class Policy implements \JsonSerializable
     /**
      * @param string $action
      *
-     * @return $this
+     * @return static
      */
     public function addAction(string $action)
     {
@@ -162,7 +162,7 @@ class Policy implements \JsonSerializable
     /**
      * @param ConstraintInterface|null $constraint
      *
-     * @return $this
+     * @return static
      */
     public function setConstraint(ConstraintInterface $constraint = null)
     {
@@ -172,11 +172,9 @@ class Policy implements \JsonSerializable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

@@ -46,7 +46,7 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     protected $fields = [];
 
     /**
-     * @var bool|null
+     * @var bool
      */
     protected $isPublished = false;
 
@@ -80,7 +80,7 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     /**
      * @param string|null $name
      *
-     * @return $this
+     * @return static
      */
     public function setName(string $name = null)
     {
@@ -100,7 +100,7 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     /**
      * @param string|null $description
      *
-     * @return $this
+     * @return static
      */
     public function setDescription(string $description = null)
     {
@@ -120,7 +120,7 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     /**
      * @param string|null $displayField
      *
-     * @return $this
+     * @return static
      */
     public function setDisplayField(string $displayField = null)
     {
@@ -140,7 +140,7 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     /**
      * @param FieldInterface[] $fields
      *
-     * @return $this
+     * @return static
      */
     public function setFields(array $fields)
     {
@@ -152,7 +152,7 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     /**
      * @param FieldInterface $contentTypeField
      *
-     * @return $this
+     * @return static
      */
     public function addField(FieldInterface $contentTypeField)
     {
@@ -170,11 +170,9 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {

@@ -14,6 +14,9 @@ use Contentful\Management\SystemProperties;
 
 /**
  * Entry class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\Entry.
  */
 class Entry extends BaseMapper
 {

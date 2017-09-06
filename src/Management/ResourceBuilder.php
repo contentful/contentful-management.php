@@ -22,11 +22,15 @@ use Contentful\ResourceArray;
 class ResourceBuilder
 {
     /**
+     * An array for caching mapper instances.
+     *
      * @var MapperInterface[]
      */
     private static $mappers = [];
 
     /**
+     * An array for storing data matcher callables.
+     *
      * @var callable[]
      */
     private $dataMapperMatchers = [];
@@ -35,8 +39,8 @@ class ResourceBuilder
      * Creates or updates an object using given data.
      * This method will overwrite properties of the $resource parameter.
      *
-     * @param array                  $data
-     * @param ResourceInterface|null $resource
+     * @param array                  $data     The raw API data
+     * @param ResourceInterface|null $resource A object if it needs to be updated, or null otherwise
      *
      * @return ResourceInterface|ResourceArray
      */
@@ -47,11 +51,13 @@ class ResourceBuilder
     }
 
     /**
-     * @param array $data
+     * Returns the mapper object appropriate for the given data.
      *
-     * @return MapperInterface
+     * @param array $data The raw API data
      *
      * @throws \RuntimeException
+     *
+     * @return MapperInterface
      */
     private function getMapper(array $data): MapperInterface
     {
@@ -65,9 +71,18 @@ class ResourceBuilder
     }
 
     /**
-     * @param array $data
+     * Determines the fully-qualified class name of the mapper object
+     * that will handle the mapping process.
      *
-     * @return string
+     * This function will use user-defined data matchers, if avaiable.
+     *
+     * If the user-defined matcher does not return anything,
+     * we default to the base mapper, so the user doesn't have
+     * to manually return the default value.
+     *
+     * @param array $data The raw API data
+     *
+     * @return string The mapper's fully-qualified class name
      */
     private function determineMapperFqcn(array $data): string
     {
@@ -77,9 +92,6 @@ class ResourceBuilder
         if (isset($this->dataMapperMatchers[$type])) {
             $matchedFqcn = call_user_func_array($this->dataMapperMatchers[$type], [$data]);
 
-            // If the custom user-defined matcher does not return nothing
-            // we default to the base mapper, so the user doesn't have
-            // to manually return the default value
             if (!$matchedFqcn) {
                 return $fqcn;
             }
@@ -105,7 +117,7 @@ class ResourceBuilder
      * @param string        $type              The system type as defined in ResourceBuilder::getSystemType()
      * @param callable|null $dataMapperMatcher A valid callable
      *
-     * @return $this
+     * @return static
      */
     public function setDataMapperMatcher(string $type, callable $dataMapperMatcher = null)
     {
@@ -115,11 +127,17 @@ class ResourceBuilder
     }
 
     /**
-     * @param array $data
+     * Determines the SDK resource type given the API system type.
+     * Most of the types the two values coincide, but sometimes the SDK
+     * applies some optimizations, such as having different classes for
+     * entry and content type snapshots, even though the API represented them
+     * both as "Snapshot".
      *
-     * @return string
+     * @param array $data The raw data fetched from the API
      *
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException If the data array provided doesn't contain meaningful information
+     *
+     * @return string The system type that works in the SDK
      */
     private function getSystemType(array $data): string
     {

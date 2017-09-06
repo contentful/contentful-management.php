@@ -12,6 +12,8 @@ namespace Contentful\Management\Exception;
 use Contentful\Exception\ApiException;
 
 /**
+ * InternalServerErrorException class.
+ *
  * An InternalServerErrorException is thrown when the API encountered
  * an unexpected error while processing the request.
  * Please contact support to resolve this issue.

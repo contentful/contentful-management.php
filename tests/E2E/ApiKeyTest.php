@@ -12,8 +12,8 @@ namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
 use Contentful\Management\Query;
-use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Management\Resource\DeliveryApiKey;
+use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Tests\End2EndTestCase;
 
 class ApiKeyTest extends End2EndTestCase

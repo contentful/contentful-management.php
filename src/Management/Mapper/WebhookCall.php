@@ -11,9 +11,14 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\WebhookCall as ResourceClass;
 use Contentful\Management\SystemProperties;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * WebhookCall class.
+ *
+ * This class is responsible for converting raw API data into a PHP object
+ * of class Contentful\Management\Resource\WebhookCall.
  */
 class WebhookCall extends BaseMapper
 {
