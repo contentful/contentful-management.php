@@ -9,12 +9,12 @@
 
 namespace Contentful\Management\Resource;
 
-use function Contentful\format_date_for_json;
 use Contentful\Management\Resource\Behavior\Archivable;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Publishable;
 use Contentful\Management\Resource\Behavior\Updatable;
+use function Contentful\format_date_for_json;
 
 /**
  * Entry class.

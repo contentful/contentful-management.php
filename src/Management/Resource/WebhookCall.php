@@ -9,6 +9,8 @@
 
 namespace Contentful\Management\Resource;
 
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use function Contentful\format_date_for_json;
 
 /**
@@ -20,6 +22,16 @@ use function Contentful\format_date_for_json;
  */
 class WebhookCall extends BaseResource
 {
+    /**
+     * @var Request|null
+     */
+    protected $request;
+
+    /**
+     * @var Response|null
+     */
+    protected $response;
+
     /**
      * @var int
      */
@@ -59,6 +71,22 @@ class WebhookCall extends BaseResource
             'Class "%s" can only be instantiated as a result of an API call, manual creation is not allowed.',
             static::class
         ));
+    }
+
+    /**
+     * @return Request|null
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return Response|null
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 
     /**
@@ -118,6 +146,18 @@ class WebhookCall extends BaseResource
     {
         return [
             'sys' => $this->sys,
+            'request' => [
+                'url' => (string) $this->request->getUri(),
+                'method' => $this->request->getMethod(),
+                'headers' => $this->formatPsr7Headers($this->request->getHeaders()),
+                'body' => (string) $this->request->getBody(),
+            ],
+            'response' => [
+                'url' => (string) $this->request->getUri(),
+                'statusCode' => $this->response->getStatusCode(),
+                'headers' => $this->formatPsr7Headers($this->response->getHeaders()),
+                'body' => (string) $this->response->getBody(),
+            ],
             'statusCode' => $this->statusCode,
             'errors' => $this->error ? [$this->error] : [],
             'eventType' => $this->eventType,
@@ -125,5 +165,28 @@ class WebhookCall extends BaseResource
             'requestAt' => format_date_for_json($this->requestAt),
             'responseAt' => format_date_for_json($this->responseAt),
         ];
+    }
+
+    /**
+     * PSR-7 Headers can contain multiple values for every key.
+     * We simplify management by only defining one.
+     *
+     * @param array $headers
+     *
+     * @return array
+     */
+    private function formatPsr7Headers(array $headers): array
+    {
+        $returnHeaders = [];
+        foreach ($headers as $key => $values) {
+            // The request object automatically adds a `Host` header, which we don't need
+            if ($key == 'Host') {
+                continue;
+            }
+
+            $returnHeaders[$key] = $values[0];
+        }
+
+        return $returnHeaders;
     }
 }
