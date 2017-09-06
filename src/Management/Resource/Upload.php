@@ -59,11 +59,21 @@ class Upload extends BaseResource implements Creatable, Deletable
     }
 
     /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
+     * @param string|resource|StreamInterface|null $body
+     *
+     * @return static
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
      */
     public function jsonSerialize(): array
     {
