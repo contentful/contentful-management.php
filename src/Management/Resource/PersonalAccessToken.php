@@ -11,6 +11,7 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\Resource\Behavior\Creatable;
 use function Contentful\format_date_for_json;
+use function GuzzleHttp\json_encode;
 
 /**
  * PersonalAccessToken class.

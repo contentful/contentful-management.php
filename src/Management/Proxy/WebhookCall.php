@@ -23,7 +23,7 @@ class WebhookCall extends BaseProxy
      */
     public function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/webhooks/{webhookId}/calls/{webhookCallId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/webhooks/{webhookId}/calls/{webhookCallId}', $values), '/');
     }
 
     /**

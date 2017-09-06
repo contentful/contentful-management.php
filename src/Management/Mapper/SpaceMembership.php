@@ -30,7 +30,7 @@ class SpaceMembership extends BaseMapper
             'sys' => new SystemProperties($data['sys']),
             'admin' => $data['admin'],
             'email' => $data['email'] ?? null,
-            'roles' => array_map(function (array $role) {
+            'roles' => \array_map(function (array $role) {
                 return new Link($role['sys']['id'], 'Role');
             }, $data['roles'] ?? []),
             'user' => new Link($data['user']['sys']['id'], 'User'),

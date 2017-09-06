@@ -192,11 +192,11 @@ class Client extends BaseClient
      */
     public function getProxy(string $name, string $spaceId = null): BaseProxy
     {
-        $normalizedName = strtolower($name);
+        $normalizedName = \strtolower($name);
         $spaceId = $spaceId ?: $this->currentSpaceId;
 
         if (!isset(self::$proxyMap[$normalizedName])) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Trying to access invalid proxy "%s".',
                 $name
             ));
@@ -261,7 +261,7 @@ class Client extends BaseClient
      */
     public function requestResource(string $method, string $uri, array $options = [], ResourceInterface $resource = null)
     {
-        $uri = rtrim($uri, '/');
+        $uri = \rtrim($uri, '/');
 
         $response = $this->request($method, $uri, $options);
 
@@ -299,7 +299,7 @@ class Client extends BaseClient
             return $this->getProxy($linkMap[$link->getLinkType()])->get($link->getId());
         }
 
-        throw new \InvalidArgumentException(sprintf(
+        throw new \InvalidArgumentException(\sprintf(
             'Unexpected system type "%s" while trying to resolve a Link.',
             $link->getLinkType()
         ));
@@ -334,7 +334,7 @@ class Client extends BaseClient
      */
     protected function getExceptionMap(): array
     {
-        return array_merge(parent::getExceptionMap(), [
+        return \array_merge(parent::getExceptionMap(), [
             'BadRequest' => Exception\BadRequestException::class,
             'DefaultLocaleNotDeletable' => Exception\DefaultLocaleNotDeletableException::class,
             'FallbackLocaleNotDeletable' => Exception\FallbackLocaleNotDeletableException::class,

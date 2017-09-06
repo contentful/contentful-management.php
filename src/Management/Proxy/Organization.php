@@ -29,7 +29,7 @@ class Organization extends BaseProxy
      */
     public function getResourceUri(array $values): string
     {
-        return rtrim(strtr('organizations/{resourceId}', $values), '/');
+        return \rtrim(\strtr('organizations/{resourceId}', $values), '/');
     }
 
     /**

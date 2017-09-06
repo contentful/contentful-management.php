@@ -23,16 +23,16 @@ class InvalidProxyActionException extends \LogicException
      */
     public function __construct(string $class, string $method, $object = null)
     {
-        $message = sprintf(
+        $message = \sprintf(
             'Trying to perform invalid action "%s" on proxy "%s"',
             $method,
             $class
         );
 
         if ($object !== null) {
-            $message .= sprintf(
+            $message .= \sprintf(
                 ' with argument of class "%s"',
-                get_class($object)
+                \get_class($object)
             );
         }
 

@@ -51,9 +51,9 @@ class Permissions implements \JsonSerializable
     public function setContentDelivery($values)
     {
         if (
-            (!is_string($values) && !is_array($values)) ||
-            (is_string($values) && $values !== 'all') ||
-            (is_array($values) && array_diff($values, ['read', 'manage']))
+            (!\is_string($values) && !\is_array($values)) ||
+            (\is_string($values) && $values !== 'all') ||
+            (\is_array($values) && \array_diff($values, ['read', 'manage']))
         ) {
             throw new \InvalidArgumentException(
                 'Argument "$values" in "Permissions::setContentDelivery()" must be either a string "all", or an array containing a subset of ["read", "manage"].'
@@ -81,9 +81,9 @@ class Permissions implements \JsonSerializable
     public function setContentModel($values)
     {
         if (
-            (!is_string($values) && !is_array($values)) ||
-            (is_string($values) && $values !== 'all') ||
-            (is_array($values) && array_diff($values, ['read', 'manage']))
+            (!\is_string($values) && !\is_array($values)) ||
+            (\is_string($values) && $values !== 'all') ||
+            (\is_array($values) && \array_diff($values, ['read', 'manage']))
         ) {
             throw new \InvalidArgumentException(
                 'Argument "$values" in "Permissions::setContentModel()" must be either a string "all", or an array containing a subset of ["read", "manage"].'
@@ -111,9 +111,9 @@ class Permissions implements \JsonSerializable
     public function setSettings($values)
     {
         if (
-            (!is_string($values) && !is_array($values)) ||
-            (is_string($values) && $values !== 'all') ||
-            (is_array($values) && array_diff($values, ['manage']))
+            (!\is_string($values) && !\is_array($values)) ||
+            (\is_string($values) && $values !== 'all') ||
+            (\is_array($values) && \array_diff($values, ['manage']))
         ) {
             throw new \InvalidArgumentException(
                 'Argument "$values" in "Permissions::setSettings()" must be either a string "all", or an array containing a subset of ["manage"].'

@@ -76,8 +76,8 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
             return format_date_for_json($data);
         }
 
-        if (is_array($data)) {
-            return array_map([$this, 'getFormattedData'], $data);
+        if (\is_array($data)) {
+            return \array_map([$this, 'getFormattedData'], $data);
         }
 
         return $data;

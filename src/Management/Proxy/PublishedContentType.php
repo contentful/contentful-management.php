@@ -25,7 +25,7 @@ class PublishedContentType extends BaseProxy
      */
     protected function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/public/content_types/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/public/content_types/{resourceId}', $values), '/');
     }
 
     /**

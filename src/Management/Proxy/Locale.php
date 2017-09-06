@@ -28,7 +28,7 @@ class Locale extends BaseProxy
      */
     public function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/locales/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/locales/{resourceId}', $values), '/');
     }
 
     /**

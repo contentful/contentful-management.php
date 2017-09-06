@@ -36,7 +36,7 @@ class Role extends BaseMapper
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'description' => $data['description'],
-            'policies' => array_map([$this, 'buildPolicy'], $data['policies']),
+            'policies' => \array_map([$this, 'buildPolicy'], $data['policies']),
             'permissions' => $this->buildPermissions($data['permissions']),
         ]);
     }
@@ -62,8 +62,8 @@ class Role extends BaseMapper
      */
     protected function buildConstraint(array $data): ConstraintInterface
     {
-        reset($data);
-        $key = key($data);
+        \reset($data);
+        $key = \key($data);
 
         // There is no "default" action, as "and", "or", "not",
         // and "equals" are the only supported constraints.
@@ -74,11 +74,11 @@ class Role extends BaseMapper
         switch ($key) {
             case 'and':
                 return $this->hydrate(AndConstraint::class, [
-                    'children' => array_map([$this, 'buildConstraint'], $data[$key]),
+                    'children' => \array_map([$this, 'buildConstraint'], $data[$key]),
                 ]);
             case 'or':
                 return $this->hydrate(OrConstraint::class, [
-                    'children' => array_map([$this, 'buildConstraint'], $data[$key]),
+                    'children' => \array_map([$this, 'buildConstraint'], $data[$key]),
                 ]);
             case 'not':
                 return $this->hydrate(NotConstraint::class, [

@@ -54,7 +54,7 @@ abstract class BaseProxy
         $this->client = $client;
 
         if ($this->requiresSpaceId && $spaceId === null) {
-            throw new \RuntimeException(sprintf(
+            throw new \RuntimeException(\sprintf(
                 'Trying to access proxy "%s" which requires a space ID, but none is given.',
                 static::class
             ));
@@ -75,7 +75,7 @@ abstract class BaseProxy
      */
     public function __call(string $name, array $arguments)
     {
-        if (in_array($name, $this->getEnabledMethods())) {
+        if (\in_array($name, $this->getEnabledMethods())) {
             return $this->{$name}(...$arguments);
         }
 
@@ -143,7 +143,7 @@ abstract class BaseProxy
             'baseUri' => $this->getBaseUri(),
         ], $target);
 
-        if (is_object($target)) {
+        if (\is_object($target)) {
             $target->setProxy($this);
         }
 
@@ -218,7 +218,7 @@ abstract class BaseProxy
      */
     protected function delete($resource, int $version = null)
     {
-        if (is_object($resource) && !($resource instanceof Deletable)) {
+        if (\is_object($resource) && !($resource instanceof Deletable)) {
             throw new InvalidProxyActionException(static::class, 'delete', $resource);
         }
 
@@ -233,7 +233,7 @@ abstract class BaseProxy
      */
     protected function archive($resource, int $version = null)
     {
-        if (is_object($resource) && !($resource instanceof Archivable)) {
+        if (\is_object($resource) && !($resource instanceof Archivable)) {
             throw new InvalidProxyActionException(static::class, 'archive', $resource);
         }
 
@@ -248,7 +248,7 @@ abstract class BaseProxy
      */
     protected function unarchive($resource, int $version = null)
     {
-        if (is_object($resource) && !($resource instanceof Archivable)) {
+        if (\is_object($resource) && !($resource instanceof Archivable)) {
             throw new InvalidProxyActionException(static::class, 'unarchive', $resource);
         }
 
@@ -263,7 +263,7 @@ abstract class BaseProxy
      */
     protected function publish($resource, int $version = null)
     {
-        if (is_object($resource) && !($resource instanceof Publishable)) {
+        if (\is_object($resource) && !($resource instanceof Publishable)) {
             throw new InvalidProxyActionException(static::class, 'publish', $resource);
         }
 
@@ -278,7 +278,7 @@ abstract class BaseProxy
      */
     protected function unpublish($resource, int $version = null)
     {
-        if (is_object($resource) && !($resource instanceof Publishable)) {
+        if (\is_object($resource) && !($resource instanceof Publishable)) {
             throw new InvalidProxyActionException(static::class, 'unpublish', $resource);
         }
 

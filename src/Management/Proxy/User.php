@@ -28,7 +28,7 @@ class User extends BaseProxy
      */
     public function getResourceUri(array $values): string
     {
-        return rtrim(strtr('users/{resourceId}', $values), '/');
+        return \rtrim(\strtr('users/{resourceId}', $values), '/');
     }
 
     /**

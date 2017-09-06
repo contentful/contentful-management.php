@@ -29,7 +29,7 @@ class DeliveryApiKey extends BaseProxy
      */
     protected function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/api_keys/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/api_keys/{resourceId}', $values), '/');
     }
 
     /**

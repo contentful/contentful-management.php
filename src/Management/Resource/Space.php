@@ -12,6 +12,7 @@ namespace Contentful\Management\Resource;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Updatable;
+use function GuzzleHttp\json_encode;
 
 /**
  * Space class.

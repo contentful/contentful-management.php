@@ -110,17 +110,17 @@ abstract class BaseResource implements ResourceInterface
      */
     public function __call(string $name, array $arguments)
     {
-        if (in_array($name, $this->proxy->getEnabledMethods())) {
-            array_unshift($arguments, $this);
+        if (\in_array($name, $this->proxy->getEnabledMethods())) {
+            \array_unshift($arguments, $this);
 
             return $this->proxy->{$name}(...$arguments);
         }
 
-        throw new \LogicException(sprintf(
+        throw new \LogicException(\sprintf(
             'Trying to call invalid method "%s" on resource of type "%s" which forwards to proxy "%s".',
             $name,
             static::class,
-            get_class($this->proxy)
+            \get_class($this->proxy)
         ));
     }
 }

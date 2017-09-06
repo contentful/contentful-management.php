@@ -29,7 +29,7 @@ class SpaceMembership extends BaseProxy
      */
     public function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/space_memberships/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/space_memberships/{resourceId}', $values), '/');
     }
 
     /**

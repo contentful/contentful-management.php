@@ -29,7 +29,7 @@ class Role extends BaseProxy
      */
     public function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/roles/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/roles/{resourceId}', $values), '/');
     }
 
     /**

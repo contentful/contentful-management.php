@@ -35,7 +35,7 @@ class Space extends BaseProxy
      */
     protected function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/{resourceId}', $values), '/');
     }
 
     /**

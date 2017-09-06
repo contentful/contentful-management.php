@@ -31,7 +31,7 @@ class ContentType extends BaseProxy
      */
     protected function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/content_types/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/content_types/{resourceId}', $values), '/');
     }
 
     /**

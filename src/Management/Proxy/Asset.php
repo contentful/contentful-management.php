@@ -31,7 +31,7 @@ class Asset extends BaseProxy
      */
     protected function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/assets/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/assets/{resourceId}', $values), '/');
     }
 
     /**
@@ -84,7 +84,7 @@ class Asset extends BaseProxy
     {
         $locales = $locale
             ? [$locale]
-            : array_keys($resource->getFiles());
+            : \array_keys($resource->getFiles());
 
         foreach ($locales as $locale) {
             $this->requestResource('PUT', '/files/'.$locale.'/process', $resource);

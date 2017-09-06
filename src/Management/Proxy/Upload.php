@@ -26,7 +26,7 @@ class Upload extends BaseProxy
      */
     protected function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/uploads/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/uploads/{resourceId}', $values), '/');
     }
 
     /**

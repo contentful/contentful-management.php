@@ -25,7 +25,7 @@ class ResourceArray extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         return new ResourceClass(
-            array_map(function ($item) {
+            \array_map(function ($item) {
                 return $this->builder->build($item);
             }, $data['items']),
             $data['total'] ?? 0,

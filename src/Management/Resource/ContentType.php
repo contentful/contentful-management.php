@@ -14,7 +14,6 @@ use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Publishable;
 use Contentful\Management\Resource\Behavior\Updatable;
 use Contentful\Management\Resource\ContentType\Field\FieldInterface;
-use function GuzzleHttp\json_encode;
 
 /**
  * ContentType class.

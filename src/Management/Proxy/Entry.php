@@ -34,7 +34,7 @@ class Entry extends BaseProxy
      */
     protected function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/entries/{resourceId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/entries/{resourceId}', $values), '/');
     }
 
     /**

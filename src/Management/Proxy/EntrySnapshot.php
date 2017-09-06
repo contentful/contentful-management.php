@@ -25,7 +25,7 @@ class EntrySnapshot extends BaseProxy
      */
     protected function getResourceUri(array $values): string
     {
-        return rtrim(strtr('spaces/'.$this->spaceId.'/entries/{entryId}/snapshots/{entrySnapshotId}', $values), '/');
+        return \rtrim(\strtr('spaces/'.$this->spaceId.'/entries/{entryId}/snapshots/{entrySnapshotId}', $values), '/');
     }
 
     /**

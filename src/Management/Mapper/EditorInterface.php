@@ -28,7 +28,7 @@ class EditorInterface extends BaseMapper
     {
         return $this->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
-            'controls' => array_map([$this, 'buildControl'], $data['controls']),
+            'controls' => \array_map([$this, 'buildControl'], $data['controls']),
         ]);
     }
 

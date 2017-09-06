@@ -9,8 +9,8 @@
 
 namespace Contentful\Management\Proxy;
 
-use Contentful\Management\Query;
 use Contentful\Management\Exception\InvalidProxyActionException;
+use Contentful\Management\Query;
 use Contentful\Management\Resource\PersonalAccessToken as ResourceClass;
 use Contentful\ResourceArray;
 
@@ -33,7 +33,7 @@ class PersonalAccessToken extends BaseProxy
      */
     public function getResourceUri(array $values): string
     {
-        return rtrim(strtr('users/me/access_tokens/{resourceId}', $values), '/');
+        return \rtrim(\strtr('users/me/access_tokens/{resourceId}', $values), '/');
     }
 
     /**
@@ -87,7 +87,7 @@ class PersonalAccessToken extends BaseProxy
      */
     public function revoke($resource)
     {
-        if (is_object($resource) && !($resource instanceof ResourceClass)) {
+        if (\is_object($resource) && !($resource instanceof ResourceClass)) {
             throw new InvalidProxyActionException(static::class, 'revoke', $resource);
         }
 
