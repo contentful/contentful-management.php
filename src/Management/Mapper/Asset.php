@@ -37,7 +37,7 @@ class Asset extends BaseMapper
             'sys' => new SystemProperties($data['sys']),
             'title' => $fields['title'] ?? null,
             'description' => $fields['description'] ?? null,
-            'file' => isset($fields['file']) ? array_map([$this, 'buildFile'], $fields['file']) : null,
+            'file' => isset($fields['file']) ? \array_map([$this, 'buildFile'], $fields['file']) : null,
         ]);
     }
 

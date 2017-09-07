@@ -80,4 +80,16 @@ class ContentTypeSnapshotTest extends TestCase
                 'snapshotEntityType' => 'ContentType',
             ]], $contentTypeSnapshot);
     }
+
+    /**
+     * @param ContentTypeSnapshot $contentTypeSnapshot
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\ContentTypeSnapshot" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(ContentTypeSnapshot $contentTypeSnapshot)
+    {
+        $contentTypeSnapshot->asRequestBody();
+    }
 }

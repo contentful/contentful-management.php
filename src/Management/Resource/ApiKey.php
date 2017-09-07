@@ -88,6 +88,7 @@ abstract class ApiKey extends BaseResource
             'sys' => $this->sys,
             'name' => $this->name,
             'description' => $this->description,
+            'accessToken' => $this->accessToken,
         ];
     }
 }

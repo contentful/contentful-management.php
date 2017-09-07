@@ -62,4 +62,16 @@ class WebhookHealthTest extends TestCase
                 'type' => 'Webhook',
             ]], $webhookHealth);
     }
+
+    /**
+     * @param WebhookHealth $webhookHealth
+     *
+     * @depends testJsonSerialize
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\WebhookHealth" to a request body format, but operation is not supported on this class.
+     */
+    public function testInvalidConversionToRequestBody(WebhookHealth $webhookHealth)
+    {
+        $webhookHealth->asRequestBody();
+    }
 }

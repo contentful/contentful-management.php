@@ -11,6 +11,7 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\Resource\Behavior\Updatable;
 use Contentful\Management\Resource\EditorInterface\Control;
+use function GuzzleHttp\json_encode;
 
 /**
  * EditorInterface class.
@@ -31,18 +32,23 @@ class EditorInterface extends BaseResource implements Updatable
      */
     final public function __construct()
     {
-        throw new \LogicException(sprintf(
+        throw new \LogicException(\sprintf(
             'Class "%s" can only be instantiated as a result of an API call, manual creation is not allowed.',
             static::class
         ));
     }
 
     /**
-     * {@inheritdoc}
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
      */
-    public function getResourceUriPart(): string
+    public function jsonSerialize(): array
     {
-        return 'content_types';
+        return [
+            'sys' => $this->sys,
+            'controls' => $this->controls,
+        ];
     }
 
     /**
@@ -58,7 +64,7 @@ class EditorInterface extends BaseResource implements Updatable
             }
         }
 
-        throw new \InvalidArgumentException(sprintf(
+        throw new \InvalidArgumentException(\sprintf(
             'Trying to access unavailable control "%s".',
             $fieldId
         ));
@@ -70,20 +76,5 @@ class EditorInterface extends BaseResource implements Updatable
     public function getControls(): array
     {
         return $this->controls;
-    }
-
-    /**
-     * Returns an array to be used by `json_encode` to serialize objects of this class.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php JsonSerializable::jsonSerialize
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'sys' => $this->sys,
-            'controls' => $this->controls,
-        ];
     }
 }

@@ -23,8 +23,19 @@ class PreviewApiKey extends ApiKey
      */
     final public function __construct()
     {
-        throw new \LogicException(sprintf(
+        throw new \LogicException(\sprintf(
             'Class "%s" can only be instantiated as a result of an API call, manual creation is not allowed.',
+            static::class
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asRequestBody()
+    {
+        throw new \LogicException(\sprintf(
+            'Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.',
             static::class
         ));
     }

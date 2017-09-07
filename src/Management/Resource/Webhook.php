@@ -68,11 +68,36 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     }
 
     /**
-     * {@inheritdoc}
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
      */
-    public function getResourceUriPart(): string
+    public function jsonSerialize(): array
     {
-        return 'webhook_definitions';
+        $headers = [];
+        foreach ($this->headers as $key => $value) {
+            $headers[] = [
+                'key' => $key,
+                'value' => $value,
+            ];
+        }
+
+        $values = [
+            'sys' => $this->sys,
+            'name' => $this->name,
+            'url' => $this->url,
+            'topics' => $this->topics,
+            'headers' => $headers,
+        ];
+
+        if ($this->httpBasicUsername) {
+            $values['httpBasicUsername'] = $this->httpBasicUsername;
+            if ($this->httpBasicPassword) {
+                $values['httpBasicPassword'] = $this->httpBasicPassword;
+            }
+        }
+
+        return $values;
     }
 
     /**
@@ -173,7 +198,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     public function getHeader(string $key): string
     {
         if (!$this->hasHeader($key)) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Invalid header key "%s" provided.',
                 $key
             ));
@@ -213,7 +238,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     public function setHeaders(array $headers)
     {
         foreach ($headers as $key => $value) {
-            if (!is_string($key) || !is_string($value)) {
+            if (!\is_string($key) || !\is_string($value)) {
                 throw new \InvalidArgumentException(
                     'Argument "$headers" of "Webhook::setHeaders()" must be an array where all keys and values are strings.'
                 );
@@ -235,7 +260,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     public function removeHeader(string $key)
     {
         if (!$this->hasHeader($key)) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Invalid header key "%s" provided.',
                 $key
             ));
@@ -262,7 +287,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
     public function addTopic(string $topic)
     {
         $this->topics[] = $topic;
-        $this->topics = array_unique($this->topics);
+        $this->topics = \array_unique($this->topics);
 
         return $this;
     }
@@ -274,7 +299,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
      */
     public function setTopics(array $topics)
     {
-        $this->topics = array_unique(array_values($topics));
+        $this->topics = \array_unique(\array_values($topics));
 
         return $this;
     }
@@ -286,7 +311,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
      */
     public function hasTopic(string $topic): bool
     {
-        return in_array($topic, $this->topics);
+        return \in_array($topic, $this->topics);
     }
 
     /**
@@ -298,9 +323,9 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
      */
     public function removeTopic(string $topic)
     {
-        $key = array_search($topic, $this->topics);
+        $key = \array_search($topic, $this->topics);
         if ($key === false) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Invalid topic "%s" provided.',
                 $topic
             ));
@@ -309,38 +334,5 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
         unset($this->topics[$key]);
 
         return $this;
-    }
-
-    /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
-     */
-    public function jsonSerialize(): array
-    {
-        $headers = [];
-        foreach ($this->headers as $key => $value) {
-            $headers[] = [
-                'key' => $key,
-                'value' => $value,
-            ];
-        }
-
-        $values = [
-            'sys' => $this->sys,
-            'name' => $this->name,
-            'url' => $this->url,
-            'topics' => $this->topics,
-            'headers' => $headers,
-        ];
-
-        if ($this->httpBasicUsername) {
-            $values['httpBasicUsername'] = $this->httpBasicUsername;
-            if ($this->httpBasicPassword) {
-                $values['httpBasicPassword'] = $this->httpBasicPassword;
-            }
-        }
-
-        return $values;
     }
 }

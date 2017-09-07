@@ -26,7 +26,7 @@ class ContentTypeSnapshot extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         if ($resource !== null) {
-            throw new \LogicException(sprintf(
+            throw new \LogicException(\sprintf(
                 'Trying to update resource object in mapper of type "%s", but only creation from scratch is supported.',
                 static::class
             ));

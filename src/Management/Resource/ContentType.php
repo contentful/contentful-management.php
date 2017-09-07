@@ -23,7 +23,7 @@ use Contentful\Management\Resource\ContentType\Field\FieldInterface;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types
  * @see https://www.contentful.com/developers/docs/concepts/data-model/
  */
-class ContentType extends BaseResource implements Publishable, Deletable, Updatable, Creatable
+class ContentType extends BaseResource implements Creatable, Updatable, Deletable, Publishable
 {
     /**
      * @var string
@@ -59,14 +59,6 @@ class ContentType extends BaseResource implements Publishable, Deletable, Updata
     {
         parent::__construct('ContentType');
         $this->name = $name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getResourceUriPart(): string
-    {
-        return 'content_types';
     }
 
     /**

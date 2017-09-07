@@ -59,11 +59,19 @@ class Role extends BaseResource implements Creatable, Updatable, Deletable
     }
 
     /**
-     * {@inheritdoc}
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
      */
-    public function getResourceUriPart(): string
+    public function jsonSerialize(): array
     {
-        return 'roles';
+        return [
+            'sys' => $this->sys,
+            'name' => $this->name,
+            'description' => $this->description,
+            'permissions' => $this->permissions,
+            'policies' => $this->policies,
+        ];
     }
 
     /**
@@ -144,21 +152,5 @@ class Role extends BaseResource implements Creatable, Updatable, Deletable
         $this->policies[] = $policy;
 
         return $this;
-    }
-
-    /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'sys' => $this->sys,
-            'name' => $this->name,
-            'description' => $this->description,
-            'permissions' => $this->permissions,
-            'policies' => $this->policies,
-        ];
     }
 }

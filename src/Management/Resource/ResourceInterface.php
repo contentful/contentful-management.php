@@ -9,6 +9,7 @@
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Link;
 use Contentful\Management\SystemProperties;
 
 /**
@@ -25,4 +26,11 @@ interface ResourceInterface extends \JsonSerializable
      * @return SystemProperties
      */
     public function getSystemProperties(): SystemProperties;
+
+    /**
+     * Creates a Link representation of the current resource.
+     *
+     * @return Link
+     */
+    public function asLink(): Link;
 }

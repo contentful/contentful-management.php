@@ -32,7 +32,7 @@ class ContentType extends BaseMapper
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'displayField' => $data['displayField'] ?? null,
-            'fields' => array_map([$this, 'buildContentTypeField'], $data['fields']),
+            'fields' => \array_map([$this, 'buildContentTypeField'], $data['fields']),
             'isPublished' => isset($data['sys']['revision']),
         ]);
     }
@@ -66,7 +66,7 @@ class ContentType extends BaseMapper
             'localized' => $data['localized'] ?? null,
             'disabled' => $data['disabled'] ?? null,
             'omitted' => $data['omitted'] ?? null,
-            'validations' => isset($data['validations']) ? array_map([$this, 'buildFieldValidation'], $data['validations']) : null,
+            'validations' => isset($data['validations']) ? \array_map([$this, 'buildFieldValidation'], $data['validations']) : null,
         ];
 
         if ($type === 'Link') {
@@ -77,7 +77,7 @@ class ContentType extends BaseMapper
             $items = $data['items'];
             $hydratorData['itemsType'] = $items['type'];
             $hydratorData['itemsLinkType'] = $items['linkType'] ?? null;
-            $hydratorData['itemsValidations'] = isset($items['validations']) ? array_map([$this, 'buildFieldValidation'], $items['validations']) : null;
+            $hydratorData['itemsValidations'] = isset($items['validations']) ? \array_map([$this, 'buildFieldValidation'], $items['validations']) : null;
         }
 
         return $this->hydrate($fieldTypes[$type], $hydratorData);
@@ -103,7 +103,7 @@ class ContentType extends BaseMapper
             'assetFileSize' => Validation\AssetFileSizeValidation::class,
         ];
 
-        $type = array_keys($data)[0];
+        $type = \array_keys($data)[0];
         $class = $validations[$type];
 
         return $class::fromApiResponse($data);

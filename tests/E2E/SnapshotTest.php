@@ -25,9 +25,9 @@ class SnapshotTest extends End2EndTestCase
      */
     public function testGetEntrySnapshot()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $snapshot = $manager->getEntrySnapshot('3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
+        $snapshot = $client->entrySnapshot->get('3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
         $this->assertEquals(new Link('3omuk8H8M8wUuqHhxddXtp', 'Snapshot'), $snapshot->asLink());
         $this->assertSame($snapshot->getEntry(), $snapshot->getSnapshot());
         $entry = $snapshot->getEntry();
@@ -50,15 +50,15 @@ class SnapshotTest extends End2EndTestCase
      */
     public function testGetEntrySnapshots()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $snapshots = $manager->getEntrySnapshots('3LM5FlCdGUIM0Miqc664q6');
+        $snapshots = $client->entrySnapshot->getAll('3LM5FlCdGUIM0Miqc664q6');
 
         $this->assertInstanceOf(EntrySnapshot::class, $snapshots[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $snapshots = $manager->getEntrySnapshots('3LM5FlCdGUIM0Miqc664q6', $query);
+        $snapshots = $client->entrySnapshot->getAll('3LM5FlCdGUIM0Miqc664q6', $query);
         $this->assertInstanceOf(EntrySnapshot::class, $snapshots[0]);
         $this->assertCount(1, $snapshots);
     }
@@ -68,9 +68,9 @@ class SnapshotTest extends End2EndTestCase
      */
     public function testGetContentTypeSnapshot()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $snapshot = $manager->getContentTypeSnapshot('versionedContentType', '1Qvx64r3Nq0MOtftdcAXJO');
+        $snapshot = $client->contentTypeSnapshot->get('versionedContentType', '1Qvx64r3Nq0MOtftdcAXJO');
 
         $this->assertEquals(new Link('1Qvx64r3Nq0MOtftdcAXJO', 'Snapshot'), $snapshot->asLink());
         $this->assertSame($snapshot->getContentType(), $snapshot->getSnapshot());
@@ -94,15 +94,15 @@ class SnapshotTest extends End2EndTestCase
      */
     public function testGetContentTypeSnapshots()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
-        $snapshots = $manager->getContentTypeSnapshots('versionedContentType');
+        $snapshots = $client->contentTypeSnapshot->getAll('versionedContentType');
 
         $snapshot = $snapshots[0];
         $contentType = $snapshot->getContentType();
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
-        $this->assertEquals('S9fDVyecKeNclEq1BPwuD', $snapshot->getSystemProperties()->getId());
+        $this->assertEquals('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
         $this->assertEquals(2, count($fields));
         $this->assertEquals('Title', $fields[0]->getName());
         $this->assertEquals('Description', $fields[1]->getName());
@@ -112,21 +112,21 @@ class SnapshotTest extends End2EndTestCase
         $contentType = $snapshot->getContentType();
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
-        $this->assertEquals('1Qvx64r3Nq0MOtftdcAXJO', $snapshot->getSystemProperties()->getId());
+        $this->assertEquals('1Qvx64r3Nq0MOtftdcAXJO', $snapshot->getId());
         $this->assertEquals(1, count($fields));
         $this->assertEquals('Title', $fields[0]->getName());
         $this->assertEquals(1, $contentType->getSystemProperties()->getPublishedCounter());
 
         $query = (new Query())
             ->setLimit(1);
-        $snapshots = $manager->getContentTypeSnapshots('versionedContentType', $query);
+        $snapshots = $client->contentTypeSnapshot->getAll('versionedContentType', $query);
         $this->assertCount(1, $snapshots);
 
         $snapshot = $snapshots[0];
         $contentType = $snapshot->getContentType();
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
-        $this->assertEquals('S9fDVyecKeNclEq1BPwuD', $snapshot->getSystemProperties()->getId());
+        $this->assertEquals('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
         $this->assertEquals(2, count($fields));
         $this->assertEquals('Title', $fields[0]->getName());
         $this->assertEquals('Description', $fields[1]->getName());

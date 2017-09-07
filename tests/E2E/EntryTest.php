@@ -22,9 +22,9 @@ class EntryTest extends End2EndTestCase
      */
     public function testGetEntry()
     {
-        $manager = $this->getReadOnlySpaceManager();
+        $client = $this->getReadOnlyClient();
 
-        $entry = $manager->getEntry('nyancat');
+        $entry = $client->entry->get('nyancat');
 
         $this->assertEquals('Nyan Cat', $entry->getField('name', 'en-US'));
         $this->assertEquals('Nyan vIghro\'', $entry->getField('name', 'tlh'));
@@ -51,14 +51,14 @@ class EntryTest extends End2EndTestCase
      */
     public function testGetEntries()
     {
-        $manager = $this->getReadOnlySpaceManager();
-        $entries = $manager->getEntries();
+        $client = $this->getReadOnlyClient();
+        $entries = $client->entry->getAll();
 
         $this->assertInstanceOf(Entry::class, $entries[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $entries = $manager->getEntries($query);
+        $entries = $client->entry->getAll($query);
         $this->assertInstanceOf(Entry::class, $entries[0]);
         $this->assertCount(1, $entries);
     }
@@ -68,35 +68,35 @@ class EntryTest extends End2EndTestCase
      */
     public function testCreateUpdatePublishUnpublishArchiveUnarchiveDelete()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
 
-        $manager->create($entry);
-        $this->assertNotNull($entry->getSystemProperties()->getId());
+        $client->entry->create($entry);
+        $this->assertNotNull($entry->getId());
         $this->assertEquals(['name' => 'A name'], $entry->getFields('en-US'));
         $this->assertEquals(['name' => ['en-US' => 'A name']], $entry->getFields());
 
         $entry->setField('name', 'en-US', 'A better name');
 
-        $manager->update($entry);
+        $entry->update();
 
-        $manager->archive($entry);
+        $entry->archive();
         $this->assertEquals(2, $entry->getSystemProperties()->getArchivedVersion());
         $this->assertInstanceOf(\DateTimeImmutable::class, $entry->getSystemProperties()->getArchivedAt());
         $this->assertInstanceOf(Link::class, $entry->getSystemProperties()->getArchivedBy());
 
-        $manager->unarchive($entry);
+        $entry->unarchive();
         $this->assertNull($entry->getSystemProperties()->getArchivedVersion());
 
-        $manager->publish($entry);
+        $entry->publish();
         $this->assertEquals(4, $entry->getSystemProperties()->getPublishedVersion());
 
-        $manager->unpublish($entry);
+        $entry->unpublish();
         $this->assertNull($entry->getSystemProperties()->getPublishedVersion());
 
-        $manager->delete($entry);
+        $entry->delete();
     }
 
     /**
@@ -104,15 +104,15 @@ class EntryTest extends End2EndTestCase
      */
     public function testCreateEntryWithGivenId()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
 
-        $manager->create($entry, 'myCustomTestEntry');
-        $this->assertEquals('myCustomTestEntry', $entry->getSystemProperties()->getId());
+        $client->entry->create($entry, 'myCustomTestEntry');
+        $this->assertEquals('myCustomTestEntry', $entry->getId());
 
-        $manager->delete($entry);
+        $entry->delete();
     }
 
     /**
@@ -120,13 +120,13 @@ class EntryTest extends End2EndTestCase
      */
     public function testCreateEntryWithoutFields()
     {
-        $manager = $this->getReadWriteSpaceManager();
+        $client = $this->getReadWriteClient();
 
         // This entry has nothing in its `fields` property,
         // and because of this, Contentful omits the property altogether.
         // Without a default value in the ResourceBuilder, this call would cause a
         // "Undefined index: fields" error message
-        $manager->getEntry('2cOd0Aho3WkowMgk2C02iy');
+        $client->entry->get('2cOd0Aho3WkowMgk2C02iy');
 
         $this->markTestAsPassed();
     }

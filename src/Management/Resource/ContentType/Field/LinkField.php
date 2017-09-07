@@ -44,10 +44,10 @@ class LinkField extends BaseField
         parent::__construct($id, $name);
 
         if (!self::isValidLinkType($linkType)) {
-            throw new \RuntimeException(sprintf(
+            throw new \RuntimeException(\sprintf(
                 'Invalid link type "%s". Valid values are %s.',
                 $linkType,
-                implode(', ', self::VALID_LINK_TYPES)
+                \implode(', ', self::VALID_LINK_TYPES)
             ));
         }
 
@@ -70,10 +70,10 @@ class LinkField extends BaseField
     public function setLinkType(string $linkType)
     {
         if (!self::isValidLinkType($linkType)) {
-            throw new \RuntimeException(sprintf(
+            throw new \RuntimeException(\sprintf(
                 'Invalid link type "%s". Valid values are %s.',
                 $linkType,
-                implode(', ', self::VALID_LINK_TYPES)
+                \implode(', ', self::VALID_LINK_TYPES)
             ));
         }
 
@@ -89,7 +89,7 @@ class LinkField extends BaseField
      */
     private static function isValidLinkType(string $type): bool
     {
-        return in_array($type, self::VALID_LINK_TYPES);
+        return \in_array($type, self::VALID_LINK_TYPES);
     }
 
     /**

@@ -116,7 +116,8 @@
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
             "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.8; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
-            "Accept-Encoding": "gzip"
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": "1"
         }
     },
     "response": {

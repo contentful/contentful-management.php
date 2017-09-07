@@ -30,21 +30,21 @@ class ResourceBuilderTest extends End2EndTestCase
             }
         });
 
-        $this->client->setBuilder($builder);
+        $client = $this->getReadWriteClient();
 
-        $this->assertSame($builder, $this->client->getBuilder());
+        $client->setBuilder($builder);
 
-        $manager = $this->getReadWriteSpaceManager();
+        $this->assertSame($builder, $client->getBuilder());
 
         // This entry has content type 'fantasticCreature'
         // so it should use the custom mapper
-        $entry = $manager->getEntry('4OuC4z6qs0yEWMeqkGmokw');
+        $entry = $client->entry->get('4OuC4z6qs0yEWMeqkGmokw');
         $this->assertInstanceOf(FantasticCreatureEntry::class, $entry);
         $this->assertEquals('Direwolf', $entry->getName());
 
         // This entry has content type 'person'
         // so it should default to the regular mapper
-        $entry = $manager->getEntry('3LM5FlCdGUIM0Miqc664q6');
+        $entry = $client->entry->get('3LM5FlCdGUIM0Miqc664q6');
         $this->assertInstanceOf(Entry::class, $entry);
         $this->assertEquals('Josh Lyman', $entry->getField('name', 'en-US'));
         $this->assertEquals('Chief of Staff', $entry->getField('jobTitle', 'en-US'));

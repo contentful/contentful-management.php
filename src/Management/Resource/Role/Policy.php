@@ -82,8 +82,8 @@ class Policy implements \JsonSerializable
      */
     public function setEffect(string $effect)
     {
-        if (!in_array($effect, self::EFFECTS)) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\in_array($effect, self::EFFECTS)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Parameter "$effect" in "Policy::setEffect()" must have either the value "allow" or "deny", "%s" given.',
                 $effect
             ));
@@ -110,13 +110,13 @@ class Policy implements \JsonSerializable
     public function setActions($actions)
     {
         if (
-            (!is_string($actions) && !is_array($actions)) ||
-            (is_string($actions) && $actions !== 'all') ||
-            (is_array($actions) && array_diff($actions, self::ACTIONS))
+            (!\is_string($actions) && !\is_array($actions)) ||
+            (\is_string($actions) && $actions !== 'all') ||
+            (\is_array($actions) && \array_diff($actions, self::ACTIONS))
         ) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Argument "$actions" in "Policy::setActions()" must be either a string "all", or an array containing a subset of these values: %s.',
-                implode(', ', self::ACTIONS)
+                \implode(', ', self::ACTIONS)
             ));
         }
 
@@ -132,21 +132,21 @@ class Policy implements \JsonSerializable
      */
     public function addAction(string $action)
     {
-        if (is_string($this->actions)) {
+        if (\is_string($this->actions)) {
             throw new \LogicException(
                 'Trying to add an action to a set, but the current value is a string. Use "Policy::setActions()" to initialize to an array.'
             );
         }
 
-        if (!in_array($action, self::ACTIONS)) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\in_array($action, self::ACTIONS)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Argument "$action" in "Policy::addAction()" must be one of these values: %s.',
-                implode(', ', self::ACTIONS)
+                \implode(', ', self::ACTIONS)
             ));
         }
 
         $this->actions[] = $action;
-        $this->actions = array_unique($this->actions);
+        $this->actions = \array_unique($this->actions);
 
         return $this;
     }

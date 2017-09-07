@@ -90,14 +90,14 @@ class ResourceBuilder
         $fqcn = '\\Contentful\\Management\\Mapper\\'.$type;
 
         if (isset($this->dataMapperMatchers[$type])) {
-            $matchedFqcn = call_user_func_array($this->dataMapperMatchers[$type], [$data]);
+            $matchedFqcn = $this->dataMapperMatchers[$type]($data);
 
             if (!$matchedFqcn) {
                 return $fqcn;
             }
 
-            if (!class_exists($matchedFqcn, true)) {
-                throw new \RuntimeException(sprintf(
+            if (!\class_exists($matchedFqcn, true)) {
+                throw new \RuntimeException(\sprintf(
                     'Mapper class "%s" does not exist.',
                     $matchedFqcn
                 ));
@@ -174,7 +174,7 @@ class ResourceBuilder
                 return 'Webhook';
         }
 
-        throw new \InvalidArgumentException(sprintf(
+        throw new \InvalidArgumentException(\sprintf(
             'Unexpected system type "%s" while trying to build a resource.',
             $data['sys']['type']
         ));

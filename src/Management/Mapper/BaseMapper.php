@@ -46,8 +46,8 @@ abstract class BaseMapper implements MapperInterface
      */
     protected function hydrate($target, array $data)
     {
-        $class = is_object($target) ? get_class($target) : $target;
-        if (is_string($target)) {
+        $class = \is_object($target) ? \get_class($target) : $target;
+        if (\is_string($target)) {
             $target = (new \ReflectionClass($class))
                 ->newInstanceWithoutConstructor();
         }
