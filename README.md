@@ -5,6 +5,7 @@
 [![Packagist](https://img.shields.io/github/license/contentful/contentful-management.php.svg?style=flat-square)](https://packagist.org/packages/contentful/contentful-management.php)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/a563f244-f56b-4e02-b0e0-4819593c371c.svg?style=flat-square)](https://insight.sensiolabs.com/projects/a563f244-f56b-4e02-b0e0-4819593c371c)
 [![Code Climate](https://img.shields.io/codeclimate/github/contentful/contentful-management.php.svg?style=flat-square)](https://codeclimate.com/github/contentful/contentful-management.php)
+[![Codecov](https://img.shields.io/codecov/c/github/contentful/contentful-management.php.svg?style=flat-square)](https://codecov.io/gh/contentful/contentful-management.php)
 
 
 PHP SDK for [Contentful's](https://www.contentful.com) Content Management API.

@@ -130,6 +130,28 @@ class ContentType extends BaseResource implements Creatable, Updatable, Deletabl
     }
 
     /**
+     * @param string $fieldId
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return FieldInterface
+     */
+    public function getField(string $fieldId): FieldInterface
+    {
+        foreach ($this->fields as $field) {
+            if ($field->getId() == $fieldId) {
+                return $field;
+            }
+        }
+
+        throw new \InvalidArgumentException(sprintf(
+            'Trying to access invalid field "%s" on content type "%s".',
+            $fieldId,
+            $this->getId()
+        ));
+    }
+
+    /**
      * @param FieldInterface[] $fields
      *
      * @return static

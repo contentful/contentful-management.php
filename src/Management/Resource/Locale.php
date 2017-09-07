@@ -81,7 +81,6 @@ class Locale extends BaseResource implements Creatable, Updatable, Deletable
      */
     public function jsonSerialize(): array
     {
-        // The property 'default' has to be omitted for the API to work.
         return [
             'sys' => $this->sys,
             'name' => $this->name,
@@ -102,6 +101,7 @@ class Locale extends BaseResource implements Creatable, Updatable, Deletable
         $body = $this->jsonSerialize();
 
         unset($body['sys']);
+        // The property 'default' has to be omitted for the API to work.
         unset($body['default']);
 
         return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
