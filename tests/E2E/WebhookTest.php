@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\Webhook;
@@ -40,8 +41,8 @@ class WebhookTest extends End2EndTestCase
 
         $sys = $webhook->getSystemProperties();
         $this->assertEquals(new Link($this->readWriteSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new \DateTimeImmutable('2017-06-13T08:30:13Z'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-06-13T08:30:51Z'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2017-06-13T08:30:13Z'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-06-13T08:30:51Z'), $sys->getUpdatedAt());
     }
 
     /**
@@ -153,8 +154,8 @@ class WebhookTest extends End2EndTestCase
         $this->assertEquals('ClientError', $webhookCalls[0]->getError());
         // This is actually guaranteed thanks to type safety,
         // but it's the only meaningful test we can have
-        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCalls[0]->getRequestAt());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCalls[0]->getResponseAt());
+        $this->assertInstanceOf(ApiDateTime::class, $webhookCalls[0]->getRequestAt());
+        $this->assertInstanceOf(ApiDateTime::class, $webhookCalls[0]->getResponseAt());
         $this->assertCount(1, $webhookCalls);
 
         $webhookCallId = $webhookCalls[0]->getId();
@@ -173,8 +174,8 @@ class WebhookTest extends End2EndTestCase
         $this->assertEquals($webhookCallId, $webhookCall->getId());
         // This is actually guaranteed thanks to type safety,
         // but it's the only meaningful test we can have
-        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCall->getRequestAt());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $webhookCall->getResponseAt());
+        $this->assertInstanceOf(ApiDateTime::class, $webhookCall->getRequestAt());
+        $this->assertInstanceOf(ApiDateTime::class, $webhookCall->getResponseAt());
 
         return $webhook;
     }

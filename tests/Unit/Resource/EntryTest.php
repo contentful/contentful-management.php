@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Unit\Management\Resource;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\Entry;
 use PHPUnit\Framework\TestCase;
-use function GuzzleHttp\json_encode;
 
 class EntryTest extends TestCase
 {
@@ -30,7 +30,7 @@ class EntryTest extends TestCase
     {
         $entry = (new Entry('blogPost'))
             ->setField('title', 'en-US', 'My summer holidays')
-            ->setField('publishedAt', 'en-US', new \DateTimeImmutable('2017-01-01 16:30:00'))
+            ->setField('publishedAt', 'en-US', new ApiDateTime('2017-01-01 16:30:00'))
             ->setField('tags', 'en-US', ['italy', 'venice', 'rome', 'sicily']);
 
         $json = '{"fields":{"title":{"en-US":"My summer holidays"},"publishedAt":{"en-US":"2017-01-01T16:30:00Z"},"tags":{"en-US":["italy","venice","rome","sicily"]}

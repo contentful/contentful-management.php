@@ -9,6 +9,7 @@
 
 namespace Contentful\Management\Mapper;
 
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\PersonalAccessToken as ResourceClass;
 use Contentful\Management\SystemProperties;
 
@@ -29,7 +30,7 @@ class PersonalAccessToken extends BaseMapper
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'isReadOnly' => !\in_array('content_management_manage', $data['scopes']),
-            'revokedAt' => isset($data['revokedAt']) ? new \DateTimeImmutable($data['revokedAt']) : null,
+            'revokedAt' => isset($data['revokedAt']) ? new ApiDateTime($data['revokedAt']) : null,
             'token' => $data['token'] ?? null,
         ]);
     }

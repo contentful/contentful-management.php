@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\Unit\Management;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\SystemProperties;
 use PHPUnit\Framework\TestCase;
 
@@ -92,18 +93,18 @@ class SystemPropertiesTest extends TestCase
         $this->assertEquals('publish', $sys->getSnapshotType());
         $this->assertEquals('Entry', $sys->getSnapshotEntityType());
 
-        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-01-01T12:30:15.000Z'), $sys->getCreatedAt());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getUpdatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-02-02T12:30:15.000Z'), $sys->getUpdatedAt());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getPublishedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-03-03T12:30:15.000Z'), $sys->getPublishedAt());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getArchivedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-04-04T12:30:15.000Z'), $sys->getArchivedAt());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getFirstPublishedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-05-05T12:30:15.000Z'), $sys->getFirstPublishedAt());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $sys->getExpiresAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-06-06T12:30:15.000Z'), $sys->getExpiresAt());
+        $this->assertInstanceOf(ApiDateTime::class, $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-01-01T12:30:15.000Z'), $sys->getCreatedAt());
+        $this->assertInstanceOf(ApiDateTime::class, $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2017-02-02T12:30:15.000Z'), $sys->getUpdatedAt());
+        $this->assertInstanceOf(ApiDateTime::class, $sys->getPublishedAt());
+        $this->assertEquals(new ApiDateTime('2017-03-03T12:30:15.000Z'), $sys->getPublishedAt());
+        $this->assertInstanceOf(ApiDateTime::class, $sys->getArchivedAt());
+        $this->assertEquals(new ApiDateTime('2017-04-04T12:30:15.000Z'), $sys->getArchivedAt());
+        $this->assertInstanceOf(ApiDateTime::class, $sys->getFirstPublishedAt());
+        $this->assertEquals(new ApiDateTime('2017-05-05T12:30:15.000Z'), $sys->getFirstPublishedAt());
+        $this->assertInstanceOf(ApiDateTime::class, $sys->getExpiresAt());
+        $this->assertEquals(new ApiDateTime('2017-06-06T12:30:15.000Z'), $sys->getExpiresAt());
 
         $this->assertInstanceOf(Link::class, $sys->getSpace());
         $this->assertEquals('Space', $sys->getSpace()->getLinkType());

@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\E2E\Management;
 
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Tests\End2EndTestCase;
@@ -34,8 +35,8 @@ class PublishedContentTypeTest extends End2EndTestCase
         $sys = $contentType->getSystemProperties();
         $this->assertEquals('cat', $sys->getId());
         $this->assertEquals('ContentType', $sys->getType());
-        $this->assertEquals(new \DateTimeImmutable('2013-06-27T22:46:12.852'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2017-07-06T09:58:52.691'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:12.852'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-07-06T09:58:52.691'), $sys->getUpdatedAt());
         $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(8, $sys->getRevision());
     }

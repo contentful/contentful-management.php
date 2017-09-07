@@ -14,6 +14,7 @@ use Contentful\File\File;
 use Contentful\File\LocalUploadFile;
 use Contentful\File\RemoteUploadFile;
 use Contentful\Link;
+use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Upload;
@@ -40,14 +41,14 @@ class AssetTest extends End2EndTestCase
         $this->assertEquals('Asset', $sys->getType());
         $this->assertEquals(2, $sys->getVersion());
         $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:54:17.868'), $sys->getCreatedAt());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.264'), $sys->getUpdatedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-02T14:54:17.868'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.264'), $sys->getUpdatedAt());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
         $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getUpdatedBy());
         $this->assertEquals(1, $sys->getPublishedVersion());
         $this->assertEquals(1, $sys->getPublishedCounter());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.24'), $sys->getPublishedAt());
-        $this->assertEquals(new \DateTimeImmutable('2013-09-02T14:56:34.24'), $sys->getFirstPublishedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.24'), $sys->getPublishedAt());
+        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.24'), $sys->getFirstPublishedAt());
     }
 
     /**
@@ -154,7 +155,7 @@ class AssetTest extends End2EndTestCase
         $fopenUpload = new Upload(fopen(__DIR__.'/../fixtures/contentful-lab.svg', 'r'));
         $client->upload->create($fopenUpload);
         $this->assertNotNull($fopenUpload->getId());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());
+        $this->assertInstanceOf(ApiDateTime::class, $fopenUpload->getSystemProperties()->getExpiresAt());
         $fopenUpload->delete();
 
         // Creates upload using stream
@@ -162,7 +163,7 @@ class AssetTest extends End2EndTestCase
         $streamUpload = new Upload($stream);
         $client->upload->create($streamUpload);
         $this->assertNotNull($streamUpload->getId());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $streamUpload->getSystemProperties()->getExpiresAt());
+        $this->assertInstanceOf(ApiDateTime::class, $streamUpload->getSystemProperties()->getExpiresAt());
         $streamUpload->delete();
 
         // Creates upload using string
@@ -170,7 +171,7 @@ class AssetTest extends End2EndTestCase
         $client->upload->create($upload);
         $this->assertEquals(new Link($upload->getId(), 'Upload'), $upload->asLink());
         $this->assertNotNull($upload->getId());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $upload->getSystemProperties()->getExpiresAt());
+        $this->assertInstanceOf(ApiDateTime::class, $upload->getSystemProperties()->getExpiresAt());
 
         $uploadFromFile = new LocalUploadFile('contentful.svg', 'image/svg+xml', $upload->asLink());
 
