@@ -98,6 +98,11 @@ class Role extends BaseMapper
                     'doc' => $data[$key][$docKey]['doc'],
                     'value' => $data[$key][$valueKey],
                 ]);
+            default:
+                throw new \RuntimeException(sprintf(
+                    'Trying to build a constraint object using invalid key "%s".',
+                    $key
+                ));
         }
     }
 

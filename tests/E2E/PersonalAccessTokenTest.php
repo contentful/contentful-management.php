@@ -57,4 +57,15 @@ class PersonalAccessTokenTest extends End2EndTestCase
         $this->assertEquals('TravisCI', $personalAccessToken->getName());
         $this->assertFalse($personalAccessToken->isReadOnly());
     }
+
+    /**
+     * @expectedException \Contentful\Management\Exception\InvalidProxyActionException
+     * @expectedExceptionMessage Trying to perform invalid action "revoke" on proxy "Contentful\Management\Proxy\PersonalAccessToken" with argument of class "stdClass".
+     */
+    public function testInvalidRevokeObject()
+    {
+        $proxy = $this->getUnboundClient()->personalAccessToken;
+
+        $proxy->revoke(new \stdClass());
+    }
 }
