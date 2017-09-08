@@ -27,6 +27,7 @@ use Contentful\ResourceArray;
  * @property Proxy\EditorInterface $editorInterface
  * @property Proxy\Entry $entry
  * @property Proxy\EntrySnapshot $entrySnapshot
+ * @property Proxy\Extension $extension
  * @property Proxy\Locale $locale
  * @property Proxy\Organization $organization
  * @property Proxy\PersonalAccessToken $personalAccessToken
@@ -77,6 +78,7 @@ class Client extends BaseClient
         'editorinterface' => 'EditorInterface',
         'entry' => 'Entry',
         'entrysnapshot' => 'EntrySnapshot',
+        'extension' => 'Extension',
         'locale' => 'Locale',
         'organization' => 'Organization',
         'personalaccesstoken' => 'PersonalAccessToken',

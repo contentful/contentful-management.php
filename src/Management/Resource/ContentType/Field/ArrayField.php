@@ -152,6 +152,8 @@ class ArrayField extends BaseField
      */
     public function setItemsValidations(array $itemsValidations)
     {
+        $this->itemsValidations = [];
+
         foreach ($itemsValidations as $validation) {
             $this->addItemsValidation($validation);
         }
