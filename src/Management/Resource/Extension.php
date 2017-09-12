@@ -53,7 +53,7 @@ class Extension extends BaseResource implements Creatable, Updatable, Deletable
      *
      * @param string $name
      */
-    public function __construct(string $name)
+    public function __construct(string $name = '')
     {
         parent::__construct('Extension');
 
@@ -169,22 +169,12 @@ class Extension extends BaseResource implements Creatable, Updatable, Deletable
 
         return [
             'sys' => $this->sys,
-            'name' => $this->name,
-            'fieldTypes' => $this->fieldTypes,
-            $sourceType => $this->source,
-            'sidebar' => $this->sidebar,
+            'extension' => [
+                'name' => $this->name,
+                'fieldTypes' => $this->fieldTypes,
+                $sourceType => $this->source,
+                'sidebar' => $this->sidebar,
+            ],
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function asRequestBody(): string
-    {
-        $extension = $this->jsonSerialize();
-
-        unset($extension['sys']);
-
-        return json_encode(['extension' => $extension], JSON_UNESCAPED_UNICODE);
     }
 }
