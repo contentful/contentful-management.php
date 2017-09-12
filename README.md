@@ -1,6 +1,6 @@
 # contentful-management.php
 
-[![Packagist](https://img.shields.io/packagist/v/contentful/contentful-management.php.svg?style=flat-square)](https://packagist.org/packages/contentful/contentful-management.php)
+[![Packagist](https://img.shields.io/packagist/v/contentful/contentful-management.svg?style=flat-square)](https://packagist.org/packages/contentful/contentful-management.php)
 [![Travis](https://img.shields.io/travis/contentful/contentful-management.php.svg?style=flat-square)](https://travis-ci.org/contentful/contentful-management.php)
 [![Packagist](https://img.shields.io/github/license/contentful/contentful-management.php.svg?style=flat-square)](https://packagist.org/packages/contentful/contentful-management.php)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/a563f244-f56b-4e02-b0e0-4819593c371c.svg?style=flat-square)](https://insight.sensiolabs.com/projects/a563f244-f56b-4e02-b0e0-4819593c371c)
