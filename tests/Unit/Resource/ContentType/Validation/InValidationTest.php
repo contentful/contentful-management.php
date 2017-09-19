@@ -15,19 +15,19 @@ use PHPUnit\Framework\TestCase;
 
 class InValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"in": ["General", "iOS", "Android"]}';
-        $validation = InValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new InValidation(['General', 'iOS', 'Android']);
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
-
-        $this->assertEquals(['Text', 'Symbol', 'Integer', 'Number'], $validation->getValidFieldTypes());
+        $json = '{"in":["General","iOS","Android"]}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
     }
 
     public function testGetSetData()
     {
         $validation = new InValidation(['General', 'iOS', 'Android']);
+
+        $this->assertEquals(['Text', 'Symbol', 'Integer', 'Number'], $validation->getValidFieldTypes());
 
         $this->assertEquals(['General', 'iOS', 'Android'], $validation->getValues());
 

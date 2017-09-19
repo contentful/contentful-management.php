@@ -57,8 +57,8 @@ class RoleTest extends TestCase
         ));
 
         $role->getPermissions()
-            ->setContentDelivery(['read', 'manage'])
-            ->setContentModel(['read'])
+            ->setContentDelivery('manage')
+            ->setContentModel('read')
             ->setSettings('all');
 
         $json = '{"sys":{"type":"Role"},"name":"Custom role","description":"This is a custom test role","permissions":{"ContentDelivery":["read","manage"],"ContentModel":["read"],"Settings":"all"},"policies":[{"effect":"allow","actions":"all","constraint":{"and":[{"equals":[{"doc":"sys.type"},"Entry"]},{"or":[{"equals":[{"doc":"sys.type"},"Asset"]},{"not":[{"equals":[{"doc":"sys.type"},"ContentType"]}]}]}]}}]}';

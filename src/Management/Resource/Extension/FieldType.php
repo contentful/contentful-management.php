@@ -46,8 +46,8 @@ class FieldType implements \JsonSerializable
     /**
      * FieldType constructor.
      *
-     * @param string     $type
-     * @param array|null $options
+     * @param string $type
+     * @param array  $options
      */
     public function __construct(string $type, array $options = [])
     {

@@ -62,6 +62,30 @@ class ContentType extends BaseResource implements Creatable, Updatable, Deletabl
     }
 
     /**
+     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        $data = [
+            'sys' => $this->sys,
+            'name' => $this->name,
+            'fields' => $this->fields,
+        ];
+
+        if ($this->description !== null) {
+            $data['description'] = $this->description;
+        }
+
+        if ($this->displayField !== null) {
+            $data['displayField'] = $this->displayField;
+        }
+
+        return $data;
+    }
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -184,26 +208,44 @@ class ContentType extends BaseResource implements Creatable, Updatable, Deletabl
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
+     * Adds a new content type field, and returns it.
      *
-     * @return array
+     * @param string $type    A valid field type, must be a class in the Contentful\Management\Resource\ContentType\Field namespace
+     * @param string $fieldId The field ID
+     * @param string $name    The field name
+     * @param array  $params  Extra parameters that will be forwarded to the field object constructor
+     *
+     * @return FieldInterface
      */
-    public function jsonSerialize(): array
+    public function addNewField(string $type, string $fieldId, string $name, ...$params): FieldInterface
     {
-        $data = [
-            'sys' => $this->sys,
-            'name' => $this->name,
-            'fields' => $this->fields,
-        ];
+        $field = $this->createField($type, $fieldId, $name, ...$params);
+        $this->addField($field);
 
-        if ($this->description !== null) {
-            $data['description'] = $this->description;
+        return $field;
+    }
+
+    /**
+     * Shortcut for creating a new field object.
+     *
+     * @param string $type    A valid field type, must be a class in the Contentful\Management\Resource\ContentType\Field namespace
+     * @param string $fieldId The field ID
+     * @param string $name    The field name
+     * @param array  $params  Extra parameters that will be forwarded to the field object constructor
+     *
+     * @return FieldInterface
+     */
+    public function createField(string $type, string $fieldId, string $name, ...$params): FieldInterface
+    {
+        $class = '\\Contentful\\Management\\Resource\\ContentType\\Field\\'.\ucfirst($type).'Field';
+
+        if (!\class_exists($class)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Trying to instantiate invalid field class "%s".',
+                $type
+            ));
         }
 
-        if ($this->displayField !== null) {
-            $data['displayField'] = $this->displayField;
-        }
-
-        return $data;
+        return new $class($fieldId, $name, ...$params);
     }
 }

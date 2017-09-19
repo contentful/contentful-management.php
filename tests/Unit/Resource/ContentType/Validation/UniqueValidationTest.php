@@ -15,12 +15,12 @@ use PHPUnit\Framework\TestCase;
 
 class UniqueValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"unique": true}';
-        $validation = UniqueValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new UniqueValidation();
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
+        $json = '{"unique":true}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
 
         $this->assertEquals(['Symbol', 'Integer', 'Number'], $validation->getValidFieldTypes());
     }

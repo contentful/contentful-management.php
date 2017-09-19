@@ -15,19 +15,19 @@ use PHPUnit\Framework\TestCase;
 
 class SizeValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"size": { "min": 5, "max": 20}}';
-        $validation = SizeValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new SizeValidation(5, 20);
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
-
-        $this->assertEquals(['Array', 'Text', 'Symbol'], $validation->getValidFieldTypes());
+        $json = '{"size":{"min":5,"max":20}}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
     }
 
     public function testGetSetData()
     {
         $validation = new SizeValidation(5, 20);
+
+        $this->assertEquals(['Array', 'Text', 'Symbol'], $validation->getValidFieldTypes());
 
         $this->assertEquals(5, $validation->getMin());
         $this->assertEquals(20, $validation->getMax());

@@ -48,8 +48,8 @@ class RoleTest extends End2EndTestCase
 
         $permissions = $role->getPermissions();
         $this->assertEquals('all', $permissions->getContentDelivery());
-        $this->assertEquals(['read'], $permissions->getContentModel());
-        $this->assertEquals([], $permissions->getSettings());
+        $this->assertEquals('read', $permissions->getContentModel());
+        $this->assertNull($permissions->getSettings());
     }
 
     /**
@@ -95,9 +95,9 @@ class RoleTest extends End2EndTestCase
         $role = new Role('Custom role', 'This is a custom test role');
 
         $role->getPermissions()
-            ->setContentDelivery(['read', 'manage'])
-            ->setContentModel(['read', 'manage'])
-            ->setSettings(['manage']);
+            ->setContentDelivery('manage')
+            ->setContentModel('manage')
+            ->setSettings('manage');
 
         $policy = new Policy('allow', 'all');
         $role->addPolicy($policy);

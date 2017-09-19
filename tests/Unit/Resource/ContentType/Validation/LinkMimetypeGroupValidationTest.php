@@ -15,19 +15,19 @@ use PHPUnit\Framework\TestCase;
 
 class LinkMimetypeGroupValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"linkMimetypeGroup": ["image"]}';
-        $validation = LinkMimetypeGroupValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new LinkMimetypeGroupValidation(['image']);
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
-
-        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
+        $json = '{"linkMimetypeGroup":["image"]}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
     }
 
     public function testGetSetData()
     {
         $validation = new LinkMimetypeGroupValidation(['image']);
+
+        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
 
         $this->assertEquals(['image'], $validation->getMimeTypeGroups());
 

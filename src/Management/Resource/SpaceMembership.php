@@ -132,6 +132,18 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
     }
 
     /**
+     * Shortcut for adding a link to a role.
+     *
+     * @param string $roleId
+     *
+     * @return static
+     */
+    public function addRoleLink(string $roleId)
+    {
+        return $this->addRole(new Link($roleId, 'Role'));
+    }
+
+    /**
      * @param Link[] $roles
      *
      * @return static

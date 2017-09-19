@@ -101,10 +101,9 @@ class SpaceMembershipTest extends End2EndTestCase
         $this->assertEmpty($spaceMembership->getRoles());
         $this->assertTrue($spaceMembership->isAdmin());
 
-        $role = new Link('6khUMmsfVslYd7tRcThTgE', 'Role');
         $spaceMembership
             ->setAdmin(false)
-            ->addRole($role);
+            ->addRoleLink('6khUMmsfVslYd7tRcThTgE');
 
         $spaceMembership->update();
 
@@ -112,7 +111,7 @@ class SpaceMembershipTest extends End2EndTestCase
         $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
         $this->assertEquals('2ZEuONMmCXSeGjl2CryAaM', $spaceMembership->getUser()->getId());
-        $this->assertEquals([$role], $spaceMembership->getRoles());
+        $this->assertEquals([new Link('6khUMmsfVslYd7tRcThTgE', 'Role')], $spaceMembership->getRoles());
         $this->assertFalse($spaceMembership->isAdmin());
 
         $spaceMembership->delete();

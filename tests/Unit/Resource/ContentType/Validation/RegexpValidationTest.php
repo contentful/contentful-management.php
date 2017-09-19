@@ -15,19 +15,19 @@ use PHPUnit\Framework\TestCase;
 
 class RegexpValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"regexp": {"pattern": "^such", "flags": "im"}}';
-        $validation = RegexpValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new RegexpValidation('^such', 'im');
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
-
-        $this->assertEquals(['Text', 'Symbol'], $validation->getValidFieldTypes());
+        $json = '{"regexp":{"pattern":"^such","flags":"im"}}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
     }
 
     public function testGetSetData()
     {
         $validation = new RegexpValidation('^such', 'im');
+
+        $this->assertEquals(['Text', 'Symbol'], $validation->getValidFieldTypes());
 
         $this->assertEquals('^such', $validation->getPattern());
         $this->assertEquals('im', $validation->getFlags());

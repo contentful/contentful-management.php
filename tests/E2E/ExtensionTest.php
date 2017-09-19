@@ -52,9 +52,9 @@ class ExtensionTest extends End2EndTestCase
         $source = '<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Sample Editor Extension</title><link rel="stylesheet" href="https://contentful.github.io/ui-extensions-sdk/cf-extension.css"><script src="https://contentful.github.io/ui-extensions-sdk/cf-extension-api.js"></script></head><body><div id="content"></div><script>window.contentfulExtension.init(function (extension) {window.alert(extension);var value = extension.field.getValue();extension.field.setValue("Hello world!"");extension.field.onValueChanged(function(value) {if (value !== currentValue) {extension.field.setValue("Hello world!"");}});});</script></body></html>';
 
         $extension
-            ->addFieldType(new FieldType('Symbol'))
-            ->addFieldType(new FieldType('Array', ['Symbol']))
-            ->addFieldType(new FieldType('Link', ['Entry']))
+            ->addNewFieldType('Symbol')
+            ->addNewFieldType('Array', ['Symbol'])
+            ->addNewFieldType('Link', ['Entry'])
             ->setSource($source)
             ->setSidebar(false);
 

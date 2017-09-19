@@ -11,6 +11,11 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * AssetFileSizeValidation class.
+ *
+ * Defines minimum and maximum file size of an asset, in bytes.
+ *
+ * Applicable to:
+ * - Link (to assets)
  */
 class AssetFileSizeValidation implements ValidationInterface
 {
@@ -82,19 +87,6 @@ class AssetFileSizeValidation implements ValidationInterface
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $values = $data['assetFileSize'];
-
-        $min = $values['min'] ?? null;
-        $max = $values['max'] ?? null;
-
-        return new self($min, $max);
     }
 
     /**

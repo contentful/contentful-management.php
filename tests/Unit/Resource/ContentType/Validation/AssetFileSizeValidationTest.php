@@ -15,19 +15,19 @@ use PHPUnit\Framework\TestCase;
 
 class AssetFileSizeValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"assetFileSize": {"min": 1048576,"max": 8388608}}';
-        $validation = AssetFileSizeValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new AssetFileSizeValidation(1048576, 8388608);
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
-
-        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
+        $json = '{"assetFileSize":{"min":1048576,"max":8388608}}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
     }
 
     public function testGetSetData()
     {
         $validation = new AssetFileSizeValidation(5, 25);
+
+        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
 
         $this->assertEquals(5, $validation->getMin());
         $this->assertEquals(25, $validation->getMax());

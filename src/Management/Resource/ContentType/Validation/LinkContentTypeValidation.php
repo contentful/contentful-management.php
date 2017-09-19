@@ -11,6 +11,12 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * LinkContentTypeValidation class.
+ *
+ * Takes an array of content type IDs and validates that
+ * the link points to an entry of one of those content types.
+ *
+ * Applicable to:
+ * - Link (to entries)
  */
 class LinkContentTypeValidation implements ValidationInterface
 {
@@ -55,16 +61,6 @@ class LinkContentTypeValidation implements ValidationInterface
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $contentTypes = $data['linkContentType'];
-
-        return new self($contentTypes);
     }
 
     /**

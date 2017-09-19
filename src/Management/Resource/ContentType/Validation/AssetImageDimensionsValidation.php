@@ -11,6 +11,11 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * AssetImageDimensionsValidation class.
+ *
+ * Defines minimum and maximum dimendions of an image, in pixels.
+ *
+ * Applicable to:
+ * - Link (to image assets)
  */
 class AssetImageDimensionsValidation implements ValidationInterface
 {
@@ -136,31 +141,6 @@ class AssetImageDimensionsValidation implements ValidationInterface
         $this->maxHeight = $maxHeight;
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $values = $data['assetImageDimensions'];
-        $minWidth = null;
-        $maxWidth = null;
-        $minHeight = null;
-        $maxHeight = null;
-
-        if (isset($values['width'])) {
-            $widthValues = $values['width'];
-            $minWidth = $widthValues['min'] ?? null;
-            $maxWidth = $widthValues['max'] ?? null;
-        }
-        if (isset($values['height'])) {
-            $heightValues = $values['height'];
-            $minHeight = $heightValues['min'] ?? null;
-            $maxHeight = $heightValues['max'] ?? null;
-        }
-
-        return new self($minWidth, $maxWidth, $minHeight, $maxHeight);
     }
 
     /**

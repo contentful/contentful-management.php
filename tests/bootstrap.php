@@ -30,7 +30,7 @@ function clean_headers_array(\VCR\Request $request)
             return false;
         }
 
-        // Since we omit the Authorization header from recordings we can't mach on it
+        // Since we omit the Authorization header from recordings we can't match on it
         if (strtolower($name) === 'authorization') {
             return false;
         }
