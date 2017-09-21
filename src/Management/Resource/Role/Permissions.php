@@ -15,28 +15,22 @@ namespace Contentful\Management\Resource\Role;
 class Permissions implements \JsonSerializable
 {
     /**
-     * Either "all" or an array including a subset of ["read", "manage"].
-     *
-     * @var string|string[]
+     * @var string|null
      */
-    private $contentDelivery = [];
+    private $contentDelivery;
 
     /**
-     * Either "all" or an array including a subset of ["read", "manage"].
-     *
-     * @var string|string[]
+     * @var string|null
      */
-    private $contentModel = [];
+    private $contentModel;
 
     /**
-     * Either "all" or an array including a subset of ["manage"].
-     *
-     * @var string|string[]
+     * @var string|null
      */
-    private $settings = [];
+    private $settings;
 
     /**
-     * @return string|string[] Either "all" or an array including a subset of ["read", "manage"]
+     * @return string|null
      */
     public function getContentDelivery()
     {
@@ -44,29 +38,26 @@ class Permissions implements \JsonSerializable
     }
 
     /**
-     * @param string|string[] $values Either "all" or an array including a subset of ["read", "manage"]
+     * @param string|null $access Either null, or one of "read", "manage", "all"
      *
      * @return static
      */
-    public function setContentDelivery($values)
+    public function setContentDelivery(string $access = null)
     {
-        if (
-            (!\is_string($values) && !\is_array($values)) ||
-            (\is_string($values) && $values !== 'all') ||
-            (\is_array($values) && \array_diff($values, ['read', 'manage']))
-        ) {
-            throw new \InvalidArgumentException(
-                'Argument "$values" in "Permissions::setContentDelivery()" must be either a string "all", or an array containing a subset of ["read", "manage"].'
-            );
+        if ($access !== null && !\in_array($access, ['read', 'manage', 'all'])) {
+            throw new \InvalidArgumentException(sprintf(
+                'Parameter $access in Permissions::setContentDelivery() must be either null or one of "read", "manage", "all", "%s" given.',
+                $access
+            ));
         }
 
-        $this->contentDelivery = $values;
+        $this->contentDelivery = $access;
 
         return $this;
     }
 
     /**
-     * @return string|array Either "all" or an array including a subset of ["read", "manage"]
+     * @return string|null
      */
     public function getContentModel()
     {
@@ -74,29 +65,26 @@ class Permissions implements \JsonSerializable
     }
 
     /**
-     * @param string|array $values Either "all" or an array including a subset of ["read", "manage"]
+     * @param string|null $access Either null, or one of "read", "manage", "all"
      *
      * @return static
      */
-    public function setContentModel($values)
+    public function setContentModel(string $access = null)
     {
-        if (
-            (!\is_string($values) && !\is_array($values)) ||
-            (\is_string($values) && $values !== 'all') ||
-            (\is_array($values) && \array_diff($values, ['read', 'manage']))
-        ) {
-            throw new \InvalidArgumentException(
-                'Argument "$values" in "Permissions::setContentModel()" must be either a string "all", or an array containing a subset of ["read", "manage"].'
-            );
+        if ($access !== null && !\in_array($access, ['read', 'manage', 'all'])) {
+            throw new \InvalidArgumentException(sprintf(
+                'Parameter $access in Permissions::setContentModel() must be either null or one of "read", "manage", "all", "%s" given.',
+                $access
+            ));
         }
 
-        $this->contentModel = $values;
+        $this->contentModel = $access;
 
         return $this;
     }
 
     /**
-     * @return string|array Either "all" or an array including a subset of ["read", "manage"]
+     * @return string|null
      */
     public function getSettings()
     {
@@ -104,23 +92,20 @@ class Permissions implements \JsonSerializable
     }
 
     /**
-     * @param string|array $values Either "all" or an array including a subset of ["manage"]
+     * @param string|null $access Either null, or one of "manage", "all"
      *
      * @return static
      */
-    public function setSettings($values)
+    public function setSettings(string $access = null)
     {
-        if (
-            (!\is_string($values) && !\is_array($values)) ||
-            (\is_string($values) && $values !== 'all') ||
-            (\is_array($values) && \array_diff($values, ['manage']))
-        ) {
-            throw new \InvalidArgumentException(
-                'Argument "$values" in "Permissions::setSettings()" must be either a string "all", or an array containing a subset of ["manage"].'
-            );
+        if ($access !== null && !\in_array($access, ['manage', 'all'])) {
+            throw new \InvalidArgumentException(sprintf(
+                'Parameter $access in Permissions::setSettings() must be either null or one of "manage", "all", "%s" given.',
+                $access
+            ));
         }
 
-        $this->settings = $values;
+        $this->settings = $access;
 
         return $this;
     }
@@ -132,18 +117,28 @@ class Permissions implements \JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        $permission = [];
+        $permissions = [];
 
         if ($this->contentDelivery !== null) {
-            $permission['ContentDelivery'] = $this->contentDelivery;
+            $permissions['ContentDelivery'] = $this->contentDelivery == 'all'
+                ? 'all'
+                : ($this->contentDelivery == 'manage'
+                    ? ['read', 'manage']
+                    : ['read']);
         }
         if ($this->contentModel !== null) {
-            $permission['ContentModel'] = $this->contentModel;
+            $permissions['ContentModel'] = $this->contentModel == 'all'
+                ? 'all'
+                : ($this->contentModel == 'manage'
+                    ? ['read', 'manage']
+                    : ['read']);
         }
         if ($this->settings !== null) {
-            $permission['Settings'] = $this->settings;
+            $permissions['Settings'] = $this->settings == 'all'
+                ? 'all'
+                : ['manage'];
         }
 
-        return $permission;
+        return $permissions;
     }
 }

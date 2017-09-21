@@ -11,6 +11,11 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * DateRangeValidation class.
+ *
+ * Defines a minimum and maximum date range.
+ *
+ * Applicable to:
+ * - Date
  */
 class DateRangeValidation implements ValidationInterface
 {
@@ -82,19 +87,6 @@ class DateRangeValidation implements ValidationInterface
     public static function getValidFieldTypes(): array
     {
         return ['Date'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $values = $data['dateRange'];
-
-        $min = $values['min'] ?? null;
-        $max = $values['max'] ?? null;
-
-        return new self($min, $max);
     }
 
     /**

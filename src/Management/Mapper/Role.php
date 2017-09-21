@@ -114,9 +114,30 @@ class Role extends BaseMapper
     protected function buildPermissions(array $data): Permissions
     {
         return $this->hydrate(Permissions::class, [
-            'contentDelivery' => $data['ContentDelivery'],
-            'contentModel' => $data['ContentModel'],
-            'settings' => $data['Settings'],
+            'contentDelivery' => $this->convertPermission($data['ContentDelivery']),
+            'contentModel' => $this->convertPermission($data['ContentModel']),
+            'settings' => $this->convertPermission($data['Settings']),
         ]);
+    }
+
+    /**
+     * @param string|string[] $permission
+     *
+     * @return string|null
+     */
+    protected function convertPermission($permission)
+    {
+        if ($permission === []) {
+            return null;
+        }
+
+        if ($permission == ['read']) {
+            return 'read';
+        }
+
+        // The API will automatically convert
+        // ['read', 'manage'] or ['manage']
+        // to 'all'
+        return 'all';
     }
 }

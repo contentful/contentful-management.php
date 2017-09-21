@@ -46,23 +46,23 @@ class ResourceBuilder
      */
     public function build(array $data, ResourceInterface $resource = null)
     {
-        return $this->getMapper($data)
+        $fqcn = $this->determineMapperFqcn($data);
+
+        return $this->getMapper($fqcn)
             ->map($resource, $data);
     }
 
     /**
      * Returns the mapper object appropriate for the given data.
      *
-     * @param array $data The raw API data
+     * @param string $fqcn
      *
      * @throws \RuntimeException
      *
      * @return MapperInterface
      */
-    private function getMapper(array $data): MapperInterface
+    public function getMapper(string $fqcn): MapperInterface
     {
-        $fqcn = $this->determineMapperFqcn($data);
-
         if (!isset(self::$mappers[$fqcn])) {
             self::$mappers[$fqcn] = new $fqcn($this);
         }

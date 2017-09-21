@@ -11,6 +11,14 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * InValidation class.
+ *
+ * Takes an array of values and validates that the field value is in this array.
+ *
+ * Applicable to:
+ * - Symbol
+ * - Text
+ * - Integer
+ * - Number
  */
 class InValidation implements ValidationInterface
 {
@@ -55,16 +63,6 @@ class InValidation implements ValidationInterface
     public static function getValidFieldTypes(): array
     {
         return ['Text', 'Symbol', 'Integer', 'Number'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $values = $data['in'];
-
-        return new self($values);
     }
 
     /**

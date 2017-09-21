@@ -11,6 +11,12 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * RegexpValidation class.
+ *
+ * Takes a string that reflects a Javascript regex and flags.
+ *
+ * Applicable to:
+ * - Symbol
+ * - Text
  */
 class RegexpValidation implements ValidationInterface
 {
@@ -74,19 +80,6 @@ class RegexpValidation implements ValidationInterface
     public static function getValidFieldTypes(): array
     {
         return ['Text', 'Symbol'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $values = $data['regexp'];
-
-        $pattern = $values['pattern'] ?? null;
-        $flags = $values['flags'] ?? null;
-
-        return new self($pattern, $flags);
     }
 
     /**

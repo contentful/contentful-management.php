@@ -11,6 +11,12 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * RangeValidation class.
+ *
+ * Takes optional min and max parameters and validates the range of a value.
+ *
+ * Applicable to:
+ * - Integer
+ * - Number
  */
 class RangeValidation implements ValidationInterface
 {
@@ -82,19 +88,6 @@ class RangeValidation implements ValidationInterface
     public static function getValidFieldTypes(): array
     {
         return ['Number', 'Integer'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $values = $data['range'];
-
-        $min = $values['min'] ?? null;
-        $max = $values['max'] ?? null;
-
-        return new self($min, $max);
     }
 
     /**

@@ -20,13 +20,4 @@ interface ValidationInterface extends \JsonSerializable
      * @return string[]
      */
     public static function getValidFieldTypes(): array;
-
-    /**
-     * Returns a ValidationInterface implementation created from data from the API.
-     *
-     * @param array $data
-     *
-     * @return ValidationInterface
-     */
-    public static function fromApiResponse(array $data): ValidationInterface;
 }

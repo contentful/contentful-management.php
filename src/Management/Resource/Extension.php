@@ -117,9 +117,7 @@ class Extension extends BaseResource implements Creatable, Updatable, Deletable
     {
         $this->fieldTypes = [];
 
-        foreach ($fieldTypes as $fieldType) {
-            $this->addFieldType($fieldType);
-        }
+        array_map([$this, 'addFieldType'], $fieldTypes);
 
         return $this;
     }
@@ -134,6 +132,19 @@ class Extension extends BaseResource implements Creatable, Updatable, Deletable
         $this->fieldTypes[] = $fieldType;
 
         return $this;
+    }
+
+    /**
+     * Shortcut for adding a new field type.
+     *
+     * @param string $type
+     * @param array  $options
+     *
+     * @return static
+     */
+    public function addNewFieldType(string $type, array $options = [])
+    {
+        return $this->addFieldType(new FieldType($type, $options));
     }
 
     /**

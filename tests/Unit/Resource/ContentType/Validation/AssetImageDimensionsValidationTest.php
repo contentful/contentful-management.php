@@ -15,19 +15,19 @@ use PHPUnit\Framework\TestCase;
 
 class AssetImageDimensionsValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"assetImageDimensions": {"width": {"min": 100,"max": 1000},"height": {"min": 200,"max": 2300}}}';
-        $validation = AssetImageDimensionsValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new AssetImageDimensionsValidation(100, 1000, 200, 2300);
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
-
-        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
+        $json = '{"assetImageDimensions":{"width":{"min":100,"max":1000},"height":{"min":200,"max":2300}}}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
     }
 
     public function testGetSetData()
     {
         $validation = new AssetImageDimensionsValidation(50, 100, 60, 120);
+
+        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
 
         $this->assertEquals(50, $validation->getMinWidth());
         $this->assertEquals(100, $validation->getMaxWidth());

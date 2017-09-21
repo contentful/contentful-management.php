@@ -25,10 +25,17 @@ use Contentful\Management\Resource\ContentType\Field\ObjectField;
 use Contentful\Management\Resource\ContentType\Field\SymbolField;
 use Contentful\Management\Resource\ContentType\Field\TextField;
 use Contentful\Management\Resource\ContentType\Validation\AssetFileSizeValidation;
+use Contentful\Management\Resource\ContentType\Validation\AssetImageDimensionsValidation;
+use Contentful\Management\Resource\ContentType\Validation\DateRangeValidation;
+use Contentful\Management\Resource\ContentType\Validation\InValidation;
+use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
 use Contentful\Management\Resource\ContentType\Validation\LinkMimetypeGroupValidation;
 use Contentful\Management\Resource\ContentType\Validation\RangeValidation;
+use Contentful\Management\Resource\ContentType\Validation\RegexpValidation;
 use Contentful\Management\Resource\ContentType\Validation\SizeValidation;
+use Contentful\Management\Resource\ContentType\Validation\UniqueValidation;
 use Contentful\Tests\End2EndTestCase;
+use GuzzleHttp\json_encode;
 
 class ContentTypeTest extends End2EndTestCase
 {
@@ -183,6 +190,16 @@ class ContentTypeTest extends End2EndTestCase
     }
 
     /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Trying to instantiate invalid field class "invalidField".
+     */
+    public function testInvalidFieldCreation()
+    {
+        $contentType = new ContentType('test');
+        $contentType->createField('invalidField', 'fieldId', 'Field Name');
+    }
+
+    /**
      * @vcr e2e_content_type_full_fields.json
      */
     public function testContentTypeFields()
@@ -191,80 +208,103 @@ class ContentTypeTest extends End2EndTestCase
         $contentType = new ContentType('fullContentType');
         $contentType->setName('Full Content Type');
         $contentType->setDescription('This content type includes all field types');
-        $field = new ArrayField('arrayField', 'Array Field', 'Link', 'Asset');
-        $field->setItemsValidations([
-            new AssetFileSizeValidation(null, 10485760),
-            new LinkMimetypeGroupValidation(['image']),
-        ]);
-        $contentType->addField($field);
-        $field = new BooleanField('booleanField', 'Boolean Field');
-        $contentType->addField($field);
-        $field = new DateField('dateField', 'Date Field');
-        $contentType->addField($field);
-        $field = new IntegerField('integerField', 'Integer Field');
-        $contentType->addField($field);
-        $field = new LinkField('linkField', 'Link Field', 'Entry');
-        $contentType->addField($field);
-        $field = new LocationField('locationField', 'Location Field');
-        $contentType->addField($field);
-        $field = new NumberField('numberField', 'Number Field');
-        $contentType->addField($field);
-        $field = new ObjectField('objectField', 'Object Field');
-        $contentType->addField($field);
-        $field = new SymbolField('symbolField', 'Symbol Field');
-        $contentType->addField($field);
-        $field = new TextField('textField', 'Text Field');
-        $contentType->addField($field);
+
+        $contentType->addNewField('array', 'arrayField', 'Array Field', 'Link', 'Asset')
+            ->addValidation(new SizeValidation(1, 10))
+            ->setItemsValidations([
+                new AssetFileSizeValidation(null, 10485760),
+                new AssetImageDimensionsValidation(50, 1000, 50, 1000),
+                new LinkMimetypeGroupValidation(['image']),
+            ]);
+        $contentType->addNewField('boolean', 'booleanField', 'Boolean Field');
+        $contentType->addNewField('date', 'dateField', 'Date Field')
+            ->addValidation(new DateRangeValidation('2010-01-01', '2020-12-31'));
+        $contentType->addNewField('integer', 'integerField', 'Integer Field')
+            ->addValidation(new RangeValidation(1, 10));
+        $contentType->addNewField('link', 'linkField', 'Link Field', 'Entry')
+            ->addValidation(new LinkContentTypeValidation(['bookmark']));
+        $contentType->addNewField('location', 'locationField', 'Location Field');
+        $contentType->addNewField('number', 'numberField', 'Number Field')
+            ->addValidation(new InValidation([1.0, 2.0, 3.0]));
+        $contentType->addNewField('object', 'objectField', 'Object Field');
+        $contentType->addNewField('symbol', 'symbolField', 'Symbol Field')
+            ->addValidation(new UniqueValidation())
+            ->addValidation(new RegexpValidation('^such', 'im'));
+        $contentType->addNewField('text', 'textField', 'Text Field');
+
         $client->contentType->create($contentType, 'fullContentType');
         $this->assertNotNull($contentType->getId());
+
         $contentType = $client->contentType->get('fullContentType');
+
+        // Asserts :allthethings:
         $field = $contentType->getField('arrayField');
         $this->assertInstanceOf(ArrayField::class, $field);
         $this->assertEquals('Array', $field->getType());
         $this->assertEquals('Array Field', $field->getName());
         $this->assertEquals('Link', $field->getItemsType());
         $this->assertEquals('Asset', $field->getItemsLinkType());
+        $this->assertEquals([new SizeValidation(1, 10)], $field->getValidations());
         $this->assertEquals([
             new AssetFileSizeValidation(null, 10485760),
+            new AssetImageDimensionsValidation(50, 1000, 50, 1000),
             new LinkMimetypeGroupValidation(['image']),
         ], $field->getItemsValidations());
+
         $field = $contentType->getField('booleanField');
         $this->assertInstanceOf(BooleanField::class, $field);
         $this->assertEquals('Boolean', $field->getType());
         $this->assertEquals('Boolean Field', $field->getName());
+
         $field = $contentType->getField('dateField');
         $this->assertInstanceOf(DateField::class, $field);
         $this->assertEquals('Date', $field->getType());
         $this->assertEquals('Date Field', $field->getName());
+        $this->assertEquals([new DateRangeValidation('2010-01-01', '2020-12-31')], $field->getValidations());
+
         $field = $contentType->getField('integerField');
         $this->assertInstanceOf(IntegerField::class, $field);
         $this->assertEquals('Integer', $field->getType());
         $this->assertEquals('Integer Field', $field->getName());
+        $this->assertEquals([new RangeValidation(1, 10)], $field->getValidations());
+
         $field = $contentType->getField('linkField');
         $this->assertInstanceOf(LinkField::class, $field);
         $this->assertEquals('Link', $field->getType());
         $this->assertEquals('Link Field', $field->getName());
         $this->assertEquals('Entry', $field->getLinkType());
+        $this->assertEquals([new LinkContentTypeValidation(['bookmark'])], $field->getValidations());
+
         $field = $contentType->getField('locationField');
         $this->assertInstanceOf(LocationField::class, $field);
         $this->assertEquals('Location', $field->getType());
         $this->assertEquals('Location Field', $field->getName());
+
         $field = $contentType->getField('numberField');
         $this->assertInstanceOf(NumberField::class, $field);
         $this->assertEquals('Number', $field->getType());
         $this->assertEquals('Number Field', $field->getName());
+        $this->assertEquals([new InValidation([1.0, 2.0, 3.0])], $field->getValidations());
+
         $field = $contentType->getField('objectField');
         $this->assertInstanceOf(ObjectField::class, $field);
         $this->assertEquals('Object', $field->getType());
         $this->assertEquals('Object Field', $field->getName());
+
         $field = $contentType->getField('symbolField');
         $this->assertInstanceOf(SymbolField::class, $field);
         $this->assertEquals('Symbol', $field->getType());
         $this->assertEquals('Symbol Field', $field->getName());
+        $this->assertEquals([
+            new UniqueValidation(),
+            new RegexpValidation('^such', 'im'),
+        ], $field->getValidations());
+
         $field = $contentType->getField('textField');
         $this->assertInstanceOf(TextField::class, $field);
         $this->assertEquals('Text', $field->getType());
         $this->assertEquals('Text Field', $field->getName());
+
         $client->contentType->delete($contentType);
     }
 }

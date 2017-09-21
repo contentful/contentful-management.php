@@ -15,19 +15,19 @@ use PHPUnit\Framework\TestCase;
 
 class DateRangeValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"dateRange": {"min": "2017-05-01","max": "2020-05-01"}}';
-        $validation = DateRangeValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new DateRangeValidation('2017-05-01', '2020-05-01');
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
-
-        $this->assertEquals(['Date'], $validation->getValidFieldTypes());
+        $json = '{"dateRange":{"min":"2017-05-01","max":"2020-05-01"}}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
     }
 
     public function testGetSetData()
     {
         $validation = new DateRangeValidation('1989-09-02', '2017-05-26');
+
+        $this->assertEquals(['Date'], $validation->getValidFieldTypes());
 
         $this->assertEquals('1989-09-02', $validation->getMin());
         $this->assertEquals('2017-05-26', $validation->getMax());

@@ -11,6 +11,14 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * SizeValidation class.
+ *
+ * Takes optional min and max parameters and
+ * validates the size of an array or a string.
+ *
+ * Applicable to:
+ * - Array
+ * - Symbol
+ * - Text
  */
 class SizeValidation implements ValidationInterface
 {
@@ -82,19 +90,6 @@ class SizeValidation implements ValidationInterface
     public static function getValidFieldTypes(): array
     {
         return ['Array', 'Text', 'Symbol'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $values = $data['size'];
-
-        $min = $values['min'] ?? null;
-        $max = $values['max'] ?? null;
-
-        return new self($min, $max);
     }
 
     /**

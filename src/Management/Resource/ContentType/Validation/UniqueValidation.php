@@ -11,24 +11,21 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * UniqueValidation class.
+ *
+ * Mandates that a value be unique among all entries with the same content type.
+ *
+ * Applicable to:
+ * - Symbol
+ * - Integer
+ * - Number
  */
 class UniqueValidation implements ValidationInterface
 {
     /**
      * UniqueValidation constructor.
-     *
-     * Empty constructor for forward compatibility
      */
     public function __construct()
     {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        return new self();
     }
 
     /**

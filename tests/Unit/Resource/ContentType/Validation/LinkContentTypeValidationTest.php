@@ -15,19 +15,19 @@ use PHPUnit\Framework\TestCase;
 
 class LinkContentTypeValidationTest extends TestCase
 {
-    public function testFromJsonToJsonSerialization()
+    public function testJsonSerialize()
     {
-        $jsonString = '{"linkContentType": ["post","doc","product"]}';
-        $validation = LinkContentTypeValidation::fromApiResponse(json_decode($jsonString, true));
+        $validation = new LinkContentTypeValidation(['post', 'doc', 'product']);
 
-        $this->assertJsonStringEqualsJsonString($jsonString, json_encode($validation));
-
-        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
+        $json = '{"linkContentType":["post","doc","product"]}';
+        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
     }
 
     public function testGetSetData()
     {
         $validation = new LinkContentTypeValidation(['post', 'doc', 'product']);
+
+        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
 
         $this->assertEquals(['post', 'doc', 'product'], $validation->getContentTypes());
 

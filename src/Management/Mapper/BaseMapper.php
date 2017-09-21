@@ -52,7 +52,9 @@ abstract class BaseMapper implements MapperInterface
                 ->newInstanceWithoutConstructor();
         }
 
-        $this->getHydrator($class)($target, $data);
+        $hydrator = $this->getHydrator($class);
+
+        $hydrator($target, $data);
 
         return $target;
     }

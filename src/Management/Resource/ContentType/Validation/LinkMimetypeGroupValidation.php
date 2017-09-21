@@ -11,6 +11,12 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 
 /**
  * LinkMimetypeGroupValidation class.
+ *
+ * Takes a MimeType group name and validates that
+ * the link points to an asset of this group.
+ *
+ * Applicable to:
+ * - Link (to assets)
  */
 class LinkMimetypeGroupValidation implements ValidationInterface
 {
@@ -55,16 +61,6 @@ class LinkMimetypeGroupValidation implements ValidationInterface
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function fromApiResponse(array $data): ValidationInterface
-    {
-        $mimeTypeGroups = $data['linkMimetypeGroup'];
-
-        return new self($mimeTypeGroups);
     }
 
     /**
