@@ -8,9 +8,9 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E;
+namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Tests\End2EndTestCase;
+use Contentful\Tests\Management\End2EndTestCase;
 
 class EditorInterfaceTest extends End2EndTestCase
 {

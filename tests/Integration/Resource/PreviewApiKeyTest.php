@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Integration\Management\Resource;
+namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Management\ResourceBuilder;

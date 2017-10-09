@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Management\Resource\ContentType\Validation;
+namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\LinkMimetypeGroupValidation;
 use PHPUnit\Framework\TestCase;

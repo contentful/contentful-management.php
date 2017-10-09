@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E;
+namespace Contentful\Tests\Management\E2E;
 
 use Contentful\File\RemoteUploadFile;
 use Contentful\Link;
@@ -20,7 +20,7 @@ use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\Webhook;
-use Contentful\Tests\End2EndTestCase;
+use Contentful\Tests\Management\End2EndTestCase;
 
 class ClientTest extends End2EndTestCase
 {

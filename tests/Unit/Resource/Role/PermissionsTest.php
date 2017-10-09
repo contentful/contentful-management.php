@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Management\Resource\Role;
+namespace Contentful\Tests\Management\Unit\Resource\Role;
 
 use Contentful\Management\Resource\Role\Permissions;
 use PHPUnit\Framework\TestCase;

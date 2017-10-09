@@ -8,11 +8,11 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E\Management;
+namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Management\Resource\Extension;
 use Contentful\Management\Resource\Extension\FieldType;
-use Contentful\Tests\End2EndTestCase;
+use Contentful\Tests\Management\End2EndTestCase;
 
 class ExtensionTest extends End2EndTestCase
 {

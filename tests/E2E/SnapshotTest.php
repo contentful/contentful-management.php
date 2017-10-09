@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E\Management;
+namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
@@ -17,7 +17,7 @@ use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
-use Contentful\Tests\End2EndTestCase;
+use Contentful\Tests\Management\End2EndTestCase;
 
 class SnapshotTest extends End2EndTestCase
 {

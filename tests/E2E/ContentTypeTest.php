@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E\Management;
+namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
@@ -34,7 +34,7 @@ use Contentful\Management\Resource\ContentType\Validation\RangeValidation;
 use Contentful\Management\Resource\ContentType\Validation\RegexpValidation;
 use Contentful\Management\Resource\ContentType\Validation\SizeValidation;
 use Contentful\Management\Resource\ContentType\Validation\UniqueValidation;
-use Contentful\Tests\End2EndTestCase;
+use Contentful\Tests\Management\End2EndTestCase;
 use GuzzleHttp\json_encode;
 
 class ContentTypeTest extends End2EndTestCase

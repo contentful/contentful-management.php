@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Management;
+namespace Contentful\Tests\Management\Unit;
 
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;

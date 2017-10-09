@@ -8,13 +8,13 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E\Management;
+namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\SystemProperties;
-use Contentful\Tests\End2EndTestCase;
+use Contentful\Tests\Management\End2EndTestCase;
 
 class ResourceBuilderTest extends End2EndTestCase
 {
@@ -25,7 +25,7 @@ class ResourceBuilderTest extends End2EndTestCase
     {
         $builder = new ResourceBuilder();
         $builder->setDataMapperMatcher('Entry', function (array $data) {
-            if ($data['sys']['type'] == 'Entry' && $data['sys']['contentType']['sys']['id'] == 'fantasticCreature') {
+            if ($data['sys']['contentType']['sys']['id'] == 'fantasticCreature') {
                 return FantasticCreatureEntryMapper::class;
             }
         });

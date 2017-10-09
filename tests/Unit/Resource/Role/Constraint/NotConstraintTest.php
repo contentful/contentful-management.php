@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Management\Resource\Role\Constraint;
+namespace Contentful\Tests\Management\Unit\Resource\Role\Constraint;
 
 use Contentful\Management\Resource\Role\Constraint\NotConstraint;
 use PHPUnit\Framework\TestCase;

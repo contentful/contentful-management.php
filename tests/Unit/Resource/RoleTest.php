@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Management\Resource;
+namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\Role\Constraint\AndConstraint;

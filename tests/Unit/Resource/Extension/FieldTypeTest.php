@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Management\Resource\Extension;
+namespace Contentful\Tests\Management\Unit\Resource\Extension;
 
 use Contentful\Management\Resource\Extension\FieldType;
 use PHPUnit\Framework\TestCase;

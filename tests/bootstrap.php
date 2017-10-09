@@ -6,6 +6,9 @@ require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/End2EndTestCase.php';
 
 use VCR\Event\BeforeRecordEvent;
+use VCR\Request;
+use VCR\VCR;
+use VCR\VCREvents;
 
 function cleanRequest(BeforeRecordEvent $event, $eventName)
 {
@@ -15,11 +18,11 @@ function cleanRequest(BeforeRecordEvent $event, $eventName)
 }
 
 /**
- * @param \VCR\Request $request
+ * @param Request $request
  *
  * @return array
  */
-function clean_headers_array(\VCR\Request $request)
+function clean_headers_array(Request $request)
 {
     return array_filter($request->getHeaders(), function ($value, $name) {
         if ($value == false) {
@@ -40,11 +43,11 @@ function clean_headers_array(\VCR\Request $request)
 }
 
 // The VCR needs to be loaded before the Client is loaded for the first time or it will fail
-\VCR\VCR::configure()
+VCR::configure()
     ->setMode('once')
     ->setStorage('json')
-    ->setCassettePath('tests/recordings')
-    ->addRequestMatcher('custom_headers', function (\VCR\Request $first, \VCR\Request $second) {
+    ->setCassettePath('tests/Recordings')
+    ->addRequestMatcher('custom_headers', function (Request $first, Request $second) {
         $first = clean_headers_array($first);
         $second = clean_headers_array($second);
 
@@ -52,7 +55,7 @@ function clean_headers_array(\VCR\Request $request)
     })
     ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers']);
 
-\VCR\VCR::getEventDispatcher()->addListener(\VCR\VCREvents::VCR_BEFORE_RECORD, 'cleanRequest');
+VCR::getEventDispatcher()->addListener(VCREvents::VCR_BEFORE_RECORD, 'cleanRequest');
 
-\VCR\VCR::turnOn();
-\VCR\VCR::turnOff();
+VCR::turnOn();
+VCR::turnOff();
