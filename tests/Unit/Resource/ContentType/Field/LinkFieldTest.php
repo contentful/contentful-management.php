@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Management\Resource\ContentType\Field;
+namespace Contentful\Tests\Management\Unit\Resource\ContentType\Field;
 
 use Contentful\Management\Resource\ContentType\Field\LinkField;
 use PHPUnit\Framework\TestCase;

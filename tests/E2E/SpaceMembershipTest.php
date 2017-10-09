@@ -8,12 +8,12 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E\Management;
+namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\SpaceMembership;
-use Contentful\Tests\End2EndTestCase;
+use Contentful\Tests\Management\End2EndTestCase;
 
 class SpaceMembershipTest extends End2EndTestCase
 {

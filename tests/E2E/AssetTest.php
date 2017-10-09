@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\E2E\Management;
+namespace Contentful\Tests\Management\E2E;
 
 use Contentful\File\File;
 use Contentful\File\LocalUploadFile;
@@ -18,7 +18,7 @@ use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Upload;
-use Contentful\Tests\End2EndTestCase;
+use Contentful\Tests\Management\End2EndTestCase;
 use function GuzzleHttp\Psr7\stream_for;
 
 class AssetTest extends End2EndTestCase
@@ -152,14 +152,14 @@ class AssetTest extends End2EndTestCase
         $client = $this->getReadWriteClient();
 
         // Creates upload using fopen
-        $fopenUpload = new Upload(fopen(__DIR__.'/../fixtures/contentful-lab.svg', 'r'));
+        $fopenUpload = new Upload(fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'r'));
         $client->upload->create($fopenUpload);
         $this->assertNotNull($fopenUpload->getId());
         $this->assertInstanceOf(ApiDateTime::class, $fopenUpload->getSystemProperties()->getExpiresAt());
         $fopenUpload->delete();
 
         // Creates upload using stream
-        $stream = stream_for(file_get_contents(__DIR__.'/../fixtures/contentful-logo.svg'));
+        $stream = stream_for(file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));
         $streamUpload = new Upload($stream);
         $client->upload->create($streamUpload);
         $this->assertNotNull($streamUpload->getId());
@@ -167,7 +167,7 @@ class AssetTest extends End2EndTestCase
         $streamUpload->delete();
 
         // Creates upload using string
-        $upload = new Upload(file_get_contents(__DIR__.'/../fixtures/contentful-name.svg'));
+        $upload = new Upload(file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-name.svg'));
         $client->upload->create($upload);
         $this->assertEquals(new Link($upload->getId(), 'Upload'), $upload->asLink());
         $this->assertNotNull($upload->getId());

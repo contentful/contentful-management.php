@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Integration\Resource;
+namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\EditorInterface;
 use Contentful\Management\ResourceBuilder;

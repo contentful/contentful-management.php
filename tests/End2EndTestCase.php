@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests;
+namespace Contentful\Tests\Management;
 
 use Contentful\Management\Client;
 use PHPUnit\Framework\TestCase;
@@ -37,7 +37,7 @@ class End2EndTestCase extends TestCase
 
     public function setUp()
     {
-        $this->token = getenv('CONTENTFUL_CMA_TEST_TOKEN');
+        $this->token = \getenv('CONTENTFUL_CMA_TEST_TOKEN');
     }
 
     /**

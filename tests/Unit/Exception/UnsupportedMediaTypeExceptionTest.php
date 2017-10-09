@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Unit\Management\Exception;
+namespace Contentful\Tests\Management\Unit\Exception;
 
 use Contentful\Management\Exception\UnsupportedMediaTypeException;
 use GuzzleHttp\Exception\ClientException;

@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Integration\Management;
+namespace Contentful\Tests\Management\Integration;
 
 use Contentful\Management\Mapper\MapperInterface;
 use Contentful\Management\ResourceBuilder;

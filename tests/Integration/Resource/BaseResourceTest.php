@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Integration\Management\Resource;
+namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Client;
 use Contentful\Management\Proxy\BaseProxy;
@@ -19,7 +19,7 @@ class BaseResourceTest extends TestCase
 {
     /**
      * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to call invalid method "fakeMethod" on resource of type "Contentful\Tests\Integration\Management\Resource\FakeResource" which forwards to proxy "Contentful\Tests\Integration\Management\Resource\FakeProxy".
+     * @expectedExceptionMessage Trying to call invalid method "fakeMethod" on resource of type "Contentful\Tests\Management\Integration\Resource\FakeResource" which forwards to proxy "Contentful\Tests\Management\Integration\Resource\FakeProxy".
      */
     public function testInvalidProxiedAction()
     {
