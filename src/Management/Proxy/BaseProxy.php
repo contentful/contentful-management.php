@@ -9,6 +9,7 @@
 
 namespace Contentful\Management\Proxy;
 
+use Contentful\Link;
 use Contentful\Management\Client;
 use Contentful\Management\Exception\InvalidProxyActionException;
 use Contentful\Management\Query;
@@ -91,6 +92,18 @@ abstract class BaseProxy
     protected function getBaseUri()
     {
         return null;
+    }
+
+    /**
+     * Shortcut for resolving links.
+     *
+     * @param Link $link
+     *
+     * @return ResourceInterface
+     */
+    public function resolveLink(Link $link)
+    {
+        return $this->client->resolveLink($link);
     }
 
     /**

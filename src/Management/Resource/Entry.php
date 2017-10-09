@@ -130,4 +130,39 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
 
         return $this;
     }
+
+    /**
+     * Provides simple setX/getX capabilities,
+     * without recurring to code generation.
+     *
+     * @param string $name
+     * @param array  $arguments
+     *
+     * @return mixed
+     */
+    public function __call(string $name, array $arguments)
+    {
+        $action = \substr($name, 0, 3);
+        if ($action == 'get') {
+            $field = $this->extractFieldName($name);
+
+            return $this->getField($field, ...$arguments);
+        } elseif ($action == 'set') {
+            $field = $this->extractFieldName($name);
+
+            return $this->setField($field, ...$arguments);
+        }
+
+        return parent::__call($name, $arguments);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
+    private function extractFieldName(string $name): string
+    {
+        return \lcfirst(\substr($name, 3));
+    }
 }

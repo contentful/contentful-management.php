@@ -1,0 +1,88 @@
+[{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/api.contentful.com\/spaces\/t7rprcaoexcq\/locales",
+        "headers": {
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.9.0-dev; platform PHP\/7.1.8; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Accept-Ranges": "bytes",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "Cache-Control": "max-age=0",
+            "CF-Organization-Id": "3ubGFD1MWA6VgVYbIwSBg8",
+            "CF-Space-Id": "t7rprcaoexcq",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Fri, 06 Oct 2017 14:38:32 GMT",
+            "ETag": "W\/\"887b191b4da4c0fa0c4be3aa3756b7f4\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-Request-Id": "ab2fed01d1834f1929e2fc21d289a870",
+            "X-Frame-Options": "ALLOWALL",
+            "X-XSS-Protection": "1; mode=block",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=68mnBwpJTLmGbUOAFj0U9WiV11kAAAAAQUIPAAAAAAA5pxx7PSoVdFs+6AS+tJhP; expires=Sat, 06 Oct 2018 07:07:22 GMT; path=\/; Domain=.contentful.com, nlbi_673446=16YxLe25izFgbin36lKYhQAAAABVcRENA4fKknU7psVpTOgu; path=\/; Domain=.contentful.com, incap_ses_417_673446=IkKQfB+c7xQDXiuAX3zJBWiV11kAAAAAaHOa5H+r33Ogm7WNfPkrsg==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "10-33605351-33605364 NNNN CT(110 110 0) RT(1507300712322 111) q(0 0 2 -1) r(4 4) U5",
+            "X-CDN": "Incapsula",
+            "Content-Encoding": "gzip",
+            "Transfer-Encoding": "chunked"
+        },
+        "body": "{\n  \"total\":1,\n  \"limit\":100,\n  \"skip\":0,\n  \"sys\":{\n    \"type\":\"Array\"\n  },\n  \"items\":[\n    {\n      \"name\":\"US English\",\n      \"internal_code\":\"en-US\",\n      \"code\":\"en-US\",\n      \"fallbackCode\":null,\n      \"default\":true,\n      \"contentManagementApi\":true,\n      \"contentDeliveryApi\":true,\n      \"optional\":false,\n      \"sys\":{\n        \"type\":\"Locale\",\n        \"id\":\"5iVLsQXVhV3OS1DPBPzxuC\",\n        \"version\":0,\n        \"space\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"Space\",\n            \"id\":\"t7rprcaoexcq\"\n          }\n        },\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"createdAt\":\"2017-10-06T14:22:17Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"updatedAt\":\"2017-10-06T14:22:17Z\"\n      }\n    }\n  ]\n}\n\n"
+    }
+},{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/api.contentful.com\/spaces\/t7rprcaoexcq\/content_types?limit=100&skip=0",
+        "headers": {
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.9.0-dev; platform PHP\/7.1.8; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "CF-Space-Id": "t7rprcaoexcq",
+            "Content-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Fri, 06 Oct 2017 14:38:33 GMT",
+            "ETag": "W\/\"68b94e59ae0e707885bbf5ac379b4b79\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-Request-Id": "809438a5b47888be0277084e1d824856",
+            "transfer-encoding": "chunked",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=bEyZEf\/KRDiWkoRi1gWwI2mV11kAAAAAQUIPAAAAAABq6IKKoRueyMoFrcoC0DCk; expires=Sat, 06 Oct 2018 07:07:22 GMT; path=\/; Domain=.contentful.com, nlbi_673446=AfjtcFDCwFGcMWZ\/6lKYhQAAAAC03QhQEh4VvGVv085DPmLo; path=\/; Domain=.contentful.com, incap_ses_417_673446=hO50ZGp4pAVcXyuAX3zJBWmV11kAAAAAk+DKzySLM0bdSoqng39Xjg==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "10-33605457-33605462 NNNN CT(106 101 0) RT(1507300713024 56) q(0 0 2 -1) r(6 6) U5",
+            "X-CDN": "Incapsula"
+        },
+        "body": "{\n  \"sys\": {\n    \"type\": \"Array\"\n  },\n  \"total\": 2,\n  \"skip\": 0,\n  \"limit\": 100,\n  \"items\": [\n    {\n      \"sys\": {\n        \"space\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"Space\",\n            \"id\": \"t7rprcaoexcq\"\n          }\n        },\n        \"id\": \"author\",\n        \"type\": \"ContentType\",\n        \"createdAt\": \"2017-10-06T14:24:42.616Z\",\n        \"updatedAt\": \"2017-10-06T14:24:43.087Z\",\n        \"createdBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"updatedBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"publishedCounter\": 1,\n        \"version\": 2,\n        \"publishedBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"publishedVersion\": 1,\n        \"firstPublishedAt\": \"2017-10-06T14:24:43.087Z\",\n        \"publishedAt\": \"2017-10-06T14:24:43.087Z\"\n      },\n      \"displayField\": \"name\",\n      \"name\": \"Author\",\n      \"description\": \"\",\n      \"fields\": [\n        {\n          \"id\": \"name\",\n          \"name\": \"Name\",\n          \"type\": \"Symbol\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false\n        },\n        {\n          \"id\": \"location\",\n          \"name\": \"Location\",\n          \"type\": \"Location\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false\n        },\n        {\n          \"id\": \"isActive\",\n          \"name\": \"Is Active\",\n          \"type\": \"Boolean\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false\n        },\n        {\n          \"id\": \"misc\",\n          \"name\": \"Misc\",\n          \"type\": \"Object\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false\n        },\n        {\n          \"id\": \"picture\",\n          \"name\": \"Picture\",\n          \"type\": \"Link\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false,\n          \"linkType\": \"Asset\"\n        }\n      ]\n    },\n    {\n      \"sys\": {\n        \"space\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"Space\",\n            \"id\": \"t7rprcaoexcq\"\n          }\n        },\n        \"id\": \"blogPost\",\n        \"type\": \"ContentType\",\n        \"createdAt\": \"2017-10-06T14:23:23.514Z\",\n        \"updatedAt\": \"2017-10-06T14:25:12.729Z\",\n        \"createdBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"updatedBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"publishedCounter\": 3,\n        \"version\": 6,\n        \"publishedBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"publishedVersion\": 5,\n        \"firstPublishedAt\": \"2017-10-06T14:23:24.403Z\",\n        \"publishedAt\": \"2017-10-06T14:25:12.729Z\"\n      },\n      \"displayField\": \"title\",\n      \"name\": \"Blog Post\",\n      \"description\": \"\",\n      \"fields\": [\n        {\n          \"id\": \"title\",\n          \"name\": \"Title\",\n          \"type\": \"Symbol\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false\n        },\n        {\n          \"id\": \"body\",\n          \"name\": \"Body\",\n          \"type\": \"Symbol\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false\n        },\n        {\n          \"id\": \"publishedAt\",\n          \"name\": \"Published At\",\n          \"type\": \"Date\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false\n        },\n        {\n          \"id\": \"image\",\n          \"name\": \"Image\",\n          \"type\": \"Link\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false,\n          \"linkType\": \"Asset\"\n        },\n        {\n          \"id\": \"related\",\n          \"name\": \"Related\",\n          \"type\": \"Array\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false,\n          \"items\": {\n            \"type\": \"Link\",\n            \"validations\": [\n              {\n                \"linkContentType\": [\n                  \"blogPost\"\n                ]\n              }\n            ],\n            \"linkType\": \"Entry\"\n          }\n        },\n        {\n          \"id\": \"tags\",\n          \"name\": \"Tags\",\n          \"type\": \"Array\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [],\n          \"disabled\": false,\n          \"omitted\": false,\n          \"items\": {\n            \"type\": \"Symbol\",\n            \"validations\": []\n          }\n        },\n        {\n          \"id\": \"author\",\n          \"name\": \"Author\",\n          \"type\": \"Link\",\n          \"localized\": false,\n          \"required\": false,\n          \"validations\": [\n            {\n              \"linkContentType\": [\n                \"author\"\n              ]\n            }\n          ],\n          \"disabled\": false,\n          \"omitted\": false,\n          \"linkType\": \"Entry\"\n        }\n      ]\n    }\n  ]\n}\n"
+    }
+}]
