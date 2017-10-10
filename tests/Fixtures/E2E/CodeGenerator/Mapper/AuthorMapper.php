@@ -1,11 +1,11 @@
 <?php
 
-namespace Contentful\Tests\Management\Fixtures\E2E\Generator\Mapper;
+namespace Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\Mapper;
 
 use Contentful\Link;
 use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\SystemProperties;
-use Contentful\Tests\Management\Fixtures\E2E\Generator\Author;
+use Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\Author;
 
 /**
  * AuthorMapper class.

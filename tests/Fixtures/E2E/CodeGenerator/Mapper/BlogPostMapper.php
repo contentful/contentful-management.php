@@ -1,12 +1,12 @@
 <?php
 
-namespace Contentful\Tests\Management\Fixtures\E2E\Generator\Mapper;
+namespace Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\Mapper;
 
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\SystemProperties;
-use Contentful\Tests\Management\Fixtures\E2E\Generator\BlogPost;
+use Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\BlogPost;
 
 /**
  * BlogPostMapper class.

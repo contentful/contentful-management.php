@@ -10,11 +10,11 @@
 namespace Contentful\Management\Console;
 
 use Contentful\Management\Client;
-use Contentful\Management\Console\Command\BuildContentTypesCommand;
+use Contentful\Management\Console\Command\GenerateEntryClassesCommand;
 use Symfony\Component\Console\Application as ConsoleApplication;
 
 /**
- * CLI Application with Helpers for the Contentful CMA SDK.
+ * CLI Application with helpers for the Contentful CMA SDK.
  */
 class Application extends ConsoleApplication
 {
@@ -26,7 +26,7 @@ class Application extends ConsoleApplication
     protected function getDefaultCommands()
     {
         $defaultCommands = parent::getDefaultCommands();
-        $defaultCommands[] = new BuildContentTypesCommand();
+        $defaultCommands[] = new GenerateEntryClassesCommand();
 
         return $defaultCommands;
     }

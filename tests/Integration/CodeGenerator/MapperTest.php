@@ -8,12 +8,12 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Tests\Management\Integration\Generator;
+namespace Contentful\Tests\Management\Integration\CodeGenerator;
 
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Client;
-use Contentful\Management\Generator\MapperGenerator;
+use Contentful\Management\CodeGenerator\Mapper;
 use Contentful\Management\Proxy\BaseProxy;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
@@ -21,11 +21,11 @@ use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidat
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\End2EndTestCase;
-use Contentful\Tests\Management\Fixtures\Integration\Generator\BlogPost;
-use Contentful\Tests\Management\Fixtures\Integration\Generator\Mapper\BlogPostMapper;
+use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\BlogPost;
+use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\Mapper\BlogPostMapper;
 use function GuzzleHttp\json_encode;
 
-class MapperGeneratorTest extends End2EndTestCase
+class MapperTest extends End2EndTestCase
 {
     public function testGenerator()
     {
@@ -57,10 +57,13 @@ class MapperGeneratorTest extends End2EndTestCase
             ->addItemsValidation(new LinkContentTypeValidation(['blogPost']));
         $contentType->addNewField('Array', 'tags', 'Tags', 'Symbol');
 
-        $generator = new MapperGenerator('en-US');
-        $code = $generator->generate($contentType, 'Contentful\\Tests\\Management\\Fixtures\\Integration\\Generator');
+        $generator = new Mapper('en-US');
+        $code = $generator->generate([
+            'content_type' => $contentType,
+            'namespace' => 'Contentful\\Tests\\Management\\Fixtures\\Integration\\CodeGenerator',
+        ]);
 
-        $expected = \file_get_contents(__DIR__.'/../../Fixtures/Integration/Generator/Mapper/BlogPostMapper.php');
+        $expected = \file_get_contents(__DIR__.'/../../Fixtures/Integration/CodeGenerator/Mapper/BlogPostMapper.php');
 
         $this->assertEquals($expected, $code);
     }

@@ -7,17 +7,17 @@
  * @license   MIT
  */
 
-namespace Contentful\Management\Generator;
+namespace Contentful\Management\CodeGenerator;
 
-use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Field\FieldInterface;
+use PhpParser\Comment;
 use PhpParser\Node;
 use PhpParser\PrettyPrinter\Standard as StandardPrettyPrinter;
 
 /**
- * BaseGenerator class.
+ * BaseCodeGenerator class.
  */
-abstract class BaseGenerator
+abstract class BaseCodeGenerator
 {
     /**
      * @var string
@@ -25,7 +25,7 @@ abstract class BaseGenerator
     protected $defaultLocale;
 
     /**
-     * BaseGenerator constructor.
+     * BaseCodeGenerator constructor.
      *
      * @param string $defaultLocale
      */
@@ -35,10 +35,9 @@ abstract class BaseGenerator
     }
 
     /**
-     * @param ContentType $contentType
-     * @param string      $namespace
+     * @param array $params
      */
-    abstract public function generate(ContentType $contentType, string $namespace): string;
+    abstract public function generate(array $params): string;
 
     /**
      * Returns a rendered node.
@@ -123,5 +122,14 @@ abstract class BaseGenerator
         ];
 
         return $fields[$field->getType()];
+    }
+
+    protected function generateCommentAttributes(string $comment): array
+    {
+        return [
+            'comments' => [
+                new Comment($comment),
+            ],
+        ];
     }
 }

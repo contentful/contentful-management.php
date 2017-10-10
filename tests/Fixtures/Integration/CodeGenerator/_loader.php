@@ -4,9 +4,9 @@
 // for configuring the active ResourceBuilder object
 $builder->setDataMapperMatcher('Entry', function (array $data) {
     switch ($data['sys']['contentType']['sys']['id']) {
-        case 'author':
-            return \Contentful\Tests\Management\Fixtures\E2E\Generator\Mapper\AuthorMapper::class;
         case 'blogPost':
-            return \Contentful\Tests\Management\Fixtures\E2E\Generator\Mapper\BlogPostMapper::class;
+            return \Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\Mapper\BlogPostMapper::class;
+        case 'author':
+            return \Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\Mapper\AuthorMapper::class;
     }
 });

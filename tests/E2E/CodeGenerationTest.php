@@ -15,8 +15,8 @@ use Contentful\Management\ApiDateTime;
 use Contentful\Management\Console\Application;
 use Contentful\Management\Resource\Asset;
 use Contentful\Tests\Management\End2EndTestCase;
-use Contentful\Tests\Management\Fixtures\E2E\Generator\Author;
-use Contentful\Tests\Management\Fixtures\E2E\Generator\BlogPost;
+use Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\Author;
+use Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\BlogPost;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -31,14 +31,14 @@ class CodeGenerationTest extends End2EndTestCase
 
         $dir = \sys_get_temp_dir().'/contentful-management-'.\bin2hex(\random_bytes(5));
 
-        $command = $application->find('build:content-types');
+        $command = $application->find('generate:entry-classes');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
             'space-id' => $this->codeGenerationSpaceId,
             'token' => $this->token,
             'dir' => $dir,
-            'namespace' => 'Contentful\\Tests\\Management\\Fixtures\\E2E\\Generator',
+            'namespace' => 'Contentful\\Tests\\Management\\Fixtures\\E2E\\CodeGenerator',
         ]);
 
         $output = $commandTester->getDisplay();
@@ -52,7 +52,7 @@ class CodeGenerationTest extends End2EndTestCase
         $this->assertContains('- Mapper '.$dir.'/Mapper/BlogPostMapper.php', $output);
         $this->assertContains('Loader file generated at '.$dir.'/_loader.php', $output);
 
-        $fixturesDir = __DIR__.'/../Fixtures/E2E/Generator';
+        $fixturesDir = __DIR__.'/../Fixtures/E2E/CodeGenerator';
         $this->assertEquals(
             \file_get_contents($fixturesDir.'/_loader.php'),
             \file_get_contents($dir.'/_loader.php')

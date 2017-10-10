@@ -13,17 +13,17 @@ namespace Contentful\Tests\Management\Integration\Generator;
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Client;
-use Contentful\Management\Generator\EntryGenerator;
+use Contentful\Management\CodeGenerator\Entry;
 use Contentful\Management\Proxy\BaseProxy;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\End2EndTestCase;
-use Contentful\Tests\Management\Fixtures\Integration\Generator\BlogPost;
+use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\BlogPost;
 use function GuzzleHttp\json_encode;
 
-class EntryGeneratorTest extends End2EndTestCase
+class EntryTest extends End2EndTestCase
 {
     public function testGenerator()
     {
@@ -55,10 +55,13 @@ class EntryGeneratorTest extends End2EndTestCase
             ->addItemsValidation(new LinkContentTypeValidation(['blogPost']));
         $contentType->addNewField('Array', 'tags', 'Tags', 'Symbol');
 
-        $generator = new EntryGenerator('en-US');
-        $code = $generator->generate($contentType, 'Contentful\\Tests\\Management\\Fixtures\\Integration\\Generator');
+        $generator = new Entry('en-US');
+        $code = $generator->generate([
+            'content_type' => $contentType,
+            'namespace' => 'Contentful\\Tests\\Management\\Fixtures\\Integration\\CodeGenerator',
+        ]);
 
-        $expected = \file_get_contents(__DIR__.'/../../Fixtures/Integration/Generator/BlogPost.php');
+        $expected = \file_get_contents(__DIR__.'/../../Fixtures/Integration/CodeGenerator/BlogPost.php');
 
         $this->assertEquals($expected, $code);
     }

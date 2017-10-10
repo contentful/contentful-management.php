@@ -1,6 +1,6 @@
 <?php
 
-namespace Contentful\Tests\Management\Fixtures\Integration\Generator;
+namespace Contentful\Tests\Management\Fixtures\Integration\CodeGenerator;
 
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
