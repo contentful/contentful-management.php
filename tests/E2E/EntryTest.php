@@ -79,9 +79,10 @@ class EntryTest extends End2EndTestCase
         $this->assertEquals(['name' => 'A name'], $entry->getFields('en-US'));
         $this->assertEquals(['name' => ['en-US' => 'A name']], $entry->getFields());
 
-        $entry->setField('name', 'en-US', 'A better name');
+        $entry->setName('en-US', 'A better name');
 
         $entry->update();
+        $this->assertEquals('A better name', $entry->getName('en-US'));
 
         $entry->archive();
         $this->assertEquals(2, $entry->getSystemProperties()->getArchivedVersion());

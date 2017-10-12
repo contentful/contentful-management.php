@@ -1,0 +1,24 @@
+---
+engines:
+  duplication:
+    enabled: true
+    checks:
+      Similar code:
+        enabled: false
+    config:
+      languages:
+      - php
+  fixme:
+    enabled: true
+  phpmd:
+    enabled: true
+    checks:
+      Naming/LongVariable:
+        enabled: false
+      Design/CouplingBetweenObjects:
+        enabled: false
+ratings:
+  paths:
+  - "**.php"
+exclude_paths:
+- tests/

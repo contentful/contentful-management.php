@@ -33,6 +33,11 @@ class End2EndTestCase extends TestCase
     /**
      * @var string
      */
+    protected $codeGenerationSpaceId = 't7rprcaoexcq';
+
+    /**
+     * @var string
+     */
     protected $testOrganizationId = '4Q3Lza73mxcjmluLU7V5EG';
 
     public function setUp()
