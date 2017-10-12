@@ -95,7 +95,12 @@ class GenerateEntryClassesCommand extends Command
      */
     private function performDirectoryChecks(string $dir)
     {
-        // @TODO
+        if (!is_dir($dir) && !is_writable(dirname($dir))) {
+            throw new \RuntimeException(sprintf(
+                'Directoy "%s" does not exist and can not be created.',
+                $dir
+            ));
+        }
     }
 
     /**

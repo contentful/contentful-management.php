@@ -102,7 +102,7 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * public function map($resource, array $data): ClassName
@@ -149,7 +149,7 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * $resource ?? ClassName::class, [
@@ -217,7 +217,7 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * private function formatFields(array $data): array
@@ -293,7 +293,7 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * $fields['name'] = [];
@@ -345,7 +345,7 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * $fields['name'] = [];
@@ -372,7 +372,7 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * $fields['name'] = $data['name'] ?? null
@@ -402,7 +402,7 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * new Link($varName['sys']['id'], $varName['sys']['linkType'])
@@ -440,7 +440,7 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * $fields['name'] = [];

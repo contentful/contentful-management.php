@@ -38,7 +38,7 @@ class Loader extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * function (array $data) {
@@ -67,7 +67,7 @@ class Loader extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * $data['sys']['contentType']['sys']['id']
@@ -93,7 +93,7 @@ class Loader extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * case 'contentType':

@@ -23,6 +23,27 @@ use Symfony\Component\Filesystem\Filesystem;
 class CodeGenerationTest extends End2EndTestCase
 {
     /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Directoy "/invalid-dir" does not exist and can not be created.
+     */
+    public function testInvalidOutputDirectory()
+    {
+        $application = new Application();
+
+        $dir = '/invalid-dir';
+
+        $command = $application->find('generate:entry-classes');
+        $commandTester = new CommandTester($command);
+        $commandTester->execute([
+            'command' => $command->getName(),
+            'space-id' => '<spaceId>',
+            'token' => '<accessToken>',
+            'dir' => $dir,
+            'namespace' => '',
+        ]);
+    }
+
+    /**
      * @vcr e2e_code_generation.json
      */
     public function testCodeGeneration()
@@ -44,10 +65,10 @@ class CodeGenerationTest extends End2EndTestCase
         $output = $commandTester->getDisplay();
 
         $this->assertContains('Result of content type classes generation for space "'.$this->codeGenerationSpaceId.'"', $output);
-        $this->assertContains('* author', $output);
+        $this->assertContains('* author (Author)', $output);
         $this->assertContains('- Entry '.$dir.'/Author.php', $output);
         $this->assertContains('- Mapper '.$dir.'/Mapper/AuthorMapper.php', $output);
-        $this->assertContains('* blogPost', $output);
+        $this->assertContains('* blogPost (Blog Post)', $output);
         $this->assertContains('- Entry '.$dir.'/BlogPost.php', $output);
         $this->assertContains('- Mapper '.$dir.'/Mapper/BlogPostMapper.php', $output);
         $this->assertContains('Loader file generated at '.$dir.'/_loader.php', $output);

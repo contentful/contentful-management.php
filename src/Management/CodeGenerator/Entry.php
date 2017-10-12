@@ -134,7 +134,7 @@ class Entry extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * public function __construct()
@@ -173,7 +173,7 @@ class Entry extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * public function getX(string $locale = '<defaultLocale>')
@@ -224,7 +224,7 @@ class Entry extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * public function setX(string $locale = '<defaultLocale>', <type> $value = null)
@@ -283,7 +283,7 @@ class Entry extends BaseCodeGenerator
     }
 
     /**
-     * Generates:.
+     * Generates the following code.
      *
      * ```
      * public function resolveXLink(string $locale = '<defaultLocale>')
