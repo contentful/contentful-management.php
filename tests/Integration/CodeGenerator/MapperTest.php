@@ -71,7 +71,7 @@ class MapperTest extends End2EndTestCase
     /**
      * @depends testGenerator
      */
-    public function testGeneratedClassWorks()
+    public function testGenerateCodeWorks()
     {
         $mapper = new BlogPostMapper(new ResourceBuilder());
 
