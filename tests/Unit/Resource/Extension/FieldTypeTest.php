@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\Extension;
 
 use Contentful\Management\Resource\Extension\FieldType;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class FieldTypeTest extends TestCase
+class FieldTypeTest extends BaseTestCase
 {
     public function testGetSetData()
     {

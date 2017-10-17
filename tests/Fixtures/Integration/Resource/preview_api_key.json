@@ -1,0 +1,8 @@
+{
+    "sys": {
+        "type": "PreviewApiKey"
+    },
+    "name": "Preview Key",
+    "description": null,
+    "accessToken": "ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f"
+}

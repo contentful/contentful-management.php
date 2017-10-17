@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Unit\Resource\Role;
 
 use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
 use Contentful\Management\Resource\Role\Policy;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class PolicyTest extends TestCase
+class PolicyTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -67,7 +67,6 @@ class PolicyTest extends TestCase
     {
         $policy = new Policy('allow', 'all', new EqualityConstraint('sys.type', 'Entry'));
 
-        $json = '{"effect":"allow","actions":"all","constraint":{"equals":[{"doc":"sys.type"}, "Entry"]}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($policy));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/Role/policy.json', $policy);
     }
 }

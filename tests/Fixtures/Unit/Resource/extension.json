@@ -1,0 +1,13 @@
+{
+    "sys": {
+        "type": "Extension"
+    },
+    "extension": {
+        "name": "My extension",
+        "fieldTypes": [{
+            "type": "Symbol"
+        }],
+        "src": "https:\/\/www.example.com\/cf-ui-extension-test",
+        "sidebar": true
+    }
+}

@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Integration;
 
 use Contentful\Management\Mapper\MapperInterface;
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ResourceBuilderTest extends TestCase
+class ResourceBuilderTest extends BaseTestCase
 {
     /**
      * @expectedException \RuntimeException

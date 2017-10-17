@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class PreviewApiKeyTest extends TestCase
+class PreviewApiKeyTest extends BaseTestCase
 {
     /**
      * @expectedException \LogicException
@@ -39,9 +39,7 @@ class PreviewApiKeyTest extends TestCase
             'accessToken' => 'ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f',
         ]);
 
-        $json = '{"sys":{"type":"PreviewApiKey"},"name":"Preview Key","description":null,"accessToken":"ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f"}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($previewApiKey));
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/preview_api_key.json', $previewApiKey);
 
         return $previewApiKey;
     }

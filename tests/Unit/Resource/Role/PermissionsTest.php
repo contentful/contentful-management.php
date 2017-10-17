@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\Role;
 
 use Contentful\Management\Resource\Role\Permissions;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class PermissionsTest extends TestCase
+class PermissionsTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -66,7 +66,6 @@ class PermissionsTest extends TestCase
             ->setContentModel('all')
             ->setSettings('all');
 
-        $json = '{"ContentDelivery":"all","ContentModel":"all","Settings":"all"}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($permissions));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/Role/permissions.json', $permissions);
     }
 }

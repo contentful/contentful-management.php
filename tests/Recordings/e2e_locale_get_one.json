@@ -1,11 +1,11 @@
 [{
     "request": {
         "method": "GET",
-        "url": "https:\/\/api.contentful.com\/spaces\/cfexampleapi\/locales\/2oQPjMCL9bQkylziydLh57",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales\/6khdsfQbtrObkbrgWDTGe8",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.4",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.4; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.9.0-dev; platform PHP\/7.1.8; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -18,35 +18,35 @@
         },
         "headers": {
             "Accept-Ranges": "bytes",
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
-            "CF-Organization-Id": "7BLDDu2FYCNoN4QIWys1BR",
-            "CF-Space-Id": "cfexampleapi",
+            "CF-Organization-Id": "3ubGFD1MWA6VgVYbIwSBg8",
+            "CF-Space-Id": "34luz0flcmxt",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 13:00:24 GMT",
-            "ETag": "W\/\"7526306e1b1b3497265075c7cffdfe4d\"",
+            "Date": "Tue, 17 Oct 2017 12:51:18 GMT",
+            "ETag": "W\/\"c8eb28936ef1a90c790212f913421b93\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-RateLimit-Hour-Limit": "36000",
-            "X-Contentful-RateLimit-Hour-Remaining": "35765",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179933",
             "X-Contentful-RateLimit-Reset": "0",
-            "X-Contentful-RateLimit-Second-Limit": "10",
-            "X-Contentful-RateLimit-Second-Remaining": "9",
-            "X-Contentful-Request-Id": "439cbadc519bcb2a0b3a77182c2cbec5",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "88309edb9e128b9b777bbf6440323105",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=+pBjwAXIQpOTPT\/xDKiwsuiFX1kAAAAAQUIPAAAAAADUOV5em3k2Bai3LcJMox+G; expires=Fri, 06 Jul 2018 17:40:03 GMT; path=\/; Domain=.contentful.com, nlbi_673446=ZTDSVMvmbSMHbGgO6lKYhQAAAABRjQ0568W8YgsNiV6ugVyb; path=\/; Domain=.contentful.com, incap_ses_259_673446=s8N\/SzHo6wLCYGVI6yeYA+iFX1kAAAAAkGWgyKG1T4wNyVqwT9na4A==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "6-24955341-24955346 NNNN CT(0 0 0) RT(1499432423817 30) q(0 0 0 -1) r(2 2) U5",
+            "Set-Cookie": "visid_incap_673446=U+bVGTlvSb6fwBF\/FAGh\/cb85VkAAAAAQUIPAAAAAACAUkHSuhVBgdALudx48TjV; expires=Wed, 17 Oct 2018 11:01:57 GMT; path=\/; Domain=.contentful.com, nlbi_673446=d77XZuApKUbMnMXb6lKYhQAAAACWFRF\/cSEuuyuEb+jgfG50; path=\/; Domain=.contentful.com, incap_ses_416_673446=\/iQaFrRDRhEscHAIou7FBcb85VkAAAAAMbDPoYhVJFW7Mbd0i95Z\/g==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "9-71044894-71044905 NNNN CT(101 103 0) RT(1508244676834 135) q(0 0 2 -1) r(17 17) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"name\":\"English\",\n  \"internal_code\":\"en-US\",\n  \"code\":\"en-US\",\n  \"fallbackCode\":null,\n  \"default\":true,\n  \"contentManagementApi\":true,\n  \"contentDeliveryApi\":true,\n  \"optional\":false,\n  \"sys\":{\n    \"type\":\"Locale\",\n    \"id\":\"2oQPjMCL9bQkylziydLh57\",\n    \"version\":1,\n    \"space\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"Space\",\n        \"id\":\"cfexampleapi\"\n      }\n    },\n    \"createdBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n      }\n    },\n    \"createdAt\":\"2013-06-23T19:02:00Z\",\n    \"updatedBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n      }\n    },\n    \"updatedAt\":\"2013-06-25T12:13:56Z\"\n  }\n}\n\n"
+        "body": "{\n  \"name\":\"U.S. English\",\n  \"internal_code\":\"en-US\",\n  \"code\":\"en-US\",\n  \"fallbackCode\":null,\n  \"default\":true,\n  \"contentManagementApi\":true,\n  \"contentDeliveryApi\":true,\n  \"optional\":false,\n  \"sys\":{\n    \"type\":\"Locale\",\n    \"id\":\"6khdsfQbtrObkbrgWDTGe8\",\n    \"version\":0,\n    \"space\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"Space\",\n        \"id\":\"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"createdAt\":\"2017-05-18T13:35:42Z\",\n    \"updatedBy\":{\n      \"sys\":{\n        \"type\":\"Link\",\n        \"linkType\":\"User\",\n        \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n      }\n    },\n    \"updatedAt\":\"2017-05-18T13:35:42Z\"\n  }\n}\n\n"
     }
 }]

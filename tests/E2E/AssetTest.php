@@ -18,37 +18,40 @@ use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Upload;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 use function GuzzleHttp\Psr7\stream_for;
 
-class AssetTest extends End2EndTestCase
+class AssetTest extends BaseTestCase
 {
     /**
      * @vcr e2e_asset_get_one.json
      */
     public function testGetAsset()
     {
-        $client = $this->getReadOnlyClient();
+        $client = $this->getDefaultClient();
 
-        $asset = $client->asset->get('nyancat');
-        $this->assertEquals('Nyan Cat', $asset->getTitle('en-US'));
-        $this->assertNull($asset->getTitle('tlh'));
+        $asset = $client->asset->get('2TEG7c2zYkSSuKmsqEwCS');
+        $this->assertEquals('Contentful Logo', $asset->getTitle('en-US'));
         $this->assertNull($asset->getDescription('en-US'));
-        $this->assertEquals(new Link('nyancat', 'Asset'), $asset->asLink());
+        $this->assertEquals(new Link('2TEG7c2zYkSSuKmsqEwCS', 'Asset'), $asset->asLink());
+        $this->assertEquals(
+            '//images.contentful.com/34luz0flcmxt/2TEG7c2zYkSSuKmsqEwCS/22da0779cac76ba6b74b5c2cbf084b97/contentful-logo-C395C545BF-seeklogo.com.png',
+            $asset->getFile('en-US')->getUrl()
+        );
 
         $sys = $asset->getSystemProperties();
-        $this->assertEquals('nyancat', $sys->getId());
+        $this->assertEquals('2TEG7c2zYkSSuKmsqEwCS', $sys->getId());
         $this->assertEquals('Asset', $sys->getType());
-        $this->assertEquals(2, $sys->getVersion());
-        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2013-09-02T14:54:17.868'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.264'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals(1, $sys->getPublishedVersion());
+        $this->assertEquals(11, $sys->getVersion());
+        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
+        $this->assertEquals(new ApiDateTime('2017-08-22T15:41:45.127'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-08-22T15:42:20.946'), $sys->getUpdatedAt());
+        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getCreatedBy());
+        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getUpdatedBy());
+        $this->assertEquals(10, $sys->getPublishedVersion());
         $this->assertEquals(1, $sys->getPublishedCounter());
-        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.24'), $sys->getPublishedAt());
-        $this->assertEquals(new ApiDateTime('2013-09-02T14:56:34.24'), $sys->getFirstPublishedAt());
+        $this->assertEquals(new ApiDateTime('2017-08-22T15:42:20.946'), $sys->getPublishedAt());
+        $this->assertEquals(new ApiDateTime('2017-08-22T15:42:20.946'), $sys->getFirstPublishedAt());
     }
 
     /**
@@ -56,7 +59,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testGetAssets()
     {
-        $client = $this->getReadOnlyClient();
+        $client = $this->getDefaultClient();
         $assets = $client->asset->getAll();
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
@@ -73,7 +76,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testCreateUpdateProcessPublishUnpublishArchiveUnarchiveDelete()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
@@ -132,7 +135,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testCreateAssetWithGivenId()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
@@ -149,7 +152,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testUploadAsset()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         // Creates upload using fopen
         $fopenUpload = new Upload(fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'r'));
@@ -217,7 +220,7 @@ class AssetTest extends End2EndTestCase
      */
     public function testTextFileAsset()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $asset = $client->asset->get('1Gdj0yMYb60MuI6OCSkqMu');
 

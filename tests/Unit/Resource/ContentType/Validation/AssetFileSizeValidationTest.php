@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\AssetFileSizeValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class AssetFileSizeValidationTest extends TestCase
+class AssetFileSizeValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new AssetFileSizeValidation(1048576, 8388608);
 
-        $json = '{"assetFileSize":{"min":1048576,"max":8388608}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/asset_file_size_validation.json', $validation);
     }
 
     public function testGetSetData()

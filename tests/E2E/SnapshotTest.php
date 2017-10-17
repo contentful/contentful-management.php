@@ -17,16 +17,16 @@ use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class SnapshotTest extends End2EndTestCase
+class SnapshotTest extends BaseTestCase
 {
     /**
      * @vcr e2e_snapshot_entry_get_one.json
      */
     public function testGetEntrySnapshot()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $snapshot = $client->entrySnapshot->get('3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
         $this->assertEquals(new Link('3omuk8H8M8wUuqHhxddXtp', 'Snapshot'), $snapshot->asLink());
@@ -41,7 +41,7 @@ class SnapshotTest extends End2EndTestCase
         $sys = $snapshot->getSystemProperties();
         $this->assertEquals('Entry', $sys->getSnapshotEntityType());
         $this->assertEquals('publish', $sys->getSnapshotType());
-        $this->assertEquals(new Link($this->readWriteSpaceId, 'Space'), $sys->getSpace());
+        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(new ApiDateTime('2017-06-14T14:11:20.189Z'), $sys->getCreatedAt());
         $this->assertEquals(new ApiDateTime('2017-06-14T14:11:20.189Z'), $sys->getUpdatedAt());
     }
@@ -51,7 +51,7 @@ class SnapshotTest extends End2EndTestCase
      */
     public function testGetEntrySnapshots()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $snapshots = $client->entrySnapshot->getAll('3LM5FlCdGUIM0Miqc664q6');
 
@@ -69,7 +69,7 @@ class SnapshotTest extends End2EndTestCase
      */
     public function testGetContentTypeSnapshot()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $snapshot = $client->contentTypeSnapshot->get('versionedContentType', '1Qvx64r3Nq0MOtftdcAXJO');
 
@@ -85,7 +85,7 @@ class SnapshotTest extends End2EndTestCase
         $sys = $snapshot->getSystemProperties();
         $this->assertEquals('ContentType', $sys->getSnapshotEntityType());
         $this->assertEquals('publish', $sys->getSnapshotType());
-        $this->assertEquals(new Link($this->readWriteSpaceId, 'Space'), $sys->getSpace());
+        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(new ApiDateTime('2017-07-05T16:46:58.486Z'), $sys->getCreatedAt());
         $this->assertEquals(new ApiDateTime('2017-07-05T16:46:58.486Z'), $sys->getUpdatedAt());
     }
@@ -95,7 +95,7 @@ class SnapshotTest extends End2EndTestCase
      */
     public function testGetContentTypeSnapshots()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $snapshots = $client->contentTypeSnapshot->getAll('versionedContentType');
 

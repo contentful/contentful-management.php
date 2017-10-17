@@ -1,0 +1,20 @@
+{
+    "fields": {
+        "file": {
+            "en-US": {
+                "fileName": "testfile.jpg",
+                "contentType": "image/jpeg",
+                "upload": "https://www.example.com/testfile.jpeg"
+            }
+        },
+        "title": {
+            "en-US": "A cool asset"
+        },
+        "description": {
+            "en-US": "This asset is really cool"
+        }
+    },
+    "sys": {
+        "type": "Asset"
+    }
+}

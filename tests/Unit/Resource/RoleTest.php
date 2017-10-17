@@ -17,9 +17,9 @@ use Contentful\Management\Resource\Role\Constraint\NotConstraint;
 use Contentful\Management\Resource\Role\Constraint\OrConstraint;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class RoleTest extends TestCase
+class RoleTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -61,8 +61,6 @@ class RoleTest extends TestCase
             ->setContentModel('read')
             ->setSettings('all');
 
-        $json = '{"sys":{"type":"Role"},"name":"Custom role","description":"This is a custom test role","permissions":{"ContentDelivery":["read","manage"],"ContentModel":["read"],"Settings":"all"},"policies":[{"effect":"allow","actions":"all","constraint":{"and":[{"equals":[{"doc":"sys.type"},"Entry"]},{"or":[{"equals":[{"doc":"sys.type"},"Asset"]},{"not":[{"equals":[{"doc":"sys.type"},"ContentType"]}]}]}]}}]}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($role));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/role.json', $role);
     }
 }

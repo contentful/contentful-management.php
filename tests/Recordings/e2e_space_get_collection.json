@@ -4,8 +4,8 @@
         "url": "https:\/\/api.contentful.com\/spaces",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.4",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.4; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.9.0-dev; platform PHP\/7.1.8; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -17,7 +17,7 @@
             "message": "OK"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
@@ -25,21 +25,21 @@
             "Cache-Control": "max-age=0",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Thu, 13 Jul 2017 12:53:18 GMT",
-            "ETag": "W\/\"42c20aa98d668718414408dae6d17f3f\"",
+            "Date": "Tue, 17 Oct 2017 12:52:52 GMT",
+            "ETag": "W\/\"8019585cca6ad84933127cb3516f9403\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "a7b15a75cd847cfc5efbef56653686e0",
+            "X-Contentful-Request-Id": "af78dc7a7daa1c7cac3399441fd43d06",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
-            "Content-Length": "401",
+            "Content-Length": "534",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=MaKmP46nTjatH4ODbUxypj5tZ1kAAAAAQUIPAAAAAAC\/HvrJmaNTdxm17ZowYaxY; expires=Fri, 13 Jul 2018 08:47:53 GMT; path=\/; Domain=.contentful.com, nlbi_673446=RKjEKC0RV2Hku5Rn6lKYhQAAAABa9Q24RO9cVZ+24bS2GZCM; path=\/; Domain=.contentful.com, incap_ses_259_673446=om5NalLOrQ1yi1yd7SeYAz5tZ1kAAAAAnrPosnAeH2G7e9rRVR094Q==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "8-44872982-44872999 NNNN CT(0 0 0) RT(1499950398019 65) q(0 0 0 -1) r(2 2) U5",
+            "Set-Cookie": "visid_incap_673446=fs3IcpOzRu+nlA1uE9WmdST95VkAAAAAQUIPAAAAAAB\/fQyHXqMCZ6gKd6WSNaON; expires=Wed, 17 Oct 2018 11:01:57 GMT; path=\/; Domain=.contentful.com, nlbi_673446=0Y7qBTyxllYSoxGy6lKYhQAAAACyZ8+bvWSckt1DcQprpeBX; path=\/; Domain=.contentful.com, incap_ses_416_673446=Y4m2FlFh8XIkA3EIou7FBST95VkAAAAAAqRjxoEPMNDKYu9sg59B6g==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "7-57887242-57887261 NNNN CT(110 232 0) RT(1508244771845 113) q(0 0 4 -1) r(5 5) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"total\":2,\n  \"limit\":25,\n  \"skip\":0,\n  \"sys\":{\n    \"type\":\"Array\"\n  },\n  \"items\":[\n    {\n      \"name\":\"Contentful Example API\",\n      \"sys\":{\n        \"type\":\"Space\",\n        \"id\":\"cfexampleapi\",\n        \"version\":4,\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n          }\n        },\n        \"createdAt\":\"2013-06-23T19:02:00Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n          }\n        },\n        \"updatedAt\":\"2016-02-25T09:57:25Z\"\n      }\n    },\n    {\n      \"name\":\"PHP CMA\",\n      \"sys\":{\n        \"type\":\"Space\",\n        \"id\":\"34luz0flcmxt\",\n        \"version\":5,\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n          }\n        },\n        \"createdAt\":\"2017-05-18T13:35:42Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"updatedAt\":\"2017-07-06T10:12:00Z\"\n      }\n    }\n  ]\n}\n\n"
+        "body": "{\n  \"total\":4,\n  \"limit\":25,\n  \"skip\":0,\n  \"sys\":{\n    \"type\":\"Array\"\n  },\n  \"items\":[\n    {\n      \"name\":\"Contentful Example API\",\n      \"sys\":{\n        \"type\":\"Space\",\n        \"id\":\"cfexampleapi\",\n        \"version\":4,\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n          }\n        },\n        \"createdAt\":\"2013-06-23T19:02:00Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n          }\n        },\n        \"updatedAt\":\"2016-02-25T09:57:25Z\"\n      }\n    },\n    {\n      \"name\":\"PHP CMA\",\n      \"sys\":{\n        \"type\":\"Space\",\n        \"id\":\"34luz0flcmxt\",\n        \"version\":5,\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"5wTIctqPekjOi9TGctNW7L\"\n          }\n        },\n        \"createdAt\":\"2017-05-18T13:35:42Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"updatedAt\":\"2017-07-06T10:12:00Z\"\n      }\n    },\n    {\n      \"name\":\"151 Content Types\",\n      \"sys\":{\n        \"type\":\"Space\",\n        \"id\":\"6kcg7gal4146\",\n        \"version\":1,\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7uJNojWP0gbuP7Pplz7Syo\"\n          }\n        },\n        \"createdAt\":\"2017-08-09T08:50:16Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7uJNojWP0gbuP7Pplz7Syo\"\n          }\n        },\n        \"updatedAt\":\"2017-08-09T08:50:16Z\"\n      }\n    },\n    {\n      \"name\":\"PHP Code Generation\",\n      \"sys\":{\n        \"type\":\"Space\",\n        \"id\":\"t7rprcaoexcq\",\n        \"version\":1,\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"createdAt\":\"2017-10-06T14:22:17Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"updatedAt\":\"2017-10-06T14:22:17Z\"\n      }\n    }\n  ]\n}\n\n"
     }
 },{
     "request": {
@@ -47,8 +47,8 @@
         "url": "https:\/\/api.contentful.com\/spaces?limit=1",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.4",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.4; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.9.0-dev; platform PHP\/7.1.8; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -61,28 +61,28 @@
         },
         "headers": {
             "Accept-Ranges": "bytes",
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Experimental-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Thu, 13 Jul 2017 12:53:18 GMT",
-            "ETag": "W\/\"c4fe43a3fb2a82c567387588b25e54cb\"",
+            "Date": "Tue, 17 Oct 2017 12:52:53 GMT",
+            "ETag": "W\/\"78e15a521248cacbb6fb78d7ab3ee478\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "01324b12cbda90401a6d44ec470204de",
+            "X-Contentful-Request-Id": "dfe3d5ec67e800bb75a62df3d9c4da44",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=\/R4BJY8nTa2xAjAOLVQm0j5tZ1kAAAAAQUIPAAAAAAAuRX4mvofmb743UwkYS0GU; expires=Fri, 13 Jul 2018 08:47:53 GMT; path=\/; Domain=.contentful.com, nlbi_673446=rRYcBV0sYEJ09Itm6lKYhQAAAAD0yxiLUXAwJ5teIMXUS15b; path=\/; Domain=.contentful.com, incap_ses_259_673446=kT46Jmpwvmf0i1yd7SeYAz5tZ1kAAAAAs4vJlZMAwjpPgFl+6WVuXA==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "7-38579686-38579693 NNNN CT(0 0 0) RT(1499950398373 32) q(0 0 0 -1) r(1 1) U5",
+            "Set-Cookie": "visid_incap_673446=GjraV8JCR+uX2ABVdvz9YiX95VkAAAAAQUIPAAAAAABIc5t1FbvcfUF6dxQUyAeZ; expires=Wed, 17 Oct 2018 11:01:57 GMT; path=\/; Domain=.contentful.com, nlbi_673446=FlffSlUiz14hcfNg6lKYhQAAAABGVqsW4wQW1Tqye\/IFBd1Q; path=\/; Domain=.contentful.com, incap_ses_416_673446=iQrLEh4X0gFuBHEIou7FBSX95VkAAAAAIYBxs1IW9HQ1bscIyLqyCA==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-59308861-59308865 NNNN CT(101 100 0) RT(1508244772787 71) q(0 0 2 -1) r(4 4) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"total\":2,\n  \"limit\":1,\n  \"skip\":0,\n  \"sys\":{\n    \"type\":\"Array\"\n  },\n  \"items\":[\n    {\n      \"name\":\"Contentful Example API\",\n      \"sys\":{\n        \"type\":\"Space\",\n        \"id\":\"cfexampleapi\",\n        \"version\":4,\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n          }\n        },\n        \"createdAt\":\"2013-06-23T19:02:00Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n          }\n        },\n        \"updatedAt\":\"2016-02-25T09:57:25Z\"\n      }\n    }\n  ]\n}\n\n"
+        "body": "{\n  \"total\":4,\n  \"limit\":1,\n  \"skip\":0,\n  \"sys\":{\n    \"type\":\"Array\"\n  },\n  \"items\":[\n    {\n      \"name\":\"Contentful Example API\",\n      \"sys\":{\n        \"type\":\"Space\",\n        \"id\":\"cfexampleapi\",\n        \"version\":4,\n        \"createdBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n          }\n        },\n        \"createdAt\":\"2013-06-23T19:02:00Z\",\n        \"updatedBy\":{\n          \"sys\":{\n            \"type\":\"Link\",\n            \"linkType\":\"User\",\n            \"id\":\"7BslKh9TdKGOK41VmLDjFZ\"\n          }\n        },\n        \"updatedAt\":\"2016-02-25T09:57:25Z\"\n      }\n    }\n  ]\n}\n\n"
     }
 }]

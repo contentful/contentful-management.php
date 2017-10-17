@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\RangeValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class RangeValidationTest extends TestCase
+class RangeValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new RangeValidation(5, 20);
 
-        $json = '{"range":{"min":5,"max":20}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/range_validation.json', $validation);
     }
 
     public function testGetSetData()

@@ -13,9 +13,9 @@ namespace Contentful\Tests\Management\Unit\Resource;
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\Entry;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class EntryTest extends TestCase
+class EntryTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -33,10 +33,6 @@ class EntryTest extends TestCase
             ->setField('publishedAt', 'en-US', new ApiDateTime('2017-01-01 16:30:00'))
             ->setField('tags', 'en-US', ['italy', 'venice', 'rome', 'sicily']);
 
-        $json = '{"fields":{"title":{"en-US":"My summer holidays"},"publishedAt":{"en-US":"2017-01-01T16:30:00Z"},"tags":{"en-US":["italy","venice","rome","sicily"]}
-
-        },"sys":{"type":"Entry","contentType": {"sys":{"type":"Link","id":"blogPost","linkType":"ContentType"}}}}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($entry));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/entry.json', $entry);
     }
 }

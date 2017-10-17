@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\EditorInterface;
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class EditorInterfaceTest extends TestCase
+class EditorInterfaceTest extends BaseTestCase
 {
     /**
      * @expectedException \LogicException
@@ -50,8 +50,6 @@ class EditorInterfaceTest extends TestCase
             ],
         ]);
 
-        $json = '{"sys":{"type":"EditorInterface"},"controls":[{"fieldId":"name","widgetId":"singleLine"},{"fieldId":"url","widgetId": "urlEditor"},{"fieldId":"rating","widgetId":"rating","settings":{"stars":5}}]}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($editorInterface));
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/editor_interface.json', $editorInterface);
     }
 }

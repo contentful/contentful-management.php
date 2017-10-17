@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\PersonalAccessToken;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class PersonalAccessTokenTest extends TestCase
+class PersonalAccessTokenTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -33,8 +33,6 @@ class PersonalAccessTokenTest extends TestCase
     {
         $personalAccessToken = new PersonalAccessToken('Test token', true);
 
-        $json = '{"sys":{"type":"PersonalAccessToken"},"name":"Test token","scopes":["content_management_read"],"token":null,"revokedAt":null}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($personalAccessToken));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/personal_access_token.json', $personalAccessToken);
     }
 }

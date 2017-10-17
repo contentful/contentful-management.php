@@ -14,13 +14,13 @@ use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Console\Application;
 use Contentful\Management\Resource\Asset;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 use Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\Author;
 use Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\BlogPost;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Filesystem\Filesystem;
 
-class CodeGenerationTest extends End2EndTestCase
+class CodeGenerationTest extends BaseTestCase
 {
     /**
      * @expectedException \RuntimeException

@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\Role\Constraint;
 
 use Contentful\Management\Resource\Role\Constraint\NotConstraint;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class NotConstraintTest extends TestCase
+class NotConstraintTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -27,7 +27,6 @@ class NotConstraintTest extends TestCase
     {
         $constraint = new NotConstraint(new NotConstraint());
 
-        $json = '{"not":[{"not":[]}]}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($constraint));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/Role/Constraint/not_constraint.json', $constraint);
     }
 }

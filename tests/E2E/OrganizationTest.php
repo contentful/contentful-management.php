@@ -13,9 +13,9 @@ namespace Contentful\Tests\Management\E2E;
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class OrganizationTest extends End2EndTestCase
+class OrganizationTest extends BaseTestCase
 {
     /**
      * @vcr e2e_organization_get_collection.json

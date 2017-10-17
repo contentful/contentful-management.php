@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class EntrySnapshotTest extends TestCase
+class EntrySnapshotTest extends BaseTestCase
 {
     /**
      * @expectedException \LogicException
@@ -57,9 +57,7 @@ class EntrySnapshotTest extends TestCase
             ],
         ]);
 
-        $json = '{"snapshot":{"sys":{"type":"Entry","contentType":{"sys":{"linkType":"ContentType","id":"person","type":"Link"}}},"fields":{"name":{"en-US":"Consuela Bananahammock"},"jobTitle":{"en-US":"Princess"}}},"sys":{"type":"Snapshot","snapshotType":"publish","snapshotEntityType":"Entry"}}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($entrySnapshot));
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/entry_snapshot.json', $entrySnapshot);
 
         return $entrySnapshot;
     }

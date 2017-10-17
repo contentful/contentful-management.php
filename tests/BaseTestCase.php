@@ -11,9 +11,10 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management;
 
 use Contentful\Management\Client;
+use GuzzleHttp\json_encode;
 use PHPUnit\Framework\TestCase;
 
-class End2EndTestCase extends TestCase
+class BaseTestCase extends TestCase
 {
     /**
      * @var string
@@ -23,12 +24,7 @@ class End2EndTestCase extends TestCase
     /**
      * @var string
      */
-    protected $readOnlySpaceId = 'cfexampleapi';
-
-    /**
-     * @var string
-     */
-    protected $readWriteSpaceId = '34luz0flcmxt';
+    protected $defaultSpaceId = '34luz0flcmxt';
 
     /**
      * @var string
@@ -66,17 +62,19 @@ class End2EndTestCase extends TestCase
     /**
      * @return Client
      */
-    protected function getReadOnlyClient(): Client
+    protected function getDefaultClient(): Client
     {
-        return $this->getClient($this->readOnlySpaceId);
+        return $this->getClient($this->defaultSpaceId);
     }
 
     /**
-     * @return Client
+     * @param string $file
+     * @param object $object
+     * @param string $message
      */
-    protected function getReadWriteClient(): Client
+    protected function assertJsonFixtureEqualsJsonObject(string $file, $object, string $message = '')
     {
-        return $this->getClient($this->readWriteSpaceId);
+        $this->assertJsonStringEqualsJsonFile(__DIR__.'/Fixtures/'.$file, json_encode($object), $message);
     }
 
     /**

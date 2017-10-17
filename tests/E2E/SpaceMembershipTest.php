@@ -13,16 +13,16 @@ namespace Contentful\Tests\Management\E2E;
 use Contentful\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\SpaceMembership;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class SpaceMembershipTest extends End2EndTestCase
+class SpaceMembershipTest extends BaseTestCase
 {
     /**
      * @vcr e2e_space_membership_get_one.json
      */
     public function testGetSpaceMembership()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $spaceMembership = $client->spaceMembership->get('3pCRBWtdkT0HzQmQpRcitU');
 
@@ -39,7 +39,7 @@ class SpaceMembershipTest extends End2EndTestCase
      */
     public function testGetSpaceMemberships()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $spaceMemberships = $client->spaceMembership->getAll();
         $spaceMembership = $spaceMemberships[1];
@@ -85,7 +85,7 @@ class SpaceMembershipTest extends End2EndTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $spaceMembership = new SpaceMembership();
         $spaceMembership

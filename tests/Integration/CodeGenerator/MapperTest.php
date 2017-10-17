@@ -20,12 +20,11 @@ use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\SystemProperties;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\BlogPost;
 use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\Mapper\BlogPostMapper;
-use function GuzzleHttp\json_encode;
 
-class MapperTest extends End2EndTestCase
+class MapperTest extends BaseTestCase
 {
     public function testGenerator()
     {
@@ -204,8 +203,7 @@ class MapperTest extends End2EndTestCase
         ], $entry->resolveRelatedLinks('en-US'));
         $this->assertEquals(['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads'], $entry->getTags('en-US'));
 
-        $json = '{"sys":{"id":"<entryId>","type":"Entry","contentType":{"sys":{"type":"Link","id":"blogPost","linkType":"ContentType"}}},"fields":{"title":{"en-US":"title"},"isPublished":{"en-US":true},"publishedAt":{"en-US":"2017-10-06T09:30:30.123Z"},"previous":{"en-US":{"sys":{"type":"Link","id":"<linkId>","linkType":"Entry"}}},"misc":{"en-US":{"seasons":[1,2,3,4,5,6,"...and a movie!"],"name":"Allura","job":"Princess and pilot of the Blue Lion"}},"body":{"en-US":"Now, this is a story all about how, my life got flipped-turned upside down"},"minimumAge":{"en-US":18},"heroImage":{"en-US":{"sys":{"type":"Link","id":"<linkId>","linkType":"Asset"}}},"randomEntry":{"en-US":{"sys":{"type":"Link","id":"<linkId>","linkType":"Entry"}}},"location":{"en-US":{"lat":10,"lon":15}},"rating":{"en-US":7.8},"images":{"en-US":[{"sys":{"type":"Link","id":"<linkId1>","linkType":"Asset"}},{"sys":{"type":"Link","id":"<linkId2>","linkType":"Asset"}},{"sys":{"type":"Link","id":"<linkId3>","linkType":"Asset"}}]},"related":{"en-US":[{"sys":{"type":"Link","id":"<linkId1>","linkType":"Entry"}},{"sys":{"type":"Link","id":"<linkId2>","linkType":"Entry"}},{"sys":{"type":"Link","id":"<linkId3>","linkType":"Entry"}}]},"tags":{"en-US":["Fire Nation","Water Tribe","Earth Kingdom","Air Nomads"]}}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($entry));
+        $this->assertJsonFixtureEqualsJsonObject('Integration/CodeGenerator/mapper.json', $entry);
     }
 }
 

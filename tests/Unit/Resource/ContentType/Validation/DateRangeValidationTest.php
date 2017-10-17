@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\DateRangeValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class DateRangeValidationTest extends TestCase
+class DateRangeValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new DateRangeValidation('2017-05-01', '2020-05-01');
 
-        $json = '{"dateRange":{"min":"2017-05-01","max":"2020-05-01"}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/date_range_validation.json', $validation);
     }
 
     public function testGetSetData()

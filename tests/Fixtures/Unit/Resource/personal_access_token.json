@@ -1,0 +1,9 @@
+{
+    "sys": {
+        "type": "PersonalAccessToken"
+    },
+    "name": "Test token",
+    "scopes": ["content_management_read"],
+    "token": null,
+    "revokedAt": null
+}

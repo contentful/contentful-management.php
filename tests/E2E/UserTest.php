@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Link;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class UserTest extends End2EndTestCase
+class UserTest extends BaseTestCase
 {
     /**
      * @vcr e2e_user_get_me.json

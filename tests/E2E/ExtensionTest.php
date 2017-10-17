@@ -12,16 +12,16 @@ namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Management\Resource\Extension;
 use Contentful\Management\Resource\Extension\FieldType;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ExtensionTest extends End2EndTestCase
+class ExtensionTest extends BaseTestCase
 {
     /**
      * @vcr e2e_extension_get.json
      */
     public function testGet()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $extension = $client->extension->get('3GKNbc6ddeIYgmWuUc0ami');
 
@@ -46,7 +46,7 @@ class ExtensionTest extends End2EndTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
         $extension = new Extension('My awesome extension');
 
         $source = '<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Sample Editor Extension</title><link rel="stylesheet" href="https://contentful.github.io/ui-extensions-sdk/cf-extension.css"><script src="https://contentful.github.io/ui-extensions-sdk/cf-extension-api.js"></script></head><body><div id="content"></div><script>window.contentfulExtension.init(function (extension) {window.alert(extension);var value = extension.field.getValue();extension.field.setValue("Hello world!"");extension.field.onValueChanged(function(value) {if (value !== currentValue) {extension.field.setValue("Hello world!"");}});});</script></body></html>';

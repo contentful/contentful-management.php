@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\LinkMimetypeGroupValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class LinkMimetypeGroupValidationTest extends TestCase
+class LinkMimetypeGroupValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new LinkMimetypeGroupValidation(['image']);
 
-        $json = '{"linkMimetypeGroup":["image"]}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/link_mimetype_group_validation.json', $validation);
     }
 
     public function testGetSetData()

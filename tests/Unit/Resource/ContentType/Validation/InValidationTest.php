@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\InValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class InValidationTest extends TestCase
+class InValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new InValidation(['General', 'iOS', 'Android']);
 
-        $json = '{"in":["General","iOS","Android"]}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/in_validation.json', $validation);
     }
 
     public function testGetSetData()

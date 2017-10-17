@@ -34,34 +34,33 @@ use Contentful\Management\Resource\ContentType\Validation\RangeValidation;
 use Contentful\Management\Resource\ContentType\Validation\RegexpValidation;
 use Contentful\Management\Resource\ContentType\Validation\SizeValidation;
 use Contentful\Management\Resource\ContentType\Validation\UniqueValidation;
-use Contentful\Tests\Management\End2EndTestCase;
-use GuzzleHttp\json_encode;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ContentTypeTest extends End2EndTestCase
+class ContentTypeTest extends BaseTestCase
 {
     /**
      * @vcr e2e_content_type_get_one.json
      */
     public function testGetContentType()
     {
-        $client = $this->getReadOnlyClient();
+        $client = $this->getDefaultClient();
 
         $contentType = $client->contentType->get('cat');
 
         $sys = $contentType->getSystemProperties();
         $this->assertEquals('cat', $sys->getId());
         $this->assertEquals('ContentType', $sys->getType());
-        $this->assertEquals(33, $sys->getVersion());
-        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:10.704'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-07-06T09:58:52.710'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getPublishedBy());
-        $this->assertEquals(32, $sys->getPublishedVersion());
-        $this->assertEquals(8, $sys->getPublishedCounter());
-        $this->assertEquals(new ApiDateTime('2017-07-06T09:58:52.691'), $sys->getPublishedAt());
-        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:12.852'), $sys->getFirstPublishedAt());
+        $this->assertEquals(3, $sys->getVersion());
+        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
+        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:16.461'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getUpdatedAt());
+        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getCreatedBy());
+        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getUpdatedBy());
+        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getPublishedBy());
+        $this->assertEquals(2, $sys->getPublishedVersion());
+        $this->assertEquals(1, $sys->getPublishedCounter());
+        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getPublishedAt());
+        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getFirstPublishedAt());
 
         $this->assertEquals('Cat', $contentType->getName());
         $this->assertEquals('Meow.', $contentType->getDescription());
@@ -86,9 +85,6 @@ class ContentTypeTest extends End2EndTestCase
         $field0validation0 = $field0validations[0];
         $this->assertInstanceOf(SizeValidation::class, $field0validation0);
         $this->assertEquals(3, $field0validation0->getMin());
-
-        $json = '{"name":"Cat","fields": [{"id":"name","name":"Name","type":"Text","required": true,"localized": true,"validations": [{"size": {"min": 3}}]},{"id":"likes","name":"Likes","type":"Array","required": false,"localized": false,"items": {"type":"Symbol"}},{"id":"color","name":"Color","type":"Symbol","required": false,"localized": false},{"id":"bestFriend","name":"Best Friend","type":"Link","required": false,"localized": false,"linkType":"Entry"},{"id":"birthday","name":"Birthday","type":"Date","required": false,"localized": false},{"id":"lifes","name":"Lifes left","type":"Integer","required": false,"localized": false,"disabled": true,"omitted": false},{"id":"lives","name":"Lives left","type":"Integer","required": false,"localized": false},{"id":"image","name":"Image","required": false,"localized": false,"type":"Link","linkType":"Asset"}],"displayField":"name","description":"Meow.","sys": {"id":"cat","type":"ContentType","space": {"sys": {  "type":"Link",  "linkType":"Space",  "id":"cfexampleapi" }},"createdAt":"2013-06-27T22:46:10.704Z","createdBy": {"sys": {  "type":"Link",  "linkType":"User",  "id":"7BslKh9TdKGOK41VmLDjFZ" }},"firstPublishedAt":"2013-06-27T22:46:12.852Z","publishedCounter": 8,"publishedAt":"2017-07-06T09:58:52.691Z","publishedBy": {"sys": {  "type":"Link",  "linkType":"User",  "id":"5wTIctqPekjOi9TGctNW7L" }},"publishedVersion": 32,"version": 33,"updatedAt":"2017-07-06T09:58:52.710Z","updatedBy": {"sys":{"type":"Link","linkType":"User","id":"5wTIctqPekjOi9TGctNW7L"}}}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($contentType));
     }
 
     /**
@@ -96,7 +92,7 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testGetContentTypes()
     {
-        $client = $this->getReadOnlyClient();
+        $client = $this->getDefaultClient();
         $contentTypes = $client->contentType->getAll();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
@@ -113,7 +109,7 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testCreateUpdateActivateDeleteContentType()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('THE best content type');
@@ -139,7 +135,7 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testCreateContentTypeWithGivenId()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('This content type will have `myCustomTestCt` as ID');
@@ -157,7 +153,7 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testInvalidFieldAccess()
     {
-        $contentType = $this->getReadWriteClient()->contentType->get('bookmark');
+        $contentType = $this->getDefaultClient()->contentType->get('bookmark');
         $contentType->getField('invalidField');
     }
 
@@ -204,7 +200,7 @@ class ContentTypeTest extends End2EndTestCase
      */
     public function testContentTypeFields()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
         $contentType = new ContentType('fullContentType');
         $contentType->setName('Full Content Type');
         $contentType->setDescription('This content type includes all field types');

@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\User;
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class UserTest extends TestCase
+class UserTest extends BaseTestCase
 {
     /**
      * @expectedException \LogicException
@@ -43,9 +43,7 @@ class UserTest extends TestCase
             'confirmed' => true,
         ]);
 
-        $json = '{"sys":{"type":"User"},"firstName":"Titus","lastName":"Andromedon","avatarUrl":"https://www.example.com/avatar.jpg","email":"pinotnoir@example.com","activated":true,"signInCount":10,"confirmed":true}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($user));
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/user.json', $user);
 
         return $user;
     }

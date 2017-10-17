@@ -1,0 +1,23 @@
+{
+    "fields": {
+        "title": {
+            "en-US": "My summer holidays"
+        },
+        "publishedAt": {
+            "en-US": "2017-01-01T16:30:00Z"
+        },
+        "tags": {
+            "en-US": ["italy", "venice", "rome", "sicily"]
+        }
+    },
+    "sys": {
+        "type": "Entry",
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "id": "blogPost",
+                "linkType": "ContentType"
+            }
+        }
+    }
+}

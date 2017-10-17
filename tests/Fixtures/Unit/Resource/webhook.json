@@ -1,0 +1,17 @@
+{
+    "sys": {
+        "type": "WebhookDefinition"
+    },
+    "name": "My webhook",
+    "url": "https://www.example.com/webhooks",
+    "topics": ["Entry.create", "ContentType.create", "*.publish", "Asset.*"],
+    "httpBasicUsername": "my_username",
+    "httpBasicPassword": "k3de[@fds-54f",
+    "headers": [{
+        "key": "X-Header-1",
+        "value": "Value1"
+    }, {
+        "key": "X-Header-2",
+        "value": "Value2"
+    }]
+}

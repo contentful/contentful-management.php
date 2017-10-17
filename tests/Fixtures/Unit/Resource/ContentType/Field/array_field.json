@@ -1,0 +1,12 @@
+{
+    "name": "A name",
+    "id": "someId",
+    "type": "Array",
+    "required": false,
+    "localized": false,
+    "disabled": false,
+    "omitted": false,
+    "items": {
+        "type": "Symbol"
+    }
+}

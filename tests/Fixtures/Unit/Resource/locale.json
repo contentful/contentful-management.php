@@ -1,0 +1,12 @@
+{
+    "sys": {
+        "type": "Locale"
+    },
+    "name": "Swiss Italian",
+    "code": "it-CH",
+    "fallbackCode": "en-US",
+    "optional": true,
+    "contentDeliveryApi": false,
+    "contentManagementApi": true,
+    "default": false
+}

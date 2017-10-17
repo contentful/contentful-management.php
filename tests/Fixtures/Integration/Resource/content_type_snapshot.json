@@ -1,0 +1,24 @@
+{
+    "sys": {
+        "type": "Snapshot",
+        "snapshotType": "publish",
+        "snapshotEntityType": "ContentType"
+    },
+    "snapshot": {
+        "name": "Versioned Content Type",
+        "displayField": "title",
+        "fields": [{
+            "name": "Title",
+            "id": "title",
+            "type": "Symbol"
+        }, {
+            "name": "Description",
+            "id": "description",
+            "type": "Text"
+        }],
+        "sys": {
+            "id": "versionedContentType",
+            "type": "ContentType"
+        }
+    }
+}

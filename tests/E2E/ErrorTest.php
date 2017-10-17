@@ -14,9 +14,9 @@ use Contentful\Management\Exception\VersionMismatchException;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Locale;
 use Contentful\Management\SystemProperties;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ErrorTest extends End2EndTestCase
+class ErrorTest extends BaseTestCase
 {
     /**
      * @expectedException \Contentful\Management\Exception\UnknownKeyException
@@ -25,7 +25,7 @@ class ErrorTest extends End2EndTestCase
      */
     public function testUnknownKeyError()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $locale = new UnknownKeyLocale('American Italian', 'it-US');
         $client->locale->create($locale);
@@ -38,7 +38,7 @@ class ErrorTest extends End2EndTestCase
      */
     public function testMissingKeyError()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $locale = new EmptyBodyLocale('American Italian', 'it-US');
         $client->locale->create($locale);
@@ -51,7 +51,7 @@ class ErrorTest extends End2EndTestCase
      */
     public function testValidationFailedError()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $locale = new ValidationFailedLocale('American Italian', 'it-US');
         $client->locale->create($locale);
@@ -62,12 +62,12 @@ class ErrorTest extends End2EndTestCase
      */
     public function testVersionMismatchError()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $asset = new Asset();
         $client->asset->create($asset);
 
-        $fakeAsset = new FakeAsset($asset->getId(), $this->readWriteSpaceId);
+        $fakeAsset = new FakeAsset($asset->getId(), $this->defaultSpaceId);
         $fakeAsset->setProxy($client->asset);
 
         try {
@@ -90,7 +90,7 @@ class ErrorTest extends End2EndTestCase
      */
     public function testDefaultLocaleNotDeletableError()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
         $defaultLocale = $client->locale->get('6khdsfQbtrObkbrgWDTGe8');
 
         $defaultLocale->delete();
@@ -103,7 +103,7 @@ class ErrorTest extends End2EndTestCase
      */
     public function testFallbackLocaleNotDeletableError()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
         $enGbLocale = $client->locale->get('71wkZKqgktY9Uzg76CtsBK');
 
@@ -117,7 +117,7 @@ class ErrorTest extends End2EndTestCase
      */
     public function testFallbackLocaleNotRenameableError()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
         $enGbLocale = $client->locale->get('71wkZKqgktY9Uzg76CtsBK');
 

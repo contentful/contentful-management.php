@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\Space;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class SpaceTest extends TestCase
+class SpaceTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -33,6 +33,6 @@ class SpaceTest extends TestCase
     {
         $space = new Space('A space', 'organizationId');
 
-        $this->assertJsonStringEqualsJsonString('{"sys": {"type": "Space"}, "name": "A space"}', json_encode($space));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/space.json', $space);
     }
 }

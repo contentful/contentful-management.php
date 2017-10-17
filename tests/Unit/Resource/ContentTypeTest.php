@@ -13,9 +13,9 @@ namespace Contentful\Tests\Management\Unit\Resource;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Field\NumberField;
 use Contentful\Management\Resource\ContentType\Field\SymbolField;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ContentTypeTest extends TestCase
+class ContentTypeTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -47,6 +47,6 @@ class ContentTypeTest extends TestCase
             ])
             ->setDisplayField('name');
 
-        $this->assertJsonStringEqualsJsonString('{"sys": {"type": "ContentType"}, "name": "Test CT", "fields": [{"id":"name","name":"Name","type":"Symbol","required": false,"localized": false,"disabled": false,"omitted": false}, {"id":"number","name":"Number","type":"Number","required": false,"localized": false,"disabled": false,"omitted": false}], "description": "A cool new content type.", "displayField": "name"}', json_encode($contentType));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/content_type.json', $contentType);
     }
 }

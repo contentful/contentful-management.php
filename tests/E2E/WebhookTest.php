@@ -16,16 +16,16 @@ use Contentful\Management\Query;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\Webhook;
 use Contentful\Management\Resource\WebhookCall;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class WebhookTest extends End2EndTestCase
+class WebhookTest extends BaseTestCase
 {
     /**
      * @vcr e2e_webhook_get_one.json
      */
     public function testGetWebhook()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $webhook = $client->webhook->get('3tilCowN1lI1rDCe9vhK0C');
 
@@ -40,7 +40,7 @@ class WebhookTest extends End2EndTestCase
         $this->assertEquals(['Entry.auto_save'], $webhook->getTopics());
 
         $sys = $webhook->getSystemProperties();
-        $this->assertEquals(new Link($this->readWriteSpaceId, 'Space'), $sys->getSpace());
+        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
         $this->assertEquals(new ApiDateTime('2017-06-13T08:30:13Z'), $sys->getCreatedAt());
         $this->assertEquals(new ApiDateTime('2017-06-13T08:30:51Z'), $sys->getUpdatedAt());
     }
@@ -50,7 +50,7 @@ class WebhookTest extends End2EndTestCase
      */
     public function testGetWebhooks()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
         $webhooks = $client->webhook->getAll();
 
         $this->assertInstanceOf(Webhook::class, $webhooks[0]);
@@ -69,7 +69,7 @@ class WebhookTest extends End2EndTestCase
      */
     public function testCreateWebhook(): Webhook
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $webhook = (new Webhook('cf-webhook-X7v4Cy26RJ', 'https://www.example.com/cf-EtumCxGYNobexO7BCi6I6HSaxlpFf3d9YWNvRGb4'))
             ->addTopic('Entry.create')
@@ -115,7 +115,7 @@ class WebhookTest extends End2EndTestCase
      */
     public function testWebhookEventsFiredAndLogged(Webhook $webhook): Webhook
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $entry1 = (new Entry('person'))
             ->setField('name', 'en-US', 'Burt Macklin')

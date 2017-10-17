@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\Webhook;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class WebhookTest extends TestCase
+class WebhookTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -98,8 +98,6 @@ class WebhookTest extends TestCase
 
     public function testJsonSerialize()
     {
-        $json = '{"sys":{"type":"WebhookDefinition"},"name":"My webhook","url":"https://www.example.com/webhooks","topics":["Entry.create","ContentType.create","*.publish","Asset.*"],"httpBasicUsername":"my_username","httpBasicPassword":"k3de[@fds-54f","headers":[{"key":"X-Header-1","value":"Value1"},{"key":"X-Header-2","value":"Value2"}]}';
-
         $webhook = (new Webhook('My webhook', 'https://www.example.com/webhooks', ['Entry.create', 'ContentType.create', '*.publish', 'Asset.*']))
             ->setHttpBasicUsername('my_username')
             ->setHttpBasicPassword('k3de[@fds-54f')
@@ -107,6 +105,6 @@ class WebhookTest extends TestCase
             ->addHeader('X-Header-2', 'Value2')
         ;
 
-        $this->assertJsonStringEqualsJsonString($json, json_encode($webhook));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/webhook.json', $webhook);
     }
 }
