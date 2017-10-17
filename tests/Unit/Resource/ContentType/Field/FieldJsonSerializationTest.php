@@ -12,63 +12,63 @@ namespace Contentful\Tests\Management\Unit\Resource\ContentType\Field;
 
 use Contentful\Management\Resource\ContentType\Field;
 use Contentful\Management\Resource\ContentType\Field\FieldInterface;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class FieldJsonSerializationTest extends TestCase
+class FieldJsonSerializationTest extends BaseTestCase
 {
     /**
      * @dataProvider fieldProvider
      *
+     * @param string         $fixture
      * @param FieldInterface $field
-     * @param string         $expected
      */
-    public function testJsonSerialization($field, $expected)
+    public function testJsonSerialization($fixture, $field)
     {
-        $this->assertEquals($expected, json_encode($field));
+        $this->assertJsonFixtureEqualsJsonObject($fixture, $field);
     }
 
     public function fieldProvider()
     {
         return [
             'array field' => [
+                'Unit/Resource/ContentType/Field/array_field.json',
                 new Field\ArrayField('someId', 'A name', 'Symbol'),
-                '{"name":"A name","id":"someId","type":"Array","required":false,"localized":false,"disabled":false,"omitted":false,"items":{"type":"Symbol"}}',
             ],
             'boolean field' => [
+                'Unit/Resource/ContentType/Field/boolean_field.json',
                 new Field\BooleanField('someId', 'A name'),
-                '{"name":"A name","id":"someId","type":"Boolean","required":false,"localized":false,"disabled":false,"omitted":false}',
             ],
             'date field' => [
+                'Unit/Resource/ContentType/Field/date_field.json',
                 new Field\DateField('someId', 'A name'),
-                '{"name":"A name","id":"someId","type":"Date","required":false,"localized":false,"disabled":false,"omitted":false}',
             ],
             'integer field' => [
+                'Unit/Resource/ContentType/Field/integer_field.json',
                 new Field\IntegerField('someId', 'A name'),
-                '{"name":"A name","id":"someId","type":"Integer","required":false,"localized":false,"disabled":false,"omitted":false}',
             ],
             'link field' => [
+                'Unit/Resource/ContentType/Field/link_field.json',
                 new Field\LinkField('someId', 'A name', 'Entry'),
-                '{"name":"A name","id":"someId","type":"Link","required":false,"localized":false,"disabled":false,"omitted":false,"linkType":"Entry"}',
             ],
             'location field' => [
+                'Unit/Resource/ContentType/Field/location_field.json',
                 new Field\LocationField('someId', 'A name'),
-                '{"name":"A name","id":"someId","type":"Location","required":false,"localized":false,"disabled":false,"omitted":false}',
             ],
             'number field' => [
+                'Unit/Resource/ContentType/Field/number_field.json',
                 new Field\NumberField('someId', 'A name'),
-                '{"name":"A name","id":"someId","type":"Number","required":false,"localized":false,"disabled":false,"omitted":false}',
             ],
             'object field' => [
+                'Unit/Resource/ContentType/Field/object_field.json',
                 new Field\ObjectField('someId', 'A name'),
-                '{"name":"A name","id":"someId","type":"Object","required":false,"localized":false,"disabled":false,"omitted":false}',
             ],
             'symbol field' => [
+                'Unit/Resource/ContentType/Field/symbol_field.json',
                 new Field\SymbolField('someId', 'A name'),
-                '{"name":"A name","id":"someId","type":"Symbol","required":false,"localized":false,"disabled":false,"omitted":false}',
             ],
             'text field' => [
+                'Unit/Resource/ContentType/Field/text_field.json',
                 new Field\TextField('someId', 'A name'),
-                '{"name":"A name","id":"someId","type":"Text","required":false,"localized":false,"disabled":false,"omitted":false}',
             ],
         ];
     }

@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\Role\Constraint;
 
 use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class EqualityConstraintTest extends TestCase
+class EqualityConstraintTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -29,7 +29,6 @@ class EqualityConstraintTest extends TestCase
     {
         $constraint = new EqualityConstraint('sys.type', 'Entry');
 
-        $json = '{"equals":[{"doc":"sys.type"},"Entry"]}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($constraint));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/Role/Constraint/equality_constraint.json', $constraint);
     }
 }

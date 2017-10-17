@@ -1,0 +1,6 @@
+{
+    "regexp": {
+        "pattern": "^such",
+        "flags": "im"
+    }
+}

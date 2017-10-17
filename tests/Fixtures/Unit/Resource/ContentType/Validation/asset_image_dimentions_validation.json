@@ -1,0 +1,12 @@
+{
+    "assetImageDimensions": {
+        "width": {
+            "min": 100,
+            "max": 1000
+        },
+        "height": {
+            "min": 200,
+            "max": 2300
+        }
+    }
+}

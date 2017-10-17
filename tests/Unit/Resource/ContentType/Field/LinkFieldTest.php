@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Field;
 
 use Contentful\Management\Resource\ContentType\Field\LinkField;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class LinkFieldTest extends TestCase
+class LinkFieldTest extends BaseTestCase
 {
     public function testEntryLinkGetSetData()
     {

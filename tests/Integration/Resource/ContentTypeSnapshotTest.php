@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ContentTypeSnapshotTest extends TestCase
+class ContentTypeSnapshotTest extends BaseTestCase
 {
     /**
      * @expectedException \LogicException
@@ -58,9 +58,7 @@ class ContentTypeSnapshotTest extends TestCase
             ],
         ]);
 
-        $json = '{"sys":{"type":"Snapshot","snapshotType":"publish","snapshotEntityType":"ContentType"},"snapshot":{"name":"Versioned Content Type","displayField":"title","fields":[{"name":"Title","id":"title","type":"Symbol"},{"name":"Description","id":"description","type":"Text"}],"sys":{"id":"versionedContentType","type":"ContentType"}}}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($contentTypeSnapshot));
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/content_type_snapshot.json', $contentTypeSnapshot);
 
         return $contentTypeSnapshot;
     }

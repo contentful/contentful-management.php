@@ -13,9 +13,9 @@ namespace Contentful\Tests\Management\E2E;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\PersonalAccessToken;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class PersonalAccessTokenTest extends End2EndTestCase
+class PersonalAccessTokenTest extends BaseTestCase
 {
     /**
      * @vcr e2e_personal_access_token_create_get_revoke.json

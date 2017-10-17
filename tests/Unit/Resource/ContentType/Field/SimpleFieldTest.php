@@ -14,9 +14,9 @@ use Contentful\Management\Resource\ContentType\Field\SymbolField;
 use Contentful\Management\Resource\ContentType\Validation\InValidation;
 use Contentful\Management\Resource\ContentType\Validation\RangeValidation;
 use Contentful\Management\Resource\ContentType\Validation\SizeValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class SimpleFieldTest extends TestCase
+class SimpleFieldTest extends BaseTestCase
 {
     public function testGetSetData()
     {

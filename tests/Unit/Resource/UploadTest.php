@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\Upload;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class UploadTest extends TestCase
+class UploadTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -28,8 +28,6 @@ class UploadTest extends TestCase
     {
         $upload = new Upload('contents');
 
-        $json = '{"sys":{"type":"Upload"}}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($upload));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/upload.json', $upload);
     }
 }

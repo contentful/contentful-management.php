@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\Organization;
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class OrganizationTest extends TestCase
+class OrganizationTest extends BaseTestCase
 {
     /**
      * @expectedException \LogicException
@@ -37,9 +37,7 @@ class OrganizationTest extends TestCase
             'name' => 'Test Org',
         ]);
 
-        $json = '{"sys":{"type":"Organization"},"name":"Test Org"}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($organization));
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/organization.json', $organization);
 
         return $organization;
     }

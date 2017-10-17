@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\Role\Constraint;
 
 use Contentful\Management\Resource\Role\Constraint\AndConstraint;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class AndConstraintTest extends TestCase
+class AndConstraintTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -40,7 +40,6 @@ class AndConstraintTest extends TestCase
     {
         $constraint = new AndConstraint([new AndConstraint()]);
 
-        $json = '{"and":[{"and":[]}]}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($constraint));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/Role/Constraint/and_constraint.json', $constraint);
     }
 }

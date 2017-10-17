@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\File\RemoteUploadFile;
 use Contentful\Management\Resource\Asset;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class AssetTest extends TestCase
+class AssetTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -47,6 +47,6 @@ class AssetTest extends TestCase
             ->setDescription('en-US', 'This asset is really cool')
             ->setFile('en-US', $file);
 
-        $this->assertJsonStringEqualsJsonString('{"fields":{"file":{"en-US":{"fileName":"testfile.jpg","contentType":"image/jpeg","upload":"https://www.example.com/testfile.jpeg"}},"title":{"en-US":"A cool asset"},"description":{"en-US":"This asset is really cool"}},"sys":{"type":"Asset"}}', json_encode($asset));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/asset.json', $asset);
     }
 }

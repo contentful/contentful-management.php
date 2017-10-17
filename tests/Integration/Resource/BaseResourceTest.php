@@ -13,9 +13,9 @@ namespace Contentful\Tests\Management\Integration\Resource;
 use Contentful\Management\Client;
 use Contentful\Management\Proxy\BaseProxy;
 use Contentful\Management\Resource\BaseResource;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class BaseResourceTest extends TestCase
+class BaseResourceTest extends BaseTestCase
 {
     /**
      * @expectedException \LogicException

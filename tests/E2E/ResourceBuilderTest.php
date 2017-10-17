@@ -14,9 +14,9 @@ use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\SystemProperties;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ResourceBuilderTest extends End2EndTestCase
+class ResourceBuilderTest extends BaseTestCase
 {
     /**
      * @vcr e2e_resource_builder_add_mappers.json
@@ -30,7 +30,7 @@ class ResourceBuilderTest extends End2EndTestCase
             }
         });
 
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $client->setBuilder($builder);
 

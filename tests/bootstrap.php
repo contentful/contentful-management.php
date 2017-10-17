@@ -1,21 +1,17 @@
 <?php
 
+/**
+ * This file is part of the contentful-management.php package.
+ *
+ * @copyright 2015-2017 Contentful GmbH
+ * @license   MIT
+ */
 declare(strict_types=1);
-
-require_once __DIR__.'/../vendor/autoload.php';
-require_once __DIR__.'/End2EndTestCase.php';
 
 use VCR\Event\BeforeRecordEvent;
 use VCR\Request;
 use VCR\VCR;
 use VCR\VCREvents;
-
-function cleanRequest(BeforeRecordEvent $event, $eventName)
-{
-    $request = $event->getRequest();
-    // Remove the Authorization header to prevent leaking CMA tokens
-    $request->removeHeader('Authorization');
-}
 
 /**
  * @param Request $request
@@ -48,14 +44,16 @@ VCR::configure()
     ->setStorage('json')
     ->setCassettePath('tests/Recordings')
     ->addRequestMatcher('custom_headers', function (Request $first, Request $second) {
-        $first = clean_headers_array($first);
-        $second = clean_headers_array($second);
-
-        return $first == $second;
+        return clean_headers_array($first) == clean_headers_array($second);
     })
     ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers']);
 
-VCR::getEventDispatcher()->addListener(VCREvents::VCR_BEFORE_RECORD, 'cleanRequest');
+VCR::getEventDispatcher()
+    ->addListener(VCREvents::VCR_BEFORE_RECORD, function (BeforeRecordEvent $event) {
+        $request = $event->getRequest();
+        // Remove the Authorization header to prevent leaking CMA tokens
+        $request->removeHeader('Authorization');
+    });
 
 VCR::turnOn();
 VCR::turnOff();

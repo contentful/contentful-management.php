@@ -1,0 +1,12 @@
+{
+    "sys": {
+        "type": "User"
+    },
+    "firstName": "Titus",
+    "lastName": "Andromedon",
+    "avatarUrl": "https://www.example.com/avatar.jpg",
+    "email": "pinotnoir@example.com",
+    "activated": true,
+    "signInCount": 10,
+    "confirmed": true
+}

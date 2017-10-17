@@ -11,12 +11,12 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Exception;
 
 use Contentful\Management\Exception\RateLimitExceededException;
+use Contentful\Tests\Management\BaseTestCase;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 
-class RateLimitExceededExceptionTest extends TestCase
+class RateLimitExceededExceptionTest extends BaseTestCase
 {
     public function testExceptionStructure()
     {

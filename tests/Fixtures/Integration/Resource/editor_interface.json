@@ -1,0 +1,18 @@
+{
+    "sys": {
+        "type": "EditorInterface"
+    },
+    "controls": [{
+        "fieldId": "name",
+        "widgetId": "singleLine"
+    }, {
+        "fieldId": "url",
+        "widgetId": "urlEditor"
+    }, {
+        "fieldId": "rating",
+        "widgetId": "rating",
+        "settings": {
+            "stars": 5
+        }
+    }]
+}

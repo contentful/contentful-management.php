@@ -17,9 +17,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Contentful\\": "src/",
-      "Contentful\\Tests\\Management\\": "tests/"
+      "Contentful\\": "src/"
     }
+  },
+  "autoload-dev": {
+      "psr-4": {
+        "Contentful\\Tests\\Management\\": "tests/"
+      }
   },
   "extra": {
     "branch-alias": {

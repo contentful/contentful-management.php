@@ -20,16 +20,16 @@ use Contentful\Management\Resource\PreviewApiKey;
 use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\Space;
 use Contentful\Management\Resource\Webhook;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ClientTest extends End2EndTestCase
+class ClientTest extends BaseTestCase
 {
     /**
      * @vcr e2e_client_link_resolver.json
      */
     public function testLinkResolver()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $link = new Link('2TEG7c2zYkSSuKmsqEwCS', 'Asset');
         $asset = $client->resolveLink($link);
@@ -61,7 +61,7 @@ class ClientTest extends End2EndTestCase
         $this->assertInstanceOf(PreviewApiKey::class, $previewApiKey);
         $this->assertEquals('Preview Key', $previewApiKey->getName());
 
-        $link = new Link($this->readWriteSpaceId, 'Space');
+        $link = new Link($this->defaultSpaceId, 'Space');
         $space = $client->resolveLink($link);
         $this->assertInstanceOf(Space::class, $space);
         $this->assertEquals('PHP CMA', $space->getName());
@@ -114,7 +114,7 @@ class ClientTest extends End2EndTestCase
      */
     public function testEnabledMethods(string $proxy, array $methods)
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $this->assertEquals($methods, $client->getProxy($proxy)->getEnabledMethods(), '', 0.0, 10, true);
     }
@@ -152,7 +152,7 @@ class ClientTest extends End2EndTestCase
      */
     public function testProxyMethodsWithoutObjects()
     {
-        $proxy = $this->getReadWriteClient()->asset;
+        $proxy = $this->getDefaultClient()->asset;
 
         $asset = new Asset();
         $asset->setTitle('en-US', 'My asset');
@@ -181,7 +181,7 @@ class ClientTest extends End2EndTestCase
         $this->expectException(InvalidProxyActionException::class);
         $this->expectExceptionMessage($message);
 
-        $proxy = $this->getReadWriteClient()->asset;
+        $proxy = $this->getDefaultClient()->asset;
 
         $proxy->{$method}($object);
     }

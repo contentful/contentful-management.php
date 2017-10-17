@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\RegexpValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class RegexpValidationTest extends TestCase
+class RegexpValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new RegexpValidation('^such', 'im');
 
-        $json = '{"regexp":{"pattern":"^such","flags":"im"}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/regexp_validation.json', $validation);
     }
 
     public function testGetSetData()

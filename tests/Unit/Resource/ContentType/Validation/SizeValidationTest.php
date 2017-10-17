@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\SizeValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class SizeValidationTest extends TestCase
+class SizeValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new SizeValidation(5, 20);
 
-        $json = '{"size":{"min":5,"max":20}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/size_validation.json', $validation);
     }
 
     public function testGetSetData()

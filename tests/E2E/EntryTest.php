@@ -14,37 +14,36 @@ use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Entry;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class EntryTest extends End2EndTestCase
+class EntryTest extends BaseTestCase
 {
     /**
      * @vcr e2e_entry_get_one.json
      */
     public function testGetEntry()
     {
-        $client = $this->getReadOnlyClient();
+        $client = $this->getDefaultClient();
 
-        $entry = $client->entry->get('nyancat');
+        $entry = $client->entry->get('4OuC4z6qs0yEWMeqkGmokw');
 
-        $this->assertEquals('Nyan Cat', $entry->getField('name', 'en-US'));
-        $this->assertEquals('Nyan vIghro\'', $entry->getField('name', 'tlh'));
-        $this->assertEquals(new Link('nyancat', 'Entry'), $entry->asLink());
+        $this->assertEquals('Direwolf', $entry->getField('name', 'en-US'));
+        $this->assertEquals(new Link('4OuC4z6qs0yEWMeqkGmokw', 'Entry'), $entry->asLink());
 
         $sys = $entry->getSystemProperties();
-        $this->assertEquals('nyancat', $sys->getId());
+        $this->assertEquals('4OuC4z6qs0yEWMeqkGmokw', $sys->getId());
         $this->assertEquals('Entry', $sys->getType());
-        $this->assertEquals(new Link('cat', 'ContentType'), $sys->getContentType());
-        $this->assertEquals(15, $sys->getVersion());
-        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:15.91'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2016-05-19T11:40:57.752'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('5NItczv8FWvPn5UTJpTOMM', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals(10, $sys->getPublishedVersion());
-        $this->assertEquals(5, $sys->getPublishedCounter());
-        $this->assertEquals(new ApiDateTime('2013-09-04T09:19:39.027'), $sys->getPublishedAt());
-        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:19.513'), $sys->getFirstPublishedAt());
+        $this->assertEquals(new Link('fantasticCreature', 'ContentType'), $sys->getContentType());
+        $this->assertEquals(6, $sys->getVersion());
+        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
+        $this->assertEquals(new ApiDateTime('2017-08-22T11:50:19.841'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-08-22T11:50:26.991'), $sys->getUpdatedAt());
+        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getCreatedBy());
+        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getUpdatedBy());
+        $this->assertEquals(5, $sys->getPublishedVersion());
+        $this->assertEquals(1, $sys->getPublishedCounter());
+        $this->assertEquals(new ApiDateTime('2017-08-22T11:50:26.990'), $sys->getPublishedAt());
+        $this->assertEquals(new ApiDateTime('2017-08-22T11:50:26.990'), $sys->getFirstPublishedAt());
     }
 
     /**
@@ -52,7 +51,7 @@ class EntryTest extends End2EndTestCase
      */
     public function testGetEntries()
     {
-        $client = $this->getReadOnlyClient();
+        $client = $this->getDefaultClient();
         $entries = $client->entry->getAll();
 
         $this->assertInstanceOf(Entry::class, $entries[0]);
@@ -69,7 +68,7 @@ class EntryTest extends End2EndTestCase
      */
     public function testCreateUpdatePublishUnpublishArchiveUnarchiveDelete()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
@@ -106,7 +105,7 @@ class EntryTest extends End2EndTestCase
      */
     public function testCreateEntryWithGivenId()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
@@ -122,7 +121,7 @@ class EntryTest extends End2EndTestCase
      */
     public function testCreateEntryWithoutFields()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         // This entry has nothing in its `fields` property,
         // and because of this, Contentful omits the property altogether.

@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\AssetImageDimensionsValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class AssetImageDimensionsValidationTest extends TestCase
+class AssetImageDimensionsValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new AssetImageDimensionsValidation(100, 1000, 200, 2300);
 
-        $json = '{"assetImageDimensions":{"width":{"min":100,"max":1000},"height":{"min":200,"max":2300}}}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/asset_image_dimentions_validation.json', $validation);
     }
 
     public function testGetSetData()

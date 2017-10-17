@@ -14,9 +14,9 @@ use Contentful\Management\CodeGenerator\Loader;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\SystemProperties;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class LoaderTest extends End2EndTestCase
+class LoaderTest extends BaseTestCase
 {
     public function testGenerator()
     {

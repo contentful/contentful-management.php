@@ -14,16 +14,16 @@ use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class PublishedContentTypeTest extends End2EndTestCase
+class PublishedContentTypeTest extends BaseTestCase
 {
     /**
      * @vcr e2e_content_type_get_published_one.json
      */
     public function testGetPublishedContentType()
     {
-        $client = $this->getReadOnlyClient();
+        $client = $this->getDefaultClient();
         $contentType = $client->publishedContentType->get('cat');
 
         $this->assertEquals('Cat', $contentType->getName());
@@ -35,10 +35,10 @@ class PublishedContentTypeTest extends End2EndTestCase
         $sys = $contentType->getSystemProperties();
         $this->assertEquals('cat', $sys->getId());
         $this->assertEquals('ContentType', $sys->getType());
-        $this->assertEquals(new ApiDateTime('2013-06-27T22:46:12.852'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-07-06T09:58:52.691'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(8, $sys->getRevision());
+        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getUpdatedAt());
+        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
+        $this->assertEquals(1, $sys->getRevision());
     }
 
     /**
@@ -46,7 +46,7 @@ class PublishedContentTypeTest extends End2EndTestCase
      */
     public function testGetPublishedContentTypes()
     {
-        $client = $this->getReadOnlyClient();
+        $client = $this->getDefaultClient();
         $contentTypes = $client->publishedContentType->getAll();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);

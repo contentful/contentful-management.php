@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class RoleTest extends TestCase
+class RoleTest extends BaseTestCase
 {
     /**
      * @expectedException \RuntimeException

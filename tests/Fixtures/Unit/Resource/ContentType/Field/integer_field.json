@@ -1,0 +1,9 @@
+{
+    "name": "A name",
+    "id": "someId",
+    "type": "Integer",
+    "required": false,
+    "localized": false,
+    "disabled": false,
+    "omitted": false
+}

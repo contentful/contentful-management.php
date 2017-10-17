@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Link;
 use Contentful\Management\Resource\SpaceMembership;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class SpaceMembershipTest extends TestCase
+class SpaceMembershipTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -45,8 +45,6 @@ class SpaceMembershipTest extends TestCase
             ->setAdmin(false)
             ->addRole(new Link('6khUMmsfVslYd7tRcThTgE', 'Role'));
 
-        $json = '{"sys":{"type":"SpaceMembership"},"email":"php-cma-sdk-tests-eb2a4f5@contentful.com","admin":false,"roles":[{"sys":{"type":"Link","linkType":"Role","id":"6khUMmsfVslYd7tRcThTgE"}}]}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($spaceMembership));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/space_membership.json', $spaceMembership);
     }
 }

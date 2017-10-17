@@ -10,16 +10,16 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class EditorInterfaceTest extends End2EndTestCase
+class EditorInterfaceTest extends BaseTestCase
 {
     /**
      * @vcr e2e_editor_interface_get_update.json
      */
     public function testGetUpdate()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $editorInterface = $client->editorInterface->get('bookmark');
 

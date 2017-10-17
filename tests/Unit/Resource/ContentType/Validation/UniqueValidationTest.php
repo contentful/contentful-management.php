@@ -11,16 +11,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\ContentType\Validation;
 
 use Contentful\Management\Resource\ContentType\Validation\UniqueValidation;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class UniqueValidationTest extends TestCase
+class UniqueValidationTest extends BaseTestCase
 {
     public function testJsonSerialize()
     {
         $validation = new UniqueValidation();
 
-        $json = '{"unique":true}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($validation));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/unique_validation.json', $validation);
 
         $this->assertEquals(['Symbol', 'Integer', 'Number'], $validation->getValidFieldTypes());
     }

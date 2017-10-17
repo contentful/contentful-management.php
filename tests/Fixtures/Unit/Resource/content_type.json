@@ -1,0 +1,25 @@
+{
+    "sys": {
+        "type": "ContentType"
+    },
+    "name": "Test CT",
+    "fields": [{
+        "id": "name",
+        "name": "Name",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false
+    }, {
+        "id": "number",
+        "name": "Number",
+        "type": "Number",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false
+    }],
+    "description": "A cool new content type.",
+    "displayField": "name"
+}

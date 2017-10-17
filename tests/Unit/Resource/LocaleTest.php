@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\Locale;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class LocaleTest extends TestCase
+class LocaleTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -55,8 +55,6 @@ class LocaleTest extends TestCase
             ->setOptional(true)
             ->setFallbackCode('en-US');
 
-        $json = '{"sys":{"type":"Locale"},"name":"Swiss Italian","code":"it-CH","fallbackCode":"en-US","optional":true,"contentDeliveryApi":false,"contentManagementApi":true,"default":false}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($locale));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/locale.json', $locale);
     }
 }

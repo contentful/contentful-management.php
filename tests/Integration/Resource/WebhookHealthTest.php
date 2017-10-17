@@ -12,9 +12,9 @@ namespace Contentful\Tests\Management\Integration\Resource;
 
 use Contentful\Management\Resource\WebhookHealth;
 use Contentful\Management\ResourceBuilder;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class WebhookHealthTest extends TestCase
+class WebhookHealthTest extends BaseTestCase
 {
     /**
      * @expectedException \LogicException
@@ -41,9 +41,7 @@ class WebhookHealthTest extends TestCase
             ]
         );
 
-        $json = '{"sys":{"type":"Webhook"},"calls":{"total":233,"healthy":102}}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($webhookHealth));
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/webhook_health.json', $webhookHealth);
 
         return $webhookHealth;
     }

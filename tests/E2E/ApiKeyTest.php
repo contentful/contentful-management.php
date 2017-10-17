@@ -14,16 +14,16 @@ use Contentful\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\DeliveryApiKey;
 use Contentful\Management\Resource\PreviewApiKey;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ApiKeyTest extends End2EndTestCase
+class ApiKeyTest extends BaseTestCase
 {
     /**
      * @vcr e2e_api_key_delivery_get_one_collection.json
      */
     public function testGetDeliveryApiKey()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $deliveryApiKey = $client->deliveryApiKey->get('1MwuwHlM9TXf3RXcsvMrjM');
         $this->assertEquals('Example API Key', $deliveryApiKey->getName());
@@ -63,7 +63,7 @@ class ApiKeyTest extends End2EndTestCase
      */
     public function testGetPreviewApiKey()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $previewApiKey = $client->previewApiKey->get('1Mx3FqXX5XCJDtNpVW4BZI');
         $this->assertEquals('Preview Key', $previewApiKey->getName());
@@ -94,7 +94,7 @@ class ApiKeyTest extends End2EndTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $deliveryApiKey = new DeliveryApiKey('iOS');
         $deliveryApiKey->setDescription('A custom description');

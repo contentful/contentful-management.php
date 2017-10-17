@@ -12,10 +12,9 @@ namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\Extension;
 use Contentful\Management\Resource\Extension\FieldType;
-use PHPUnit\Framework\TestCase;
-use function GuzzleHttp\json_encode;
+use Contentful\Tests\Management\BaseTestCase;
 
-class ExtensionTest extends TestCase
+class ExtensionTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -40,8 +39,6 @@ class ExtensionTest extends TestCase
             ->setSidebar(true)
             ->setSource('https://www.example.com/cf-ui-extension-test');
 
-        $json = '{"sys":{"type":"Extension"},"extension":{"name":"My extension","fieldTypes":[{"type":"Symbol"}],"src":"https:\/\/www.example.com\/cf-ui-extension-test","sidebar":true}}';
-
-        $this->assertJsonStringEqualsJsonString($json, json_encode($extension));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/extension.json', $extension);
     }
 }

@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource\Role\Constraint;
 
 use Contentful\Management\Resource\Role\Constraint\OrConstraint;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class OrConstraintTest extends TestCase
+class OrConstraintTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -40,7 +40,6 @@ class OrConstraintTest extends TestCase
     {
         $constraint = new OrConstraint([new OrConstraint()]);
 
-        $json = '{"or":[{"or":[]}]}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($constraint));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/Role/Constraint/or_constraint.json', $constraint);
     }
 }

@@ -1,0 +1,9 @@
+{
+    "effect": "allow",
+    "actions": "all",
+    "constraint": {
+        "equals": [{
+            "doc": "sys.type"
+        }, "Entry"]
+    }
+}

@@ -13,9 +13,9 @@ namespace Contentful\Tests\Management\Unit;
 use Contentful\Link;
 use Contentful\Management\ApiDateTime;
 use Contentful\Management\SystemProperties;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class SystemPropertiesTest extends TestCase
+class SystemPropertiesTest extends BaseTestCase
 {
     public function testGetSetData()
     {
@@ -125,7 +125,6 @@ class SystemPropertiesTest extends TestCase
         $this->assertEquals('User', $sys->getArchivedBy()->getLinkType());
         $this->assertEquals('userId', $sys->getArchivedBy()->getId());
 
-        $json = '{"id":"entryId","type":"Entry","space":{"sys":{"type":"Link","id":"spaceId","linkType":"Space"}},"contentType":{"sys":{"type":"Link","id":"contentTypeId","linkType":"ContentType"}},"createdAt":"2017-01-01T12:30:15Z","updatedAt":"2017-02-02T12:30:15Z","archivedAt":"2017-04-04T12:30:15Z","publishedAt":"2017-03-03T12:30:15Z","firstPublishedAt":"2017-05-05T12:30:15Z","version":1,"revision":0,"createdBy":{"sys":{"type":"Link","id":"userId","linkType":"User"}},"updatedBy":{"sys":{"type":"Link","id":"userId","linkType":"User"}},"publishedBy":{"sys":{"type":"Link","id":"userId","linkType":"User"}},"archivedBy":{"sys":{"type":"Link","id":"userId","linkType":"User"}},"publishedCounter":10,"publishedVersion":5,"archivedVersion":15,"snapshotType":"publish","snapshotEntityType":"Entry","expiresAt":"2017-06-06T12:30:15Z"}';
-        $this->assertJsonStringEqualsJsonString($json, json_encode($sys));
+        $this->assertJsonFixtureEqualsJsonObject('Unit/system_properties.json', $sys);
     }
 }

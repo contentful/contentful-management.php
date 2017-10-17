@@ -19,16 +19,16 @@ use Contentful\Management\Resource\Role\Constraint\NotConstraint;
 use Contentful\Management\Resource\Role\Constraint\OrConstraint;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class RoleTest extends End2EndTestCase
+class RoleTest extends BaseTestCase
 {
     /**
      * @vcr e2e_role_get_one.json
      */
     public function testGetRole()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $role = $client->role->get('6khUMmsfVslYd7tRcThTgE');
 
@@ -57,7 +57,7 @@ class RoleTest extends End2EndTestCase
      */
     public function testGetRoles()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $roles = $client->role->getAll();
         $role = $roles[0];
@@ -90,7 +90,7 @@ class RoleTest extends End2EndTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getReadWriteClient();
+        $client = $this->getDefaultClient();
 
         $role = new Role('Custom role', 'This is a custom test role');
 

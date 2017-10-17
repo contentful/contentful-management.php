@@ -1,0 +1,10 @@
+{
+    "name": "A name",
+    "id": "someId",
+    "type": "Link",
+    "required": false,
+    "localized": false,
+    "disabled": false,
+    "omitted": false,
+    "linkType": "Entry"
+}

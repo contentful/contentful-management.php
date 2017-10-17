@@ -16,28 +16,28 @@ use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Space;
 use Contentful\ResourceArray;
-use Contentful\Tests\Management\End2EndTestCase;
+use Contentful\Tests\Management\BaseTestCase;
 
-class SpaceTest extends End2EndTestCase
+class SpaceTest extends BaseTestCase
 {
     /**
      * @vcr e2e_space_get_one.json
      */
     public function testGetSpace()
     {
-        $space = $this->getUnboundClient()->space->get($this->readOnlySpaceId);
+        $space = $this->getUnboundClient()->space->get($this->defaultSpaceId);
 
         $this->assertInstanceOf(Space::class, $space);
-        $this->assertEquals(new Link($this->readOnlySpaceId, 'Space'), $space->asLink());
+        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $space->asLink());
         $sys = $space->getSystemProperties();
-        $this->assertEquals($this->readOnlySpaceId, $sys->getId());
+        $this->assertEquals($this->defaultSpaceId, $sys->getId());
         $this->assertEquals('Space', $sys->getType());
-        $this->assertEquals(new ApiDateTime('2013-06-23T19:02:00'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2016-02-25T09:57:25'), $sys->getUpdatedAt());
-        $this->assertEquals(4, $sys->getVersion());
-        $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('7BslKh9TdKGOK41VmLDjFZ', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals('Contentful Example API', $space->getName());
+        $this->assertEquals(new ApiDateTime('2017-05-18T13:35:42'), $sys->getCreatedAt());
+        $this->assertEquals(new ApiDateTime('2017-07-06T10:12:00'), $sys->getUpdatedAt());
+        $this->assertEquals(5, $sys->getVersion());
+        $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getCreatedBy());
+        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getUpdatedBy());
+        $this->assertEquals('PHP CMA', $space->getName());
     }
 
     /**
