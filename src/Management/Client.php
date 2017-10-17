@@ -50,7 +50,7 @@ class Client extends BaseClient
      *
      * @var string
      */
-    const VERSION = '0.9.0-beta2';
+    const VERSION = '0.9.0-dev';
 
     /**
      * The default URI to which all requests should be made.
