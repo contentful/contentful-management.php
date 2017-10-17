@@ -6,6 +6,7 @@
  * @copyright 2015-2017 Contentful GmbH
  * @license   MIT
  */
+declare(strict_types=1);
 
 namespace Contentful\Management;
 
@@ -28,7 +29,7 @@ class ApiDateTime extends \DateTimeImmutable
         $milliseconds = floor($date->format('u') / 1000);
 
         if ($milliseconds > 0) {
-            $result .= '.'.str_pad($milliseconds, 3, '0', STR_PAD_LEFT);
+            $result .= '.'.str_pad((string) $milliseconds, 3, '0', STR_PAD_LEFT);
         }
 
         return $result.'Z';

@@ -69,7 +69,7 @@ class EntryTest extends End2EndTestCase
     /**
      * @depends testGenerator
      */
-    public function testGeneratedClassWorks()
+    public function testGenerateCodeWorks()
     {
         $entry = new BlogPost();
         $entry->setProxy(new EntryFakeProxy());
