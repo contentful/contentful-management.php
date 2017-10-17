@@ -354,6 +354,40 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
+     * @return bool
+     */
+    public function isDraft(): bool
+    {
+        return $this->publishedVersion === null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublished(): bool
+    {
+        return $this->publishedVersion !== null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUpdated(): bool
+    {
+        // The act of publishing an entity increases its version by 1, so any entry which has
+        // 2 versions higher or more than the publishedVersion has unpublished changes.
+        return $this->publishedVersion !== null && $this->version > $this->publishedVersion + 1;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isArchived(): bool
+    {
+        return $this->archivedVersion !== null;
+    }
+
+    /**
      * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array

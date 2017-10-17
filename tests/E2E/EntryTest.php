@@ -77,6 +77,10 @@ class EntryTest extends BaseTestCase
         $this->assertNotNull($entry->getId());
         $this->assertEquals(['name' => 'A name'], $entry->getFields('en-US'));
         $this->assertEquals(['name' => ['en-US' => 'A name']], $entry->getFields());
+        $this->assertTrue($entry->getSystemProperties()->isDraft());
+        $this->assertFalse($entry->getSystemProperties()->isPublished());
+        $this->assertFalse($entry->getSystemProperties()->isUpdated());
+        $this->assertFalse($entry->getSystemProperties()->isArchived());
 
         $entry->setName('en-US', 'A better name');
 
@@ -87,15 +91,24 @@ class EntryTest extends BaseTestCase
         $this->assertEquals(2, $entry->getSystemProperties()->getArchivedVersion());
         $this->assertInstanceOf(ApiDateTime::class, $entry->getSystemProperties()->getArchivedAt());
         $this->assertInstanceOf(Link::class, $entry->getSystemProperties()->getArchivedBy());
+        $this->assertTrue($entry->getSystemProperties()->isArchived());
 
         $entry->unarchive();
         $this->assertNull($entry->getSystemProperties()->getArchivedVersion());
+        $this->assertFalse($entry->getSystemProperties()->isArchived());
 
         $entry->publish();
         $this->assertEquals(4, $entry->getSystemProperties()->getPublishedVersion());
+        $this->assertTrue($entry->getSystemProperties()->isPublished());
+
+        $entry->setName('en-US', 'An even better name');
+        $entry->update();
+        $this->assertTrue($entry->getSystemProperties()->isPublished());
+        $this->assertTrue($entry->getSystemProperties()->isUpdated());
 
         $entry->unpublish();
         $this->assertNull($entry->getSystemProperties()->getPublishedVersion());
+        $this->assertFalse($entry->getSystemProperties()->isPublished());
 
         $entry->delete();
     }
