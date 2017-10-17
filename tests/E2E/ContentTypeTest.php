@@ -116,6 +116,9 @@ class ContentTypeTest extends BaseTestCase
 
         $client->contentType->create($contentType);
         $this->assertNotNull($contentType->getId());
+        $this->assertTrue($contentType->getSystemProperties()->isDraft());
+        $this->assertFalse($contentType->getSystemProperties()->isPublished());
+        $this->assertFalse($contentType->getSystemProperties()->isUpdated());
 
         $contentType->setName('Test CT - Updates');
         $contentType->update();
@@ -123,9 +126,11 @@ class ContentTypeTest extends BaseTestCase
         $contentType->publish();
         $this->assertEquals(1, $contentType->getSystemProperties()->getPublishedCounter());
         $this->assertEquals(2, $contentType->getSystemProperties()->getPublishedVersion());
+        $this->assertTrue($contentType->getSystemProperties()->isPublished());
 
         $contentType->unpublish();
         $this->assertNull($contentType->getSystemProperties()->getPublishedVersion());
+        $this->assertFalse($contentType->getSystemProperties()->isPublished());
 
         $contentType->delete();
     }

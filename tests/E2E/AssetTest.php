@@ -88,6 +88,10 @@ class AssetTest extends BaseTestCase
 
         $client->asset->create($asset);
         $this->assertNotNull($asset->getId());
+        $this->assertTrue($asset->getSystemProperties()->isDraft());
+        $this->assertFalse($asset->getSystemProperties()->isPublished());
+        $this->assertFalse($asset->getSystemProperties()->isUpdated());
+        $this->assertFalse($asset->getSystemProperties()->isArchived());
 
         $asset->process('en-US');
 
@@ -117,15 +121,19 @@ class AssetTest extends BaseTestCase
 
         $asset->archive();
         $this->assertEquals(3, $asset->getSystemProperties()->getArchivedVersion());
+        $this->assertTrue($asset->getSystemProperties()->isArchived());
 
         $asset->unarchive();
         $this->assertNull($asset->getSystemProperties()->getArchivedVersion());
+        $this->assertFalse($asset->getSystemProperties()->isArchived());
 
         $asset->publish();
         $this->assertEquals(5, $asset->getSystemProperties()->getPublishedVersion());
+        $this->assertTrue($asset->getSystemProperties()->isPublished());
 
         $asset->unpublish();
         $this->assertNull($asset->getSystemProperties()->getPublishedVersion());
+        $this->assertFalse($asset->getSystemProperties()->isPublished());
 
         $asset->delete();
     }
