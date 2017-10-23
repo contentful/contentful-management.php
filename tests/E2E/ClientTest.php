@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
+use Contentful\Client;
 use Contentful\File\RemoteUploadFile;
 use Contentful\Link;
 use Contentful\Management\Exception\InvalidProxyActionException;
@@ -24,6 +25,24 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class ClientTest extends BaseTestCase
 {
+    public function testUserAgent()
+    {
+        $client = $this->getUnboundClient();
+
+        $property = (new \ReflectionClass(Client::class))->getProperty('userAgentGenerator');
+        $property->setAccessible(true);
+        $generator = $property->getValue($client);
+
+        // PHP doesn't support the "g" modifier
+        // so we can't use PHPUnit's assertRegExp method
+        // and we need to rely on preg_match_all
+        // which returns "false" if no matches are found,
+        // or a number otherwise
+        $result = \preg_match_all('/(app|sdk|platform|integration|os) \S+(\/\d+.\d+.\d+(-[\w\d-]+)?)?;/im', $generator->getUserAgent());
+        $this->assertInternalType('int', $result);
+        $this->assertGreaterThanOrEqual(2, $result);
+    }
+
     /**
      * @vcr e2e_client_link_resolver.json
      */
