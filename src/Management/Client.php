@@ -313,7 +313,7 @@ class Client extends BaseClient
      */
     protected function getSdkName(): string
     {
-        return 'contentful-management.php/';
+        return 'contentful-management.php';
     }
 
     /**
