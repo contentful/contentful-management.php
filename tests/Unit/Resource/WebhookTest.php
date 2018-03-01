@@ -19,18 +19,18 @@ class WebhookTest extends BaseTestCase
     {
         $webhook = new Webhook('Test Webhook', 'https://www.example.com/webhook');
 
-        $this->assertEquals('Test Webhook', $webhook->getName());
-        $this->assertEquals('https://www.example.com/webhook', $webhook->getUrl());
+        $this->assertSame('Test Webhook', $webhook->getName());
+        $this->assertSame('https://www.example.com/webhook', $webhook->getUrl());
         $webhook->setName('Another name');
-        $this->assertEquals('Another name', $webhook->getName());
+        $this->assertSame('Another name', $webhook->getName());
 
         $sys = $webhook->getSystemProperties();
-        $this->assertEquals('WebhookDefinition', $sys->getType());
+        $this->assertSame('WebhookDefinition', $sys->getType());
 
         $webhook->setHttpBasicUsername('my_username');
-        $this->assertEquals('my_username', $webhook->getHttpBasicUsername());
+        $this->assertSame('my_username', $webhook->getHttpBasicUsername());
         $webhook->setHttpBasicPassword('k3de[@fds-54f');
-        $this->assertEquals('k3de[@fds-54f', $webhook->getHttpBasicPassword());
+        $this->assertSame('k3de[@fds-54f', $webhook->getHttpBasicPassword());
 
         $webhook->setHeaders([
             'X-Test-Header' => 'Test value',
@@ -44,42 +44,42 @@ class WebhookTest extends BaseTestCase
                 1 => new \stdClass(),
             ]);
             $this->fail('Setting an array of headers where either keys or values are not strings should result in an exception being thrown.');
-        } catch (\Throwable $e) {
-            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
-            $this->assertEquals('Argument "$headers" of "Webhook::setHeaders()" must be an array where all keys and values are strings.', $e->getMessage());
+        } catch (\Throwable $exception) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $exception);
+            $this->assertSame('Argument "$headers" of "Webhook::setHeaders()" must be an array where all keys and values are strings.', $exception->getMessage());
         }
 
         $webhook->addHeader('X-Another-Header', 'Third test value');
         $this->assertCount(3, $webhook->getHeaders());
         $this->assertTrue($webhook->hasHeader('X-Another-Header'));
 
-        $this->assertEquals('Third test value', $webhook->getHeader('X-Another-Header'));
+        $this->assertSame('Third test value', $webhook->getHeader('X-Another-Header'));
 
         try {
             $webhook->getHeader('X-Not-Existing');
             $this->fail('Accessing an non-existing header should result in an exception being thrown.');
-        } catch (\Throwable $e) {
-            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
-            $this->assertEquals('Invalid header key "X-Not-Existing" provided.', $e->getMessage());
+        } catch (\Throwable $exception) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $exception);
+            $this->assertSame('Invalid header key "X-Not-Existing" provided.', $exception->getMessage());
         }
 
         $webhook->removeHeader('X-Test-Header');
-        $this->assertEquals([
+        $this->assertSame([
             'X-Second-Test' => 'Another value',
             'X-Another-Header' => 'Third test value',
         ], $webhook->getHeaders());
-        $this->assertEquals('Third test value', $webhook->getHeader('X-Another-Header'));
+        $this->assertSame('Third test value', $webhook->getHeader('X-Another-Header'));
 
         try {
             $webhook->removeHeader('X-Not-Existing');
             $this->fail('Accessing an non-existing header should result in an exception being thrown.');
-        } catch (\Throwable $e) {
-            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
-            $this->assertEquals('Invalid header key "X-Not-Existing" provided.', $e->getMessage());
+        } catch (\Throwable $exception) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $exception);
+            $this->assertSame('Invalid header key "X-Not-Existing" provided.', $exception->getMessage());
         }
 
         $webhook->setTopics(['Entry.create', '*.publish', 'invalid_key' => 'Asset.*']);
-        $this->assertEquals(['Entry.create', '*.publish', 'Asset.*'], $webhook->getTopics());
+        $this->assertSame(['Entry.create', '*.publish', 'Asset.*'], $webhook->getTopics());
         $this->assertFalse($webhook->hasTopic('Entry.publish'));
         $webhook->addTopic('Entry.publish');
         $this->assertTrue($webhook->hasTopic('Entry.create'));
@@ -88,12 +88,12 @@ class WebhookTest extends BaseTestCase
         try {
             $webhook->removeTopic('Entry.archive');
             $this->fail('Accessing an non-existing topic should result in an exception being thrown.');
-        } catch (\Throwable $e) {
-            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
-            $this->assertEquals('Invalid topic "Entry.archive" provided.', $e->getMessage());
+        } catch (\Throwable $exception) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $exception);
+            $this->assertSame('Invalid topic "Entry.archive" provided.', $exception->getMessage());
         }
         $webhook->removeTopic('*.publish');
-        $this->assertEquals(['Entry.create', 'Entry.publish', 'Asset.*'], $webhook->getTopics(), '', 0, 10, true);
+        $this->assertSame(['Entry.create', 'Asset.*', 'Entry.publish'], $webhook->getTopics(), '', 0, 10, true);
     }
 
     public function testJsonSerialize()

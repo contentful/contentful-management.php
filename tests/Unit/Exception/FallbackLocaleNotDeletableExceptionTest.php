@@ -35,7 +35,7 @@ class FallbackLocaleNotDeletableExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('0324c03ccf507f52515d39ab54e89516', $exception->getRequestId());
-        $this->assertEquals('Cannot delete locale which is fallback of another one.', $exception->getMessage());
+        $this->assertSame('0324c03ccf507f52515d39ab54e89516', $exception->getRequestId());
+        $this->assertSame('Cannot delete locale which is fallback of another one.', $exception->getMessage());
     }
 }

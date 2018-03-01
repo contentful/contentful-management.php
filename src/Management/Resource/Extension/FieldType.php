@@ -53,17 +53,17 @@ class FieldType implements \JsonSerializable
     public function __construct(string $type, array $options = [])
     {
         if (!$this->isValidFieldType($type)) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Trying to create invalid extension field type "%s".',
                 $type
             ));
         }
 
-        if ($type == 'Link') {
+        if ('Link' === $type) {
             return $this->setLinkFieldType(...$options);
         }
 
-        if ($type == 'Array') {
+        if ('Array' === $type) {
             return $this->setArrayFieldType(...$options);
         }
 
@@ -89,7 +89,7 @@ class FieldType implements \JsonSerializable
      */
     private function isValidFieldType(string $type): bool
     {
-        return \in_array($type, ['Symbol', 'Text', 'Integer', 'Number', 'Date', 'Boolean', 'Object', 'Link', 'Array']);
+        return \in_array($type, ['Symbol', 'Text', 'Integer', 'Number', 'Date', 'Boolean', 'Object', 'Link', 'Array'], true);
     }
 
     /**
@@ -99,8 +99,8 @@ class FieldType implements \JsonSerializable
      */
     private function setLinkFieldType(string $linkType)
     {
-        if (!\in_array($linkType, ['Entry', 'Asset'])) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\in_array($linkType, ['Entry', 'Asset'], true)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Trying to create link field type, but link type must be either "Entry" or "Asset", "%s" given.',
                 $linkType
             ));
@@ -120,16 +120,16 @@ class FieldType implements \JsonSerializable
      */
     private function setArrayFieldType(string $arrayType, string $linkType = null)
     {
-        if ($arrayType !== 'Symbol' && $arrayType !== 'Link') {
-            throw new \InvalidArgumentException(sprintf(
+        if ('Symbol' !== $arrayType && 'Link' !== $arrayType) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Trying to create array field type using invalid type "%s".',
                 $arrayType
             ));
         }
 
-        if ($arrayType == 'Link') {
-            if (!\in_array($linkType, ['Entry', 'Asset'])) {
-                throw new \InvalidArgumentException(sprintf(
+        if ('Link' === $arrayType) {
+            if (!\in_array($linkType, ['Entry', 'Asset'], true)) {
+                throw new \InvalidArgumentException(\sprintf(
                     'Trying to create array field type with items type "Link", but link type must be either "Entry" or "Asset", "%s" given.',
                     $linkType
                 ));

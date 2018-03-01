@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Tests\Management\BaseTestCase;
 
@@ -27,15 +25,15 @@ class OrganizationTest extends BaseTestCase
         $this->assertCount(3, $organizations);
 
         $organization = $organizations[2];
-        $this->assertEquals('Contentful PHP SDK Testing', $organization->getName());
+        $this->assertSame('Contentful PHP SDK Testing', $organization->getName());
 
         $sys = $organization->getSystemProperties();
-        $this->assertEquals('Organization', $sys->getType());
-        $this->assertEquals('4Q3Lza73mxcjmluLU7V5EG', $sys->getId());
-        $this->assertEquals(new Link('4Q3Lza73mxcjmluLU7V5EG', 'Organization'), $organization->asLink());
-        $this->assertEquals(1, $sys->getVersion());
-        $this->assertEquals(new ApiDateTime('2017-07-12T13:04:54'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-07-13T09:35:27'), $sys->getUpdatedAt());
+        $this->assertSame('Organization', $sys->getType());
+        $this->assertSame('4Q3Lza73mxcjmluLU7V5EG', $sys->getId());
+        $this->assertLink('4Q3Lza73mxcjmluLU7V5EG', 'Organization', $organization->asLink());
+        $this->assertSame(1, $sys->getVersion());
+        $this->assertSame('2017-07-12T13:04:54Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-07-13T09:35:27Z', (string) $sys->getUpdatedAt());
     }
 
     /**
@@ -51,7 +49,7 @@ class OrganizationTest extends BaseTestCase
 
         $organization = $organizations[2];
 
-        $this->assertEquals('Contentful PHP SDK Testing', $organization->getName());
-        $this->assertEquals('4Q3Lza73mxcjmluLU7V5EG', $organization->getId());
+        $this->assertSame('Contentful PHP SDK Testing', $organization->getName());
+        $this->assertSame('4Q3Lza73mxcjmluLU7V5EG', $organization->getId());
     }
 }

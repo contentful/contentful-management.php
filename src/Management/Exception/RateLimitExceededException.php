@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Exception;
 
-use Contentful\Exception\RateLimitExceededException as BaseRateLimitExceededException;
-use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
+use Contentful\Core\Exception\RateLimitExceededException as BaseRateLimitExceededException;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * RateLimitExceededException class.
@@ -41,7 +41,7 @@ class RateLimitExceededException extends BaseRateLimitExceededException
     /**
      * {@inheritdoc}
      */
-    public function __construct(GuzzleRequestException $previous, $message = '')
+    public function __construct(RequestException $previous, $message = '')
     {
         parent::__construct($previous, $message);
 

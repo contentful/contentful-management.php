@@ -2,7 +2,7 @@
 
 namespace Contentful\Tests\Management\Fixtures\E2E\CodeGenerator;
 
-use Contentful\Link;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Entry;
 

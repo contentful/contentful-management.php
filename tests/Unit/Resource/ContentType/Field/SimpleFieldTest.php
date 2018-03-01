@@ -22,9 +22,9 @@ class SimpleFieldTest extends BaseTestCase
     {
         $field = new SymbolField('name', 'Name');
 
-        $this->assertEquals('name', $field->getId());
-        $this->assertEquals('Name', $field->getName());
-        $this->assertEquals('Symbol', $field->getType());
+        $this->assertSame('name', $field->getId());
+        $this->assertSame('Name', $field->getName());
+        $this->assertSame('Symbol', $field->getType());
         $this->assertCount(0, $field->getValidations());
         $this->assertFalse($field->isOmitted());
         $this->assertFalse($field->isRequired());
@@ -32,7 +32,7 @@ class SimpleFieldTest extends BaseTestCase
         $this->assertFalse($field->isLocalized());
 
         $field->setName('Better Name');
-        $this->assertEquals('Better Name', $field->getName());
+        $this->assertSame('Better Name', $field->getName());
 
         $this->assertFalse($field->isOmitted());
         $field->setOmitted(true);

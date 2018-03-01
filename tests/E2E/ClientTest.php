@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Client;
-use Contentful\File\RemoteUploadFile;
-use Contentful\Link;
+use Contentful\Core\Api\BaseClient;
+use Contentful\Core\Api\Link;
+use Contentful\Core\File\RemoteUploadFile;
 use Contentful\Management\Exception\InvalidProxyActionException;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
@@ -29,7 +29,7 @@ class ClientTest extends BaseTestCase
     {
         $client = $this->getUnboundClient();
 
-        $property = (new \ReflectionClass(Client::class))->getProperty('userAgentGenerator');
+        $property = (new \ReflectionClass(BaseClient::class))->getProperty('userAgentGenerator');
         $property->setAccessible(true);
         $generator = $property->getValue($client);
 
@@ -53,37 +53,37 @@ class ClientTest extends BaseTestCase
         $link = new Link('2TEG7c2zYkSSuKmsqEwCS', 'Asset');
         $asset = $client->resolveLink($link);
         $this->assertInstanceOf(Asset::class, $asset);
-        $this->assertEquals('Contentful Logo', $asset->getTitle('en-US'));
+        $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
 
         $link = new Link('3LM5FlCdGUIM0Miqc664q6', 'Entry');
         $entry = $client->resolveLink($link);
         $this->assertInstanceOf(Entry::class, $entry);
-        $this->assertEquals('Josh Lyman', $entry->getField('name', 'en-US'));
+        $this->assertSame('Josh Lyman', $entry->getField('name', 'en-US'));
 
         $link = new Link('person', 'ContentType');
         $contentType = $client->resolveLink($link);
         $this->assertInstanceOf(ContentType::class, $contentType);
-        $this->assertEquals('Person', $contentType->getName());
+        $this->assertSame('Person', $contentType->getName());
 
         $link = new Link('6khUMmsfVslYd7tRcThTgE', 'Role');
         $role = $client->resolveLink($link);
         $this->assertInstanceOf(Role::class, $role);
-        $this->assertEquals('Developer', $role->getName());
+        $this->assertSame('Developer', $role->getName());
 
         $link = new Link('3tilCowN1lI1rDCe9vhK0C', 'WebhookDefinition');
         $webhook = $client->resolveLink($link);
         $this->assertInstanceOf(Webhook::class, $webhook);
-        $this->assertEquals('Default Webhook', $webhook->getName());
+        $this->assertSame('Default Webhook', $webhook->getName());
 
         $link = new Link('1Mx3FqXX5XCJDtNpVW4BZI', 'PreviewApiKey');
         $previewApiKey = $client->resolveLink($link);
         $this->assertInstanceOf(PreviewApiKey::class, $previewApiKey);
-        $this->assertEquals('Preview Key', $previewApiKey->getName());
+        $this->assertSame('Preview Key', $previewApiKey->getName());
 
         $link = new Link($this->defaultSpaceId, 'Space');
         $space = $client->resolveLink($link);
         $this->assertInstanceOf(Space::class, $space);
-        $this->assertEquals('PHP CMA', $space->getName());
+        $this->assertSame('PHP CMA', $space->getName());
     }
 
     public function testCurrentSpaceId()
@@ -91,7 +91,7 @@ class ClientTest extends BaseTestCase
         $client = $this->getUnboundClient();
 
         $client->setCurrentSpaceId('spaceId');
-        $this->assertEquals('spaceId', $client->getCurrentSpaceId());
+        $this->assertSame('spaceId', $client->getCurrentSpaceId());
 
         $client->setCurrentSpaceId(null);
         $this->assertNull($client->getCurrentSpaceId());
@@ -135,18 +135,18 @@ class ClientTest extends BaseTestCase
     {
         $client = $this->getDefaultClient();
 
-        $this->assertEquals($methods, $client->getProxy($proxy)->getEnabledMethods(), '', 0.0, 10, true);
+        $this->assertSame($methods, $client->getProxy($proxy)->getEnabledMethods(), '', 0.0, 10, true);
     }
 
     public function proxyMethodsProvider()
     {
         return [
-            ['asset', ['create', 'update', 'delete', 'publish', 'unpublish', 'archive', 'unarchive', 'process']],
+            ['asset', ['create', 'update', 'delete', 'archive', 'unarchive', 'publish', 'unpublish', 'process']],
             ['contentType', ['create', 'update', 'delete', 'publish', 'unpublish']],
             ['contentTypeSnapshot', []],
             ['editorInterface', ['update']],
             ['deliveryApiKey', ['create', 'update', 'delete']],
-            ['entry', ['create', 'update', 'delete', 'publish', 'unpublish', 'archive', 'unarchive']],
+            ['entry', ['create', 'update', 'delete', 'archive', 'unarchive', 'publish', 'unpublish']],
             ['entrySnapshot', []],
             ['locale', ['create', 'update', 'delete']],
             ['organization', []],
@@ -165,7 +165,7 @@ class ClientTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Contentful\Exception\NotFoundException
+     * @expectedException \Contentful\Core\Exception\NotFoundException
      * @expectedExceptionMessage The resource could not be found.
      * @vcr e2e_client_proxy_methods_without_objects.json
      */

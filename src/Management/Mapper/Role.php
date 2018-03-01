@@ -100,7 +100,7 @@ class Role extends BaseMapper
                     'value' => $data[$key][$valueKey],
                 ]);
             default:
-                throw new \RuntimeException(sprintf(
+                throw new \RuntimeException(\sprintf(
                     'Trying to build a constraint object using invalid key "%s".',
                     $key
                 ));
@@ -132,7 +132,7 @@ class Role extends BaseMapper
             return null;
         }
 
-        if ($permission == ['read']) {
+        if ($permission === ['read']) {
             return 'read';
         }
 

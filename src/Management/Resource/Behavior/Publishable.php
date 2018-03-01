@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource\Behavior;
 
-use Contentful\Management\Resource\ResourceInterface;
+use Contentful\Core\Resource\ResourceInterface;
 
 /**
  * Publishable interface.

@@ -26,15 +26,15 @@ class RegexpValidationTest extends BaseTestCase
     {
         $validation = new RegexpValidation('^such', 'im');
 
-        $this->assertEquals(['Text', 'Symbol'], $validation->getValidFieldTypes());
+        $this->assertSame(['Text', 'Symbol'], $validation->getValidFieldTypes());
 
-        $this->assertEquals('^such', $validation->getPattern());
-        $this->assertEquals('im', $validation->getFlags());
+        $this->assertSame('^such', $validation->getPattern());
+        $this->assertSame('im', $validation->getFlags());
 
         $validation->setPattern('much');
-        $this->assertEquals('much', $validation->getPattern());
+        $this->assertSame('much', $validation->getPattern());
 
         $validation->setFlags('g');
-        $this->assertEquals('g', $validation->getFlags());
+        $this->assertSame('g', $validation->getFlags());
     }
 }

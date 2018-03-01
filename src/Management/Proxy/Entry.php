@@ -10,10 +10,10 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Proxy;
 
+use Contentful\Core\Resource\ResourceArray;
+use Contentful\Core\Resource\ResourceInterface;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Entry as ResourceClass;
-use Contentful\Management\Resource\ResourceInterface;
-use Contentful\ResourceArray;
 
 /**
  * Entries class.

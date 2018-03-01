@@ -26,13 +26,13 @@ class RangeValidationTest extends BaseTestCase
     {
         $validation = new RangeValidation(5, 20);
 
-        $this->assertEquals(['Number', 'Integer'], $validation->getValidFieldTypes());
+        $this->assertSame(['Number', 'Integer'], $validation->getValidFieldTypes());
 
-        $this->assertEquals(5, $validation->getMin());
-        $this->assertEquals(20, $validation->getMax());
+        $this->assertSame(5, $validation->getMin());
+        $this->assertSame(20, $validation->getMax());
 
         $validation->setMin(17);
-        $this->assertEquals(17, $validation->getMin());
+        $this->assertSame(17, $validation->getMin());
 
         $validation->setMax(null);
         $this->assertNull($validation->getMax());

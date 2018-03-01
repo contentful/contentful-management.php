@@ -26,11 +26,11 @@ class LinkContentTypeValidationTest extends BaseTestCase
     {
         $validation = new LinkContentTypeValidation(['post', 'doc', 'product']);
 
-        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
+        $this->assertSame(['Link'], $validation->getValidFieldTypes());
 
-        $this->assertEquals(['post', 'doc', 'product'], $validation->getContentTypes());
+        $this->assertSame(['post', 'doc', 'product'], $validation->getContentTypes());
 
         $validation->setContentTypes(['cat', 'dog']);
-        $this->assertEquals(['cat', 'dog'], $validation->getContentTypes());
+        $this->assertSame(['cat', 'dog'], $validation->getContentTypes());
     }
 }

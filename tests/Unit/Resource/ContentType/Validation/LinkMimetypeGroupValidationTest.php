@@ -26,11 +26,11 @@ class LinkMimetypeGroupValidationTest extends BaseTestCase
     {
         $validation = new LinkMimetypeGroupValidation(['image']);
 
-        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
+        $this->assertSame(['Link'], $validation->getValidFieldTypes());
 
-        $this->assertEquals(['image'], $validation->getMimeTypeGroups());
+        $this->assertSame(['image'], $validation->getMimeTypeGroups());
 
         $validation->setMimeTypeGroups(['audio', 'video']);
-        $this->assertEquals(['audio', 'video'], $validation->getMimeTypeGroups());
+        $this->assertSame(['audio', 'video'], $validation->getMimeTypeGroups());
     }
 }

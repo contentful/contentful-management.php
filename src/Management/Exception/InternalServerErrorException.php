@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Exception;
 
-use Contentful\Exception\ApiException;
+use Contentful\Core\Api\Exception;
 
 /**
  * InternalServerErrorException class.
@@ -19,6 +19,6 @@ use Contentful\Exception\ApiException;
  * an unexpected error while processing the request.
  * Please contact support to resolve this issue.
  */
-class InternalServerErrorException extends ApiException
+class InternalServerErrorException extends Exception
 {
 }

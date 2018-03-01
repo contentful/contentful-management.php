@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Mapper;
 
-use Contentful\Management\Resource\ResourceInterface;
+use Contentful\Core\Resource\ResourceArray;
+use Contentful\Core\Resource\ResourceInterface;
 use Contentful\Management\ResourceBuilder;
-use Contentful\ResourceArray;
 
 /**
  * BaseMapper class.

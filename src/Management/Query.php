@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management;
 
-use Contentful\Query as BaseQuery;
+use Contentful\Core\Api\BaseQuery;
 
 /**
  * Query class.

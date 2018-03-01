@@ -10,7 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Proxy;
 
-use Contentful\Link;
+use Contentful\Core\Api\Link;
+use Contentful\Core\Resource\ResourceArray;
+use Contentful\Core\Resource\ResourceInterface;
 use Contentful\Management\Client;
 use Contentful\Management\Exception\InvalidProxyActionException;
 use Contentful\Management\Query;
@@ -19,8 +21,6 @@ use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Publishable;
 use Contentful\Management\Resource\Behavior\Updatable;
-use Contentful\Management\Resource\ResourceInterface;
-use Contentful\ResourceArray;
 
 /**
  * BaseProxy class.
@@ -55,7 +55,7 @@ abstract class BaseProxy
     {
         $this->client = $client;
 
-        if ($this->requiresSpaceId && $spaceId === null) {
+        if ($this->requiresSpaceId && null === $spaceId) {
             throw new \RuntimeException(\sprintf(
                 'Trying to access proxy "%s" which requires a space ID, but none is given.',
                 static::class
@@ -77,7 +77,7 @@ abstract class BaseProxy
      */
     public function __call(string $name, array $arguments)
     {
-        if (\in_array($name, $this->getEnabledMethods())) {
+        if (\in_array($name, $this->getEnabledMethods(), true)) {
             return $this->{$name}(...$arguments);
         }
 
@@ -152,7 +152,7 @@ abstract class BaseProxy
         $uri = $this->getResourceUri(['{resourceId}' => $this->getResourceId($resource)]);
 
         $this->client->requestResource($method, $uri.$uriSuffix, [
-            'additionalHeaders' => ['X-Contentful-Version' => $version],
+            'headers' => null !== $version ? ['X-Contentful-Version' => $version] : [],
             'body' => $body,
             'baseUri' => $this->getBaseUri(),
         ], $target);
@@ -189,11 +189,11 @@ abstract class BaseProxy
         $uri = $this->getResourceUri([
             '{resourceId}' => $resourceId ?: '',
         ]);
-        $method = $resourceId === null ? 'POST' : 'PUT';
+        $method = null === $resourceId ? 'POST' : 'PUT';
 
         $this->client->requestResource($method, $uri, [
             'body' => $resource->asRequestBody(),
-            'additionalHeaders' => $this->getCreateAdditionalHeaders($resource),
+            'headers' => $this->getCreateAdditionalHeaders($resource),
             'baseUri' => $this->getBaseUri(),
         ], $resource);
 

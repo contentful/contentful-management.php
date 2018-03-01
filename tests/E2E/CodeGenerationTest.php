@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Console\Application;
 use Contentful\Management\Resource\Asset;
 use Contentful\Tests\Management\BaseTestCase;
@@ -74,23 +74,23 @@ class CodeGenerationTest extends BaseTestCase
         $this->assertContains('Loader file generated at '.$dir.'/_loader.php', $output);
 
         $fixturesDir = __DIR__.'/../Fixtures/E2E/CodeGenerator';
-        $this->assertEquals(
+        $this->assertSame(
             \file_get_contents($fixturesDir.'/_loader.php'),
             \file_get_contents($dir.'/_loader.php')
         );
-        $this->assertEquals(
+        $this->assertSame(
             \file_get_contents($fixturesDir.'/Author.php'),
             \file_get_contents($dir.'/Author.php')
         );
-        $this->assertEquals(
+        $this->assertSame(
             \file_get_contents($fixturesDir.'/Mapper/AuthorMapper.php'),
             \file_get_contents($dir.'/Mapper/AuthorMapper.php')
         );
-        $this->assertEquals(
+        $this->assertSame(
             \file_get_contents($fixturesDir.'/BlogPost.php'),
             \file_get_contents($dir.'/BlogPost.php')
         );
-        $this->assertEquals(
+        $this->assertSame(
             \file_get_contents($fixturesDir.'/Mapper/BlogPostMapper.php'),
             \file_get_contents($dir.'/Mapper/BlogPostMapper.php')
         );
@@ -122,32 +122,32 @@ class CodeGenerationTest extends BaseTestCase
         $author->setPicture('en-US', new Link('24jR8tPh6cWyQyWecs8USO', 'Asset'));
         $client->entry->create($author);
         $this->assertNotNull($author->getId());
-        $this->assertEquals('Lee Adama', $author->getName('en-US'));
-        $this->assertEquals(['lat' => 50, 'lon' => 50], $author->getLocation('en-US'));
+        $this->assertSame('Lee Adama', $author->getName('en-US'));
+        $this->assertSame(['lon' => 50, 'lat' => 50], $author->getLocation('en-US'));
         $this->assertTrue($author->getIsActive('en-US'));
-        $this->assertEquals(['codename' => 'Apollo'], $author->getMisc('en-US'));
+        $this->assertSame(['codename' => 'Apollo'], $author->getMisc('en-US'));
         $picture = $author->resolvePictureLink('en-US');
         $this->assertInstanceOf(Asset::class, $picture);
-        $this->assertEquals('Lee Adama', $picture->getTitle('en-US'));
+        $this->assertSame('Lee Adama', $picture->getTitle('en-US'));
 
         $blogPost = new BlogPost();
         $blogPost->setTitle('en-US', 'How to survive the deep space');
         $blogPost->setBody('en-US', 'You can\t.');
-        $blogPost->setPublishedAt('en-US', new ApiDateTime('2017-10-06T11:30:00'));
+        $blogPost->setPublishedAt('en-US', new DateTimeImmutable('2017-10-06T11:30:00'));
         $blogPost->setImage('en-US', new Link('28Yop3scFS8U8EyWwOIoiy', 'Asset'));
         $blogPost->setRelated('en-US', []);
         $blogPost->setTags('en-US', ['space', 'survival']);
         $blogPost->setAuthor('en-US', $author->asLink());
         $client->entry->create($blogPost);
         $this->assertNotNull($blogPost->getId());
-        $this->assertEquals('How to survive the deep space', $blogPost->getTitle('en-US'));
-        $this->assertEquals('You can\t.', $blogPost->getBody('en-US'));
-        $this->assertEquals(new ApiDateTime('2017-10-06T11:30:00'), $blogPost->getPublishedAt('en-US'));
+        $this->assertSame('How to survive the deep space', $blogPost->getTitle('en-US'));
+        $this->assertSame('You can\t.', $blogPost->getBody('en-US'));
+        $this->assertSame('2017-10-06T11:30:00Z', (string) $blogPost->getPublishedAt('en-US'));
         $image = $blogPost->resolveImageLink('en-US');
         $this->assertInstanceOf(Asset::class, $image);
-        $this->assertEquals('Space', $image->getTitle('en-US'));
+        $this->assertSame('Space', $image->getTitle('en-US'));
         $this->assertNull($blogPost->getRelated('en-US'));
-        $this->assertEquals(['space', 'survival'], $blogPost->getTags('en-US'));
+        $this->assertSame(['space', 'survival'], $blogPost->getTags('en-US'));
 
         $blogPost->delete();
         $author->delete();

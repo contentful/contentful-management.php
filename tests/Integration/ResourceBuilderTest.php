@@ -54,7 +54,7 @@ class ResourceBuilderTest extends BaseTestCase
             'type' => 'Asset',
         ]]);
 
-        $this->assertEquals(['sys' => ['type' => 'Asset']], $resource);
+        $this->assertSame(['sys' => ['type' => 'Asset']], $resource);
     }
 }
 

@@ -152,23 +152,23 @@ class AssetImageDimensionsValidation implements ValidationInterface
     public function jsonSerialize(): array
     {
         $data = [];
-        if ($this->minWidth !== null || $this->maxWidth !== null) {
+        if (null !== $this->minWidth || null !== $this->maxWidth) {
             $withData = [];
-            if ($this->minWidth !== null) {
+            if (null !== $this->minWidth) {
                 $withData['min'] = $this->minWidth;
             }
-            if ($this->maxWidth !== null) {
+            if (null !== $this->maxWidth) {
                 $withData['max'] = $this->maxWidth;
             }
 
             $data['width'] = $withData;
         }
-        if ($this->minHeight !== null || $this->maxHeight !== null) {
+        if (null !== $this->minHeight || null !== $this->maxHeight) {
             $heightData = [];
-            if ($this->minHeight !== null) {
+            if (null !== $this->minHeight) {
                 $heightData['min'] = $this->minHeight;
             }
-            if ($this->maxHeight !== null) {
+            if (null !== $this->maxHeight) {
                 $heightData['max'] = $this->maxHeight;
             }
 

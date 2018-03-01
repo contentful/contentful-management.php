@@ -102,8 +102,8 @@ abstract class BaseCodeGenerator
      */
     protected function getFieldType(FieldInterface $field): string
     {
-        if ($field->getType() == 'Array') {
-            if ($field->getItemsType() == 'Link') {
+        if ('Array' === $field->getType()) {
+            if ('Link' === $field->getItemsType()) {
                 return 'Link[]';
             }
 
@@ -113,7 +113,7 @@ abstract class BaseCodeGenerator
         $fields = [
             'Location' => 'float[]',
             'Boolean' => 'bool',
-            'Date' => 'ApiDateTime',
+            'Date' => 'DateTimeImmutable',
             'Integer' => 'int',
             'Link' => 'Link',
             'Number' => 'float',

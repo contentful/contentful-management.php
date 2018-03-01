@@ -35,8 +35,8 @@ class UnknownKeyExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('95cde6bc52fc73cb955059b5d6635671', $exception->getRequestId());
-        $this->assertEquals('The body you sent contains an unknown key.', $exception->getMessage());
-        $this->assertEquals(['default', 'avx'], $exception->getKeys());
+        $this->assertSame('95cde6bc52fc73cb955059b5d6635671', $exception->getRequestId());
+        $this->assertSame('The body you sent contains an unknown key.', $exception->getMessage());
+        $this->assertSame(['default', 'avx'], $exception->getKeys());
     }
 }

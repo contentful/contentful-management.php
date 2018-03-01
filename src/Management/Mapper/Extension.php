@@ -31,7 +31,7 @@ class Extension extends BaseMapper
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['extension']['name'],
             'source' => $data['extension']['src'] ?? $data['extension']['srcdoc'] ?? '',
-            'fieldTypes' => array_map([$this, 'buildFieldTypes'], $data['extension']['fieldTypes']),
+            'fieldTypes' => \array_map([$this, 'buildFieldTypes'], $data['extension']['fieldTypes']),
             'sidebar' => $data['extension']['sidebar'],
         ]);
     }
@@ -45,11 +45,11 @@ class Extension extends BaseMapper
     {
         $secondParam = [];
 
-        if ($data['type'] == 'Link') {
+        if ('Link' === $data['type']) {
             $secondParam = [$data['linkType']];
         }
 
-        if ($data['type'] == 'Array') {
+        if ('Array' === $data['type']) {
             $secondParam = [
                 $data['items']['type'],
                 $data['items']['linkType'] ?? null,

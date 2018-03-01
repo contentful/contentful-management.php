@@ -10,10 +10,11 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Link;
+use Contentful\Core\Api\Link;
+use Contentful\Core\Resource\ResourceInterface;
 use Contentful\Management\Proxy\BaseProxy;
 use Contentful\Management\SystemProperties;
-use function GuzzleHttp\json_encode;
+use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
  * BaseResource class.
@@ -51,13 +52,19 @@ abstract class BaseResource implements ResourceInterface
     }
 
     /**
-     * Shortcut for accessing the resource ID through its system properties.
-     *
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getId()
     {
         return $this->sys->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return $this->sys->getType();
     }
 
     /**
@@ -93,7 +100,7 @@ abstract class BaseResource implements ResourceInterface
 
         unset($body['sys']);
 
-        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
+        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -111,7 +118,7 @@ abstract class BaseResource implements ResourceInterface
      */
     public function __call(string $name, array $arguments)
     {
-        if (\in_array($name, $this->proxy->getEnabledMethods())) {
+        if (\in_array($name, $this->proxy->getEnabledMethods(), true)) {
             \array_unshift($arguments, $this);
 
             return $this->proxy->{$name}(...$arguments);

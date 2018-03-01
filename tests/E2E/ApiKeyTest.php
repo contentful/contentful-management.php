@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\DeliveryApiKey;
 use Contentful\Management\Resource\PreviewApiKey;
@@ -26,18 +26,18 @@ class ApiKeyTest extends BaseTestCase
         $client = $this->getDefaultClient();
 
         $deliveryApiKey = $client->deliveryApiKey->get('1MwuwHlM9TXf3RXcsvMrjM');
-        $this->assertEquals('Example API Key', $deliveryApiKey->getName());
+        $this->assertSame('Example API Key', $deliveryApiKey->getName());
         $this->assertNull($deliveryApiKey->getDescription());
-        $this->assertEquals('5d58929d31be0aa63b051e0ce42a7c04e0e783f881482803157647ffafe0f30f', $deliveryApiKey->getAccessToken());
+        $this->assertSame('5d58929d31be0aa63b051e0ce42a7c04e0e783f881482803157647ffafe0f30f', $deliveryApiKey->getAccessToken());
         $this->assertInstanceOf(Link::class, $deliveryApiKey->getPreviewApiKey());
-        $this->assertEquals('1Mx3FqXX5XCJDtNpVW4BZI', $deliveryApiKey->getPreviewApiKey()->getId());
+        $this->assertSame('1Mx3FqXX5XCJDtNpVW4BZI', $deliveryApiKey->getPreviewApiKey()->getId());
 
         $deliveryApiKeys = $client->deliveryApiKey->getAll();
 
         $this->assertCount(2, $deliveryApiKeys);
         $deliveryApiKey = $deliveryApiKeys[0];
         $this->assertInstanceOf(DeliveryApiKey::class, $deliveryApiKey);
-        $this->assertEquals('Example API Key', $deliveryApiKey->getName());
+        $this->assertSame('Example API Key', $deliveryApiKey->getName());
         $this->assertNull($deliveryApiKey->getDescription());
         // When working with the collection endpoint,
         // each key's preview api key is *not* part of the payload.
@@ -53,7 +53,7 @@ class ApiKeyTest extends BaseTestCase
         $this->assertCount(1, $deliveryApiKeys);
         $deliveryApiKey = $deliveryApiKeys[0];
         $this->assertInstanceOf(DeliveryApiKey::class, $deliveryApiKey);
-        $this->assertEquals('Example API Key', $deliveryApiKey->getName());
+        $this->assertSame('Example API Key', $deliveryApiKey->getName());
         $this->assertNull($deliveryApiKey->getDescription());
         $this->assertNull($deliveryApiKey->getPreviewApiKey());
     }
@@ -66,16 +66,16 @@ class ApiKeyTest extends BaseTestCase
         $client = $this->getDefaultClient();
 
         $previewApiKey = $client->previewApiKey->get('1Mx3FqXX5XCJDtNpVW4BZI');
-        $this->assertEquals('Preview Key', $previewApiKey->getName());
+        $this->assertSame('Preview Key', $previewApiKey->getName());
         $this->assertNull($previewApiKey->getDescription());
-        $this->assertEquals('ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f', $previewApiKey->getAccessToken());
+        $this->assertSame('ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f', $previewApiKey->getAccessToken());
 
         $previewApiKeys = $client->previewApiKey->getAll();
 
         $this->assertCount(2, $previewApiKeys);
         $previewApiKey = $previewApiKeys[0];
         $this->assertInstanceOf(PreviewApiKey::class, $previewApiKey);
-        $this->assertEquals('Preview Key', $previewApiKey->getName());
+        $this->assertSame('Preview Key', $previewApiKey->getName());
         $this->assertNull($previewApiKey->getDescription());
 
         $query = (new Query())
@@ -85,7 +85,7 @@ class ApiKeyTest extends BaseTestCase
         $this->assertCount(1, $previewApiKeys);
         $previewApiKey = $previewApiKeys[0];
         $this->assertInstanceOf(PreviewApiKey::class, $previewApiKey);
-        $this->assertEquals('Preview Key', $previewApiKey->getName());
+        $this->assertSame('Preview Key', $previewApiKey->getName());
         $this->assertNull($previewApiKey->getDescription());
     }
 
@@ -101,14 +101,14 @@ class ApiKeyTest extends BaseTestCase
 
         $client->deliveryApiKey->create($deliveryApiKey);
 
-        $this->assertEquals('iOS', $deliveryApiKey->getName());
-        $this->assertEquals('A custom description', $deliveryApiKey->getDescription());
+        $this->assertSame('iOS', $deliveryApiKey->getName());
+        $this->assertSame('A custom description', $deliveryApiKey->getDescription());
         $this->assertInstanceOf(Link::class, $deliveryApiKey->getPreviewApiKey());
 
         $deliveryApiKey->setName('Website');
         $deliveryApiKey->update();
 
-        $this->assertEquals('Website', $deliveryApiKey->getName());
+        $this->assertSame('Website', $deliveryApiKey->getName());
 
         $deliveryApiKey->delete();
     }

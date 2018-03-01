@@ -21,6 +21,6 @@ class UniqueValidationTest extends BaseTestCase
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/ContentType/Validation/unique_validation.json', $validation);
 
-        $this->assertEquals(['Symbol', 'Integer', 'Number'], $validation->getValidFieldTypes());
+        $this->assertSame(['Symbol', 'Integer', 'Number'], $validation->getValidFieldTypes());
     }
 }

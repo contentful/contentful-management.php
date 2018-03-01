@@ -10,8 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\CodeGenerator;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
+use Contentful\Core\Resource\ResourceInterface;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Field\ArrayField;
@@ -19,7 +20,6 @@ use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 use Contentful\Management\Resource\ContentType\Field\LinkField;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
 use Contentful\Management\Resource\Entry as EntryResource;
-use Contentful\Management\Resource\ResourceInterface;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -61,7 +61,7 @@ class Entry extends BaseCodeGenerator
 
         $stmts = $this->generateUses([
             EntryResource::class,
-            $this->uses['date'] ? ApiDateTime::class : null,
+            $this->uses['date'] ? DateTimeImmutable::class : null,
             $this->uses['asset'] ? Asset::class : null,
             $this->uses['link'] ? Link::class : null,
             $this->uses['resource_interface'] ? ResourceInterface::class : null,
@@ -113,20 +113,20 @@ class Entry extends BaseCodeGenerator
 
         foreach ($contentType->getFields() as $field) {
             $type = $this->getFieldType($field);
-            if ($type == 'Link' || $type == 'Link[]') {
+            if ('Link' === $type || 'Link[]' === $type) {
                 $this->uses['link'] = true;
             }
-            if ($type == 'ApiDateTime') {
+            if ('DateTimeImmutable' === $type) {
                 $this->uses['date'] = true;
             }
 
             $stmts[] = $this->generateGetter($field, $type);
             $stmts[] = $this->generateSetter($field, $type);
 
-            if ($type == 'Link') {
+            if ('Link' === $type) {
                 $stmts[] = $this->generateLinkResolverMethod($field);
             }
-            if ($type == 'Link[]') {
+            if ('Link[]' === $type) {
                 $stmts[] = $this->generateArrayLinkResolverMethod($field);
             }
         }
@@ -241,9 +241,9 @@ class Entry extends BaseCodeGenerator
      */
     private function generateSetter(FieldInterface $field, string $type): ClassMethod
     {
-        $methodType = $type == 'mixed'
+        $methodType = 'mixed' === $type
             ? null
-            : (\strpos($type, '[]') !== false ? 'array' : $type);
+            : (false !== \mb_strpos($type, '[]') ? 'array' : $type);
 
         return new ClassMethod(
             'set'.$this->convertToStudlyCaps($field->getId()),
@@ -277,7 +277,7 @@ class Entry extends BaseCodeGenerator
                 * @return static
                 */',
                 $field->getId(),
-                \str_pad('string', \strlen($type.'|null'), ' ', \STR_PAD_RIGHT),
+                \str_pad('string', \mb_strlen($type.'|null'), ' ', \STR_PAD_RIGHT),
                 $type
             ))
         );
@@ -362,7 +362,7 @@ class Entry extends BaseCodeGenerator
                 'stmts' => [
                     new Node\Stmt\Return_(
                         new Node\Expr\FuncCall(
-                            new Node\Name('array_map'),
+                            new Node\Name('\\array_map'),
                             [
                                 new Node\Arg($this->generateArrayLinkResolverClosure()),
                                 new Node\Arg($this->generateArrayLinkResolverMapArray($field)),
@@ -380,7 +380,7 @@ class Entry extends BaseCodeGenerator
                  * @return %s[]
                  */',
                  $field->getId(),
-                 \strpos($returnTypes, '|') !== false ? '('.$returnTypes.')' : $returnTypes
+                 false !== \mb_strpos($returnTypes, '|') ? '('.$returnTypes.')' : $returnTypes
             ))
         );
     }
@@ -401,7 +401,7 @@ class Entry extends BaseCodeGenerator
         $usesAsset = true;
         $usesResource = false;
 
-        if ($linkType == 'Entry') {
+        if ('Entry' === $linkType) {
             $returnTypes = ['ResourceInterface'];
             $usesAsset = false;
             $usesResource = true;

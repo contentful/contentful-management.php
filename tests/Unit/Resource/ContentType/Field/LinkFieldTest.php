@@ -19,10 +19,10 @@ class LinkFieldTest extends BaseTestCase
     {
         $field = new LinkField('bestFriend', 'Best Friend', 'Entry');
 
-        $this->assertEquals('Entry', $field->getLinkType());
+        $this->assertSame('Entry', $field->getLinkType());
 
         $field->setLinkType('Asset');
-        $this->assertEquals('Asset', $field->getLinkType());
+        $this->assertSame('Asset', $field->getLinkType());
     }
 
     /**

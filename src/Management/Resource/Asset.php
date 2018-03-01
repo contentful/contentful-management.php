@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\File\FileInterface;
-use Contentful\File\UnprocessedFileInterface;
+use Contentful\Core\File\FileInterface;
+use Contentful\Core\File\UnprocessedFileInterface;
 use Contentful\Management\Resource\Behavior\Archivable;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
@@ -62,15 +62,15 @@ class Asset extends BaseResource implements Creatable, Updatable, Deletable, Pub
             'fields' => new \stdClass(),
         ];
 
-        if ($this->file !== null) {
+        if (null !== $this->file) {
             $asset['fields']->file = $this->file;
         }
 
-        if ($this->title !== null) {
+        if (null !== $this->title) {
             $asset['fields']->title = $this->title;
         }
 
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $asset['fields']->description = $this->description;
         }
 
@@ -84,7 +84,7 @@ class Asset extends BaseResource implements Creatable, Updatable, Deletable, Pub
      */
     public function getTitle(string $locale)
     {
-        if ($this->title === null || !isset($this->title[$locale])) {
+        if (null === $this->title || !isset($this->title[$locale])) {
             return null;
         }
 
@@ -119,7 +119,7 @@ class Asset extends BaseResource implements Creatable, Updatable, Deletable, Pub
      */
     public function getDescription(string $locale)
     {
-        if ($this->description === null || !isset($this->description[$locale])) {
+        if (null === $this->description || !isset($this->description[$locale])) {
             return null;
         }
 
@@ -154,7 +154,7 @@ class Asset extends BaseResource implements Creatable, Updatable, Deletable, Pub
      */
     public function getFile(string $locale)
     {
-        if ($this->file === null || !isset($this->file[$locale])) {
+        if (null === $this->file || !isset($this->file[$locale])) {
             return null;
         }
 

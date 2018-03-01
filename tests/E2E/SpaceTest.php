@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Exception\NotFoundException;
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Exception\NotFoundException;
+use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Space;
-use Contentful\ResourceArray;
 use Contentful\Tests\Management\BaseTestCase;
 
 class SpaceTest extends BaseTestCase
@@ -28,16 +26,16 @@ class SpaceTest extends BaseTestCase
         $space = $this->getUnboundClient()->space->get($this->defaultSpaceId);
 
         $this->assertInstanceOf(Space::class, $space);
-        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $space->asLink());
+        $this->assertLink($this->defaultSpaceId, 'Space', $space->asLink());
         $sys = $space->getSystemProperties();
-        $this->assertEquals($this->defaultSpaceId, $sys->getId());
-        $this->assertEquals('Space', $sys->getType());
-        $this->assertEquals(new ApiDateTime('2017-05-18T13:35:42'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-07-06T10:12:00'), $sys->getUpdatedAt());
-        $this->assertEquals(5, $sys->getVersion());
-        $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals('PHP CMA', $space->getName());
+        $this->assertSame($this->defaultSpaceId, $sys->getId());
+        $this->assertSame('Space', $sys->getType());
+        $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
+        $this->assertSame(5, $sys->getVersion());
+        $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertSame('PHP CMA', $space->getName());
     }
 
     /**
@@ -77,9 +75,9 @@ class SpaceTest extends BaseTestCase
 
         try {
             $client->space->get($spaceId);
-        } catch (\Exception $e) {
-            $this->assertInstanceOf(NotFoundException::class, $e);
-            $this->assertEquals('The resource could not be found.', $e->getMessage());
+        } catch (\Exception $exception) {
+            $this->assertInstanceOf(NotFoundException::class, $exception);
+            $this->assertSame('The resource could not be found.', $exception->getMessage());
         }
     }
 
@@ -96,24 +94,24 @@ class SpaceTest extends BaseTestCase
 
         $spaceId = $space->getId();
         $this->assertNotNull($spaceId);
-        $this->assertEquals('PHP CMA Test Space', $space->getName());
-        $this->assertEquals(1, $space->getSystemProperties()->getVersion());
+        $this->assertSame('PHP CMA Test Space', $space->getName());
+        $this->assertSame(1, $space->getSystemProperties()->getVersion());
 
         $space->setName('PHP CMA Test Space - Updated');
 
         $space->update();
         $this->assertSame($space, $space);
-        $this->assertEquals($spaceId, $space->getId());
-        $this->assertEquals('PHP CMA Test Space - Updated', $space->getName());
-        $this->assertEquals(2, $space->getSystemProperties()->getVersion());
+        $this->assertSame($spaceId, $space->getId());
+        $this->assertSame('PHP CMA Test Space - Updated', $space->getName());
+        $this->assertSame(2, $space->getSystemProperties()->getVersion());
 
         $space->delete();
 
         try {
             $client->space->get($spaceId);
-        } catch (\Exception $e) {
-            $this->assertInstanceOf(NotFoundException::class, $e);
-            $this->assertEquals('The resource could not be found.', $e->getMessage());
+        } catch (\Exception $exception) {
+            $this->assertInstanceOf(NotFoundException::class, $exception);
+            $this->assertSame('The resource could not be found.', $exception->getMessage());
         }
     }
 }

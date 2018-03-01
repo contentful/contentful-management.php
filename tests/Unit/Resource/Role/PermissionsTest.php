@@ -20,42 +20,42 @@ class PermissionsTest extends BaseTestCase
         $permissions = new Permissions();
 
         $permissions->setContentDelivery('all');
-        $this->assertEquals('all', $permissions->getContentDelivery());
+        $this->assertSame('all', $permissions->getContentDelivery());
 
         $permissions->setContentDelivery('manage');
-        $this->assertEquals('manage', $permissions->getContentDelivery());
+        $this->assertSame('manage', $permissions->getContentDelivery());
 
         try {
             $permissions->setContentDelivery('invalid');
             $this->fail('Invalid ContentDelivery should throw an exception.');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('Parameter $access in Permissions::setContentDelivery() must be either null or one of "read", "manage", "all", "invalid" given.', $e->getMessage());
+        } catch (\InvalidArgumentException $exception) {
+            $this->assertSame('Parameter $access in Permissions::setContentDelivery() must be either null or one of "read", "manage", "all", "invalid" given.', $exception->getMessage());
         }
 
         $permissions->setContentModel('all');
-        $this->assertEquals('all', $permissions->getContentModel());
+        $this->assertSame('all', $permissions->getContentModel());
 
         $permissions->setContentModel('manage');
-        $this->assertEquals('manage', $permissions->getContentModel());
+        $this->assertSame('manage', $permissions->getContentModel());
 
         try {
             $permissions->setContentModel('invalid');
             $this->fail('Invalid ContentModel should throw an exception.');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('Parameter $access in Permissions::setContentModel() must be either null or one of "read", "manage", "all", "invalid" given.', $e->getMessage());
+        } catch (\InvalidArgumentException $exception) {
+            $this->assertSame('Parameter $access in Permissions::setContentModel() must be either null or one of "read", "manage", "all", "invalid" given.', $exception->getMessage());
         }
 
         $permissions->setSettings('all');
-        $this->assertEquals('all', $permissions->getSettings());
+        $this->assertSame('all', $permissions->getSettings());
 
         $permissions->setSettings('manage');
-        $this->assertEquals('manage', $permissions->getSettings());
+        $this->assertSame('manage', $permissions->getSettings());
 
         try {
             $permissions->setSettings('read');
             $this->fail('Invalid Settings should throw an exception.');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('Parameter $access in Permissions::setSettings() must be either null or one of "manage", "all", "read" given.', $e->getMessage());
+        } catch (\InvalidArgumentException $exception) {
+            $this->assertSame('Parameter $access in Permissions::setSettings() must be either null or one of "manage", "all", "read" given.', $exception->getMessage());
         }
     }
 

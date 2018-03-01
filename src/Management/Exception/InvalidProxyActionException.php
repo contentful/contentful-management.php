@@ -30,7 +30,7 @@ class InvalidProxyActionException extends \LogicException
             $class
         );
 
-        if ($object !== null) {
+        if (null !== $object) {
             $message .= \sprintf(
                 ' with argument of class "%s"',
                 \get_class($object)

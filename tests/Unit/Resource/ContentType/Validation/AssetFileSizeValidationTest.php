@@ -26,16 +26,16 @@ class AssetFileSizeValidationTest extends BaseTestCase
     {
         $validation = new AssetFileSizeValidation(5, 25);
 
-        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
+        $this->assertSame(['Link'], $validation->getValidFieldTypes());
 
-        $this->assertEquals(5, $validation->getMin());
-        $this->assertEquals(25, $validation->getMax());
+        $this->assertSame(5, $validation->getMin());
+        $this->assertSame(25, $validation->getMax());
 
         $validation->setMin(10);
-        $this->assertEquals(10, $validation->getMin());
+        $this->assertSame(10, $validation->getMin());
 
         $validation->setMax(450);
-        $this->assertEquals(450, $validation->getMax());
+        $this->assertSame(450, $validation->getMax());
 
         $validation->setMin(null);
         $this->assertNull($validation->getMin());

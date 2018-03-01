@@ -26,15 +26,15 @@ class SizeValidationTest extends BaseTestCase
     {
         $validation = new SizeValidation(5, 20);
 
-        $this->assertEquals(['Array', 'Text', 'Symbol'], $validation->getValidFieldTypes());
+        $this->assertSame(['Array', 'Text', 'Symbol'], $validation->getValidFieldTypes());
 
-        $this->assertEquals(5, $validation->getMin());
-        $this->assertEquals(20, $validation->getMax());
+        $this->assertSame(5, $validation->getMin());
+        $this->assertSame(20, $validation->getMax());
 
         $validation->setMin(17);
-        $this->assertEquals(17, $validation->getMin());
+        $this->assertSame(17, $validation->getMin());
 
         $validation->setMax(35);
-        $this->assertEquals(35, $validation->getMax());
+        $this->assertSame(35, $validation->getMax());
     }
 }

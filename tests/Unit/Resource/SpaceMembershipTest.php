@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\Unit\Resource;
 
-use Contentful\Link;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Tests\Management\BaseTestCase;
 
@@ -21,7 +21,7 @@ class SpaceMembershipTest extends BaseTestCase
         $spaceMembership = new SpaceMembership();
 
         $spaceMembership->setEmail('php-cma-sdk-tests-eb2a4f5@contentful.com');
-        $this->assertEquals('php-cma-sdk-tests-eb2a4f5@contentful.com', $spaceMembership->getEmail());
+        $this->assertSame('php-cma-sdk-tests-eb2a4f5@contentful.com', $spaceMembership->getEmail());
 
         $spaceMembership->setAdmin(true);
         $this->assertTrue($spaceMembership->isAdmin());
@@ -31,9 +31,9 @@ class SpaceMembershipTest extends BaseTestCase
         $role1 = new Link('6khUMmsfVslYd7tRcThTgE', 'Role');
         $role2 = new Link('6kj2AeUS0kJbHr0F2xCjIU', 'Role');
         $spaceMembership->addRole($role1);
-        $this->assertEquals([$role1], $spaceMembership->getRoles());
+        $this->assertSame([$role1], $spaceMembership->getRoles());
         $spaceMembership->setRoles([$role1, $role2]);
-        $this->assertEquals([$role1, $role2], $spaceMembership->getRoles());
+        $this->assertSame([$role1, $role2], $spaceMembership->getRoles());
 
         $this->assertNull($spaceMembership->getUser());
     }

@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\Behavior\Archivable;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
@@ -73,7 +73,7 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
      */
     private function getFormattedData($data)
     {
-        if ($data instanceof ApiDateTime) {
+        if ($data instanceof DateTimeImmutable) {
             return (string) $data;
         }
 
@@ -102,7 +102,7 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
      */
     public function getFields(string $locale = null): array
     {
-        if ($locale === null) {
+        if (null === $locale) {
             return $this->fields;
         }
 
@@ -143,12 +143,12 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
      */
     public function __call(string $name, array $arguments)
     {
-        $action = \substr($name, 0, 3);
-        if ($action == 'get') {
+        $action = \mb_substr($name, 0, 3);
+        if ('get' === $action) {
             $field = $this->extractFieldName($name);
 
             return $this->getField($field, ...$arguments);
-        } elseif ($action == 'set') {
+        } elseif ('set' === $action) {
             $field = $this->extractFieldName($name);
 
             return $this->setField($field, ...$arguments);
@@ -164,6 +164,6 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
      */
     private function extractFieldName(string $name): string
     {
-        return \lcfirst(\substr($name, 3));
+        return \lcfirst(\mb_substr($name, 3));
     }
 }

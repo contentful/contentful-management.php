@@ -10,14 +10,16 @@ declare(strict_types=1);
 
 namespace Contentful\Management;
 
-use Contentful\Link;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
+use Contentful\Core\Resource\SystemPropertiesInterface;
 
 /**
  * SystemProperties class.
  *
  * This class represents a "sys" object in Contentful's responses.
  */
-class SystemProperties implements \JsonSerializable
+class SystemProperties implements SystemPropertiesInterface
 {
     /**
      * @var string|null
@@ -40,12 +42,12 @@ class SystemProperties implements \JsonSerializable
     private $contentType;
 
     /**
-     * @var ApiDateTime|null
+     * @var DateTimeImmutable|null
      */
     private $createdAt;
 
     /**
-     * @var ApiDateTime|null
+     * @var DateTimeImmutable|null
      */
     private $updatedAt;
 
@@ -73,7 +75,7 @@ class SystemProperties implements \JsonSerializable
     private $updatedBy;
 
     /**
-     * @var ApiDateTime|null
+     * @var DateTimeImmutable|null
      */
     private $firstPublishedAt;
 
@@ -83,7 +85,7 @@ class SystemProperties implements \JsonSerializable
     private $publishedCounter;
 
     /**
-     * @var ApiDateTime|null
+     * @var DateTimeImmutable|null
      */
     private $publishedAt;
 
@@ -98,7 +100,7 @@ class SystemProperties implements \JsonSerializable
     private $publishedVersion;
 
     /**
-     * @var ApiDateTime|null
+     * @var DateTimeImmutable|null
      */
     private $archivedAt;
 
@@ -123,7 +125,7 @@ class SystemProperties implements \JsonSerializable
     private $snapshotEntityType;
 
     /**
-     * @var ApiDateTime|null
+     * @var DateTimeImmutable|null
      */
     private $expiresAt;
 
@@ -163,12 +165,12 @@ class SystemProperties implements \JsonSerializable
      * @param array  $data
      * @param string $field
      *
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     private function checkAndBuildDate(array $data, string $field)
     {
         return isset($data[$field])
-            ? new ApiDateTime($data[$field])
+            ? new DateTimeImmutable($data[$field])
             : null;
     }
 
@@ -218,7 +220,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     public function getCreatedAt()
     {
@@ -226,7 +228,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     public function getUpdatedAt()
     {
@@ -234,7 +236,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     public function getArchivedAt()
     {
@@ -274,7 +276,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     public function getFirstPublishedAt()
     {
@@ -282,7 +284,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     public function getPublishedAt()
     {
@@ -346,7 +348,7 @@ class SystemProperties implements \JsonSerializable
     }
 
     /**
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     public function getExpiresAt()
     {
@@ -358,7 +360,7 @@ class SystemProperties implements \JsonSerializable
      */
     public function isDraft(): bool
     {
-        return $this->publishedVersion === null;
+        return null === $this->publishedVersion;
     }
 
     /**
@@ -366,7 +368,7 @@ class SystemProperties implements \JsonSerializable
      */
     public function isPublished(): bool
     {
-        return $this->publishedVersion !== null;
+        return null !== $this->publishedVersion;
     }
 
     /**
@@ -376,7 +378,7 @@ class SystemProperties implements \JsonSerializable
     {
         // The act of publishing an entity increases its version by 1, so any entry which has
         // 2 versions higher or more than the publishedVersion has unpublished changes.
-        return $this->publishedVersion !== null && $this->version > $this->publishedVersion + 1;
+        return null !== $this->publishedVersion && $this->version > $this->publishedVersion + 1;
     }
 
     /**
@@ -384,7 +386,7 @@ class SystemProperties implements \JsonSerializable
      */
     public function isArchived(): bool
     {
-        return $this->archivedVersion !== null;
+        return null !== $this->archivedVersion;
     }
 
     /**
@@ -396,67 +398,67 @@ class SystemProperties implements \JsonSerializable
     {
         $sys = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $sys['id'] = $this->id;
         }
-        if ($this->type !== null) {
+        if (null !== $this->type) {
             $sys['type'] = $this->type;
         }
-        if ($this->space !== null) {
+        if (null !== $this->space) {
             $sys['space'] = $this->space;
         }
-        if ($this->contentType !== null) {
+        if (null !== $this->contentType) {
             $sys['contentType'] = $this->contentType;
         }
-        if ($this->createdAt !== null) {
+        if (null !== $this->createdAt) {
             $sys['createdAt'] = (string) $this->createdAt;
         }
-        if ($this->updatedAt !== null) {
+        if (null !== $this->updatedAt) {
             $sys['updatedAt'] = (string) $this->updatedAt;
         }
-        if ($this->archivedAt !== null) {
+        if (null !== $this->archivedAt) {
             $sys['archivedAt'] = (string) $this->archivedAt;
         }
-        if ($this->publishedAt !== null) {
+        if (null !== $this->publishedAt) {
             $sys['publishedAt'] = (string) $this->publishedAt;
         }
-        if ($this->firstPublishedAt !== null) {
+        if (null !== $this->firstPublishedAt) {
             $sys['firstPublishedAt'] = (string) $this->firstPublishedAt;
         }
-        if ($this->version !== null) {
+        if (null !== $this->version) {
             $sys['version'] = $this->version;
         }
-        if ($this->revision !== null) {
+        if (null !== $this->revision) {
             $sys['revision'] = $this->revision;
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $sys['createdBy'] = $this->createdBy;
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $sys['updatedBy'] = $this->updatedBy;
         }
-        if ($this->publishedBy !== null) {
+        if (null !== $this->publishedBy) {
             $sys['publishedBy'] = $this->publishedBy;
         }
-        if ($this->archivedBy !== null) {
+        if (null !== $this->archivedBy) {
             $sys['archivedBy'] = $this->archivedBy;
         }
-        if ($this->publishedCounter !== null) {
+        if (null !== $this->publishedCounter) {
             $sys['publishedCounter'] = $this->publishedCounter;
         }
-        if ($this->publishedVersion !== null) {
+        if (null !== $this->publishedVersion) {
             $sys['publishedVersion'] = $this->publishedVersion;
         }
-        if ($this->archivedVersion !== null) {
+        if (null !== $this->archivedVersion) {
             $sys['archivedVersion'] = $this->archivedVersion;
         }
-        if ($this->snapshotType !== null) {
+        if (null !== $this->snapshotType) {
             $sys['snapshotType'] = $this->snapshotType;
         }
-        if ($this->snapshotEntityType !== null) {
+        if (null !== $this->snapshotEntityType) {
             $sys['snapshotEntityType'] = $this->snapshotEntityType;
         }
-        if ($this->expiresAt !== null) {
+        if (null !== $this->expiresAt) {
             $sys['expiresAt'] = (string) $this->expiresAt;
         }
 

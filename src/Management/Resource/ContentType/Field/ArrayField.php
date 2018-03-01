@@ -125,7 +125,7 @@ class ArrayField extends BaseField
      */
     public function setItemsLinkType(string $itemsLinkType = null)
     {
-        if ($itemsLinkType && $this->itemsType === 'Link' && !$this->isValidLinkType($itemsLinkType)) {
+        if ($itemsLinkType && 'Link' === $this->itemsType && !$this->isValidLinkType($itemsLinkType)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Invalid items link type "%s". Valid values are %s.',
                 $itemsLinkType,
@@ -155,7 +155,7 @@ class ArrayField extends BaseField
     {
         $this->itemsValidations = [];
 
-        array_map([$this, 'addItemsValidation'], $itemsValidations);
+        \array_map([$this, 'addItemsValidation'], $itemsValidations);
 
         return $this;
     }
@@ -169,7 +169,7 @@ class ArrayField extends BaseField
      */
     public function addItemsValidation(ValidationInterface $validation)
     {
-        if (!\in_array($this->itemsType, $validation::getValidFieldTypes())) {
+        if (!\in_array($this->itemsType, $validation::getValidFieldTypes(), true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'The validation "%s" can not be used for fields of type "%s".',
                 \get_class($validation),
@@ -189,7 +189,7 @@ class ArrayField extends BaseField
      */
     private function isValidItemType(string $type): bool
     {
-        return \in_array($type, self::VALID_ITEM_TYPES);
+        return \in_array($type, self::VALID_ITEM_TYPES, true);
     }
 
     /**
@@ -199,7 +199,7 @@ class ArrayField extends BaseField
      */
     private function isValidLinkType(string $type): bool
     {
-        return \in_array($type, self::VALID_LINK_TYPES);
+        return \in_array($type, self::VALID_LINK_TYPES, true);
     }
 
     /**
@@ -212,7 +212,7 @@ class ArrayField extends BaseField
         $data = parent::jsonSerialize();
 
         $items = ['type' => $this->itemsType];
-        if ($this->itemsType === 'Link') {
+        if ('Link' === $this->itemsType) {
             $items['linkType'] = $this->itemsLinkType;
         }
         if ($this->itemsValidations) {

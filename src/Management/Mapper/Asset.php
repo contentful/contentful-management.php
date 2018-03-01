@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Mapper;
 
-use Contentful\File\File;
-use Contentful\File\FileInterface;
-use Contentful\File\ImageFile;
-use Contentful\File\LocalUploadFile;
-use Contentful\File\RemoteUploadFile;
-use Contentful\Link;
+use Contentful\Core\Api\Link;
+use Contentful\Core\File\File;
+use Contentful\Core\File\FileInterface;
+use Contentful\Core\File\ImageFile;
+use Contentful\Core\File\LocalUploadFile;
+use Contentful\Core\File\RemoteUploadFile;
 use Contentful\Management\Resource\Asset as ResourceClass;
 use Contentful\Management\SystemProperties;
 

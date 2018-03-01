@@ -43,12 +43,12 @@ class RateLimitExceededExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('db2d795acb78e0592af00759986c744b', $exception->getRequestId());
-        $this->assertEquals('You have exceeded the rate limit of the Organization this Space belongs to by making too many API requests within a short timespan. Please wait a moment before trying the request again.', $exception->getMessage());
-        $this->assertEquals(180000, $exception->getHourLimit());
-        $this->assertEquals(179959, $exception->getHourRemaining());
-        $this->assertEquals(2727, $exception->getRateLimitReset());
-        $this->assertEquals(50, $exception->getSecondLimit());
-        $this->assertEquals(49, $exception->getSecondRemaining());
+        $this->assertSame('db2d795acb78e0592af00759986c744b', $exception->getRequestId());
+        $this->assertSame('You have exceeded the rate limit of the Organization this Space belongs to by making too many API requests within a short timespan. Please wait a moment before trying the request again.', $exception->getMessage());
+        $this->assertSame(180000, $exception->getHourLimit());
+        $this->assertSame(179959, $exception->getHourRemaining());
+        $this->assertSame(2727, $exception->getRateLimitReset());
+        $this->assertSame(50, $exception->getSecondLimit());
+        $this->assertSame(49, $exception->getSecondRemaining());
     }
 }

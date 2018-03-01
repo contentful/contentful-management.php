@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentTypeSnapshot;
@@ -29,21 +27,21 @@ class SnapshotTest extends BaseTestCase
         $client = $this->getDefaultClient();
 
         $snapshot = $client->entrySnapshot->get('3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
-        $this->assertEquals(new Link('3omuk8H8M8wUuqHhxddXtp', 'Snapshot'), $snapshot->asLink());
+        $this->assertLink('3omuk8H8M8wUuqHhxddXtp', 'Snapshot', $snapshot->asLink());
         $this->assertSame($snapshot->getEntry(), $snapshot->getSnapshot());
         $entry = $snapshot->getEntry();
         $this->assertInstanceOf(Entry::class, $entry);
-        $this->assertEquals('Josh Lyman', $entry->getField('name', 'en-US'));
-        $this->assertEquals('Deputy Chief of Staff', $entry->getField('jobTitle', 'en-US'));
-        $this->assertEquals(new Link('person', 'ContentType'), $entry->getSystemProperties()->getContentType());
-        $this->assertEquals(1, $entry->getSystemProperties()->getPublishedCounter());
+        $this->assertSame('Josh Lyman', $entry->getField('name', 'en-US'));
+        $this->assertSame('Deputy Chief of Staff', $entry->getField('jobTitle', 'en-US'));
+        $this->assertLink('person', 'ContentType', $entry->getSystemProperties()->getContentType());
+        $this->assertSame(1, $entry->getSystemProperties()->getPublishedCounter());
 
         $sys = $snapshot->getSystemProperties();
-        $this->assertEquals('Entry', $sys->getSnapshotEntityType());
-        $this->assertEquals('publish', $sys->getSnapshotType());
-        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2017-06-14T14:11:20.189Z'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-06-14T14:11:20.189Z'), $sys->getUpdatedAt());
+        $this->assertSame('Entry', $sys->getSnapshotEntityType());
+        $this->assertSame('publish', $sys->getSnapshotType());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-06-14T14:11:20.189Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-06-14T14:11:20.189Z', (string) $sys->getUpdatedAt());
     }
 
     /**
@@ -73,21 +71,21 @@ class SnapshotTest extends BaseTestCase
 
         $snapshot = $client->contentTypeSnapshot->get('versionedContentType', '1Qvx64r3Nq0MOtftdcAXJO');
 
-        $this->assertEquals(new Link('1Qvx64r3Nq0MOtftdcAXJO', 'Snapshot'), $snapshot->asLink());
+        $this->assertLink('1Qvx64r3Nq0MOtftdcAXJO', 'Snapshot', $snapshot->asLink());
         $this->assertSame($snapshot->getContentType(), $snapshot->getSnapshot());
         $contentType = $snapshot->getContentType();
         $this->assertInstanceOf(ContentType::class, $contentType);
-        $this->assertEquals('Versioned Content Type', $contentType->getName());
-        $this->assertEquals('title', $contentType->getDisplayField());
-        $this->assertEquals(2, $contentType->getSystemProperties()->getVersion());
-        $this->assertEquals(1, $contentType->getSystemProperties()->getPublishedCounter());
+        $this->assertSame('Versioned Content Type', $contentType->getName());
+        $this->assertSame('title', $contentType->getDisplayField());
+        $this->assertSame(2, $contentType->getSystemProperties()->getVersion());
+        $this->assertSame(1, $contentType->getSystemProperties()->getPublishedCounter());
 
         $sys = $snapshot->getSystemProperties();
-        $this->assertEquals('ContentType', $sys->getSnapshotEntityType());
-        $this->assertEquals('publish', $sys->getSnapshotType());
-        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2017-07-05T16:46:58.486Z'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-07-05T16:46:58.486Z'), $sys->getUpdatedAt());
+        $this->assertSame('ContentType', $sys->getSnapshotEntityType());
+        $this->assertSame('publish', $sys->getSnapshotType());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-07-05T16:46:58.486Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-07-05T16:46:58.486Z', (string) $sys->getUpdatedAt());
     }
 
     /**
@@ -103,20 +101,20 @@ class SnapshotTest extends BaseTestCase
         $contentType = $snapshot->getContentType();
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
-        $this->assertEquals('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
-        $this->assertEquals(2, count($fields));
-        $this->assertEquals('Title', $fields[0]->getName());
-        $this->assertEquals('Description', $fields[1]->getName());
-        $this->assertEquals(2, $contentType->getSystemProperties()->getPublishedCounter());
+        $this->assertSame('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
+        $this->assertSame(2, \count($fields));
+        $this->assertSame('Title', $fields[0]->getName());
+        $this->assertSame('Description', $fields[1]->getName());
+        $this->assertSame(2, $contentType->getSystemProperties()->getPublishedCounter());
 
         $snapshot = $snapshots[1];
         $contentType = $snapshot->getContentType();
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
-        $this->assertEquals('1Qvx64r3Nq0MOtftdcAXJO', $snapshot->getId());
-        $this->assertEquals(1, count($fields));
-        $this->assertEquals('Title', $fields[0]->getName());
-        $this->assertEquals(1, $contentType->getSystemProperties()->getPublishedCounter());
+        $this->assertSame('1Qvx64r3Nq0MOtftdcAXJO', $snapshot->getId());
+        $this->assertSame(1, \count($fields));
+        $this->assertSame('Title', $fields[0]->getName());
+        $this->assertSame(1, $contentType->getSystemProperties()->getPublishedCounter());
 
         $query = (new Query())
             ->setLimit(1);
@@ -127,10 +125,10 @@ class SnapshotTest extends BaseTestCase
         $contentType = $snapshot->getContentType();
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
-        $this->assertEquals('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
-        $this->assertEquals(2, count($fields));
-        $this->assertEquals('Title', $fields[0]->getName());
-        $this->assertEquals('Description', $fields[1]->getName());
-        $this->assertEquals(2, $contentType->getSystemProperties()->getPublishedCounter());
+        $this->assertSame('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
+        $this->assertSame(2, \count($fields));
+        $this->assertSame('Title', $fields[0]->getName());
+        $this->assertSame('Description', $fields[1]->getName());
+        $this->assertSame(2, $contentType->getSystemProperties()->getPublishedCounter());
     }
 }

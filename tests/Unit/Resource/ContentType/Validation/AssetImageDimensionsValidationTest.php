@@ -26,24 +26,24 @@ class AssetImageDimensionsValidationTest extends BaseTestCase
     {
         $validation = new AssetImageDimensionsValidation(50, 100, 60, 120);
 
-        $this->assertEquals(['Link'], $validation->getValidFieldTypes());
+        $this->assertSame(['Link'], $validation->getValidFieldTypes());
 
-        $this->assertEquals(50, $validation->getMinWidth());
-        $this->assertEquals(100, $validation->getMaxWidth());
-        $this->assertEquals(60, $validation->getMinHeight());
-        $this->assertEquals(120, $validation->getMaxHeight());
+        $this->assertSame(50, $validation->getMinWidth());
+        $this->assertSame(100, $validation->getMaxWidth());
+        $this->assertSame(60, $validation->getMinHeight());
+        $this->assertSame(120, $validation->getMaxHeight());
 
         $validation->setMinWidth(70);
-        $this->assertEquals(70, $validation->getMinWidth());
+        $this->assertSame(70, $validation->getMinWidth());
 
         $validation->setMaxWidth(140);
-        $this->assertEquals(140, $validation->getMaxWidth());
+        $this->assertSame(140, $validation->getMaxWidth());
 
         $validation->setMinHeight(90);
-        $this->assertEquals(90, $validation->getMinHeight());
+        $this->assertSame(90, $validation->getMinHeight());
 
         $validation->setMaxHeight(180);
-        $this->assertEquals(180, $validation->getMaxHeight());
+        $this->assertSame(180, $validation->getMaxHeight());
 
         $validation->setMinWidth(null);
         $this->assertNull($validation->getMinWidth());

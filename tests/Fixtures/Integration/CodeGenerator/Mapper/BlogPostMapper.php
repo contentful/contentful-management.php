@@ -2,8 +2,8 @@
 
 namespace Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\Mapper;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\BlogPost;
@@ -39,7 +39,7 @@ class BlogPostMapper extends BaseMapper
         $fields['isPublished'] = $data['isPublished'] ?? null;
         $fields['publishedAt'] = [];
         foreach ($data['publishedAt'] ?? [] as $locale => $value) {
-            $fields['publishedAt'][$locale] = new ApiDateTime($value);
+            $fields['publishedAt'][$locale] = new DateTimeImmutable($value);
         }
         $fields['previous'] = [];
         foreach ($data['previous'] ?? [] as $locale => $value) {
@@ -60,13 +60,13 @@ class BlogPostMapper extends BaseMapper
         $fields['rating'] = $data['rating'] ?? null;
         $fields['images'] = [];
         foreach ($data['images'] ?? [] as $locale => $value) {
-            $fields['images'][$locale] = array_map(function (array $link): Link {
+            $fields['images'][$locale] = \array_map(function (array $link): Link {
                 return new Link($link['sys']['id'], $link['sys']['linkType']);
             }, $value);
         }
         $fields['related'] = [];
         foreach ($data['related'] ?? [] as $locale => $value) {
-            $fields['related'][$locale] = array_map(function (array $link): Link {
+            $fields['related'][$locale] = \array_map(function (array $link): Link {
                 return new Link($link['sys']['id'], $link['sys']['linkType']);
             }, $value);
         }

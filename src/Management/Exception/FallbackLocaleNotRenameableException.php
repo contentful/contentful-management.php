@@ -10,11 +10,11 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Exception;
 
-use Contentful\Exception\ApiException;
+use Contentful\Core\Api\Exception;
 
 /**
  * FallbackLocaleNotRenameableException class.
  */
-class FallbackLocaleNotRenameableException extends ApiException
+class FallbackLocaleNotRenameableException extends Exception
 {
 }

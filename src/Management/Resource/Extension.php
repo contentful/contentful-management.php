@@ -40,7 +40,7 @@ class Extension extends BaseResource implements Creatable, Updatable, Deletable
     protected $source = '';
 
     /**
-     * @var FieldType
+     * @var FieldType[]
      */
     protected $fieldTypes = [];
 
@@ -118,7 +118,7 @@ class Extension extends BaseResource implements Creatable, Updatable, Deletable
     {
         $this->fieldTypes = [];
 
-        array_map([$this, 'addFieldType'], $fieldTypes);
+        \array_map([$this, 'addFieldType'], $fieldTypes);
 
         return $this;
     }
@@ -175,7 +175,7 @@ class Extension extends BaseResource implements Creatable, Updatable, Deletable
      */
     public function jsonSerialize(): array
     {
-        $sourceType = filter_var($this->source, FILTER_VALIDATE_URL)
+        $sourceType = \filter_var($this->source, FILTER_VALIDATE_URL)
             ? 'src'
             : 'srcdoc';
 

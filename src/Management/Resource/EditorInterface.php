@@ -60,7 +60,7 @@ class EditorInterface extends BaseResource implements Updatable
     public function getControl(string $fieldId): Control
     {
         foreach ($this->controls as $control) {
-            if ($control->getFieldId() == $fieldId) {
+            if ($control->getFieldId() === $fieldId) {
                 return $control;
             }
         }

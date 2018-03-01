@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Mapper;
 
-use Contentful\Link;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\SpaceMembership as ResourceClass;
 use Contentful\Management\SystemProperties;
 
