@@ -17,7 +17,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Contentful\\": "src/"
+      "Contentful\\Management\\": "src/"
     }
   },
   "autoload-dev": {
