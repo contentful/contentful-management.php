@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Core\Resource\ResourceInterface;
+
 /**
  * Snapshot class.
  */

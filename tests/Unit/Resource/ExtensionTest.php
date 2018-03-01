@@ -19,16 +19,17 @@ class ExtensionTest extends BaseTestCase
     public function testGetSetData()
     {
         $extension = new Extension('Test');
-        $this->assertEquals('Test', $extension->getName());
+        $this->assertSame('Test', $extension->getName());
 
         $extension->setSidebar(false);
         $this->assertFalse($extension->isSidebar());
 
-        $extension->setFieldTypes([new FieldType('Symbol')]);
-        $this->assertEquals([new FieldType('Symbol')], $extension->getFieldTypes());
+        $fieldTypes = [new FieldType('Symbol')];
+        $extension->setFieldTypes($fieldTypes);
+        $this->assertSame($fieldTypes, $extension->getFieldTypes());
 
         $extension->setSource('https://www.example.com/cf-ui-extension-test');
-        $this->assertEquals('https://www.example.com/cf-ui-extension-test', $extension->getSource());
+        $this->assertSame('https://www.example.com/cf-ui-extension-test', $extension->getSource());
     }
 
     public function testJsonSerialize()

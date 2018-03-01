@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Proxy;
 
+use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Role as ResourceClass;
-use Contentful\ResourceArray;
 
 /**
  * Role class.
@@ -46,7 +46,7 @@ class Role extends BaseProxy
      *
      * @param string $resourceId
      *
-     * @return Role
+     * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/role
      */

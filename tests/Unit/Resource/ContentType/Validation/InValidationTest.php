@@ -26,11 +26,11 @@ class InValidationTest extends BaseTestCase
     {
         $validation = new InValidation(['General', 'iOS', 'Android']);
 
-        $this->assertEquals(['Text', 'Symbol', 'Integer', 'Number'], $validation->getValidFieldTypes());
+        $this->assertSame(['Text', 'Symbol', 'Integer', 'Number'], $validation->getValidFieldTypes());
 
-        $this->assertEquals(['General', 'iOS', 'Android'], $validation->getValues());
+        $this->assertSame(['General', 'iOS', 'Android'], $validation->getValues());
 
         $validation->setValues(['macOS', 'tvOS']);
-        $this->assertEquals(['macOS', 'tvOS'], $validation->getValues());
+        $this->assertSame(['macOS', 'tvOS'], $validation->getValues());
     }
 }

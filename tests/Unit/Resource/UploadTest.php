@@ -18,10 +18,10 @@ class UploadTest extends BaseTestCase
     public function testGetSetData()
     {
         $upload = new Upload('text');
-        $this->assertEquals('text', $upload->getBody());
+        $this->assertSame('text', $upload->getBody());
 
         $upload->setBody('contents');
-        $this->assertEquals('contents', $upload->getBody());
+        $this->assertSame('contents', $upload->getBody());
     }
 
     public function testJsonSerialize()

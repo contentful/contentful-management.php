@@ -26,16 +26,16 @@ class DateRangeValidationTest extends BaseTestCase
     {
         $validation = new DateRangeValidation('1989-09-02', '2017-05-26');
 
-        $this->assertEquals(['Date'], $validation->getValidFieldTypes());
+        $this->assertSame(['Date'], $validation->getValidFieldTypes());
 
-        $this->assertEquals('1989-09-02', $validation->getMin());
-        $this->assertEquals('2017-05-26', $validation->getMax());
+        $this->assertSame('1989-09-02', $validation->getMin());
+        $this->assertSame('2017-05-26', $validation->getMax());
 
         $validation->setMin('1998-03-27');
-        $this->assertEquals('1998-03-27', $validation->getMin());
+        $this->assertSame('1998-03-27', $validation->getMin());
 
         $validation->setMax('2020-12-24');
-        $this->assertEquals('2020-12-24', $validation->getMax());
+        $this->assertSame('2020-12-24', $validation->getMax());
 
         $validation->setMin(null);
         $this->assertNull($validation->getMin());

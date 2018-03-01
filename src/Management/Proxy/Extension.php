@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Proxy;
 
+use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Resource\Extension as ResourceClass;
-use Contentful\ResourceArray;
 
 /**
  * Extension class.

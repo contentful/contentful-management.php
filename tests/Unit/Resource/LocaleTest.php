@@ -19,13 +19,13 @@ class LocaleTest extends BaseTestCase
     {
         $locale = new Locale('Swiss Italian', 'it-CH');
 
-        $this->assertEquals('Swiss Italian', $locale->getName());
+        $this->assertSame('Swiss Italian', $locale->getName());
         $locale->setName('Better Italian');
-        $this->assertEquals('Better Italian', $locale->getName());
+        $this->assertSame('Better Italian', $locale->getName());
 
-        $this->assertEquals('it-CH', $locale->getCode());
+        $this->assertSame('it-CH', $locale->getCode());
         $locale->setCode('it-IT');
-        $this->assertEquals('it-IT', $locale->getCode());
+        $this->assertSame('it-IT', $locale->getCode());
 
         $this->assertFalse($locale->isOptional());
         $locale->setOptional(true);
@@ -41,11 +41,11 @@ class LocaleTest extends BaseTestCase
 
         $this->assertNull($locale->getFallbackCode());
         $locale->setFallbackCode('en-GB');
-        $this->assertEquals('en-GB', $locale->getFallbackCode());
+        $this->assertSame('en-GB', $locale->getFallbackCode());
 
         $sys = $locale->getSystemProperties();
         $this->assertNull($sys->getId());
-        $this->assertEquals('Locale', $sys->getType());
+        $this->assertSame('Locale', $sys->getType());
     }
 
     public function testJsonSerialize()

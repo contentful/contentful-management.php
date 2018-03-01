@@ -10,10 +10,10 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Proxy;
 
+use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Exception\InvalidProxyActionException;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\PersonalAccessToken as ResourceClass;
-use Contentful\ResourceArray;
 
 /**
  * PersonalAccessToken class.

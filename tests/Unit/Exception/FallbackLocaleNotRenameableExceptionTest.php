@@ -35,7 +35,7 @@ class FallbackLocaleNotRenameableExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('ba4351a9e72616cffffc3c175bcc5271', $exception->getRequestId());
-        $this->assertEquals('Cannot change the code of a locale which is fallback of another one.', $exception->getMessage());
+        $this->assertSame('ba4351a9e72616cffffc3c175bcc5271', $exception->getRequestId());
+        $this->assertSame('Cannot change the code of a locale which is fallback of another one.', $exception->getMessage());
     }
 }

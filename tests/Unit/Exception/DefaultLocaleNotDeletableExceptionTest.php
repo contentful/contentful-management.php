@@ -35,7 +35,7 @@ class DefaultLocaleNotDeletableExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('ba3ebdba60cc777f91746503330a6007', $exception->getRequestId());
-        $this->assertEquals('Cannot delete a default locale.', $exception->getMessage());
+        $this->assertSame('ba3ebdba60cc777f91746503330a6007', $exception->getRequestId());
+        $this->assertSame('Cannot delete a default locale.', $exception->getMessage());
     }
 }

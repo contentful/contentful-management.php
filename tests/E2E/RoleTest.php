@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\Role\Constraint\AndConstraint;
@@ -20,6 +19,7 @@ use Contentful\Management\Resource\Role\Constraint\OrConstraint;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
 use Contentful\Tests\Management\BaseTestCase;
+use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 class RoleTest extends BaseTestCase
 {
@@ -32,23 +32,23 @@ class RoleTest extends BaseTestCase
 
         $role = $client->role->get('6khUMmsfVslYd7tRcThTgE');
 
-        $this->assertEquals('Developer', $role->getName());
-        $this->assertEquals('Allows reading Entries and managing API Keys', $role->getDescription());
-        $this->assertEquals(new Link('6khUMmsfVslYd7tRcThTgE', 'Role'), $role->asLink());
+        $this->assertSame('Developer', $role->getName());
+        $this->assertSame('Allows reading Entries and managing API Keys', $role->getDescription());
+        $this->assertLink('6khUMmsfVslYd7tRcThTgE', 'Role', $role->asLink());
 
         $policies = $role->getPolicies();
         $this->assertCount(2, $policies);
-        $this->assertEquals('allow', $policies[0]->getEffect());
-        $this->assertEquals(['read'], $policies[0]->getActions());
+        $this->assertSame('allow', $policies[0]->getEffect());
+        $this->assertSame(['read'], $policies[0]->getActions());
         $this->assertInstanceOf(AndConstraint::class, $policies[0]->getConstraint());
         $constraint = $policies[0]->getConstraint()->getChildren()[0];
         $this->assertInstanceOf(EqualityConstraint::class, $constraint);
-        $this->assertEquals('sys.type', $constraint->getDoc());
-        $this->assertEquals('Entry', $constraint->getValue());
+        $this->assertSame('sys.type', $constraint->getDoc());
+        $this->assertSame('Entry', $constraint->getValue());
 
         $permissions = $role->getPermissions();
-        $this->assertEquals('all', $permissions->getContentDelivery());
-        $this->assertEquals('read', $permissions->getContentModel());
+        $this->assertSame('all', $permissions->getContentDelivery());
+        $this->assertSame('read', $permissions->getContentModel());
         $this->assertNull($permissions->getSettings());
     }
 
@@ -70,8 +70,8 @@ class RoleTest extends BaseTestCase
         // all role objects were properly created.
         $this->assertCount($roles->getTotal(), $roles);
 
-        $this->assertEquals('Developer', $role->getName());
-        $this->assertEquals('Allows reading Entries and managing API Keys', $role->getDescription());
+        $this->assertSame('Developer', $role->getName());
+        $this->assertSame('Allows reading Entries and managing API Keys', $role->getDescription());
 
         $query = (new Query())
             ->setLimit(1);
@@ -81,8 +81,8 @@ class RoleTest extends BaseTestCase
         $this->assertInstanceOf(Role::class, $role);
         $this->assertCount(1, $roles);
 
-        $this->assertEquals('Developer', $role->getName());
-        $this->assertEquals('Allows reading Entries and managing API Keys', $role->getDescription());
+        $this->assertSame('Developer', $role->getName());
+        $this->assertSame('Allows reading Entries and managing API Keys', $role->getDescription());
     }
 
     /**
@@ -114,15 +114,19 @@ class RoleTest extends BaseTestCase
         $client->role->create($role);
 
         $this->assertNotNull($role->getId());
-        $this->assertEquals(0, $role->getSystemProperties()->getVersion());
+        $this->assertSame(0, $role->getSystemProperties()->getVersion());
 
         // The ResourceBuilder actually recreates from scratch all attributes,
         // using the result of the CMA response.
         // This is to make sure that all attributes were correctly recreated.
-        $this->assertEquals('Custom role', $role->getName());
-        $this->assertEquals('This is a custom test role', $role->getDescription());
-        $this->assertCount(1, $role->getPolicies());
-        $this->assertEquals([$policy], $role->getPolicies());
+        $this->assertSame('Custom role', $role->getName());
+        $this->assertSame('This is a custom test role', $role->getDescription());
+        $policies = $role->getPolicies();
+        $this->assertCount(1, $policies);
+        $this->assertJsonStringEqualsJsonString(
+            guzzle_json_encode($policy, \JSON_UNESCAPED_UNICODE),
+            guzzle_json_encode($policies[0], \JSON_UNESCAPED_UNICODE)
+        );
 
         // The API automatically converts permissions in "all",
         // if all permissions for a given attribute are set.
@@ -132,7 +136,10 @@ class RoleTest extends BaseTestCase
             ->setContentDelivery('all')
             ->setContentModel('all')
             ->setSettings('all');
-        $this->assertEquals($permissions, $role->getPermissions());
+        $this->assertJsonStringEqualsJsonString(
+            guzzle_json_encode($permissions, \JSON_UNESCAPED_UNICODE),
+            guzzle_json_encode($role->getPermissions(), \JSON_UNESCAPED_UNICODE)
+        );
 
         $secondPolicy = new Policy(
             'deny',
@@ -143,12 +150,18 @@ class RoleTest extends BaseTestCase
 
         $role->update();
 
-        $this->assertEquals(1, $role->getSystemProperties()->getVersion());
-        $this->assertEquals('Custom role', $role->getName());
-        $this->assertEquals('This is a custom test role', $role->getDescription());
+        $this->assertSame(1, $role->getSystemProperties()->getVersion());
+        $this->assertSame('Custom role', $role->getName());
+        $this->assertSame('This is a custom test role', $role->getDescription());
         $this->assertCount(2, $role->getPolicies());
-        $this->assertEquals([$policy, $secondPolicy], $role->getPolicies());
-        $this->assertEquals($permissions, $role->getPermissions());
+        $this->assertJsonStringEqualsJsonString(
+            guzzle_json_encode([$policy, $secondPolicy], \JSON_UNESCAPED_UNICODE),
+            guzzle_json_encode($role->getPolicies(), \JSON_UNESCAPED_UNICODE)
+        );
+        $this->assertJsonStringEqualsJsonString(
+            guzzle_json_encode($permissions, \JSON_UNESCAPED_UNICODE),
+            guzzle_json_encode($role->getPermissions(), \JSON_UNESCAPED_UNICODE)
+        );
 
         $role->delete();
     }

@@ -101,10 +101,10 @@ class SizeValidation implements ValidationInterface
     public function jsonSerialize(): array
     {
         $data = [];
-        if ($this->min !== null) {
+        if (null !== $this->min) {
             $data['min'] = $this->min;
         }
-        if ($this->max !== null) {
+        if (null !== $this->max) {
             $data['max'] = $this->max;
         }
 

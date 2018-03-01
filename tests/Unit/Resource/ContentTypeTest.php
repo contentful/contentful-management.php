@@ -26,12 +26,13 @@ class ContentTypeTest extends BaseTestCase
             ])
             ->setDisplayField('name');
 
-        $this->assertEquals('ContentType', $contentType->getSystemProperties()->getType());
-        $this->assertEquals('Test CT', $contentType->getName());
-        $this->assertEquals('A cool new content type.', $contentType->getDescription());
+        $this->assertSame('ContentType', $contentType->getSystemProperties()->getType());
+        $this->assertSame('ContentType', $contentType->getType());
+        $this->assertSame('Test CT', $contentType->getName());
+        $this->assertSame('A cool new content type.', $contentType->getDescription());
         $this->assertCount(1, $contentType->getFields());
-        $this->assertEquals('name', $contentType->getFields()[0]->getId());
-        $this->assertEquals('name', $contentType->getDisplayField());
+        $this->assertSame('name', $contentType->getFields()[0]->getId());
+        $this->assertSame('name', $contentType->getDisplayField());
 
         $contentType->addField(new NumberField('number', 'Number'));
         $this->assertCount(2, $contentType->getFields());

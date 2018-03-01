@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\Integration\Generator;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Entry;
 use Contentful\Management\Proxy\BaseProxy;
@@ -62,7 +62,7 @@ class EntryTest extends BaseTestCase
 
         $expected = \file_get_contents(__DIR__.'/../../Fixtures/Integration/CodeGenerator/BlogPost.php');
 
-        $this->assertEquals($expected, $code);
+        $this->assertSame($expected, $code);
     }
 
     /**
@@ -74,19 +74,19 @@ class EntryTest extends BaseTestCase
         $entry->setProxy(new EntryFakeProxy());
 
         $entry->setTitle('en-US', 'title');
-        $this->assertEquals('title', $entry->getTitle('en-US'));
+        $this->assertSame('title', $entry->getTitle('en-US'));
 
         $entry->setIsPublished('en-US', true);
         $this->assertTrue($entry->getIsPublished('en-US'));
 
-        $publishedAt = new ApiDateTime('2017-10-06T09:30:30.123');
+        $publishedAt = new DateTimeImmutable('2017-10-06T09:30:30.123');
         $entry->setPublishedAt('en-US', $publishedAt);
         $this->assertSame($publishedAt, $entry->getPublishedAt('en-US'));
 
         $previous = new Link('<linkId>', 'Entry');
         $entry->setPrevious('en-US', $previous);
         $this->assertSame($previous, $entry->getPrevious('en-US'));
-        $this->assertEquals(new BlogPost(), $entry->resolvePreviousLink('en-US'));
+        $this->assertInstanceOf(BlogPost::class, $entry->resolvePreviousLink('en-US'));
 
         $misc = [
             'seasons' => [1, 2, 3, 4, 5, 6, '...and a movie!'],
@@ -94,31 +94,31 @@ class EntryTest extends BaseTestCase
             'job' => 'Princess and pilot of the Blue Lion',
         ];
         $entry->setMisc('en-US', $misc);
-        $this->assertEquals($misc, $entry->getMisc('en-US'));
+        $this->assertSame($misc, $entry->getMisc('en-US'));
 
         $entry->setBody('en-US', 'Now, this is a story all about how, my life got flipped-turned upside down');
-        $this->assertEquals('Now, this is a story all about how, my life got flipped-turned upside down', $entry->getBody('en-US'));
+        $this->assertSame('Now, this is a story all about how, my life got flipped-turned upside down', $entry->getBody('en-US'));
 
         $entry->setMinimumAge('en-US', 18);
-        $this->assertEquals(18, $entry->getMinimumAge('en-US'));
+        $this->assertSame(18, $entry->getMinimumAge('en-US'));
 
         $heroImage = new Link('<linkId>', 'Asset');
         $entry->setHeroImage('en-US', $heroImage);
-        $this->assertEquals($heroImage, $entry->getHeroImage('en-US'));
-        $this->assertEquals(new Asset(), $entry->resolveHeroImageLink('en-US'));
+        $this->assertSame($heroImage, $entry->getHeroImage('en-US'));
+        $this->assertInstanceOf(Asset::class, $entry->resolveHeroImageLink('en-US'));
 
         $randomEntry = new Link('<linkId>', 'Entry');
         $entry->setRandomEntry('en-US', $randomEntry);
-        $this->assertEquals($randomEntry, $entry->getRandomEntry('en-US'));
-        $this->assertEquals(new BlogPost(), $entry->resolveRandomEntryLink('en-US'));
+        $this->assertSame($randomEntry, $entry->getRandomEntry('en-US'));
+        $this->assertInstanceOf(BlogPost::class, $entry->resolveRandomEntryLink('en-US'));
 
         $location = ['lat' => 10, 'lon' => 15];
         $entry->setLocation('en-US', $location);
-        $this->assertEquals($location, $entry->getLocation('en-US'));
+        $this->assertSame($location, $entry->getLocation('en-US'));
 
         // Too much water
         $entry->setRating('en-US', 7.8);
-        $this->assertEquals(7.8, $entry->getRating('en-US'));
+        $this->assertSame(7.8, $entry->getRating('en-US'));
 
         $images = [
             new Link('<linkId1>', 'Asset'),
@@ -126,12 +126,10 @@ class EntryTest extends BaseTestCase
             new Link('<linkId3>', 'Asset'),
         ];
         $entry->setImages('en-US', $images);
-        $this->assertEquals($images, $entry->getImages('en-US'));
-        $this->assertEquals([
-            new Asset(),
-            new Asset(),
-            new Asset(),
-        ], $entry->resolveImagesLinks('en-US'));
+        $this->assertSame($images, $entry->getImages('en-US'));
+        $images = $entry->resolveImagesLinks('en-US');
+        $this->assertCount(3, $images);
+        $this->assertContainsOnlyInstancesOf(Asset::class, $images);
 
         $related = [
             new Link('<linkId1>', 'Entry'),
@@ -139,15 +137,13 @@ class EntryTest extends BaseTestCase
             new Link('<linkId3>', 'Entry'),
         ];
         $entry->setRelated('en-US', $related);
-        $this->assertEquals($related, $entry->getRelated('en-US'));
-        $this->assertEquals([
-            new BlogPost(),
-            new BlogPost(),
-            new BlogPost(),
-        ], $entry->resolveRelatedLinks('en-US'));
+        $this->assertSame($related, $entry->getRelated('en-US'));
+        $blogPosts = $entry->resolveRelatedLinks('en-US');
+        $this->assertCount(3, $blogPosts);
+        $this->assertContainsOnlyInstancesOf(BlogPost::class, $blogPosts);
 
         $entry->setTags('en-US', ['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads']);
-        $this->assertEquals(['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads'], $entry->getTags('en-US'));
+        $this->assertSame(['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads'], $entry->getTags('en-US'));
 
         $this->assertJsonFixtureEqualsJsonObject('Integration/CodeGenerator/entry.json', $entry);
     }
@@ -188,11 +184,11 @@ class EntryFakeProxy extends BaseProxy
      */
     public function resolveLink(Link $link)
     {
-        if ($link->getLinkType() == 'Asset') {
+        if ('Asset' === $link->getLinkType()) {
             return new Asset();
         }
 
-        if ($link->getLinkType() == 'Entry') {
+        if ('Entry' === $link->getLinkType()) {
             return new BlogPost();
         }
     }

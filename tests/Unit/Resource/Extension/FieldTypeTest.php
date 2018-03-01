@@ -17,19 +17,19 @@ class FieldTypeTest extends BaseTestCase
 {
     public function testGetSetData()
     {
-        $this->assertEquals(['type' => 'Symbol'], (new FieldType('Symbol'))->getData());
-        $this->assertEquals(['type' => 'Text'], (new FieldType('Text'))->getData());
-        $this->assertEquals(['type' => 'Integer'], (new FieldType('Integer'))->getData());
-        $this->assertEquals(['type' => 'Number'], (new FieldType('Number'))->getData());
-        $this->assertEquals(['type' => 'Date'], (new FieldType('Date'))->getData());
-        $this->assertEquals(['type' => 'Boolean'], (new FieldType('Boolean'))->getData());
-        $this->assertEquals(['type' => 'Object'], (new FieldType('Object'))->getData());
-        $this->assertEquals(['type' => 'Symbol'], (new FieldType('Symbol'))->getData());
-        $this->assertEquals(['type' => 'Link', 'linkType' => 'Asset'], (new FieldType('Link', ['Asset']))->getData());
-        $this->assertEquals(['type' => 'Link', 'linkType' => 'Entry'], (new FieldType('Link', ['Entry']))->getData());
-        $this->assertEquals(['type' => 'Array', 'items' => ['type' => 'Symbol']], (new FieldType('Array', ['Symbol']))->getData());
-        $this->assertEquals(['type' => 'Array', 'items' => ['type' => 'Link', 'linkType' => 'Asset']], (new FieldType('Array', ['Link', 'Asset']))->getData());
-        $this->assertEquals(['type' => 'Array', 'items' => ['type' => 'Link', 'linkType' => 'Entry']], (new FieldType('Array', ['Link', 'Entry']))->getData());
+        $this->assertSame(['type' => 'Symbol'], (new FieldType('Symbol'))->getData());
+        $this->assertSame(['type' => 'Text'], (new FieldType('Text'))->getData());
+        $this->assertSame(['type' => 'Integer'], (new FieldType('Integer'))->getData());
+        $this->assertSame(['type' => 'Number'], (new FieldType('Number'))->getData());
+        $this->assertSame(['type' => 'Date'], (new FieldType('Date'))->getData());
+        $this->assertSame(['type' => 'Boolean'], (new FieldType('Boolean'))->getData());
+        $this->assertSame(['type' => 'Object'], (new FieldType('Object'))->getData());
+        $this->assertSame(['type' => 'Symbol'], (new FieldType('Symbol'))->getData());
+        $this->assertSame(['type' => 'Link', 'linkType' => 'Asset'], (new FieldType('Link', ['Asset']))->getData());
+        $this->assertSame(['type' => 'Link', 'linkType' => 'Entry'], (new FieldType('Link', ['Entry']))->getData());
+        $this->assertSame(['type' => 'Array', 'items' => ['type' => 'Symbol']], (new FieldType('Array', ['Symbol']))->getData());
+        $this->assertSame(['type' => 'Array', 'items' => ['type' => 'Link', 'linkType' => 'Asset']], (new FieldType('Array', ['Link', 'Asset']))->getData());
+        $this->assertSame(['type' => 'Array', 'items' => ['type' => 'Link', 'linkType' => 'Entry']], (new FieldType('Array', ['Link', 'Entry']))->getData());
     }
 
     /**

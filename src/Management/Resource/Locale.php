@@ -13,7 +13,7 @@ namespace Contentful\Management\Resource;
 use Contentful\Management\Resource\Behavior\Creatable;
 use Contentful\Management\Resource\Behavior\Deletable;
 use Contentful\Management\Resource\Behavior\Updatable;
-use function GuzzleHttp\json_encode;
+use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
  * Locale class.
@@ -105,7 +105,7 @@ class Locale extends BaseResource implements Creatable, Updatable, Deletable
         // The property 'default' has to be omitted for the API to work.
         unset($body['default']);
 
-        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
+        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
     /**

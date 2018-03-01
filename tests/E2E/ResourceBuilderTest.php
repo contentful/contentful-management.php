@@ -25,7 +25,7 @@ class ResourceBuilderTest extends BaseTestCase
     {
         $builder = new ResourceBuilder();
         $builder->setDataMapperMatcher('Entry', function (array $data) {
-            if ($data['sys']['contentType']['sys']['id'] == 'fantasticCreature') {
+            if ('fantasticCreature' === $data['sys']['contentType']['sys']['id']) {
                 return FantasticCreatureEntryMapper::class;
             }
         });
@@ -40,14 +40,14 @@ class ResourceBuilderTest extends BaseTestCase
         // so it should use the custom mapper
         $entry = $client->entry->get('4OuC4z6qs0yEWMeqkGmokw');
         $this->assertInstanceOf(FantasticCreatureEntry::class, $entry);
-        $this->assertEquals('Direwolf', $entry->getName());
+        $this->assertSame('Direwolf', $entry->getName());
 
         // This entry has content type 'person'
         // so it should default to the regular mapper
         $entry = $client->entry->get('3LM5FlCdGUIM0Miqc664q6');
         $this->assertInstanceOf(Entry::class, $entry);
-        $this->assertEquals('Josh Lyman', $entry->getField('name', 'en-US'));
-        $this->assertEquals('Chief of Staff', $entry->getField('jobTitle', 'en-US'));
+        $this->assertSame('Josh Lyman', $entry->getField('name', 'en-US'));
+        $this->assertSame('Chief of Staff', $entry->getField('jobTitle', 'en-US'));
     }
 }
 

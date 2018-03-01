@@ -35,8 +35,8 @@ class MissingKeyExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('761a55845f700069f3c3b4dae6ad1117', $exception->getRequestId());
-        $this->assertEquals('Request body is missing a required key.', $exception->getMessage());
-        $this->assertEquals('resource', $exception->getKey());
+        $this->assertSame('761a55845f700069f3c3b4dae6ad1117', $exception->getRequestId());
+        $this->assertSame('Request body is missing a required key.', $exception->getMessage());
+        $this->assertSame('resource', $exception->getKey());
     }
 }

@@ -25,20 +25,20 @@ class ExtensionTest extends BaseTestCase
 
         $extension = $client->extension->get('3GKNbc6ddeIYgmWuUc0ami');
 
-        $this->assertEquals('Test extension', $extension->getName());
-        $this->assertEquals('https://www.example.com/cf-test-extension', $extension->getSource());
+        $this->assertSame('Test extension', $extension->getName());
+        $this->assertSame('https://www.example.com/cf-test-extension', $extension->getSource());
         $this->assertTrue($extension->isSidebar());
-        $this->assertEquals([new FieldType('Integer')], $extension->getFieldTypes());
+        $this->assertSame(['type' => 'Integer'], $extension->getFieldTypes()[0]->getData());
 
         $extensions = $client->extension->getAll();
 
         $this->assertCount(1, $extensions);
         $extension = $extensions[0];
 
-        $this->assertEquals('Test extension', $extension->getName());
-        $this->assertEquals('https://www.example.com/cf-test-extension', $extension->getSource());
+        $this->assertSame('Test extension', $extension->getName());
+        $this->assertSame('https://www.example.com/cf-test-extension', $extension->getSource());
         $this->assertTrue($extension->isSidebar());
-        $this->assertEquals([new FieldType('Integer')], $extension->getFieldTypes());
+        $this->assertSame(['type' => 'Integer'], $extension->getFieldTypes()[0]->getData());
     }
 
     /**
@@ -62,15 +62,14 @@ class ExtensionTest extends BaseTestCase
 
         $this->assertNotNull($extension->getId());
         $this->assertSame('My awesome extension', $extension->getName());
-        $this->assertEquals($source, $extension->getSource());
+        $this->assertSame($source, $extension->getSource());
         $this->assertFalse($extension->isSidebar());
         $fieldTypes = $extension->getFieldTypes();
         $this->assertContainsOnlyInstancesOf(FieldType::class, $fieldTypes);
-        $this->assertEquals([
-            new FieldType('Symbol'),
-            new FieldType('Array', ['Symbol']),
-            new FieldType('Link', ['Entry']),
-        ], $fieldTypes);
+        $this->assertCount(3, $fieldTypes);
+        $this->assertSame(['type' => 'Symbol'], $fieldTypes[0]->getData());
+        $this->assertSame(['type' => 'Array', 'items' => ['type' => 'Symbol']], $fieldTypes[1]->getData());
+        $this->assertSame(['type' => 'Link', 'linkType' => 'Entry'], $fieldTypes[2]->getData());
 
         $extension->setName('Maybe not-so-awesome extension');
         $extension->setSource('https://www.example.com/cf-ui-extension');
@@ -79,9 +78,15 @@ class ExtensionTest extends BaseTestCase
         ]);
         $extension->update();
 
-        $this->assertEquals('Maybe not-so-awesome extension', $extension->getName());
-        $this->assertEquals('https://www.example.com/cf-ui-extension', $extension->getSource());
-        $this->assertEquals([new FieldType('Array', ['Link', 'Asset'])], $extension->getFieldTypes());
+        $this->assertSame('Maybe not-so-awesome extension', $extension->getName());
+        $this->assertSame('https://www.example.com/cf-ui-extension', $extension->getSource());
+        $this->assertSame([
+            'type' => 'Array',
+            'items' => [
+                'type' => 'Link',
+                'linkType' => 'Asset',
+            ],
+        ], $extension->getFieldTypes()[0]->getData());
 
         $extension->delete();
     }

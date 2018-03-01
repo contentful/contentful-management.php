@@ -44,7 +44,7 @@ class ContentType extends BaseMapper
      */
     protected function mapField(array $data): FieldInterface
     {
-        $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Field\\'.$data['type'].'Field';
+        $fqcn = __NAMESPACE__.'\\ContentType\\Field\\'.$data['type'].'Field';
 
         return $this->builder->getMapper($fqcn)
             ->map(null, $data);

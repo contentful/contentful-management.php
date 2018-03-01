@@ -10,9 +10,10 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management;
 
+use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
-use GuzzleHttp\json_encode;
 use PHPUnit\Framework\TestCase;
+use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 class BaseTestCase extends TestCase
 {
@@ -67,6 +68,12 @@ class BaseTestCase extends TestCase
         return $this->getClient($this->defaultSpaceId);
     }
 
+    protected function assertLink($id, $linkType, Link $link, $message = '')
+    {
+        $this->assertSame($id, $link->getId(), $message);
+        $this->assertSame($linkType, $link->getLinkType(), $message);
+    }
+
     /**
      * @param string $file
      * @param object $object
@@ -74,7 +81,7 @@ class BaseTestCase extends TestCase
      */
     protected function assertJsonFixtureEqualsJsonObject(string $file, $object, string $message = '')
     {
-        $this->assertJsonStringEqualsJsonFile(__DIR__.'/Fixtures/'.$file, json_encode($object), $message);
+        $this->assertJsonStringEqualsJsonFile(__DIR__.'/Fixtures/'.$file, guzzle_json_encode($object, \JSON_UNESCAPED_UNICODE), $message);
     }
 
     /**

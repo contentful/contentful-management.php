@@ -48,7 +48,7 @@ class LinkField extends BaseField
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     public function getLinkType(): string
     {
@@ -82,7 +82,7 @@ class LinkField extends BaseField
      */
     private function isValidLinkType(string $type): bool
     {
-        return \in_array($type, self::VALID_LINK_TYPES);
+        return \in_array($type, self::VALID_LINK_TYPES, true);
     }
 
     /**

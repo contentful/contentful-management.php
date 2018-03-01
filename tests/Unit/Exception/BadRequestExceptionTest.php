@@ -35,7 +35,7 @@ class BadRequestExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('65af11a800e5f67af57a2082eb9a405c', $exception->getRequestId());
-        $this->assertEquals('Missing object.', $exception->getMessage());
+        $this->assertSame('65af11a800e5f67af57a2082eb9a405c', $exception->getRequestId());
+        $this->assertSame('Missing object.', $exception->getMessage());
     }
 }

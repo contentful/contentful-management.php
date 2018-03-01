@@ -19,10 +19,10 @@ class EqualityConstraintTest extends BaseTestCase
     {
         $constraint = new EqualityConstraint();
         $constraint->setDoc('sys.type');
-        $this->assertEquals('sys.type', $constraint->getDoc());
+        $this->assertSame('sys.type', $constraint->getDoc());
 
         $constraint->setValue('Entry');
-        $this->assertEquals('Entry', $constraint->getValue());
+        $this->assertSame('Entry', $constraint->getValue());
     }
 
     public function testJsonSerialize()

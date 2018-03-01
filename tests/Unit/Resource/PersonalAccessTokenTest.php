@@ -20,7 +20,7 @@ class PersonalAccessTokenTest extends BaseTestCase
         $personalAccessToken = new PersonalAccessToken();
 
         $personalAccessToken->setName('Test token');
-        $this->assertEquals('Test token', $personalAccessToken->getName());
+        $this->assertSame('Test token', $personalAccessToken->getName());
 
         $personalAccessToken->setReadOnly(true);
         $this->assertTrue($personalAccessToken->isReadOnly());

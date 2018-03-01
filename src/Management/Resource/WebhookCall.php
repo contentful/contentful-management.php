@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
@@ -54,12 +54,12 @@ class WebhookCall extends BaseResource
     protected $url;
 
     /**
-     * @var ApiDateTime
+     * @var DateTimeImmutable
      */
     protected $requestAt;
 
     /**
-     * @var ApiDateTime
+     * @var DateTimeImmutable
      */
     protected $responseAt;
 
@@ -117,7 +117,7 @@ class WebhookCall extends BaseResource
         $returnHeaders = [];
         foreach ($headers as $key => $values) {
             // The request object automatically adds a `Host` header, which we don't need
-            if ($key == 'Host') {
+            if ('Host' === $key) {
                 continue;
             }
 
@@ -187,17 +187,17 @@ class WebhookCall extends BaseResource
     }
 
     /**
-     * @return ApiDateTime
+     * @return DateTimeImmutable
      */
-    public function getRequestAt(): ApiDateTime
+    public function getRequestAt(): DateTimeImmutable
     {
         return $this->requestAt;
     }
 
     /**
-     * @return ApiDateTime
+     * @return DateTimeImmutable
      */
-    public function getResponseAt(): ApiDateTime
+    public function getResponseAt(): DateTimeImmutable
     {
         return $this->responseAt;
     }

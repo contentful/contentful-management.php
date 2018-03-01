@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\Behavior\Creatable;
-use function GuzzleHttp\json_encode;
+use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
  * PersonalAccessToken class.
@@ -29,7 +29,7 @@ class PersonalAccessToken extends BaseResource implements Creatable
     protected $name = '';
 
     /**
-     * @var \Contentful\Management\ApiDateTime|null
+     * @var DateTimeImmutable|null
      */
     protected $revokedAt;
 
@@ -47,7 +47,7 @@ class PersonalAccessToken extends BaseResource implements Creatable
      * PersonalAccessToken constructor.
      *
      * @param string $name
-     * @param bool   $isReadOnlyScope
+     * @param bool   $isReadOnly
      */
     public function __construct(string $name = '', bool $isReadOnly = false)
     {
@@ -85,7 +85,7 @@ class PersonalAccessToken extends BaseResource implements Creatable
         unset($body['token']);
         unset($body['revokedAt']);
 
-        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
+        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -109,7 +109,7 @@ class PersonalAccessToken extends BaseResource implements Creatable
     }
 
     /**
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     public function getRevokedAt()
     {

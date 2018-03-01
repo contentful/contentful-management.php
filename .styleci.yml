@@ -1,7 +1,0 @@
-preset: symfony
-
-enabled:
-  - alpha_ordered_imports
-  - phpdoc_add_missing_param_annotation
-  - phpdoc_order
-  - short_array_syntax

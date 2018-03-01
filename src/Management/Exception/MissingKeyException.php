@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Exception;
 
-use Contentful\Exception\ApiException;
-use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
-use function GuzzleHttp\json_decode;
+use Contentful\Core\Api\Exception;
+use GuzzleHttp\Exception\RequestException;
+use function GuzzleHttp\json_decode as guzzle_json_decode;
 
 /**
  * MissingKeyException class.
@@ -20,7 +20,7 @@ use function GuzzleHttp\json_decode;
  * A MissingKeyException is thrown when persisting an object
  * without a key that is required.
  */
-class MissingKeyException extends ApiException
+class MissingKeyException extends Exception
 {
     /**
      * @var string
@@ -30,11 +30,11 @@ class MissingKeyException extends ApiException
     /**
      * {@inheritdoc}
      */
-    public function __construct(GuzzleRequestException $previous, $message = 'Request body is missing a required key.')
+    public function __construct(RequestException $previous, $message = 'Request body is missing a required key.')
     {
         parent::__construct($previous, $message);
 
-        $result = json_decode($this->getResponse()->getBody(), true);
+        $result = guzzle_json_decode($this->getResponse()->getBody(), true);
 
         $this->key = $result['details']['key'];
     }

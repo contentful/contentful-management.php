@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Mapper;
 
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\WebhookCall as ResourceClass;
 use Contentful\Management\SystemProperties;
 use GuzzleHttp\Psr7\Request;
@@ -29,7 +29,7 @@ class WebhookCall extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        if ($resource !== null) {
+        if (null !== $resource) {
             throw new \LogicException(\sprintf(
                 'Trying to update resource object in mapper of type "%s", but only creation from scratch is supported.',
                 static::class
@@ -53,8 +53,8 @@ class WebhookCall extends BaseMapper
             'eventType' => $data['eventType'],
             'error' => $data['errors'] ? $data['errors'][0] : null,
             'url' => $data['url'],
-            'requestAt' => new ApiDateTime($data['requestAt']),
-            'responseAt' => new ApiDateTime($data['responseAt']),
+            'requestAt' => new DateTimeImmutable($data['requestAt']),
+            'responseAt' => new DateTimeImmutable($data['responseAt']),
         ]);
     }
 }

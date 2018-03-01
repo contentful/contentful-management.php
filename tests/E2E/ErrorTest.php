@@ -15,6 +15,7 @@ use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Locale;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
+use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 class ErrorTest extends BaseTestCase
 {
@@ -72,8 +73,8 @@ class ErrorTest extends BaseTestCase
 
         try {
             $fakeAsset->update();
-        } catch (VersionMismatchException $e) {
-            $this->assertEquals('The version number you supplied is invalid.', $e->getMessage());
+        } catch (VersionMismatchException $exception) {
+            $this->assertSame('The version number you supplied is invalid.', $exception->getMessage());
 
             return;
         } finally {
@@ -137,7 +138,7 @@ class UnknownKeyLocale extends Locale
 
         $body['unknownKey'] = 'unknownValue';
 
-        return json_encode((object) $body, JSON_UNESCAPED_UNICODE);
+        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 }
 

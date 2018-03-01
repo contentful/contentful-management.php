@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\Unit;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
 
@@ -83,47 +83,41 @@ class SystemPropertiesTest extends BaseTestCase
 
         $sys = new SystemProperties($data);
 
-        $this->assertEquals('entryId', $sys->getId());
-        $this->assertEquals('Entry', $sys->getType());
-        $this->assertEquals(1, $sys->getVersion());
-        $this->assertEquals(0, $sys->getRevision());
-        $this->assertEquals(10, $sys->getPublishedCounter());
-        $this->assertEquals(5, $sys->getPublishedVersion());
-        $this->assertEquals(15, $sys->getArchivedVersion());
-        $this->assertEquals('publish', $sys->getSnapshotType());
-        $this->assertEquals('Entry', $sys->getSnapshotEntityType());
+        $this->assertSame('entryId', $sys->getId());
+        $this->assertSame('Entry', $sys->getType());
+        $this->assertSame(1, $sys->getVersion());
+        $this->assertSame(0, $sys->getRevision());
+        $this->assertSame(10, $sys->getPublishedCounter());
+        $this->assertSame(5, $sys->getPublishedVersion());
+        $this->assertSame(15, $sys->getArchivedVersion());
+        $this->assertSame('publish', $sys->getSnapshotType());
+        $this->assertSame('Entry', $sys->getSnapshotEntityType());
 
-        $this->assertInstanceOf(ApiDateTime::class, $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-01-01T12:30:15.000Z'), $sys->getCreatedAt());
-        $this->assertInstanceOf(ApiDateTime::class, $sys->getUpdatedAt());
-        $this->assertEquals(new ApiDateTime('2017-02-02T12:30:15.000Z'), $sys->getUpdatedAt());
-        $this->assertInstanceOf(ApiDateTime::class, $sys->getPublishedAt());
-        $this->assertEquals(new ApiDateTime('2017-03-03T12:30:15.000Z'), $sys->getPublishedAt());
-        $this->assertInstanceOf(ApiDateTime::class, $sys->getArchivedAt());
-        $this->assertEquals(new ApiDateTime('2017-04-04T12:30:15.000Z'), $sys->getArchivedAt());
-        $this->assertInstanceOf(ApiDateTime::class, $sys->getFirstPublishedAt());
-        $this->assertEquals(new ApiDateTime('2017-05-05T12:30:15.000Z'), $sys->getFirstPublishedAt());
-        $this->assertInstanceOf(ApiDateTime::class, $sys->getExpiresAt());
-        $this->assertEquals(new ApiDateTime('2017-06-06T12:30:15.000Z'), $sys->getExpiresAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $sys->getCreatedAt());
+        $this->assertSame('2017-01-01T12:30:15Z', (string) $sys->getCreatedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $sys->getUpdatedAt());
+        $this->assertSame('2017-02-02T12:30:15Z', (string) $sys->getUpdatedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $sys->getPublishedAt());
+        $this->assertSame('2017-03-03T12:30:15Z', (string) $sys->getPublishedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $sys->getArchivedAt());
+        $this->assertSame('2017-04-04T12:30:15Z', (string) $sys->getArchivedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $sys->getFirstPublishedAt());
+        $this->assertSame('2017-05-05T12:30:15Z', (string) $sys->getFirstPublishedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $sys->getExpiresAt());
+        $this->assertSame('2017-06-06T12:30:15Z', (string) $sys->getExpiresAt());
 
         $this->assertInstanceOf(Link::class, $sys->getSpace());
-        $this->assertEquals('Space', $sys->getSpace()->getLinkType());
-        $this->assertEquals('spaceId', $sys->getSpace()->getId());
+        $this->assertLink('spaceId', 'Space', $sys->getSpace());
         $this->assertInstanceOf(Link::class, $sys->getContentType());
-        $this->assertEquals('ContentType', $sys->getContentType()->getLinkType());
-        $this->assertEquals('contentTypeId', $sys->getContentType()->getId());
+        $this->assertLink('contentTypeId', 'ContentType', $sys->getContentType());
         $this->assertInstanceOf(Link::class, $sys->getCreatedBy());
-        $this->assertEquals('User', $sys->getCreatedBy()->getLinkType());
-        $this->assertEquals('userId', $sys->getCreatedBy()->getId());
+        $this->assertLink('userId', 'User', $sys->getCreatedBy());
         $this->assertInstanceOf(Link::class, $sys->getUpdatedBy());
-        $this->assertEquals('User', $sys->getUpdatedBy()->getLinkType());
-        $this->assertEquals('userId', $sys->getUpdatedBy()->getId());
+        $this->assertLink('userId', 'User', $sys->getUpdatedBy());
         $this->assertInstanceOf(Link::class, $sys->getPublishedBy());
-        $this->assertEquals('User', $sys->getPublishedBy()->getLinkType());
-        $this->assertEquals('userId', $sys->getPublishedBy()->getId());
+        $this->assertLink('userId', 'User', $sys->getPublishedBy());
         $this->assertInstanceOf(Link::class, $sys->getArchivedBy());
-        $this->assertEquals('User', $sys->getArchivedBy()->getLinkType());
-        $this->assertEquals('userId', $sys->getArchivedBy()->getId());
+        $this->assertLink('userId', 'User', $sys->getArchivedBy());
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/system_properties.json', $sys);
     }

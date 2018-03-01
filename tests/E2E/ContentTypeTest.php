@@ -10,8 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Field\ArrayField;
@@ -48,32 +47,32 @@ class ContentTypeTest extends BaseTestCase
         $contentType = $client->contentType->get('cat');
 
         $sys = $contentType->getSystemProperties();
-        $this->assertEquals('cat', $sys->getId());
-        $this->assertEquals('ContentType', $sys->getType());
-        $this->assertEquals(3, $sys->getVersion());
-        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:16.461'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getPublishedBy());
-        $this->assertEquals(2, $sys->getPublishedVersion());
-        $this->assertEquals(1, $sys->getPublishedCounter());
-        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getPublishedAt());
-        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getFirstPublishedAt());
+        $this->assertSame('cat', $sys->getId());
+        $this->assertSame('ContentType', $sys->getType());
+        $this->assertSame(3, $sys->getVersion());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-10-17T12:23:16.461Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getPublishedBy());
+        $this->assertSame(2, $sys->getPublishedVersion());
+        $this->assertSame(1, $sys->getPublishedCounter());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getPublishedAt());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getFirstPublishedAt());
 
-        $this->assertEquals('Cat', $contentType->getName());
-        $this->assertEquals('Meow.', $contentType->getDescription());
-        $this->assertEquals(new Link('cat', 'ContentType'), $contentType->asLink());
-        $this->assertEquals(false, $contentType->isPublished());
+        $this->assertSame('Cat', $contentType->getName());
+        $this->assertSame('Meow.', $contentType->getDescription());
+        $this->assertLink('cat', 'ContentType', $contentType->asLink());
+        $this->assertFalse($contentType->isPublished());
 
         $fields = $contentType->getFields();
         $this->assertCount(8, $fields);
 
         $field0 = $fields[0];
         $this->assertInstanceof(TextField::class, $field0);
-        $this->assertEquals('name', $field0->getId());
-        $this->assertEquals('Name', $field0->getName());
+        $this->assertSame('name', $field0->getId());
+        $this->assertSame('Name', $field0->getName());
         $this->assertTrue($field0->isRequired());
         $this->assertTrue($field0->isLocalized());
         $this->assertFalse($field0->isDisabled());
@@ -84,7 +83,7 @@ class ContentTypeTest extends BaseTestCase
 
         $field0validation0 = $field0validations[0];
         $this->assertInstanceOf(SizeValidation::class, $field0validation0);
-        $this->assertEquals(3, $field0validation0->getMin());
+        $this->assertSame(3, $field0validation0->getMin());
     }
 
     /**
@@ -124,8 +123,8 @@ class ContentTypeTest extends BaseTestCase
         $contentType->update();
 
         $contentType->publish();
-        $this->assertEquals(1, $contentType->getSystemProperties()->getPublishedCounter());
-        $this->assertEquals(2, $contentType->getSystemProperties()->getPublishedVersion());
+        $this->assertSame(1, $contentType->getSystemProperties()->getPublishedCounter());
+        $this->assertSame(2, $contentType->getSystemProperties()->getPublishedVersion());
         $this->assertTrue($contentType->getSystemProperties()->isPublished());
 
         $contentType->unpublish();
@@ -146,7 +145,7 @@ class ContentTypeTest extends BaseTestCase
             ->setDescription('This content type will have `myCustomTestCt` as ID');
 
         $client->contentType->create($contentType, 'myCustomTestCt');
-        $this->assertEquals('myCustomTestCt', $contentType->getId());
+        $this->assertSame('myCustomTestCt', $contentType->getId());
 
         $contentType->delete();
     }
@@ -226,7 +225,7 @@ class ContentTypeTest extends BaseTestCase
             ->addValidation(new LinkContentTypeValidation(['bookmark']));
         $contentType->addNewField('location', 'locationField', 'Location Field');
         $contentType->addNewField('number', 'numberField', 'Number Field')
-            ->addValidation(new InValidation([1.0, 2.0, 3.0]));
+            ->addValidation(new InValidation([1, 2, 3]));
         $contentType->addNewField('object', 'objectField', 'Object Field');
         $contentType->addNewField('symbol', 'symbolField', 'Symbol Field')
             ->addValidation(new UniqueValidation())
@@ -241,70 +240,107 @@ class ContentTypeTest extends BaseTestCase
         // Asserts :allthethings:
         $field = $contentType->getField('arrayField');
         $this->assertInstanceOf(ArrayField::class, $field);
-        $this->assertEquals('Array', $field->getType());
-        $this->assertEquals('Array Field', $field->getName());
-        $this->assertEquals('Link', $field->getItemsType());
-        $this->assertEquals('Asset', $field->getItemsLinkType());
-        $this->assertEquals([new SizeValidation(1, 10)], $field->getValidations());
-        $this->assertEquals([
-            new AssetFileSizeValidation(null, 10485760),
-            new AssetImageDimensionsValidation(50, 1000, 50, 1000),
-            new LinkMimetypeGroupValidation(['image']),
-        ], $field->getItemsValidations());
+        $this->assertSame('Array', $field->getType());
+        $this->assertSame('Array Field', $field->getName());
+        $this->assertSame('Link', $field->getItemsType());
+        $this->assertSame('Asset', $field->getItemsLinkType());
+        // Validations
+        $this->assertCount(1, $field->getValidations());
+        $validation = $field->getValidations()[0];
+        $this->assertInstanceOf(SizeValidation::class, $validation);
+        $this->assertSame(1, $validation->getMin());
+        $this->assertSame(10, $validation->getMax());
+        $itemsValidations = $field->getItemsValidations();
+        $this->assertCount(3, $itemsValidations);
+        $validation = $itemsValidations[0];
+        $this->assertInstanceOf(AssetFileSizeValidation::class, $validation);
+        $this->assertNull($validation->getMin());
+        $this->assertSame(10485760, $validation->getMax());
+        $validation = $itemsValidations[1];
+        $this->assertInstanceOf(AssetImageDimensionsValidation::class, $validation);
+        $this->assertSame(50, $validation->getMinWidth());
+        $this->assertSame(1000, $validation->getMaxWidth());
+        $this->assertSame(50, $validation->getMinHeight());
+        $this->assertSame(1000, $validation->getMaxHeight());
+        $validation = $itemsValidations[2];
+        $this->assertInstanceOf(LinkMimetypeGroupValidation::class, $validation);
+        $this->assertSame(['image'], $validation->getMimeTypeGroups());
 
         $field = $contentType->getField('booleanField');
         $this->assertInstanceOf(BooleanField::class, $field);
-        $this->assertEquals('Boolean', $field->getType());
-        $this->assertEquals('Boolean Field', $field->getName());
+        $this->assertSame('Boolean', $field->getType());
+        $this->assertSame('Boolean Field', $field->getName());
 
         $field = $contentType->getField('dateField');
         $this->assertInstanceOf(DateField::class, $field);
-        $this->assertEquals('Date', $field->getType());
-        $this->assertEquals('Date Field', $field->getName());
-        $this->assertEquals([new DateRangeValidation('2010-01-01', '2020-12-31')], $field->getValidations());
+        $this->assertSame('Date', $field->getType());
+        $this->assertSame('Date Field', $field->getName());
+        // Validations
+        $this->assertCount(1, $field->getValidations());
+        $validation = $field->getValidations()[0];
+        $this->assertInstanceOf(DateRangeValidation::class, $validation);
+        $this->assertSame('2010-01-01', $validation->getMin());
+        $this->assertSame('2020-12-31', $validation->getMax());
 
         $field = $contentType->getField('integerField');
         $this->assertInstanceOf(IntegerField::class, $field);
-        $this->assertEquals('Integer', $field->getType());
-        $this->assertEquals('Integer Field', $field->getName());
-        $this->assertEquals([new RangeValidation(1, 10)], $field->getValidations());
+        $this->assertSame('Integer', $field->getType());
+        $this->assertSame('Integer Field', $field->getName());
+        // Validations
+        $this->assertCount(1, $field->getValidations());
+        $validation = $field->getValidations()[0];
+        $this->assertInstanceOf(RangeValidation::class, $validation);
+        $this->assertSame(1, $validation->getMin());
+        $this->assertSame(10, $validation->getMax());
 
         $field = $contentType->getField('linkField');
         $this->assertInstanceOf(LinkField::class, $field);
-        $this->assertEquals('Link', $field->getType());
-        $this->assertEquals('Link Field', $field->getName());
-        $this->assertEquals('Entry', $field->getLinkType());
-        $this->assertEquals([new LinkContentTypeValidation(['bookmark'])], $field->getValidations());
+        $this->assertSame('Link', $field->getType());
+        $this->assertSame('Link Field', $field->getName());
+        $this->assertSame('Entry', $field->getLinkType());
+        // Validations
+        $this->assertCount(1, $field->getValidations());
+        $validation = $field->getValidations()[0];
+        $this->assertInstanceOf(LinkContentTypeValidation::class, $validation);
+        $this->assertSame(['bookmark'], $validation->getContentTypes());
 
         $field = $contentType->getField('locationField');
         $this->assertInstanceOf(LocationField::class, $field);
-        $this->assertEquals('Location', $field->getType());
-        $this->assertEquals('Location Field', $field->getName());
+        $this->assertSame('Location', $field->getType());
+        $this->assertSame('Location Field', $field->getName());
 
         $field = $contentType->getField('numberField');
         $this->assertInstanceOf(NumberField::class, $field);
-        $this->assertEquals('Number', $field->getType());
-        $this->assertEquals('Number Field', $field->getName());
-        $this->assertEquals([new InValidation([1.0, 2.0, 3.0])], $field->getValidations());
+        $this->assertSame('Number', $field->getType());
+        $this->assertSame('Number Field', $field->getName());
+        // Validations
+        $this->assertCount(1, $field->getValidations());
+        $validation = $field->getValidations()[0];
+        $this->assertInstanceOf(InValidation::class, $validation);
+        $this->assertSame([1, 2, 3], $validation->getValues());
 
         $field = $contentType->getField('objectField');
         $this->assertInstanceOf(ObjectField::class, $field);
-        $this->assertEquals('Object', $field->getType());
-        $this->assertEquals('Object Field', $field->getName());
+        $this->assertSame('Object', $field->getType());
+        $this->assertSame('Object Field', $field->getName());
 
         $field = $contentType->getField('symbolField');
         $this->assertInstanceOf(SymbolField::class, $field);
-        $this->assertEquals('Symbol', $field->getType());
-        $this->assertEquals('Symbol Field', $field->getName());
-        $this->assertEquals([
-            new UniqueValidation(),
-            new RegexpValidation('^such', 'im'),
-        ], $field->getValidations());
+        $this->assertSame('Symbol', $field->getType());
+        $this->assertSame('Symbol Field', $field->getName());
+        // Validations
+        $this->assertCount(2, $field->getValidations());
+        $validation = $field->getValidations()[0];
+        $this->assertInstanceOf(UniqueValidation::class, $validation);
+        $validation = $field->getValidations()[1];
+        $this->assertInstanceOf(RegexpValidation::class, $validation);
+        $this->assertSame('^such', $validation->getPattern());
+        $this->assertSame('im', $validation->getFlags());
 
         $field = $contentType->getField('textField');
         $this->assertInstanceOf(TextField::class, $field);
-        $this->assertEquals('Text', $field->getType());
-        $this->assertEquals('Text Field', $field->getName());
+        $this->assertSame('Text', $field->getType());
+        $this->assertSame('Text Field', $field->getName());
 
         $client->contentType->delete($contentType);
     }

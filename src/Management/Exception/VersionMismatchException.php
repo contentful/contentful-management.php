@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Exception;
 
-use Contentful\Exception\ApiException;
-use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
+use Contentful\Core\Api\Exception;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * VersionMismatchException class.
@@ -19,12 +19,12 @@ use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
  * A VersionMismatchException is thrown when persisting an object
  * that has changed on the server since it's been fetched.
  */
-class VersionMismatchException extends ApiException
+class VersionMismatchException extends Exception
 {
     /**
      * {@inheritdoc}
      */
-    public function __construct(GuzzleRequestException $previous, $message = 'The version number you supplied is invalid.')
+    public function __construct(RequestException $previous, $message = 'The version number you supplied is invalid.')
     {
         parent::__construct($previous, $message);
     }

@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Tests\Management\BaseTestCase;
@@ -29,7 +29,7 @@ class SpaceMembershipTest extends BaseTestCase
         $this->assertNull($spaceMembership->getEmail());
         $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
-        $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
+        $this->assertSame('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
         $this->assertTrue($spaceMembership->isAdmin());
     }
@@ -55,7 +55,7 @@ class SpaceMembershipTest extends BaseTestCase
         $this->assertNull($spaceMembership->getEmail());
         $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
-        $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
+        $this->assertSame('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
         $this->assertTrue($spaceMembership->isAdmin());
 
@@ -75,7 +75,7 @@ class SpaceMembershipTest extends BaseTestCase
         $this->assertNull($spaceMembership->getEmail());
         $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
-        $this->assertEquals('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
+        $this->assertSame('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
         $this->assertTrue($spaceMembership->isAdmin());
     }
@@ -97,7 +97,7 @@ class SpaceMembershipTest extends BaseTestCase
         $this->assertNull($spaceMembership->getEmail());
         $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
-        $this->assertEquals('2ZEuONMmCXSeGjl2CryAaM', $spaceMembership->getUser()->getId());
+        $this->assertSame('2ZEuONMmCXSeGjl2CryAaM', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
         $this->assertTrue($spaceMembership->isAdmin());
 
@@ -110,8 +110,8 @@ class SpaceMembershipTest extends BaseTestCase
         $this->assertNull($spaceMembership->getEmail());
         $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
-        $this->assertEquals('2ZEuONMmCXSeGjl2CryAaM', $spaceMembership->getUser()->getId());
-        $this->assertEquals([new Link('6khUMmsfVslYd7tRcThTgE', 'Role')], $spaceMembership->getRoles());
+        $this->assertSame('2ZEuONMmCXSeGjl2CryAaM', $spaceMembership->getUser()->getId());
+        $this->assertLink('6khUMmsfVslYd7tRcThTgE', 'Role', $spaceMembership->getRoles()[0]);
         $this->assertFalse($spaceMembership->isAdmin());
 
         $spaceMembership->delete();

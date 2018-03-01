@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\File\File;
-use Contentful\File\LocalUploadFile;
-use Contentful\File\RemoteUploadFile;
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\File\File;
+use Contentful\Core\File\LocalUploadFile;
+use Contentful\Core\File\RemoteUploadFile;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Upload;
@@ -31,27 +30,29 @@ class AssetTest extends BaseTestCase
         $client = $this->getDefaultClient();
 
         $asset = $client->asset->get('2TEG7c2zYkSSuKmsqEwCS');
-        $this->assertEquals('Contentful Logo', $asset->getTitle('en-US'));
+        $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
         $this->assertNull($asset->getDescription('en-US'));
-        $this->assertEquals(new Link('2TEG7c2zYkSSuKmsqEwCS', 'Asset'), $asset->asLink());
-        $this->assertEquals(
+        $link = $asset->asLink();
+        $this->assertSame('2TEG7c2zYkSSuKmsqEwCS', $link->getId());
+        $this->assertSame('Asset', $link->getLinkType());
+        $this->assertSame(
             '//images.contentful.com/34luz0flcmxt/2TEG7c2zYkSSuKmsqEwCS/22da0779cac76ba6b74b5c2cbf084b97/contentful-logo-C395C545BF-seeklogo.com.png',
             $asset->getFile('en-US')->getUrl()
         );
 
         $sys = $asset->getSystemProperties();
-        $this->assertEquals('2TEG7c2zYkSSuKmsqEwCS', $sys->getId());
-        $this->assertEquals('Asset', $sys->getType());
-        $this->assertEquals(11, $sys->getVersion());
-        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2017-08-22T15:41:45.127'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-08-22T15:42:20.946'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals(10, $sys->getPublishedVersion());
-        $this->assertEquals(1, $sys->getPublishedCounter());
-        $this->assertEquals(new ApiDateTime('2017-08-22T15:42:20.946'), $sys->getPublishedAt());
-        $this->assertEquals(new ApiDateTime('2017-08-22T15:42:20.946'), $sys->getFirstPublishedAt());
+        $this->assertSame('2TEG7c2zYkSSuKmsqEwCS', $sys->getId());
+        $this->assertSame('Asset', $sys->getType());
+        $this->assertSame(11, $sys->getVersion());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-08-22T15:41:45.127Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-08-22T15:42:20.946Z', (string) $sys->getUpdatedAt());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertSame(10, $sys->getPublishedVersion());
+        $this->assertSame(1, $sys->getPublishedCounter());
+        $this->assertSame('2017-08-22T15:42:20.946Z', (string) $sys->getPublishedAt());
+        $this->assertSame('2017-08-22T15:42:20.946Z', (string) $sys->getFirstPublishedAt());
     }
 
     /**
@@ -120,7 +121,7 @@ class AssetTest extends BaseTestCase
         $asset->update();
 
         $asset->archive();
-        $this->assertEquals(3, $asset->getSystemProperties()->getArchivedVersion());
+        $this->assertSame(3, $asset->getSystemProperties()->getArchivedVersion());
         $this->assertTrue($asset->getSystemProperties()->isArchived());
 
         $asset->unarchive();
@@ -128,7 +129,7 @@ class AssetTest extends BaseTestCase
         $this->assertFalse($asset->getSystemProperties()->isArchived());
 
         $asset->publish();
-        $this->assertEquals(5, $asset->getSystemProperties()->getPublishedVersion());
+        $this->assertSame(5, $asset->getSystemProperties()->getPublishedVersion());
         $this->assertTrue($asset->getSystemProperties()->isPublished());
 
         $asset->unpublish();
@@ -150,7 +151,7 @@ class AssetTest extends BaseTestCase
             ->setDescription('en-US', 'A really cool asset');
 
         $client->asset->create($asset, 'myCustomTestAsset');
-        $this->assertEquals('myCustomTestAsset', $asset->getId());
+        $this->assertSame('myCustomTestAsset', $asset->getId());
 
         $asset->delete();
     }
@@ -163,26 +164,28 @@ class AssetTest extends BaseTestCase
         $client = $this->getDefaultClient();
 
         // Creates upload using fopen
-        $fopenUpload = new Upload(fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'r'));
+        $fopenUpload = new Upload(\fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'r'));
         $client->upload->create($fopenUpload);
         $this->assertNotNull($fopenUpload->getId());
-        $this->assertInstanceOf(ApiDateTime::class, $fopenUpload->getSystemProperties()->getExpiresAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());
         $fopenUpload->delete();
 
         // Creates upload using stream
-        $stream = stream_for(file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));
+        $stream = stream_for(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));
         $streamUpload = new Upload($stream);
         $client->upload->create($streamUpload);
         $this->assertNotNull($streamUpload->getId());
-        $this->assertInstanceOf(ApiDateTime::class, $streamUpload->getSystemProperties()->getExpiresAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $streamUpload->getSystemProperties()->getExpiresAt());
         $streamUpload->delete();
 
         // Creates upload using string
-        $upload = new Upload(file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-name.svg'));
+        $upload = new Upload(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-name.svg'));
         $client->upload->create($upload);
-        $this->assertEquals(new Link($upload->getId(), 'Upload'), $upload->asLink());
+        $link = $upload->asLink();
+        $this->assertSame($upload->getId(), $link->getId());
+        $this->assertSame('Upload', $link->getLinkType());
         $this->assertNotNull($upload->getId());
-        $this->assertInstanceOf(ApiDateTime::class, $upload->getSystemProperties()->getExpiresAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $upload->getSystemProperties()->getExpiresAt());
 
         $uploadFromFile = new LocalUploadFile('contentful.svg', 'image/svg+xml', $upload->asLink());
 
@@ -213,8 +216,8 @@ class AssetTest extends BaseTestCase
             }
         }
 
-        $this->assertEquals('contentful.svg', $asset->getFile('en-US')->getFileName());
-        $this->assertEquals('image/svg+xml', $asset->getFile('en-US')->getContentType());
+        $this->assertSame('contentful.svg', $asset->getFile('en-US')->getFileName());
+        $this->assertSame('image/svg+xml', $asset->getFile('en-US')->getContentType());
         $this->assertContains('contentful.com', $asset->getFile('en-US')->getUrl());
 
         $upload = $client->resolveLink($upload->asLink());

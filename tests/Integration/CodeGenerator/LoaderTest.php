@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\Integration\Generator;
 
+use Contentful\Core\ResourceBuilder\BaseResourceBuilder;
 use Contentful\Management\CodeGenerator\Loader;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\ResourceBuilder;
@@ -45,7 +46,7 @@ class LoaderTest extends BaseTestCase
 
         $expected = \file_get_contents(__DIR__.'/../../Fixtures/Integration/CodeGenerator/_loader.php');
 
-        $this->assertEquals($expected, $code);
+        $this->assertSame($expected, $code);
     }
 
     /**
@@ -56,14 +57,14 @@ class LoaderTest extends BaseTestCase
         $builder = new ResourceBuilder();
 
         require __DIR__.'/../../Fixtures/Integration/CodeGenerator/_loader.php';
-        $property = (new \ReflectionClass(ResourceBuilder::class))->getProperty('dataMapperMatchers');
+        $property = (new \ReflectionClass(BaseResourceBuilder::class))->getProperty('dataMapperMatchers');
         $property->setAccessible(true);
         $matchers = $property->getValue($builder);
 
         $this->assertInstanceOf(\Closure::class, $matchers['Entry']);
 
         $closure = $matchers['Entry'];
-        $this->assertEquals(
+        $this->assertSame(
             \Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\Mapper\BlogPostMapper::class,
             $closure(['sys' => ['contentType' => ['sys' => ['id' => 'blogPost']]]])
         );

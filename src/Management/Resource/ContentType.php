@@ -75,11 +75,11 @@ class ContentType extends BaseResource implements Creatable, Updatable, Deletabl
             'fields' => $this->fields,
         ];
 
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $data['description'] = $this->description;
         }
 
-        if ($this->displayField !== null) {
+        if (null !== $this->displayField) {
             $data['displayField'] = $this->displayField;
         }
 
@@ -164,12 +164,12 @@ class ContentType extends BaseResource implements Creatable, Updatable, Deletabl
     public function getField(string $fieldId): FieldInterface
     {
         foreach ($this->fields as $field) {
-            if ($field->getId() == $fieldId) {
+            if ($field->getId() === $fieldId) {
                 return $field;
             }
         }
 
-        throw new \InvalidArgumentException(sprintf(
+        throw new \InvalidArgumentException(\sprintf(
             'Trying to access invalid field "%s" on content type "%s".',
             $fieldId,
             $this->getId()
@@ -214,7 +214,7 @@ class ContentType extends BaseResource implements Creatable, Updatable, Deletabl
      * @param string $type    A valid field type, must be a class in the Contentful\Management\Resource\ContentType\Field namespace
      * @param string $fieldId The field ID
      * @param string $name    The field name
-     * @param array  $params  Extra parameters that will be forwarded to the field object constructor
+     * @param mixed  $params  Extra parameters that will be forwarded to the field object constructor
      *
      * @return FieldInterface
      */
@@ -232,16 +232,16 @@ class ContentType extends BaseResource implements Creatable, Updatable, Deletabl
      * @param string $type    A valid field type, must be a class in the Contentful\Management\Resource\ContentType\Field namespace
      * @param string $fieldId The field ID
      * @param string $name    The field name
-     * @param array  $params  Extra parameters that will be forwarded to the field object constructor
+     * @param mixed  $params  Extra parameters that will be forwarded to the field object constructor
      *
      * @return FieldInterface
      */
     public function createField(string $type, string $fieldId, string $name, ...$params): FieldInterface
     {
-        $class = '\\Contentful\\Management\\Resource\\ContentType\\Field\\'.\ucfirst($type).'Field';
+        $class = __NAMESPACE__.'\\ContentType\\Field\\'.\ucfirst($type).'Field';
 
         if (!\class_exists($class)) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Trying to instantiate invalid field class "%s".',
                 $type
             ));

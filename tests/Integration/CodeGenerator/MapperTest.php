@@ -10,8 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\Integration\CodeGenerator;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Mapper;
 use Contentful\Management\Proxy\BaseProxy;
@@ -64,7 +63,7 @@ class MapperTest extends BaseTestCase
 
         $expected = \file_get_contents(__DIR__.'/../../Fixtures/Integration/CodeGenerator/Mapper/BlogPostMapper.php');
 
-        $this->assertEquals($expected, $code);
+        $this->assertSame($expected, $code);
     }
 
     /**
@@ -163,45 +162,37 @@ class MapperTest extends BaseTestCase
         $entry = $mapper->map(null, $data);
         $entry->setProxy(new MapperFakeProxy());
 
-        $this->assertEquals('title', $entry->getTitle('en-US'));
+        $this->assertSame('title', $entry->getTitle('en-US'));
         $this->assertTrue($entry->getIsPublished('en-US'));
-        $this->assertEquals(new ApiDateTime('2017-10-06T09:30:30.123'), $entry->getPublishedAt('en-US'));
-        $this->assertEquals(new Link('<linkId>', 'Entry'), $entry->getPrevious('en-US'));
-        $this->assertEquals(new BlogPost(), $entry->resolvePreviousLink('en-US'));
-        $this->assertEquals([
+        $this->assertSame('2017-10-06T09:30:30.123Z', (string) $entry->getPublishedAt('en-US'));
+        $this->assertLink('<linkId>', 'Entry', $entry->getPrevious('en-US'));
+        $this->assertInstanceOf(BlogPost::class, $entry->resolvePreviousLink('en-US'));
+        $this->assertSame([
             'seasons' => [1, 2, 3, 4, 5, 6, '...and a movie!'],
             'name' => 'Allura',
             'job' => 'Princess and pilot of the Blue Lion',
         ], $entry->getMisc('en-US'));
-        $this->assertEquals('Now, this is a story all about how, my life got flipped-turned upside down', $entry->getBody('en-US'));
-        $this->assertEquals(18, $entry->getMinimumAge('en-US'));
-        $this->assertEquals(new Link('<linkId>', 'Asset'), $entry->getHeroImage('en-US'));
-        $this->assertEquals(new Asset(), $entry->resolveHeroImageLink('en-US'));
-        $this->assertEquals(new Link('<linkId>', 'Entry'), $entry->getRandomEntry('en-US'));
-        $this->assertEquals(new BlogPost(), $entry->resolveRandomEntryLink('en-US'));
-        $this->assertEquals(['lat' => 10, 'lon' => 15], $entry->getLocation('en-US'));
-        $this->assertEquals(7.8, $entry->getRating('en-US'));
-        $this->assertEquals([
-            new Link('<linkId1>', 'Asset'),
-            new Link('<linkId2>', 'Asset'),
-            new Link('<linkId3>', 'Asset'),
-        ], $entry->getImages('en-US'));
-        $this->assertEquals([
-            new Asset(),
-            new Asset(),
-            new Asset(),
-        ], $entry->resolveImagesLinks('en-US'));
-        $this->assertEquals([
-            new Link('<linkId1>', 'Entry'),
-            new Link('<linkId2>', 'Entry'),
-            new Link('<linkId3>', 'Entry'),
-        ], $entry->getRelated('en-US'));
-        $this->assertEquals([
-            new BlogPost(),
-            new BlogPost(),
-            new BlogPost(),
-        ], $entry->resolveRelatedLinks('en-US'));
-        $this->assertEquals(['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads'], $entry->getTags('en-US'));
+        $this->assertSame('Now, this is a story all about how, my life got flipped-turned upside down', $entry->getBody('en-US'));
+        $this->assertSame(18, $entry->getMinimumAge('en-US'));
+        $this->assertLink('<linkId>', 'Asset', $entry->getHeroImage('en-US'));
+        $this->assertInstanceOf(Asset::class, $entry->resolveHeroImageLink('en-US'));
+        $this->assertLink('<linkId>', 'Entry', $entry->getRandomEntry('en-US'));
+        $this->assertInstanceOf(BlogPost::class, $entry->resolveRandomEntryLink('en-US'));
+        $this->assertSame(['lat' => 10, 'lon' => 15], $entry->getLocation('en-US'));
+        $this->assertSame(7.8, $entry->getRating('en-US'));
+        $this->assertLink('<linkId1>', 'Asset', $entry->getImages('en-US')[0]);
+        $this->assertLink('<linkId2>', 'Asset', $entry->getImages('en-US')[1]);
+        $this->assertLink('<linkId3>', 'Asset', $entry->getImages('en-US')[2]);
+        $images = $entry->resolveImagesLinks('en-US');
+        $this->assertCount(3, $images);
+        $this->assertContainsOnlyInstancesOf(Asset::class, $images);
+        $this->assertLink('<linkId1>', 'Entry', $entry->getRelated('en-US')[0]);
+        $this->assertLink('<linkId2>', 'Entry', $entry->getRelated('en-US')[1]);
+        $this->assertLink('<linkId3>', 'Entry', $entry->getRelated('en-US')[2]);
+        $blogPosts = $entry->resolveRelatedLinks('en-US');
+        $this->assertCount(3, $blogPosts);
+        $this->assertContainsOnlyInstancesOf(BlogPost::class, $blogPosts);
+        $this->assertSame(['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads'], $entry->getTags('en-US'));
 
         $this->assertJsonFixtureEqualsJsonObject('Integration/CodeGenerator/mapper.json', $entry);
     }
@@ -242,11 +233,11 @@ class MapperFakeProxy extends BaseProxy
      */
     public function resolveLink(Link $link)
     {
-        if ($link->getLinkType() == 'Asset') {
+        if ('Asset' === $link->getLinkType()) {
             return new Asset();
         }
 
-        if ($link->getLinkType() == 'Entry') {
+        if ('Entry' === $link->getLinkType()) {
             return new BlogPost();
         }
     }

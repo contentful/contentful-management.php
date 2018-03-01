@@ -312,7 +312,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
      */
     public function hasTopic(string $topic): bool
     {
-        return \in_array($topic, $this->topics);
+        return \in_array($topic, $this->topics, true);
     }
 
     /**
@@ -324,8 +324,8 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
      */
     public function removeTopic(string $topic)
     {
-        $key = \array_search($topic, $this->topics);
-        if ($key === false) {
+        $key = \array_search($topic, $this->topics, true);
+        if (false === $key) {
             throw new \InvalidArgumentException(\sprintf(
                 'Invalid topic "%s" provided.',
                 $topic
@@ -333,6 +333,7 @@ class Webhook extends BaseResource implements Creatable, Updatable, Deletable
         }
 
         unset($this->topics[$key]);
+        $this->topics = \array_values($this->topics);
 
         return $this;
     }

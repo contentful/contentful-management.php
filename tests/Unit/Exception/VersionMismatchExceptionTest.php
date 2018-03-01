@@ -35,7 +35,7 @@ class VersionMismatchExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('0b22bcf71e0d624fbd878bc398746d2e', $exception->getRequestId());
-        $this->assertEquals('The version number you supplied is invalid.', $exception->getMessage());
+        $this->assertSame('0b22bcf71e0d624fbd878bc398746d2e', $exception->getRequestId());
+        $this->assertSame('The version number you supplied is invalid.', $exception->getMessage());
     }
 }

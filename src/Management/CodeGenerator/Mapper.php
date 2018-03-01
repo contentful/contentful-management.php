@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\CodeGenerator;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Field\ArrayField;
@@ -62,7 +62,7 @@ class Mapper extends BaseCodeGenerator
             $namespace.'\\'.$className,
             BaseMapper::class,
             SystemProperties::class,
-            $this->uses['date'] ? ApiDateTime::class : null,
+            $this->uses['date'] ? DateTimeImmutable::class : null,
             $this->uses['link'] ? Link::class : null,
         ]);
 
@@ -281,7 +281,7 @@ class Mapper extends BaseCodeGenerator
             case 'Link':
                 return $this->generateLinkFieldAssignment($field);
             case 'Array':
-                if ($field->getItemsType() == 'Link') {
+                if ('Link' === $field->getItemsType()) {
                     return $this->generateArrayLinkFieldAssignment($field);
                 }
 
@@ -299,7 +299,7 @@ class Mapper extends BaseCodeGenerator
      * ```
      * $fields['name'] = [];
      * foreach ($data['name'] as $locale => $value) {
-     *     $fields['name'][$locale] = array_map(function (array $link): Link {
+     *     $fields['name'][$locale] = \array_map(function (array $link): Link {
      *         return new Link($link['sys']['id'], $link['sys']['linkType']);
      *     }, $value);
      * }
@@ -314,7 +314,7 @@ class Mapper extends BaseCodeGenerator
         $this->uses['link'] = true;
 
         return $this->generateForeachAssignment($field, new Node\Expr\FuncCall(
-            new Node\Name('array_map'),
+            new Node\Name('\\array_map'),
             [
                 new Node\Arg(
                     new Node\Expr\Closure([
@@ -351,7 +351,7 @@ class Mapper extends BaseCodeGenerator
      * ```
      * $fields['name'] = [];
      * foreach ($data['name'] as $locale => $value) {
-     *     $fields['name'][$locale] = new ApiDateTime($value);
+     *     $fields['name'][$locale] = new DateTimeImmutable($value);
      * }
      * ```
      *
@@ -366,7 +366,7 @@ class Mapper extends BaseCodeGenerator
         return $this->generateForeachAssignment(
             $field,
             new Node\Expr\New_(
-                new Node\Name('ApiDateTime'),
+                new Node\Name('DateTimeImmutable'),
                 [new Node\Expr\Variable('value')]
             )
         );

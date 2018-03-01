@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Exception;
 
-use Contentful\Exception\ApiException;
+use Contentful\Core\Api\Exception;
 
 /**
  * UnsupportedMediaTypeException class.
@@ -20,6 +20,6 @@ use Contentful\Exception\ApiException;
  *
  * If it's thrown, it's almost certainly a bug in the SDK; please report it.
  */
-class UnsupportedMediaTypeException extends ApiException
+class UnsupportedMediaTypeException extends Exception
 {
 }

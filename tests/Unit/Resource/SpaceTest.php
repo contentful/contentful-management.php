@@ -19,14 +19,14 @@ class SpaceTest extends BaseTestCase
     {
         $space = new Space('A space', 'organizationId');
 
-        $this->assertEquals('A space', $space->getName());
+        $this->assertSame('A space', $space->getName());
 
         $space->setName('A better space');
-        $this->assertEquals('A better space', $space->getName());
+        $this->assertSame('A better space', $space->getName());
 
         $sys = $space->getSystemProperties();
         $this->assertNull($sys->getId());
-        $this->assertEquals('Space', $sys->getType());
+        $this->assertSame('Space', $sys->getType());
     }
 
     public function testJsonSerialize()

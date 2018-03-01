@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\PersonalAccessToken;
 use Contentful\Tests\Management\BaseTestCase;
@@ -28,17 +28,17 @@ class PersonalAccessTokenTest extends BaseTestCase
         $client->personalAccessToken->create($personalAccessToken);
 
         $this->assertNotNull($personalAccessToken->getToken());
-        $this->assertEquals('Test access token', $personalAccessToken->getName());
+        $this->assertSame('Test access token', $personalAccessToken->getName());
         $this->assertTrue($personalAccessToken->isReadOnly());
 
         $personalAccessToken = $client->personalAccessToken->get($personalAccessToken->getId());
 
         $this->assertNull($personalAccessToken->getToken());
-        $this->assertEquals('Test access token', $personalAccessToken->getName());
+        $this->assertSame('Test access token', $personalAccessToken->getName());
         $this->assertTrue($personalAccessToken->isReadOnly());
 
         $personalAccessToken->revoke();
-        $this->assertInstanceOf(ApiDateTime::class, $personalAccessToken->getRevokedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $personalAccessToken->getRevokedAt());
     }
 
     /**
@@ -55,7 +55,7 @@ class PersonalAccessTokenTest extends BaseTestCase
         $personalAccessToken = $personalAccessTokens[0];
         $this->assertNull($personalAccessToken->getToken());
         $this->assertNull($personalAccessToken->getRevokedAt());
-        $this->assertEquals('TravisCI', $personalAccessToken->getName());
+        $this->assertSame('TravisCI', $personalAccessToken->getName());
         $this->assertFalse($personalAccessToken->isReadOnly());
     }
 

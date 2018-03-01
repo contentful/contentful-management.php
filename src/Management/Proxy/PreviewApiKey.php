@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Proxy;
 
+use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\PreviewApiKey as ResourceClass;
-use Contentful\ResourceArray;
 
 /**
  * PreviewApiKey class.

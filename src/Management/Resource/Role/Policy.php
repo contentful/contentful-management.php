@@ -83,7 +83,7 @@ class Policy implements \JsonSerializable
      */
     public function setEffect(string $effect)
     {
-        if (!\in_array($effect, self::EFFECTS)) {
+        if (!\in_array($effect, self::EFFECTS, true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Parameter "$effect" in "Policy::setEffect()" must have either the value "allow" or "deny", "%s" given.',
                 $effect
@@ -112,7 +112,7 @@ class Policy implements \JsonSerializable
     {
         if (
             (!\is_string($actions) && !\is_array($actions)) ||
-            (\is_string($actions) && $actions !== 'all') ||
+            (\is_string($actions) && 'all' !== $actions) ||
             (\is_array($actions) && \array_diff($actions, self::ACTIONS))
         ) {
             throw new \InvalidArgumentException(\sprintf(
@@ -139,7 +139,7 @@ class Policy implements \JsonSerializable
             );
         }
 
-        if (!\in_array($action, self::ACTIONS)) {
+        if (!\in_array($action, self::ACTIONS, true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Argument "$action" in "Policy::addAction()" must be one of these values: %s.',
                 \implode(', ', self::ACTIONS)

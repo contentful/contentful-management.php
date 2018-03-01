@@ -111,7 +111,7 @@ abstract class BaseField implements FieldInterface
      */
     public function isRequired(): bool
     {
-        return $this->required === true;
+        return true === $this->required;
     }
 
     /**
@@ -131,7 +131,7 @@ abstract class BaseField implements FieldInterface
      */
     public function isLocalized(): bool
     {
-        return $this->localized === true;
+        return true === $this->localized;
     }
 
     /**
@@ -151,7 +151,7 @@ abstract class BaseField implements FieldInterface
      */
     public function isDisabled(): bool
     {
-        return $this->disabled === true;
+        return true === $this->disabled;
     }
 
     /**
@@ -171,7 +171,7 @@ abstract class BaseField implements FieldInterface
      */
     public function isOmitted(): bool
     {
-        return $this->omitted === true;
+        return true === $this->omitted;
     }
 
     /**
@@ -203,7 +203,7 @@ abstract class BaseField implements FieldInterface
     {
         $this->validations = [];
 
-        array_map([$this, 'addValidation'], $validations);
+        \array_map([$this, 'addValidation'], $validations);
 
         return $this;
     }
@@ -215,7 +215,7 @@ abstract class BaseField implements FieldInterface
      */
     public function addValidation(ValidationInterface $validation)
     {
-        if (!\in_array($this->getType(), $validation->getValidFieldTypes())) {
+        if (!\in_array($this->getType(), $validation->getValidFieldTypes(), true)) {
             throw new \RuntimeException(\sprintf(
                 'The validation "%s" can not be used for fields of type "%s".',
                 \get_class($validation),
@@ -241,19 +241,19 @@ abstract class BaseField implements FieldInterface
             'type' => $this->getType(),
         ];
 
-        if ($this->required !== null) {
+        if (null !== $this->required) {
             $data['required'] = $this->required;
         }
 
-        if ($this->localized !== null) {
+        if (null !== $this->localized) {
             $data['localized'] = $this->localized;
         }
 
-        if ($this->disabled !== null) {
+        if (null !== $this->disabled) {
             $data['disabled'] = $this->disabled;
         }
 
-        if ($this->omitted !== null) {
+        if (null !== $this->omitted) {
             $data['omitted'] = $this->omitted;
         }
 

@@ -35,7 +35,7 @@ class ValidationFailedExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('e60465b1bdeae58b22a4d3cac520356c', $exception->getRequestId());
-        $this->assertEquals('The resource you sent in the body is invalid.', $exception->getMessage());
+        $this->assertSame('e60465b1bdeae58b22a4d3cac520356c', $exception->getRequestId());
+        $this->assertSame('The resource you sent in the body is invalid.', $exception->getMessage());
     }
 }

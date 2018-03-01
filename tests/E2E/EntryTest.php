@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Entry;
 use Contentful\Tests\Management\BaseTestCase;
@@ -27,23 +27,23 @@ class EntryTest extends BaseTestCase
 
         $entry = $client->entry->get('4OuC4z6qs0yEWMeqkGmokw');
 
-        $this->assertEquals('Direwolf', $entry->getField('name', 'en-US'));
-        $this->assertEquals(new Link('4OuC4z6qs0yEWMeqkGmokw', 'Entry'), $entry->asLink());
+        $this->assertSame('Direwolf', $entry->getField('name', 'en-US'));
+        $this->assertLink('4OuC4z6qs0yEWMeqkGmokw', 'Entry', $entry->asLink());
 
         $sys = $entry->getSystemProperties();
-        $this->assertEquals('4OuC4z6qs0yEWMeqkGmokw', $sys->getId());
-        $this->assertEquals('Entry', $sys->getType());
-        $this->assertEquals(new Link('fantasticCreature', 'ContentType'), $sys->getContentType());
-        $this->assertEquals(6, $sys->getVersion());
-        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2017-08-22T11:50:19.841'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-08-22T11:50:26.991'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('1CECdY5ZhqJapGieg6QS9P', 'User'), $sys->getUpdatedBy());
-        $this->assertEquals(5, $sys->getPublishedVersion());
-        $this->assertEquals(1, $sys->getPublishedCounter());
-        $this->assertEquals(new ApiDateTime('2017-08-22T11:50:26.990'), $sys->getPublishedAt());
-        $this->assertEquals(new ApiDateTime('2017-08-22T11:50:26.990'), $sys->getFirstPublishedAt());
+        $this->assertSame('4OuC4z6qs0yEWMeqkGmokw', $sys->getId());
+        $this->assertSame('Entry', $sys->getType());
+        $this->assertLink('fantasticCreature', 'ContentType', $sys->getContentType());
+        $this->assertSame(6, $sys->getVersion());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-08-22T11:50:19.841Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-08-22T11:50:26.991Z', (string) $sys->getUpdatedAt());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertSame(5, $sys->getPublishedVersion());
+        $this->assertSame(1, $sys->getPublishedCounter());
+        $this->assertSame('2017-08-22T11:50:26.990Z', (string) $sys->getPublishedAt());
+        $this->assertSame('2017-08-22T11:50:26.990Z', (string) $sys->getFirstPublishedAt());
     }
 
     /**
@@ -75,8 +75,8 @@ class EntryTest extends BaseTestCase
 
         $client->entry->create($entry);
         $this->assertNotNull($entry->getId());
-        $this->assertEquals(['name' => 'A name'], $entry->getFields('en-US'));
-        $this->assertEquals(['name' => ['en-US' => 'A name']], $entry->getFields());
+        $this->assertSame(['name' => 'A name'], $entry->getFields('en-US'));
+        $this->assertSame(['name' => ['en-US' => 'A name']], $entry->getFields());
         $this->assertTrue($entry->getSystemProperties()->isDraft());
         $this->assertFalse($entry->getSystemProperties()->isPublished());
         $this->assertFalse($entry->getSystemProperties()->isUpdated());
@@ -85,11 +85,11 @@ class EntryTest extends BaseTestCase
         $entry->setName('en-US', 'A better name');
 
         $entry->update();
-        $this->assertEquals('A better name', $entry->getName('en-US'));
+        $this->assertSame('A better name', $entry->getName('en-US'));
 
         $entry->archive();
-        $this->assertEquals(2, $entry->getSystemProperties()->getArchivedVersion());
-        $this->assertInstanceOf(ApiDateTime::class, $entry->getSystemProperties()->getArchivedAt());
+        $this->assertSame(2, $entry->getSystemProperties()->getArchivedVersion());
+        $this->assertInstanceOf(DateTimeImmutable::class, $entry->getSystemProperties()->getArchivedAt());
         $this->assertInstanceOf(Link::class, $entry->getSystemProperties()->getArchivedBy());
         $this->assertTrue($entry->getSystemProperties()->isArchived());
 
@@ -98,7 +98,7 @@ class EntryTest extends BaseTestCase
         $this->assertFalse($entry->getSystemProperties()->isArchived());
 
         $entry->publish();
-        $this->assertEquals(4, $entry->getSystemProperties()->getPublishedVersion());
+        $this->assertSame(4, $entry->getSystemProperties()->getPublishedVersion());
         $this->assertTrue($entry->getSystemProperties()->isPublished());
 
         $entry->setName('en-US', 'An even better name');
@@ -124,7 +124,7 @@ class EntryTest extends BaseTestCase
             ->setField('name', 'en-US', 'A name');
 
         $client->entry->create($entry, 'myCustomTestEntry');
-        $this->assertEquals('myCustomTestEntry', $entry->getId());
+        $this->assertSame('myCustomTestEntry', $entry->getId());
 
         $entry->delete();
     }

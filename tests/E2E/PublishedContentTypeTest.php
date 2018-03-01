@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Tests\Management\BaseTestCase;
@@ -26,19 +24,19 @@ class PublishedContentTypeTest extends BaseTestCase
         $client = $this->getDefaultClient();
         $contentType = $client->publishedContentType->get('cat');
 
-        $this->assertEquals('Cat', $contentType->getName());
-        $this->assertEquals('name', $contentType->getDisplayField());
-        $this->assertEquals(new Link('cat', 'ContentType'), $contentType->asLink());
-        $this->assertEquals(true, $contentType->isPublished());
+        $this->assertSame('Cat', $contentType->getName());
+        $this->assertSame('name', $contentType->getDisplayField());
+        $this->assertLink('cat', 'ContentType', $contentType->asLink());
+        $this->assertTrue($contentType->isPublished());
         $this->assertCount(8, $contentType->getFields());
 
         $sys = $contentType->getSystemProperties();
-        $this->assertEquals('cat', $sys->getId());
-        $this->assertEquals('ContentType', $sys->getType());
-        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-10-17T12:23:46.365'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(1, $sys->getRevision());
+        $this->assertSame('cat', $sys->getId());
+        $this->assertSame('ContentType', $sys->getType());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame(1, $sys->getRevision());
     }
 
     /**

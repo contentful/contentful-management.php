@@ -26,18 +26,18 @@ class RoleTest extends BaseTestCase
         $role = new Role();
 
         $role->setName('Custom role');
-        $this->assertEquals('Custom role', $role->getName());
+        $this->assertSame('Custom role', $role->getName());
 
         $role->setDescription('This is a custom test role');
-        $this->assertEquals('This is a custom test role', $role->getDescription());
+        $this->assertSame('This is a custom test role', $role->getDescription());
 
-        $this->assertEquals(new Permissions(), $role->getPermissions());
+        $this->assertInstanceOf(Permissions::class, $role->getPermissions());
 
         $policy = new Policy('allow', 'all');
         $role->addPolicy($policy);
-        $this->assertEquals([$policy], $role->getPolicies());
+        $this->assertSame([$policy], $role->getPolicies());
         $role->setPolicies([$policy]);
-        $this->assertEquals([$policy], $role->getPolicies());
+        $this->assertSame([$policy], $role->getPolicies());
     }
 
     public function testJsonSerialize()

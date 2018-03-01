@@ -10,11 +10,11 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Exception;
 
-use Contentful\Exception\ApiException;
+use Contentful\Core\Api\Exception;
 
 /**
  * DefaultLocaleNotDeletableException class.
  */
-class DefaultLocaleNotDeletableException extends ApiException
+class DefaultLocaleNotDeletableException extends Exception
 {
 }

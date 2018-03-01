@@ -91,10 +91,10 @@ class RegexpValidation implements ValidationInterface
     public function jsonSerialize(): array
     {
         $data = [];
-        if ($this->pattern !== null) {
+        if (null !== $this->pattern) {
             $data['pattern'] = $this->pattern;
         }
-        if ($this->flags !== null) {
+        if (null !== $this->flags) {
             $data['flags'] = $this->flags;
         }
 

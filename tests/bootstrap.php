@@ -20,17 +20,17 @@ use VCR\VCREvents;
  */
 function clean_headers_array(Request $request)
 {
-    return array_filter($request->getHeaders(), function ($value, $name) {
-        if ($value == false) {
+    return \array_filter($request->getHeaders(), function ($value, $name) {
+        if (false === $value) {
             return false;
         }
 
-        if (strtolower($name) === 'user-agent' || strtolower($name) === 'x-contentful-user-agent') {
+        if ('user-agent' === \mb_strtolower($name) || 'x-contentful-user-agent' === \mb_strtolower($name)) {
             return false;
         }
 
         // Since we omit the Authorization header from recordings we can't match on it
-        if (strtolower($name) === 'authorization') {
+        if ('authorization' === \mb_strtolower($name)) {
             return false;
         }
 
@@ -44,7 +44,7 @@ VCR::configure()
     ->setStorage('json')
     ->setCassettePath('tests/Recordings')
     ->addRequestMatcher('custom_headers', function (Request $first, Request $second) {
-        return clean_headers_array($first) == clean_headers_array($second);
+        return clean_headers_array($first) === clean_headers_array($second);
     })
     ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers']);
 

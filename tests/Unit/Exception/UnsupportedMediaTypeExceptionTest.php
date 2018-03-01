@@ -35,7 +35,7 @@ class UnsupportedMediaTypeExceptionTest extends BaseTestCase
         $this->assertTrue($exception->hasResponse());
         $this->assertSame($request, $exception->getRequest());
         $this->assertSame($response, $exception->getResponse());
-        $this->assertEquals('554f5306b9c15e43c1f50842e2544949', $exception->getRequestId());
-        $this->assertEquals('Please specify an HTTP "Content-Type" header with an API version, for example: "application/vnd.contentful.management.v1+json".', $exception->getMessage());
+        $this->assertSame('554f5306b9c15e43c1f50842e2544949', $exception->getRequestId());
+        $this->assertSame('Please specify an HTTP "Content-Type" header with an API version, for example: "application/vnd.contentful.management.v1+json".', $exception->getMessage());
     }
 }

@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
 use Contentful\Management\Resource\Locale;
 use Contentful\Tests\Management\BaseTestCase;
 
@@ -25,9 +23,9 @@ class LocaleTest extends BaseTestCase
         $client = $this->getDefaultClient();
 
         $locale = $client->locale->get('6khdsfQbtrObkbrgWDTGe8');
-        $this->assertEquals(new Link('6khdsfQbtrObkbrgWDTGe8', 'Locale'), $locale->asLink());
-        $this->assertEquals('U.S. English', $locale->getName());
-        $this->assertEquals('en-US', $locale->getCode());
+        $this->assertLink('6khdsfQbtrObkbrgWDTGe8', 'Locale', $locale->asLink());
+        $this->assertSame('U.S. English', $locale->getName());
+        $this->assertSame('en-US', $locale->getCode());
         $this->assertNull($locale->getFallbackCode());
         $this->assertTrue($locale->isContentDeliveryApi());
         $this->assertTrue($locale->isContentManagementApi());
@@ -35,14 +33,14 @@ class LocaleTest extends BaseTestCase
         $this->assertTrue($locale->isDefault());
 
         $sys = $locale->getSystemProperties();
-        $this->assertEquals('6khdsfQbtrObkbrgWDTGe8', $sys->getId());
-        $this->assertEquals('Locale', $sys->getType());
-        $this->assertEquals(0, $sys->getVersion());
-        $this->assertEquals(new Link($this->defaultSpaceId, 'Space'), $sys->getSpace());
-        $this->assertEquals(new ApiDateTime('2017-05-18T13:35:42'), $sys->getCreatedAt());
-        $this->assertEquals(new ApiDateTime('2017-05-18T13:35:42'), $sys->getUpdatedAt());
-        $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getCreatedBy());
-        $this->assertEquals(new Link('5wTIctqPekjOi9TGctNW7L', 'User'), $sys->getUpdatedBy());
+        $this->assertSame('6khdsfQbtrObkbrgWDTGe8', $sys->getId());
+        $this->assertSame('Locale', $sys->getType());
+        $this->assertSame(0, $sys->getVersion());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getUpdatedAt());
+        $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
+        $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getUpdatedBy());
     }
 
     /**

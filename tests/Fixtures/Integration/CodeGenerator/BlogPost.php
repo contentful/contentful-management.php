@@ -2,11 +2,11 @@
 
 namespace Contentful\Tests\Management\Fixtures\Integration\CodeGenerator;
 
-use Contentful\Link;
-use Contentful\Management\ApiDateTime;
+use Contentful\Core\Api\DateTimeImmutable;
+use Contentful\Core\Api\Link;
+use Contentful\Core\Resource\ResourceInterface;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Entry;
-use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * BlogPost class.
@@ -78,7 +78,7 @@ class BlogPost extends Entry
      *
      * @param string $locale
      *
-     * @return ApiDateTime|null
+     * @return DateTimeImmutable|null
      */
     public function getPublishedAt(string $locale = 'en-US')
     {
@@ -88,12 +88,12 @@ class BlogPost extends Entry
     /**
      * Sets the "publishedAt" field.
      *
-     * @param string           $locale
-     * @param ApiDateTime|null $value
+     * @param string                 $locale
+     * @param DateTimeImmutable|null $value
      *
      * @return static
      */
-    public function setPublishedAt(string $locale = 'en-US', ApiDateTime $value = null)
+    public function setPublishedAt(string $locale = 'en-US', DateTimeImmutable $value = null)
     {
         return $this->setField('publishedAt', $locale, $value);
     }
@@ -368,7 +368,7 @@ class BlogPost extends Entry
      */
     public function resolveImagesLinks(string $locale = 'en-US')
     {
-        return array_map(function (Link $link) {
+        return \array_map(function (Link $link) {
             return $this->proxy->resolveLink($link);
         }, (array) $this->getField('images', $locale));
     }
@@ -407,7 +407,7 @@ class BlogPost extends Entry
      */
     public function resolveRelatedLinks(string $locale = 'en-US')
     {
-        return array_map(function (Link $link) {
+        return \array_map(function (Link $link) {
             return $this->proxy->resolveLink($link);
         }, (array) $this->getField('related', $locale));
     }

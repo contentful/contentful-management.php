@@ -37,7 +37,7 @@ class Webhook extends BaseMapper
             'httpBasicPassword' => null,
             'topics' => $data['topics'],
             'headers' => $this->formatHeaders($data['headers']),
-        ], $resource);
+        ]);
     }
 
     /**

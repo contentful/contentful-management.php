@@ -43,7 +43,7 @@ class User extends BaseProxy
     /**
      * Returns a User object which corresponds to the current user in Contentful.
      *
-     * @return User
+     * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/users/user
      */
