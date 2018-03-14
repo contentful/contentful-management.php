@@ -289,7 +289,7 @@ class Entry extends BaseCodeGenerator
      * ```
      * public function resolveXLink(string $locale = '<defaultLocale>')
      * {
-     *     return $this->proxy->resolveLink($this->getField('x', $locale));
+     *     return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('x', $locale));
      * }
      * ```
      *
@@ -301,6 +301,13 @@ class Entry extends BaseCodeGenerator
     {
         $returnType = $this->determineLinkReturnType($field->getLinkType(), $field->getValidations());
 
+        $spaceIdParameter = new Node\Expr\MethodCall(
+            new Node\Expr\MethodCall(
+                new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
+                'getSpace'
+            ),
+            'getId'
+        );
         $resolveLinkParameter = new Node\Expr\MethodCall(
             new Node\Expr\Variable('this'),
             'getField',
@@ -320,9 +327,10 @@ class Entry extends BaseCodeGenerator
                 'stmts' => [
                     new Node\Stmt\Return_(
                         new Node\Expr\MethodCall(
-                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'proxy'),
+                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
                             'resolveLink',
                             [
+                                new Node\Arg($spaceIdParameter),
                                 new Node\Arg($resolveLinkParameter),
                             ]
                         )
@@ -433,6 +441,14 @@ class Entry extends BaseCodeGenerator
      */
     private function generateArrayLinkResolverClosure(): Node\Expr
     {
+        $spaceIdParameter = new Node\Expr\MethodCall(
+            new Node\Expr\MethodCall(
+                new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
+                'getSpace'
+            ),
+            'getId'
+        );
+
         return new Node\Expr\Closure([
             'params' => [
                 new Node\Param('link', null, 'Link'),
@@ -440,9 +456,10 @@ class Entry extends BaseCodeGenerator
             'stmts' => [
                 new Node\Stmt\Return_(
                     new Node\Expr\MethodCall(
-                        new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'proxy'),
+                        new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
                         'resolveLink',
                         [
+                            new Node\Arg($spaceIdParameter),
                             new Node\Arg(new Node\Expr\Variable('link')),
                         ]
                     )

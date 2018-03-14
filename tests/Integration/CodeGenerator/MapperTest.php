@@ -13,10 +13,11 @@ namespace Contentful\Tests\Management\Integration\CodeGenerator;
 use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Mapper;
-use Contentful\Management\Proxy\BaseProxy;
+use Contentful\Management\Proxy\SpaceProxy;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\ResourceBuilder;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
@@ -77,6 +78,13 @@ class MapperTest extends BaseTestCase
             'sys' => [
                 'id' => '<entryId>',
                 'type' => 'Entry',
+                'space' => [
+                    'sys' => [
+                        'id' => 'irrelevant',
+                        'linkType' => 'Space',
+                        'type' => 'Link',
+                    ],
+                ],
                 'contentType' => [
                     'sys' => [
                         'id' => 'blogPost',
@@ -160,7 +168,7 @@ class MapperTest extends BaseTestCase
             ],
         ];
         $entry = $mapper->map(null, $data);
-        $entry->setProxy(new MapperFakeProxy());
+        $entry->setClient(new MapperFakeClient('irrelevant'));
 
         $this->assertSame('title', $entry->getTitle('en-US'));
         $this->assertTrue($entry->getIsPublished('en-US'));
@@ -198,47 +206,21 @@ class MapperTest extends BaseTestCase
     }
 }
 
-class MapperFakeProxy extends BaseProxy
+class MapperFakeClient extends Client
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected $requiresSpaceId = false;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct(Client $client = null, string $spaceId = null)
+    public function getSpaceProxy(string $spaceId): SpaceProxy
     {
-    }
+        return new class($this, $spaceId) extends SpaceProxy {
+            public function resolveLink(Link $link): ResourceInterface
+            {
+                if ('Asset' === $link->getLinkType()) {
+                    return new Asset();
+                }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getResourceUri(array $values): string
-    {
-        return '';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEnabledMethods(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function resolveLink(Link $link)
-    {
-        if ('Asset' === $link->getLinkType()) {
-            return new Asset();
-        }
-
-        if ('Entry' === $link->getLinkType()) {
-            return new BlogPost();
-        }
+                if ('Entry' === $link->getLinkType()) {
+                    return new BlogPost();
+                }
+            }
+        };
     }
 }

@@ -14,10 +14,11 @@ use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Entry;
-use Contentful\Management\Proxy\BaseProxy;
+use Contentful\Management\Proxy\SpaceProxy;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
 use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\BlogPost;
@@ -70,8 +71,17 @@ class EntryTest extends BaseTestCase
      */
     public function testGenerateCodeWorks()
     {
+        $client = new EntryFakeClient('irrelevant');
         $entry = new BlogPost();
-        $entry->setProxy(new EntryFakeProxy());
+        $entry->setClient($client);
+
+        $sys = new SystemProperties(['space' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'Space', 'type' => 'Link']]]);
+
+        $reflection = new \ReflectionObject($entry);
+        $property = $reflection->getProperty('sys');
+        $property->setAccessible(true);
+        $previousSys = $property->getValue($entry);
+        $property->setValue($entry, $sys);
 
         $entry->setTitle('en-US', 'title');
         $this->assertSame('title', $entry->getTitle('en-US'));
@@ -145,51 +155,26 @@ class EntryTest extends BaseTestCase
         $entry->setTags('en-US', ['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads']);
         $this->assertSame(['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads'], $entry->getTags('en-US'));
 
+        $property->setValue($entry, $previousSys);
         $this->assertJsonFixtureEqualsJsonObject('Integration/CodeGenerator/entry.json', $entry);
     }
 }
 
-class EntryFakeProxy extends BaseProxy
+class EntryFakeClient extends Client
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected $requiresSpaceId = false;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct(Client $client = null, string $spaceId = null)
+    public function getSpaceProxy(string $spaceId): SpaceProxy
     {
-    }
+        return new class($this, $spaceId) extends SpaceProxy {
+            public function resolveLink(Link $link): ResourceInterface
+            {
+                if ('Asset' === $link->getLinkType()) {
+                    return new Asset();
+                }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getResourceUri(array $values): string
-    {
-        return '';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEnabledMethods(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function resolveLink(Link $link)
-    {
-        if ('Asset' === $link->getLinkType()) {
-            return new Asset();
-        }
-
-        if ('Entry' === $link->getLinkType()) {
-            return new BlogPost();
-        }
+                if ('Entry' === $link->getLinkType()) {
+                    return new BlogPost();
+                }
+            }
+        };
     }
 }
