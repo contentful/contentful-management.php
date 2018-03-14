@@ -1,12 +1,10 @@
 # contentful-management.php
 
-[![Packagist](https://img.shields.io/packagist/v/contentful/contentful-management.svg?style=flat-square)](https://packagist.org/packages/contentful/contentful-management.php)
-[![Travis](https://img.shields.io/travis/contentful/contentful-management.php.svg?style=flat-square)](https://travis-ci.org/contentful/contentful-management.php)
-[![Packagist](https://img.shields.io/github/license/contentful/contentful-management.php.svg?style=flat-square)](https://packagist.org/packages/contentful/contentful-management.php)
-[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/a563f244-f56b-4e02-b0e0-4819593c371c.svg?style=flat-square)](https://insight.sensiolabs.com/projects/a563f244-f56b-4e02-b0e0-4819593c371c)
-[![Code Climate](https://img.shields.io/codeclimate/github/contentful/contentful-management.php.svg?style=flat-square)](https://codeclimate.com/github/contentful/contentful-management.php)
-[![Codecov](https://img.shields.io/codecov/c/github/contentful/contentful-management.php.svg?style=flat-square)](https://codecov.io/gh/contentful/contentful-management.php)
-
+[![Packagist](https://img.shields.io/packagist/v/contentful/contentful-management.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/contentful/contentful-management.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management)
+[![Travis](https://img.shields.io/travis/contentful/contentful-management.php.svg?style=for-the-badge)](https://travis-ci.org/contentful/contentful-management.php)
+[![Packagist](https://img.shields.io/github/license/contentful/contentful-management.php.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management.php)
+[![Codecov](https://img.shields.io/codecov/c/github/contentful/contentful-management.php.svg?style=for-the-badge)](https://codecov.io/gh/contentful/contentful-management.php)
 
 PHP SDK for [Contentful's](https://www.contentful.com) Content Management API.
 
@@ -21,7 +19,7 @@ The SDK is currently in an alpha state. The API might change at any time. It sho
 To add this package to your `composer.json` and install it execute the following command:
 
 ``` bash
-php composer.phar require contentful/contentful-management:@dev
+composer require contentful/contentful-management:@dev
 ```
 
 Then, if not already done, include the Composer autoloader:
@@ -39,21 +37,6 @@ $client = new \Contentful\Management\Client('access-token');
 ```
 
 The client itself allows creating, updating and deleting spaces. For any operation that happens within a space, a `SpaceManager` needs to be retrieved for that one space.
-
-``` php
-$spaceManager = $client->getSpaceManager('spaceID');
-```
-
-Retrieving and updating an asset might look like this:
-
-``` php
-$client = new \Contentful\Management\Client('access-token');
-$spaceManager = $client->getSpaceManager('spaceID');
-
-$asset = $spaceManager->getAsset('assetID');
-$asset->setTitle('en-US', 'Better Title');
-$spaceManager->update($asset);
-```
 
 ## License
 
