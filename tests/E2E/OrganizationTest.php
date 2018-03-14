@@ -20,7 +20,7 @@ class OrganizationTest extends BaseTestCase
      */
     public function testGetOrganizations()
     {
-        $organizations = $this->getUnboundClient()->organization->getAll();
+        $organizations = $this->getClient()->getOrganizations();
 
         $this->assertCount(3, $organizations);
 
@@ -34,6 +34,8 @@ class OrganizationTest extends BaseTestCase
         $this->assertSame(1, $sys->getVersion());
         $this->assertSame('2017-07-12T13:04:54Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-07-13T09:35:27Z', (string) $sys->getUpdatedAt());
+
+        $this->assertSame([], $organization->asUriParameters());
     }
 
     /**
@@ -43,7 +45,7 @@ class OrganizationTest extends BaseTestCase
     {
         $query = (new Query())
             ->setLimit(3);
-        $organizations = $this->getUnboundClient()->organization->getAll($query);
+        $organizations = $this->getClient()->getOrganizations($query);
 
         $this->assertCount(3, $organizations);
 

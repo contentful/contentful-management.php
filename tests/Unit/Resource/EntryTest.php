@@ -26,6 +26,16 @@ class EntryTest extends BaseTestCase
         $this->assertLink('blogPost', 'ContentType', $sys->getContentType());
     }
 
+    /**
+     * @expectedException \PHPUnit\Framework\Error\Error
+     */
+    public function testInvalidCallMethod()
+    {
+        $entry = new Entry('blogPost');
+
+        $entry->invalidAction();
+    }
+
     public function testJsonSerialize()
     {
         $entry = (new Entry('blogPost'))

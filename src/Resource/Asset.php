@@ -83,6 +83,28 @@ class Asset extends BaseResource implements CreatableInterface
     }
 
     /**
+     * Call the endpoint for processing the file associated to the asset.
+     *
+     * @param string|null $locale
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
+     */
+    public function process(string $locale = null)
+    {
+        $locales = $locale
+            ? [$locale]
+            : \array_keys($this->file);
+
+        foreach ($locales as $locale) {
+            $this->client->requestWithResource($this, 'PUT', '/files/'.$locale.'/process', [
+                'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
+            ], false);
+        }
+
+        return $this->client->fetchResource(static::class, $this->asUriParameters(), null, $this);
+    }
+
+    /**
      * @param string $locale
      *
      * @return string|null

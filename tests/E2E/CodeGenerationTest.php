@@ -109,7 +109,8 @@ class CodeGenerationTest extends BaseTestCase
      */
     public function testGeneratedClassesWork(string $fixturesDir)
     {
-        $client = $this->getClient($this->codeGenerationSpaceId);
+        $client = $this->getClient();
+        $proxy = $client->getSpaceProxy($this->codeGenerationSpaceId);
         $builder = $client->getBuilder();
 
         require $fixturesDir.'/_loader.php';
@@ -120,7 +121,7 @@ class CodeGenerationTest extends BaseTestCase
         $author->setIsActive('en-US', true);
         $author->setMisc('en-US', ['codename' => 'Apollo']);
         $author->setPicture('en-US', new Link('24jR8tPh6cWyQyWecs8USO', 'Asset'));
-        $client->entry->create($author);
+        $proxy->create($author);
         $this->assertNotNull($author->getId());
         $this->assertSame('Lee Adama', $author->getName('en-US'));
         $this->assertSame(['lon' => 50, 'lat' => 50], $author->getLocation('en-US'));
@@ -138,7 +139,7 @@ class CodeGenerationTest extends BaseTestCase
         $blogPost->setRelated('en-US', []);
         $blogPost->setTags('en-US', ['space', 'survival']);
         $blogPost->setAuthor('en-US', $author->asLink());
-        $client->entry->create($blogPost);
+        $proxy->create($blogPost);
         $this->assertNotNull($blogPost->getId());
         $this->assertSame('How to survive the deep space', $blogPost->getTitle('en-US'));
         $this->assertSame('You can\t.', $blogPost->getBody('en-US'));

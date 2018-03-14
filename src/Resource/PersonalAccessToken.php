@@ -89,6 +89,16 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
     }
 
     /**
+     * Revokes the personal access token.
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/token-revoking
+     */
+    public function revoke()
+    {
+        return $this->client->requestWithResource($this, 'PUT', '/revoked');
+    }
+
+    /**
      * @return string
      */
     public function getName()

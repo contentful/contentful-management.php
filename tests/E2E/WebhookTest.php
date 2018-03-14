@@ -25,9 +25,9 @@ class WebhookTest extends BaseTestCase
      */
     public function testGetWebhook()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $webhook = $client->webhook->get('3tilCowN1lI1rDCe9vhK0C');
+        $webhook = $proxy->getWebhook('3tilCowN1lI1rDCe9vhK0C');
 
         $this->assertLink('3tilCowN1lI1rDCe9vhK0C', 'WebhookDefinition', $webhook->asLink());
         $this->assertSame('Default Webhook', $webhook->getName());
@@ -50,14 +50,14 @@ class WebhookTest extends BaseTestCase
      */
     public function testGetWebhooks()
     {
-        $client = $this->getDefaultClient();
-        $webhooks = $client->webhook->getAll();
+        $proxy = $this->getDefaultSpaceProxy();
+        $webhooks = $proxy->getWebhooks();
 
         $this->assertInstanceOf(Webhook::class, $webhooks[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $webhooks = $client->webhook->getAll($query);
+        $webhooks = $proxy->getWebhooks($query);
         $this->assertInstanceOf(Webhook::class, $webhooks[0]);
         $this->assertCount(1, $webhooks);
     }
@@ -69,7 +69,7 @@ class WebhookTest extends BaseTestCase
      */
     public function testCreateWebhook(): Webhook
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $webhook = (new Webhook('cf-webhook-X7v4Cy26RJ', 'https://www.example.com/cf-EtumCxGYNobexO7BCi6I6HSaxlpFf3d9YWNvRGb4'))
             ->addTopic('Entry.create')
@@ -80,7 +80,7 @@ class WebhookTest extends BaseTestCase
 
         $startingWebhook = clone $webhook;
 
-        $client->webhook->create($webhook);
+        $proxy->create($webhook);
         $this->assertNotNull($webhook->getId());
 
         $this->assertSame($startingWebhook->getName(), $webhook->getName());
@@ -115,31 +115,35 @@ class WebhookTest extends BaseTestCase
      */
     public function testWebhookEventsFiredAndLogged(Webhook $webhook): Webhook
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $entry1 = (new Entry('person'))
             ->setField('name', 'en-US', 'Burt Macklin')
             ->setField('jobTitle', 'en-US', 'FBI')
         ;
-        $client->entry->create($entry1);
+        $proxy->create($entry1);
         $entry1->delete();
 
         $entry2 = (new Entry('person'))
             ->setField('name', 'en-US', 'Dwight Schrute')
             ->setField('jobTitle', 'en-US', 'Assistant Regional Manager')
         ;
-        $client->entry->create($entry2);
+        $proxy->create($entry2);
         $entry2->delete();
 
         $webhookId = $webhook->getId();
 
-        $health = $client->webhookHealth->get($webhookId);
+        $health = $webhook->getHealth();
+        $this->assertSame([
+            'space' => $this->defaultSpaceId,
+            'webhook' => $webhookId,
+        ], $health->asUriParameters());
         $this->assertLink($health->getId(), 'Webhook', $health->asLink());
         $this->assertSame(2, $health->getTotal());
         $this->assertSame(0, $health->getHealthy());
         $this->assertSame($webhookId, $health->getId());
 
-        $webhookCalls = $client->webhookCall->getAll($webhookId);
+        $webhookCalls = $webhook->getCalls();
 
         $this->assertInstanceOf(WebhookCall::class, $webhookCalls[0]);
         $this->assertLink($webhookCalls[0]->getId(), 'WebhookCallOverview', $webhookCalls[0]->asLink());
@@ -148,7 +152,7 @@ class WebhookTest extends BaseTestCase
 
         $query = (new Query())
             ->setLimit(1);
-        $webhookCalls = $client->webhookCall->getAll($webhookId, $query);
+        $webhookCalls = $webhook->getCalls($query);
         $this->assertInstanceOf(WebhookCall::class, $webhookCalls[0]);
         $this->assertSame(404, $webhookCalls[0]->getStatusCode());
         $this->assertSame('ClientError', $webhookCalls[0]->getError());
@@ -161,7 +165,12 @@ class WebhookTest extends BaseTestCase
         $webhookCallId = $webhookCalls[0]->getId();
         $this->assertNotNull($webhookCallId);
 
-        $webhookCall = $client->webhookCall->get($webhookId, $webhookCallId);
+        $webhookCall = $webhook->getCall($webhookCallId);
+        $this->assertSame([
+            'space' => $this->defaultSpaceId,
+            'webhook' => $webhookId,
+            'call' => $webhookCallId,
+        ], $webhookCall->asUriParameters());
         $this->assertLink($webhookCall->getId(), 'WebhookCallDetails', $webhookCall->asLink());
         $requestPayload = guzzle_json_decode((string) $webhookCall->getRequest()->getBody(), true);
         $this->assertSame('Dwight Schrute', $requestPayload['fields']['name']['en-US']);
@@ -181,9 +190,37 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
-     * @param Webhook $webook
+     * @param Webhook $webhook
      *
      * @depends testWebhookEventsFiredAndLogged
+     * @vcr e2e_webhook_get_from_space_proxy.json
+     */
+    public function testGetCallsFromSpaceProxy(Webhook $webhook)
+    {
+        $proxy = $this->getDefaultSpaceProxy();
+        $webhookId = $webhook->getId();
+
+        $health = $proxy->getWebhookHealth($webhookId);
+        $this->assertLink($health->getId(), 'Webhook', $health->asLink());
+        $this->assertSame(2, $health->getTotal());
+        $this->assertSame(0, $health->getHealthy());
+        $this->assertSame($webhookId, $health->getId());
+
+        $webhookCalls = $proxy->getWebhookCalls($webhookId);
+
+        $callId = $webhookCalls[0]->getId();
+        $this->assertNotNull($callId);
+
+        $webhookCall = $proxy->getWebhookCall($webhookId, $callId);
+        $this->assertLink($webhookCall->getId(), 'WebhookCallDetails', $webhookCall->asLink());
+
+        return $webhook;
+    }
+
+    /**
+     * @param Webhook $webook
+     *
+     * @depends testGetCallsFromSpaceProxy
      * @vcr e2e_webhook_delete.json
      */
     public function testDeleteWebhook(Webhook $webhook)

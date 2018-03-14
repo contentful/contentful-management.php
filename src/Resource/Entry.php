@@ -151,17 +151,19 @@ class Entry extends BaseResource implements CreatableInterface
     public function __call(string $name, array $arguments)
     {
         $action = \mb_substr($name, 0, 3);
-        if ('get' === $action) {
-            $field = $this->extractFieldName($name);
-
-            return $this->getField($field, ...$arguments);
-        } elseif ('set' === $action) {
-            $field = $this->extractFieldName($name);
-
-            return $this->setField($field, ...$arguments);
+        if ('get' !== $action && 'set' !== $action) {
+            \trigger_error(\sprintf(
+                'Call to undefined method %s::%s()',
+                static::class,
+                $name
+            ), E_USER_ERROR);
         }
 
-        return parent::__call($name, $arguments);
+        $field = $this->extractFieldName($name);
+
+        return 'get' === $action
+            ? $this->getField($field, ...$arguments)
+            : $this->setField($field, ...$arguments);
     }
 
     /**

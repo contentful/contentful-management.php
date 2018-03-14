@@ -12,8 +12,6 @@ namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Core\Api\BaseClient;
 use Contentful\Core\Api\Link;
-use Contentful\Core\File\RemoteUploadFile;
-use Contentful\Management\Exception\InvalidProxyActionException;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\Entry;
@@ -27,7 +25,7 @@ class ClientTest extends BaseTestCase
 {
     public function testUserAgent()
     {
-        $client = $this->getUnboundClient();
+        $client = $this->getClient();
 
         $property = (new \ReflectionClass(BaseClient::class))->getProperty('userAgentGenerator');
         $property->setAccessible(true);
@@ -48,172 +46,81 @@ class ClientTest extends BaseTestCase
      */
     public function testLinkResolver()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $link = new Link('2TEG7c2zYkSSuKmsqEwCS', 'Asset');
-        $asset = $client->resolveLink($link);
+        $asset = $proxy->resolveLink($link);
         $this->assertInstanceOf(Asset::class, $asset);
         $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
 
         $link = new Link('3LM5FlCdGUIM0Miqc664q6', 'Entry');
-        $entry = $client->resolveLink($link);
+        $entry = $proxy->resolveLink($link);
         $this->assertInstanceOf(Entry::class, $entry);
         $this->assertSame('Josh Lyman', $entry->getField('name', 'en-US'));
 
         $link = new Link('person', 'ContentType');
-        $contentType = $client->resolveLink($link);
+        $contentType = $proxy->resolveLink($link);
         $this->assertInstanceOf(ContentType::class, $contentType);
         $this->assertSame('Person', $contentType->getName());
 
         $link = new Link('6khUMmsfVslYd7tRcThTgE', 'Role');
-        $role = $client->resolveLink($link);
+        $role = $proxy->resolveLink($link);
         $this->assertInstanceOf(Role::class, $role);
         $this->assertSame('Developer', $role->getName());
 
         $link = new Link('3tilCowN1lI1rDCe9vhK0C', 'WebhookDefinition');
-        $webhook = $client->resolveLink($link);
+        $webhook = $proxy->resolveLink($link);
         $this->assertInstanceOf(Webhook::class, $webhook);
         $this->assertSame('Default Webhook', $webhook->getName());
 
         $link = new Link('1Mx3FqXX5XCJDtNpVW4BZI', 'PreviewApiKey');
-        $previewApiKey = $client->resolveLink($link);
+        $previewApiKey = $proxy->resolveLink($link);
         $this->assertInstanceOf(PreviewApiKey::class, $previewApiKey);
         $this->assertSame('Preview Key', $previewApiKey->getName());
 
         $link = new Link($this->defaultSpaceId, 'Space');
-        $space = $client->resolveLink($link);
+        $space = $proxy->resolveLink($link);
         $this->assertInstanceOf(Space::class, $space);
         $this->assertSame('PHP CMA', $space->getName());
     }
 
-    public function testCurrentSpaceId()
-    {
-        $client = $this->getUnboundClient();
-
-        $client->setCurrentSpaceId('spaceId');
-        $this->assertSame('spaceId', $client->getCurrentSpaceId());
-
-        $client->setCurrentSpaceId(null);
-        $this->assertNull($client->getCurrentSpaceId());
-    }
-
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Trying to access invalid proxy "invalidProxy".
-     */
-    public function testInvalidProxy()
-    {
-        $client = $this->getUnboundClient();
-
-        $client->invalidProxy;
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Unexpected system type "InvalidSystemType" while trying to resolve a Link.
      */
     public function testInvalidLinkType()
     {
         $link = new Link('linkId', 'InvalidSystemType');
-        $this->getUnboundClient()->resolveLink($link, 'spaceId');
+        $this->getDefaultSpaceProxy()->resolveLink($link, 'spaceId');
     }
 
     /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Trying to access proxy "Contentful\Management\Proxy\Entry" which requires a space ID, but none is given.
+     * @expectedException        \RuntimeException
+     * @expectedExceptionMessage Trying to create a resource of class "Contentful\Management\Resource\Entry" with incorrect set of parameters "invalidParameter".
      */
-    public function testResolveEntryNeedsSpaceId()
+    public function testCreateInvalidParameters()
     {
-        $link = new Link('3LM5FlCdGUIM0Miqc664q6', 'Entry');
-        $this->getUnboundClient()->resolveLink($link);
+        $client = $this->getClient();
+
+        $client->create(new Entry('someContentType'), ['invalidParameter' => 'invalidValue']);
     }
 
     /**
-     * @dataProvider proxyMethodsProvider
+     * @vcr e2e_client_create_through_space_object.json
      */
-    public function testEnabledMethods(string $proxy, array $methods)
+    public function testCreateThroughSpaceObject()
     {
-        $client = $this->getDefaultClient();
+        $client = $this->getClient();
 
-        $this->assertSame($methods, $client->getProxy($proxy)->getEnabledMethods(), '', 0.0, 10, true);
-    }
+        $space = $client->getSpace($this->defaultSpaceId);
+        $entry = (new Entry('testCt'))
+            ->setField('name', 'en-US', 'A name');
 
-    public function proxyMethodsProvider()
-    {
-        return [
-            ['asset', ['create', 'update', 'delete', 'archive', 'unarchive', 'publish', 'unpublish', 'process']],
-            ['contentType', ['create', 'update', 'delete', 'publish', 'unpublish']],
-            ['contentTypeSnapshot', []],
-            ['editorInterface', ['update']],
-            ['deliveryApiKey', ['create', 'update', 'delete']],
-            ['entry', ['create', 'update', 'delete', 'archive', 'unarchive', 'publish', 'unpublish']],
-            ['entrySnapshot', []],
-            ['locale', ['create', 'update', 'delete']],
-            ['organization', []],
-            ['personalAccessToken', ['create', 'revoke']],
-            ['previewApiKey', []],
-            ['publishedContentType', []],
-            ['role', ['create', 'update', 'delete']],
-            ['space', ['create', 'update', 'delete']],
-            ['spaceMembership', ['create', 'update', 'delete']],
-            ['upload', ['create', 'delete']],
-            ['user', []],
-            ['webhook', ['create', 'update', 'delete']],
-            ['webhookCall', []],
-            ['webhookHealth', []],
-        ];
-    }
+        $client->create($entry, $space, 'deleteme');
 
-    /**
-     * @expectedException \Contentful\Core\Exception\NotFoundException
-     * @expectedExceptionMessage The resource could not be found.
-     * @vcr e2e_client_proxy_methods_without_objects.json
-     */
-    public function testProxyMethodsWithoutObjects()
-    {
-        $proxy = $this->getDefaultClient()->asset;
+        $this->assertNotNull($entry->getId());
+        $this->assertSame($space->getId(), $entry->getSystemProperties()->getSpace()->getId());
 
-        $asset = new Asset();
-        $asset->setTitle('en-US', 'My asset');
-        $asset->setDescription('en-US', 'My description');
-        $file = new RemoteUploadFile('contentful.svg', 'image/svg+xml', 'https://pbs.twimg.com/profile_images/488880764323250177/CrqV-RjR_normal.jpeg');
-        $asset->setFile('en-US', $file);
-
-        $proxy->create($asset);
-        $assetId = $asset->getId();
-        $this->assertNotNull($assetId);
-
-        $proxy->delete($assetId, 1);
-
-        $asset = $proxy->get($assetId);
-    }
-
-    /**
-     * @dataProvider invalidActionObjectsProvider
-     *
-     * @param object $object
-     * @param string $method
-     * @param string $message
-     */
-    public function testProxyActionOnInvalidObject($object, string $method, string $message)
-    {
-        $this->expectException(InvalidProxyActionException::class);
-        $this->expectExceptionMessage($message);
-
-        $proxy = $this->getDefaultClient()->asset;
-
-        $proxy->{$method}($object);
-    }
-
-    public function invalidActionObjectsProvider()
-    {
-        return [
-            [new \stdClass(), 'delete', 'Trying to perform invalid action "delete" on proxy "Contentful\Management\Proxy\Asset" with argument of class "stdClass".'],
-            [new \stdClass(), 'archive', 'Trying to perform invalid action "archive" on proxy "Contentful\Management\Proxy\Asset" with argument of class "stdClass".'],
-            [new \stdClass(), 'unarchive', 'Trying to perform invalid action "unarchive" on proxy "Contentful\Management\Proxy\Asset" with argument of class "stdClass".'],
-            [new \stdClass(), 'publish', 'Trying to perform invalid action "publish" on proxy "Contentful\Management\Proxy\Asset" with argument of class "stdClass".'],
-            [new \stdClass(), 'unpublish', 'Trying to perform invalid action "unpublish" on proxy "Contentful\Management\Proxy\Asset" with argument of class "stdClass".'],
-            [new \stdClass(), 'invalidAction', 'Trying to perform invalid action "invalidAction" on proxy "Contentful\Management\Proxy\Asset".'],
-        ];
+        $entry->delete();
     }
 }

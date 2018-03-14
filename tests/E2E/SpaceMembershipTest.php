@@ -22,9 +22,9 @@ class SpaceMembershipTest extends BaseTestCase
      */
     public function testGetSpaceMembership()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $spaceMembership = $client->spaceMembership->get('3pCRBWtdkT0HzQmQpRcitU');
+        $spaceMembership = $proxy->getSpaceMembership('3pCRBWtdkT0HzQmQpRcitU');
 
         $this->assertNull($spaceMembership->getEmail());
         $this->assertNotNull($spaceMembership->getId());
@@ -39,9 +39,9 @@ class SpaceMembershipTest extends BaseTestCase
      */
     public function testGetSpaceMemberships()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $spaceMemberships = $client->spaceMembership->getAll();
+        $spaceMemberships = $proxy->getSpaceMemberships();
         $spaceMembership = $spaceMemberships[1];
 
         $this->assertInstanceOf(SpaceMembership::class, $spaceMembership);
@@ -61,7 +61,7 @@ class SpaceMembershipTest extends BaseTestCase
 
         $query = (new Query())
             ->setLimit(2);
-        $spaceMemberships = $client->spaceMembership->getAll($query);
+        $spaceMemberships = $proxy->getSpaceMemberships($query);
         $spaceMembership = $spaceMemberships[1];
 
         $this->assertInstanceOf(SpaceMembership::class, $spaceMembership);
@@ -85,14 +85,14 @@ class SpaceMembershipTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $spaceMembership = new SpaceMembership();
         $spaceMembership
             ->setEmail('php-cma-sdk-tests-eb2a4f5@contentful.com')
             ->setAdmin(true);
 
-        $client->spaceMembership->create($spaceMembership);
+        $proxy->create($spaceMembership);
 
         $this->assertNull($spaceMembership->getEmail());
         $this->assertNotNull($spaceMembership->getId());

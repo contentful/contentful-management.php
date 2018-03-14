@@ -12,7 +12,6 @@ namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\Resource\Entry;
-use Contentful\Management\ResourceBuilder;
 use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
 
@@ -23,28 +22,27 @@ class ResourceBuilderTest extends BaseTestCase
      */
     public function testAddCustomMappers()
     {
-        $builder = new ResourceBuilder();
+        $client = $this->getClient();
+        $proxy = $client->getSpaceProxy($this->defaultSpaceId);
+
+        $builder = $client->getBuilder();
         $builder->setDataMapperMatcher('Entry', function (array $data) {
             if ('fantasticCreature' === $data['sys']['contentType']['sys']['id']) {
                 return FantasticCreatureEntryMapper::class;
             }
         });
 
-        $client = $this->getDefaultClient();
-
-        $client->setBuilder($builder);
-
         $this->assertSame($builder, $client->getBuilder());
 
         // This entry has content type 'fantasticCreature'
         // so it should use the custom mapper
-        $entry = $client->entry->get('4OuC4z6qs0yEWMeqkGmokw');
+        $entry = $proxy->getEntry('4OuC4z6qs0yEWMeqkGmokw');
         $this->assertInstanceOf(FantasticCreatureEntry::class, $entry);
         $this->assertSame('Direwolf', $entry->getName());
 
         // This entry has content type 'person'
         // so it should default to the regular mapper
-        $entry = $client->entry->get('3LM5FlCdGUIM0Miqc664q6');
+        $entry = $proxy->getEntry('3LM5FlCdGUIM0Miqc664q6');
         $this->assertInstanceOf(Entry::class, $entry);
         $this->assertSame('Josh Lyman', $entry->getField('name', 'en-US'));
         $this->assertSame('Chief of Staff', $entry->getField('jobTitle', 'en-US'));

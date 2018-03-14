@@ -22,16 +22,16 @@ class PersonalAccessTokenTest extends BaseTestCase
      */
     public function testCreateGetRevoke()
     {
-        $client = $this->getUnboundClient();
+        $client = $this->getClient();
 
         $personalAccessToken = new PersonalAccessToken('Test access token', true);
-        $client->personalAccessToken->create($personalAccessToken);
+        $client->create($personalAccessToken);
 
         $this->assertNotNull($personalAccessToken->getToken());
         $this->assertSame('Test access token', $personalAccessToken->getName());
         $this->assertTrue($personalAccessToken->isReadOnly());
 
-        $personalAccessToken = $client->personalAccessToken->get($personalAccessToken->getId());
+        $personalAccessToken = $client->getPersonalAccessToken($personalAccessToken->getId());
 
         $this->assertNull($personalAccessToken->getToken());
         $this->assertSame('Test access token', $personalAccessToken->getName());
@@ -48,7 +48,7 @@ class PersonalAccessTokenTest extends BaseTestCase
     {
         $query = (new Query())
             ->setLimit(1);
-        $personalAccessTokens = $this->getUnboundClient()->personalAccessToken->getAll($query);
+        $personalAccessTokens = $this->getClient()->getPersonalAccessTokens($query);
 
         $this->assertCount(1, $personalAccessTokens);
 
@@ -57,16 +57,5 @@ class PersonalAccessTokenTest extends BaseTestCase
         $this->assertNull($personalAccessToken->getRevokedAt());
         $this->assertSame('TravisCI', $personalAccessToken->getName());
         $this->assertFalse($personalAccessToken->isReadOnly());
-    }
-
-    /**
-     * @expectedException \Contentful\Management\Exception\InvalidProxyActionException
-     * @expectedExceptionMessage Trying to perform invalid action "revoke" on proxy "Contentful\Management\Proxy\PersonalAccessToken" with argument of class "stdClass".
-     */
-    public function testInvalidRevokeObject()
-    {
-        $proxy = $this->getUnboundClient()->personalAccessToken;
-
-        $proxy->revoke(new \stdClass());
     }
 }

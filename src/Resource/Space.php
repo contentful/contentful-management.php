@@ -108,12 +108,4 @@ class Space extends BaseResource implements CreatableInterface
 
         return $this;
     }
-
-    /**
-     * @return string|null
-     */
-    public function getOrganizationId()
-    {
-        return $this->organizationId;
-    }
 }

@@ -27,9 +27,9 @@ class AssetTest extends BaseTestCase
      */
     public function testGetAsset()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $asset = $client->asset->get('2TEG7c2zYkSSuKmsqEwCS');
+        $asset = $proxy->getAsset('2TEG7c2zYkSSuKmsqEwCS');
         $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
         $this->assertNull($asset->getDescription('en-US'));
         $link = $asset->asLink();
@@ -60,14 +60,14 @@ class AssetTest extends BaseTestCase
      */
     public function testGetAssets()
     {
-        $client = $this->getDefaultClient();
-        $assets = $client->asset->getAll();
+        $proxy = $this->getDefaultSpaceProxy();
+        $assets = $proxy->getAssets();
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $assets = $client->asset->getAll($query);
+        $assets = $proxy->getAssets($query);
         $this->assertInstanceOf(Asset::class, $assets[0]);
         $this->assertCount(1, $assets);
     }
@@ -77,7 +77,7 @@ class AssetTest extends BaseTestCase
      */
     public function testCreateUpdateProcessPublishUnpublishArchiveUnarchiveDelete()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
@@ -87,7 +87,7 @@ class AssetTest extends BaseTestCase
 
         $asset->setFile('en-US', $file);
 
-        $client->asset->create($asset);
+        $proxy->create($asset);
         $this->assertNotNull($asset->getId());
         $this->assertTrue($asset->getSystemProperties()->isDraft());
         $this->assertFalse($asset->getSystemProperties()->isPublished());
@@ -106,7 +106,7 @@ class AssetTest extends BaseTestCase
         while ($asset->getFile('en-US') instanceof RemoteUploadFile) {
             ++$limit;
             $query->setLimit($limit);
-            $asset = $client->asset->getAll($query)[0];
+            $asset = $proxy->getAssets($query)[0];
 
             // This is arbitrary
             if ($limit > 50) {
@@ -144,13 +144,13 @@ class AssetTest extends BaseTestCase
      */
     public function testCreateAssetWithGivenId()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
             ->setDescription('en-US', 'A really cool asset');
 
-        $client->asset->create($asset, 'myCustomTestAsset');
+        $proxy->create($asset, [], 'myCustomTestAsset');
         $this->assertSame('myCustomTestAsset', $asset->getId());
 
         $asset->delete();
@@ -161,11 +161,11 @@ class AssetTest extends BaseTestCase
      */
     public function testUploadAsset()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         // Creates upload using fopen
         $fopenUpload = new Upload(\fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'r'));
-        $client->upload->create($fopenUpload);
+        $proxy->create($fopenUpload);
         $this->assertNotNull($fopenUpload->getId());
         $this->assertInstanceOf(DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());
         $fopenUpload->delete();
@@ -173,14 +173,14 @@ class AssetTest extends BaseTestCase
         // Creates upload using stream
         $stream = stream_for(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));
         $streamUpload = new Upload($stream);
-        $client->upload->create($streamUpload);
+        $proxy->create($streamUpload);
         $this->assertNotNull($streamUpload->getId());
         $this->assertInstanceOf(DateTimeImmutable::class, $streamUpload->getSystemProperties()->getExpiresAt());
         $streamUpload->delete();
 
         // Creates upload using string
         $upload = new Upload(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-name.svg'));
-        $client->upload->create($upload);
+        $proxy->create($upload);
         $link = $upload->asLink();
         $this->assertSame($upload->getId(), $link->getId());
         $this->assertSame('Upload', $link->getLinkType());
@@ -193,7 +193,7 @@ class AssetTest extends BaseTestCase
         $asset->setTitle('en-US', 'Contentful');
         $asset->setFile('en-US', $uploadFromFile);
 
-        $client->asset->create($asset);
+        $proxy->create($asset);
         $asset->process('en-US');
 
         // Calls the API until the file is processed.
@@ -206,7 +206,7 @@ class AssetTest extends BaseTestCase
         while ($asset->getFile('en-US') instanceof LocalUploadFile) {
             ++$limit;
             $query->setLimit($limit);
-            $asset = $client->asset->getAll($query)[0];
+            $asset = $proxy->getAssets($query)[0];
 
             // This is arbitrary
             if ($limit > 50) {
@@ -220,7 +220,8 @@ class AssetTest extends BaseTestCase
         $this->assertSame('image/svg+xml', $asset->getFile('en-US')->getContentType());
         $this->assertContains('contentful.com', $asset->getFile('en-US')->getUrl());
 
-        $upload = $client->resolveLink($upload->asLink());
+        $upload = $proxy->getUpload($upload->getId());
+        $this->assertLink($upload->getId(), 'Upload', $upload->asLink());
 
         $upload->delete();
         $asset->delete();
@@ -231,9 +232,9 @@ class AssetTest extends BaseTestCase
      */
     public function testTextFileAsset()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $asset = $client->asset->get('1Gdj0yMYb60MuI6OCSkqMu');
+        $asset = $proxy->getAsset('1Gdj0yMYb60MuI6OCSkqMu');
 
         $this->assertSame('MIT', $asset->getTitle('en-US'));
         $this->assertSame('This is the MIT license', $asset->getDescription('en-US'));

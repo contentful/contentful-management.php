@@ -12,6 +12,7 @@ namespace Contentful\Tests\Management;
 
 use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
+use Contentful\Management\Proxy\SpaceProxy;
 use PHPUnit\Framework\TestCase;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
@@ -47,25 +48,19 @@ class BaseTestCase extends TestCase
      *
      * @return Client
      */
-    protected function getClient(string $spaceId = null): Client
+    protected function getClient(): Client
     {
-        return new Client($this->token, $spaceId);
+        return new Client($this->token);
     }
 
-    /**
-     * @return Client
-     */
-    protected function getUnboundClient(): Client
+    protected function getDefaultSpaceProxy(): SpaceProxy
     {
-        return $this->getClient(null);
+        return $this->getClient()->getSpaceProxy($this->defaultSpaceId);
     }
 
-    /**
-     * @return Client
-     */
-    protected function getDefaultClient(): Client
+    protected function getCodeGenerationProxy(): SpaceProxy
     {
-        return $this->getClient($this->defaultSpaceId);
+        return $this->getClient()->getSpaceProxy($this->codeGenerationSpaceId);
     }
 
     protected function assertLink($id, $linkType, Link $link, $message = '')
