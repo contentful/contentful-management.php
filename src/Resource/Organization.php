@@ -61,6 +61,14 @@ class Organization extends BaseResource
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [];
+    }
+
+    /**
      * @return string
      */
     public function getName(): string

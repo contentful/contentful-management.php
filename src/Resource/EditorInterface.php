@@ -55,6 +55,17 @@ class EditorInterface extends BaseResource
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'contentType' => $this->sys->getContentType()->getId(),
+        ];
+    }
+
+    /**
      * @param string $fieldId
      *
      * @return Control

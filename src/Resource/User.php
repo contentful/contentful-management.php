@@ -96,6 +96,14 @@ class User extends BaseResource
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [];
+    }
+
+    /**
      * @return string
      */
     public function getFirstName(): string

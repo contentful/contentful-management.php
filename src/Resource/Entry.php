@@ -72,6 +72,41 @@ class Entry extends BaseResource implements CreatableInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'entry' => $this->sys->getId(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getEntryId(): string
+    {
+        return $this->sys->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSpaceId(): string
+    {
+        return $this->sys->getSpace()->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return ['X-Contentful-Content-Type' => $this->sys->getContentType()->getId()];
+    }
+
+    /**
      * Formats data for JSON encoding.
      *
      * @param mixed $data

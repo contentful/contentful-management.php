@@ -76,6 +76,25 @@ class SpaceMembership extends BaseResource implements CreatableInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'spaceMembership' => $this->sys->getId(),
+        ];
+    }
+
+    /**
      * @return bool
      */
     public function isAdmin(): bool

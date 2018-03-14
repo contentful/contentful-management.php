@@ -93,6 +93,41 @@ class ContentType extends BaseResource implements CreatableInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'contentType' => $this->sys->getId(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getContentTypeId(): string
+    {
+        return $this->sys->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSpaceId(): string
+    {
+        return $this->sys->getSpace()->getId();
+    }
+
+    /**
      * @return string
      */
     public function getName(): string

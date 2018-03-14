@@ -8,16 +8,11 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Management\Resource\Behavior;
+namespace Contentful\Management\Resource;
 
-use Contentful\Core\Resource\ResourceInterface;
+use Contentful\Core\Resource\ResourceInterface as CoreResourceInterface;
 
-/**
- * Creatable interface.
- *
- * Represents a resource which can be created.
- */
-interface Creatable extends ResourceInterface
+interface ResourceInterface extends CoreResourceInterface
 {
     /**
      * Returns the resource in the form of request body.
@@ -27,4 +22,12 @@ interface Creatable extends ResourceInterface
      * @return mixed
      */
     public function asRequestBody();
+
+    /**
+     * Returns an associate array where keys are the name of the fragments
+     * in a URI, and the values are the corresponding IDs.
+     *
+     * @return string[]
+     */
+    public function asUriParameters(): array;
 }

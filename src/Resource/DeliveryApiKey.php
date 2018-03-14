@@ -45,14 +45,6 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
     }
 
     /**
-     * @return Link|null
-     */
-    public function getPreviewApiKey()
-    {
-        return $this->previewApiKey;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function jsonSerialize(): array
@@ -75,5 +67,32 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
         unset($body['previewApiKey']);
 
         return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'deliveryApiKey' => $this->sys->getId(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return Link|null
+     */
+    public function getPreviewApiKey()
+    {
+        return $this->previewApiKey;
     }
 }

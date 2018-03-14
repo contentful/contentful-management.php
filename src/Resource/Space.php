@@ -90,6 +90,32 @@ class Space extends BaseResource implements CreatableInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getId(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSpaceId()
+    {
+        return $this->sys->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return ['X-Contentful-Organization' => $this->organizationId];
+    }
+
+    /**
      * @return string
      */
     public function getName(): string

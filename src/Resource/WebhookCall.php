@@ -105,6 +105,18 @@ class WebhookCall extends BaseResource
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'webhook' => $this->sys->getCreatedBy()->getId(),
+            'call' => $this->sys->getId(),
+        ];
+    }
+
+    /**
      * PSR-7 Headers can contain multiple values for every key.
      * We simplify management by only defining one.
      *

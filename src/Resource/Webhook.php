@@ -107,6 +107,41 @@ class Webhook extends BaseResource implements CreatableInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getWebhookId()
+    {
+        return $this->sys->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSpaceId()
+    {
+        return $this->sys->getSpace()->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'webhook' => $this->sys->getId(),
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getName(): string

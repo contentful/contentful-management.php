@@ -21,6 +21,18 @@ namespace Contentful\Management\Resource;
 class ContentTypeSnapshot extends Snapshot
 {
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'contentType' => $this->snapshot->getId(),
+            'snapshot' => $this->sys->getId(),
+        ];
+    }
+
+    /**
      * @return ContentType
      */
     public function getContentType(): ContentType

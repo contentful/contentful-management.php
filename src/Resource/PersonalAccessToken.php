@@ -89,6 +89,24 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'personalAccessToken' => $this->sys->getId(),
+        ];
+    }
+
+    /**
      * Revokes the personal access token.
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/token-revoking

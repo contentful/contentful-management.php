@@ -21,6 +21,18 @@ namespace Contentful\Management\Resource;
 class EntrySnapshot extends Snapshot
 {
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'entry' => $this->snapshot->getId(),
+            'snapshot' => $this->sys->getId(),
+        ];
+    }
+
+    /**
      * @return Entry
      */
     public function getEntry(): Entry
