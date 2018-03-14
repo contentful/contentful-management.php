@@ -2,6 +2,13 @@
     "sys": {
         "id": "<entryId>",
         "type": "Entry",
+        "space": {
+            "sys": {
+                "type": "Link",
+                "id": "irrelevant",
+                "linkType": "Space"
+            }
+        },
         "contentType": {
             "sys": {
                 "type": "Link",

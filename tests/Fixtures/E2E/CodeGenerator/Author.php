@@ -155,6 +155,6 @@ class Author extends Entry
      */
     public function resolvePictureLink(string $locale = 'en-US')
     {
-        return $this->proxy->resolveLink($this->getField('picture', $locale));
+        return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('picture', $locale));
     }
 }

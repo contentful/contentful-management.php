@@ -131,7 +131,7 @@ class BlogPost extends Entry
      */
     public function resolveImageLink(string $locale = 'en-US')
     {
-        return $this->proxy->resolveLink($this->getField('image', $locale));
+        return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('image', $locale));
     }
 
     /**
@@ -169,7 +169,7 @@ class BlogPost extends Entry
     public function resolveRelatedLinks(string $locale = 'en-US')
     {
         return \array_map(function (Link $link) {
-            return $this->proxy->resolveLink($link);
+            return $this->client->resolveLink($this->sys->getSpace()->getId(), $link);
         }, (array) $this->getField('related', $locale));
     }
 
@@ -232,6 +232,6 @@ class BlogPost extends Entry
      */
     public function resolveAuthorLink(string $locale = 'en-US')
     {
-        return $this->proxy->resolveLink($this->getField('author', $locale));
+        return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('author', $locale));
     }
 }

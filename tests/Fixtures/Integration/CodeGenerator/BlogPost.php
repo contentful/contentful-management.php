@@ -132,7 +132,7 @@ class BlogPost extends Entry
      */
     public function resolvePreviousLink(string $locale = 'en-US')
     {
-        return $this->proxy->resolveLink($this->getField('previous', $locale));
+        return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('previous', $locale));
     }
 
     /**
@@ -169,7 +169,7 @@ class BlogPost extends Entry
      */
     public function resolveHeroImageLink(string $locale = 'en-US')
     {
-        return $this->proxy->resolveLink($this->getField('heroImage', $locale));
+        return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('heroImage', $locale));
     }
 
     /**
@@ -206,7 +206,7 @@ class BlogPost extends Entry
      */
     public function resolveRandomEntryLink(string $locale = 'en-US')
     {
-        return $this->proxy->resolveLink($this->getField('randomEntry', $locale));
+        return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('randomEntry', $locale));
     }
 
     /**
@@ -369,7 +369,7 @@ class BlogPost extends Entry
     public function resolveImagesLinks(string $locale = 'en-US')
     {
         return \array_map(function (Link $link) {
-            return $this->proxy->resolveLink($link);
+            return $this->client->resolveLink($this->sys->getSpace()->getId(), $link);
         }, (array) $this->getField('images', $locale));
     }
 
@@ -408,7 +408,7 @@ class BlogPost extends Entry
     public function resolveRelatedLinks(string $locale = 'en-US')
     {
         return \array_map(function (Link $link) {
-            return $this->proxy->resolveLink($link);
+            return $this->client->resolveLink($this->sys->getSpace()->getId(), $link);
         }, (array) $this->getField('related', $locale));
     }
 
