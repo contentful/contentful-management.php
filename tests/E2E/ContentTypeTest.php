@@ -42,9 +42,9 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetContentType()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $contentType = $client->contentType->get('cat');
+        $contentType = $proxy->getContentType('cat');
 
         $sys = $contentType->getSystemProperties();
         $this->assertSame('cat', $sys->getId());
@@ -91,14 +91,14 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetContentTypes()
     {
-        $client = $this->getDefaultClient();
-        $contentTypes = $client->contentType->getAll();
+        $proxy = $this->getDefaultSpaceProxy();
+        $contentTypes = $proxy->getContentTypes();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $contentTypes = $client->contentType->getAll($query);
+        $contentTypes = $proxy->getContentTypes($query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
     }
@@ -108,12 +108,12 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testCreateUpdateActivateDeleteContentType()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('THE best content type');
 
-        $client->contentType->create($contentType);
+        $proxy->create($contentType);
         $this->assertNotNull($contentType->getId());
         $this->assertTrue($contentType->getSystemProperties()->isDraft());
         $this->assertFalse($contentType->getSystemProperties()->isPublished());
@@ -139,25 +139,25 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testCreateContentTypeWithGivenId()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('This content type will have `myCustomTestCt` as ID');
 
-        $client->contentType->create($contentType, 'myCustomTestCt');
+        $proxy->create($contentType, [], 'myCustomTestCt');
         $this->assertSame('myCustomTestCt', $contentType->getId());
 
         $contentType->delete();
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Trying to access invalid field "invalidField" on content type "bookmark".
      * @vcr e2e_content_type_invalid_field_access.json
      */
     public function testInvalidFieldAccess()
     {
-        $contentType = $this->getDefaultClient()->contentType->get('bookmark');
+        $contentType = $this->getDefaultSpaceProxy()->getContentType('bookmark');
         $contentType->getField('invalidField');
     }
 
@@ -204,7 +204,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testContentTypeFields()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
         $contentType = new ContentType('fullContentType');
         $contentType->setName('Full Content Type');
         $contentType->setDescription('This content type includes all field types');
@@ -232,10 +232,10 @@ class ContentTypeTest extends BaseTestCase
             ->addValidation(new RegexpValidation('^such', 'im'));
         $contentType->addNewField('text', 'textField', 'Text Field');
 
-        $client->contentType->create($contentType, 'fullContentType');
+        $proxy->create($contentType, [], 'fullContentType');
         $this->assertNotNull($contentType->getId());
 
-        $contentType = $client->contentType->get('fullContentType');
+        $contentType = $proxy->getContentType('fullContentType');
 
         // Asserts :allthethings:
         $field = $contentType->getField('arrayField');
@@ -342,6 +342,6 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame('Text', $field->getType());
         $this->assertSame('Text Field', $field->getName());
 
-        $client->contentType->delete($contentType);
+        $contentType->delete();
     }
 }

@@ -23,9 +23,9 @@ class EntryTest extends BaseTestCase
      */
     public function testGetEntry()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $entry = $client->entry->get('4OuC4z6qs0yEWMeqkGmokw');
+        $entry = $proxy->getEntry('4OuC4z6qs0yEWMeqkGmokw');
 
         $this->assertSame('Direwolf', $entry->getField('name', 'en-US'));
         $this->assertLink('4OuC4z6qs0yEWMeqkGmokw', 'Entry', $entry->asLink());
@@ -47,18 +47,32 @@ class EntryTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_entry_get_from_space.json
+     */
+    public function testGetEntryFromSpace()
+    {
+        $space = $this->getClient()->getSpace($this->defaultSpaceId);
+
+        $entry = $space->getEntry('4OuC4z6qs0yEWMeqkGmokw');
+        $sys = $entry->getSystemProperties();
+        $this->assertSame('4OuC4z6qs0yEWMeqkGmokw', $sys->getId());
+        $this->assertSame('Entry', $sys->getType());
+        $this->assertLink('fantasticCreature', 'ContentType', $sys->getContentType());
+    }
+
+    /**
      * @vcr e2e_entry_get_collection.json
      */
     public function testGetEntries()
     {
-        $client = $this->getDefaultClient();
-        $entries = $client->entry->getAll();
+        $proxy = $this->getDefaultSpaceProxy();
+        $entries = $proxy->getEntries();
 
         $this->assertInstanceOf(Entry::class, $entries[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $entries = $client->entry->getAll($query);
+        $entries = $proxy->getEntries($query);
         $this->assertInstanceOf(Entry::class, $entries[0]);
         $this->assertCount(1, $entries);
     }
@@ -68,12 +82,12 @@ class EntryTest extends BaseTestCase
      */
     public function testCreateUpdatePublishUnpublishArchiveUnarchiveDelete()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
 
-        $client->entry->create($entry);
+        $proxy->create($entry);
         $this->assertNotNull($entry->getId());
         $this->assertSame(['name' => 'A name'], $entry->getFields('en-US'));
         $this->assertSame(['name' => ['en-US' => 'A name']], $entry->getFields());
@@ -118,12 +132,12 @@ class EntryTest extends BaseTestCase
      */
     public function testCreateEntryWithGivenId()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
 
-        $client->entry->create($entry, 'myCustomTestEntry');
+        $proxy->create($entry, [], 'myCustomTestEntry');
         $this->assertSame('myCustomTestEntry', $entry->getId());
 
         $entry->delete();
@@ -134,13 +148,13 @@ class EntryTest extends BaseTestCase
      */
     public function testCreateEntryWithoutFields()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         // This entry has nothing in its `fields` property,
         // and because of this, Contentful omits the property altogether.
         // Without a default value in the ResourceBuilder, this call would cause a
         // "Undefined index: fields" error message
-        $client->entry->get('2cOd0Aho3WkowMgk2C02iy');
+        $proxy->getEntry('2cOd0Aho3WkowMgk2C02iy');
 
         $this->markTestAsPassed();
     }

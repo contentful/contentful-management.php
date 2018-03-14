@@ -20,9 +20,9 @@ class LocaleTest extends BaseTestCase
      */
     public function testGetLocale()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $locale = $client->locale->get('6khdsfQbtrObkbrgWDTGe8');
+        $locale = $proxy->getLocale('6khdsfQbtrObkbrgWDTGe8');
         $this->assertLink('6khdsfQbtrObkbrgWDTGe8', 'Locale', $locale->asLink());
         $this->assertSame('U.S. English', $locale->getName());
         $this->assertSame('en-US', $locale->getCode());
@@ -48,9 +48,9 @@ class LocaleTest extends BaseTestCase
      */
     public function testGetLocales()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $locales = $client->locale->getAll();
+        $locales = $proxy->getLocales();
         $this->assertCount(3, $locales);
         $this->assertInstanceOf(Locale::class, $locales[0]);
     }
@@ -60,11 +60,11 @@ class LocaleTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $locale = new Locale('Swiss Italian', 'it-CH');
 
-        $client->locale->create($locale);
+        $proxy->create($locale);
         $this->assertNotNull($locale->getId());
 
         $locale->setName('Really Swiss Italian');

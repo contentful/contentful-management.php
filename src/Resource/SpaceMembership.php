@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\Link;
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 
 /**
  * SpaceMembership class.
@@ -22,8 +22,11 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships
  */
-class SpaceMembership extends BaseResource implements Creatable, Updatable, Deletable
+class SpaceMembership extends BaseResource implements CreatableInterface
 {
+    use DeletableTrait,
+        UpdatableTrait;
+
     /**
      * @var bool
      */
@@ -70,6 +73,25 @@ class SpaceMembership extends BaseResource implements Creatable, Updatable, Dele
         }
 
         return $spaceMembership;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'spaceMembership' => $this->sys->getId(),
+        ];
     }
 
     /**

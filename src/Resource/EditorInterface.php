@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\EditorInterface\Control;
 use function GuzzleHttp\json_encode;
 
@@ -21,8 +21,10 @@ use function GuzzleHttp\json_encode;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
  */
-class EditorInterface extends BaseResource implements Updatable
+class EditorInterface extends BaseResource
 {
+    use UpdatableTrait;
+
     /**
      * @var Control[]
      */
@@ -49,6 +51,17 @@ class EditorInterface extends BaseResource implements Updatable
         return [
             'sys' => $this->sys,
             'controls' => $this->controls,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'contentType' => $this->sys->getContentType()->getId(),
         ];
     }
 

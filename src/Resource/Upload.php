@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -21,8 +21,10 @@ use Psr\Http\Message\StreamInterface;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads
  */
-class Upload extends BaseResource implements Creatable, Deletable
+class Upload extends BaseResource implements CreatableInterface
 {
+    use DeletableTrait;
+
     /**
      * @var string|resource|StreamInterface|null
      */
@@ -61,6 +63,25 @@ class Upload extends BaseResource implements Creatable, Deletable
     public function asRequestBody()
     {
         return $this->body;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'upload' => $this->sys->getId(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return ['Content-Type' => 'application/octet-stream'];
     }
 
     /**

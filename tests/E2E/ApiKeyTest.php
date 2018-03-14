@@ -23,16 +23,16 @@ class ApiKeyTest extends BaseTestCase
      */
     public function testGetDeliveryApiKey()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getClient()->getSpaceProxy($this->defaultSpaceId);
 
-        $deliveryApiKey = $client->deliveryApiKey->get('1MwuwHlM9TXf3RXcsvMrjM');
+        $deliveryApiKey = $proxy->getDeliveryApiKey('1MwuwHlM9TXf3RXcsvMrjM');
         $this->assertSame('Example API Key', $deliveryApiKey->getName());
         $this->assertNull($deliveryApiKey->getDescription());
         $this->assertSame('5d58929d31be0aa63b051e0ce42a7c04e0e783f881482803157647ffafe0f30f', $deliveryApiKey->getAccessToken());
         $this->assertInstanceOf(Link::class, $deliveryApiKey->getPreviewApiKey());
         $this->assertSame('1Mx3FqXX5XCJDtNpVW4BZI', $deliveryApiKey->getPreviewApiKey()->getId());
 
-        $deliveryApiKeys = $client->deliveryApiKey->getAll();
+        $deliveryApiKeys = $proxy->getDeliveryApiKeys();
 
         $this->assertCount(2, $deliveryApiKeys);
         $deliveryApiKey = $deliveryApiKeys[0];
@@ -42,13 +42,13 @@ class ApiKeyTest extends BaseTestCase
         // When working with the collection endpoint,
         // each key's preview api key is *not* part of the payload.
         // This means that DeliveryApiKey objects created using
-        // $client->apiKeys->getDeliveryApiKeys() will always have $previewApiKey
+        // $client->getDeliveryApiKeys() will always have $previewApiKey
         // set to null.
         $this->assertNull($deliveryApiKey->getPreviewApiKey());
 
         $query = (new Query())
             ->setLimit(1);
-        $deliveryApiKeys = $client->deliveryApiKey->getAll($query);
+        $deliveryApiKeys = $proxy->getDeliveryApiKeys($query);
 
         $this->assertCount(1, $deliveryApiKeys);
         $deliveryApiKey = $deliveryApiKeys[0];
@@ -56,6 +56,11 @@ class ApiKeyTest extends BaseTestCase
         $this->assertSame('Example API Key', $deliveryApiKey->getName());
         $this->assertNull($deliveryApiKey->getDescription());
         $this->assertNull($deliveryApiKey->getPreviewApiKey());
+
+        $this->assertSame([
+            'space' => $this->defaultSpaceId,
+            'deliveryApiKey' => '1MwuwHlM9TXf3RXcsvMrjM',
+        ], $deliveryApiKey->asUriParameters());
     }
 
     /**
@@ -63,14 +68,14 @@ class ApiKeyTest extends BaseTestCase
      */
     public function testGetPreviewApiKey()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getClient()->getSpaceProxy($this->defaultSpaceId);
 
-        $previewApiKey = $client->previewApiKey->get('1Mx3FqXX5XCJDtNpVW4BZI');
+        $previewApiKey = $proxy->getPreviewApiKey('1Mx3FqXX5XCJDtNpVW4BZI');
         $this->assertSame('Preview Key', $previewApiKey->getName());
         $this->assertNull($previewApiKey->getDescription());
         $this->assertSame('ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f', $previewApiKey->getAccessToken());
 
-        $previewApiKeys = $client->previewApiKey->getAll();
+        $previewApiKeys = $proxy->getPreviewApiKeys();
 
         $this->assertCount(2, $previewApiKeys);
         $previewApiKey = $previewApiKeys[0];
@@ -80,13 +85,18 @@ class ApiKeyTest extends BaseTestCase
 
         $query = (new Query())
             ->setLimit(1);
-        $previewApiKeys = $client->previewApiKey->getAll($query);
+        $previewApiKeys = $proxy->getPreviewApiKeys($query);
 
         $this->assertCount(1, $previewApiKeys);
         $previewApiKey = $previewApiKeys[0];
         $this->assertInstanceOf(PreviewApiKey::class, $previewApiKey);
         $this->assertSame('Preview Key', $previewApiKey->getName());
         $this->assertNull($previewApiKey->getDescription());
+
+        $this->assertSame([
+            'space' => $this->defaultSpaceId,
+            'previewApiKey' => '1Mx3FqXX5XCJDtNpVW4BZI',
+        ], $previewApiKey->asUriParameters());
     }
 
     /**
@@ -94,12 +104,12 @@ class ApiKeyTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getClient()->getSpaceProxy($this->defaultSpaceId);
 
         $deliveryApiKey = new DeliveryApiKey('iOS');
         $deliveryApiKey->setDescription('A custom description');
 
-        $client->deliveryApiKey->create($deliveryApiKey);
+        $proxy->create($deliveryApiKey);
 
         $this->assertSame('iOS', $deliveryApiKey->getName());
         $this->assertSame('A custom description', $deliveryApiKey->getDescription());

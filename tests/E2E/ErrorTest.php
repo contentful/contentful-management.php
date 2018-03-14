@@ -26,10 +26,10 @@ class ErrorTest extends BaseTestCase
      */
     public function testUnknownKeyError()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $locale = new UnknownKeyLocale('American Italian', 'it-US');
-        $client->locale->create($locale);
+        $proxy->create($locale);
     }
 
     /**
@@ -39,10 +39,10 @@ class ErrorTest extends BaseTestCase
      */
     public function testMissingKeyError()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $locale = new EmptyBodyLocale('American Italian', 'it-US');
-        $client->locale->create($locale);
+        $proxy->create($locale);
     }
 
     /**
@@ -52,10 +52,10 @@ class ErrorTest extends BaseTestCase
      */
     public function testValidationFailedError()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $locale = new ValidationFailedLocale('American Italian', 'it-US');
-        $client->locale->create($locale);
+        $proxy->create($locale);
     }
 
     /**
@@ -63,13 +63,13 @@ class ErrorTest extends BaseTestCase
      */
     public function testVersionMismatchError()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $asset = new Asset();
-        $client->asset->create($asset);
+        $proxy->create($asset);
 
         $fakeAsset = new FakeAsset($asset->getId(), $this->defaultSpaceId);
-        $fakeAsset->setProxy($client->asset);
+        $fakeAsset->setClient($this->getClient());
 
         try {
             $fakeAsset->update();
@@ -91,8 +91,8 @@ class ErrorTest extends BaseTestCase
      */
     public function testDefaultLocaleNotDeletableError()
     {
-        $client = $this->getDefaultClient();
-        $defaultLocale = $client->locale->get('6khdsfQbtrObkbrgWDTGe8');
+        $proxy = $this->getDefaultSpaceProxy();
+        $defaultLocale = $proxy->getLocale('6khdsfQbtrObkbrgWDTGe8');
 
         $defaultLocale->delete();
     }
@@ -104,9 +104,9 @@ class ErrorTest extends BaseTestCase
      */
     public function testFallbackLocaleNotDeletableError()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
-        $enGbLocale = $client->locale->get('71wkZKqgktY9Uzg76CtsBK');
+        $enGbLocale = $proxy->getLocale('71wkZKqgktY9Uzg76CtsBK');
 
         $enGbLocale->delete();
     }
@@ -118,9 +118,9 @@ class ErrorTest extends BaseTestCase
      */
     public function testFallbackLocaleNotRenameableError()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
-        $enGbLocale = $client->locale->get('71wkZKqgktY9Uzg76CtsBK');
+        $enGbLocale = $proxy->getLocale('71wkZKqgktY9Uzg76CtsBK');
 
         $enGbLocale->setCode('en-NZ');
         $enGbLocale->update();

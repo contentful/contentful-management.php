@@ -11,11 +11,12 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\DateTimeImmutable;
-use Contentful\Management\Resource\Behavior\Archivable;
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
-use Contentful\Management\Resource\Behavior\Publishable;
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Proxy\Extension\EntryProxyExtension;
+use Contentful\Management\Resource\Behavior\ArchivableTrait;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\PublishableTrait;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 
 /**
  * Entry class.
@@ -24,8 +25,14 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
  */
-class Entry extends BaseResource implements Creatable, Updatable, Deletable, Publishable, Archivable
+class Entry extends BaseResource implements CreatableInterface
 {
+    use EntryProxyExtension,
+        ArchivableTrait,
+        DeletableTrait,
+        PublishableTrait,
+        UpdatableTrait;
+
     /**
      * @var array[]
      */
@@ -62,6 +69,41 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
             'sys' => $this->sys,
             'fields' => (object) $fields,
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'entry' => $this->sys->getId(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getEntryId(): string
+    {
+        return $this->sys->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSpaceId(): string
+    {
+        return $this->sys->getSpace()->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return ['X-Contentful-Content-Type' => $this->sys->getContentType()->getId()];
     }
 
     /**
@@ -144,17 +186,19 @@ class Entry extends BaseResource implements Creatable, Updatable, Deletable, Pub
     public function __call(string $name, array $arguments)
     {
         $action = \mb_substr($name, 0, 3);
-        if ('get' === $action) {
-            $field = $this->extractFieldName($name);
-
-            return $this->getField($field, ...$arguments);
-        } elseif ('set' === $action) {
-            $field = $this->extractFieldName($name);
-
-            return $this->setField($field, ...$arguments);
+        if ('get' !== $action && 'set' !== $action) {
+            \trigger_error(\sprintf(
+                'Call to undefined method %s::%s()',
+                static::class,
+                $name
+            ), E_USER_ERROR);
         }
 
-        return parent::__call($name, $arguments);
+        $field = $this->extractFieldName($name);
+
+        return 'get' === $action
+            ? $this->getField($field, ...$arguments)
+            : $this->setField($field, ...$arguments);
     }
 
     /**

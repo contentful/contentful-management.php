@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\DateTimeImmutable;
-use Contentful\Management\Resource\Behavior\Creatable;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
@@ -21,7 +21,7 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens
  */
-class PersonalAccessToken extends BaseResource implements Creatable
+class PersonalAccessToken extends BaseResource implements CreatableInterface
 {
     /**
      * @var string
@@ -86,6 +86,34 @@ class PersonalAccessToken extends BaseResource implements Creatable
         unset($body['revokedAt']);
 
         return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'personalAccessToken' => $this->sys->getId(),
+        ];
+    }
+
+    /**
+     * Revokes the personal access token.
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/token-revoking
+     */
+    public function revoke()
+    {
+        return $this->client->requestWithResource($this, 'PUT', '/revoked');
     }
 
     /**

@@ -21,16 +21,16 @@ class ExtensionTest extends BaseTestCase
      */
     public function testGet()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $extension = $client->extension->get('3GKNbc6ddeIYgmWuUc0ami');
+        $extension = $proxy->getExtension('3GKNbc6ddeIYgmWuUc0ami');
 
         $this->assertSame('Test extension', $extension->getName());
         $this->assertSame('https://www.example.com/cf-test-extension', $extension->getSource());
         $this->assertTrue($extension->isSidebar());
         $this->assertSame(['type' => 'Integer'], $extension->getFieldTypes()[0]->getData());
 
-        $extensions = $client->extension->getAll();
+        $extensions = $proxy->getExtensions();
 
         $this->assertCount(1, $extensions);
         $extension = $extensions[0];
@@ -46,7 +46,7 @@ class ExtensionTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
         $extension = new Extension('My awesome extension');
 
         $source = '<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Sample Editor Extension</title><link rel="stylesheet" href="https://contentful.github.io/ui-extensions-sdk/cf-extension.css"><script src="https://contentful.github.io/ui-extensions-sdk/cf-extension-api.js"></script></head><body><div id="content"></div><script>window.contentfulExtension.init(function (extension) {window.alert(extension);var value = extension.field.getValue();extension.field.setValue("Hello world!"");extension.field.onValueChanged(function(value) {if (value !== currentValue) {extension.field.setValue("Hello world!"");}});});</script></body></html>';
@@ -58,7 +58,7 @@ class ExtensionTest extends BaseTestCase
             ->setSource($source)
             ->setSidebar(false);
 
-        $client->extension->create($extension);
+        $proxy->create($extension);
 
         $this->assertNotNull($extension->getId());
         $this->assertSame('My awesome extension', $extension->getName());

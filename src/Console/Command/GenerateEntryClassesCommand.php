@@ -14,6 +14,7 @@ use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Entry;
 use Contentful\Management\CodeGenerator\Loader;
 use Contentful\Management\CodeGenerator\Mapper;
+use Contentful\Management\Proxy\SpaceProxy;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Symfony\Component\Console\Command\Command;
@@ -111,10 +112,11 @@ class GenerateEntryClassesCommand extends Command
      */
     private function generate(string $accessToken, string $spaceId, string $namespace)
     {
-        $client = new Client($accessToken, $spaceId);
+        $client = new Client($accessToken);
+        $space = $client->getSpaceProxy($spaceId);
 
-        $defaultLocale = $this->determineDefaultLocale($client);
-        $contentTypes = $this->getAllContentTypes($client);
+        $defaultLocale = $this->determineDefaultLocale($space);
+        $contentTypes = $this->getAllContentTypes($space);
 
         $entryGenerator = new Entry($defaultLocale);
         $mapperGenerator = new Mapper($defaultLocale);
@@ -141,11 +143,11 @@ class GenerateEntryClassesCommand extends Command
     }
 
     /**
-     * @param Client $client
+     * @param SpaceProxy $space
      *
      * @return ContentType[]
      */
-    private function getAllContentTypes(Client $client): array
+    private function getAllContentTypes(SpaceProxy $space): array
     {
         $skip = 0;
         $limit = 100;
@@ -156,9 +158,7 @@ class GenerateEntryClassesCommand extends Command
 
         do {
             $query->setSkip($skip);
-            $contentTypes = $client
-                ->contentType
-                ->getAll($query);
+            $contentTypes = $space->getContentTypes($query);
             $allContentTypes += $contentTypes->getItems();
 
             $skip += $limit;
@@ -168,15 +168,15 @@ class GenerateEntryClassesCommand extends Command
     }
 
     /**
-     * @param Client $client
+     * @param SpaceProxy $space
      *
      * @return string
      */
-    private function determineDefaultLocale(Client $client): string
+    private function determineDefaultLocale(SpaceProxy $space): string
     {
         $defaultLocale = 'en-US';
 
-        $locales = $client->locale->getAll();
+        $locales = $space->getLocales();
         foreach ($locales as $locale) {
             if ($locale->isDefault()) {
                 $defaultLocale = $locale->getCode();

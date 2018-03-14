@@ -23,7 +23,7 @@ class SpaceTest extends BaseTestCase
      */
     public function testGetSpace()
     {
-        $space = $this->getUnboundClient()->space->get($this->defaultSpaceId);
+        $space = $this->getClient()->getSpace($this->defaultSpaceId);
 
         $this->assertInstanceOf(Space::class, $space);
         $this->assertLink($this->defaultSpaceId, 'Space', $space->asLink());
@@ -43,16 +43,16 @@ class SpaceTest extends BaseTestCase
      */
     public function testGetSpaces()
     {
-        $client = $this->getUnboundClient();
+        $client = $this->getClient();
 
-        $spaces = $client->space->getAll();
+        $spaces = $client->getSpaces();
 
         $this->assertInstanceOf(ResourceArray::class, $spaces);
         $this->assertInstanceOf(Space::class, $spaces[0]);
 
         $query = (new Query())
             ->setLimit(1);
-        $spaces = $client->space->getAll($query);
+        $spaces = $client->getSpaces($query);
         $this->assertInstanceOf(Space::class, $spaces[0]);
         $this->assertCount(1, $spaces);
     }
@@ -62,11 +62,11 @@ class SpaceTest extends BaseTestCase
      */
     public function testCreateDeleteSpaceNonEnglishLocale()
     {
-        $client = $this->getUnboundClient();
+        $client = $this->getClient();
 
         $space = new Space('PHP CMA Italian Test Space', $this->testOrganizationId, 'it-IT');
 
-        $client->space->create($space);
+        $client->create($space);
 
         $spaceId = $space->getId();
         $this->assertNotNull($spaceId);
@@ -74,7 +74,7 @@ class SpaceTest extends BaseTestCase
         $space->delete();
 
         try {
-            $client->space->get($spaceId);
+            $client->getSpace($spaceId);
         } catch (\Exception $exception) {
             $this->assertInstanceOf(NotFoundException::class, $exception);
             $this->assertSame('The resource could not be found.', $exception->getMessage());
@@ -86,11 +86,11 @@ class SpaceTest extends BaseTestCase
      */
     public function testCreateUpdateDeleteSpace()
     {
-        $client = $this->getUnboundClient();
+        $client = $this->getClient();
 
         $space = new Space('PHP CMA Test Space', $this->testOrganizationId);
 
-        $client->space->create($space);
+        $client->create($space);
 
         $spaceId = $space->getId();
         $this->assertNotNull($spaceId);
@@ -108,7 +108,7 @@ class SpaceTest extends BaseTestCase
         $space->delete();
 
         try {
-            $client->space->get($spaceId);
+            $client->getSpace($spaceId);
         } catch (\Exception $exception) {
             $this->assertInstanceOf(NotFoundException::class, $exception);
             $this->assertSame('The resource could not be found.', $exception->getMessage());

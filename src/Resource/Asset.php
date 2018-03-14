@@ -12,11 +12,11 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Core\File\FileInterface;
 use Contentful\Core\File\UnprocessedFileInterface;
-use Contentful\Management\Resource\Behavior\Archivable;
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
-use Contentful\Management\Resource\Behavior\Publishable;
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Resource\Behavior\ArchivableTrait;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\PublishableTrait;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 
 /**
  * Asset class.
@@ -25,8 +25,13 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
  */
-class Asset extends BaseResource implements Creatable, Updatable, Deletable, Publishable, Archivable
+class Asset extends BaseResource implements CreatableInterface
 {
+    use ArchivableTrait,
+        DeletableTrait,
+        PublishableTrait,
+        UpdatableTrait;
+
     /**
      * @var string[]
      */
@@ -75,6 +80,47 @@ class Asset extends BaseResource implements Creatable, Updatable, Deletable, Pub
         }
 
         return $asset;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'asset' => $this->sys->getId(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeadersForCreation(): array
+    {
+        return [];
+    }
+
+    /**
+     * Call the endpoint for processing the file associated to the asset.
+     *
+     * @param string|null $locale
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
+     */
+    public function process(string $locale = null)
+    {
+        $locales = $locale
+            ? [$locale]
+            : \array_keys($this->file);
+
+        foreach ($locales as $locale) {
+            $this->client->requestWithResource($this, 'PUT', '/files/'.$locale.'/process', [
+                'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
+            ], false);
+        }
+
+        return $this->client->fetchResource(static::class, $this->asUriParameters(), null, $this);
     }
 
     /**

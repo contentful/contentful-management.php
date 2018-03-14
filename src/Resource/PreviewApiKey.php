@@ -40,4 +40,15 @@ class PreviewApiKey extends ApiKey
             static::class
         ));
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'previewApiKey' => $this->sys->getId(),
+        ];
+    }
 }

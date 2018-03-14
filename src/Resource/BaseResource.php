@@ -11,8 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\Link;
-use Contentful\Core\Resource\ResourceInterface;
-use Contentful\Management\Proxy\BaseProxy;
+use Contentful\Management\Client;
 use Contentful\Management\SystemProperties;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
@@ -27,9 +26,9 @@ abstract class BaseResource implements ResourceInterface
     protected $sys;
 
     /**
-     * @var BaseProxy
+     * @var Client|null
      */
-    protected $proxy;
+    protected $client;
 
     /**
      * BaseResource constructor.
@@ -76,22 +75,6 @@ abstract class BaseResource implements ResourceInterface
     }
 
     /**
-     * Sets the current BaseProxy object instance.
-     * This is done automatically when performing API calls,
-     * so it shouldn't be used manually.
-     *
-     * @param BaseProxy $proxy
-     *
-     * @return static
-     */
-    public function setProxy(BaseProxy $proxy)
-    {
-        $this->proxy = $proxy;
-
-        return $this;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function asRequestBody()
@@ -104,31 +87,18 @@ abstract class BaseResource implements ResourceInterface
     }
 
     /**
-     * Shortcut for forwarding methods to the current proxy, using the current object as argument.
+     * Sets the current Client object instance.
+     * This is done automatically when performing API calls,
+     * so it shouldn't be used manually.
      *
-     * ``` php
-     * // Instead of
-     * $client->asset->publish($asset);
-     * // You can use
-     * $asset->publish();
-     * ```
+     * @param Client $client
      *
-     * @param string $name
-     * @param array  $arguments
+     * @return static
      */
-    public function __call(string $name, array $arguments)
+    public function setClient(Client $client)
     {
-        if (\in_array($name, $this->proxy->getEnabledMethods(), true)) {
-            \array_unshift($arguments, $this);
+        $this->client = $client;
 
-            return $this->proxy->{$name}(...$arguments);
-        }
-
-        throw new \LogicException(\sprintf(
-            'Trying to call invalid method "%s" on resource of type "%s" which forwards to proxy "%s".',
-            $name,
-            static::class,
-            \get_class($this->proxy)
-        ));
+        return $this;
     }
 }

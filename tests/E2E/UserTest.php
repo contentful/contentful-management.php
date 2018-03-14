@@ -19,7 +19,7 @@ class UserTest extends BaseTestCase
      */
     public function testGetOwnUser()
     {
-        $user = $this->getUnboundClient()->user->getMe();
+        $user = $this->getClient()->getUserMe();
 
         $this->assertSame('PHP SDK', $user->getFirstName());
         $this->assertSame('Tests', $user->getLastName());
@@ -32,5 +32,7 @@ class UserTest extends BaseTestCase
         $this->assertSame('4Q3e6duhma7V6czH7UXHzE', $user->getId());
         $this->assertLink('4Q3e6duhma7V6czH7UXHzE', 'User', $user->asLink());
         $this->assertSame('User', $user->getSystemProperties()->getType());
+
+        $this->assertSame([], $user->asUriParameters());
     }
 }

@@ -28,9 +28,9 @@ class RoleTest extends BaseTestCase
      */
     public function testGetRole()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $role = $client->role->get('6khUMmsfVslYd7tRcThTgE');
+        $role = $proxy->getRole('6khUMmsfVslYd7tRcThTgE');
 
         $this->assertSame('Developer', $role->getName());
         $this->assertSame('Allows reading Entries and managing API Keys', $role->getDescription());
@@ -57,9 +57,9 @@ class RoleTest extends BaseTestCase
      */
     public function testGetRoles()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $roles = $client->role->getAll();
+        $roles = $proxy->getRoles();
         $role = $roles[0];
 
         $this->assertInstanceOf(Role::class, $roles[0]);
@@ -75,7 +75,7 @@ class RoleTest extends BaseTestCase
 
         $query = (new Query())
             ->setLimit(1);
-        $roles = $client->role->getAll($query);
+        $roles = $proxy->getRoles($query);
         $role = $roles[0];
 
         $this->assertInstanceOf(Role::class, $role);
@@ -90,7 +90,7 @@ class RoleTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $client = $this->getDefaultClient();
+        $proxy = $this->getDefaultSpaceProxy();
 
         $role = new Role('Custom role', 'This is a custom test role');
 
@@ -111,7 +111,7 @@ class RoleTest extends BaseTestCase
         ]);
         $policy->setConstraint($constraint);
 
-        $client->role->create($role);
+        $proxy->create($role);
 
         $this->assertNotNull($role->getId());
         $this->assertSame(0, $role->getSystemProperties()->getVersion());

@@ -68,6 +68,17 @@ class WebhookHealth extends BaseResource
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        return [
+            'space' => $this->sys->getSpace()->getId(),
+            'webhook' => $this->sys->getCreatedBy()->getId(),
+        ];
+    }
+
+    /**
      * @return int
      */
     public function getTotal(): int
