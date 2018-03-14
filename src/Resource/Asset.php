@@ -12,11 +12,11 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Core\File\FileInterface;
 use Contentful\Core\File\UnprocessedFileInterface;
-use Contentful\Management\Resource\Behavior\Archivable;
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
-use Contentful\Management\Resource\Behavior\Publishable;
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Resource\Behavior\ArchivableTrait;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\PublishableTrait;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 
 /**
  * Asset class.
@@ -25,8 +25,13 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
  */
-class Asset extends BaseResource implements Creatable, Updatable, Deletable, Publishable, Archivable
+class Asset extends BaseResource implements CreatableInterface
 {
+    use ArchivableTrait,
+        DeletableTrait,
+        PublishableTrait,
+        UpdatableTrait;
+
     /**
      * @var string[]
      */

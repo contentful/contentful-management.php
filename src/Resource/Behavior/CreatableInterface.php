@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource\Behavior;
 
-use Contentful\Core\Resource\ResourceInterface;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
- * Updatable interface.
+ * CreatableInterface.
  *
- * Represents a resource which can be updated.
+ * This interface is supposed to be implemented by resources that can be created.
  */
-interface Updatable extends ResourceInterface
+interface CreatableInterface extends ResourceInterface
 {
     /**
      * Returns the resource in the form of request body.
@@ -27,4 +27,12 @@ interface Updatable extends ResourceInterface
      * @return mixed
      */
     public function asRequestBody();
+
+    /**
+     * Returns an array of headers that the current resource needs to sent for being created.
+     * This method is supposed to be overridden if necessary.
+     *
+     * @return string[]
+     */
+    public function getHeadersForCreation(): array;
 }

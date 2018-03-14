@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
 
@@ -23,8 +23,11 @@ use Contentful\Management\Resource\Role\Policy;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles
  */
-class Role extends BaseResource implements Creatable, Updatable, Deletable
+class Role extends BaseResource implements CreatableInterface
 {
+    use DeletableTrait,
+        UpdatableTrait;
+
     /**
      * @var string
      */

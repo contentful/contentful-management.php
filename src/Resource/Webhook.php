@@ -10,9 +10,10 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Proxy\Extension\WebhookProxyExtension;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 
 /**
  * Webhook class.
@@ -21,8 +22,12 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks
  */
-class Webhook extends BaseResource implements Creatable, Updatable, Deletable
+class Webhook extends BaseResource implements CreatableInterface
 {
+    use WebhookProxyExtension,
+        DeletableTrait,
+        UpdatableTrait;
+
     /**
      * @var string
      */

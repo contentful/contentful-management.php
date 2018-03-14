@@ -11,11 +11,12 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\DateTimeImmutable;
-use Contentful\Management\Resource\Behavior\Archivable;
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
-use Contentful\Management\Resource\Behavior\Publishable;
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Proxy\Extension\EntryProxyExtension;
+use Contentful\Management\Resource\Behavior\ArchivableTrait;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\PublishableTrait;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 
 /**
  * Entry class.
@@ -24,8 +25,14 @@ use Contentful\Management\Resource\Behavior\Updatable;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
  */
-class Entry extends BaseResource implements Creatable, Updatable, Deletable, Publishable, Archivable
+class Entry extends BaseResource implements CreatableInterface
 {
+    use EntryProxyExtension,
+        ArchivableTrait,
+        DeletableTrait,
+        PublishableTrait,
+        UpdatableTrait;
+
     /**
      * @var array[]
      */

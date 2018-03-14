@@ -10,9 +10,10 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\Resource\Behavior\Creatable;
-use Contentful\Management\Resource\Behavior\Deletable;
-use Contentful\Management\Resource\Behavior\Updatable;
+use Contentful\Management\Proxy\Extension\SpaceProxyExtension;
+use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
@@ -23,8 +24,12 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces
  * @see https://www.contentful.com/r/knowledgebase/spaces-and-organizations/
  */
-class Space extends BaseResource implements Creatable, Updatable, Deletable
+class Space extends BaseResource implements CreatableInterface
 {
+    use SpaceProxyExtension,
+        DeletableTrait,
+        UpdatableTrait;
+
     /**
      * @var string
      */
