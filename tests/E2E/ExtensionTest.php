@@ -21,7 +21,7 @@ class ExtensionTest extends BaseTestCase
      */
     public function testGet()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $extension = $proxy->getExtension('3GKNbc6ddeIYgmWuUc0ami');
 
@@ -42,11 +42,36 @@ class ExtensionTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_extension_get_from_space_proxy.json
+     */
+    public function testGetFromSpaceProxy()
+    {
+        $proxy = $this->getDefaultSpaceProxy();
+
+        $extension = $proxy->getExtension('master', '3GKNbc6ddeIYgmWuUc0ami');
+
+        $this->assertSame('Test extension', $extension->getName());
+        $this->assertSame('https://www.example.com/cf-test-extension', $extension->getSource());
+        $this->assertTrue($extension->isSidebar());
+        $this->assertSame(['type' => 'Integer'], $extension->getFieldTypes()[0]->getData());
+
+        $extensions = $proxy->getExtensions('master');
+
+        $this->assertCount(1, $extensions);
+        $extension = $extensions[0];
+
+        $this->assertSame('Test extension', $extension->getName());
+        $this->assertSame('https://www.example.com/cf-test-extension', $extension->getSource());
+        $this->assertTrue($extension->isSidebar());
+        $this->assertSame(['type' => 'Integer'], $extension->getFieldTypes()[0]->getData());
+    }
+
+    /**
      * @vcr e2e_extension_create_update_delete.json
      */
     public function testCreateUpdateDelete()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
         $extension = new Extension('My awesome extension');
 
         $source = '<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Sample Editor Extension</title><link rel="stylesheet" href="https://contentful.github.io/ui-extensions-sdk/cf-extension.css"><script src="https://contentful.github.io/ui-extensions-sdk/cf-extension-api.js"></script></head><body><div id="content"></div><script>window.contentfulExtension.init(function (extension) {window.alert(extension);var value = extension.field.getValue();extension.field.setValue("Hello world!"");extension.field.onValueChanged(function(value) {if (value !== currentValue) {extension.field.setValue("Hello world!"");}});});</script></body></html>';

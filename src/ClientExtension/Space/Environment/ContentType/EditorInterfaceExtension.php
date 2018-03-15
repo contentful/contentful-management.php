@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Management\ClientExtension\Space\ContentType;
+namespace Contentful\Management\ClientExtension\Space\Environment\ContentType;
 
 use Contentful\Management\Resource\EditorInterface as ResourceClass;
 
@@ -25,16 +25,18 @@ trait EditorInterfaceExtension
      * Returns an EditorInterface resource.
      *
      * @param string $spaceId
+     * @param string $environmentId
      * @param string $contentTypeId
      *
      * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
      */
-    public function getEditorInterface(string $spaceId, string $contentTypeId): ResourceClass
+    public function getEditorInterface(string $spaceId, string $environmentId, string $contentTypeId): ResourceClass
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
             'contentType' => $contentTypeId,
         ]);
     }

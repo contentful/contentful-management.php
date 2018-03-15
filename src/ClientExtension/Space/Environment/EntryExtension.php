@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Management\ClientExtension\Space;
+namespace Contentful\Management\ClientExtension\Space\Environment;
 
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
@@ -29,16 +29,18 @@ trait EntryExtension
      * Returns an Entry resource.
      *
      * @param string $spaceId
+     * @param string $environmentId
      * @param string $entryId
      *
      * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry
      */
-    public function getEntry(string $spaceId, string $entryId): ResourceClass
+    public function getEntry(string $spaceId, string $environmentId, string $entryId): ResourceClass
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
             'entry' => $entryId,
         ]);
     }
@@ -47,16 +49,18 @@ trait EntryExtension
      * Returns a ResourceArray object which contains Entry resources.
      *
      * @param string     $spaceId
+     * @param string     $environmentId
      * @param Query|null $query
      *
      * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection
      */
-    public function getEntries(string $spaceId, Query $query = null): ResourceArray
+    public function getEntries(string $spaceId, string $environmentId, Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
         ], $query);
     }
 }

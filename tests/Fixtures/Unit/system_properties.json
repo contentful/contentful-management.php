@@ -8,6 +8,13 @@
             "linkType": "Space"
         }
     },
+    "environment": {
+        "sys": {
+            "type": "Link",
+            "id": "environmentId",
+            "linkType": "Environment"
+        }
+    },
     "contentType": {
         "sys": {
             "type": "Link",

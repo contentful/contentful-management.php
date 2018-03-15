@@ -39,6 +39,11 @@ class SystemProperties implements SystemPropertiesInterface
     /**
      * @var Link|null
      */
+    private $environment;
+
+    /**
+     * @var Link|null
+     */
     private $contentType;
 
     /**
@@ -130,6 +135,11 @@ class SystemProperties implements SystemPropertiesInterface
     private $expiresAt;
 
     /**
+     * @var Link|null
+     */
+    private $status;
+
+    /**
      * SystemProperties constructor.
      *
      * @param array $sys Associative array of sys properties
@@ -154,11 +164,18 @@ class SystemProperties implements SystemPropertiesInterface
         $this->expiresAt = $this->checkAndBuildDate($sys, 'expiresAt');
 
         $this->space = $this->checkAndBuildLink($sys, 'space');
+        // @TODO: Remove this hack once sys.environment is always present
+        if (isset($sys['environment'])) {
+            $this->environment = $this->checkAndBuildLink($sys, 'environment');
+        } elseif (isset($sys['space']) && \in_array($sys['type'], ['Asset', 'ContentType', 'Entry', 'Extension', 'Locale', 'Snapshot', 'EditorInterface'], true)) {
+            $this->environment = new Link('master', 'Environment');
+        }
         $this->contentType = $this->checkAndBuildLink($sys, 'contentType');
         $this->createdBy = $this->checkAndBuildLink($sys, 'createdBy');
         $this->updatedBy = $this->checkAndBuildLink($sys, 'updatedBy');
         $this->publishedBy = $this->checkAndBuildLink($sys, 'publishedBy');
         $this->archivedBy = $this->checkAndBuildLink($sys, 'archivedBy');
+        $this->status = $this->checkAndBuildLink($sys, 'status');
     }
 
     /**
@@ -209,6 +226,14 @@ class SystemProperties implements SystemPropertiesInterface
     public function getSpace()
     {
         return $this->space;
+    }
+
+    /**
+     * @return Link|null
+     */
+    public function getEnvironment()
+    {
+        return $this->environment;
     }
 
     /**
@@ -356,6 +381,14 @@ class SystemProperties implements SystemPropertiesInterface
     }
 
     /**
+     * @return Link|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
      * @return bool
      */
     public function isDraft(): bool
@@ -396,72 +429,32 @@ class SystemProperties implements SystemPropertiesInterface
      */
     public function jsonSerialize(): array
     {
-        $sys = [];
-
-        if (null !== $this->id) {
-            $sys['id'] = $this->id;
-        }
-        if (null !== $this->type) {
-            $sys['type'] = $this->type;
-        }
-        if (null !== $this->space) {
-            $sys['space'] = $this->space;
-        }
-        if (null !== $this->contentType) {
-            $sys['contentType'] = $this->contentType;
-        }
-        if (null !== $this->createdAt) {
-            $sys['createdAt'] = (string) $this->createdAt;
-        }
-        if (null !== $this->updatedAt) {
-            $sys['updatedAt'] = (string) $this->updatedAt;
-        }
-        if (null !== $this->archivedAt) {
-            $sys['archivedAt'] = (string) $this->archivedAt;
-        }
-        if (null !== $this->publishedAt) {
-            $sys['publishedAt'] = (string) $this->publishedAt;
-        }
-        if (null !== $this->firstPublishedAt) {
-            $sys['firstPublishedAt'] = (string) $this->firstPublishedAt;
-        }
-        if (null !== $this->version) {
-            $sys['version'] = $this->version;
-        }
-        if (null !== $this->revision) {
-            $sys['revision'] = $this->revision;
-        }
-        if (null !== $this->createdBy) {
-            $sys['createdBy'] = $this->createdBy;
-        }
-        if (null !== $this->updatedBy) {
-            $sys['updatedBy'] = $this->updatedBy;
-        }
-        if (null !== $this->publishedBy) {
-            $sys['publishedBy'] = $this->publishedBy;
-        }
-        if (null !== $this->archivedBy) {
-            $sys['archivedBy'] = $this->archivedBy;
-        }
-        if (null !== $this->publishedCounter) {
-            $sys['publishedCounter'] = $this->publishedCounter;
-        }
-        if (null !== $this->publishedVersion) {
-            $sys['publishedVersion'] = $this->publishedVersion;
-        }
-        if (null !== $this->archivedVersion) {
-            $sys['archivedVersion'] = $this->archivedVersion;
-        }
-        if (null !== $this->snapshotType) {
-            $sys['snapshotType'] = $this->snapshotType;
-        }
-        if (null !== $this->snapshotEntityType) {
-            $sys['snapshotEntityType'] = $this->snapshotEntityType;
-        }
-        if (null !== $this->expiresAt) {
-            $sys['expiresAt'] = (string) $this->expiresAt;
-        }
-
-        return $sys;
+        return \array_filter([
+            'id' => $this->id,
+            'type' => $this->type,
+            'space' => $this->space,
+            'environment' => $this->environment,
+            'contentType' => $this->contentType,
+            'createdAt' => (string) $this->createdAt,
+            'updatedAt' => (string) $this->updatedAt,
+            'archivedAt' => (string) $this->archivedAt,
+            'publishedAt' => (string) $this->publishedAt,
+            'firstPublishedAt' => (string) $this->firstPublishedAt,
+            'expiresAt' => (string) $this->expiresAt,
+            'version' => $this->version,
+            'revision' => $this->revision,
+            'createdBy' => $this->createdBy,
+            'updatedBy' => $this->updatedBy,
+            'publishedBy' => $this->publishedBy,
+            'archivedBy' => $this->archivedBy,
+            'publishedCounter' => $this->publishedCounter,
+            'publishedVersion' => $this->publishedVersion,
+            'archivedVersion' => $this->archivedVersion,
+            'snapshotType' => $this->snapshotType,
+            'snapshotEntityType' => $this->snapshotEntityType,
+            'status' => $this->status,
+        ], function ($value): bool {
+            return null !== $value && '' !== $value;
+        });
     }
 }

@@ -14,7 +14,7 @@ use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Entry;
 use Contentful\Management\CodeGenerator\Loader;
 use Contentful\Management\CodeGenerator\Mapper;
-use Contentful\Management\Proxy\SpaceProxy;
+use Contentful\Management\Proxy\EnvironmentProxy;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Symfony\Component\Console\Command\Command;
@@ -47,6 +47,7 @@ class GenerateEntryClassesCommand extends Command
             ->setDefinition([
                 new InputOption('access-token', 't', InputOption::VALUE_REQUIRED, 'OAuth or personal access token'),
                 new InputOption('space-id', 's', InputOption::VALUE_REQUIRED, 'ID of the space to use'),
+                new InputOption('environment-id', 'e', InputOption::VALUE_REQUIRED, 'ID of the environment to use', 'master'),
                 new InputOption('dir', 'd', InputOption::VALUE_REQUIRED, 'The directory to write the files in'),
                 new InputOption('namespace', 'ns', InputOption::VALUE_OPTIONAL, 'The base namespace to use'),
             ]);
@@ -58,6 +59,7 @@ class GenerateEntryClassesCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $spaceId = $input->getOption('space-id');
+        $environmentId = $input->getOption('environment-id');
         $dir = $input->getOption('dir');
 
         $this->performDirectoryChecks($dir);
@@ -65,12 +67,13 @@ class GenerateEntryClassesCommand extends Command
         $this->generate(
             $input->getOption('access-token'),
             $spaceId,
+            $environmentId,
             $input->getOption('namespace')
         );
 
         $this->writeFiles($dir);
 
-        $this->writeReport($output, $spaceId, $dir);
+        $this->writeReport($output, $spaceId, $environmentId, $dir);
     }
 
     /**
@@ -91,15 +94,16 @@ class GenerateEntryClassesCommand extends Command
     /**
      * @param string $accessToken
      * @param string $spaceId
+     * @param string $environmentId
      * @param string $namespace
      */
-    private function generate(string $accessToken, string $spaceId, string $namespace)
+    private function generate(string $accessToken, string $spaceId, string $environmentId, string $namespace)
     {
         $client = new Client($accessToken);
-        $space = $client->getSpaceProxy($spaceId);
+        $environment = $client->getEnvironmentProxy($spaceId, $environmentId);
 
-        $defaultLocale = $this->determineDefaultLocale($space);
-        $contentTypes = $this->getAllContentTypes($space);
+        $defaultLocale = $this->determineDefaultLocale($environment);
+        $contentTypes = $this->getAllContentTypes($environment);
 
         $entryGenerator = new Entry($defaultLocale);
         $mapperGenerator = new Mapper($defaultLocale);
@@ -126,11 +130,11 @@ class GenerateEntryClassesCommand extends Command
     }
 
     /**
-     * @param SpaceProxy $space
+     * @param EnvironmentProxy $environment
      *
      * @return ContentType[]
      */
-    private function getAllContentTypes(SpaceProxy $space): array
+    private function getAllContentTypes(EnvironmentProxy $environment): array
     {
         $skip = 0;
         $limit = 100;
@@ -141,7 +145,7 @@ class GenerateEntryClassesCommand extends Command
 
         do {
             $query->setSkip($skip);
-            $contentTypes = $space->getContentTypes($query);
+            $contentTypes = $environment->getContentTypes($query);
             $allContentTypes += $contentTypes->getItems();
 
             $skip += $limit;
@@ -151,15 +155,15 @@ class GenerateEntryClassesCommand extends Command
     }
 
     /**
-     * @param SpaceProxy $space
+     * @param EnvironmentProxy $environment
      *
      * @return string
      */
-    private function determineDefaultLocale(SpaceProxy $space): string
+    private function determineDefaultLocale(EnvironmentProxy $environment): string
     {
         $defaultLocale = 'en-US';
 
-        $locales = $space->getLocales();
+        $locales = $environment->getLocales();
         foreach ($locales as $locale) {
             if ($locale->isDefault()) {
                 $defaultLocale = $locale->getCode();
@@ -223,11 +227,16 @@ class GenerateEntryClassesCommand extends Command
     /**
      * @param OutputInterface $output
      * @param string          $spaceId
+     * @param string          $environmentId
      * @param string          $dir
      */
-    private function writeReport(OutputInterface $output, string $spaceId, string $dir)
+    private function writeReport(OutputInterface $output, string $spaceId, string $environmentId, string $dir)
     {
-        $output->writeln(\sprintf('<info>Result of content type classes generation for space "%s"</info>', $spaceId));
+        $output->writeln(\sprintf(
+            '<info>Result of content type classes generation for space "%s" and environment "%s".</info>',
+            $spaceId,
+            $environmentId
+        ));
         $output->writeln('');
 
         if ($this->createdFiles) {

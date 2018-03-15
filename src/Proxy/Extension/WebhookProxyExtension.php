@@ -28,18 +28,18 @@ use Contentful\Management\Resource\WebhookHealth;
 trait WebhookProxyExtension
 {
     /**
-     * Returns the ID associated to the current webhook.
-     *
-     * @return string
-     */
-    abstract protected function getWebhookId();
-
-    /**
      * Returns the ID associated to the current space.
      *
      * @return string
      */
     abstract protected function getSpaceId();
+
+    /**
+     * Returns the ID associated to the current webhook.
+     *
+     * @return string
+     */
+    abstract protected function getWebhookId();
 
     /**
      * Returns a WebhookCall resource.

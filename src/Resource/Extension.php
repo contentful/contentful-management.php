@@ -71,6 +71,7 @@ class Extension extends BaseResource implements CreatableInterface
     {
         return [
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
             'extension' => $this->sys->getId(),
         ];
     }

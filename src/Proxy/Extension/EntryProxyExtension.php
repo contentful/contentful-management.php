@@ -27,18 +27,25 @@ use Contentful\Management\Resource\EntrySnapshot;
 trait EntryProxyExtension
 {
     /**
-     * Returns the ID associated to the current entry.
-     *
-     * @return string
-     */
-    abstract protected function getEntryId();
-
-    /**
      * Returns the ID associated to the current space.
      *
      * @return string
      */
     abstract protected function getSpaceId();
+
+    /**
+     * Returns the ID associated to the current environment.
+     *
+     * @return string
+     */
+    abstract protected function getEnvironmentId();
+
+    /**
+     * Returns the ID associated to the current entry.
+     *
+     * @return string
+     */
+    abstract protected function getEntryId();
 
     /**
      * Returns a EntrySnapshot resource.
@@ -53,6 +60,7 @@ trait EntryProxyExtension
     {
         return $this->client->getEntrySnapshot(
             $this->getSpaceId(),
+            $this->getEnvironmentId(),
             $this->getEntryId(),
             $snapshotId
         );
@@ -71,6 +79,7 @@ trait EntryProxyExtension
     {
         return $this->client->getEntrySnapshots(
             $this->getSpaceId(),
+            $this->getEnvironmentId(),
             $this->getEntryId(),
             $query
         );

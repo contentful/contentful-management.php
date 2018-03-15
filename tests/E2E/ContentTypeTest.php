@@ -40,9 +40,9 @@ class ContentTypeTest extends BaseTestCase
     /**
      * @vcr e2e_content_type_get_one.json
      */
-    public function testGetContentType()
+    public function testGetOne()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $contentType = $proxy->getContentType('cat');
 
@@ -87,11 +87,60 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_content_type_get_collection.json
+     * @vcr e2e_content_type_get_one_from_space_proxy.json
      */
-    public function testGetContentTypes()
+    public function testGetOneFromSpaceProxy()
     {
         $proxy = $this->getDefaultSpaceProxy();
+
+        $contentType = $proxy->getContentType('master', 'cat');
+
+        $sys = $contentType->getSystemProperties();
+        $this->assertSame('cat', $sys->getId());
+        $this->assertSame('ContentType', $sys->getType());
+        $this->assertSame(3, $sys->getVersion());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-10-17T12:23:16.461Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getPublishedBy());
+        $this->assertSame(2, $sys->getPublishedVersion());
+        $this->assertSame(1, $sys->getPublishedCounter());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getPublishedAt());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getFirstPublishedAt());
+
+        $this->assertSame('Cat', $contentType->getName());
+        $this->assertSame('Meow.', $contentType->getDescription());
+        $this->assertLink('cat', 'ContentType', $contentType->asLink());
+        $this->assertFalse($contentType->isPublished());
+
+        $fields = $contentType->getFields();
+        $this->assertCount(8, $fields);
+
+        $field0 = $fields[0];
+        $this->assertInstanceof(TextField::class, $field0);
+        $this->assertSame('name', $field0->getId());
+        $this->assertSame('Name', $field0->getName());
+        $this->assertTrue($field0->isRequired());
+        $this->assertTrue($field0->isLocalized());
+        $this->assertFalse($field0->isDisabled());
+        $this->assertFalse($field0->isOmitted());
+
+        $field0validations = $field0->getValidations();
+        $this->assertCount(1, $field0validations);
+
+        $field0validation0 = $field0validations[0];
+        $this->assertInstanceOf(SizeValidation::class, $field0validation0);
+        $this->assertSame(3, $field0validation0->getMin());
+    }
+
+    /**
+     * @vcr e2e_content_type_get_collection.json
+     */
+    public function testGetCollection()
+    {
+        $proxy = $this->getDefaultEnvironmentProxy();
         $contentTypes = $proxy->getContentTypes();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
@@ -104,11 +153,28 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_content_type_create_update_activate_delete.json
+     * @vcr e2e_content_type_get_collection_from_space_proxy.json
      */
-    public function testCreateUpdateActivateDeleteContentType()
+    public function testGetCollectionFromSpaceProxy()
     {
         $proxy = $this->getDefaultSpaceProxy();
+        $contentTypes = $proxy->getContentTypes('master');
+
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
+
+        $query = (new Query())
+            ->setLimit(1);
+        $contentTypes = $proxy->getContentTypes('master', $query);
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
+        $this->assertCount(1, $contentTypes);
+    }
+
+    /**
+     * @vcr e2e_content_type_create_update_activate_delete.json
+     */
+    public function testContentTypeCreateUpdateActivateDelete()
+    {
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('THE best content type');
@@ -137,9 +203,9 @@ class ContentTypeTest extends BaseTestCase
     /**
      * @vcr e2e_content_type_create_with_id.json
      */
-    public function testCreateContentTypeWithGivenId()
+    public function testCreateWithId()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('This content type will have `myCustomTestCt` as ID');
@@ -157,7 +223,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testInvalidFieldAccess()
     {
-        $contentType = $this->getDefaultSpaceProxy()->getContentType('bookmark');
+        $contentType = $this->getDefaultEnvironmentProxy()->getContentType('bookmark');
         $contentType->getField('invalidField');
     }
 
@@ -202,9 +268,9 @@ class ContentTypeTest extends BaseTestCase
     /**
      * @vcr e2e_content_type_full_fields.json
      */
-    public function testContentTypeFields()
+    public function testFullFields()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
         $contentType = new ContentType('fullContentType');
         $contentType->setName('Full Content Type');
         $contentType->setDescription('This content type includes all field types');

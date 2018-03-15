@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Management\ClientExtension\Space;
+namespace Contentful\Management\ClientExtension\Space\Environment;
 
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
@@ -28,16 +28,18 @@ trait AssetExtension
      * Returns an Asset resource.
      *
      * @param string $spaceId
+     * @param string $environmentId
      * @param string $assetId
      *
      * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset
      */
-    public function getAsset(string $spaceId, string $assetId): ResourceClass
+    public function getAsset(string $spaceId, string $environmentId, string $assetId): ResourceClass
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
             'asset' => $assetId,
         ]);
     }
@@ -46,16 +48,18 @@ trait AssetExtension
      * Returns a ResourceArray object which contains Asset resources.
      *
      * @param string     $spaceId
+     * @param string     $environmentId
      * @param Query|null $query
      *
      * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection
      */
-    public function getAssets(string $spaceId, Query $query = null): ResourceArray
+    public function getAssets(string $spaceId, string $environmentId, Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
         ], $query);
     }
 }

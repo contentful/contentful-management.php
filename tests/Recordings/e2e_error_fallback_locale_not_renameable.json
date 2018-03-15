@@ -1,7 +1,7 @@
 [{
     "request": {
         "method": "GET",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales\/71wkZKqgktY9Uzg76CtsBK",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/locales\/71wkZKqgktY9Uzg76CtsBK",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.4",
@@ -52,7 +52,7 @@
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales\/71wkZKqgktY9Uzg76CtsBK",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/locales\/71wkZKqgktY9Uzg76CtsBK",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,

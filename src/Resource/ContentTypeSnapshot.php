@@ -27,6 +27,7 @@ class ContentTypeSnapshot extends Snapshot
     {
         return [
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
             'contentType' => $this->snapshot->getId(),
             'snapshot' => $this->sys->getId(),
         ];

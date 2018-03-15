@@ -1,7 +1,7 @@
 [{
     "request": {
         "method": "POST",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/entries",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/entries",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -51,7 +51,7 @@
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/entries\/4FwruMXtuw0mI8aY0I6wcY",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/entries\/4FwruMXtuw0mI8aY0I6wcY",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
@@ -93,7 +93,7 @@
 },{
     "request": {
         "method": "POST",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/entries",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/entries",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -143,7 +143,7 @@
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/entries\/1bUybWXqS06YSoew0KAq4U",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/entries\/1bUybWXqS06YSoew0KAq4U",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",

@@ -12,7 +12,6 @@ namespace Contentful\Management\Proxy;
 
 use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
-use Contentful\Management\Query;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\ResourceInterface;
 
@@ -20,7 +19,7 @@ use Contentful\Management\Resource\ResourceInterface;
  * SpaceProxy class.
  *
  * This class works as a lazy reference to a space resource.
- * You can use it for most space-related needs, such as fetching entries, assets and content types,
+ * You can use it for most space-related needs, such as fetching roles, API keys and webhooks,
  * or creating them (attaching them to this space).
  *
  * To access this class, you can use the convenience method found in a client object.
@@ -74,6 +73,19 @@ class SpaceProxy
     protected function getSpaceId()
     {
         return $this->spaceId;
+    }
+
+    /**
+     * Returns a proxy to an environment resource.
+     * Useful for all environment-scoped operations.
+     *
+     * @param string $environmentId
+     *
+     * @return EnvironmentProxy
+     */
+    public function getEnvironmentProxy(string $environmentId): EnvironmentProxy
+    {
+        return new EnvironmentProxy($this->client, $this->spaceId, $environmentId);
     }
 
     /**

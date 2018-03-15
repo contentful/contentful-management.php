@@ -135,6 +135,7 @@ class BlogPost extends Entry
         $parameters = [
             // Representation of the URI parameters
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
         ];
 
         return $this->client->resolveLink($this->getField('previous', $locale), $parameters);
@@ -177,6 +178,7 @@ class BlogPost extends Entry
         $parameters = [
             // Representation of the URI parameters
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
         ];
 
         return $this->client->resolveLink($this->getField('heroImage', $locale), $parameters);
@@ -219,6 +221,7 @@ class BlogPost extends Entry
         $parameters = [
             // Representation of the URI parameters
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
         ];
 
         return $this->client->resolveLink($this->getField('randomEntry', $locale), $parameters);
@@ -386,6 +389,7 @@ class BlogPost extends Entry
         $parameters = [
             // Representation of the URI parameters
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
         ];
 
         return \array_map(function (Link $link) use ($parameters) {
@@ -430,6 +434,7 @@ class BlogPost extends Entry
         $parameters = [
             // Representation of the URI parameters
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
         ];
 
         return \array_map(function (Link $link) use ($parameters) {

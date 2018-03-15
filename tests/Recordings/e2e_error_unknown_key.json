@@ -1,7 +1,7 @@
 [{
     "request": {
         "method": "POST",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/locales",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,

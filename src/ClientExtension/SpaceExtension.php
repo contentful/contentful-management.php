@@ -24,12 +24,8 @@ use Contentful\Management\Resource\Space as ResourceClass;
  */
 trait SpaceExtension
 {
-    use Space\AssetExtension,
-        Space\ContentTypeExtension,
-        Space\DeliveryApiKeyExtension,
-        Space\EntryExtension,
-        Space\ExtensionExtension,
-        Space\LocaleExtension,
+    use Space\DeliveryApiKeyExtension,
+        Space\EnvironmentExtension,
         Space\PreviewApiKeyExtension,
         Space\RoleExtension,
         Space\SpaceMembershipExtension,
@@ -37,6 +33,9 @@ trait SpaceExtension
         Space\WebhookExtension;
 
     /**
+     * Returns a proxy to a space resource.
+     * Useful for all space-scoped operations.
+     *
      * @param string $spaceId
      *
      * @return SpaceProxy

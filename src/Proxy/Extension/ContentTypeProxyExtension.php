@@ -28,18 +28,25 @@ use Contentful\Management\Resource\EditorInterface;
 trait ContentTypeProxyExtension
 {
     /**
-     * Returns the ID associated to the current content type.
-     *
-     * @return string
-     */
-    abstract protected function getContentTypeId();
-
-    /**
      * Returns the ID associated to the current space.
      *
      * @return string
      */
     abstract protected function getSpaceId();
+
+    /**
+     * Returns the ID associated to the current environment.
+     *
+     * @return string
+     */
+    abstract protected function getEnvironmentId();
+
+    /**
+     * Returns the ID associated to the current content type.
+     *
+     * @return string
+     */
+    abstract protected function getContentTypeId();
 
     /**
      * Returns a ContentTypeSnapshot resource.
@@ -54,6 +61,7 @@ trait ContentTypeProxyExtension
     {
         return $this->client->getContentTypeSnapshot(
             $this->getSpaceId(),
+            $this->getEnvironmentId(),
             $this->getContentTypeId(),
             $snapshotId
         );
@@ -72,6 +80,7 @@ trait ContentTypeProxyExtension
     {
         return $this->client->getContentTypeSnapshots(
             $this->getSpaceId(),
+            $this->getEnvironmentId(),
             $this->getContentTypeId(),
             $query
         );
@@ -88,6 +97,7 @@ trait ContentTypeProxyExtension
     {
         return $this->client->getEditorInterface(
             $this->getSpaceId(),
+            $this->getEnvironmentId(),
             $this->getContentTypeId()
         );
     }

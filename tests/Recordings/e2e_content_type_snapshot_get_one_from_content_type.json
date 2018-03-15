@@ -1,7 +1,7 @@
 [{
     "request": {
         "method": "GET",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/content_types\/versionedContentType",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/content_types\/versionedContentType",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
@@ -25,21 +25,21 @@
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Wed, 14 Mar 2018 09:15:28 GMT",
+            "Date": "Tue, 13 Mar 2018 16:37:31 GMT",
             "ETag": "W\/\"ca5369f39e60d693bc5de37bcc83915f\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179997",
+            "X-Contentful-RateLimit-Hour-Remaining": "179994",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "8aff1f423568b8c78811fe0d84a32df4",
-            "transfer-encoding": "chunked",
+            "X-Contentful-Request-Id": "49a7a61c41e3822f8e30624d023a270c",
+            "Content-Length": "439",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=63f0SSmTTeugGzaEHEKxxSzoqFoAAAAAQUIPAAAAAABkbaRmQObh3dNRFwPHVypc; expires=Wed, 13 Mar 2019 09:25:44 GMT; path=\/; Domain=.contentful.com, nlbi_673446=RrtYZTlJyS+vpFO46lKYhQAAAACkE0nLCwpf10AJ3r3JR8bM; path=\/; Domain=.contentful.com, incap_ses_416_673446=UDcFVGmuPXkx\/rWM1+7FBS\/oqFoAAAAAS680hf6IvqGMZ19o8TYtvA==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "2-29117196-29117202 NNNN CT(117 241 0) RT(1521018926492 54) q(0 0 4 0) r(10 10) U5",
+            "Set-Cookie": "visid_incap_673446=h8AitPlbT7yxLVab318iM0r+p1oAAAAAQUIPAAAAAABOilddrznMyC7Mvp8V15Pg; expires=Wed, 13 Mar 2019 09:26:04 GMT; path=\/; Domain=.contentful.com, nlbi_673446=9LgaK1kPYiA\/rLGl6lKYhQAAAABdgBv\/pZ01er9ZHdSz8Qkk; path=\/; Domain=.contentful.com, incap_ses_416_673446=OhwZK2gzIFWbUhuM1+7FBUr+p1oAAAAA69mT98yPkt0FepDKhE6KHg==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "7-41280634-41280654 NNNN CT(117 241 0) RT(1520959049408 150) q(0 0 4 -1) r(9 9) U5",
             "X-CDN": "Incapsula"
         },
         "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"versionedContentType\",\n    \"type\": \"ContentType\",\n    \"createdAt\": \"2017-07-05T16:46:57.974Z\",\n    \"updatedAt\": \"2017-07-05T16:47:17.449Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedCounter\": 2,\n    \"version\": 4,\n    \"publishedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedVersion\": 3,\n    \"firstPublishedAt\": \"2017-07-05T16:46:58.392Z\",\n    \"publishedAt\": \"2017-07-05T16:47:17.440Z\"\n  },\n  \"displayField\": \"title\",\n  \"name\": \"Versioned Content Type\",\n  \"description\": \"\",\n  \"fields\": [\n    {\n      \"id\": \"title\",\n      \"name\": \"Title\",\n      \"type\": \"Symbol\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"description\",\n      \"name\": \"Description\",\n      \"type\": \"Text\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    }\n  ]\n}\n"
@@ -47,7 +47,7 @@
 },{
     "request": {
         "method": "GET",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/content_types\/versionedContentType\/snapshots?limit=1",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/content_types\/versionedContentType\/snapshots\/1Qvx64r3Nq0MOtftdcAXJO",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
@@ -71,23 +71,23 @@
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Wed, 14 Mar 2018 09:15:28 GMT",
-            "ETag": "W\/\"f1bc90b81d679d6fee165000d9924830\"",
+            "Date": "Tue, 13 Mar 2018 16:37:32 GMT",
+            "ETag": "W\/\"b1d10c599b568a13676219241bdfa106\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179996",
+            "X-Contentful-RateLimit-Hour-Remaining": "179993",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "4cafc85841c1845a8f0f8db338d0b30f",
-            "Content-Length": "620",
+            "X-Contentful-Request-Id": "4940bb78320e5a36993c2964e4618392",
+            "Content-Length": "531",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=63f0SSmTTeugGzaEHEKxxSzoqFoAAAAAQUIPAAAAAABkbaRmQObh3dNRFwPHVypc; expires=Wed, 13 Mar 2019 09:25:44 GMT; path=\/; Domain=.contentful.com, nlbi_673446=XWnQJImRpWofPeDS6lKYhQAAAADfRNbx51ehcVaIRQkTD6td; path=\/; Domain=.contentful.com, incap_ses_416_673446=cdMidQzetlUx\/rWM1+7FBTDoqFoAAAAA7UcEsy2fICY\/LcWRdAx\/\/A==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "4-41111776-41111781 NNNN CT(0 0 0) RT(1521018927714 61) q(0 0 0 0) r(3 3) U5",
+            "Set-Cookie": "visid_incap_673446=xgHLu0eSSJuIKae6bzSP90v+p1oAAAAAQUIPAAAAAABYNifGr2RCciHvh27KumqF; expires=Wed, 13 Mar 2019 09:26:02 GMT; path=\/; Domain=.contentful.com, nlbi_673446=a9YMX0Tw4TCCNb7R6lKYhQAAAACCV5Qx23GD5Q2KJyQ6ld02; path=\/; Domain=.contentful.com, incap_ses_416_673446=nfTZSjoyLkZDUxuM1+7FBUv+p1oAAAAA8GvNC0AzgPAlKomKNusRkQ==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-42642259-42642266 NNNN CT(108 208 0) RT(1520959050638 66) q(0 0 3 -1) r(4 4) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"sys\": {\n    \"type\": \"Array\"\n  },\n  \"items\": [\n    {\n      \"sys\": {\n        \"type\": \"Snapshot\",\n        \"snapshotType\": \"publish\",\n        \"snapshotEntityType\": \"ContentType\",\n        \"id\": \"S9fDVyecKeNclEq1BPwuD\",\n        \"createdAt\": \"2017-07-05T16:47:17.515Z\",\n        \"createdBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"updatedAt\": \"2017-07-05T16:47:17.515Z\",\n        \"updatedBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n          }\n        },\n        \"space\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"Space\",\n            \"id\": \"34luz0flcmxt\"\n          }\n        }\n      },\n      \"snapshot\": {\n        \"name\": \"Versioned Content Type\",\n        \"fields\": [\n          {\n            \"name\": \"Title\",\n            \"id\": \"title\",\n            \"type\": \"Symbol\",\n            \"localized\": false,\n            \"required\": false,\n            \"disabled\": false,\n            \"omitted\": false,\n            \"validations\": []\n          },\n          {\n            \"name\": \"Description\",\n            \"id\": \"description\",\n            \"type\": \"Text\"\n          }\n        ],\n        \"sys\": {\n          \"id\": \"versionedContentType\",\n          \"type\": \"ContentType\",\n          \"createdAt\": \"2017-07-05T16:46:57.974Z\",\n          \"createdBy\": {\n            \"sys\": {\n              \"type\": \"Link\",\n              \"linkType\": \"User\",\n              \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n            }\n          },\n          \"space\": {\n            \"sys\": {\n              \"type\": \"Link\",\n              \"linkType\": \"Space\",\n              \"id\": \"34luz0flcmxt\"\n            }\n          },\n          \"version\": 4,\n          \"updatedAt\": \"2017-07-05T16:47:17.440Z\",\n          \"updatedBy\": {\n            \"sys\": {\n              \"type\": \"Link\",\n              \"linkType\": \"User\",\n              \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n            }\n          },\n          \"firstPublishedAt\": \"2017-07-05T16:46:58.392Z\",\n          \"publishedCounter\": 2,\n          \"publishedAt\": \"2017-07-05T16:47:17.440Z\",\n          \"publishedBy\": {\n            \"sys\": {\n              \"type\": \"Link\",\n              \"linkType\": \"User\",\n              \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n            }\n          },\n          \"publishedVersion\": 3\n        },\n        \"displayField\": \"title\"\n      }\n    }\n  ],\n  \"skip\": 0,\n  \"limit\": 1\n}\n"
+        "body": "{\n  \"sys\": {\n    \"type\": \"Snapshot\",\n    \"snapshotType\": \"publish\",\n    \"snapshotEntityType\": \"ContentType\",\n    \"id\": \"1Qvx64r3Nq0MOtftdcAXJO\",\n    \"createdAt\": \"2017-07-05T16:46:58.486Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedAt\": \"2017-07-05T16:46:58.486Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    }\n  },\n  \"snapshot\": {\n    \"name\": \"Versioned Content Type\",\n    \"fields\": [\n      {\n        \"name\": \"Title\",\n        \"id\": \"title\",\n        \"type\": \"Symbol\",\n        \"localized\": false,\n        \"required\": false,\n        \"disabled\": false,\n        \"omitted\": false,\n        \"validations\": []\n      }\n    ],\n    \"sys\": {\n      \"id\": \"versionedContentType\",\n      \"type\": \"ContentType\",\n      \"createdAt\": \"2017-07-05T16:46:57.974Z\",\n      \"createdBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"space\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"Space\",\n          \"id\": \"34luz0flcmxt\"\n        }\n      },\n      \"version\": 2,\n      \"updatedAt\": \"2017-07-05T16:46:58.393Z\",\n      \"updatedBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"firstPublishedAt\": \"2017-07-05T16:46:58.392Z\",\n      \"publishedCounter\": 1,\n      \"publishedAt\": \"2017-07-05T16:46:58.393Z\",\n      \"publishedBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"publishedVersion\": 1\n    },\n    \"displayField\": \"title\"\n  }\n}\n"
     }
 }]

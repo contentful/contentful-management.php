@@ -100,7 +100,6 @@ class SpaceTest extends BaseTestCase
         $space->setName('PHP CMA Test Space - Updated');
 
         $space->update();
-        $this->assertSame($space, $space);
         $this->assertSame($spaceId, $space->getId());
         $this->assertSame('PHP CMA Test Space - Updated', $space->getName());
         $this->assertSame(2, $space->getSystemProperties()->getVersion());
@@ -109,6 +108,8 @@ class SpaceTest extends BaseTestCase
 
         try {
             $client->getSpace($spaceId);
+
+            $this->fail('Trying to get a non-existing space did not throw an exception');
         } catch (\Exception $exception) {
             $this->assertInstanceOf(NotFoundException::class, $exception);
             $this->assertSame('The resource could not be found.', $exception->getMessage());

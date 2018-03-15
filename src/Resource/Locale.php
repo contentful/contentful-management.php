@@ -118,6 +118,7 @@ class Locale extends BaseResource implements CreatableInterface
     {
         return [
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
             'locale' => $this->sys->getId(),
         ];
     }

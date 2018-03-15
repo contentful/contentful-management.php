@@ -292,6 +292,7 @@ class Entry extends BaseCodeGenerator
      *     $parameters = [
      *         // Representation of the URI parameters
      *         'space' => $this->sys->getSpace()->getId(),
+     *         'environment' => $this->sys->getEnvironment()->getId(),
      *     ];
      *
      *     return $this->client->resolveLink($this->getField('x', $locale), $parameters);
@@ -358,6 +359,7 @@ class Entry extends BaseCodeGenerator
      * $parameters = [
      *     // Representation of the URI parameters
      *     'space' => $this->sys->getSpace()->getId(),
+     *     'environment' => $this->sys->getEnvironment()->getId(),
      * ];
      * ```
      *
@@ -379,6 +381,16 @@ class Entry extends BaseCodeGenerator
                     new Node\Scalar\String_('space'),
                     false,
                     $this->generateCommentAttributes('// Representation of the URI parameters')
+                ),
+                new Node\Expr\ArrayItem(
+                    new Node\Expr\MethodCall(
+                        new Node\Expr\MethodCall(
+                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
+                            'getEnvironment'
+                        ),
+                        'getId'
+                    ),
+                    new Node\Scalar\String_('environment')
                 ),
             ])
         );

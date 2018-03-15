@@ -1,7 +1,7 @@
 [{
     "request": {
         "method": "GET",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/content_types\/bookmark\/editor_interface",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/content_types\/bookmark\/editor_interface",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",
@@ -47,7 +47,7 @@
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/content_types\/bookmark\/editor_interface",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/content_types\/bookmark\/editor_interface",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -96,7 +96,7 @@
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/content_types\/bookmark\/editor_interface",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/content_types\/bookmark\/editor_interface",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,

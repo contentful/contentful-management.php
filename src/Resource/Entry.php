@@ -78,16 +78,9 @@ class Entry extends BaseResource implements CreatableInterface
     {
         return [
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
             'entry' => $this->sys->getId(),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getEntryId(): string
-    {
-        return $this->sys->getId();
     }
 
     /**
@@ -96,6 +89,22 @@ class Entry extends BaseResource implements CreatableInterface
     protected function getSpaceId(): string
     {
         return $this->sys->getSpace()->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getEnvironmentId(): string
+    {
+        return $this->sys->getEnvironment()->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getEntryId(): string
+    {
+        return $this->sys->getId();
     }
 
     /**
