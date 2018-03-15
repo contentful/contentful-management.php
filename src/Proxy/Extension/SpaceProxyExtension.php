@@ -15,8 +15,11 @@ use Contentful\Management\Client;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
+use Contentful\Management\Resource\ContentTypeSnapshot;
 use Contentful\Management\Resource\DeliveryApiKey;
+use Contentful\Management\Resource\EditorInterface;
 use Contentful\Management\Resource\Entry;
+use Contentful\Management\Resource\EntrySnapshot;
 use Contentful\Management\Resource\Extension;
 use Contentful\Management\Resource\Locale;
 use Contentful\Management\Resource\PreviewApiKey;
@@ -24,6 +27,8 @@ use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Management\Resource\Upload;
 use Contentful\Management\Resource\Webhook;
+use Contentful\Management\Resource\WebhookCall;
+use Contentful\Management\Resource\WebhookHealth;
 
 /**
  * SpaceProxyExtension trait.
@@ -112,6 +117,44 @@ trait SpaceProxyExtension
     }
 
     /**
+     * Returns a ContentTypeSnapshot resource.
+     *
+     * @param string $contentTypeId
+     * @param string $snapshotId
+     *
+     * @return ContentTypeSnapshot
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot
+     */
+    public function getContentTypeSnapshot(string $contentTypeId, string $snapshotId): ContentTypeSnapshot
+    {
+        return $this->client->getContentTypeSnapshot(
+            $this->getSpaceId(),
+            $contentTypeId,
+            $snapshotId
+        );
+    }
+
+    /**
+     * Returns a ResourceArray object which contains ContentTypeSnapshot resources.
+     *
+     * @param string     $contentTypeId
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
+     */
+    public function getContentTypeSnapshots(string $contentTypeId, Query $query = null): ResourceArray
+    {
+        return $this->client->getContentTypeSnapshots(
+            $this->getSpaceId(),
+            $contentTypeId,
+            $query
+        );
+    }
+
+    /**
      * Returns a DeliveryApiKey resource.
      *
      * @param string $deliveryApiKeyId
@@ -146,6 +189,23 @@ trait SpaceProxyExtension
     }
 
     /**
+     * Returns an EditorInterface resource.
+     *
+     * @param string $contentTypeId
+     *
+     * @return EditorInterface
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
+     */
+    public function getEditorInterface(string $contentTypeId): EditorInterface
+    {
+        return $this->client->getEditorInterface(
+            $this->getSpaceId(),
+            $contentTypeId
+        );
+    }
+
+    /**
      * Returns an Entry resource.
      *
      * @param string $entryId
@@ -175,6 +235,44 @@ trait SpaceProxyExtension
     {
         return $this->client->getEntries(
             $this->getSpaceId(),
+            $query
+        );
+    }
+
+    /**
+     * Returns a EntrySnapshot resource.
+     *
+     * @param string $entryId
+     * @param string $snapshotId
+     *
+     * @return EntrySnapshot
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshot
+     */
+    public function getEntrySnapshot(string $entryId, string $snapshotId): EntrySnapshot
+    {
+        return $this->client->getEntrySnapshot(
+            $this->getSpaceId(),
+            $entryId,
+            $snapshotId
+        );
+    }
+
+    /**
+     * Returns a ResourceArray object which contains EntrySnapshot resources.
+     *
+     * @param string     $entryId
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
+     */
+    public function getEntrySnapshots(string $entryId, Query $query = null): ResourceArray
+    {
+        return $this->client->getEntrySnapshots(
+            $this->getSpaceId(),
+            $entryId,
             $query
         );
     }
@@ -391,6 +489,61 @@ trait SpaceProxyExtension
         return $this->client->getWebhooks(
             $this->getSpaceId(),
             $query
+        );
+    }
+
+    /**
+     * Returns a WebhookCall resource.
+     *
+     * @param string $webhookId
+     * @param string $callId
+     *
+     * @return WebhookCall
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details
+     */
+    public function getWebhookCall(string $webhookId, string $callId): WebhookCall
+    {
+        return $this->client->getWebhookCall(
+            $this->getSpaceId(),
+            $webhookId,
+            $callId
+        );
+    }
+
+    /**
+     * Returns a ResourceArray object containing WebhookCall resources.
+     *
+     * @param string     $webhookId
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
+     */
+    public function getWebhookCalls(string $webhookId, Query $query = null): ResourceArray
+    {
+        return $this->client->getWebhookCalls(
+            $this->getSpaceId(),
+            $webhookId,
+            $query
+        );
+    }
+
+    /**
+     * Returns an WebhookHealth resource.
+     *
+     * @param string $webhookId
+     *
+     * @return WebhookHealth
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health
+     */
+    public function getWebhookHealth(string $webhookId): WebhookHealth
+    {
+        return $this->client->getWebhookHealth(
+            $this->getSpaceId(),
+            $webhookId
         );
     }
 }
