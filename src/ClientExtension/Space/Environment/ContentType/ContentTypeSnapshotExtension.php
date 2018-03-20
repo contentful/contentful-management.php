@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Management\ClientExtension\Space\ContentType;
+namespace Contentful\Management\ClientExtension\Space\Environment\ContentType;
 
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
@@ -27,6 +27,7 @@ trait ContentTypeSnapshotExtension
      * Returns a ContentTypeSnapshot resource.
      *
      * @param string $spaceId
+     * @param string $environmentId
      * @param string $contentTypeId
      * @param string $snapshotId
      *
@@ -34,10 +35,11 @@ trait ContentTypeSnapshotExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot
      */
-    public function getContentTypeSnapshot(string $spaceId, string $contentTypeId, string $snapshotId): ResourceClass
+    public function getContentTypeSnapshot(string $spaceId, string $environmentId, string $contentTypeId, string $snapshotId): ResourceClass
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
             'contentType' => $contentTypeId,
             'snapshot' => $snapshotId,
         ]);
@@ -47,6 +49,7 @@ trait ContentTypeSnapshotExtension
      * Returns a ResourceArray object which contains ContentTypeSnapshot resources.
      *
      * @param string     $spaceId
+     * @param string     $environmentId
      * @param string     $contentTypeId
      * @param Query|null $query
      *
@@ -54,10 +57,11 @@ trait ContentTypeSnapshotExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
-    public function getContentTypeSnapshots(string $spaceId, string $contentTypeId, Query $query = null): ResourceArray
+    public function getContentTypeSnapshots(string $spaceId, string $environmentId, string $contentTypeId, Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
             'contentType' => $contentTypeId,
         ], $query);
     }

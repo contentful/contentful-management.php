@@ -52,8 +52,8 @@ class ApiConfigurationTest extends BaseTestCase
 
         $this->assertSame([
             'class' => Asset::class,
-            'uri' => '/spaces/{space}/assets/{asset}',
-            'parameters' => ['space'],
+            'uri' => '/spaces/{space}/environments/{environment}/assets/{asset}',
+            'parameters' => ['space', 'environment'],
             'id' => 'asset',
         ], $config);
     }
@@ -65,8 +65,8 @@ class ApiConfigurationTest extends BaseTestCase
 
         $this->assertSame([
             'class' => ExtendedResource::class,
-            'uri' => '/spaces/{space}/entries/{entry}',
-            'parameters' => ['space'],
+            'uri' => '/spaces/{space}/environments/{environment}/entries/{entry}',
+            'parameters' => ['space', 'environment'],
             'id' => 'entry',
         ], $config);
     }

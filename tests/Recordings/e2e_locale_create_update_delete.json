@@ -1,7 +1,7 @@
 [{
     "request": {
         "method": "POST",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/locales",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -32,7 +32,7 @@
             "Content-Type": "application\/vnd.contentful.management.v1+json",
             "Date": "Fri, 07 Jul 2017 13:00:25 GMT",
             "ETag": "W\/\"840cee973b7ad05fa0d3894548989892\"",
-            "Location": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales\/1in5S9PtqmpwcTjjSRxx4i",
+            "Location": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/locales\/1in5S9PtqmpwcTjjSRxx4i",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
@@ -56,7 +56,7 @@
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales\/1in5S9PtqmpwcTjjSRxx4i",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/locales\/1in5S9PtqmpwcTjjSRxx4i",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -110,7 +110,7 @@
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/locales\/1in5S9PtqmpwcTjjSRxx4i",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/locales\/1in5S9PtqmpwcTjjSRxx4i",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.4",

@@ -21,9 +21,9 @@ class EntryTest extends BaseTestCase
     /**
      * @vcr e2e_entry_get_one.json
      */
-    public function testGetEntry()
+    public function testGetOne()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $entry = $proxy->getEntry('4OuC4z6qs0yEWMeqkGmokw');
 
@@ -47,13 +47,41 @@ class EntryTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_entry_get_from_space.json
+     * @vcr e2e_entry_get_one_from_space_proxy.json
      */
-    public function testGetEntryFromSpace()
+    public function testGetOneFromSpaceProxy()
     {
-        $space = $this->getClient()->getSpace($this->defaultSpaceId);
+        $proxy = $this->getDefaultSpaceProxy();
 
-        $entry = $space->getEntry('4OuC4z6qs0yEWMeqkGmokw');
+        $entry = $proxy->getEntry('master', '4OuC4z6qs0yEWMeqkGmokw');
+
+        $this->assertSame('Direwolf', $entry->getField('name', 'en-US'));
+        $this->assertLink('4OuC4z6qs0yEWMeqkGmokw', 'Entry', $entry->asLink());
+
+        $sys = $entry->getSystemProperties();
+        $this->assertSame('4OuC4z6qs0yEWMeqkGmokw', $sys->getId());
+        $this->assertSame('Entry', $sys->getType());
+        $this->assertLink('fantasticCreature', 'ContentType', $sys->getContentType());
+        $this->assertSame(6, $sys->getVersion());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-08-22T11:50:19.841Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-08-22T11:50:26.991Z', (string) $sys->getUpdatedAt());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertSame(5, $sys->getPublishedVersion());
+        $this->assertSame(1, $sys->getPublishedCounter());
+        $this->assertSame('2017-08-22T11:50:26.990Z', (string) $sys->getPublishedAt());
+        $this->assertSame('2017-08-22T11:50:26.990Z', (string) $sys->getFirstPublishedAt());
+    }
+
+    /**
+     * @vcr e2e_entry_get_from_environment.json
+     */
+    public function testGetEntryFromEnvironment()
+    {
+        $environment = $this->getClient()->getEnvironment($this->defaultSpaceId, 'master');
+
+        $entry = $environment->getEntry('4OuC4z6qs0yEWMeqkGmokw');
         $sys = $entry->getSystemProperties();
         $this->assertSame('4OuC4z6qs0yEWMeqkGmokw', $sys->getId());
         $this->assertSame('Entry', $sys->getType());
@@ -65,7 +93,7 @@ class EntryTest extends BaseTestCase
      */
     public function testGetEntries()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
         $entries = $proxy->getEntries();
 
         $this->assertInstanceOf(Entry::class, $entries[0]);
@@ -78,11 +106,28 @@ class EntryTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_entry_get_collection_from_space_proxy.json
+     */
+    public function testGetCollectionFromSpaceProxy()
+    {
+        $proxy = $this->getDefaultSpaceProxy();
+        $entries = $proxy->getEntries('master');
+
+        $this->assertInstanceOf(Entry::class, $entries[0]);
+
+        $query = (new Query())
+            ->setLimit(1);
+        $entries = $proxy->getEntries('master', $query);
+        $this->assertInstanceOf(Entry::class, $entries[0]);
+        $this->assertCount(1, $entries);
+    }
+
+    /**
      * @vcr e2e_entry_create_update_publish_unpublish_archive_unarchive_delete.json
      */
     public function testCreateUpdatePublishUnpublishArchiveUnarchiveDelete()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
@@ -132,7 +177,7 @@ class EntryTest extends BaseTestCase
      */
     public function testCreateEntryWithGivenId()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
@@ -148,7 +193,7 @@ class EntryTest extends BaseTestCase
      */
     public function testCreateEntryWithoutFields()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         // This entry has nothing in its `fields` property,
         // and because of this, Contentful omits the property altogether.

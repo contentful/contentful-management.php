@@ -9,6 +9,13 @@
                 "linkType": "Space"
             }
         },
+        "environment": {
+            "sys": {
+                "type": "Link",
+                "id": "master",
+                "linkType": "Environment"
+            }
+        },
         "contentType": {
             "sys": {
                 "type": "Link",

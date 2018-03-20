@@ -134,13 +134,13 @@ class Client extends BaseClient
      *
      * Creating using an actual resource object
      * ``` php
-     * // $space is an instance of Contentful\Management\Resource\Space
-     * $client->create($entry, $space);
+     * // $environment is an instance of Contentful\Management\Resource\Environment
+     * $client->create($entry, $environment);
      * ```
      *
      * Creating using an array with the required IDs
      * ``` php
-     * $client->create($entry, ['space' => $spaceId]);
+     * $client->create($entry, ['space' => $spaceId, 'environment' => $environmentId]);
      * ```
      *
      * @param CreatableInterface         $resource   The resource that needs to be created in Contentful

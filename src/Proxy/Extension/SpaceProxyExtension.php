@@ -20,6 +20,7 @@ use Contentful\Management\Resource\DeliveryApiKey;
 use Contentful\Management\Resource\EditorInterface;
 use Contentful\Management\Resource\Entry;
 use Contentful\Management\Resource\EntrySnapshot;
+use Contentful\Management\Resource\Environment;
 use Contentful\Management\Resource\Extension;
 use Contentful\Management\Resource\Locale;
 use Contentful\Management\Resource\PreviewApiKey;
@@ -51,16 +52,18 @@ trait SpaceProxyExtension
     /**
      * Returns an Asset resource.
      *
+     * @param string $environmentId
      * @param string $assetId
      *
      * @return Asset
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset
      */
-    public function getAsset(string $assetId): Asset
+    public function getAsset(string $environmentId, string $assetId): Asset
     {
         return $this->client->getAsset(
             $this->getSpaceId(),
+            $environmentId,
             $assetId
         );
     }
@@ -68,16 +71,18 @@ trait SpaceProxyExtension
     /**
      * Returns a ResourceArray object which contains Asset resources.
      *
+     * @param string     $environmentId
      * @param Query|null $query
      *
      * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection
      */
-    public function getAssets(Query $query = null): ResourceArray
+    public function getAssets(string $environmentId, Query $query = null): ResourceArray
     {
         return $this->client->getAssets(
             $this->getSpaceId(),
+            $environmentId,
             $query
         );
     }
@@ -85,16 +90,18 @@ trait SpaceProxyExtension
     /**
      * Returns a ContentType resource.
      *
+     * @param string $environmentId
      * @param string $contentTypeId
      *
      * @return ContentType
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type
      */
-    public function getContentType(string $contentTypeId): ContentType
+    public function getContentType(string $environmentId, string $contentTypeId): ContentType
     {
         return $this->client->getContentType(
             $this->getSpaceId(),
+            $environmentId,
             $contentTypeId
         );
     }
@@ -102,16 +109,18 @@ trait SpaceProxyExtension
     /**
      * Returns a ResourceArray object which contains ContentType resources.
      *
+     * @param string     $environmentId
      * @param Query|null $query
      *
      * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection
      */
-    public function getContentTypes(Query $query = null): ResourceArray
+    public function getContentTypes(string $environmentId, Query $query = null): ResourceArray
     {
         return $this->client->getContentTypes(
             $this->getSpaceId(),
+            $environmentId,
             $query
         );
     }
@@ -119,6 +128,7 @@ trait SpaceProxyExtension
     /**
      * Returns a ContentTypeSnapshot resource.
      *
+     * @param string $environmentId
      * @param string $contentTypeId
      * @param string $snapshotId
      *
@@ -126,10 +136,11 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot
      */
-    public function getContentTypeSnapshot(string $contentTypeId, string $snapshotId): ContentTypeSnapshot
+    public function getContentTypeSnapshot(string $environmentId, string $contentTypeId, string $snapshotId): ContentTypeSnapshot
     {
         return $this->client->getContentTypeSnapshot(
             $this->getSpaceId(),
+            $environmentId,
             $contentTypeId,
             $snapshotId
         );
@@ -138,6 +149,7 @@ trait SpaceProxyExtension
     /**
      * Returns a ResourceArray object which contains ContentTypeSnapshot resources.
      *
+     * @param string     $environmentId
      * @param string     $contentTypeId
      * @param Query|null $query
      *
@@ -145,10 +157,11 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
-    public function getContentTypeSnapshots(string $contentTypeId, Query $query = null): ResourceArray
+    public function getContentTypeSnapshots(string $environmentId, string $contentTypeId, Query $query = null): ResourceArray
     {
         return $this->client->getContentTypeSnapshots(
             $this->getSpaceId(),
+            $environmentId,
             $contentTypeId,
             $query
         );
@@ -191,16 +204,18 @@ trait SpaceProxyExtension
     /**
      * Returns an EditorInterface resource.
      *
+     * @param string $environmentId
      * @param string $contentTypeId
      *
      * @return EditorInterface
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
      */
-    public function getEditorInterface(string $contentTypeId): EditorInterface
+    public function getEditorInterface(string $environmentId, string $contentTypeId): EditorInterface
     {
         return $this->client->getEditorInterface(
             $this->getSpaceId(),
+            $environmentId,
             $contentTypeId
         );
     }
@@ -208,16 +223,18 @@ trait SpaceProxyExtension
     /**
      * Returns an Entry resource.
      *
+     * @param string $environmentId
      * @param string $entryId
      *
      * @return Entry
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry
      */
-    public function getEntry(string $entryId): Entry
+    public function getEntry(string $environmentId, string $entryId): Entry
     {
         return $this->client->getEntry(
             $this->getSpaceId(),
+            $environmentId,
             $entryId
         );
     }
@@ -225,16 +242,18 @@ trait SpaceProxyExtension
     /**
      * Returns a ResourceArray object which contains Entry resources.
      *
+     * @param string     $environmentId
      * @param Query|null $query
      *
      * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection
      */
-    public function getEntries(Query $query = null): ResourceArray
+    public function getEntries(string $environmentId, Query $query = null): ResourceArray
     {
         return $this->client->getEntries(
             $this->getSpaceId(),
+            $environmentId,
             $query
         );
     }
@@ -242,6 +261,7 @@ trait SpaceProxyExtension
     /**
      * Returns a EntrySnapshot resource.
      *
+     * @param string $environmentId
      * @param string $entryId
      * @param string $snapshotId
      *
@@ -249,10 +269,11 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshot
      */
-    public function getEntrySnapshot(string $entryId, string $snapshotId): EntrySnapshot
+    public function getEntrySnapshot(string $environmentId, string $entryId, string $snapshotId): EntrySnapshot
     {
         return $this->client->getEntrySnapshot(
             $this->getSpaceId(),
+            $environmentId,
             $entryId,
             $snapshotId
         );
@@ -261,6 +282,7 @@ trait SpaceProxyExtension
     /**
      * Returns a ResourceArray object which contains EntrySnapshot resources.
      *
+     * @param string     $environmentId
      * @param string     $entryId
      * @param Query|null $query
      *
@@ -268,11 +290,46 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
      */
-    public function getEntrySnapshots(string $entryId, Query $query = null): ResourceArray
+    public function getEntrySnapshots(string $environmentId, string $entryId, Query $query = null): ResourceArray
     {
         return $this->client->getEntrySnapshots(
             $this->getSpaceId(),
+            $environmentId,
             $entryId,
+            $query
+        );
+    }
+
+    /**
+     * Returns an Environment resource.
+     *
+     * @param string $environmentId
+     *
+     * @return Environment
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environment
+     */
+    public function getEnvironment(string $environmentId): Environment
+    {
+        return $this->client->getEnvironment(
+            $this->getSpaceId(),
+            $environmentId
+        );
+    }
+
+    /**
+     * Returns a ResourceArray object which contains Environment resources.
+     *
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environments-collection
+     */
+    public function getEnvironments(Query $query = null): ResourceArray
+    {
+        return $this->client->getEnvironments(
+            $this->getSpaceId(),
             $query
         );
     }
@@ -280,16 +337,18 @@ trait SpaceProxyExtension
     /**
      * Returns an Extension resource.
      *
+     * @param string $environmentId
      * @param string $extensionId
      *
      * @return Extension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extension
      */
-    public function getExtension(string $extensionId): Extension
+    public function getExtension(string $environmentId, string $extensionId): Extension
     {
         return $this->client->getExtension(
             $this->getSpaceId(),
+            $environmentId,
             $extensionId
         );
     }
@@ -297,30 +356,35 @@ trait SpaceProxyExtension
     /**
      * Returns a ResourceArray object containing Extension resources.
      *
+     * @param string $environmentId
+     *
      * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extensions-collection
      */
-    public function getExtensions(): ResourceArray
+    public function getExtensions(string $environmentId): ResourceArray
     {
         return $this->client->getExtensions(
-            $this->getSpaceId()
+            $this->getSpaceId(),
+            $environmentId
         );
     }
 
     /**
      * Returns a Locale resource.
      *
+     * @param string $environmentId
      * @param string $localeId
      *
      * @return Locale
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale
      */
-    public function getLocale(string $localeId): Locale
+    public function getLocale(string $environmentId, string $localeId): Locale
     {
         return $this->client->getLocale(
             $this->getSpaceId(),
+            $environmentId,
             $localeId
         );
     }
@@ -328,14 +392,17 @@ trait SpaceProxyExtension
     /**
      * Returns a ResourceArray object containing Locale resources.
      *
+     * @param string $environmentId
+     *
      * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale-collection
      */
-    public function getLocales(): ResourceArray
+    public function getLocales(string $environmentId): ResourceArray
     {
         return $this->client->getLocales(
-            $this->getSpaceId()
+            $this->getSpaceId(),
+            $environmentId
         );
     }
 

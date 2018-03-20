@@ -182,7 +182,7 @@
 },{
     "request": {
         "method": "POST",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -231,7 +231,7 @@
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/7M96PXDH1Y0m2WwGC4CWSM\/files\/en-US\/process",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/7M96PXDH1Y0m2WwGC4CWSM\/files\/en-US\/process",
         "headers": {
             "Host": "api.contentful.com",
             "Content-Length": "0",
@@ -275,7 +275,7 @@
 },{
     "request": {
         "method": "GET",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/7M96PXDH1Y0m2WwGC4CWSM",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/7M96PXDH1Y0m2WwGC4CWSM",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
@@ -316,7 +316,7 @@
             "X-Iinfo": "9-7591982-7591983 NNNN CT(0 0 0) RT(1499450916163 50) q(0 0 0 -1) r(1 1) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"image\": {\n            \"width\": 157,\n            \"height\": 32\n          },\n          \"size\": 3047\n        },\n        \"url\": \"\/\/images.contentful.com\/34luz0flcmxt\/7M96PXDH1Y0m2WwGC4CWSM\/d2cb3275909fd58e891c143d1d4049b9\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Contentful\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"7M96PXDH1Y0m2WwGC4CWSM\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:34.648Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 2,\n    \"updatedAt\": \"2017-07-07T18:08:35.709Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"image\": {\n            \"width\": 157,\n            \"height\": 32\n          },\n          \"size\": 3047\n        },\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/7M96PXDH1Y0m2WwGC4CWSM\/d2cb3275909fd58e891c143d1d4049b9\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Contentful\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"7M96PXDH1Y0m2WwGC4CWSM\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:34.648Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 2,\n    \"updatedAt\": \"2017-07-07T18:08:35.709Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
     }
 },{
     "request": {
@@ -389,7 +389,7 @@
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/7M96PXDH1Y0m2WwGC4CWSM",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/7M96PXDH1Y0m2WwGC4CWSM",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",

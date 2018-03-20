@@ -49,6 +49,7 @@ class ResourceBuilder extends BaseResourceBuilder
             case 'ContentType':
             case 'EditorInterface':
             case 'Entry':
+            case 'Environment':
             case 'Extension':
             case 'Locale':
             case 'Organization':

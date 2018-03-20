@@ -19,7 +19,7 @@ class EditorInterfaceTest extends BaseTestCase
      */
     public function testGetUpdate()
     {
-        $editorInterface = $this->getDefaultSpaceProxy()->getEditorInterface('bookmark');
+        $editorInterface = $this->getDefaultEnvironmentProxy()->getEditorInterface('bookmark');
 
         $control = $editorInterface->getControl('name');
         $this->assertSame('name', $control->getFieldId());
@@ -76,9 +76,35 @@ class EditorInterfaceTest extends BaseTestCase
      */
     public function testGetFromContentType()
     {
-        $contentType = $this->getDefaultSpaceProxy()->getContentType('bookmark');
+        $contentType = $this->getDefaultEnvironmentProxy()->getContentType('bookmark');
 
         $editorInterface = $contentType->getEditorInterface();
+
+        $control = $editorInterface->getControl('name');
+        $this->assertSame('name', $control->getFieldId());
+        $this->assertSame('singleLine', $control->getWidgetId());
+        $this->assertSame([], $control->getSettings());
+
+        $control = $editorInterface->getControl('website');
+        $this->assertSame('website', $control->getFieldId());
+        $this->assertSame('singleLine', $control->getWidgetId());
+        $this->assertSame([], $control->getSettings());
+        $control->setWidgetId('urlEditor');
+
+        $control = $editorInterface->getControl('rating');
+        $this->assertSame('rating', $control->getFieldId());
+        $this->assertSame('numberEditor', $control->getWidgetId());
+        $this->assertSame([], $control->getSettings());
+        $control->setWidgetId('rating');
+        $control->setSettings(['stars' => 5]);
+    }
+
+    /**
+     * @vcr e2e_editor_interface_get_from_space_proxy.json
+     */
+    public function testGetFromSpaceProxy()
+    {
+        $editorInterface = $this->getDefaultSpaceProxy()->getEditorInterface('master', 'bookmark');
 
         $control = $editorInterface->getControl('name');
         $this->assertSame('name', $control->getFieldId());

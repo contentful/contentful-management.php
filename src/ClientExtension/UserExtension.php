@@ -32,8 +32,6 @@ trait UserExtension
      */
     public function getUserMe(): ResourceClass
     {
-        return $this->fetchResource(ResourceClass::class, [
-            'user' => 'me',
-        ]);
+        return $this->fetchResource(ResourceClass::class, []);
     }
 }

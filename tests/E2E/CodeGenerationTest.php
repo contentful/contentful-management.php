@@ -38,6 +38,7 @@ class CodeGenerationTest extends BaseTestCase
             'command' => $command->getName(),
             '--access-token' => '<accessToken>',
             '--space-id' => '<spaceId>',
+            '--environment-id' => '<environmentId>',
             '--dir' => $dir,
             '--namespace' => '',
         ]);
@@ -58,6 +59,7 @@ class CodeGenerationTest extends BaseTestCase
             'command' => $command->getName(),
             '--access-token' => $this->token,
             '--space-id' => $this->codeGenerationSpaceId,
+            '--environment-id' => 'master',
             '--dir' => $dir,
             '--namespace' => 'Contentful\\Tests\\Management\\Fixtures\\E2E\\CodeGenerator',
         ]);
@@ -110,7 +112,7 @@ class CodeGenerationTest extends BaseTestCase
     public function testGeneratedClassesWork(string $fixturesDir)
     {
         $client = $this->getClient();
-        $proxy = $client->getSpaceProxy($this->codeGenerationSpaceId);
+        $proxy = $client->getEnvironmentProxy($this->codeGenerationSpaceId, 'master');
         $builder = $client->getBuilder();
 
         require $fixturesDir.'/_loader.php';

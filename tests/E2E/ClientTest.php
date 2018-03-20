@@ -46,47 +46,49 @@ class ClientTest extends BaseTestCase
      */
     public function testLinkResolver()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $client = $this->getClient();
+        $spaceProxy = $this->getDefaultSpaceProxy();
+        $environmentProxy = $this->getDefaultEnvironmentProxy();
 
         $link = new Link('2TEG7c2zYkSSuKmsqEwCS', 'Asset');
-        $asset = $proxy->resolveLink($link);
+        $asset = $environmentProxy->resolveLink($link);
         $this->assertInstanceOf(Asset::class, $asset);
         $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
 
         $link = new Link('3LM5FlCdGUIM0Miqc664q6', 'Entry');
-        $entry = $proxy->resolveLink($link);
+        $entry = $environmentProxy->resolveLink($link);
         $this->assertInstanceOf(Entry::class, $entry);
         $this->assertSame('Josh Lyman', $entry->getField('name', 'en-US'));
 
         $link = new Link('person', 'ContentType');
-        $contentType = $proxy->resolveLink($link);
+        $contentType = $environmentProxy->resolveLink($link);
         $this->assertInstanceOf(ContentType::class, $contentType);
         $this->assertSame('Person', $contentType->getName());
 
         $link = new Link('6khUMmsfVslYd7tRcThTgE', 'Role');
-        $role = $proxy->resolveLink($link);
+        $role = $spaceProxy->resolveLink($link);
         $this->assertInstanceOf(Role::class, $role);
         $this->assertSame('Developer', $role->getName());
 
         $link = new Link('3tilCowN1lI1rDCe9vhK0C', 'WebhookDefinition');
-        $webhook = $proxy->resolveLink($link);
+        $webhook = $spaceProxy->resolveLink($link);
         $this->assertInstanceOf(Webhook::class, $webhook);
         $this->assertSame('Default Webhook', $webhook->getName());
 
         $link = new Link('1Mx3FqXX5XCJDtNpVW4BZI', 'PreviewApiKey');
-        $previewApiKey = $proxy->resolveLink($link);
+        $previewApiKey = $spaceProxy->resolveLink($link);
         $this->assertInstanceOf(PreviewApiKey::class, $previewApiKey);
         $this->assertSame('Preview Key', $previewApiKey->getName());
 
         $link = new Link($this->defaultSpaceId, 'Space');
-        $space = $proxy->resolveLink($link);
+        $space = $client->resolveLink($link);
         $this->assertInstanceOf(Space::class, $space);
         $this->assertSame('PHP CMA', $space->getName());
     }
 
     /**
      * @expectedException        \RuntimeException
-     * @expectedExceptionMessage Trying to make an API call on resource of class "Contentful\Management\Resource\Entry" without required parameters "space".
+     * @expectedExceptionMessage Trying to make an API call on resource of class "Contentful\Management\Resource\Entry" without required parameters "space, environment".
      */
     public function testCreateInvalidParameters()
     {
@@ -96,20 +98,20 @@ class ClientTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_client_create_through_space_object.json
+     * @vcr e2e_client_create_through_environment_object.json
      */
     public function testCreateThroughSpaceObject()
     {
         $client = $this->getClient();
 
-        $space = $client->getSpace($this->defaultSpaceId);
+        $environment = $client->getEnvironment($this->defaultSpaceId, 'master');
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
 
-        $client->create($entry, $space, 'deleteme');
+        $client->create($entry, $environment, 'deleteme');
 
         $this->assertNotNull($entry->getId());
-        $this->assertSame($space->getId(), $entry->getSystemProperties()->getSpace()->getId());
+        $this->assertSame($environment->getId(), $entry->getSystemProperties()->getEnvironment()->getId());
 
         $entry->delete();
     }

@@ -30,18 +30,18 @@ class ApiConfiguration
      */
     private static $configuration = [
         Resource\Asset::class => [
-            'uri' => '/spaces/{space}/assets/{asset}',
-            'parameters' => ['space'],
+            'uri' => '/spaces/{space}/environments/{environment}/assets/{asset}',
+            'parameters' => ['space', 'environment'],
             'id' => 'asset',
         ],
         Resource\ContentType::class => [
-            'uri' => '/spaces/{space}/content_types/{contentType}',
-            'parameters' => ['space'],
+            'uri' => '/spaces/{space}/environments/{environment}/content_types/{contentType}',
+            'parameters' => ['space', 'environment'],
             'id' => 'contentType',
         ],
         Resource\ContentTypeSnapshot::class => [
-            'uri' => '/spaces/{space}/content_types/{contentType}/snapshots/{snapshot}',
-            'parameters' => ['space', 'contentType'],
+            'uri' => '/spaces/{space}/environments/{environment}/content_types/{contentType}/snapshots/{snapshot}',
+            'parameters' => ['space', 'contentType', 'environment'],
             'id' => 'snapshot',
         ],
         Resource\DeliveryApiKey::class => [
@@ -50,28 +50,33 @@ class ApiConfiguration
             'id' => 'deliveryApiKey',
         ],
         Resource\EditorInterface::class => [
-            'uri' => '/spaces/{space}/content_types/{contentType}/editor_interface',
-            'parameters' => ['space', 'contentType'],
+            'uri' => '/spaces/{space}/environments/{environment}/content_types/{contentType}/editor_interface',
+            'parameters' => ['space', 'contentType', 'environment'],
             'id' => '',
         ],
         Resource\Entry::class => [
-            'uri' => '/spaces/{space}/entries/{entry}',
-            'parameters' => ['space'],
+            'uri' => '/spaces/{space}/environments/{environment}/entries/{entry}',
+            'parameters' => ['space', 'environment'],
             'id' => 'entry',
         ],
         Resource\EntrySnapshot::class => [
-            'uri' => '/spaces/{space}/entries/{entry}/snapshots/{snapshot}',
-            'parameters' => ['space', 'entry'],
+            'uri' => '/spaces/{space}/environments/{environment}/entries/{entry}/snapshots/{snapshot}',
+            'parameters' => ['space', 'entry', 'environment'],
             'id' => 'snapshot',
         ],
-        Resource\Extension::class => [
-            'uri' => '/spaces/{space}/extensions/{extension}',
+        Resource\Environment::class => [
+            'uri' => '/spaces/{space}/environments/{environment}',
             'parameters' => ['space'],
+            'id' => 'environment',
+        ],
+        Resource\Extension::class => [
+            'uri' => '/spaces/{space}/environments/{environment}/extensions/{extension}',
+            'parameters' => ['space', 'environment'],
             'id' => 'extension',
         ],
         Resource\Locale::class => [
-            'uri' => '/spaces/{space}/locales/{locale}',
-            'parameters' => ['space'],
+            'uri' => '/spaces/{space}/environments/{environment}/locales/{locale}',
+            'parameters' => ['space', 'environment'],
             'id' => 'locale',
         ],
         Resource\Organization::class => [
@@ -142,6 +147,7 @@ class ApiConfiguration
         'Asset' => Resource\Asset::class,
         'ContentType' => Resource\ContentType::class,
         'Entry' => Resource\Entry::class,
+        'Environment' => Resource\Environment::class,
         'PreviewApiKey' => Resource\PreviewApiKey::class,
         'Role' => Resource\Role::class,
         'Space' => Resource\Space::class,

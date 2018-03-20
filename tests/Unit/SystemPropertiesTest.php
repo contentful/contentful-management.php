@@ -44,6 +44,13 @@ class SystemPropertiesTest extends BaseTestCase
                     'id' => 'spaceId',
                 ],
             ],
+            'environment' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Environment',
+                    'id' => 'environmentId',
+                ],
+            ],
             'contentType' => [
                 'sys' => [
                     'type' => 'Link',
@@ -108,6 +115,8 @@ class SystemPropertiesTest extends BaseTestCase
 
         $this->assertInstanceOf(Link::class, $sys->getSpace());
         $this->assertLink('spaceId', 'Space', $sys->getSpace());
+        $this->assertInstanceOf(Link::class, $sys->getEnvironment());
+        $this->assertLink('environmentId', 'Environment', $sys->getEnvironment());
         $this->assertInstanceOf(Link::class, $sys->getContentType());
         $this->assertLink('contentTypeId', 'ContentType', $sys->getContentType());
         $this->assertInstanceOf(Link::class, $sys->getCreatedBy());

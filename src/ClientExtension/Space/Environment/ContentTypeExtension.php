@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Contentful\Management\ClientExtension\Space;
+namespace Contentful\Management\ClientExtension\Space\Environment;
 
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
@@ -30,16 +30,18 @@ trait ContentTypeExtension
      * Returns a ContentType resource.
      *
      * @param string $spaceId
+     * @param string $environmentId
      * @param string $contentTypeId
      *
      * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type
      */
-    public function getContentType(string $spaceId, string $contentTypeId): ResourceClass
+    public function getContentType(string $spaceId, string $environmentId, string $contentTypeId): ResourceClass
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
             'contentType' => $contentTypeId,
         ]);
     }
@@ -48,16 +50,18 @@ trait ContentTypeExtension
      * Returns a ResourceArray object which contains ContentType resources.
      *
      * @param string     $spaceId
+     * @param string     $environmentId
      * @param Query|null $query
      *
      * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection
      */
-    public function getContentTypes(string $spaceId, Query $query = null): ResourceArray
+    public function getContentTypes(string $spaceId, string $environmentId, Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
+            'environment' => $environmentId,
         ], $query);
     }
 }

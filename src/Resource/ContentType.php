@@ -99,6 +99,7 @@ class ContentType extends BaseResource implements CreatableInterface
     {
         return [
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
             'contentType' => $this->sys->getId(),
         ];
     }
@@ -114,17 +115,25 @@ class ContentType extends BaseResource implements CreatableInterface
     /**
      * {@inheritdoc}
      */
-    protected function getContentTypeId(): string
+    protected function getSpaceId(): string
     {
-        return $this->sys->getId();
+        return $this->sys->getSpace()->getId();
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getSpaceId(): string
+    protected function getEnvironmentId(): string
     {
-        return $this->sys->getSpace()->getId();
+        return $this->sys->getEnvironment()->getId();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getContentTypeId(): string
+    {
+        return $this->sys->getId();
     }
 
     /**

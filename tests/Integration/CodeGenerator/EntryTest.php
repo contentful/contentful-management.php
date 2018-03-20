@@ -76,6 +76,7 @@ class EntryTest extends BaseTestCase
 
         $sys = new SystemProperties([
             'space' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'Space', 'type' => 'Link']],
+            'environment' => ['sys' => ['id' => 'master', 'linkType' => 'Environment', 'type' => 'Link']],
         ]);
 
         $reflection = new \ReflectionObject($entry);

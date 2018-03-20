@@ -26,7 +26,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testUnknownKeyError()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $locale = new UnknownKeyLocale('American Italian', 'it-US');
         $proxy->create($locale);
@@ -39,7 +39,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testMissingKeyError()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $locale = new EmptyBodyLocale('American Italian', 'it-US');
         $proxy->create($locale);
@@ -52,7 +52,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testValidationFailedError()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $locale = new ValidationFailedLocale('American Italian', 'it-US');
         $proxy->create($locale);
@@ -63,7 +63,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testVersionMismatchError()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $asset = new Asset();
         $proxy->create($asset);
@@ -91,7 +91,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testDefaultLocaleNotDeletableError()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
         $defaultLocale = $proxy->getLocale('6khdsfQbtrObkbrgWDTGe8');
 
         $defaultLocale->delete();
@@ -104,7 +104,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testFallbackLocaleNotDeletableError()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
         $enGbLocale = $proxy->getLocale('71wkZKqgktY9Uzg76CtsBK');
 
@@ -118,7 +118,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testFallbackLocaleNotRenameableError()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
         $enGbLocale = $proxy->getLocale('71wkZKqgktY9Uzg76CtsBK');
 

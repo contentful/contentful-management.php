@@ -18,9 +18,9 @@ class LocaleTest extends BaseTestCase
     /**
      * @vcr e2e_locale_get_one.json
      */
-    public function testGetLocale()
+    public function testGetOne()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $locale = $proxy->getLocale('6khdsfQbtrObkbrgWDTGe8');
         $this->assertLink('6khdsfQbtrObkbrgWDTGe8', 'Locale', $locale->asLink());
@@ -44,13 +44,53 @@ class LocaleTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_locale_get_collection.json
+     * @vcr e2e_locale_get_one_from_space_proxy.json
      */
-    public function testGetLocales()
+    public function testGetOneFromSpaceProxy()
     {
         $proxy = $this->getDefaultSpaceProxy();
 
+        $locale = $proxy->getLocale('master', '6khdsfQbtrObkbrgWDTGe8');
+        $this->assertLink('6khdsfQbtrObkbrgWDTGe8', 'Locale', $locale->asLink());
+        $this->assertSame('U.S. English', $locale->getName());
+        $this->assertSame('en-US', $locale->getCode());
+        $this->assertNull($locale->getFallbackCode());
+        $this->assertTrue($locale->isContentDeliveryApi());
+        $this->assertTrue($locale->isContentManagementApi());
+        $this->assertFalse($locale->isOptional());
+        $this->assertTrue($locale->isDefault());
+
+        $sys = $locale->getSystemProperties();
+        $this->assertSame('6khdsfQbtrObkbrgWDTGe8', $sys->getId());
+        $this->assertSame('Locale', $sys->getType());
+        $this->assertSame(0, $sys->getVersion());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getUpdatedAt());
+        $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
+        $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getUpdatedBy());
+    }
+
+    /**
+     * @vcr e2e_locale_get_collection.json
+     */
+    public function testGetCollection()
+    {
+        $proxy = $this->getDefaultEnvironmentProxy();
+
         $locales = $proxy->getLocales();
+        $this->assertCount(3, $locales);
+        $this->assertInstanceOf(Locale::class, $locales[0]);
+    }
+
+    /**
+     * @vcr e2e_locale_get_collection_from_space_proxy.json
+     */
+    public function testGetCollectionFromSpaceProxy()
+    {
+        $proxy = $this->getDefaultSpaceProxy();
+
+        $locales = $proxy->getLocales('master');
         $this->assertCount(3, $locales);
         $this->assertInstanceOf(Locale::class, $locales[0]);
     }
@@ -60,7 +100,7 @@ class LocaleTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $locale = new Locale('Swiss Italian', 'it-CH');
 

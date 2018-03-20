@@ -61,6 +61,7 @@ class EditorInterface extends BaseResource
     {
         return [
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
             'contentType' => $this->sys->getContentType()->getId(),
         ];
     }

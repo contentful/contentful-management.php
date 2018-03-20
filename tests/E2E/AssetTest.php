@@ -25,18 +25,16 @@ class AssetTest extends BaseTestCase
     /**
      * @vcr e2e_asset_get_one.json
      */
-    public function testGetAsset()
+    public function testGetOne()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $asset = $proxy->getAsset('2TEG7c2zYkSSuKmsqEwCS');
         $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
         $this->assertNull($asset->getDescription('en-US'));
-        $link = $asset->asLink();
-        $this->assertSame('2TEG7c2zYkSSuKmsqEwCS', $link->getId());
-        $this->assertSame('Asset', $link->getLinkType());
+        $this->assertLink('2TEG7c2zYkSSuKmsqEwCS', 'Asset', $asset->asLink());
         $this->assertSame(
-            '//images.contentful.com/34luz0flcmxt/2TEG7c2zYkSSuKmsqEwCS/22da0779cac76ba6b74b5c2cbf084b97/contentful-logo-C395C545BF-seeklogo.com.png',
+            '//images.ctfassets.net/34luz0flcmxt/2TEG7c2zYkSSuKmsqEwCS/22da0779cac76ba6b74b5c2cbf084b97/contentful-logo-C395C545BF-seeklogo.com.png',
             $asset->getFile('en-US')->getUrl()
         );
 
@@ -56,11 +54,28 @@ class AssetTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_asset_get_collection.json
+     * @vcr e2e_asset_get_one_from_space_proxy.json
      */
-    public function testGetAssets()
+    public function testGetOneFromSpaceProxy()
     {
         $proxy = $this->getDefaultSpaceProxy();
+
+        $asset = $proxy->getAsset('master', '2TEG7c2zYkSSuKmsqEwCS');
+        $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
+        $this->assertNull($asset->getDescription('en-US'));
+        $this->assertLink('2TEG7c2zYkSSuKmsqEwCS', 'Asset', $asset->asLink());
+        $this->assertSame(
+            '//images.ctfassets.net/34luz0flcmxt/2TEG7c2zYkSSuKmsqEwCS/22da0779cac76ba6b74b5c2cbf084b97/contentful-logo-C395C545BF-seeklogo.com.png',
+            $asset->getFile('en-US')->getUrl()
+        );
+    }
+
+    /**
+     * @vcr e2e_asset_get_collection.json
+     */
+    public function testGetCollection()
+    {
+        $proxy = $this->getDefaultEnvironmentProxy();
         $assets = $proxy->getAssets();
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
@@ -73,11 +88,28 @@ class AssetTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_asset_get_collection_from_space_proxy.json
+     */
+    public function testGetCollectionFromSpaceProxy()
+    {
+        $proxy = $this->getDefaultSpaceProxy();
+        $assets = $proxy->getAssets('master');
+
+        $this->assertInstanceOf(Asset::class, $assets[0]);
+
+        $query = (new Query())
+            ->setLimit(1);
+        $assets = $proxy->getAssets('master', $query);
+        $this->assertInstanceOf(Asset::class, $assets[0]);
+        $this->assertCount(1, $assets);
+    }
+
+    /**
      * @vcr e2e_asset_create_update_process_publish_unpublish_archive_unarchive_delete.json
      */
     public function testCreateUpdateProcessPublishUnpublishArchiveUnarchiveDelete()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
@@ -144,7 +176,7 @@ class AssetTest extends BaseTestCase
      */
     public function testCreateAssetWithGivenId()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
@@ -161,11 +193,13 @@ class AssetTest extends BaseTestCase
      */
     public function testUploadAsset()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        // Uploads are scoped to spaces, but assets are scoped to environments
+        $spaceProxy = $this->getDefaultSpaceProxy();
+        $environmentProxy = $spaceProxy->getEnvironmentProxy('master');
 
         // Creates upload using fopen
         $fopenUpload = new Upload(\fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'r'));
-        $proxy->create($fopenUpload);
+        $spaceProxy->create($fopenUpload);
         $this->assertNotNull($fopenUpload->getId());
         $this->assertInstanceOf(DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());
         $fopenUpload->delete();
@@ -173,17 +207,16 @@ class AssetTest extends BaseTestCase
         // Creates upload using stream
         $stream = stream_for(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));
         $streamUpload = new Upload($stream);
-        $proxy->create($streamUpload);
+        $spaceProxy->create($streamUpload);
         $this->assertNotNull($streamUpload->getId());
         $this->assertInstanceOf(DateTimeImmutable::class, $streamUpload->getSystemProperties()->getExpiresAt());
         $streamUpload->delete();
 
         // Creates upload using string
         $upload = new Upload(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-name.svg'));
-        $proxy->create($upload);
+        $spaceProxy->create($upload);
         $link = $upload->asLink();
-        $this->assertSame($upload->getId(), $link->getId());
-        $this->assertSame('Upload', $link->getLinkType());
+        $this->assertLink($upload->getId(), 'Upload', $link);
         $this->assertNotNull($upload->getId());
         $this->assertInstanceOf(DateTimeImmutable::class, $upload->getSystemProperties()->getExpiresAt());
 
@@ -193,7 +226,7 @@ class AssetTest extends BaseTestCase
         $asset->setTitle('en-US', 'Contentful');
         $asset->setFile('en-US', $uploadFromFile);
 
-        $proxy->create($asset);
+        $environmentProxy->create($asset);
         $asset->process('en-US');
 
         // Calls the API until the file is processed.
@@ -206,7 +239,7 @@ class AssetTest extends BaseTestCase
         while ($asset->getFile('en-US') instanceof LocalUploadFile) {
             ++$limit;
             $query->setLimit($limit);
-            $asset = $proxy->getAssets($query)[0];
+            $asset = $environmentProxy->getAssets($query)[0];
 
             // This is arbitrary
             if ($limit > 50) {
@@ -218,9 +251,9 @@ class AssetTest extends BaseTestCase
 
         $this->assertSame('contentful.svg', $asset->getFile('en-US')->getFileName());
         $this->assertSame('image/svg+xml', $asset->getFile('en-US')->getContentType());
-        $this->assertContains('contentful.com', $asset->getFile('en-US')->getUrl());
+        $this->assertContains('ctfassets.net', $asset->getFile('en-US')->getUrl());
 
-        $upload = $proxy->getUpload($upload->getId());
+        $upload = $spaceProxy->getUpload($upload->getId());
         $this->assertLink($upload->getId(), 'Upload', $upload->asLink());
 
         $upload->delete();
@@ -232,7 +265,7 @@ class AssetTest extends BaseTestCase
      */
     public function testTextFileAsset()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $asset = $proxy->getAsset('1Gdj0yMYb60MuI6OCSkqMu');
 
@@ -242,7 +275,7 @@ class AssetTest extends BaseTestCase
         $this->assertInstanceOf(File::class, $file);
         $this->assertSame('MIT.md', $file->getFileName());
         $this->assertSame('text/plain', $file->getContentType());
-        $this->assertSame('//assets.contentful.com/34luz0flcmxt/1Gdj0yMYb60MuI6OCSkqMu/4211a1a1c41d6e477e4f8bcaea8b68ab/MIT.md', $file->getUrl());
+        $this->assertSame('//assets.ctfassets.net/34luz0flcmxt/1Gdj0yMYb60MuI6OCSkqMu/4211a1a1c41d6e477e4f8bcaea8b68ab/MIT.md', $file->getUrl());
         $this->assertSame(1065, $file->getSize());
     }
 }

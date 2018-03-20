@@ -27,6 +27,7 @@ class EntrySnapshot extends Snapshot
     {
         return [
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
             'entry' => $this->snapshot->getId(),
             'snapshot' => $this->sys->getId(),
         ];

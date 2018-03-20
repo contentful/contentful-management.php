@@ -89,6 +89,7 @@ class Asset extends BaseResource implements CreatableInterface
     {
         return [
             'space' => $this->sys->getSpace()->getId(),
+            'environment' => $this->sys->getEnvironment()->getId(),
             'asset' => $this->sys->getId(),
         ];
     }

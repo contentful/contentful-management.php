@@ -46,6 +46,31 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_webhook_get_one_from_space.json
+     */
+    public function testGetWebhookFromSpace()
+    {
+        $space = $this->getClient()->getSpace($this->defaultSpaceId);
+
+        $webhook = $space->getWebhook('3tilCowN1lI1rDCe9vhK0C');
+
+        $this->assertLink('3tilCowN1lI1rDCe9vhK0C', 'WebhookDefinition', $webhook->asLink());
+        $this->assertSame('Default Webhook', $webhook->getName());
+        $this->assertSame('https://www.example.com/default-webhook', $webhook->getUrl());
+        $this->assertSame('default_username', $webhook->getHttpBasicUsername());
+        $this->assertSame([
+            'X-Test-Header' => 'Test Value',
+            'X-Second-Test' => 'Another Value',
+        ], $webhook->getHeaders());
+        $this->assertSame(['Entry.auto_save'], $webhook->getTopics());
+
+        $sys = $webhook->getSystemProperties();
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('2017-06-13T08:30:13Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-06-13T08:30:51Z', (string) $sys->getUpdatedAt());
+    }
+
+    /**
      * @vcr e2e_webhook_get_collection.json
      */
     public function testGetWebhooks()
@@ -116,19 +141,20 @@ class WebhookTest extends BaseTestCase
     public function testWebhookEventsFiredAndLogged(Webhook $webhook): Webhook
     {
         $proxy = $this->getDefaultSpaceProxy();
+        $environmentProxy = $proxy->getEnvironmentProxy('master');
 
         $entry1 = (new Entry('person'))
             ->setField('name', 'en-US', 'Burt Macklin')
             ->setField('jobTitle', 'en-US', 'FBI')
         ;
-        $proxy->create($entry1);
+        $environmentProxy->create($entry1);
         $entry1->delete();
 
         $entry2 = (new Entry('person'))
             ->setField('name', 'en-US', 'Dwight Schrute')
             ->setField('jobTitle', 'en-US', 'Assistant Regional Manager')
         ;
-        $proxy->create($entry2);
+        $environmentProxy->create($entry2);
         $entry2->delete();
 
         $webhookId = $webhook->getId();

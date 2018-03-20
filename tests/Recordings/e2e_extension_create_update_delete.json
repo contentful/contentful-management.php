@@ -1,7 +1,7 @@
 [{
     "request": {
         "method": "POST",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/extensions",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/extensions",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -50,7 +50,7 @@
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/extensions\/61JGxeU6sgKYuko2MceWCa",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/extensions\/61JGxeU6sgKYuko2MceWCa",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -99,7 +99,7 @@
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/extensions\/61JGxeU6sgKYuko2MceWCa",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/extensions\/61JGxeU6sgKYuko2MceWCa",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.8",

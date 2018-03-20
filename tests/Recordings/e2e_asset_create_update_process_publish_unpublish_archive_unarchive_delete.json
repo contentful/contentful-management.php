@@ -1,7 +1,7 @@
 [{
     "request": {
         "method": "POST",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -50,7 +50,7 @@
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Tx03S3Agge0skqEYOsug8\/files\/en-US\/process",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/1Tx03S3Agge0skqEYOsug8\/files\/en-US\/process",
         "headers": {
             "Host": "api.contentful.com",
             "Content-Length": "0",
@@ -94,7 +94,7 @@
 },{
     "request": {
         "method": "GET",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Tx03S3Agge0skqEYOsug8",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/1Tx03S3Agge0skqEYOsug8",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
@@ -135,12 +135,12 @@
             "X-Iinfo": "5-13429812-13429816 NNNN CT(103 211 0) RT(1499450899010 47) q(0 0 3 0) r(14 14) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          },\n          \"size\": 1807\n        },\n        \"url\": \"\/\/images.contentful.com\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"An asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 2,\n    \"updatedAt\": \"2017-07-07T18:08:19.119Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          },\n          \"size\": 1807\n        },\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"An asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 2,\n    \"updatedAt\": \"2017-07-07T18:08:19.119Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
     }
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Tx03S3Agge0skqEYOsug8",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/1Tx03S3Agge0skqEYOsug8",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
@@ -151,7 +151,7 @@
             "Content-Type": "application\/vnd.contentful.management.v1+json",
             "X-Contentful-Version": "2"
         },
-        "body": "{\"fields\":{\"file\":{\"en-US\":{\"fileName\":\"contentful.svg\",\"contentType\":\"image\\\/svg+xml\",\"details\":{\"size\":1807,\"image\":{\"width\":48,\"height\":48}},\"url\":\"\\\/\\\/images.contentful.com\\\/34luz0flcmxt\\\/1Tx03S3Agge0skqEYOsug8\\\/65a76960370839b2e519fb95233865c3\\\/contentful.svg\"}},\"title\":{\"en-US\":\"Even better asset\"},\"description\":{\"en-US\":\"A really cool asset\"}}}"
+        "body": "{\"fields\":{\"file\":{\"en-US\":{\"fileName\":\"contentful.svg\",\"contentType\":\"image\\\/svg+xml\",\"details\":{\"size\":1807,\"image\":{\"width\":48,\"height\":48}},\"url\":\"\\\/\\\/images.ctfassets.net\\\/34luz0flcmxt\\\/1Tx03S3Agge0skqEYOsug8\\\/65a76960370839b2e519fb95233865c3\\\/contentful.svg\"}},\"title\":{\"en-US\":\"Even better asset\"},\"description\":{\"en-US\":\"A really cool asset\"}}}"
     },
     "response": {
         "status": {
@@ -185,12 +185,12 @@
             "X-Iinfo": "4-9994350-9994355 NNNN CT(0 0 0) RT(1499450900818 55) q(0 0 0 0) r(2 2) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.contentful.com\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 3,\n    \"updatedAt\": \"2017-07-07T18:08:21.343Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 3,\n    \"updatedAt\": \"2017-07-07T18:08:21.343Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
     }
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Tx03S3Agge0skqEYOsug8\/archived",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/1Tx03S3Agge0skqEYOsug8\/archived",
         "headers": {
             "Host": "api.contentful.com",
             "Content-Length": "0",
@@ -233,12 +233,12 @@
             "X-Iinfo": "7-3650900-3650901 NNNN CT(0 0 0) RT(1499450901581 52) q(0 0 0 1) r(2 2) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.contentful.com\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 4,\n    \"updatedAt\": \"2017-07-07T18:08:22.103Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"archivedAt\": \"2017-07-07T18:08:22.103Z\",\n    \"archivedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"archivedVersion\": 3\n  }\n}\n"
+        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 4,\n    \"updatedAt\": \"2017-07-07T18:08:22.103Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"archivedAt\": \"2017-07-07T18:08:22.103Z\",\n    \"archivedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"archivedVersion\": 3\n  }\n}\n"
     }
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Tx03S3Agge0skqEYOsug8\/archived",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/1Tx03S3Agge0skqEYOsug8\/archived",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
@@ -280,12 +280,12 @@
             "X-Iinfo": "9-7591553-7591557 NNNN CT(0 0 0) RT(1499450902413 47) q(0 0 0 0) r(10 10) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.contentful.com\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 5,\n    \"updatedAt\": \"2017-07-07T18:08:23.736Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 5,\n    \"updatedAt\": \"2017-07-07T18:08:23.736Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
     }
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Tx03S3Agge0skqEYOsug8\/published",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/1Tx03S3Agge0skqEYOsug8\/published",
         "headers": {
             "Host": "api.contentful.com",
             "Content-Length": "0",
@@ -328,12 +328,12 @@
             "X-Iinfo": "6-1895563-1895565 NNNN CT(104 212 0) RT(1499450904311 49) q(0 0 3 1) r(6 6) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.contentful.com\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 6,\n    \"updatedAt\": \"2017-07-07T18:08:25.121Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"firstPublishedAt\": \"2017-07-07T18:08:25.121Z\",\n    \"publishedCounter\": 1,\n    \"publishedAt\": \"2017-07-07T18:08:25.121Z\",\n    \"publishedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedVersion\": 5\n  }\n}\n"
+        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 6,\n    \"updatedAt\": \"2017-07-07T18:08:25.121Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"firstPublishedAt\": \"2017-07-07T18:08:25.121Z\",\n    \"publishedCounter\": 1,\n    \"publishedAt\": \"2017-07-07T18:08:25.121Z\",\n    \"publishedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedVersion\": 5\n  }\n}\n"
     }
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Tx03S3Agge0skqEYOsug8\/published",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/1Tx03S3Agge0skqEYOsug8\/published",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
@@ -375,12 +375,12 @@
             "X-Iinfo": "5-13430450-13429599 PNNN RT(1499450905869 50) q(0 0 0 0) r(2 2) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.contentful.com\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"firstPublishedAt\": \"2017-07-07T18:08:25.121Z\",\n    \"publishedCounter\": 1,\n    \"version\": 7,\n    \"updatedAt\": \"2017-07-07T18:08:26.394Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"size\": 1807,\n          \"image\": {\n            \"width\": 48,\n            \"height\": 48\n          }\n        },\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/1Tx03S3Agge0skqEYOsug8\/65a76960370839b2e519fb95233865c3\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Even better asset\"\n    },\n    \"description\": {\n      \"en-US\": \"A really cool asset\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"1Tx03S3Agge0skqEYOsug8\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:18.461Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"firstPublishedAt\": \"2017-07-07T18:08:25.121Z\",\n    \"publishedCounter\": 1,\n    \"version\": 7,\n    \"updatedAt\": \"2017-07-07T18:08:26.394Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
     }
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/assets\/1Tx03S3Agge0skqEYOsug8",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/1Tx03S3Agge0skqEYOsug8",
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
