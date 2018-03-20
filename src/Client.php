@@ -117,6 +117,14 @@ class Client extends BaseClient
             $resource = $this->builder->build($response, $resource);
         }
 
+        if ($resource) {
+            // If it's not an instance of ResourceInterface,
+            // it's an instance of ResourceArray
+            foreach ($resource instanceof ResourceArray ? $resource : [$resource] as $resourceObject) {
+                $resourceObject->setClient($this);
+            }
+        }
+
         return $resource;
     }
 
@@ -129,6 +137,7 @@ class Client extends BaseClient
      * // $space is an instance of Contentful\Management\Resource\Space
      * $client->create($entry, $space);
      * ```
+     *
      * Creating using an array with the required IDs
      * ``` php
      * $client->create($entry, ['space' => $spaceId]);
@@ -137,35 +146,24 @@ class Client extends BaseClient
      * @param CreatableInterface         $resource   The resource that needs to be created in Contentful
      * @param ResourceInterface|string[] $parameters Either an actual resource object,
      *                                               or an array containing the required IDs
-     * @param string                     $id         If this parameter is specified, the SDK will attempt
+     * @param string                     $resourceId If this parameter is specified, the SDK will attempt
      *                                               to create a resource by making a PUT request on the endpoint
      *                                               by also specifying the ID
      */
-    public function create(CreatableInterface $resource, $parameters = [], string $id = '')
+    public function create(CreatableInterface $resource, $parameters = [], string $resourceId = '')
     {
-        $config = $this->configuration->getConfigFor($resource);
-        $parameters = $parameters instanceof ResourceInterface
-            ? $parameters->asUriParameters()
-            : $parameters;
-
-        if (!$this->validateCreateParameters($config['parameters'], $parameters)) {
-            throw new \RuntimeException(\sprintf(
-                'Trying to create a resource of class "%s" with incorrect set of parameters "%s".',
-                \get_class($resource),
-                \implode(\array_keys($parameters))
-            ));
+        if ($parameters instanceof ResourceInterface) {
+            $parameters = $parameters->asUriParameters();
         }
 
-        $uri = $this->buildResourceUri($config['uri'], $parameters, $config['id'], $id);
-        $method = $id ? 'PUT' : 'POST';
+        $config = $this->configuration->getConfigFor($resource);
+        $uri = $this->buildRequestUri($config, $parameters, $resourceId);
 
-        $this->makeRequest($method, $uri, [
+        $this->makeRequest($resourceId ? 'PUT' : 'POST', $uri, [
             'body' => $resource->asRequestBody(),
             'headers' => $resource->getHeadersForCreation(),
             'baseUri' => $config['baseUri'] ?? null,
         ], $resource);
-
-        $resource->setClient($this);
     }
 
     /**
@@ -188,11 +186,12 @@ class Client extends BaseClient
         bool $hydrateResource = true
     ) {
         $config = $this->configuration->getConfigFor($resource);
-        $uri = $this->buildResourceUri($config['uri'], $resource->asUriParameters(), $config['id']);
+        $uri = $this->buildRequestUri($config, $resource->asUriParameters());
 
         $options['baseUri'] = $config['baseUri'] ?? null;
+        $targetResource = $hydrateResource ? $resource : null;
 
-        return $this->makeRequest($method, $uri.$path, $options, $hydrateResource ? $resource : null);
+        return $this->makeRequest($method, $uri.$path, $options, $targetResource);
     }
 
     /**
@@ -203,70 +202,109 @@ class Client extends BaseClient
      *
      * @return ResourceInterface|ResourceArray
      */
-    public function fetchResource(string $class, array $parameters, Query $query = null, ResourceInterface $resource = null)
-    {
+    public function fetchResource(
+        string $class,
+        array $parameters,
+        Query $query = null,
+        ResourceInterface $resource = null
+    ) {
         $config = $this->configuration->getConfigFor($class);
-        $uri = $this->buildResourceUri($config['uri'], $parameters, $config['id']);
+        $uri = $this->buildRequestUri($config, $parameters);
 
-        $resource = $this->makeRequest('GET', $uri, [
+        return $this->makeRequest('GET', $uri, [
             'baseUri' => $config['baseUri'] ?? null,
             'query' => $query ? $query->getQueryData() : [],
         ], $resource);
-
-        // If it's not an instance of ResourceInterface,
-        // it's an instance of ResourceArray
-        foreach ($resource instanceof ResourceArray ? $resource : [$resource] as $resourceObject) {
-            $resourceObject->setClient($this);
-        }
-
-        return $resource;
     }
 
     /**
-     * Checks whether $current contains all and only the parameters
-     * defined in $required.
+     * Resolves a link to a Contentful resource.
      *
-     * @param string[] $required
-     * @param string[] $current
-     *
-     * @return bool
-     */
-    private function validateCreateParameters(array $required, array $current): bool
-    {
-        foreach ($required as $parameter) {
-            unset($current[$parameter]);
-        }
-
-        return !((bool) $current);
-    }
-
-    /**
-     * Builds the URI used for identifying a resource.
-     *
-     * @param string   $uri
+     * @param Link     $link
      * @param string[] $parameters
-     * @param string   $idParameter
-     * @param string   $id
+     *
+     * @return ResourceInterface
+     */
+    public function resolveLink(Link $link, array $parameters = []): ResourceInterface
+    {
+        $config = $this->configuration->getLinkConfigFor($link->getLinkType());
+        $uri = $this->buildRequestUri($config, $parameters, $link->getId());
+
+        return $this->makeRequest('GET', $uri, [
+            'baseUri' => $config['baseUri'] ?? null,
+        ]);
+    }
+
+    /**
+     * Given a configuration array an a set of parameters,
+     * builds the URI that identifies the current request.
+     *
+     * @param array    $config
+     * @param string[] $parameters
+     * @param string   $resourceId
      *
      * @return string
      */
-    private function buildResourceUri(string $uri, array $parameters, string $idParameter, string $id = ''): string
+    private function buildRequestUri(array $config, array $parameters, string $resourceId = ''): string
     {
-        if ($idParameter) {
-            $parameters[$idParameter] = $parameters[$idParameter] ?? $id;
-        }
+        $idParameter = $config['id'];
+        $parameters[$idParameter] = $parameters[$idParameter] ?? $resourceId;
+
+        $parameters = $this->validateParameters(
+            $config['parameters'],
+            $parameters,
+            $idParameter,
+            $config['class']
+        );
 
         $replacements = [];
         foreach ($parameters as $key => $value) {
             $replacements['{'.$key.'}'] = $value;
         }
 
-        return \strtr($uri, $replacements);
+        return \strtr($config['uri'], $replacements);
     }
 
-    public function resolveLink(string $spaceId, Link $link)
+    /**
+     * Validates given parameters for the API request,
+     * and throws an exception if they are not correctly set.
+     *
+     * @param string[] $required    The parameters required from the configuration of a certain endpoint
+     * @param string[] $current     The parameters supplied to the current query
+     * @param string   $idParameter The name of the parameter that identifies the resource ID
+     * @param string   $class       The resource class
+     *
+     * @throws \RuntimeException When some parameters are missing
+     *
+     * @return string[]
+     */
+    private function validateParameters(array $required, array $current, string $idParameter, string $class): array
     {
-        return $this->getSpaceProxy($spaceId)->resolveLink($link);
+        $missing = [];
+        $valid = [];
+        foreach ($required as $parameter) {
+            if (!isset($current[$parameter])) {
+                $missing[] = $parameter;
+
+                continue;
+            }
+
+            $valid[$parameter] = $current[$parameter];
+        }
+
+        if ($missing) {
+            throw new \RuntimeException(\sprintf(
+                'Trying to make an API call on resource of class "%s" without required parameters "%s".',
+                $class,
+                \implode(', ', $missing)
+            ));
+        }
+
+        if ($idParameter && isset($current[$idParameter])) {
+            $valid[$idParameter] = $current[$idParameter];
+        }
+
+        return $valid;
     }
 
     /**

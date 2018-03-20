@@ -23,7 +23,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class CodeGenerationTest extends BaseTestCase
 {
     /**
-     * @expectedException \RuntimeException
+     * @expectedException        \RuntimeException
      * @expectedExceptionMessage Directoy "/invalid-dir" does not exist and can not be created.
      */
     public function testInvalidOutputDirectory()
@@ -36,10 +36,10 @@ class CodeGenerationTest extends BaseTestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
-            'space-id' => '<spaceId>',
-            'token' => '<accessToken>',
-            'dir' => $dir,
-            'namespace' => '',
+            '--access-token' => '<accessToken>',
+            '--space-id' => '<spaceId>',
+            '--dir' => $dir,
+            '--namespace' => '',
         ]);
     }
 
@@ -56,10 +56,10 @@ class CodeGenerationTest extends BaseTestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
-            'space-id' => $this->codeGenerationSpaceId,
-            'token' => $this->token,
-            'dir' => $dir,
-            'namespace' => 'Contentful\\Tests\\Management\\Fixtures\\E2E\\CodeGenerator',
+            '--access-token' => $this->token,
+            '--space-id' => $this->codeGenerationSpaceId,
+            '--dir' => $dir,
+            '--namespace' => 'Contentful\\Tests\\Management\\Fixtures\\E2E\\CodeGenerator',
         ]);
 
         $output = $commandTester->getDisplay();

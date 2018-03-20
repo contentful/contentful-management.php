@@ -57,8 +57,12 @@ abstract class BaseCodeGenerator
 
         // Removes spaces from blank lines
         $code = \preg_replace('/\n(\s+)\n/', "\n\n", $code)."\n";
-        // Removes space after parenthesis with return types
-        $code = \strtr($code, [') : ' => '): ']);
+        $code = \strtr($code, [
+            // Removes space after parenthesis with return types
+            ') : ' => '): ',
+            // Add a space after `use` statements in closures
+            ') use(' => ') use (',
+        ]);
 
         return $code;
     }

@@ -168,7 +168,7 @@ class Entry extends BaseCodeGenerator
                 '/**
                 * %s constructor.
                 */',
-               $this->convertToStudlyCaps($contentType->getId())
+                $this->convertToStudlyCaps($contentType->getId())
             ))
         );
     }
@@ -289,7 +289,12 @@ class Entry extends BaseCodeGenerator
      * ```
      * public function resolveXLink(string $locale = '<defaultLocale>')
      * {
-     *     return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('x', $locale));
+     *     $parameters = [
+     *         // Representation of the URI parameters
+     *         'space' => $this->sys->getSpace()->getId(),
+     *     ];
+     *
+     *     return $this->client->resolveLink($this->getField('x', $locale), $parameters);
      * }
      * ```
      *
@@ -301,13 +306,6 @@ class Entry extends BaseCodeGenerator
     {
         $returnType = $this->determineLinkReturnType($field->getLinkType(), $field->getValidations());
 
-        $spaceIdParameter = new Node\Expr\MethodCall(
-            new Node\Expr\MethodCall(
-                new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
-                'getSpace'
-            ),
-            'getId'
-        );
         $resolveLinkParameter = new Node\Expr\MethodCall(
             new Node\Expr\Variable('this'),
             'getField',
@@ -325,15 +323,17 @@ class Entry extends BaseCodeGenerator
                     new Node\Param('locale', new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
+                    $this->generateParametersParameter(),
                     new Node\Stmt\Return_(
                         new Node\Expr\MethodCall(
                             new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
                             'resolveLink',
                             [
-                                new Node\Arg($spaceIdParameter),
                                 new Node\Arg($resolveLinkParameter),
+                                new Node\Arg(new Node\Expr\Variable('parameters')),
                             ]
-                        )
+                        ),
+                        $this->generateCommentAttributes('')
                     ),
                 ],
             ],
@@ -345,9 +345,42 @@ class Entry extends BaseCodeGenerator
                  *
                  * @return %s
                  */',
-                 $field->getId(),
-                 $returnType
+                $field->getId(),
+                $returnType
             ))
+        );
+    }
+
+    /**
+     * Generates the following code.
+     *
+     * ```
+     * $parameters = [
+     *     // Representation of the URI parameters
+     *     'space' => $this->sys->getSpace()->getId(),
+     * ];
+     * ```
+     *
+     * @return Node\Expr\Assign
+     */
+    private function generateParametersParameter(): Node\Expr\Assign
+    {
+        return new Node\Expr\Assign(
+            new Node\Expr\Variable('parameters'),
+            new Node\Expr\Array_([
+                new Node\Expr\ArrayItem(
+                    new Node\Expr\MethodCall(
+                        new Node\Expr\MethodCall(
+                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
+                            'getSpace'
+                        ),
+                        'getId'
+                    ),
+                    new Node\Scalar\String_('space'),
+                    false,
+                    $this->generateCommentAttributes('// Representation of the URI parameters')
+                ),
+            ])
         );
     }
 
@@ -368,6 +401,7 @@ class Entry extends BaseCodeGenerator
                     new Node\Param('locale', new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
+                    $this->generateParametersParameter(),
                     new Node\Stmt\Return_(
                         new Node\Expr\FuncCall(
                             new Node\Name('\\array_map'),
@@ -375,7 +409,8 @@ class Entry extends BaseCodeGenerator
                                 new Node\Arg($this->generateArrayLinkResolverClosure()),
                                 new Node\Arg($this->generateArrayLinkResolverMapArray($field)),
                             ]
-                        )
+                        ),
+                        $this->generateCommentAttributes('')
                     ),
                 ],
             ],
@@ -387,8 +422,8 @@ class Entry extends BaseCodeGenerator
                  *
                  * @return %s[]
                  */',
-                 $field->getId(),
-                 false !== \mb_strpos($returnTypes, '|') ? '('.$returnTypes.')' : $returnTypes
+                $field->getId(),
+                false !== \mb_strpos($returnTypes, '|') ? '('.$returnTypes.')' : $returnTypes
             ))
         );
     }
@@ -441,14 +476,6 @@ class Entry extends BaseCodeGenerator
      */
     private function generateArrayLinkResolverClosure(): Node\Expr
     {
-        $spaceIdParameter = new Node\Expr\MethodCall(
-            new Node\Expr\MethodCall(
-                new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
-                'getSpace'
-            ),
-            'getId'
-        );
-
         return new Node\Expr\Closure([
             'params' => [
                 new Node\Param('link', null, 'Link'),
@@ -459,11 +486,14 @@ class Entry extends BaseCodeGenerator
                         new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
                         'resolveLink',
                         [
-                            new Node\Arg($spaceIdParameter),
                             new Node\Arg(new Node\Expr\Variable('link')),
+                            new Node\Arg(new Node\Expr\Variable('parameters')),
                         ]
                     )
                 ),
+            ],
+            'uses' => [
+                new Node\Expr\ClosureUse('parameters'),
             ],
         ]);
     }

@@ -131,7 +131,12 @@ class BlogPost extends Entry
      */
     public function resolveImageLink(string $locale = 'en-US')
     {
-        return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('image', $locale));
+        $parameters = [
+            // Representation of the URI parameters
+            'space' => $this->sys->getSpace()->getId(),
+        ];
+
+        return $this->client->resolveLink($this->getField('image', $locale), $parameters);
     }
 
     /**
@@ -168,8 +173,13 @@ class BlogPost extends Entry
      */
     public function resolveRelatedLinks(string $locale = 'en-US')
     {
-        return \array_map(function (Link $link) {
-            return $this->client->resolveLink($this->sys->getSpace()->getId(), $link);
+        $parameters = [
+            // Representation of the URI parameters
+            'space' => $this->sys->getSpace()->getId(),
+        ];
+
+        return \array_map(function (Link $link) use ($parameters) {
+            return $this->client->resolveLink($link, $parameters);
         }, (array) $this->getField('related', $locale));
     }
 
@@ -232,6 +242,11 @@ class BlogPost extends Entry
      */
     public function resolveAuthorLink(string $locale = 'en-US')
     {
-        return $this->client->resolveLink($this->sys->getSpace()->getId(), $this->getField('author', $locale));
+        $parameters = [
+            // Representation of the URI parameters
+            'space' => $this->sys->getSpace()->getId(),
+        ];
+
+        return $this->client->resolveLink($this->getField('author', $locale), $parameters);
     }
 }
