@@ -246,8 +246,8 @@ class Mapper extends BaseCodeGenerator
                 'returnType' => new Node\Name('array'),
                 'stmts' => [
                     new Node\Expr\Assign(
-                            new Node\Expr\Variable('fields'),
-                            new Node\Expr\Array_([])
+                        new Node\Expr\Variable('fields'),
+                        new Node\Expr\Array_([])
                     ),
                 ],
             ],

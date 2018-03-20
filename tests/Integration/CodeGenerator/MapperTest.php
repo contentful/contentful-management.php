@@ -13,7 +13,6 @@ namespace Contentful\Tests\Management\Integration\CodeGenerator;
 use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Mapper;
-use Contentful\Management\Proxy\SpaceProxy;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
@@ -208,19 +207,14 @@ class MapperTest extends BaseTestCase
 
 class MapperFakeClient extends Client
 {
-    public function getSpaceProxy(string $spaceId): SpaceProxy
+    public function resolveLink(Link $link, array $parameters = []): ResourceInterface
     {
-        return new class($this, $spaceId) extends SpaceProxy {
-            public function resolveLink(Link $link): ResourceInterface
-            {
-                if ('Asset' === $link->getLinkType()) {
-                    return new Asset();
-                }
+        if ('Asset' === $link->getLinkType()) {
+            return new Asset();
+        }
 
-                if ('Entry' === $link->getLinkType()) {
-                    return new BlogPost();
-                }
-            }
-        };
+        if ('Entry' === $link->getLinkType()) {
+            return new BlogPost();
+        }
     }
 }

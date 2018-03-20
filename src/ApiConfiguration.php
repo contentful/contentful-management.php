@@ -111,7 +111,7 @@ class ApiConfiguration
             'id' => 'upload',
         ],
         Resource\User::class => [
-            'uri' => '/users/{user}',
+            'uri' => '/users/me',
             'parameters' => [],
             'id' => '',
         ],
@@ -130,6 +130,23 @@ class ApiConfiguration
             'parameters' => ['space', 'webhook'],
             'id' => '',
         ],
+    ];
+
+    /**
+     * This array defines the configuration for mapping
+     * a Contentful type to a specific SDK resource.
+     *
+     * @var array
+     */
+    private static $linkMap = [
+        'Asset' => Resource\Asset::class,
+        'ContentType' => Resource\ContentType::class,
+        'Entry' => Resource\Entry::class,
+        'PreviewApiKey' => Resource\PreviewApiKey::class,
+        'Role' => Resource\Role::class,
+        'Space' => Resource\Space::class,
+        'Upload' => Resource\Upload::class,
+        'WebhookDefinition' => Resource\Webhook::class,
     ];
 
     /**
@@ -156,12 +173,12 @@ class ApiConfiguration
         }
 
         if (isset(self::$configuration[$class])) {
-            return self::$configuration[$class];
+            return \array_merge(['class' => $class], self::$configuration[$class]);
         }
 
         foreach (\class_parents($class) as $parent) {
             if (isset(self::$configuration[$parent])) {
-                return self::$configuration[$parent];
+                return \array_merge(['class' => $class], self::$configuration[$parent]);
             }
         }
 
@@ -169,5 +186,30 @@ class ApiConfiguration
             'Trying to access invalid configuration for class "%s".',
             $class
         ));
+    }
+
+    /**
+     * Returns the configuration for a specific link type.
+     *
+     * @param string $linkType
+     *
+     * @throws \InvalidArgumentException When passing an unrecognized link type
+     *
+     * @return array
+     */
+    public function getLinkConfigFor(string $linkType): array
+    {
+        if (!isset(self::$linkMap[$linkType])) {
+            throw new \InvalidArgumentException(\sprintf(
+                'Trying to get link configuration for an invalid link type "%s".',
+                $linkType
+            ));
+        }
+
+        $class = self::$linkMap[$linkType];
+        $config = $this->getConfigFor($class);
+        $config['class'] = $class;
+
+        return $config;
     }
 }

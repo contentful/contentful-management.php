@@ -99,36 +99,15 @@ class SpaceProxy
     /**
      * Resolves a Contentful link scoped to the current space.
      *
-     * @param Link $link
+     * @param Link     $link
+     * @param string[] $parameters
      *
      * @return ResourceInterface
      */
-    public function resolveLink(Link $link): ResourceInterface
+    public function resolveLink(Link $link, array $parameters = []): ResourceInterface
     {
-        $linkMap = [
-            'Asset' => 'Asset',
-            'ContentType' => 'ContentType',
-            'Entry' => 'Entry',
-            'PreviewApiKey' => 'PreviewApiKey',
-            'Role' => 'Role',
-            'Space' => 'Space',
-            'Upload' => 'Upload',
-            'WebhookDefinition' => 'Webhook',
-        ];
+        $parameters['space'] = $this->spaceId;
 
-        if (!isset($linkMap[$link->getLinkType()])) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Unexpected system type "%s" while trying to resolve a Link.',
-                $link->getLinkType()
-            ));
-        }
-
-        $resource = 'Contentful\\Management\\Resource\\'.$linkMap[$link->getLinkType()];
-        $parameter = \lcfirst($linkMap[$link->getLinkType()]);
-
-        return $this->client->fetchResource($resource, [
-            'space' => $this->spaceId,
-            $parameter => $link->getId(),
-        ]);
+        return $this->client->resolveLink($link, $parameters);
     }
 }

@@ -18,8 +18,8 @@ use Contentful\Management\Proxy\SpaceProxy;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -45,27 +45,10 @@ class GenerateEntryClassesCommand extends Command
             ->setName('generate:entry-classes')
             ->setDescription('Generates entry classes based off available content types')
             ->setDefinition([
-                new InputArgument(
-                    'space-id',
-                    InputArgument::REQUIRED,
-                    'ID of the space to use.'
-                ),
-                new InputArgument(
-                    'token',
-                    InputArgument::REQUIRED,
-                    'Token to access the space.'
-                ),
-                new InputArgument(
-                    'dir',
-                    InputArgument::REQUIRED,
-                    'The directory to write the cache to.'
-                ),
-                new InputArgument(
-                    'namespace',
-                    InputArgument::OPTIONAL,
-                    'The base namespace to use.',
-                    ''
-                ),
+                new InputOption('access-token', 't', InputOption::VALUE_REQUIRED, 'OAuth or personal access token'),
+                new InputOption('space-id', 's', InputOption::VALUE_REQUIRED, 'ID of the space to use'),
+                new InputOption('dir', 'd', InputOption::VALUE_REQUIRED, 'The directory to write the files in'),
+                new InputOption('namespace', 'ns', InputOption::VALUE_OPTIONAL, 'The base namespace to use'),
             ]);
     }
 
@@ -74,15 +57,15 @@ class GenerateEntryClassesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $spaceId = $input->getArgument('space-id');
-        $dir = $input->getArgument('dir');
+        $spaceId = $input->getOption('space-id');
+        $dir = $input->getOption('dir');
 
         $this->performDirectoryChecks($dir);
 
         $this->generate(
-            $input->getArgument('token'),
+            $input->getOption('access-token'),
             $spaceId,
-            $input->getArgument('namespace')
+            $input->getOption('namespace')
         );
 
         $this->writeFiles($dir);

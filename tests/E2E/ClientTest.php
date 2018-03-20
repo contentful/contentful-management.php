@@ -85,18 +85,8 @@ class ClientTest extends BaseTestCase
     }
 
     /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Unexpected system type "InvalidSystemType" while trying to resolve a Link.
-     */
-    public function testInvalidLinkType()
-    {
-        $link = new Link('linkId', 'InvalidSystemType');
-        $this->getDefaultSpaceProxy()->resolveLink($link, 'spaceId');
-    }
-
-    /**
      * @expectedException        \RuntimeException
-     * @expectedExceptionMessage Trying to create a resource of class "Contentful\Management\Resource\Entry" with incorrect set of parameters "invalidParameter".
+     * @expectedExceptionMessage Trying to make an API call on resource of class "Contentful\Management\Resource\Entry" without required parameters "space".
      */
     public function testCreateInvalidParameters()
     {

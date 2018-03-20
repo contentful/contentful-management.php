@@ -14,7 +14,6 @@ use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Entry;
-use Contentful\Management\Proxy\SpaceProxy;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
@@ -75,7 +74,9 @@ class EntryTest extends BaseTestCase
         $entry = new BlogPost();
         $entry->setClient($client);
 
-        $sys = new SystemProperties(['space' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'Space', 'type' => 'Link']]]);
+        $sys = new SystemProperties([
+            'space' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'Space', 'type' => 'Link']],
+        ]);
 
         $reflection = new \ReflectionObject($entry);
         $property = $reflection->getProperty('sys');
@@ -155,6 +156,7 @@ class EntryTest extends BaseTestCase
         $entry->setTags('en-US', ['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads']);
         $this->assertSame(['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads'], $entry->getTags('en-US'));
 
+        // Restore previous sys values
         $property->setValue($entry, $previousSys);
         $this->assertJsonFixtureEqualsJsonObject('Integration/CodeGenerator/entry.json', $entry);
     }
@@ -162,19 +164,14 @@ class EntryTest extends BaseTestCase
 
 class EntryFakeClient extends Client
 {
-    public function getSpaceProxy(string $spaceId): SpaceProxy
+    public function resolveLink(Link $link, array $parameters = []): ResourceInterface
     {
-        return new class($this, $spaceId) extends SpaceProxy {
-            public function resolveLink(Link $link): ResourceInterface
-            {
-                if ('Asset' === $link->getLinkType()) {
-                    return new Asset();
-                }
+        if ('Asset' === $link->getLinkType()) {
+            return new Asset();
+        }
 
-                if ('Entry' === $link->getLinkType()) {
-                    return new BlogPost();
-                }
-            }
-        };
+        if ('Entry' === $link->getLinkType()) {
+            return new BlogPost();
+        }
     }
 }

@@ -24,6 +24,7 @@ class ApiConfigurationTest extends BaseTestCase
             ->getConfigFor(Upload::class);
 
         $this->assertSame([
+            'class' => Upload::class,
             'uri' => '/spaces/{space}/uploads/{upload}',
             'baseUri' => 'https://upload.contentful.com',
             'parameters' => ['space'],
@@ -37,6 +38,7 @@ class ApiConfigurationTest extends BaseTestCase
             ->getConfigFor('\\Contentful\\Management\\Resource\\PersonalAccessToken');
 
         $this->assertSame([
+            'class' => 'Contentful\\Management\\Resource\\PersonalAccessToken',
             'uri' => 'users/me/access_tokens/{personalAccessToken}',
             'parameters' => [],
             'id' => 'personalAccessToken',
@@ -49,6 +51,7 @@ class ApiConfigurationTest extends BaseTestCase
             ->getConfigFor(new Asset());
 
         $this->assertSame([
+            'class' => Asset::class,
             'uri' => '/spaces/{space}/assets/{asset}',
             'parameters' => ['space'],
             'id' => 'asset',
@@ -57,13 +60,11 @@ class ApiConfigurationTest extends BaseTestCase
 
     public function testGetFromExtendedObject()
     {
-        $entry = new class('contentType') extends Entry {
-        };
-
         $config = (new ApiConfiguration())
-            ->getConfigFor($entry);
+            ->getConfigFor(new ExtendedResource('contentType'));
 
         $this->assertSame([
+            'class' => ExtendedResource::class,
             'uri' => '/spaces/{space}/entries/{entry}',
             'parameters' => ['space'],
             'id' => 'entry',
@@ -89,4 +90,32 @@ class ApiConfigurationTest extends BaseTestCase
         (new ApiConfiguration())
             ->getConfigFor(\stdClass::class);
     }
+
+    public function testGetLinkConfiguration()
+    {
+        $config = (new ApiConfiguration())
+            ->getLinkConfigFor('WebhookDefinition');
+
+        $this->assertSame([
+            'class' => 'Contentful\\Management\\Resource\\Webhook',
+            'uri' => '/spaces/{space}/webhook_definitions/{webhook}',
+            'parameters' => ['space'],
+            'id' => 'webhook',
+            'class' => 'Contentful\Management\\Resource\\Webhook',
+        ], $config);
+    }
+
+    /**
+     * @expectedException        \InvalidArgumentException
+     * @expectedExceptionMessage Trying to get link configuration for an invalid link type "Invalid".
+     */
+    public function testGetConfigForInvalidLinkType()
+    {
+        (new ApiConfiguration())
+            ->getLinkConfigFor('Invalid');
+    }
+}
+
+class ExtendedResource extends Entry
+{
 }
