@@ -140,17 +140,17 @@ class Client extends BaseClient
      *
      * Creating using an array with the required IDs
      * ``` php
-     * $client->create($entry, ['space' => $spaceId, 'environment' => $environmentId]);
+     * $client->create($entry, $entryCustomId, ['space' => $spaceId, 'environment' => $environmentId]);
      * ```
      *
      * @param CreatableInterface         $resource   The resource that needs to be created in Contentful
-     * @param ResourceInterface|string[] $parameters Either an actual resource object,
-     *                                               or an array containing the required IDs
      * @param string                     $resourceId If this parameter is specified, the SDK will attempt
      *                                               to create a resource by making a PUT request on the endpoint
      *                                               by also specifying the ID
+     * @param ResourceInterface|string[] $parameters Either an actual resource object,
+     *                                               or an array containing the required IDs
      */
-    public function create(CreatableInterface $resource, $parameters = [], string $resourceId = '')
+    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
     {
         if ($parameters instanceof ResourceInterface) {
             $parameters = $parameters->asUriParameters();

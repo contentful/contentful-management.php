@@ -182,7 +182,7 @@ class AssetTest extends BaseTestCase
             ->setTitle('en-US', 'An asset')
             ->setDescription('en-US', 'A really cool asset');
 
-        $proxy->create($asset, [], 'myCustomTestAsset');
+        $proxy->create($asset, 'myCustomTestAsset');
         $this->assertSame('myCustomTestAsset', $asset->getId());
 
         $asset->delete();

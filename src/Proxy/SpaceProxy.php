@@ -95,18 +95,18 @@ class SpaceProxy
      * but setting the `space` key to the current space ID in the parameters array.
      *
      * @param CreatableInterface         $resource
+     * @param string                     $resourceId
      * @param ResourceInterface|string[] $parameters
-     * @param string                     $id
      *
      * @see \Contentful\Management\Client::create()
      */
-    public function create(CreatableInterface $resource, $parameters = [], string $id = '')
+    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
     {
         if (\is_array($parameters)) {
             $parameters['space'] = $this->spaceId;
         }
 
-        $this->client->create($resource, $parameters, $id);
+        $this->client->create($resource, $resourceId, $parameters);
     }
 
     /**

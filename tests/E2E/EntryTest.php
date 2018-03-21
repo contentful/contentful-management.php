@@ -182,7 +182,7 @@ class EntryTest extends BaseTestCase
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
 
-        $proxy->create($entry, [], 'myCustomTestEntry');
+        $proxy->create($entry, 'myCustomTestEntry');
         $this->assertSame('myCustomTestEntry', $entry->getId());
 
         $entry->delete();

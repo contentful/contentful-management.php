@@ -94,7 +94,7 @@ class ClientTest extends BaseTestCase
     {
         $client = $this->getClient();
 
-        $client->create(new Entry('someContentType'), ['invalidParameter' => 'invalidValue']);
+        $client->create(new Entry('someContentType'), '', ['invalidParameter' => 'invalidValue']);
     }
 
     /**
@@ -108,7 +108,7 @@ class ClientTest extends BaseTestCase
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
 
-        $client->create($entry, $environment, 'deleteme');
+        $client->create($entry, 'deleteme', $environment);
 
         $this->assertNotNull($entry->getId());
         $this->assertSame($environment->getId(), $entry->getSystemProperties()->getEnvironment()->getId());

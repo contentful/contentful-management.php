@@ -97,19 +97,19 @@ class EnvironmentProxy
      * but setting the `space` and `environment` keys to the current space and environment IDs in the parameters array.
      *
      * @param CreatableInterface         $resource
+     * @param string                     $resourceId
      * @param ResourceInterface|string[] $parameters
-     * @param string                     $id
      *
      * @see \Contentful\Management\Client::create()
      */
-    public function create(CreatableInterface $resource, $parameters = [], string $id = '')
+    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
     {
         if (\is_array($parameters)) {
             $parameters['space'] = $this->spaceId;
             $parameters['environment'] = $this->environmentId;
         }
 
-        $this->client->create($resource, $parameters, $id);
+        $this->client->create($resource, $resourceId, $parameters);
     }
 
     /**
