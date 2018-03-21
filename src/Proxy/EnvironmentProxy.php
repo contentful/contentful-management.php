@@ -31,7 +31,8 @@ use Contentful\Management\Resource\ResourceInterface;
  * The methods provided are very similar to the getX() methods you will find in an actual environment resource object.
  * The main difference is that when fetching a environment resource, you will actually call the API,
  * whereas with this proxy, you're just holding a reference to a certain environment.
- * This is the reason why in most situations you should prefer using a EnvironmentProxy rather than an environment resource.
+ * This is the reason why in most situations you should prefer using
+ * an EnvironmentProxy rather than an environment resource.
  *
  * ``` php
  * // Only the entries query will be made

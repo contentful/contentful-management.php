@@ -31,7 +31,8 @@ use Contentful\Management\Resource\ResourceInterface;
  * The methods provided are very similar to the getX() methods you will find in an actual space resource object.
  * The main difference is that when fetching a space resource, you will actually call the API,
  * whereas with this proxy, you're just holding a reference to a certain space.
- * This is the reason why in most situations you should prefer using a SpaceProxy rather than a space resource.
+ * This is the reason why in most situations you should prefer using
+ * a SpaceProxy rather than a space resource.
  *
  * ``` php
  * // Only the entries query will be made

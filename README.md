@@ -40,4 +40,4 @@ The client itself allows creating, updating and deleting spaces. For any operati
 
 ## License
 
-Copyright (c) 2015-2017 Contentful GmbH. Code released under the MIT license. See [LICENSE](LICENSE) for further details.
+Copyright (c) 2015-2018 Contentful GmbH. Code released under the MIT license. See [LICENSE](LICENSE) for further details.
