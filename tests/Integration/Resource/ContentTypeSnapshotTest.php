@@ -17,12 +17,26 @@ use Contentful\Tests\Management\BaseTestCase;
 class ContentTypeSnapshotTest extends BaseTestCase
 {
     /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Class "Contentful\Management\Resource\ContentTypeSnapshot" can only be instantiated as a result of an API call, manual creation is not allowed.
+     * @expectedException \Error
      */
     public function testInvalidCreation()
     {
         new ContentTypeSnapshot();
+    }
+
+    /**
+     * This test is meaningless.
+     * It's only here because private, empty contructors are not correctly picked by code coverage.
+     */
+    public function testConstructor()
+    {
+        $class = new \ReflectionClass(ContentTypeSnapshot::class);
+        $object = $class->newInstanceWithoutConstructor();
+        $constructor = $class->getConstructor();
+        $constructor->setAccessible(true);
+        $constructor->invoke($object);
+
+        $this->markTestAsPassed();
     }
 
     /**

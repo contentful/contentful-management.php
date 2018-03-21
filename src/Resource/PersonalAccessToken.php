@@ -51,7 +51,7 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '', bool $isReadOnly = false)
     {
-        parent::__construct('PersonalAccessToken');
+        $this->initialize('PersonalAccessToken');
         $this->name = $name;
         $this->isReadOnly = $isReadOnly;
     }

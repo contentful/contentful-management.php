@@ -52,7 +52,7 @@ class SpaceMembership extends BaseResource implements CreatableInterface
      */
     public function __construct()
     {
-        parent::__construct('SpaceMembership');
+        $this->initialize('SpaceMembership');
     }
 
     /**

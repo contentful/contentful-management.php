@@ -17,12 +17,26 @@ use Contentful\Tests\Management\BaseTestCase;
 class WebhookHealthTest extends BaseTestCase
 {
     /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Class "Contentful\Management\Resource\WebhookHealth" can only be instantiated as a result of an API call, manual creation is not allowed.
+     * @expectedException \Error
      */
     public function testInvalidCreation()
     {
         new WebhookHealth();
+    }
+
+    /**
+     * This test is meaningless.
+     * It's only here because private, empty contructors are not correctly picked by code coverage.
+     */
+    public function testConstructor()
+    {
+        $class = new \ReflectionClass(WebhookHealth::class);
+        $object = $class->newInstanceWithoutConstructor();
+        $constructor = $class->getConstructor();
+        $constructor->setAccessible(true);
+        $constructor->invoke($object);
+
+        $this->markTestAsPassed();
     }
 
     /**

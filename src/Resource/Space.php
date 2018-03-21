@@ -54,7 +54,7 @@ class Space extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name, string $organizationId, string $defaultLocale = null)
     {
-        parent::__construct('Space');
+        $this->initialize('Space');
         $this->name = $name;
         $this->organizationId = $organizationId;
         $this->defaultLocale = $defaultLocale;

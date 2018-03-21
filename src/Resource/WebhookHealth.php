@@ -32,12 +32,8 @@ class WebhookHealth extends BaseResource
     /**
      * WebhookHealth constructor.
      */
-    final public function __construct()
+    final private function __construct()
     {
-        throw new \LogicException(\sprintf(
-            'Class "%s" can only be instantiated as a result of an API call, manual creation is not allowed.',
-            static::class
-        ));
     }
 
     /**

@@ -16,7 +16,7 @@ use Contentful\Tests\Management\BaseTestCase;
 class RoleTest extends BaseTestCase
 {
     /**
-     * @expectedException \RuntimeException
+     * @expectedException        \RuntimeException
      * @expectedExceptionMessage Trying to build a constraint object using invalid key "invalidKey".
      */
     public function testInvalidCreation()

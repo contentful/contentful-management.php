@@ -52,7 +52,7 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function __construct()
     {
-        parent::__construct('Asset');
+        $this->initialize('Asset');
     }
 
     /**

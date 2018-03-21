@@ -31,12 +31,12 @@ abstract class BaseResource implements ResourceInterface
     protected $client;
 
     /**
-     * BaseResource constructor.
+     * Initialize system properties.
      *
      * @param string $type The system type
      * @param array  $sys
      */
-    protected function __construct(string $type, array $sys = [])
+    protected function initialize(string $type, array $sys = [])
     {
         $sys['type'] = $type;
         $this->sys = new SystemProperties($sys);

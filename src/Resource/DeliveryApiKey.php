@@ -40,7 +40,7 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
      */
     public function __construct(string $name = '')
     {
-        parent::__construct('DeliveryApiKey');
+        $this->initialize('DeliveryApiKey');
         $this->name = $name;
     }
 

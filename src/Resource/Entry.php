@@ -45,7 +45,15 @@ class Entry extends BaseResource implements CreatableInterface
      */
     public function __construct(string $contentTypeId)
     {
-        parent::__construct('Entry', ['contentType' => ['sys' => ['id' => $contentTypeId, 'linkType' => 'ContentType']]]);
+        $this->initialize('Entry', [
+            'contentType' => [
+                'sys' => [
+                    'id' => $contentTypeId,
+                    'type' => 'Link',
+                    'linkType' => 'ContentType',
+                ],
+            ],
+        ]);
     }
 
     /**

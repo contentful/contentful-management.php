@@ -17,12 +17,26 @@ use Contentful\Tests\Management\BaseTestCase;
 class UserTest extends BaseTestCase
 {
     /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Class "Contentful\Management\Resource\User" can only be instantiated as a result of an API call, manual creation is not allowed.
+     * @expectedException \Error
      */
     public function testInvalidCreation()
     {
         new User();
+    }
+
+    /**
+     * This test is meaningless.
+     * It's only here because private, empty contructors are not correctly picked by code coverage.
+     */
+    public function testConstructor()
+    {
+        $class = new \ReflectionClass(User::class);
+        $object = $class->newInstanceWithoutConstructor();
+        $constructor = $class->getConstructor();
+        $constructor->setAccessible(true);
+        $constructor->invoke($object);
+
+        $this->markTestAsPassed();
     }
 
     /**

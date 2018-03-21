@@ -41,7 +41,7 @@ class Upload extends BaseResource implements CreatableInterface
      */
     public function __construct($body)
     {
-        parent::__construct('Upload');
+        $this->initialize('Upload');
         $this->body = $body;
     }
 

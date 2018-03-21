@@ -72,7 +72,7 @@ class Locale extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name, string $code, string $fallbackCode = null)
     {
-        parent::__construct('Locale');
+        $this->initialize('Locale');
         $this->name = $name;
         $this->code = $code;
         $this->fallbackCode = $fallbackCode;

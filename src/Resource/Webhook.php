@@ -67,7 +67,7 @@ class Webhook extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name, string $url, array $topics = [])
     {
-        parent::__construct('WebhookDefinition');
+        $this->initialize('WebhookDefinition');
         $this->name = $name;
         $this->url = $url;
         $this->setTopics($topics);

@@ -64,7 +64,7 @@ class ContentType extends BaseResource implements CreatableInterface
      */
     public function __construct($name)
     {
-        parent::__construct('ContentType');
+        $this->initialize('ContentType');
         $this->name = $name;
     }
 

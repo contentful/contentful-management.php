@@ -59,8 +59,7 @@ class Extension extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '')
     {
-        parent::__construct('Extension');
-
+        $this->initialize('Extension');
         $this->name = $name;
     }
 

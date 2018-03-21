@@ -56,7 +56,7 @@ class Role extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '', string $description = '')
     {
-        parent::__construct('Role');
+        $this->initialize('Role');
         $this->name = $name;
         $this->description = $description;
         $this->permissions = new Permissions();
