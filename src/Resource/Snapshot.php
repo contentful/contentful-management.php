@@ -25,7 +25,7 @@ abstract class Snapshot extends BaseResource
     /**
      * Snapshot constructor.
      */
-    final private function __construct()
+    private function __construct()
     {
     }
 

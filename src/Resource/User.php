@@ -57,7 +57,7 @@ class User extends BaseResource
     /**
      * User constructor.
      */
-    final private function __construct()
+    private function __construct()
     {
     }
 

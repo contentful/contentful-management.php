@@ -22,7 +22,7 @@ class PreviewApiKey extends ApiKey
     /**
      * PreviewApiKey constructor.
      */
-    final private function __construct()
+    private function __construct()
     {
     }
 

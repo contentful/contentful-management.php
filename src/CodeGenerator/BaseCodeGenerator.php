@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\CodeGenerator;
 
+use Contentful\Management\Resource\ContentType\Field\ArrayField;
 use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 use PhpParser\Comment;
 use PhpParser\Node;
@@ -106,7 +107,7 @@ abstract class BaseCodeGenerator
      */
     protected function getFieldType(FieldInterface $field): string
     {
-        if ('Array' === $field->getType()) {
+        if ($field instanceof ArrayField) {
             if ('Link' === $field->getItemsType()) {
                 return 'Link[]';
             }

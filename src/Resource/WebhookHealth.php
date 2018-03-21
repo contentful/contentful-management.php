@@ -32,7 +32,7 @@ class WebhookHealth extends BaseResource
     /**
      * WebhookHealth constructor.
      */
-    final private function __construct()
+    private function __construct()
     {
     }
 

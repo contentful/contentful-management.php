@@ -33,7 +33,7 @@ class EditorInterface extends BaseResource
     /**
      * EditorInterface constructor.
      */
-    final private function __construct()
+    private function __construct()
     {
     }
 

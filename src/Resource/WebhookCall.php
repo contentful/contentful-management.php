@@ -66,7 +66,7 @@ class WebhookCall extends BaseResource
     /**
      * WebhookCallOverview constructor.
      */
-    final private function __construct()
+    private function __construct()
     {
     }
 
