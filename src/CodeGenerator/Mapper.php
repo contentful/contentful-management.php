@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -277,20 +277,23 @@ class Mapper extends BaseCodeGenerator
      */
     private function generateFieldAssignment(FieldInterface $field): array
     {
-        switch ($field->getType()) {
-            case 'Link':
-                return $this->generateLinkFieldAssignment($field);
-            case 'Array':
-                if ('Link' === $field->getItemsType()) {
-                    return $this->generateArrayLinkFieldAssignment($field);
-                }
-
-                return $this->generateDefaultFieldAssignment($field);
-            case 'Date':
-                return $this->generateDateFieldAssignment($field);
-            default:
-                return $this->generateDefaultFieldAssignment($field);
+        if ($field instanceof LinkField) {
+            return $this->generateLinkFieldAssignment($field);
         }
+
+        if ($field instanceof ArrayField) {
+            if ('Link' === $field->getItemsType()) {
+                return $this->generateArrayLinkFieldAssignment($field);
+            }
+
+            return $this->generateDefaultFieldAssignment($field);
+        }
+
+        if ($field instanceof DateField) {
+            return $this->generateDateFieldAssignment($field);
+        }
+
+        return $this->generateDefaultFieldAssignment($field);
     }
 
     /**

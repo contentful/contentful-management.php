@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -67,7 +67,7 @@ class Webhook extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name, string $url, array $topics = [])
     {
-        parent::__construct('WebhookDefinition');
+        $this->initialize('WebhookDefinition');
         $this->name = $name;
         $this->url = $url;
         $this->setTopics($topics);

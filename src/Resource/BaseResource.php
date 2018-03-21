@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -31,12 +31,12 @@ abstract class BaseResource implements ResourceInterface
     protected $client;
 
     /**
-     * BaseResource constructor.
+     * Initialize system properties.
      *
      * @param string $type The system type
      * @param array  $sys
      */
-    protected function __construct(string $type, array $sys = [])
+    protected function initialize(string $type, array $sys = [])
     {
         $sys['type'] = $type;
         $this->sys = new SystemProperties($sys);

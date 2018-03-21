@@ -41,7 +41,7 @@ class Environment extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name)
     {
-        parent::__construct('Environment');
+        $this->initialize('Environment');
         $this->name = $name;
     }
 

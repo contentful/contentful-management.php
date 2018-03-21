@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -54,7 +54,7 @@ class Space extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name, string $organizationId, string $defaultLocale = null)
     {
-        parent::__construct('Space');
+        $this->initialize('Space');
         $this->name = $name;
         $this->organizationId = $organizationId;
         $this->defaultLocale = $defaultLocale;

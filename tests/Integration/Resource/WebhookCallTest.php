@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -17,12 +17,26 @@ use Contentful\Tests\Management\BaseTestCase;
 class WebhookCallTest extends BaseTestCase
 {
     /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Class "Contentful\Management\Resource\WebhookCall" can only be instantiated as a result of an API call, manual creation is not allowed.
+     * @expectedException \Error
      */
     public function testInvalidCreation()
     {
         new WebhookCall();
+    }
+
+    /**
+     * This test is meaningless.
+     * It's only here because private, empty contructors are not correctly picked by code coverage.
+     */
+    public function testConstructor()
+    {
+        $class = new \ReflectionClass(WebhookCall::class);
+        $object = $class->newInstanceWithoutConstructor();
+        $constructor = $class->getConstructor();
+        $constructor->setAccessible(true);
+        $constructor->invoke($object);
+
+        $this->markTestAsPassed();
     }
 
     /**

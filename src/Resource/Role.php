@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -56,7 +56,7 @@ class Role extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '', string $description = '')
     {
-        parent::__construct('Role');
+        $this->initialize('Role');
         $this->name = $name;
         $this->description = $description;
         $this->permissions = new Permissions();

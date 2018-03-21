@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -45,7 +45,15 @@ class Entry extends BaseResource implements CreatableInterface
      */
     public function __construct(string $contentTypeId)
     {
-        parent::__construct('Entry', ['contentType' => ['sys' => ['id' => $contentTypeId, 'linkType' => 'ContentType']]]);
+        $this->initialize('Entry', [
+            'contentType' => [
+                'sys' => [
+                    'id' => $contentTypeId,
+                    'type' => 'Link',
+                    'linkType' => 'ContentType',
+                ],
+            ],
+        ]);
     }
 
     /**

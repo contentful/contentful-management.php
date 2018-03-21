@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -182,7 +182,7 @@ class EntryTest extends BaseTestCase
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
 
-        $proxy->create($entry, [], 'myCustomTestEntry');
+        $proxy->create($entry, 'myCustomTestEntry');
         $this->assertSame('myCustomTestEntry', $entry->getId());
 
         $entry->delete();

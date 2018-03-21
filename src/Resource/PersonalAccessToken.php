@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -51,7 +51,7 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '', bool $isReadOnly = false)
     {
-        parent::__construct('PersonalAccessToken');
+        $this->initialize('PersonalAccessToken');
         $this->name = $name;
         $this->isReadOnly = $isReadOnly;
     }

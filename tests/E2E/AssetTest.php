@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -182,7 +182,7 @@ class AssetTest extends BaseTestCase
             ->setTitle('en-US', 'An asset')
             ->setDescription('en-US', 'A really cool asset');
 
-        $proxy->create($asset, [], 'myCustomTestAsset');
+        $proxy->create($asset, 'myCustomTestAsset');
         $this->assertSame('myCustomTestAsset', $asset->getId());
 
         $asset->delete();
@@ -191,7 +191,7 @@ class AssetTest extends BaseTestCase
     /**
      * @vcr e2e_asset_upload.json
      */
-    public function testUploadAsset()
+    public function testUpload()
     {
         // Uploads are scoped to spaces, but assets are scoped to environments
         $spaceProxy = $this->getDefaultSpaceProxy();
@@ -220,11 +220,9 @@ class AssetTest extends BaseTestCase
         $this->assertNotNull($upload->getId());
         $this->assertInstanceOf(DateTimeImmutable::class, $upload->getSystemProperties()->getExpiresAt());
 
-        $uploadFromFile = new LocalUploadFile('contentful.svg', 'image/svg+xml', $upload->asLink());
-
         $asset = new Asset();
         $asset->setTitle('en-US', 'Contentful');
-        $asset->setFile('en-US', $uploadFromFile);
+        $asset->setFile('en-US', $upload->asAssetFile('contentful.svg', 'image/svg+xml'));
 
         $environmentProxy->create($asset);
         $asset->process('en-US');

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -210,7 +210,7 @@ class ContentTypeTest extends BaseTestCase
         $contentType = (new ContentType('Test CT'))
             ->setDescription('This content type will have `myCustomTestCt` as ID');
 
-        $proxy->create($contentType, [], 'myCustomTestCt');
+        $proxy->create($contentType, 'myCustomTestCt');
         $this->assertSame('myCustomTestCt', $contentType->getId());
 
         $contentType->delete();
@@ -298,7 +298,7 @@ class ContentTypeTest extends BaseTestCase
             ->addValidation(new RegexpValidation('^such', 'im'));
         $contentType->addNewField('text', 'textField', 'Text Field');
 
-        $proxy->create($contentType, [], 'fullContentType');
+        $proxy->create($contentType, 'fullContentType');
         $this->assertNotNull($contentType->getId());
 
         $contentType = $proxy->getContentType('fullContentType');

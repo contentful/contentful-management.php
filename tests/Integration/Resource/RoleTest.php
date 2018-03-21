@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -16,7 +16,7 @@ use Contentful\Tests\Management\BaseTestCase;
 class RoleTest extends BaseTestCase
 {
     /**
-     * @expectedException \RuntimeException
+     * @expectedException        \RuntimeException
      * @expectedExceptionMessage Trying to build a constraint object using invalid key "invalidKey".
      */
     public function testInvalidCreation()

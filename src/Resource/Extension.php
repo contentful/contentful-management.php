@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -59,8 +59,7 @@ class Extension extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '')
     {
-        parent::__construct('Extension');
-
+        $this->initialize('Extension');
         $this->name = $name;
     }
 

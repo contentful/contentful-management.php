@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -72,7 +72,7 @@ class Locale extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name, string $code, string $fallbackCode = null)
     {
-        parent::__construct('Locale');
+        $this->initialize('Locale');
         $this->name = $name;
         $this->code = $code;
         $this->fallbackCode = $fallbackCode;

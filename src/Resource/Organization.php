@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful-management.php package.
  *
- * @copyright 2015-2017 Contentful GmbH
+ * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
 declare(strict_types=1);
@@ -28,12 +28,8 @@ class Organization extends BaseResource
     /**
      * Organization constructor.
      */
-    final public function __construct()
+    private function __construct()
     {
-        throw new \LogicException(\sprintf(
-            'Class "%s" can only be instantiated as a result of an API call, manual creation is not allowed.',
-            static::class
-        ));
     }
 
     /**

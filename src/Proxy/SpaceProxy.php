@@ -31,7 +31,8 @@ use Contentful\Management\Resource\ResourceInterface;
  * The methods provided are very similar to the getX() methods you will find in an actual space resource object.
  * The main difference is that when fetching a space resource, you will actually call the API,
  * whereas with this proxy, you're just holding a reference to a certain space.
- * This is the reason why in most situations you should prefer using a SpaceProxy rather than a space resource.
+ * This is the reason why in most situations you should prefer using
+ * a SpaceProxy rather than a space resource.
  *
  * ``` php
  * // Only the entries query will be made
@@ -94,18 +95,18 @@ class SpaceProxy
      * but setting the `space` key to the current space ID in the parameters array.
      *
      * @param CreatableInterface         $resource
+     * @param string                     $resourceId
      * @param ResourceInterface|string[] $parameters
-     * @param string                     $id
      *
      * @see \Contentful\Management\Client::create()
      */
-    public function create(CreatableInterface $resource, $parameters = [], string $id = '')
+    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
     {
         if (\is_array($parameters)) {
             $parameters['space'] = $this->spaceId;
         }
 
-        $this->client->create($resource, $parameters, $id);
+        $this->client->create($resource, $resourceId, $parameters);
     }
 
     /**
