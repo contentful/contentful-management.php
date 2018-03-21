@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Core\File\LocalUploadFile;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Psr\Http\Message\StreamInterface;
@@ -102,5 +103,18 @@ class Upload extends BaseResource implements CreatableInterface
         $this->body = $body;
 
         return $this;
+    }
+
+    /**
+     * Returns an object representation of the upload that is compatible to an asset resource.
+     *
+     * @param string $filename
+     * @param string $contentType
+     *
+     * @return LocalUploadFile
+     */
+    public function asAssetFile(string $filename, string $contentType): LocalUploadFile
+    {
+        return new LocalUploadFile($filename, $contentType, $this->asLink());
     }
 }

@@ -20,7 +20,7 @@ class SpaceMembershipTest extends BaseTestCase
     /**
      * @vcr e2e_space_membership_get_one.json
      */
-    public function testGetSpaceMembership()
+    public function testGetOne()
     {
         $proxy = $this->getDefaultSpaceProxy();
 
@@ -28,6 +28,7 @@ class SpaceMembershipTest extends BaseTestCase
 
         $this->assertNull($spaceMembership->getEmail());
         $this->assertNotNull($spaceMembership->getId());
+        $this->assertLink('4Q3e6duhma7V6czH7UXHzE', 'User', $spaceMembership->getUser());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
         $this->assertSame('4Q3e6duhma7V6czH7UXHzE', $spaceMembership->getUser()->getId());
         $this->assertEmpty($spaceMembership->getRoles());
@@ -37,7 +38,7 @@ class SpaceMembershipTest extends BaseTestCase
     /**
      * @vcr e2e_space_membership_get_collection.json
      */
-    public function testGetSpaceMemberships()
+    public function testGetCollection()
     {
         $proxy = $this->getDefaultSpaceProxy();
 
