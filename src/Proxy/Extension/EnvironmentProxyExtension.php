@@ -120,6 +120,42 @@ trait EnvironmentProxyExtension
     }
 
     /**
+     * Returns a published ContentType resource.
+     *
+     * @param string $contentTypeId
+     *
+     * @return ContentType
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
+     */
+    public function getPublishedContentType(string $contentTypeId): ContentType
+    {
+        return $this->client->getPublishedContentType(
+            $this->getSpaceId(),
+            $this->getEnvironmentId(),
+            $contentTypeId
+        );
+    }
+
+    /**
+     * Returns a ResourceArray object which contains published ContentType resources.
+     *
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
+     */
+    public function getPublishedContentTypes(Query $query = null): ResourceArray
+    {
+        return $this->client->getPublishedContentTypes(
+            $this->getSpaceId(),
+            $this->getEnvironmentId(),
+            $query
+        );
+    }
+
+    /**
      * Returns a ContentTypeSnapshot resource.
      *
      * @param string $contentTypeId

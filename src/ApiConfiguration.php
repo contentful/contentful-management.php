@@ -18,6 +18,17 @@ use Contentful\Management\Resource\ResourceInterface;
 class ApiConfiguration
 {
     /**
+     * Published content types are an edge case.
+     * All resources are supposed to have one endpoint representation in the API,
+     * but content types can be present in their normal form, and in the form
+     * they have been last published as. Because of this, in order to not to duplicate
+     * the content type resource, we create a virtual resource for read-only operations.
+     *
+     * @var string
+     */
+    const PUBLISHED_CONTENT_TYPE_RESOURCE = 'Contentful\\Management\\Resource\\PublishedContentType';
+
+    /**
      * This array includes the configuration necessary for handling API calls for every resource type.
      *
      * Each entry includes the following values.
@@ -36,6 +47,11 @@ class ApiConfiguration
         ],
         Resource\ContentType::class => [
             'uri' => '/spaces/{space}/environments/{environment}/content_types/{contentType}',
+            'parameters' => ['space', 'environment'],
+            'id' => 'contentType',
+        ],
+        self::PUBLISHED_CONTENT_TYPE_RESOURCE => [
+            'uri' => '/spaces/{space}/environments/{environment}/public/content_types/{contentType}',
             'parameters' => ['space', 'environment'],
             'id' => 'contentType',
         ],

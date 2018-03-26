@@ -161,6 +161,10 @@ $contentType = $environmentProxy->getContentType($contentTypeId);
 echo $contentType->getSystemProperties()->getId();
 echo $contentType->getName();
 
+// Fetch the published version of content types
+$contentTypes = $environmentProxy->getPublishedContentTypes($query);
+$contentType = $environmentProxy->getPublishedContentType($contentTypeId);
+
 // Fetch snapshots from a content type, or from an environment proxy
 $snapshots = $contentType->getSnapshots();
 $snapshot = $contentTy->getSnapshot($snapshotId);
