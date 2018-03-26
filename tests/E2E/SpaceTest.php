@@ -21,7 +21,7 @@ class SpaceTest extends BaseTestCase
     /**
      * @vcr e2e_space_get_one.json
      */
-    public function testGetSpace()
+    public function testGetOne()
     {
         $space = $this->getClient()->getSpace($this->defaultSpaceId);
 
@@ -41,7 +41,7 @@ class SpaceTest extends BaseTestCase
     /**
      * @vcr e2e_space_get_collection.json
      */
-    public function testGetSpaces()
+    public function testGetCollection()
     {
         $client = $this->getClient();
 
@@ -60,7 +60,7 @@ class SpaceTest extends BaseTestCase
     /**
      * @vcr e2e_space_create_delete_non_english_locale.json
      */
-    public function testCreateDeleteSpaceNonEnglishLocale()
+    public function testCreateDeleteNonEnglishLocale()
     {
         $client = $this->getClient();
 

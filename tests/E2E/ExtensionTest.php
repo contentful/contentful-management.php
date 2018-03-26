@@ -17,7 +17,7 @@ use Contentful\Tests\Management\BaseTestCase;
 class ExtensionTest extends BaseTestCase
 {
     /**
-     * @vcr e2e_extension_get.json
+     * @vcr e2e_extension_get_one.json
      */
     public function testGet()
     {
@@ -29,6 +29,14 @@ class ExtensionTest extends BaseTestCase
         $this->assertSame('https://www.example.com/cf-test-extension', $extension->getSource());
         $this->assertTrue($extension->isSidebar());
         $this->assertSame(['type' => 'Integer'], $extension->getFieldTypes()[0]->getData());
+    }
+
+    /**
+     * @vcr e2e_extension_get_collection.json
+     */
+    public function testGetCollection()
+    {
+        $proxy = $this->getDefaultEnvironmentProxy();
 
         $extensions = $proxy->getExtensions();
 
@@ -42,7 +50,7 @@ class ExtensionTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_extension_get_from_space_proxy.json
+     * @vcr e2e_extension_get_one_from_space_proxy.json
      */
     public function testGetFromSpaceProxy()
     {
@@ -54,6 +62,14 @@ class ExtensionTest extends BaseTestCase
         $this->assertSame('https://www.example.com/cf-test-extension', $extension->getSource());
         $this->assertTrue($extension->isSidebar());
         $this->assertSame(['type' => 'Integer'], $extension->getFieldTypes()[0]->getData());
+    }
+
+    /**
+     * @vcr e2e_extension_get_collection_from_space_proxy.json
+     */
+    public function testGetCollectionFromSpaceProxy()
+    {
+        $proxy = $this->getDefaultSpaceProxy();
 
         $extensions = $proxy->getExtensions('master');
 

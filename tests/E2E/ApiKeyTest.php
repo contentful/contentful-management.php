@@ -21,7 +21,7 @@ class ApiKeyTest extends BaseTestCase
     /**
      * @vcr e2e_api_key_delivery_get_one_collection.json
      */
-    public function testGetDeliveryApiKey()
+    public function testDeliveryGetOneCollection()
     {
         $proxy = $this->getClient()->getSpaceProxy($this->defaultSpaceId);
 
@@ -66,7 +66,7 @@ class ApiKeyTest extends BaseTestCase
     /**
      * @vcr e2e_api_key_preview_get_one_collection.json
      */
-    public function testGetPreviewApiKey()
+    public function testPreviewGetOneCollection()
     {
         $proxy = $this->getClient()->getSpaceProxy($this->defaultSpaceId);
 

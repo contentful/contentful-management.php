@@ -75,9 +75,9 @@ class EntryTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_entry_get_from_environment.json
+     * @vcr e2e_entry_get_one_from_environment.json
      */
-    public function testGetEntryFromEnvironment()
+    public function testGetOneFromEnvironment()
     {
         $environment = $this->getClient()->getEnvironment($this->defaultSpaceId, 'master');
 
@@ -91,7 +91,7 @@ class EntryTest extends BaseTestCase
     /**
      * @vcr e2e_entry_get_collection.json
      */
-    public function testGetEntries()
+    public function testGetCollection()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
         $entries = $proxy->getEntries();
@@ -175,7 +175,7 @@ class EntryTest extends BaseTestCase
     /**
      * @vcr e2e_entry_create_with_id.json
      */
-    public function testCreateEntryWithGivenId()
+    public function testCreateWithGivenId()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
 

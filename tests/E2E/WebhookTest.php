@@ -23,7 +23,7 @@ class WebhookTest extends BaseTestCase
     /**
      * @vcr e2e_webhook_get_one.json
      */
-    public function testGetWebhook()
+    public function testGetOne()
     {
         $proxy = $this->getDefaultSpaceProxy();
 
@@ -48,7 +48,7 @@ class WebhookTest extends BaseTestCase
     /**
      * @vcr e2e_webhook_get_one_from_space.json
      */
-    public function testGetWebhookFromSpace()
+    public function testGetOneFromSpace()
     {
         $space = $this->getClient()->getSpace($this->defaultSpaceId);
 
@@ -73,7 +73,7 @@ class WebhookTest extends BaseTestCase
     /**
      * @vcr e2e_webhook_get_collection.json
      */
-    public function testGetWebhooks()
+    public function testGetCollection()
     {
         $proxy = $this->getDefaultSpaceProxy();
         $webhooks = $proxy->getWebhooks();
@@ -92,7 +92,7 @@ class WebhookTest extends BaseTestCase
      *
      * @vcr e2e_webhook_create_update.json
      */
-    public function testCreateWebhook(): Webhook
+    public function testCreateUpdate(): Webhook
     {
         $proxy = $this->getDefaultSpaceProxy();
 
@@ -135,10 +135,10 @@ class WebhookTest extends BaseTestCase
      *
      * @return Webhook
      *
-     * @depends testCreateWebhook
+     * @depends testCreateUpdate
      * @vcr e2e_webhook_events_fired_and_logged.json
      */
-    public function testWebhookEventsFiredAndLogged(Webhook $webhook): Webhook
+    public function testEventsFiredAndLogged(Webhook $webhook): Webhook
     {
         $proxy = $this->getDefaultSpaceProxy();
         $environmentProxy = $proxy->getEnvironmentProxy('master');
@@ -218,8 +218,8 @@ class WebhookTest extends BaseTestCase
     /**
      * @param Webhook $webhook
      *
-     * @depends testWebhookEventsFiredAndLogged
-     * @vcr e2e_webhook_get_from_space_proxy.json
+     * @depends testEventsFiredAndLogged
+     * @vcr e2e_webhook_get_calls_from_space_proxy.json
      */
     public function testGetCallsFromSpaceProxy(Webhook $webhook)
     {
@@ -249,7 +249,7 @@ class WebhookTest extends BaseTestCase
      * @depends testGetCallsFromSpaceProxy
      * @vcr e2e_webhook_delete.json
      */
-    public function testDeleteWebhook(Webhook $webhook)
+    public function testDelete(Webhook $webhook)
     {
         $webhook->delete();
 

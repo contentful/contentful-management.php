@@ -26,7 +26,7 @@ class RoleTest extends BaseTestCase
     /**
      * @vcr e2e_role_get_one.json
      */
-    public function testGetRole()
+    public function testGetOne()
     {
         $proxy = $this->getDefaultSpaceProxy();
 
@@ -55,7 +55,7 @@ class RoleTest extends BaseTestCase
     /**
      * @vcr e2e_role_get_collection.json
      */
-    public function testGetRoles()
+    public function testGetCollection()
     {
         $proxy = $this->getDefaultSpaceProxy();
 
