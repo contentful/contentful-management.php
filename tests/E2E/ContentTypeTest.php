@@ -136,6 +136,54 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_content_type_get_published_one.json
+     */
+    public function testGetPublishedOne()
+    {
+        $proxy = $this->getDefaultEnvironmentProxy();
+        $contentType = $proxy->getPublishedContentType('cat');
+
+        $this->assertSame('Cat', $contentType->getName());
+        $this->assertSame('name', $contentType->getDisplayField());
+        $this->assertLink('cat', 'ContentType', $contentType->asLink());
+        $this->assertTrue($contentType->isPublished());
+        $this->assertCount(8, $contentType->getFields());
+
+        $sys = $contentType->getSystemProperties();
+        $this->assertSame('cat', $sys->getId());
+        $this->assertSame('ContentType', $sys->getType());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink('master', 'Environment', $sys->getEnvironment());
+        $this->assertSame(1, $sys->getRevision());
+    }
+
+    /**
+     * @vcr e2e_content_type_get_published_one_from_space_proxy.json
+     */
+    public function testGetPublishedOneFromSpaceProxy()
+    {
+        $proxy = $this->getDefaultSpaceProxy();
+        $contentType = $proxy->getPublishedContentType('master', 'cat');
+
+        $this->assertSame('Cat', $contentType->getName());
+        $this->assertSame('name', $contentType->getDisplayField());
+        $this->assertLink('cat', 'ContentType', $contentType->asLink());
+        $this->assertTrue($contentType->isPublished());
+        $this->assertCount(8, $contentType->getFields());
+
+        $sys = $contentType->getSystemProperties();
+        $this->assertSame('cat', $sys->getId());
+        $this->assertSame('ContentType', $sys->getType());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink('master', 'Environment', $sys->getEnvironment());
+        $this->assertSame(1, $sys->getRevision());
+    }
+
+    /**
      * @vcr e2e_content_type_get_collection.json
      */
     public function testGetCollection()
@@ -165,6 +213,40 @@ class ContentTypeTest extends BaseTestCase
         $query = (new Query())
             ->setLimit(1);
         $contentTypes = $proxy->getContentTypes('master', $query);
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
+        $this->assertCount(1, $contentTypes);
+    }
+
+    /**
+     * @vcr e2e_content_type_get_published_collection.json
+     */
+    public function testGetPublishedCollection()
+    {
+        $proxy = $this->getDefaultEnvironmentProxy();
+        $contentTypes = $proxy->getPublishedContentTypes();
+
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
+
+        $query = (new Query())
+            ->setLimit(1);
+        $contentTypes = $proxy->getPublishedContentTypes($query);
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
+        $this->assertCount(1, $contentTypes);
+    }
+
+    /**
+     * @vcr e2e_content_type_get_published_collection_from_space_proxy.json
+     */
+    public function testGetPublishedCollectionFromSpaceProxy()
+    {
+        $proxy = $this->getDefaultSpaceProxy();
+        $contentTypes = $proxy->getPublishedContentTypes('master');
+
+        $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
+
+        $query = (new Query())
+            ->setLimit(1);
+        $contentTypes = $proxy->getPublishedContentTypes('master', $query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
     }

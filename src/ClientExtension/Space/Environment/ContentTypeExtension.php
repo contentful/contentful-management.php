@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Contentful\Management\ClientExtension\Space\Environment;
 
 use Contentful\Core\Resource\ResourceArray;
+use Contentful\Management\ApiConfiguration;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType as ResourceClass;
 
@@ -60,6 +61,45 @@ trait ContentTypeExtension
     public function getContentTypes(string $spaceId, string $environmentId, Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
+            'space' => $spaceId,
+            'environment' => $environmentId,
+        ], $query);
+    }
+
+    /**
+     * Returns a published ContentType resource.
+     *
+     * @param string $spaceId
+     * @param string $environmentId
+     * @param string $contentTypeId
+     *
+     * @return ResourceClass
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
+     */
+    public function getPublishedContentType(string $spaceId, string $environmentId, string $contentTypeId): ResourceClass
+    {
+        return $this->fetchResource(ApiConfiguration::PUBLISHED_CONTENT_TYPE_RESOURCE, [
+            'space' => $spaceId,
+            'environment' => $environmentId,
+            'contentType' => $contentTypeId,
+        ]);
+    }
+
+    /**
+     * Returns a ResourceArray object which contains published ContentType resources.
+     *
+     * @param string     $spaceId
+     * @param string     $environmentId
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
+     */
+    public function getPublishedContentTypes(string $spaceId, string $environmentId, Query $query = null): ResourceArray
+    {
+        return $this->fetchResource(ApiConfiguration::PUBLISHED_CONTENT_TYPE_RESOURCE, [
             'space' => $spaceId,
             'environment' => $environmentId,
         ], $query);

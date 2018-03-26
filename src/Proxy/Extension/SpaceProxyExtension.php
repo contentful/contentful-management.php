@@ -126,6 +126,44 @@ trait SpaceProxyExtension
     }
 
     /**
+     * Returns a published ContentType resource.
+     *
+     * @param string $environmentId
+     * @param string $contentTypeId
+     *
+     * @return ContentType
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
+     */
+    public function getPublishedContentType(string $environmentId, string $contentTypeId): ContentType
+    {
+        return $this->client->getPublishedContentType(
+            $this->getSpaceId(),
+            $environmentId,
+            $contentTypeId
+        );
+    }
+
+    /**
+     * Returns a ResourceArray object which contains published ContentType resources.
+     *
+     * @param string     $environmentId
+     * @param Query|null $query
+     *
+     * @return ResourceArray
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
+     */
+    public function getPublishedContentTypes(string $environmentId, Query $query = null): ResourceArray
+    {
+        return $this->client->getPublishedContentTypes(
+            $this->getSpaceId(),
+            $environmentId,
+            $query
+        );
+    }
+
+    /**
      * Returns a ContentTypeSnapshot resource.
      *
      * @param string $environmentId
