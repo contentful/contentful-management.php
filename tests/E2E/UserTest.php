@@ -17,7 +17,7 @@ class UserTest extends BaseTestCase
     /**
      * @vcr e2e_user_get_me.json
      */
-    public function testGetOwnUser()
+    public function testGetMe()
     {
         $user = $this->getClient()->getUserMe();
 

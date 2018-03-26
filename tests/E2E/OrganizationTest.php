@@ -18,7 +18,7 @@ class OrganizationTest extends BaseTestCase
     /**
      * @vcr e2e_organization_get_collection.json
      */
-    public function testGetOrganizations()
+    public function testGetCollection()
     {
         $organizations = $this->getClient()->getOrganizations();
 
@@ -36,13 +36,7 @@ class OrganizationTest extends BaseTestCase
         $this->assertSame('2017-07-13T09:35:27Z', (string) $sys->getUpdatedAt());
 
         $this->assertSame([], $organization->asUriParameters());
-    }
 
-    /**
-     * @vcr e2e_organization_get_collection_with_filter.json
-     */
-    public function testGetOrganizationsWithQuery()
-    {
         $query = (new Query())
             ->setLimit(3);
         $organizations = $this->getClient()->getOrganizations($query);

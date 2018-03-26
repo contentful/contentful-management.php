@@ -174,7 +174,7 @@ class AssetTest extends BaseTestCase
     /**
      * @vcr e2e_asset_create_with_id.json
      */
-    public function testCreateAssetWithGivenId()
+    public function testCreateWithId()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
 
@@ -261,7 +261,7 @@ class AssetTest extends BaseTestCase
     /**
      * @vcr e2e_asset_text_file.json
      */
-    public function testTextFileAsset()
+    public function testTextFile()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
 

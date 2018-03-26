@@ -20,11 +20,12 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
 class ErrorTest extends BaseTestCase
 {
     /**
-     * @expectedException \Contentful\Management\Exception\UnknownKeyException
+     * @expectedException        \Contentful\Management\Exception\UnknownKeyException
      * @expectedExceptionMessage The body you sent contains an unknown key.
+     *
      * @vcr e2e_error_unknown_key.json
      */
-    public function testUnknownKeyError()
+    public function testUnknownKey()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
 
@@ -33,11 +34,12 @@ class ErrorTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Contentful\Management\Exception\MissingKeyException
+     * @expectedException        \Contentful\Management\Exception\MissingKeyException
      * @expectedExceptionMessage Request body is missing a required key.
+     *
      * @vcr e2e_error_missing_key.json
      */
-    public function testMissingKeyError()
+    public function testMissingKey()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
 
@@ -46,11 +48,12 @@ class ErrorTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Contentful\Management\Exception\ValidationFailedException
+     * @expectedException        \Contentful\Management\Exception\ValidationFailedException
      * @expectedExceptionMessage The resource you sent in the body is invalid.
+     *
      * @vcr e2e_error_validation_failed.json
      */
-    public function testValidationFailedError()
+    public function testValidationFailed()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
 
@@ -61,7 +64,7 @@ class ErrorTest extends BaseTestCase
     /**
      * @vcr e2e_error_version_mismatch.json
      */
-    public function testVersionMismatchError()
+    public function testVersionMismatch()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
 
@@ -85,11 +88,12 @@ class ErrorTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Contentful\Management\Exception\DefaultLocaleNotDeletableException
+     * @expectedException        \Contentful\Management\Exception\DefaultLocaleNotDeletableException
      * @expectedExceptionMessage Cannot delete a default locale
+     *
      * @vcr e2e_error_default_locale_not_deletable.json
      */
-    public function testDefaultLocaleNotDeletableError()
+    public function testDefaultLocaleNotDeletable()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
         $defaultLocale = $proxy->getLocale('6khdsfQbtrObkbrgWDTGe8');
@@ -98,11 +102,12 @@ class ErrorTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Contentful\Management\Exception\FallbackLocaleNotDeletableException
+     * @expectedException        \Contentful\Management\Exception\FallbackLocaleNotDeletableException
      * @expectedExceptionMessage Cannot delete locale which is fallback of another one
+     *
      * @vcr e2e_error_fallback_locale_not_deletable.json
      */
-    public function testFallbackLocaleNotDeletableError()
+    public function testFallbackLocaleNotDeletable()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
@@ -112,11 +117,12 @@ class ErrorTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Contentful\Management\Exception\FallbackLocaleNotRenameableException
+     * @expectedException        \Contentful\Management\Exception\FallbackLocaleNotRenameableException
      * @expectedExceptionMessage Cannot change the code of a locale which is fallback of another one
+     *
      * @vcr e2e_error_fallback_locale_not_renameable.json
      */
-    public function testFallbackLocaleNotRenameableError()
+    public function testFallbackLocaleNotRenameable()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)

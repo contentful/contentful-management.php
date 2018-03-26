@@ -100,7 +100,7 @@ class ClientTest extends BaseTestCase
     /**
      * @vcr e2e_client_create_through_environment_object.json
      */
-    public function testCreateThroughSpaceObject()
+    public function testCreateThroughEnvironmentObject()
     {
         $client = $this->getClient();
 

@@ -170,9 +170,9 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_content_type_create_update_activate_delete.json
+     * @vcr e2e_content_type_create_update_publish_delete.json
      */
-    public function testContentTypeCreateUpdateActivateDelete()
+    public function testContentTypeCreateUpdatePublishDelete()
     {
         $proxy = $this->getDefaultEnvironmentProxy();
 
@@ -228,7 +228,7 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Invalid items type "invalidItemsLink". Valid values are Symbol, Link.
      */
     public function testInvalidItemsLink()
@@ -237,7 +237,7 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Invalid items link type "invalidItemsLinkType". Valid values are Asset, Entry.
      */
     public function testInvalidItemsLinkType()
@@ -246,7 +246,7 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage The validation "Contentful\Management\Resource\ContentType\Validation\RangeValidation" can not be used for fields of type "Link".
      */
     public function testInvalidItemsValidation()
@@ -256,7 +256,7 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Trying to instantiate invalid field class "invalidField".
      */
     public function testInvalidFieldCreation()

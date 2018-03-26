@@ -20,7 +20,7 @@ class ResourceBuilderTest extends BaseTestCase
     /**
      * @vcr e2e_resource_builder_add_mappers.json
      */
-    public function testAddCustomMappers()
+    public function testAddMappers()
     {
         $client = $this->getClient();
         $proxy = $client->getEnvironmentProxy($this->defaultSpaceId, 'master');

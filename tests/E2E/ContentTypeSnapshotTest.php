@@ -84,7 +84,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_content_type_snapshot_get_from_space_proxy.json
+     * @vcr e2e_content_type_snapshot_get_one_from_space_proxy.json
      */
     public function testGetOneFromSpaceProxy()
     {
@@ -205,7 +205,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_content_type_snapshot_get_all_from_space_proxy.json
+     * @vcr e2e_content_type_snapshot_get_collection_from_space_proxy.json
      */
     public function testGetCollectionFromSpaceProxy()
     {
