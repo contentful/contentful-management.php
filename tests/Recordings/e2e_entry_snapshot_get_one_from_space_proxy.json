@@ -5,7 +5,7 @@
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/0.11.0-dev; platform PHP\/7.1.14; os macOS;",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -25,23 +25,23 @@
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Mon, 19 Mar 2018 10:42:53 GMT",
-            "ETag": "W\/\"a6dc33b7e695f6a888dce4ce7f032968\"",
+            "Date": "Wed, 18 Apr 2018 09:24:40 GMT",
+            "ETag": "W\/\"1feb254d059389edf7415e96c07bc245\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179871",
+            "X-Contentful-RateLimit-Hour-Remaining": "179986",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
-            "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "6990fbf562de52032dbff95b170c9529",
-            "Content-Length": "511",
+            "X-Contentful-RateLimit-Second-Remaining": "48",
+            "X-Contentful-Request-Id": "f3ee131a085029ee1395df7b242fc9b2",
+            "Content-Length": "569",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=HXQWGqffTKW+Q\/iouVaixiyUr1oAAAAAQUIPAAAAAACu+HRXRhK3HpftE\/0kJXnF; expires=Tue, 19 Mar 2019 09:28:49 GMT; path=\/; Domain=.contentful.com, nlbi_673446=REk8aIMB6xeeBrCJ6lKYhQAAAAAq78\/wY15Ht33Te\/XgrFfL; path=\/; Domain=.contentful.com, incap_ses_416_673446=\/4jyWlirKTPXWiPc2e7FBSyUr1oAAAAA892Vy8d0x6gGXTzKsIFsZg==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "4-23614062-23614072 NNNN CT(111 111 0) RT(1521456171981 170) q(0 0 2 -1) r(7 7) U5",
+            "Set-Cookie": "visid_incap_673446=Q4X9iO09Tme5f7P3GfSTkNgO11oAAAAAQUIPAAAAAABb9EeLDJHFBfXXPugaIcsM; expires=Wed, 17 Apr 2019 12:48:31 GMT; path=\/; Domain=.contentful.com, nlbi_673446=CMq5QFTHUmbAJGDe6lKYhQAAAAB++s4M2bUoSLu+5LMFHS5n; path=\/; Domain=.contentful.com, incap_ses_416_673446=AMoxDo76njotbtor4+7FBdgO11oAAAAAvN7UJsdlKE\/AMk3Dl32FJw==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-52310880-52310782 PNNN RT(1524043480147 58) q(0 0 0 -1) r(1 1) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"sys\": {\n    \"type\": \"Snapshot\",\n    \"snapshotType\": \"publish\",\n    \"snapshotEntityType\": \"Entry\",\n    \"id\": \"3omuk8H8M8wUuqHhxddXtp\",\n    \"createdAt\": \"2017-06-14T14:11:20.189Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedAt\": \"2017-06-14T14:11:20.189Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    }\n  },\n  \"snapshot\": {\n    \"fields\": {\n      \"name\": {\n        \"en-US\": \"Josh Lyman\"\n      },\n      \"jobTitle\": {\n        \"en-US\": \"Deputy Chief of Staff\"\n      }\n    },\n    \"sys\": {\n      \"id\": \"3LM5FlCdGUIM0Miqc664q6\",\n      \"type\": \"Entry\",\n      \"createdAt\": \"2017-06-14T14:10:59.317Z\",\n      \"createdBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"space\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"Space\",\n          \"id\": \"34luz0flcmxt\"\n        }\n      },\n      \"contentType\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"ContentType\",\n          \"id\": \"person\"\n        }\n      },\n      \"version\": 20,\n      \"updatedAt\": \"2017-06-14T14:11:20.177Z\",\n      \"updatedBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"firstPublishedAt\": \"2017-06-14T14:11:20.177Z\",\n      \"publishedCounter\": 1,\n      \"publishedAt\": \"2017-06-14T14:11:20.177Z\",\n      \"publishedBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"publishedVersion\": 19\n    }\n  }\n}\n"
+        "body": "{\n  \"sys\": {\n    \"type\": \"Snapshot\",\n    \"snapshotType\": \"publish\",\n    \"snapshotEntityType\": \"Entry\",\n    \"id\": \"3omuk8H8M8wUuqHhxddXtp\",\n    \"createdAt\": \"2017-06-14T14:11:20.189Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedAt\": \"2017-06-14T14:11:20.189Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    }\n  },\n  \"snapshot\": {\n    \"fields\": {\n      \"name\": {\n        \"en-US\": \"Josh Lyman\"\n      },\n      \"jobTitle\": {\n        \"en-US\": \"Deputy Chief of Staff\"\n      }\n    },\n    \"sys\": {\n      \"id\": \"3LM5FlCdGUIM0Miqc664q6\",\n      \"type\": \"Entry\",\n      \"createdAt\": \"2017-06-14T14:10:59.317Z\",\n      \"createdBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"space\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"Space\",\n          \"id\": \"34luz0flcmxt\"\n        }\n      },\n      \"contentType\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"ContentType\",\n          \"id\": \"person\"\n        }\n      },\n      \"version\": 20,\n      \"updatedAt\": \"2017-06-14T14:11:20.177Z\",\n      \"updatedBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"firstPublishedAt\": \"2017-06-14T14:11:20.177Z\",\n      \"publishedCounter\": 1,\n      \"publishedAt\": \"2017-06-14T14:11:20.177Z\",\n      \"publishedBy\": {\n        \"sys\": {\n          \"type\": \"Link\",\n          \"linkType\": \"User\",\n          \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n        }\n      },\n      \"publishedVersion\": 19,\n      \"environment\": {\n        \"sys\": {\n          \"id\": \"master\",\n          \"type\": \"Link\",\n          \"linkType\": \"Environment\"\n        }\n      }\n    }\n  }\n}\n"
     }
 }]

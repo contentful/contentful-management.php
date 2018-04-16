@@ -5,8 +5,8 @@
         "headers": {
             "Host": "upload.contentful.com",
             "Expect": null,
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/octet-stream"
@@ -20,31 +20,31 @@
             "message": "Created"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "cache-control": "no-cache",
             "content-encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 18:08:29 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:15 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "vary": "accept-encoding",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "884c0d7e510673c7ef17304ac70117db",
+            "X-Contentful-Request-Id": "012d740e8e62ae72b192356942eb2a0b",
             "Content-Length": "223",
             "Connection": "keep-alive"
         },
-        "body": "{\n  \"sys\": {\n    \"id\": \"6rQLo5eNX8k6usrR5uFEbB\",\n    \"type\": \"Upload\",\n    \"createdAt\": \"2017-07-07T18:08:30.000Z\",\n    \"expiresAt\": \"2017-07-09T00:00:00.000Z\",\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}"
+        "body": "{\n  \"sys\": {\n    \"id\": \"wXTfoYa99KPLne3eKrO1O\",\n    \"type\": \"Upload\",\n    \"createdAt\": \"2018-04-16T09:48:16.000Z\",\n    \"expiresAt\": \"2018-04-18T00:00:00.000Z\",\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    }\n  }\n}"
     }
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/upload.contentful.com\/spaces\/34luz0flcmxt\/uploads\/6rQLo5eNX8k6usrR5uFEbB",
+        "url": "https:\/\/upload.contentful.com\/spaces\/34luz0flcmxt\/uploads\/wXTfoYa99KPLne3eKrO1O",
         "headers": {
             "Host": "upload.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -56,16 +56,16 @@
             "message": "No Content"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "cache-control": "no-cache",
             "Content-Type": "application\/octet-stream",
-            "Date": "Fri, 07 Jul 2017 18:08:30 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:16 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "57da55b9530cd024beb8a2abf1526a4b",
+            "X-Contentful-Request-Id": "275c72736dc47799162301d0d06c8f48",
             "Connection": "keep-alive"
         }
     }
@@ -76,8 +76,8 @@
         "headers": {
             "Host": "upload.contentful.com",
             "Expect": null,
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/octet-stream"
@@ -91,31 +91,31 @@
             "message": "Created"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "cache-control": "no-cache",
             "content-encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 18:08:31 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:17 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "vary": "accept-encoding",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "96be5db89613e6c64f472d67446f5ef2",
-            "Content-Length": "222",
+            "X-Contentful-Request-Id": "c6727b3aa944c06eb5986d0537b640cc",
+            "Content-Length": "224",
             "Connection": "keep-alive"
         },
-        "body": "{\n  \"sys\": {\n    \"id\": \"3IiQGctGWLFnSl82u5OeFW\",\n    \"type\": \"Upload\",\n    \"createdAt\": \"2017-07-07T18:08:32.000Z\",\n    \"expiresAt\": \"2017-07-09T00:00:00.000Z\",\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}"
+        "body": "{\n  \"sys\": {\n    \"id\": \"2Oj3AGtTJa5iJk15M7KJ5L\",\n    \"type\": \"Upload\",\n    \"createdAt\": \"2018-04-16T09:48:18.000Z\",\n    \"expiresAt\": \"2018-04-18T00:00:00.000Z\",\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    }\n  }\n}"
     }
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/upload.contentful.com\/spaces\/34luz0flcmxt\/uploads\/3IiQGctGWLFnSl82u5OeFW",
+        "url": "https:\/\/upload.contentful.com\/spaces\/34luz0flcmxt\/uploads\/2Oj3AGtTJa5iJk15M7KJ5L",
         "headers": {
             "Host": "upload.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -127,16 +127,16 @@
             "message": "No Content"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "cache-control": "no-cache",
             "Content-Type": "application\/octet-stream",
-            "Date": "Fri, 07 Jul 2017 18:08:32 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:18 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "6f03aabfe554c883abc86e589278548d",
+            "X-Contentful-Request-Id": "cdb78eeca6ec823562363535d39d0247",
             "Connection": "keep-alive"
         }
     }
@@ -147,8 +147,8 @@
         "headers": {
             "Host": "upload.contentful.com",
             "Expect": null,
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/octet-stream"
@@ -162,22 +162,22 @@
             "message": "Created"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "cache-control": "no-cache",
             "content-encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 18:08:33 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:20 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "vary": "accept-encoding",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "1e75e17e792ad7840bc218d079fd9c79",
-            "Content-Length": "223",
+            "X-Contentful-Request-Id": "713624df6feca1ed3f7bed17800c0299",
+            "Content-Length": "225",
             "Connection": "keep-alive"
         },
-        "body": "{\n  \"sys\": {\n    \"id\": \"4Irrq9lxZySMl497NK6LTX\",\n    \"type\": \"Upload\",\n    \"createdAt\": \"2017-07-07T18:08:34.000Z\",\n    \"expiresAt\": \"2017-07-09T00:00:00.000Z\",\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}"
+        "body": "{\n  \"sys\": {\n    \"id\": \"7IPsnPxPVmgI7vWQJ6MBYy\",\n    \"type\": \"Upload\",\n    \"createdAt\": \"2018-04-16T09:48:21.000Z\",\n    \"expiresAt\": \"2018-04-18T00:00:00.000Z\",\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    }\n  }\n}"
     }
 },{
     "request": {
@@ -186,13 +186,13 @@
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json"
         },
-        "body": "{\"fields\":{\"file\":{\"en-US\":{\"fileName\":\"contentful.svg\",\"contentType\":\"image\\\/svg+xml\",\"uploadFrom\":{\"sys\":{\"type\":\"Link\",\"id\":\"4Irrq9lxZySMl497NK6LTX\",\"linkType\":\"Upload\"}}}},\"title\":{\"en-US\":\"Contentful\"}}}"
+        "body": "{\"fields\":{\"file\":{\"en-US\":{\"fileName\":\"contentful.svg\",\"contentType\":\"image\\\/svg+xml\",\"uploadFrom\":{\"sys\":{\"type\":\"Link\",\"id\":\"7IPsnPxPVmgI7vWQJ6MBYy\",\"linkType\":\"Upload\"}}}},\"title\":{\"en-US\":\"Contentful\"}}}"
     },
     "response": {
         "status": {
@@ -201,42 +201,42 @@
             "message": "Created"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "Access-Control-Max-Age": "1728000",
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 18:08:34 GMT",
-            "ETag": "\"3789827eaa0f28735e0bc9d803d385d7\"",
+            "Date": "Mon, 16 Apr 2018 09:48:21 GMT",
+            "ETag": "\"fa9e0a5c3fc40caf8e9492982aaf4a65\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179990",
+            "X-Contentful-RateLimit-Hour-Remaining": "179828",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "6bc57643434d257309d5fb231e847895",
+            "X-Contentful-Request-Id": "54f3e220b355a38bb2084bb5f45f68c2",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=q0D6tBQPQuSVJS\/cYdSLayLOX1kAAAAAQUIPAAAAAACNoPs6WXEl\/KfrOfc7yCcW; expires=Sat, 07 Jul 2018 17:27:52 GMT; path=\/; Domain=.contentful.com, nlbi_673446=cHmiJk+WwxAJ8cBf6lKYhQAAAADqtn3mm75LaCwLREzU\/e2X; path=\/; Domain=.contentful.com, incap_ses_477_673446=kYr2GvPEg1tIk7e1i6WeBiLOX1kAAAAAr+2InfXVpdQ03\/LF5YX4gA==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "6-1895659-1895484 PNNN RT(1499450914114 53) q(0 0 0 -1) r(2 2) U5",
+            "Set-Cookie": "visid_incap_673446=KRmYJAELTsOISBxvLknRZWRx1FoAAAAAQUIPAAAAAACev69wgmgxtYcyfZIXFa+U; expires=Mon, 15 Apr 2019 12:13:41 GMT; path=\/; Domain=.contentful.com, nlbi_673446=DZMEcL61JgtMcrPB6lKYhQAAAAAdNBFeWdb2Luk47aQFV0+0; path=\/; Domain=.contentful.com, incap_ses_477_673446=QLQQJb\/BeTYYePWH5qWeBmRx1FoAAAAAx7RJ7RAjo35S8k7mp2kaNQ==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "10-79960086-79954375 PNNN RT(1523872099987 21) q(0 0 0 -1) r(2 2) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"uploadFrom\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"id\": \"4Irrq9lxZySMl497NK6LTX\",\n            \"linkType\": \"Upload\"\n          }\n        }\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Contentful\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"7M96PXDH1Y0m2WwGC4CWSM\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:34.648Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 1,\n    \"updatedAt\": \"2017-07-07T18:08:34.657Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"yaeI4ZKdlmysiIYwAwqW0\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2018-04-16T09:48:21.000Z\",\n    \"updatedAt\": \"2018-04-16T09:48:21.000Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"version\": 1\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"Contentful\"\n    },\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"uploadFrom\": {\n          \"sys\": {\n            \"id\": \"7IPsnPxPVmgI7vWQJ6MBYy\",\n            \"type\": \"Link\",\n            \"linkType\": \"Upload\"\n          }\n        },\n        \"contentType\": \"image\/svg+xml\"\n      }\n    }\n  }\n}\n"
     }
 },{
     "request": {
         "method": "PUT",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/7M96PXDH1Y0m2WwGC4CWSM\/files\/en-US\/process",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/yaeI4ZKdlmysiIYwAwqW0\/files\/en-US\/process",
         "headers": {
             "Host": "api.contentful.com",
             "Content-Length": "0",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip",
             "X-Contentful-Version": "1"
@@ -249,37 +249,37 @@
             "message": "No Content"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "Access-Control-Max-Age": "1728000",
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 18:08:35 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:22 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179989",
+            "X-Contentful-RateLimit-Hour-Remaining": "179827",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "7fcd303bae582b3dd794d0b8c324eb79",
+            "X-Contentful-Request-Id": "2061311ff916c5326be4ffea2de1d3c4",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=\/EdDELSgTZewwQyfWHSZaSPOX1kAAAAAQUIPAAAAAADmA7onT7V4vn1RA\/7mGCEQ; expires=Sat, 07 Jul 2018 17:27:52 GMT; path=\/; Domain=.contentful.com, nlbi_673446=z9AyeQJ2RRmu8HGF6lKYhQAAAAA5LiHqp2bNms3gpwrdh0+E; path=\/; Domain=.contentful.com, incap_ses_477_673446=61EDQSVRziGqk7e1i6WeBiPOX1kAAAAAxggR+djWHjCY+DixRv+ruw==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "10-10731133-10731137 NNNN CT(0 0 0) RT(1499450915101 70) q(0 0 0 -1) r(2 2) U5",
+            "Set-Cookie": "visid_incap_673446=6hOvXmxtT1ac7JrH6tJuQ2Vx1FoAAAAAQUIPAAAAAADM4sSgB29gRCe\/d88CcF2q; expires=Mon, 15 Apr 2019 12:13:54 GMT; path=\/; Domain=.contentful.com, nlbi_673446=HvNyMZW\/4HIBjBJu6lKYhQAAAADGg5GquVr2lYss6R5fbMn6; path=\/; Domain=.contentful.com, incap_ses_477_673446=KbUzdqLJgjEhefWH5qWeBmVx1FoAAAAAYJBg2TlkE5TlbEIN72YA8Q==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-78342836-78342838 NNNN CT(101 101 0) RT(1523872101039 21) q(0 0 2 -1) r(3 3) U5",
             "X-CDN": "Incapsula"
         }
     }
 },{
     "request": {
         "method": "GET",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/7M96PXDH1Y0m2WwGC4CWSM",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/yaeI4ZKdlmysiIYwAwqW0",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -291,7 +291,7 @@
             "message": "OK"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
@@ -299,33 +299,33 @@
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 18:08:36 GMT",
-            "ETag": "W\/\"b5d8c8cf25315f3ecb5ee4cae7aa5309\"",
+            "Date": "Mon, 16 Apr 2018 09:48:23 GMT",
+            "ETag": "W\/\"fa9e0a5c3fc40caf8e9492982aaf4a65\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179988",
+            "X-Contentful-RateLimit-Hour-Remaining": "179826",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "867ea11c65d2c8c30ffcba25dc025e6e",
-            "Content-Length": "421",
+            "X-Contentful-Request-Id": "2efde6336ee3d3b81d60a1d4cbbb20b5",
+            "Content-Length": "401",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=PzsjWY2+SBiEq3D46B0PlCTOX1kAAAAAQUIPAAAAAABPh7P5Rfg9N4OsyzImqKpv; expires=Sat, 07 Jul 2018 17:27:52 GMT; path=\/; Domain=.contentful.com, nlbi_673446=MgzwekV1TT1emupk6lKYhQAAAAD7cNaVCS8B4wm82vFHKUcE; path=\/; Domain=.contentful.com, incap_ses_477_673446=zjglfkcPIVwAlLe1i6WeBiTOX1kAAAAALVyOZYFQuMfzTIcN91yFMA==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "9-7591982-7591983 NNNN CT(0 0 0) RT(1499450916163 50) q(0 0 0 -1) r(1 1) U5",
+            "Set-Cookie": "visid_incap_673446=gQdBReFcRFWrkSWZqQADNGZx1FoAAAAAQUIPAAAAAAAlUknIzfcb5rsyWj2zREcp; expires=Mon, 15 Apr 2019 12:14:06 GMT; path=\/; Domain=.contentful.com, nlbi_673446=QLp9Lv4rLEUsh8tG6lKYhQAAAACVoFyI\/RiHjtgggP+EIVd0; path=\/; Domain=.contentful.com, incap_ses_477_673446=VFhjbTIPsWsbevWH5qWeBmZx1FoAAAAAZ7V7OfHBlXXluW49H8dbJA==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "1-11236291-11236294 NNNN CT(119 120 0) RT(1523872102262 22) q(0 0 3 -1) r(5 5) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"fields\": {\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"contentType\": \"image\/svg+xml\",\n        \"details\": {\n          \"image\": {\n            \"width\": 157,\n            \"height\": 32\n          },\n          \"size\": 3047\n        },\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/7M96PXDH1Y0m2WwGC4CWSM\/d2cb3275909fd58e891c143d1d4049b9\/contentful.svg\"\n      }\n    },\n    \"title\": {\n      \"en-US\": \"Contentful\"\n    }\n  },\n  \"sys\": {\n    \"id\": \"7M96PXDH1Y0m2WwGC4CWSM\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-07-07T18:08:34.648Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"version\": 2,\n    \"updatedAt\": \"2017-07-07T18:08:35.709Z\",\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"yaeI4ZKdlmysiIYwAwqW0\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2018-04-16T09:48:21.000Z\",\n    \"updatedAt\": \"2018-04-16T09:48:21.000Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"version\": 1\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"Contentful\"\n    },\n    \"file\": {\n      \"en-US\": {\n        \"fileName\": \"contentful.svg\",\n        \"uploadFrom\": {\n          \"sys\": {\n            \"id\": \"7IPsnPxPVmgI7vWQJ6MBYy\",\n            \"type\": \"Link\",\n            \"linkType\": \"Upload\"\n          }\n        },\n        \"contentType\": \"image\/svg+xml\"\n      }\n    }\n  }\n}\n"
     }
 },{
     "request": {
         "method": "GET",
-        "url": "https:\/\/upload.contentful.com\/spaces\/34luz0flcmxt\/uploads\/4Irrq9lxZySMl497NK6LTX",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets?sys.id=yaeI4ZKdlmysiIYwAwqW0&limit=1",
         "headers": {
-            "Host": "upload.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -337,31 +337,77 @@
             "message": "OK"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "CF-Space-Id": "34luz0flcmxt",
+            "Content-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Date": "Mon, 16 Apr 2018 09:48:24 GMT",
+            "ETag": "W\/\"cbde3ae327ffb6a4afb970b7ce531990\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179825",
+            "X-Contentful-RateLimit-Reset": "0",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "925792c308884d74abe921d4fd731f43",
+            "Content-Length": "523",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=nqfyQHiWS8yfNIzXAqrbSmdx1FoAAAAAQUIPAAAAAAAj3kBsu2wz0qCEAf2CHFB2; expires=Mon, 15 Apr 2019 12:14:06 GMT; path=\/; Domain=.contentful.com, nlbi_673446=gEaPbEcPP2HndKgZ6lKYhQAAAAASORlhgRVKjPleVzZejcYs; path=\/; Domain=.contentful.com, incap_ses_477_673446=vrHrViljtELLevWH5qWeBmdx1FoAAAAAqglmBChpvQtV6ew2P3CqdQ==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "4-61343617-61339997 PNNN RT(1523872103808 21) q(0 0 0 -1) r(1 1) U5",
+            "X-CDN": "Incapsula"
+        },
+        "body": "{\n  \"sys\": {\n    \"type\": \"Array\"\n  },\n  \"total\": 1,\n  \"skip\": 0,\n  \"limit\": 1,\n  \"items\": [\n    {\n      \"sys\": {\n        \"space\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"Space\",\n            \"id\": \"34luz0flcmxt\"\n          }\n        },\n        \"id\": \"yaeI4ZKdlmysiIYwAwqW0\",\n        \"type\": \"Asset\",\n        \"createdAt\": \"2018-04-16T09:48:21.000Z\",\n        \"updatedAt\": \"2018-04-16T09:48:22.317Z\",\n        \"environment\": {\n          \"sys\": {\n            \"id\": \"master\",\n            \"type\": \"Link\",\n            \"linkType\": \"Environment\"\n          }\n        },\n        \"createdBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n          }\n        },\n        \"updatedBy\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"User\",\n            \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n          }\n        },\n        \"version\": 2\n      },\n      \"fields\": {\n        \"title\": {\n          \"en-US\": \"Contentful\"\n        },\n        \"file\": {\n          \"en-US\": {\n            \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/yaeI4ZKdlmysiIYwAwqW0\/5e1a61b821ac70fc2a401c4ff76cfd81\/contentful.svg\",\n            \"details\": {\n              \"size\": 3047,\n              \"image\": {\n                \"width\": 157,\n                \"height\": 32\n              }\n            },\n            \"fileName\": \"contentful.svg\",\n            \"contentType\": \"image\/svg+xml\"\n          }\n        }\n      }\n    }\n  ]\n}\n"
+    }
+},{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/upload.contentful.com\/spaces\/34luz0flcmxt\/uploads\/7IPsnPxPVmgI7vWQJ6MBYy",
+        "headers": {
+            "Host": "upload.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "cache-control": "no-cache",
             "content-encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 18:08:38 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:26 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "vary": "accept-encoding",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "7d921bdb9f575667301ce78b41fb67d3",
-            "Content-Length": "223",
+            "X-Contentful-Request-Id": "db8c4da8abd3b85b1b4360f5efeabffb",
+            "Content-Length": "225",
             "Connection": "keep-alive"
         },
-        "body": "{\n  \"sys\": {\n    \"id\": \"4Irrq9lxZySMl497NK6LTX\",\n    \"type\": \"Upload\",\n    \"createdAt\": \"2017-07-07T18:08:34.000Z\",\n    \"expiresAt\": \"2017-07-09T00:00:00.000Z\",\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    }\n  }\n}"
+        "body": "{\n  \"sys\": {\n    \"id\": \"7IPsnPxPVmgI7vWQJ6MBYy\",\n    \"type\": \"Upload\",\n    \"createdAt\": \"2018-04-16T09:48:21.000Z\",\n    \"expiresAt\": \"2018-04-18T00:00:00.000Z\",\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    }\n  }\n}"
     }
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/upload.contentful.com\/spaces\/34luz0flcmxt\/uploads\/4Irrq9lxZySMl497NK6LTX",
+        "url": "https:\/\/upload.contentful.com\/spaces\/34luz0flcmxt\/uploads\/7IPsnPxPVmgI7vWQJ6MBYy",
         "headers": {
             "Host": "upload.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -373,27 +419,27 @@
             "message": "No Content"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "cache-control": "no-cache",
             "Content-Type": "application\/octet-stream",
-            "Date": "Fri, 07 Jul 2017 18:08:39 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:27 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "63ff430a4df31a7d9916ebd131f9ae36",
+            "X-Contentful-Request-Id": "f0283e4c1646c2774266e496ea199a49",
             "Connection": "keep-alive"
         }
     }
 },{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/7M96PXDH1Y0m2WwGC4CWSM",
+        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/yaeI4ZKdlmysiIYwAwqW0",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.6",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.6; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -405,26 +451,26 @@
             "message": "No Content"
         },
         "headers": {
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "Access-Control-Max-Age": "1728000",
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 18:08:41 GMT",
+            "Date": "Mon, 16 Apr 2018 09:48:30 GMT",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179987",
+            "X-Contentful-RateLimit-Hour-Remaining": "179824",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "08cc825264d0615a9167b4b03f7ec8c2",
+            "X-Contentful-Request-Id": "b92aeac245107ecc2bbc74324bf4d83c",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=r1cp4RLWTtCI+xy+ayx2TyjOX1kAAAAAQUIPAAAAAADUVFoqn4hR65PY1iVqn7CF; expires=Sat, 07 Jul 2018 17:27:42 GMT; path=\/; Domain=.contentful.com, nlbi_673446=6zSjN+tRfy8drW6S6lKYhQAAAABD\/ccRBOrhBh5NgqE\/p8em; path=\/; Domain=.contentful.com, incap_ses_477_673446=F5y8PUYU2hislbe1i6WeBijOX1kAAAAAl2LYpDtWEe2EmjfZWMcJMw==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "3-6447550-6447551 NNNN CT(0 0 0) RT(1499450920549 51) q(0 0 0 -1) r(3 3) U5",
+            "Set-Cookie": "visid_incap_673446=93xa7EA\/QM6pD0spcJOJ+G1x1FoAAAAAQUIPAAAAAABFtUjUtbZkxZtEk3Zc5\/CD; expires=Mon, 15 Apr 2019 12:14:06 GMT; path=\/; Domain=.contentful.com, nlbi_673446=3OH1W6JGz2HbAYv46lKYhQAAAAAKN+RLNSGEcT78Fu5TghI9; path=\/; Domain=.contentful.com, incap_ses_477_673446=rPMYLw+IOyogf\/WH5qWeBm1x1FoAAAAAsQOZ+YbJ2Qa6DwFl4FH+TQ==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "9-49553792-49553795 NNNN CT(100 203 0) RT(1523872108699 22) q(0 0 3 -1) r(5 5) U5",
             "X-CDN": "Incapsula"
         }
     }

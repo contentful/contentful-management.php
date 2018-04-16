@@ -39,12 +39,7 @@ class ApiKeyTest extends BaseTestCase
         $this->assertInstanceOf(DeliveryApiKey::class, $deliveryApiKey);
         $this->assertSame('Example API Key', $deliveryApiKey->getName());
         $this->assertNull($deliveryApiKey->getDescription());
-        // When working with the collection endpoint,
-        // each key's preview api key is *not* part of the payload.
-        // This means that DeliveryApiKey objects created using
-        // $client->getDeliveryApiKeys() will always have $previewApiKey
-        // set to null.
-        $this->assertNull($deliveryApiKey->getPreviewApiKey());
+        $this->assertInstanceOf(Link::class, $deliveryApiKey->getPreviewApiKey());
 
         $query = (new Query())
             ->setLimit(1);
@@ -55,7 +50,7 @@ class ApiKeyTest extends BaseTestCase
         $this->assertInstanceOf(DeliveryApiKey::class, $deliveryApiKey);
         $this->assertSame('Example API Key', $deliveryApiKey->getName());
         $this->assertNull($deliveryApiKey->getDescription());
-        $this->assertNull($deliveryApiKey->getPreviewApiKey());
+        $this->assertInstanceOf(Link::class, $deliveryApiKey->getPreviewApiKey());
 
         $this->assertSame([
             'space' => $this->defaultSpaceId,

@@ -33,7 +33,7 @@ trait UpdatableTrait
     abstract public function asRequestBody();
 
     /**
-     * Deletes the current resource.
+     * Updates the current resource.
      */
     public function update()
     {

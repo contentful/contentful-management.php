@@ -84,6 +84,13 @@ class MapperTest extends BaseTestCase
                         'type' => 'Link',
                     ],
                 ],
+                'environment' => [
+                    'sys' => [
+                        'id' => 'master',
+                        'linkType' => 'Environment',
+                        'type' => 'Link',
+                    ],
+                ],
                 'contentType' => [
                     'sys' => [
                         'id' => 'blogPost',

@@ -29,7 +29,7 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
         UpdatableTrait;
 
     /**
-     * @var Link|null
+     * @var Link
      */
     protected $previewApiKey;
 
@@ -89,7 +89,7 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
     }
 
     /**
-     * @return Link|null
+     * @return Link
      */
     public function getPreviewApiKey()
     {

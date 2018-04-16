@@ -5,7 +5,7 @@
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/0.11.0-dev; platform PHP\/7.1.14; os macOS;",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -25,17 +25,17 @@
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Mon, 26 Mar 2018 08:54:09 GMT",
+            "Date": "Mon, 16 Apr 2018 10:08:58 GMT",
             "ETag": "W\/\"8c3f03e5a0395e71603e57af0cbef700\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "4ff076433a63bd657e1e5c4aee1fb6f2",
+            "X-Contentful-Request-Id": "e3ca5f1c5f83c6cc93d56336a3daa96a",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=dqnSF1wtSheLwqZiOw\/Xqyu1uFoAAAAAQUIPAAAAAACVOfmruO+M0ZCd6x0210nx; expires=Mon, 25 Mar 2019 09:02:14 GMT; path=\/; Domain=.contentful.com, nlbi_673446=sqEddwpfWG3iBdcT6lKYhQAAAACCvg6gogY1C72kj075pctc; path=\/; Domain=.contentful.com, incap_ses_416_673446=gp4afSu9AF+XqVot3O7FBTG1uFoAAAAACzep8DGsw9yfgwNVes9vpQ==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "2-7188728-7188729 NNNN CT(127 131 0) RT(1522054448947 120) q(0 0 3 0) r(5 5) U5",
+            "Set-Cookie": "visid_incap_673446=0ZwLdZGSQRKqrfNkQv6dsTp21FoAAAAAQUIPAAAAAABsFtcTBCUD+1p0gy71tGu\/; expires=Mon, 15 Apr 2019 12:14:06 GMT; path=\/; Domain=.contentful.com, nlbi_673446=A16CUPEiCzx8iqvS6lKYhQAAAACTSIp7fnUw\/pm98jv87HaT; path=\/; Domain=.contentful.com, incap_ses_477_673446=gJ7gES10WBCBU\/mH5qWeBjp21FoAAAAASRZ8WSYGbtvoORTwlH\/5gQ==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "4-61526667-61523901 PNNN RT(1523873337816 60) q(0 0 0 -1) r(2 2) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
@@ -49,7 +49,7 @@
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/0.11.0-dev; platform PHP\/7.1.14; os macOS;",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -69,17 +69,17 @@
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Mon, 26 Mar 2018 08:54:10 GMT",
+            "Date": "Mon, 16 Apr 2018 10:08:59 GMT",
             "ETag": "W\/\"c68e4c23b45c78ad51e06c7f38f7ce07\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
-            "X-Contentful-Request-Id": "0edd3f5d79474e0a37f592290ad193e6",
+            "X-Contentful-Request-Id": "9d98854ecfcb06e256eaa56f0d5687df",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=dqnSF1wtSheLwqZiOw\/Xqyu1uFoAAAAAQUIPAAAAAACVOfmruO+M0ZCd6x0210nx; expires=Mon, 25 Mar 2019 09:02:14 GMT; path=\/; Domain=.contentful.com, nlbi_673446=WlyCUAQ301dQUmpg6lKYhQAAAAAfaNGUjPwJ2rEUARcIm4J7; path=\/; Domain=.contentful.com, incap_ses_416_673446=N1iUNaLJOFWXqVot3O7FBTK1uFoAAAAAdL0jZUg\/PcpQ8s3k+4E37Q==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "5-15758911-15758918 NNNN CT(100 105 0) RT(1522054449695 57) q(0 0 2 0) r(3 3) U5",
+            "Set-Cookie": "visid_incap_673446=oNf2fwBITheG\/oqj9bfdoDp21FoAAAAAQUIPAAAAAABnmBaA580Ce9azExqJE\/rM; expires=Mon, 15 Apr 2019 12:14:06 GMT; path=\/; Domain=.contentful.com, nlbi_673446=2Ow0EACKf3+spnLv6lKYhQAAAAAzHRQHqBCfcVOclyptYCiC; path=\/; Domain=.contentful.com, incap_ses_477_673446=SvZoDOZPDXLsU\/mH5qWeBjp21FoAAAAAY+0wQIKC\/IQhSqzAFVz8Fw==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "4-61526709-61526714 NNNN CT(110 109 0) RT(1523873338163 20) q(0 0 3 -1) r(4 4) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"

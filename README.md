@@ -12,8 +12,6 @@ PHP SDK for [Contentful's](https://www.contentful.com) Content Management API.
 
 The SDK requires at least PHP 7.0.
 
-The SDK is currently in a beta state. The API might change at any time. We discourage its use in a production environment.
-
 ## Setup
 
 To add this package to your `composer.json` and install it execute the following command:
@@ -337,7 +335,7 @@ $personalAccessTokens = (new \Contentful\Management\Query())
     ->setLimit(5);
 $personalAccessTokens = $client->getPersonalAccessTokens($query);
 
-$personalAccessToken = $client->getPersonalAccessToken($localeId);
+$personalAccessToken = $client->getPersonalAccessToken($personalAccessTokenId);
 
 echo $personalAccessToken->getSystemProperties()->getId();
 echo $personalAccessToken->getName();

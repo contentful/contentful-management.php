@@ -24,7 +24,7 @@ class UserTest extends BaseTestCase
         $this->assertSame('PHP SDK', $user->getFirstName());
         $this->assertSame('Tests', $user->getLastName());
         $this->assertSame('cidevdocs+php@contentful.com', $user->getEmail());
-        $this->assertSame('https://www.gravatar.com/avatar/6474b043cb2a58f34b0576ccf83d56e2?s=50&d=https%3A%2F%2Fstatic.contentful.com%2Fgatekeeper%2Fusers%2Fdefault-43783205a36955c723acfe0a32bcf72eebe709cac2067249bc80385b78ccc70d.png', $user->getAvatarUrl());
+        $this->assertSame('https://www.gravatar.com/avatar/6474b043cb2a58f34b0576ccf83d56e2?s=50&d=https%3A%2F%2Fstatic.contentful.com%2Fgatekeeper%2Fusers%2Fdefault-a4327b54b8c7431ea8ddd9879449e35f051f43bd767d83c5ff351aed9db5986e.png', $user->getAvatarUrl());
         $this->assertTrue($user->isActivated());
         $this->assertTrue($user->isConfirmed());
         $this->assertInternalType('integer', $user->getSignInCount());
