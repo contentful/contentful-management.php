@@ -14,6 +14,7 @@ use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\ResourceInterface;
+use Contentful\Management\Resource\Space;
 
 /**
  * SpaceProxy class.
@@ -122,5 +123,17 @@ class SpaceProxy
         $parameters['space'] = $this->spaceId;
 
         return $this->client->resolveLink($link, $parameters);
+    }
+
+    /**
+     * Returns the Space resource which corresponds to this proxy.
+     *
+     * @return Space
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces/space
+     */
+    public function toResource(): Space
+    {
+        return $this->client->getSpace($this->spaceId);
     }
 }

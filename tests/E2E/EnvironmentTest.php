@@ -42,6 +42,29 @@ class EnvironmentTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_environment_get_one_from_environment_proxy.json
+     */
+    public function testGetOneFromEnvironmentProxy()
+    {
+        $proxy = $this->getDefaultEnvironmentProxy();
+
+        $environment = $proxy->toResource();
+
+        $this->assertInstanceOf(Environment::class, $environment);
+        $this->assertLink('master', 'Environment', $environment->asLink());
+        $sys = $environment->getSystemProperties();
+        $this->assertSame('master', $sys->getId());
+        $this->assertSame('Environment', $sys->getType());
+        $this->assertSame('2017-12-07T11:07:09Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2018-03-19T09:59:34Z', (string) $sys->getUpdatedAt());
+        $this->assertSame(3, $sys->getVersion());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertSame('master', $environment->getName());
+    }
+
+    /**
      * @vcr e2e_environment_get_collection.json
      */
     public function testGetCollection()

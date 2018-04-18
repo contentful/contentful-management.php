@@ -39,6 +39,50 @@ class SpaceTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_space_get_one_from_space_proxy.json
+     */
+    public function testGetOneFromSpaceProxy()
+    {
+        $proxy = $this->getDefaultSpaceProxy();
+        $space = $proxy->toResource();
+
+        $this->assertInstanceOf(Space::class, $space);
+        $this->assertLink($this->defaultSpaceId, 'Space', $space->asLink());
+        $sys = $space->getSystemProperties();
+        $this->assertSame($this->defaultSpaceId, $sys->getId());
+        $this->assertSame('Space', $sys->getType());
+        $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
+        $this->assertSame(5, $sys->getVersion());
+        $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertSame('PHP CMA', $space->getName());
+    }
+
+    /**
+     * @vcr e2e_space_get_one_from_space_proxy_from_environment_proxy.json
+     */
+    public function testGetOneFromSpaceProxyFromEnvironmentProxy()
+    {
+        $environment = $this->getDefaultEnvironmentProxy();
+
+        $proxy = $environment->getSpaceProxy();
+        $space = $proxy->toResource();
+
+        $this->assertInstanceOf(Space::class, $space);
+        $this->assertLink($this->defaultSpaceId, 'Space', $space->asLink());
+        $sys = $space->getSystemProperties();
+        $this->assertSame($this->defaultSpaceId, $sys->getId());
+        $this->assertSame('Space', $sys->getType());
+        $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
+        $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
+        $this->assertSame(5, $sys->getVersion());
+        $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
+        $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
+        $this->assertSame('PHP CMA', $space->getName());
+    }
+
+    /**
      * @vcr e2e_space_get_collection.json
      */
     public function testGetCollection()

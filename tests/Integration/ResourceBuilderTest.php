@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\Integration;
 
-use Contentful\Management\Mapper\MapperInterface;
+use Contentful\Core\ResourceBuilder\MapperInterface;
 use Contentful\Management\ResourceBuilder;
 use Contentful\Tests\Management\BaseTestCase;
 

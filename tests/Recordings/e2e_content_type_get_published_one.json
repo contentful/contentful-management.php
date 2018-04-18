@@ -5,7 +5,7 @@
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/0.11.0-dev; platform PHP\/7.1.14; os macOS;",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -25,23 +25,23 @@
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Mon, 26 Mar 2018 12:47:20 GMT",
-            "ETag": "W\/\"21a210843251985e012ba84b13bf6afe\"",
+            "Date": "Mon, 16 Apr 2018 10:00:40 GMT",
+            "ETag": "W\/\"dc282424eb5b7374228ce644547cdcbf\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179998",
+            "X-Contentful-RateLimit-Hour-Remaining": "179799",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
-            "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "fa1bb2101961ff0e783b9b9c9cb2cfac",
-            "Content-Length": "533",
+            "X-Contentful-RateLimit-Second-Remaining": "48",
+            "X-Contentful-Request-Id": "897354588e8584853407808bd2abf6d3",
+            "Content-Length": "556",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=9NNrvk2pRlKo1QLapSV00NfruFoAAAAAQUIPAAAAAACornim7CxHZ57ttmymKP\/T; expires=Tue, 26 Mar 2019 09:02:16 GMT; path=\/; Domain=.contentful.com, nlbi_673446=2B\/cSdX5\/2uDsRdL6lKYhQAAAABlvEmRa3VykbQs2TNcYbaW; path=\/; Domain=.contentful.com, incap_ses_416_673446=j86aJ2iDAkvKv3kt3O7FBdjruFoAAAAA8IKzPyRa9OcjYLlBtNgrhA==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "1-5655785-5655787 NNNN CT(108 112 0) RT(1522068439663 164) q(0 0 2 1) r(7 7) U5",
+            "Set-Cookie": "visid_incap_673446=QOcp9TyCTmmzrizQtFsO30Z01FoAAAAAQUIPAAAAAADkbtFKwpv1kuPQuTbJLeAd; expires=Mon, 15 Apr 2019 12:13:41 GMT; path=\/; Domain=.contentful.com, nlbi_673446=dGUAcAVEWReZSCAI6lKYhQAAAADYrCdPxZr6DuJ5P\/CKfF2p; path=\/; Domain=.contentful.com, incap_ses_477_673446=LaERNhcMVjpA0PeH5qWeBkh01FoAAAAAmagBNWvLiJBTQ1SFcDOpXA==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "10-80180725-80180733 NNNN CT(109 110 0) RT(1523872839779 18) q(0 0 3 0) r(4 4) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"cat\",\n    \"type\": \"ContentType\",\n    \"createdAt\": \"2017-10-17T12:23:46.365Z\",\n    \"updatedAt\": \"2017-10-17T12:23:46.365Z\",\n    \"revision\": 1\n  },\n  \"displayField\": \"name\",\n  \"name\": \"Cat\",\n  \"description\": \"Meow.\",\n  \"fields\": [\n    {\n      \"id\": \"name\",\n      \"name\": \"Name\",\n      \"type\": \"Text\",\n      \"localized\": true,\n      \"required\": true,\n      \"validations\": [\n        {\n          \"size\": {\n            \"min\": 3\n          }\n        }\n      ],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"likes\",\n      \"name\": \"Likes\",\n      \"type\": \"Array\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"items\": {\n        \"type\": \"Symbol\",\n        \"validations\": []\n      }\n    },\n    {\n      \"id\": \"color\",\n      \"name\": \"Color\",\n      \"type\": \"Symbol\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"bestFriend\",\n      \"name\": \"Best Friend\",\n      \"type\": \"Link\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"linkType\": \"Entry\"\n    },\n    {\n      \"id\": \"birthday\",\n      \"name\": \"Birthday\",\n      \"type\": \"Date\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"lifes\",\n      \"name\": \"Lifes left\",\n      \"type\": \"Integer\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": true,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"lives\",\n      \"name\": \"Lives left\",\n      \"type\": \"Integer\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"image\",\n      \"name\": \"Image\",\n      \"type\": \"Link\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"linkType\": \"Asset\"\n    }\n  ]\n}\n"
+        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"cat\",\n    \"type\": \"ContentType\",\n    \"createdAt\": \"2017-10-17T12:23:46.365Z\",\n    \"updatedAt\": \"2017-10-17T12:23:46.365Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"revision\": 1\n  },\n  \"displayField\": \"name\",\n  \"name\": \"Cat\",\n  \"description\": \"Meow.\",\n  \"fields\": [\n    {\n      \"id\": \"name\",\n      \"name\": \"Name\",\n      \"type\": \"Text\",\n      \"localized\": true,\n      \"required\": true,\n      \"validations\": [\n        {\n          \"size\": {\n            \"min\": 3\n          }\n        }\n      ],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"likes\",\n      \"name\": \"Likes\",\n      \"type\": \"Array\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"items\": {\n        \"type\": \"Symbol\",\n        \"validations\": []\n      }\n    },\n    {\n      \"id\": \"color\",\n      \"name\": \"Color\",\n      \"type\": \"Symbol\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"bestFriend\",\n      \"name\": \"Best Friend\",\n      \"type\": \"Link\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"linkType\": \"Entry\"\n    },\n    {\n      \"id\": \"birthday\",\n      \"name\": \"Birthday\",\n      \"type\": \"Date\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"lifes\",\n      \"name\": \"Lifes left\",\n      \"type\": \"Integer\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": true,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"lives\",\n      \"name\": \"Lives left\",\n      \"type\": \"Integer\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"image\",\n      \"name\": \"Image\",\n      \"type\": \"Link\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"linkType\": \"Asset\"\n    }\n  ]\n}\n"
     }
 }]

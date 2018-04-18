@@ -13,6 +13,7 @@ namespace Contentful\Management\Proxy;
 use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Environment;
 use Contentful\Management\Resource\ResourceInterface;
 
 /**
@@ -92,6 +93,17 @@ class EnvironmentProxy
     }
 
     /**
+     * Returns a proxy to a space resource.
+     * Useful for all space-scoped operations.
+     *
+     * @return SpaceProxy
+     */
+    public function getSpaceProxy(): SpaceProxy
+    {
+        return new SpaceProxy($this->client, $this->spaceId);
+    }
+
+    /**
      * Persist a new resource in Contentful.
      * This is a convenience method which just forwards to Client::create(),
      * but setting the `space` and `environment` keys to the current space and environment IDs in the parameters array.
@@ -126,5 +138,17 @@ class EnvironmentProxy
         $parameters['environment'] = $this->environmentId;
 
         return $this->client->resolveLink($link, $parameters);
+    }
+
+    /**
+     * Returns the Environment resource which corresponds to this proxy.
+     *
+     * @return Environment
+     *
+     * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environment
+     */
+    public function toResource(): Environment
+    {
+        return $this->client->getEnvironment($this->spaceId, $this->environmentId);
     }
 }

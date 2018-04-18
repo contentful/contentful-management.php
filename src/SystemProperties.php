@@ -164,12 +164,7 @@ class SystemProperties implements SystemPropertiesInterface
         $this->expiresAt = $this->checkAndBuildDate($sys, 'expiresAt');
 
         $this->space = $this->checkAndBuildLink($sys, 'space');
-        // @TODO: Remove this hack once sys.environment is always present
-        if (isset($sys['environment'])) {
-            $this->environment = $this->checkAndBuildLink($sys, 'environment');
-        } elseif (isset($sys['space']) && \in_array($sys['type'], ['Asset', 'ContentType', 'Entry', 'Extension', 'Locale', 'Snapshot', 'EditorInterface'], true)) {
-            $this->environment = new Link('master', 'Environment');
-        }
+        $this->environment = $this->checkAndBuildLink($sys, 'environment');
         $this->contentType = $this->checkAndBuildLink($sys, 'contentType');
         $this->createdBy = $this->checkAndBuildLink($sys, 'createdBy');
         $this->updatedBy = $this->checkAndBuildLink($sys, 'updatedBy');

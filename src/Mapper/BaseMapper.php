@@ -12,6 +12,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Core\Resource\ResourceInterface;
+use Contentful\Core\ResourceBuilder\MapperInterface;
 use Contentful\Management\ResourceBuilder;
 
 /**

@@ -5,8 +5,8 @@
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.51.0 PHP\/7.1.4",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/\/0.6.0-dev; platform PHP\/7.1.4; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json"
@@ -21,32 +21,32 @@
         },
         "headers": {
             "Accept-Ranges": "bytes",
-            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
             "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Expose-Headers": "Etag",
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Fri, 07 Jul 2017 13:00:19 GMT",
+            "Date": "Mon, 16 Apr 2018 10:02:26 GMT",
             "Server": "Contentful",
-            "Set-Cookie": "_auth_new_session=ad7e8949c7cabd7551333bfeeda2a636; path=\/; expires=Fri, 21 Jul 2017 13:00:19 -0000; secure; HttpOnly, visid_incap_673446=yIiaJxKKSYCdAwNFhzVvJ+OFX1kAAAAAQUIPAAAAAACE8r\/SpczfqdcAxDzFd028; expires=Fri, 06 Jul 2018 17:40:03 GMT; path=\/; Domain=.contentful.com, nlbi_673446=jFnfPJtOnAZSe7YY6lKYhQAAAACz+TtPhcH0h5sf62R0iUBx; path=\/; Domain=.contentful.com, incap_ses_259_673446=gce+KJc1S0TVV2VI6yeYA+OFX1kAAAAAndts4TtRyhU\/Wy+QkYCPsw==; path=\/; Domain=.contentful.com",
+            "Set-Cookie": "_auth_new_session=74993458d1703f27b55b17027f9aae10; path=\/; expires=Mon, 30 Apr 2018 10:02:26 -0000; secure; HttpOnly, visid_incap_673446=a1LJacZ5SiOfod374ifjX7F01FoAAAAAQUIPAAAAAAAknyevbpyzXjw7\/9ZgRyhh; expires=Mon, 15 Apr 2019 12:13:41 GMT; path=\/; Domain=.contentful.com, nlbi_673446=KzsfGjknNGFBlm9n6lKYhQAAAAC8rMkwoFT0EC8C1aJrAeyr; path=\/; Domain=.contentful.com, incap_ses_477_673446=CdEGHL3qE17CKfiH5qWeBrF01FoAAAAAGhDSgZkWgDy2FLV+UtKNng==; path=\/; Domain=.contentful.com",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179843",
+            "X-Contentful-RateLimit-Hour-Remaining": "179730",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "48",
-            "X-Contentful-Request-Id": "e307f40f8752564bcf01af54418ced1b",
+            "X-Contentful-Request-Id": "7a9040356cff295a74ab9913003f20a2",
             "X-Frame-Options": "ALLOWALL",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "X-Iinfo": "10-48672558-48667739 PNNN RT(1499432418978 19) q(0 0 0 -1) r(2 2) U5",
+            "X-Iinfo": "10-80213649-80201967 PNNN RT(1523872945479 17) q(0 0 0 -1) r(3 3) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"requestId\":\"e307f40f8752564bcf01af54418ced1b\",\n  \"details\":{\n    \"key\":\"resource\"\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"MissingKey\"\n  }\n}\n\n"
+        "body": "{\n  \"requestId\":\"7a9040356cff295a74ab9913003f20a2\",\n  \"details\":{\n    \"key\":\"resource\"\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"MissingKey\"\n  }\n}\n\n"
     }
 }]

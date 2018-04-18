@@ -5,7 +5,7 @@
         "headers": {
             "Host": "api.contentful.com",
             "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/0.11.0-dev; platform PHP\/7.1.14; os macOS;",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -25,23 +25,23 @@
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Mon, 19 Mar 2018 10:34:02 GMT",
-            "ETag": "W\/\"cd6713002585af3d98e7e8cd6381263e\"",
+            "Date": "Mon, 16 Apr 2018 09:47:57 GMT",
+            "ETag": "W\/\"635d0cdce7f26f0ef9dbe614ec920bdd\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179877",
+            "X-Contentful-RateLimit-Hour-Remaining": "179845",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
-            "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "44d12d5ccbd70033bbe3122463daa136",
-            "Content-Length": "497",
+            "X-Contentful-RateLimit-Second-Remaining": "48",
+            "X-Contentful-Request-Id": "003087296c8d727cca6dfef8c446a45c",
+            "Content-Length": "527",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=AKBXtBSxT5uWNHLejW8bqBiSr1oAAAAAQUIPAAAAAACnDcsHqXowAPgTgTWArwMz; expires=Tue, 19 Mar 2019 09:28:18 GMT; path=\/; Domain=.contentful.com, nlbi_673446=EsgMBTWJEwzhhKCZ6lKYhQAAAABwNOQ54n+\/m1ijixF4MY7W; path=\/; Domain=.contentful.com, incap_ses_416_673446=2IVhDLIqXG6vnSLc2e7FBRmSr1oAAAAAvJ9gWBBfUK4afPysZFQGKw==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "9-33919189-33919203 NNNN CT(101 105 0) RT(1521455640584 136) q(0 0 2 2) r(7 7) U5",
+            "Set-Cookie": "visid_incap_673446=i1rxZtngSaStUomo3arcW01x1FoAAAAAQUIPAAAAAAAWISugtyX5Owf9A\/VRz+dC; expires=Mon, 15 Apr 2019 12:13:41 GMT; path=\/; Domain=.contentful.com, nlbi_673446=kf6bVxy3nSO58SVt6lKYhQAAAADQhRtCGzW8ZLhmu2N9MQh4; path=\/; Domain=.contentful.com, incap_ses_477_673446=F9h0b\/rYfwQ4ZPWH5qWeBk1x1FoAAAAAqbyPpFjUdSMkgWGKbOzKwg==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "8-15655358-15655359 NNNN CT(100 101 0) RT(1523872076717 20) q(0 0 2 -1) r(4 4) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"2TEG7c2zYkSSuKmsqEwCS\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-08-22T15:41:45.127Z\",\n    \"updatedAt\": \"2017-08-22T15:42:20.946Z\",\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedCounter\": 1,\n    \"version\": 11,\n    \"publishedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedVersion\": 10,\n    \"firstPublishedAt\": \"2017-08-22T15:42:20.946Z\",\n    \"publishedAt\": \"2017-08-22T15:42:20.946Z\"\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"Contentful Logo\"\n    },\n    \"file\": {\n      \"en-US\": {\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/2TEG7c2zYkSSuKmsqEwCS\/22da0779cac76ba6b74b5c2cbf084b97\/contentful-logo-C395C545BF-seeklogo.com.png\",\n        \"details\": {\n          \"size\": 15241,\n          \"image\": {\n            \"width\": 266,\n            \"height\": 300\n          }\n        },\n        \"fileName\": \"contentful-logo-C395C545BF-seeklogo.com.png\",\n        \"contentType\": \"image\/png\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"2TEG7c2zYkSSuKmsqEwCS\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-08-22T15:41:45.127Z\",\n    \"updatedAt\": \"2017-08-22T15:42:20.946Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedCounter\": 1,\n    \"version\": 11,\n    \"publishedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedVersion\": 10,\n    \"firstPublishedAt\": \"2017-08-22T15:42:20.946Z\",\n    \"publishedAt\": \"2017-08-22T15:42:20.946Z\"\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"Contentful Logo\"\n    },\n    \"file\": {\n      \"en-US\": {\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/2TEG7c2zYkSSuKmsqEwCS\/22da0779cac76ba6b74b5c2cbf084b97\/contentful-logo-C395C545BF-seeklogo.com.png\",\n        \"details\": {\n          \"size\": 15241,\n          \"image\": {\n            \"width\": 266,\n            \"height\": 300\n          }\n        },\n        \"fileName\": \"contentful-logo-C395C545BF-seeklogo.com.png\",\n        \"contentType\": \"image\/png\"\n      }\n    }\n  }\n}\n"
     }
 }]
