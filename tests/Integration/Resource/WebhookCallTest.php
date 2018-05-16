@@ -26,7 +26,7 @@ class WebhookCallTest extends BaseTestCase
 
     /**
      * This test is meaningless.
-     * It's only here because private, empty contructors are not correctly picked by code coverage.
+     * It's only here because private, empty constructors are not correctly picked by code coverage.
      */
     public function testConstructor()
     {

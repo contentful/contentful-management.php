@@ -26,7 +26,7 @@ class PreviewApiKeyTest extends BaseTestCase
 
     /**
      * This test is meaningless.
-     * It's only here because private, empty contructors are not correctly picked by code coverage.
+     * It's only here because private, empty constructors are not correctly picked by code coverage.
      */
     public function testConstructor()
     {
@@ -51,6 +51,15 @@ class PreviewApiKeyTest extends BaseTestCase
             'name' => 'Preview Key',
             'description' => null,
             'accessToken' => 'ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f',
+            'environments' => [
+                [
+                    'sys' => [
+                        'type' => 'Link',
+                        'id' => 'master',
+                        'linkType' => 'Environment',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/preview_api_key.json', $previewApiKey);

@@ -66,6 +66,10 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
         unset($body['accessToken']);
         unset($body['previewApiKey']);
 
+        if (!$body['environments']) {
+            unset($body['environments']);
+        }
+
         return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
