@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Core\Api\Link;
+
 /**
  * ApiKey class.
  */
@@ -29,6 +31,11 @@ abstract class ApiKey extends BaseResource
      * @var string|null
      */
     protected $accessToken;
+
+    /**
+     * @var Link[]
+     */
+    protected $environments = [];
 
     /**
      * @return string
@@ -90,6 +97,39 @@ abstract class ApiKey extends BaseResource
             'name' => $this->name,
             'description' => $this->description,
             'accessToken' => $this->accessToken,
+            'environments' => $this->environments,
         ];
+    }
+
+    /**
+     * @param Link[] $environments
+     *
+     * @return self
+     */
+    public function setEnvironments(array $environments)
+    {
+        $this->environments = $environments;
+
+        return $this;
+    }
+
+    /**
+     * @return Link[]
+     */
+    public function getEnvironments(): array
+    {
+        return $this->environments;
+    }
+
+    /**
+     * @param Link $environment
+     *
+     * @return self
+     */
+    public function addEnvironment(Link $environment)
+    {
+        $this->environments[] = $environment;
+
+        return $this;
     }
 }

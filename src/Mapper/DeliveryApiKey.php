@@ -32,9 +32,29 @@ class DeliveryApiKey extends BaseMapper
             'name' => $data['name'],
             'accessToken' => $data['accessToken'],
             'description' => $data['description'],
+            'environments' => $this->buildEnvironments($data['environments'] ?? []),
             'previewApiKey' => isset($data['preview_api_key'])
                 ? new Link($data['preview_api_key']['sys']['id'], 'PreviewApiKey')
                 : null,
         ]);
+    }
+
+    /**
+     * @param array $environments
+     *
+     * @return Link[]
+     */
+    private function buildEnvironments(array $environments): array
+    {
+        if (!$environments) {
+            return [new Link('master', 'Environment')];
+        }
+
+        $environmentLinks = [];
+        foreach ($environments as $environment) {
+            $environmentLinks[] = new Link($environment['sys']['id'], 'Environment');
+        }
+
+        return $environmentLinks;
     }
 }

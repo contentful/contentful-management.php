@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Mapper;
 
+use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\PreviewApiKey as ResourceClass;
 use Contentful\Management\SystemProperties;
 
@@ -38,6 +39,26 @@ class PreviewApiKey extends BaseMapper
             'name' => $data['name'],
             'accessToken' => $data['accessToken'],
             'description' => $data['description'],
+            'environments' => $this->buildEnvironments($data['environments'] ?? []),
         ]);
+    }
+
+    /**
+     * @param array $environments
+     *
+     * @return Link[]
+     */
+    private function buildEnvironments(array $environments): array
+    {
+        if (!$environments) {
+            return [new Link('master', 'Environment')];
+        }
+
+        $environmentLinks = [];
+        foreach ($environments as $environment) {
+            $environmentLinks[] = new Link($environment['sys']['id'], 'Environment');
+        }
+
+        return $environmentLinks;
     }
 }

@@ -100,7 +100,7 @@ class EnvironmentTest extends BaseTestCase
         $this->assertSame(1, $environment->getSystemProperties()->getVersion());
         $this->assertLink('queued', 'Status', $environment->getSystemProperties()->getStatus());
 
-        // Calls the API until the environment is ready.
+        // Polls the API until the environment is ready.
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $limit = 5;

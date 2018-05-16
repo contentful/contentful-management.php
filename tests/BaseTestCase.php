@@ -45,8 +45,6 @@ class BaseTestCase extends TestCase
     }
 
     /**
-     * @param string|null $spaceId
-     *
      * @return Client
      */
     protected function getClient(): Client

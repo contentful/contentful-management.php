@@ -24,7 +24,7 @@ interface ResourceInterface extends CoreResourceInterface
     public function asRequestBody();
 
     /**
-     * Returns an associate array where keys are the name of the fragments
+     * Returns an associative array where keys are the name of the fragments
      * in a URI, and the values are the corresponding IDs.
      *
      * @return string[]
