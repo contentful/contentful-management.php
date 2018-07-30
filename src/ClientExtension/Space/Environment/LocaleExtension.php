@@ -11,7 +11,9 @@ declare(strict_types=1);
 namespace Contentful\Management\ClientExtension\Space\Environment;
 
 use Contentful\Core\Resource\ResourceArray;
+use Contentful\Management\Query;
 use Contentful\Management\Resource\Locale as ResourceClass;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * LocaleExtension trait.

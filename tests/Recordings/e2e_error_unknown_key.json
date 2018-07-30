@@ -1,12 +1,12 @@
 [{
     "request": {
         "method": "POST",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/locales",
+        "url": "https:\/\/api.contentful.com\/spaces\/pmgjoasidv3w\/environments\/master\/locales",
         "headers": {
             "Host": "api.contentful.com",
             "Expect": null,
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.54.0 PHP\/7.1.17",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.1.0-dev; platform PHP\/7.1.17; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json"
@@ -28,25 +28,29 @@
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Mon, 16 Apr 2018 10:02:26 GMT",
+            "Contentful-Api": "cma",
+            "Date": "Mon, 30 Jul 2018 16:06:12 GMT",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
             "Server": "Contentful",
-            "Set-Cookie": "_auth_new_session=2ee18d4071663c41ac987bcc8df1ea2c; path=\/; expires=Mon, 30 Apr 2018 10:02:26 -0000; secure; HttpOnly, visid_incap_673446=ry6HE9N5S2G064o8S\/9kp7F01FoAAAAAQUIPAAAAAAB3rA8sAR4PrtLMeMKJ7y0M; expires=Mon, 15 Apr 2019 12:13:41 GMT; path=\/; Domain=.contentful.com, nlbi_673446=jgsNP5M2xAzSJXZS6lKYhQAAAADygn8XZAQJJ5w9mBQlI1Ob; path=\/; Domain=.contentful.com, incap_ses_477_673446=FISEdo1QYSVpKfiH5qWeBrF01FoAAAAABrOG82zO7V9fSwdA4nzfeA==; path=\/; Domain=.contentful.com",
+            "Set-Cookie": "_auth_new_session=7ef4101626036843e8b41b3955dc7792; path=\/; expires=Mon, 13 Aug 2018 16:06:12 -0000; secure; HttpOnly, visid_incap_673446=z5xWTxuuQm6Lc3lGLgP2MXM3X1sAAAAAQUIPAAAAAAB6O9CPVsS30PqktifcQjYR; expires=Mon, 29 Jul 2019 16:13:41 GMT; path=\/; Domain=.contentful.com, nlbi_673446=j+ekXgPezzXvwj0+6lKYhQAAAACZcI+nwHRxIWIDBAsiQAn8; path=\/; Domain=.contentful.com, incap_ses_478_673446=cFD8FVi5NXq49A5ugzOiBnI3X1sAAAAAP8AA1SKGLyU0O7LDfZ3sZA==; path=\/; Domain=.contentful.com",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179731",
+            "X-Contentful-RateLimit-Hour-Remaining": "179940",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "661efe2ee3936d0cb8b38952f7ff9f55",
+            "X-Contentful-Request-Id": "d53376adcaa3003b99165a8e8972affb",
+            "X-Download-Options": "noopen",
             "X-Frame-Options": "ALLOWALL",
+            "X-Permitted-Cross-Domain-Policies": "none",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "X-Iinfo": "10-80213488-80213495 NNNN CT(107 109 0) RT(1523872944821 53) q(0 0 2 -1) r(5 5) U5",
+            "X-Iinfo": "4-16165681-16165731 NNNN CT(100 101 0) RT(1532966771458 132) q(0 0 2 -1) r(4 4) U5",
             "X-CDN": "Incapsula",
             "Content-Encoding": "gzip",
             "Transfer-Encoding": "chunked"
         },
-        "body": "{\n  \"requestId\":\"661efe2ee3936d0cb8b38952f7ff9f55\",\n  \"message\":\"The body you sent contains an unknown key.\",\n  \"details\":{\n    \"keys\":[\n      \"unknown_key\"\n    ]\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"UnknownKey\"\n  }\n}\n\n"
+        "body": "{\n  \"requestId\":\"d53376adcaa3003b99165a8e8972affb\",\n  \"message\":\"The body you sent contains an unknown key.\",\n  \"details\":{\n    \"keys\":[\n      \"unknown_key\"\n    ]\n  },\n  \"sys\":{\n    \"type\":\"Error\",\n    \"id\":\"UnknownKey\"\n  }\n}\n\n"
     }
 }]

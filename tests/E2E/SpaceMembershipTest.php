@@ -12,6 +12,7 @@ namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Core\Api\Link;
 use Contentful\Management\Query;
+use Contentful\Management\Resource\Role;
 use Contentful\Management\Resource\SpaceMembership;
 use Contentful\Tests\Management\BaseTestCase;
 
@@ -22,7 +23,7 @@ class SpaceMembershipTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $spaceMembership = $proxy->getSpaceMembership('3pCRBWtdkT0HzQmQpRcitU');
 
@@ -40,7 +41,7 @@ class SpaceMembershipTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $spaceMemberships = $proxy->getSpaceMemberships();
         $spaceMembership = $spaceMemberships[1];
@@ -86,7 +87,7 @@ class SpaceMembershipTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadWriteSpaceProxy();
 
         $spaceMembership = new SpaceMembership();
         $spaceMembership
@@ -102,9 +103,15 @@ class SpaceMembershipTest extends BaseTestCase
         $this->assertEmpty($spaceMembership->getRoles());
         $this->assertTrue($spaceMembership->isAdmin());
 
+        /** @var Role $role */
+        $role = \array_reduce($proxy->getRoles()->getItems(), function ($carry, Role $role) {
+            return $carry ?: ('Developer' === $role->getName() ? $role : null);
+        });
+
         $spaceMembership
             ->setAdmin(false)
-            ->addRoleLink('6khUMmsfVslYd7tRcThTgE');
+            ->addRole($role->asLink())
+        ;
 
         $spaceMembership->update();
 
@@ -112,7 +119,7 @@ class SpaceMembershipTest extends BaseTestCase
         $this->assertNotNull($spaceMembership->getId());
         $this->assertInstanceOf(Link::class, $spaceMembership->getUser());
         $this->assertSame('2ZEuONMmCXSeGjl2CryAaM', $spaceMembership->getUser()->getId());
-        $this->assertLink('6khUMmsfVslYd7tRcThTgE', 'Role', $spaceMembership->getRoles()[0]);
+        $this->assertLink($role->getId(), 'Role', $spaceMembership->getRoles()[0]);
         $this->assertFalse($spaceMembership->isAdmin());
 
         $spaceMembership->delete();

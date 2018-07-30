@@ -14,7 +14,6 @@ use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\Extension\FieldType;
-use function GuzzleHttp\json_encode;
 
 /**
  * Extension class.

@@ -47,8 +47,8 @@ class ClientTest extends BaseTestCase
     public function testLinkResolver()
     {
         $client = $this->getClient();
-        $spaceProxy = $this->getDefaultSpaceProxy();
-        $environmentProxy = $this->getDefaultEnvironmentProxy();
+        $spaceProxy = $this->getReadOnlySpaceProxy();
+        $environmentProxy = $this->getReadOnlyEnvironmentProxy();
 
         $link = new Link('2TEG7c2zYkSSuKmsqEwCS', 'Asset');
         $asset = $environmentProxy->resolveLink($link);
@@ -80,7 +80,7 @@ class ClientTest extends BaseTestCase
         $this->assertInstanceOf(PreviewApiKey::class, $previewApiKey);
         $this->assertSame('Preview Key', $previewApiKey->getName());
 
-        $link = new Link($this->defaultSpaceId, 'Space');
+        $link = new Link($this->readOnlySpaceId, 'Space');
         $space = $client->resolveLink($link);
         $this->assertInstanceOf(Space::class, $space);
         $this->assertSame('PHP CMA', $space->getName());
@@ -104,15 +104,14 @@ class ClientTest extends BaseTestCase
     {
         $client = $this->getClient();
 
-        $environment = $client->getEnvironment($this->defaultSpaceId, 'master');
-        $entry = (new Entry('testCt'))
-            ->setField('name', 'en-US', 'A name');
+        $environment = $client->getEnvironment($this->readWriteSpaceId, 'master');
+        $asset = (new Asset())
+            ->setTitle('en-US', 'A title');
+        $client->create($asset, 'deleteme', $environment);
 
-        $client->create($entry, 'deleteme', $environment);
+        $this->assertNotNull($asset->getId());
+        $this->assertSame($environment->getId(), $asset->getSystemProperties()->getEnvironment()->getId());
 
-        $this->assertNotNull($entry->getId());
-        $this->assertSame($environment->getId(), $entry->getSystemProperties()->getEnvironment()->getId());
-
-        $entry->delete();
+        $asset->delete();
     }
 }

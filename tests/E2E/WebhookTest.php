@@ -12,7 +12,7 @@ namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Query;
-use Contentful\Management\Resource\Entry;
+use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Webhook;
 use Contentful\Management\Resource\WebhookCall;
 use Contentful\Tests\Management\BaseTestCase;
@@ -25,7 +25,7 @@ class WebhookTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $webhook = $proxy->getWebhook('3tilCowN1lI1rDCe9vhK0C');
 
@@ -40,7 +40,7 @@ class WebhookTest extends BaseTestCase
         $this->assertSame(['Entry.auto_save'], $webhook->getTopics());
 
         $sys = $webhook->getSystemProperties();
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-06-13T08:30:13Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-06-13T08:30:51Z', (string) $sys->getUpdatedAt());
     }
@@ -50,7 +50,8 @@ class WebhookTest extends BaseTestCase
      */
     public function testGetOneFromSpace()
     {
-        $space = $this->getClient()->getSpace($this->defaultSpaceId);
+        $space = $this->getReadOnlySpaceProxy()
+            ->toResource();
 
         $webhook = $space->getWebhook('3tilCowN1lI1rDCe9vhK0C');
 
@@ -65,7 +66,7 @@ class WebhookTest extends BaseTestCase
         $this->assertSame(['Entry.auto_save'], $webhook->getTopics());
 
         $sys = $webhook->getSystemProperties();
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-06-13T08:30:13Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-06-13T08:30:51Z', (string) $sys->getUpdatedAt());
     }
@@ -75,7 +76,7 @@ class WebhookTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
         $webhooks = $proxy->getWebhooks();
 
         $this->assertInstanceOf(Webhook::class, $webhooks[0]);
@@ -94,10 +95,10 @@ class WebhookTest extends BaseTestCase
      */
     public function testCreateUpdate(): Webhook
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadWriteSpaceProxy();
 
-        $webhook = (new Webhook('cf-webhook-X7v4Cy26RJ', 'https://www.example.com/cf-EtumCxGYNobexO7BCi6I6HSaxlpFf3d9YWNvRGb4'))
-            ->addTopic('Entry.create')
+        $webhook = (new Webhook('cf-webhook-deleteme', 'https://www.example.com/cf-EtumCxGYNobexO7BCi6I6HSaxlpFf3d9YWNvRGb4'))
+            ->addTopic('Asset.create')
             ->addHeader('X-Test-Header', 'Test Value')
             ->setHttpBasicUsername('cf-test-username')
             ->setHttpBasicPassword('cf-test-password')
@@ -131,7 +132,7 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
-     * @param Webhook $webook
+     * @param Webhook $webhook
      *
      * @return Webhook
      *
@@ -140,28 +141,28 @@ class WebhookTest extends BaseTestCase
      */
     public function testEventsFiredAndLogged(Webhook $webhook): Webhook
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadWriteSpaceProxy();
         $environmentProxy = $proxy->getEnvironmentProxy('master');
 
-        $entry1 = (new Entry('person'))
-            ->setField('name', 'en-US', 'Burt Macklin')
-            ->setField('jobTitle', 'en-US', 'FBI')
+        $asset1 = (new Asset())
+            ->setTitle('en-US', 'Burt Macklin')
+            ->setDescription('en-US', 'FBI')
         ;
-        $environmentProxy->create($entry1);
-        $entry1->delete();
+        $environmentProxy->create($asset1);
+        $asset1->delete();
 
-        $entry2 = (new Entry('person'))
-            ->setField('name', 'en-US', 'Dwight Schrute')
-            ->setField('jobTitle', 'en-US', 'Assistant Regional Manager')
+        $asset2 = (new Asset())
+            ->setTitle('en-US', 'Dwight Schrute')
+            ->setDescription('en-US', 'Assistant (to the) Regional Manager')
         ;
-        $environmentProxy->create($entry2);
-        $entry2->delete();
+        $environmentProxy->create($asset2);
+        $asset2->delete();
 
         $webhookId = $webhook->getId();
 
         $health = $webhook->getHealth();
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readWriteSpaceId,
             'webhook' => $webhookId,
         ], $health->asUriParameters());
         $this->assertLink($health->getId(), 'Webhook', $health->asLink());
@@ -193,14 +194,14 @@ class WebhookTest extends BaseTestCase
 
         $webhookCall = $webhook->getCall($webhookCallId);
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readWriteSpaceId,
             'webhook' => $webhookId,
             'call' => $webhookCallId,
         ], $webhookCall->asUriParameters());
         $this->assertLink($webhookCall->getId(), 'WebhookCallDetails', $webhookCall->asLink());
         $requestPayload = guzzle_json_decode((string) $webhookCall->getRequest()->getBody(), true);
-        $this->assertSame('Dwight Schrute', $requestPayload['fields']['name']['en-US']);
-        $this->assertSame('ContentManagement.Entry.create', $webhookCall->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
+        $this->assertSame('Dwight Schrute', $requestPayload['fields']['title']['en-US']);
+        $this->assertSame('ContentManagement.Asset.create', $webhookCall->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
         $this->assertSame('ClientError', $webhookCall->getError());
         $this->assertSame('create', $webhookCall->getEventType());
         $this->assertSame(404, $webhookCall->getStatusCode());
@@ -223,7 +224,7 @@ class WebhookTest extends BaseTestCase
      */
     public function testGetCallsFromSpaceProxy(Webhook $webhook)
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadWriteSpaceProxy();
         $webhookId = $webhook->getId();
 
         $health = $proxy->getWebhookHealth($webhookId);
@@ -244,7 +245,7 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
-     * @param Webhook $webook
+     * @param Webhook $webhook
      *
      * @depends testGetCallsFromSpaceProxy
      * @vcr e2e_webhook_delete.json

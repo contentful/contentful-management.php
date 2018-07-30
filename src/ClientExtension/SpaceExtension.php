@@ -13,6 +13,7 @@ namespace Contentful\Management\ClientExtension;
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Proxy\SpaceProxy;
 use Contentful\Management\Query;
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\Space as ResourceClass;
 
 /**

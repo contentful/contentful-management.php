@@ -13,7 +13,7 @@ namespace Contentful\Management\Resource\Role\Constraint;
 /**
  * OrConstraint class.
  *
- * The OrConstaint evaluates if one if its conditions returns true.
+ * The OrConstraint evaluates if one if its conditions returns true.
  * The value of the OrConstraint needs to be an array,
  * with an arbitrary amount of constraints.
  *

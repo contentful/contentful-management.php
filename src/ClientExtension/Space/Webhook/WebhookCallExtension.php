@@ -12,6 +12,7 @@ namespace Contentful\Management\ClientExtension\Space\Webhook;
 
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\WebhookCall as ResourceClass;
 
 /**

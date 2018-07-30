@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace Contentful\Management\ClientExtension\Space;
 
+use Contentful\Core\Resource\ResourceArray;
+use Contentful\Management\Query;
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\Upload as ResourceClass;
 
 /**

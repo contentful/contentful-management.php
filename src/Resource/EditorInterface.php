@@ -12,7 +12,6 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\EditorInterface\Control;
-use function GuzzleHttp\json_encode;
 
 /**
  * EditorInterface class.

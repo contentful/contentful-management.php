@@ -38,6 +38,8 @@ abstract class BaseCodeGenerator
 
     /**
      * @param array $params
+     *
+     * @return string
      */
     abstract public function generate(array $params): string;
 
@@ -69,7 +71,7 @@ abstract class BaseCodeGenerator
     }
 
     /**
-     * Converts a string to SutdlyCaps.
+     * Converts a string to StudlyCaps.
      *
      * @param string $name
      *

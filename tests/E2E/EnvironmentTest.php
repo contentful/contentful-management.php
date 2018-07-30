@@ -23,7 +23,7 @@ class EnvironmentTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $environment = $proxy->getEnvironment('master');
 
@@ -37,7 +37,7 @@ class EnvironmentTest extends BaseTestCase
         $this->assertSame(3, $sys->getVersion());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('master', $environment->getName());
     }
 
@@ -46,7 +46,7 @@ class EnvironmentTest extends BaseTestCase
      */
     public function testGetOneFromEnvironmentProxy()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $environment = $proxy->toResource();
 
@@ -60,7 +60,7 @@ class EnvironmentTest extends BaseTestCase
         $this->assertSame(3, $sys->getVersion());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('master', $environment->getName());
     }
 
@@ -69,7 +69,7 @@ class EnvironmentTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $environments = $proxy->getEnvironments();
 
@@ -88,7 +88,7 @@ class EnvironmentTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadWriteSpaceProxy();
 
         $environment = new Environment('QA Environment');
 

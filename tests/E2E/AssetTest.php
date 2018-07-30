@@ -12,8 +12,8 @@ namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Core\File\File;
-use Contentful\Core\File\LocalUploadFile;
 use Contentful\Core\File\RemoteUploadFile;
+use Contentful\Core\File\UnprocessedFileInterface;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Upload;
@@ -27,7 +27,7 @@ class AssetTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $asset = $proxy->getAsset('2TEG7c2zYkSSuKmsqEwCS');
         $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
@@ -42,7 +42,7 @@ class AssetTest extends BaseTestCase
         $this->assertSame('2TEG7c2zYkSSuKmsqEwCS', $sys->getId());
         $this->assertSame('Asset', $sys->getType());
         $this->assertSame(11, $sys->getVersion());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-08-22T15:41:45.127Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-08-22T15:42:20.946Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
@@ -58,7 +58,7 @@ class AssetTest extends BaseTestCase
      */
     public function testGetOneFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $asset = $proxy->getAsset('master', '2TEG7c2zYkSSuKmsqEwCS');
         $this->assertSame('Contentful Logo', $asset->getTitle('en-US'));
@@ -75,7 +75,7 @@ class AssetTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
         $assets = $proxy->getAssets();
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
@@ -92,7 +92,7 @@ class AssetTest extends BaseTestCase
      */
     public function testGetCollectionFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
         $assets = $proxy->getAssets('master');
 
         $this->assertInstanceOf(Asset::class, $assets[0]);
@@ -109,7 +109,7 @@ class AssetTest extends BaseTestCase
      */
     public function testCreateUpdateProcessPublishUnpublishArchiveUnarchiveDelete()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
@@ -135,7 +135,7 @@ class AssetTest extends BaseTestCase
             ->where('sys.id', $asset->getId())
         ;
         $limit = 0;
-        while ($asset->getFile('en-US') instanceof RemoteUploadFile) {
+        while ($asset->getFile('en-US') instanceof UnprocessedFileInterface) {
             ++$limit;
             $query->setLimit($limit);
             $asset = $proxy->getAssets($query)[0];
@@ -176,7 +176,7 @@ class AssetTest extends BaseTestCase
      */
     public function testCreateWithId()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
@@ -194,7 +194,7 @@ class AssetTest extends BaseTestCase
     public function testUpload()
     {
         // Uploads are scoped to spaces, but assets are scoped to environments
-        $spaceProxy = $this->getDefaultSpaceProxy();
+        $spaceProxy = $this->getReadWriteSpaceProxy();
         $environmentProxy = $spaceProxy->getEnvironmentProxy('master');
 
         // Creates upload using fopen
@@ -234,7 +234,7 @@ class AssetTest extends BaseTestCase
             ->where('sys.id', $asset->getId())
         ;
         $limit = 0;
-        while ($asset->getFile('en-US') instanceof LocalUploadFile) {
+        while ($asset->getFile('en-US') instanceof UnprocessedFileInterface) {
             ++$limit;
             $query->setLimit($limit);
             $asset = $environmentProxy->getAssets($query)[0];
@@ -263,7 +263,7 @@ class AssetTest extends BaseTestCase
      */
     public function testTextFile()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $asset = $proxy->getAsset('1Gdj0yMYb60MuI6OCSkqMu');
 

@@ -12,6 +12,7 @@ namespace Contentful\Management\ClientExtension\Space;
 
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
+use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\SpaceMembership as ResourceClass;
 
 /**

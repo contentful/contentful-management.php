@@ -23,7 +23,7 @@ class ResourceBuilderTest extends BaseTestCase
     public function testAddMappers()
     {
         $client = $this->getClient();
-        $proxy = $client->getEnvironmentProxy($this->defaultSpaceId, 'master');
+        $proxy = $client->getEnvironmentProxy($this->readOnlySpaceId, 'master');
 
         $builder = $client->getBuilder();
         $builder->setDataMapperMatcher('Entry', function (array $data) {

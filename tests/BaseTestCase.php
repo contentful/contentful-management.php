@@ -27,7 +27,12 @@ class BaseTestCase extends TestCase
     /**
      * @var string
      */
-    protected $defaultSpaceId = '34luz0flcmxt';
+    protected $readOnlySpaceId = '34luz0flcmxt';
+
+    /**
+     * @var string
+     */
+    protected $readWriteSpaceId = 'pmgjoasidv3w';
 
     /**
      * @var string
@@ -52,14 +57,40 @@ class BaseTestCase extends TestCase
         return new Client($this->token);
     }
 
-    protected function getDefaultSpaceProxy(): SpaceProxy
+    /**
+     * @return SpaceProxy
+     */
+    protected function getReadOnlySpaceProxy(): SpaceProxy
     {
-        return $this->getClient()->getSpaceProxy($this->defaultSpaceId);
+        return $this->getClient()
+            ->getSpaceProxy($this->readOnlySpaceId);
     }
 
-    protected function getDefaultEnvironmentProxy(): EnvironmentProxy
+    /**
+     * @return EnvironmentProxy
+     */
+    protected function getReadOnlyEnvironmentProxy(): EnvironmentProxy
     {
-        return $this->getClient()->getEnvironmentProxy($this->defaultSpaceId, 'master');
+        return $this->getReadOnlySpaceProxy()
+            ->getEnvironmentProxy('master');
+    }
+
+    /**
+     * @return SpaceProxy
+     */
+    protected function getReadWriteSpaceProxy(): SpaceProxy
+    {
+        return $this->getClient()
+            ->getSpaceProxy($this->readWriteSpaceId);
+    }
+
+    /**
+     * @return EnvironmentProxy
+     */
+    protected function getReadWriteEnvironmentProxy(): EnvironmentProxy
+    {
+        return $this->getReadWriteSpaceProxy()
+            ->getEnvironmentProxy('master');
     }
 
     protected function getCodeGenerationProxy(): EnvironmentProxy
@@ -80,7 +111,11 @@ class BaseTestCase extends TestCase
      */
     protected function assertJsonFixtureEqualsJsonObject(string $file, $object, string $message = '')
     {
-        $this->assertJsonStringEqualsJsonFile(__DIR__.'/Fixtures/'.$file, guzzle_json_encode($object, \JSON_UNESCAPED_UNICODE), $message);
+        $this->assertJsonStringEqualsJsonFile(
+            __DIR__.'/Fixtures/'.$file,
+            guzzle_json_encode($object, \JSON_UNESCAPED_UNICODE),
+            $message
+        );
     }
 
     /**

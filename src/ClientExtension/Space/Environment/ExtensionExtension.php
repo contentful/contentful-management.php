@@ -12,6 +12,7 @@ namespace Contentful\Management\ClientExtension\Space\Environment;
 
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Resource\Extension as ResourceClass;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * ExtensionExtension trait.
