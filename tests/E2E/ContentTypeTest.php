@@ -42,7 +42,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $contentType = $proxy->getContentType('cat');
 
@@ -50,7 +50,7 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame('cat', $sys->getId());
         $this->assertSame('ContentType', $sys->getType());
         $this->assertSame(3, $sys->getVersion());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-10-17T12:23:16.461Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
@@ -91,7 +91,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetOneFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $contentType = $proxy->getContentType('master', 'cat');
 
@@ -99,7 +99,7 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame('cat', $sys->getId());
         $this->assertSame('ContentType', $sys->getType());
         $this->assertSame(3, $sys->getVersion());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-10-17T12:23:16.461Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
@@ -140,7 +140,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetPublishedOne()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
         $contentType = $proxy->getPublishedContentType('cat');
 
         $this->assertSame('Cat', $contentType->getName());
@@ -154,7 +154,7 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame('ContentType', $sys->getType());
         $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertLink('master', 'Environment', $sys->getEnvironment());
         $this->assertSame(1, $sys->getRevision());
     }
@@ -164,7 +164,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetPublishedOneFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
         $contentType = $proxy->getPublishedContentType('master', 'cat');
 
         $this->assertSame('Cat', $contentType->getName());
@@ -178,7 +178,7 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame('ContentType', $sys->getType());
         $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertLink('master', 'Environment', $sys->getEnvironment());
         $this->assertSame(1, $sys->getRevision());
     }
@@ -188,7 +188,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
         $contentTypes = $proxy->getContentTypes();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
@@ -205,7 +205,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetCollectionFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
         $contentTypes = $proxy->getContentTypes('master');
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
@@ -222,7 +222,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetPublishedCollection()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
         $contentTypes = $proxy->getPublishedContentTypes();
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
@@ -239,7 +239,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testGetPublishedCollectionFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
         $contentTypes = $proxy->getPublishedContentTypes('master');
 
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
@@ -254,9 +254,9 @@ class ContentTypeTest extends BaseTestCase
     /**
      * @vcr e2e_content_type_create_update_publish_delete.json
      */
-    public function testContentTypeCreateUpdatePublishDelete()
+    public function testCreateUpdatePublishDelete()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('THE best content type');
@@ -287,7 +287,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testCreateWithId()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $contentType = (new ContentType('Test CT'))
             ->setDescription('This content type will have `myCustomTestCt` as ID');
@@ -305,7 +305,8 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testInvalidFieldAccess()
     {
-        $contentType = $this->getDefaultEnvironmentProxy()->getContentType('bookmark');
+        $contentType = $this->getReadOnlyEnvironmentProxy()
+            ->getContentType('bookmark');
         $contentType->getField('invalidField');
     }
 
@@ -352,7 +353,7 @@ class ContentTypeTest extends BaseTestCase
      */
     public function testFullFields()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
         $contentType = new ContentType('fullContentType');
         $contentType->setName('Full Content Type');
         $contentType->setDescription('This content type includes all field types');

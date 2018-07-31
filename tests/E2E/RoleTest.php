@@ -28,7 +28,7 @@ class RoleTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $role = $proxy->getRole('6khUMmsfVslYd7tRcThTgE');
 
@@ -57,7 +57,7 @@ class RoleTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $roles = $proxy->getRoles();
         $role = $roles[0];
@@ -90,7 +90,7 @@ class RoleTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadWriteSpaceProxy();
 
         $role = new Role('Custom role', 'This is a custom test role');
 

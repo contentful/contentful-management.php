@@ -20,7 +20,7 @@ class LocaleTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $locale = $proxy->getLocale('6khdsfQbtrObkbrgWDTGe8');
         $this->assertLink('6khdsfQbtrObkbrgWDTGe8', 'Locale', $locale->asLink());
@@ -36,7 +36,7 @@ class LocaleTest extends BaseTestCase
         $this->assertSame('6khdsfQbtrObkbrgWDTGe8', $sys->getId());
         $this->assertSame('Locale', $sys->getType());
         $this->assertSame(0, $sys->getVersion());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getUpdatedAt());
         $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
@@ -48,7 +48,7 @@ class LocaleTest extends BaseTestCase
      */
     public function testGetOneFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $locale = $proxy->getLocale('master', '6khdsfQbtrObkbrgWDTGe8');
         $this->assertLink('6khdsfQbtrObkbrgWDTGe8', 'Locale', $locale->asLink());
@@ -64,7 +64,7 @@ class LocaleTest extends BaseTestCase
         $this->assertSame('6khdsfQbtrObkbrgWDTGe8', $sys->getId());
         $this->assertSame('Locale', $sys->getType());
         $this->assertSame(0, $sys->getVersion());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getUpdatedAt());
         $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
@@ -76,7 +76,7 @@ class LocaleTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $locales = $proxy->getLocales();
         $this->assertCount(3, $locales);
@@ -88,7 +88,7 @@ class LocaleTest extends BaseTestCase
      */
     public function testGetCollectionFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $locales = $proxy->getLocales('master');
         $this->assertCount(3, $locales);
@@ -100,7 +100,7 @@ class LocaleTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $locale = new Locale('Swiss Italian', 'it-CH');
 

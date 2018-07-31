@@ -24,7 +24,7 @@ class CodeGenerationTest extends BaseTestCase
 {
     /**
      * @expectedException        \RuntimeException
-     * @expectedExceptionMessage Directoy "/invalid-dir" does not exist and can not be created.
+     * @expectedExceptionMessage Directory "/invalid-dir" does not exist and can not be created.
      */
     public function testInvalidOutputDirectory()
     {

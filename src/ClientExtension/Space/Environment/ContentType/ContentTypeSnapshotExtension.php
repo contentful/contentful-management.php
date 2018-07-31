@@ -13,6 +13,7 @@ namespace Contentful\Management\ClientExtension\Space\Environment\ContentType;
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentTypeSnapshot as ResourceClass;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * ContentTypeSnapshotExtension trait.

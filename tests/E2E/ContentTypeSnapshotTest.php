@@ -22,7 +22,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $snapshot = $proxy->getContentTypeSnapshot('versionedContentType', '1Qvx64r3Nq0MOtftdcAXJO');
 
@@ -38,12 +38,12 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $sys = $snapshot->getSystemProperties();
         $this->assertSame('ContentType', $sys->getSnapshotEntityType());
         $this->assertSame('publish', $sys->getSnapshotType());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-07-05T16:46:58.486Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-07-05T16:46:58.486Z', (string) $sys->getUpdatedAt());
 
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readOnlySpaceId,
             'environment' => 'master',
             'contentType' => 'versionedContentType',
             'snapshot' => '1Qvx64r3Nq0MOtftdcAXJO',
@@ -55,7 +55,8 @@ class ContentTypeSnapshotTest extends BaseTestCase
      */
     public function testGetOneFromContentType()
     {
-        $contentType = $this->getDefaultEnvironmentProxy()->getContentType('versionedContentType');
+        $contentType = $this->getReadOnlyEnvironmentProxy()
+            ->getContentType('versionedContentType');
 
         $snapshot = $contentType->getSnapshot('1Qvx64r3Nq0MOtftdcAXJO');
 
@@ -71,12 +72,12 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $sys = $snapshot->getSystemProperties();
         $this->assertSame('ContentType', $sys->getSnapshotEntityType());
         $this->assertSame('publish', $sys->getSnapshotType());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-07-05T16:46:58.486Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-07-05T16:46:58.486Z', (string) $sys->getUpdatedAt());
 
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readOnlySpaceId,
             'environment' => 'master',
             'contentType' => 'versionedContentType',
             'snapshot' => '1Qvx64r3Nq0MOtftdcAXJO',
@@ -88,7 +89,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
      */
     public function testGetOneFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $snapshot = $proxy->getContentTypeSnapshot('master', 'versionedContentType', '1Qvx64r3Nq0MOtftdcAXJO');
 
@@ -104,12 +105,12 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $sys = $snapshot->getSystemProperties();
         $this->assertSame('ContentType', $sys->getSnapshotEntityType());
         $this->assertSame('publish', $sys->getSnapshotType());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-07-05T16:46:58.486Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-07-05T16:46:58.486Z', (string) $sys->getUpdatedAt());
 
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readOnlySpaceId,
             'environment' => 'master',
             'contentType' => 'versionedContentType',
             'snapshot' => '1Qvx64r3Nq0MOtftdcAXJO',
@@ -121,7 +122,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $snapshots = $proxy->getContentTypeSnapshots('versionedContentType');
 
@@ -165,7 +166,8 @@ class ContentTypeSnapshotTest extends BaseTestCase
      */
     public function testGetCollectionFromContentType()
     {
-        $originalContentType = $this->getDefaultEnvironmentProxy()->getContentType('versionedContentType');
+        $originalContentType = $this->getReadOnlyEnvironmentProxy()
+            ->getContentType('versionedContentType');
 
         $snapshots = $originalContentType->getSnapshots();
 
@@ -209,7 +211,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
      */
     public function testGetCollectionFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $snapshots = $proxy->getContentTypeSnapshots('master', 'versionedContentType');
 

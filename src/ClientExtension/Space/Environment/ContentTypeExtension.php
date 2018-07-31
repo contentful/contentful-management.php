@@ -14,6 +14,7 @@ use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\ApiConfiguration;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType as ResourceClass;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * ContentTypeExtension trait.

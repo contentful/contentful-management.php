@@ -13,7 +13,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 /**
  * AssetImageDimensionsValidation class.
  *
- * Defines minimum and maximum dimendions of an image, in pixels.
+ * Defines minimum and maximum dimensions of an image, in pixels.
  *
  * Applicable to:
  * - Link (to image assets)

@@ -1,11 +1,11 @@
 [{
     "request": {
         "method": "DELETE",
-        "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/webhook_definitions\/3SULvhcQnxCneiB1KkwY54",
+        "url": "https:\/\/api.contentful.com\/spaces\/pmgjoasidv3w\/webhook_definitions\/3j8J6mQoWOsAK6iUQIcSbI",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.54.0 PHP\/7.1.17",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.1.0-dev; platform PHP\/7.1.17; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -25,23 +25,27 @@
             "Access-Control-Max-Age": "1728000",
             "Cache-Control": "max-age=0",
             "CF-Organization-Id": "3ubGFD1MWA6VgVYbIwSBg8",
-            "CF-Space-Id": "34luz0flcmxt",
+            "CF-Space-Id": "pmgjoasidv3w",
             "Content-Type": "application\/octet-stream",
-            "Date": "Mon, 16 Apr 2018 10:12:01 GMT",
+            "Contentful-Api": "cma",
+            "Date": "Mon, 30 Jul 2018 16:49:28 GMT",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179670",
+            "X-Contentful-RateLimit-Hour-Remaining": "179958",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
-            "X-Contentful-RateLimit-Second-Remaining": "48",
-            "X-Contentful-Request-Id": "1af991455a98666e4564b9a5fb34b0c7",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "3d4c2f7d535c1548e91eddf1238ad446",
+            "X-Download-Options": "noopen",
             "X-Frame-Options": "ALLOWALL",
+            "X-Permitted-Cross-Domain-Policies": "none",
             "X-XSS-Protection": "1; mode=block",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=5G1HczOkSZW4gSpFk30PRPB21FoAAAAAQUIPAAAAAAAOWxPhDvBED\/3SKu25Erfx; expires=Mon, 15 Apr 2019 12:13:54 GMT; path=\/; Domain=.contentful.com, nlbi_673446=vr3bRow51HzLUk6\/6lKYhQAAAAC6EnpqIdwz0c7LBxgJsdC5; path=\/; Domain=.contentful.com, incap_ses_477_673446=Nn3iHq89EDjD4PmH5qWeBvB21FoAAAAAIRitFiDV9lhMnDfcUd7xgg==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "5-78587578-78586513 PNNN RT(1523873520638 21) q(0 0 0 -1) r(3 3) U5",
+            "Set-Cookie": "visid_incap_673446=Nd2BHjPFRQ+Z5Cr3B\/HIVZhBX1sAAAAAQUIPAAAAAACFxiSNoWJQ92FS0U7KDeqK; expires=Tue, 30 Jul 2019 16:08:54 GMT; path=\/; Domain=.contentful.com, nlbi_673446=rQJpCdk9VjSrjx966lKYhQAAAAAkEoASl5ylllTz52a+Q9Xc; path=\/; Domain=.contentful.com, incap_ses_478_673446=dB6aFYJTc0p4VRJugzOiBpdBX1sAAAAAi12zDcA1rP8vGmqZh+9Djw==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-22905687-22905692 NNNN CT(109 114 0) RT(1532969368297 63) q(0 0 2 -1) r(4 4) U5",
             "X-CDN": "Incapsula"
         }
     }

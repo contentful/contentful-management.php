@@ -14,7 +14,7 @@ namespace Contentful\Management\Resource\Role\Constraint;
  * EqualityConstraint class.
  *
  * The EqualityConstraint can be used to compare a resource's field
- * or meta dataagainst a specific value.
+ * or metadata against a specific value.
  *
  * EqualityConstraints are one of the very basic constraints
  * and are typically used ensure the type of a document or to match entries of a content type:

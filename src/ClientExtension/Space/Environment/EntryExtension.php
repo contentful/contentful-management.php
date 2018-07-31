@@ -13,6 +13,7 @@ namespace Contentful\Management\ClientExtension\Space\Environment;
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Entry as ResourceClass;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * EntryExtension trait.

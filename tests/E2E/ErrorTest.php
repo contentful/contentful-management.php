@@ -27,7 +27,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testUnknownKey()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $locale = new UnknownKeyLocale('American Italian', 'it-US');
         $proxy->create($locale);
@@ -41,7 +41,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testMissingKey()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $locale = new EmptyBodyLocale('American Italian', 'it-US');
         $proxy->create($locale);
@@ -55,7 +55,7 @@ class ErrorTest extends BaseTestCase
      */
     public function testValidationFailed()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $locale = new ValidationFailedLocale('American Italian', 'it-US');
         $proxy->create($locale);
@@ -66,12 +66,12 @@ class ErrorTest extends BaseTestCase
      */
     public function testVersionMismatch()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $asset = new Asset();
         $proxy->create($asset);
 
-        $fakeAsset = new FakeAsset($asset->getId(), $this->defaultSpaceId);
+        $fakeAsset = new FakeAsset($asset->getId(), $this->readWriteSpaceId);
         $fakeAsset->setClient($this->getClient());
 
         try {
@@ -95,10 +95,15 @@ class ErrorTest extends BaseTestCase
      */
     public function testDefaultLocaleNotDeletable()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
-        $defaultLocale = $proxy->getLocale('6khdsfQbtrObkbrgWDTGe8');
+        $proxy = $this->getReadWriteEnvironmentProxy();
+        $locales = $proxy->getLocales();
 
-        $defaultLocale->delete();
+        /** @var Locale $locale */
+        foreach ($locales as $locale) {
+            if ($locale->isDefault()) {
+                $locale->delete();
+            }
+        }
     }
 
     /**
@@ -109,11 +114,16 @@ class ErrorTest extends BaseTestCase
      */
     public function testFallbackLocaleNotDeletable()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
-        $enGbLocale = $proxy->getLocale('71wkZKqgktY9Uzg76CtsBK');
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
-        $enGbLocale->delete();
+        $locales = $proxy->getLocales();
+        /** @var Locale $locale */
+        foreach ($locales as $locale) {
+            if ('en-GB' === $locale->getCode()) {
+                $locale->delete();
+            }
+        }
     }
 
     /**
@@ -124,12 +134,17 @@ class ErrorTest extends BaseTestCase
      */
     public function testFallbackLocaleNotRenameable()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
-        $enGbLocale = $proxy->getLocale('71wkZKqgktY9Uzg76CtsBK');
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
-        $enGbLocale->setCode('en-NZ');
-        $enGbLocale->update();
+        $locales = $proxy->getLocales();
+        /** @var Locale $locale */
+        foreach ($locales as $locale) {
+            if ('en-GB' === $locale->getCode()) {
+                $locale->setCode('en-NZ');
+                $locale->update();
+            }
+        }
     }
 }
 

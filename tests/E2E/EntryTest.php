@@ -23,7 +23,7 @@ class EntryTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $entry = $proxy->getEntry('4OuC4z6qs0yEWMeqkGmokw');
 
@@ -35,7 +35,7 @@ class EntryTest extends BaseTestCase
         $this->assertSame('Entry', $sys->getType());
         $this->assertLink('fantasticCreature', 'ContentType', $sys->getContentType());
         $this->assertSame(6, $sys->getVersion());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-08-22T11:50:19.841Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-08-22T11:50:26.991Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
@@ -51,7 +51,7 @@ class EntryTest extends BaseTestCase
      */
     public function testGetOneFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $entry = $proxy->getEntry('master', '4OuC4z6qs0yEWMeqkGmokw');
 
@@ -63,7 +63,7 @@ class EntryTest extends BaseTestCase
         $this->assertSame('Entry', $sys->getType());
         $this->assertLink('fantasticCreature', 'ContentType', $sys->getContentType());
         $this->assertSame(6, $sys->getVersion());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-08-22T11:50:19.841Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-08-22T11:50:26.991Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
@@ -79,7 +79,7 @@ class EntryTest extends BaseTestCase
      */
     public function testGetOneFromEnvironment()
     {
-        $environment = $this->getClient()->getEnvironment($this->defaultSpaceId, 'master');
+        $environment = $this->getReadOnlyEnvironmentProxy()->toResource();
 
         $entry = $environment->getEntry('4OuC4z6qs0yEWMeqkGmokw');
         $sys = $entry->getSystemProperties();
@@ -93,7 +93,7 @@ class EntryTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
         $entries = $proxy->getEntries();
 
         $this->assertInstanceOf(Entry::class, $entries[0]);
@@ -110,7 +110,7 @@ class EntryTest extends BaseTestCase
      */
     public function testGetCollectionFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
         $entries = $proxy->getEntries('master');
 
         $this->assertInstanceOf(Entry::class, $entries[0]);
@@ -127,7 +127,7 @@ class EntryTest extends BaseTestCase
      */
     public function testCreateUpdatePublishUnpublishArchiveUnarchiveDelete()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
@@ -177,7 +177,7 @@ class EntryTest extends BaseTestCase
      */
     public function testCreateWithGivenId()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
 
         $entry = (new Entry('testCt'))
             ->setField('name', 'en-US', 'A name');
@@ -189,11 +189,11 @@ class EntryTest extends BaseTestCase
     }
 
     /**
-     * @vcr e2e_entry_create_without_fields.json
+     * @vcr e2e_entry_get_without_fields.json
      */
-    public function testCreateEntryWithoutFields()
+    public function testGetEntryWithoutFields()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         // This entry has nothing in its `fields` property,
         // and because of this, Contentful omits the property altogether.

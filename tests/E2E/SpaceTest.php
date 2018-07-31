@@ -23,12 +23,12 @@ class SpaceTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $space = $this->getClient()->getSpace($this->defaultSpaceId);
+        $space = $this->getClient()->getSpace($this->readOnlySpaceId);
 
         $this->assertInstanceOf(Space::class, $space);
-        $this->assertLink($this->defaultSpaceId, 'Space', $space->asLink());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $space->asLink());
         $sys = $space->getSystemProperties();
-        $this->assertSame($this->defaultSpaceId, $sys->getId());
+        $this->assertSame($this->readOnlySpaceId, $sys->getId());
         $this->assertSame('Space', $sys->getType());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
@@ -43,13 +43,13 @@ class SpaceTest extends BaseTestCase
      */
     public function testGetOneFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
         $space = $proxy->toResource();
 
         $this->assertInstanceOf(Space::class, $space);
-        $this->assertLink($this->defaultSpaceId, 'Space', $space->asLink());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $space->asLink());
         $sys = $space->getSystemProperties();
-        $this->assertSame($this->defaultSpaceId, $sys->getId());
+        $this->assertSame($this->readOnlySpaceId, $sys->getId());
         $this->assertSame('Space', $sys->getType());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
@@ -64,15 +64,15 @@ class SpaceTest extends BaseTestCase
      */
     public function testGetOneFromSpaceProxyFromEnvironmentProxy()
     {
-        $environment = $this->getDefaultEnvironmentProxy();
+        $environment = $this->getReadOnlyEnvironmentProxy();
 
         $proxy = $environment->getSpaceProxy();
         $space = $proxy->toResource();
 
         $this->assertInstanceOf(Space::class, $space);
-        $this->assertLink($this->defaultSpaceId, 'Space', $space->asLink());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $space->asLink());
         $sys = $space->getSystemProperties();
-        $this->assertSame($this->defaultSpaceId, $sys->getId());
+        $this->assertSame($this->readOnlySpaceId, $sys->getId());
         $this->assertSame('Space', $sys->getType());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
@@ -108,12 +108,13 @@ class SpaceTest extends BaseTestCase
     {
         $client = $this->getClient();
 
-        $space = new Space('PHP CMA Italian Test Space', $this->testOrganizationId, 'it-IT');
+        $space = new Space('DELETEME - PHP CMA IT', $this->testOrganizationId, 'it-IT');
 
         $client->create($space);
 
         $spaceId = $space->getId();
         $this->assertNotNull($spaceId);
+        $this->assertSame('DELETEME - PHP CMA IT', $space->getName());
 
         $space->delete();
 
@@ -132,20 +133,20 @@ class SpaceTest extends BaseTestCase
     {
         $client = $this->getClient();
 
-        $space = new Space('PHP CMA Test Space', $this->testOrganizationId);
+        $space = new Space('DELETEME - PHP CMA', $this->testOrganizationId);
 
         $client->create($space);
 
         $spaceId = $space->getId();
         $this->assertNotNull($spaceId);
-        $this->assertSame('PHP CMA Test Space', $space->getName());
+        $this->assertSame('DELETEME - PHP CMA', $space->getName());
         $this->assertSame(1, $space->getSystemProperties()->getVersion());
 
-        $space->setName('PHP CMA Test Space - Updated');
+        $space->setName('DELETEME - PHP CMA Updated');
 
         $space->update();
         $this->assertSame($spaceId, $space->getId());
-        $this->assertSame('PHP CMA Test Space - Updated', $space->getName());
+        $this->assertSame('DELETEME - PHP CMA Updated', $space->getName());
         $this->assertSame(2, $space->getSystemProperties()->getVersion());
 
         $space->delete();

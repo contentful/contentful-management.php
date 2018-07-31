@@ -85,7 +85,7 @@ class GenerateEntryClassesCommand extends Command
     {
         if (!\is_dir($dir) && !\is_writable(\dirname($dir))) {
             throw new \RuntimeException(\sprintf(
-                'Directoy "%s" does not exist and can not be created.',
+                'Directory "%s" does not exist and can not be created.',
                 $dir
             ));
         }
@@ -176,7 +176,7 @@ class GenerateEntryClassesCommand extends Command
     }
 
     /**
-     * Converts a string to SutdlyCaps.
+     * Converts a string to StudlyCaps.
      *
      * @param string $name
      *
@@ -221,7 +221,7 @@ class GenerateEntryClassesCommand extends Command
             \mkdir(\dirname($path), 0777, true);
         }
 
-        \file_put_contents($path, $content);
+        return \file_put_contents($path, $content);
     }
 
     /**

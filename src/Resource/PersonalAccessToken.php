@@ -146,6 +146,8 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
 
     /**
      * @param bool $isReadOnly
+     *
+     * @return static
      */
     public function setReadOnly(bool $isReadOnly)
     {

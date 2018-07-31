@@ -21,7 +21,7 @@ class ExtensionTest extends BaseTestCase
      */
     public function testGet()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $extension = $proxy->getExtension('3GKNbc6ddeIYgmWuUc0ami');
 
@@ -36,7 +36,7 @@ class ExtensionTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $extensions = $proxy->getExtensions();
 
@@ -54,7 +54,7 @@ class ExtensionTest extends BaseTestCase
      */
     public function testGetFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $extension = $proxy->getExtension('master', '3GKNbc6ddeIYgmWuUc0ami');
 
@@ -69,7 +69,7 @@ class ExtensionTest extends BaseTestCase
      */
     public function testGetCollectionFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $extensions = $proxy->getExtensions('master');
 
@@ -87,7 +87,7 @@ class ExtensionTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadWriteEnvironmentProxy();
         $extension = new Extension('My awesome extension');
 
         $source = '<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Sample Editor Extension</title><link rel="stylesheet" href="https://contentful.github.io/ui-extensions-sdk/cf-extension.css"><script src="https://contentful.github.io/ui-extensions-sdk/cf-extension-api.js"></script></head><body><div id="content"></div><script>window.contentfulExtension.init(function (extension) {window.alert(extension);var value = extension.field.getValue();extension.field.setValue("Hello world!"");extension.field.onValueChanged(function(value) {if (value !== currentValue) {extension.field.setValue("Hello world!"");}});});</script></body></html>';

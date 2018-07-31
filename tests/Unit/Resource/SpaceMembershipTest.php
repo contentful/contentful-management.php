@@ -32,6 +32,17 @@ class SpaceMembershipTest extends BaseTestCase
         $role2 = new Link('6kj2AeUS0kJbHr0F2xCjIU', 'Role');
         $spaceMembership->addRole($role1);
         $this->assertSame([$role1], $spaceMembership->getRoles());
+
+        $spaceMembership->addRoleLink('6kj2AeUS0kJbHr0F2xCjIU');
+        $roles = $spaceMembership->getRoles();
+        $this->assertCount(2, $roles);
+        $this->assertLink('6khUMmsfVslYd7tRcThTgE', 'Role', $roles[0]);
+        $this->assertSame($role1, $roles[0]);
+        $this->assertLink('6kj2AeUS0kJbHr0F2xCjIU', 'Role', $roles[1]);
+        $this->assertNotSame($role2, $roles[1]);
+
+        $spaceMembership->setRoles([]);
+        $this->assertSame([], $spaceMembership->getRoles());
         $spaceMembership->setRoles([$role1, $role2]);
         $this->assertSame([$role1, $role2], $spaceMembership->getRoles());
 

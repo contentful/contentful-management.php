@@ -24,7 +24,7 @@ class ApiKeyTest extends BaseTestCase
      */
     public function testDeliveryGetOneCollection()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $deliveryApiKey = $proxy->getDeliveryApiKey('1MwuwHlM9TXf3RXcsvMrjM');
         $this->assertSame('Example API Key', $deliveryApiKey->getName());
@@ -54,7 +54,7 @@ class ApiKeyTest extends BaseTestCase
         $this->assertInstanceOf(Link::class, $deliveryApiKey->getPreviewApiKey());
 
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readOnlySpaceId,
             'deliveryApiKey' => '1MwuwHlM9TXf3RXcsvMrjM',
         ], $deliveryApiKey->asUriParameters());
     }
@@ -64,7 +64,7 @@ class ApiKeyTest extends BaseTestCase
      */
     public function testPreviewGetOneCollection()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $previewApiKey = $proxy->getPreviewApiKey('1Mx3FqXX5XCJDtNpVW4BZI');
         $this->assertSame('Preview Key', $previewApiKey->getName());
@@ -90,7 +90,7 @@ class ApiKeyTest extends BaseTestCase
         $this->assertNull($previewApiKey->getDescription());
 
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readOnlySpaceId,
             'previewApiKey' => '1Mx3FqXX5XCJDtNpVW4BZI',
         ], $previewApiKey->asUriParameters());
     }
@@ -100,7 +100,7 @@ class ApiKeyTest extends BaseTestCase
      */
     public function testCreateUpdateDelete()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadWriteSpaceProxy();
 
         $deliveryApiKey = new DeliveryApiKey('iOS');
         $deliveryApiKey->setDescription('A custom description');
@@ -124,7 +124,7 @@ class ApiKeyTest extends BaseTestCase
      */
     public function testWithEnvironments()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadWriteSpaceProxy();
 
         // We start by making sure that there's only one environment available (master).
         $this->assertCount(1, $proxy->getEnvironments());

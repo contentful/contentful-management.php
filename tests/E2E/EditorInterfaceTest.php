@@ -19,7 +19,8 @@ class EditorInterfaceTest extends BaseTestCase
      */
     public function testGetUpdate()
     {
-        $editorInterface = $this->getDefaultEnvironmentProxy()->getEditorInterface('bookmark');
+        $editorInterface = $this->getReadWriteEnvironmentProxy()
+            ->getEditorInterface('bookmark');
 
         $control = $editorInterface->getControl('name');
         $this->assertSame('name', $control->getFieldId());
@@ -40,7 +41,7 @@ class EditorInterfaceTest extends BaseTestCase
         $control->setSettings(['stars' => 5]);
 
         try {
-            $control = $editorInterface->getControl('invalidControl');
+            $editorInterface->getControl('invalidControl');
         } catch (\Exception $exception) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $exception);
             $this->assertSame('Trying to access unavailable control "invalidControl".', $exception->getMessage());
@@ -76,7 +77,8 @@ class EditorInterfaceTest extends BaseTestCase
      */
     public function testGetFromContentType()
     {
-        $contentType = $this->getDefaultEnvironmentProxy()->getContentType('bookmark');
+        $contentType = $this->getReadOnlyEnvironmentProxy()
+            ->getContentType('bookmark');
 
         $editorInterface = $contentType->getEditorInterface();
 
@@ -104,7 +106,8 @@ class EditorInterfaceTest extends BaseTestCase
      */
     public function testGetFromSpaceProxy()
     {
-        $editorInterface = $this->getDefaultSpaceProxy()->getEditorInterface('master', 'bookmark');
+        $editorInterface = $this->getReadOnlySpaceProxy()
+            ->getEditorInterface('master', 'bookmark');
 
         $control = $editorInterface->getControl('name');
         $this->assertSame('name', $control->getFieldId());

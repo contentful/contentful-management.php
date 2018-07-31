@@ -13,6 +13,7 @@ namespace Contentful\Management\ClientExtension;
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Organization as ResourceClass;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * OrganizationExtension trait.

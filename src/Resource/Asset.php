@@ -107,6 +107,8 @@ class Asset extends BaseResource implements CreatableInterface
      *
      * @param string|null $locale
      *
+     * @return static
+     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
      */
     public function process(string $locale = null)

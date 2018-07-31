@@ -14,6 +14,7 @@ use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Proxy\EnvironmentProxy;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Environment as ResourceClass;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * EnvironmentExtension trait.

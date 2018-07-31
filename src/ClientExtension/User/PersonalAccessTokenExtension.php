@@ -13,6 +13,7 @@ namespace Contentful\Management\ClientExtension\User;
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\PersonalAccessToken as ResourceClass;
+use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * PersonalAccessTokenExtension trait.

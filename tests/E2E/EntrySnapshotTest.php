@@ -22,7 +22,7 @@ class EntrySnapshotTest extends BaseTestCase
      */
     public function testGetOne()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $snapshot = $proxy->getEntrySnapshot('3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
         $this->assertLink('3omuk8H8M8wUuqHhxddXtp', 'Snapshot', $snapshot->asLink());
@@ -37,12 +37,12 @@ class EntrySnapshotTest extends BaseTestCase
         $sys = $snapshot->getSystemProperties();
         $this->assertSame('Entry', $sys->getSnapshotEntityType());
         $this->assertSame('publish', $sys->getSnapshotType());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-06-14T14:11:20.189Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-06-14T14:11:20.189Z', (string) $sys->getUpdatedAt());
 
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readOnlySpaceId,
             'environment' => 'master',
             'entry' => '3LM5FlCdGUIM0Miqc664q6',
             'snapshot' => '3omuk8H8M8wUuqHhxddXtp',
@@ -54,7 +54,7 @@ class EntrySnapshotTest extends BaseTestCase
      */
     public function testGetOneFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $snapshot = $proxy->getEntrySnapshot('master', '3LM5FlCdGUIM0Miqc664q6', '3omuk8H8M8wUuqHhxddXtp');
         $this->assertLink('3omuk8H8M8wUuqHhxddXtp', 'Snapshot', $snapshot->asLink());
@@ -69,12 +69,12 @@ class EntrySnapshotTest extends BaseTestCase
         $sys = $snapshot->getSystemProperties();
         $this->assertSame('Entry', $sys->getSnapshotEntityType());
         $this->assertSame('publish', $sys->getSnapshotType());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-06-14T14:11:20.189Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-06-14T14:11:20.189Z', (string) $sys->getUpdatedAt());
 
         $this->assertSame([
-            'space' => $this->defaultSpaceId,
+            'space' => $this->readOnlySpaceId,
             'environment' => 'master',
             'entry' => '3LM5FlCdGUIM0Miqc664q6',
             'snapshot' => '3omuk8H8M8wUuqHhxddXtp',
@@ -86,14 +86,14 @@ class EntrySnapshotTest extends BaseTestCase
      */
     public function testGetOneFromEntry()
     {
-        $entry = $this->getDefaultEnvironmentProxy()->getEntry('3LM5FlCdGUIM0Miqc664q6');
+        $entry = $this->getReadOnlyEnvironmentProxy()->getEntry('3LM5FlCdGUIM0Miqc664q6');
 
         $snapshot = $entry->getSnapshot('3omuk8H8M8wUuqHhxddXtp');
 
         $sys = $snapshot->getSystemProperties();
         $this->assertSame('Entry', $sys->getSnapshotEntityType());
         $this->assertSame('publish', $sys->getSnapshotType());
-        $this->assertLink($this->defaultSpaceId, 'Space', $sys->getSpace());
+        $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-06-14T14:11:20.189Z', (string) $sys->getCreatedAt());
         $this->assertSame('2017-06-14T14:11:20.189Z', (string) $sys->getUpdatedAt());
     }
@@ -103,7 +103,7 @@ class EntrySnapshotTest extends BaseTestCase
      */
     public function testGetCollection()
     {
-        $proxy = $this->getDefaultEnvironmentProxy();
+        $proxy = $this->getReadOnlyEnvironmentProxy();
 
         $snapshots = $proxy->getEntrySnapshots('3LM5FlCdGUIM0Miqc664q6');
         $this->assertInstanceOf(EntrySnapshot::class, $snapshots[0]);
@@ -120,7 +120,7 @@ class EntrySnapshotTest extends BaseTestCase
      */
     public function testGetCollectionFromSpaceProxy()
     {
-        $proxy = $this->getDefaultSpaceProxy();
+        $proxy = $this->getReadOnlySpaceProxy();
 
         $snapshots = $proxy->getEntrySnapshots('master', '3LM5FlCdGUIM0Miqc664q6');
 
@@ -138,7 +138,7 @@ class EntrySnapshotTest extends BaseTestCase
      */
     public function testGetCollectionFromEntry()
     {
-        $originalEntry = $this->getDefaultEnvironmentProxy()->getEntry('3LM5FlCdGUIM0Miqc664q6');
+        $originalEntry = $this->getReadOnlyEnvironmentProxy()->getEntry('3LM5FlCdGUIM0Miqc664q6');
 
         $query = (new Query())
             ->setLimit(1);
