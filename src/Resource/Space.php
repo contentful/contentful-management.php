@@ -36,7 +36,7 @@ class Space extends BaseResource implements CreatableInterface
     protected $name;
 
     /**
-     * @var string|null
+     * @var string
      */
     protected $organizationId;
 

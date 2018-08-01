@@ -114,6 +114,7 @@ class Client extends BaseClient
         $response = $this->request($method, $path, $options);
 
         if ($response) {
+            /** @var ResourceInterface|ResourceArray|null $resource */
             $resource = $this->builder->build($response, $resource);
         }
 
@@ -211,10 +212,13 @@ class Client extends BaseClient
         $config = $this->configuration->getConfigFor($class);
         $uri = $this->buildRequestUri($config, $parameters);
 
-        return $this->makeRequest('GET', $uri, [
+        /** @var ResourceInterface|ResourceArray $resource */
+        $resource = $this->makeRequest('GET', $uri, [
             'baseUri' => $config['baseUri'] ?? null,
             'query' => $query ? $query->getQueryData() : [],
         ], $resource);
+
+        return $resource;
     }
 
     /**
@@ -230,9 +234,12 @@ class Client extends BaseClient
         $config = $this->configuration->getLinkConfigFor($link->getLinkType());
         $uri = $this->buildRequestUri($config, $parameters, $link->getId());
 
-        return $this->makeRequest('GET', $uri, [
+        /** @var ResourceInterface $resource */
+        $resource = $this->makeRequest('GET', $uri, [
             'baseUri' => $config['baseUri'] ?? null,
         ]);
+
+        return $resource;
     }
 
     /**

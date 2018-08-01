@@ -60,11 +60,15 @@ class FieldType implements \JsonSerializable
         }
 
         if ('Link' === $type) {
-            return $this->setLinkFieldType(...$options);
+            $this->setLinkFieldType(...$options);
+
+            return;
         }
 
         if ('Array' === $type) {
-            return $this->setArrayFieldType(...$options);
+            $this->setArrayFieldType(...$options);
+
+            return;
         }
 
         $this->data = [

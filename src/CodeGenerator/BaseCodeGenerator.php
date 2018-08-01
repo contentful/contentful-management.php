@@ -83,7 +83,7 @@ abstract class BaseCodeGenerator
     }
 
     /**
-     * @param (string|null)[] $classes
+     * @param array<int, string|null> $classes
      *
      * @return Node\Stmt\Use_[]
      */

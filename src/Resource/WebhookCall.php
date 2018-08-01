@@ -11,8 +11,8 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\DateTimeImmutable;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * WebhookCall class.
@@ -24,12 +24,12 @@ use GuzzleHttp\Psr7\Response;
 class WebhookCall extends BaseResource
 {
     /**
-     * @var Request|null
+     * @var RequestInterface|null
      */
     protected $request;
 
     /**
-     * @var Response|null
+     * @var ResponseInterface|null
      */
     protected $response;
 
@@ -77,20 +77,10 @@ class WebhookCall extends BaseResource
      */
     public function jsonSerialize(): array
     {
-        return [
+        $call = [
             'sys' => $this->sys,
-            'request' => [
-                'url' => (string) $this->request->getUri(),
-                'method' => $this->request->getMethod(),
-                'headers' => $this->formatPsr7Headers($this->request->getHeaders()),
-                'body' => (string) $this->request->getBody(),
-            ],
-            'response' => [
-                'url' => (string) $this->request->getUri(),
-                'statusCode' => $this->response->getStatusCode(),
-                'headers' => $this->formatPsr7Headers($this->response->getHeaders()),
-                'body' => (string) $this->response->getBody(),
-            ],
+            'request' => null,
+            'response' => null,
             'statusCode' => $this->statusCode,
             'errors' => $this->error ? [$this->error] : [],
             'eventType' => $this->eventType,
@@ -98,6 +88,24 @@ class WebhookCall extends BaseResource
             'requestAt' => (string) $this->requestAt,
             'responseAt' => (string) $this->responseAt,
         ];
+
+        if ($this->request && $this->response) {
+            $call['request'] = [
+                'url' => (string) $this->request->getUri(),
+                'method' => $this->request->getMethod(),
+                'headers' => $this->formatPsr7Headers($this->request->getHeaders()),
+                'body' => (string) $this->request->getBody(),
+            ];
+
+            $call['response'] = [
+                'url' => (string) $this->request->getUri(),
+                'statusCode' => $this->response->getStatusCode(),
+                'headers' => $this->formatPsr7Headers($this->response->getHeaders()),
+                'body' => (string) $this->response->getBody(),
+            ];
+        }
+
+        return $call;
     }
 
     /**
@@ -147,7 +155,7 @@ class WebhookCall extends BaseResource
     }
 
     /**
-     * @return Request|null
+     * @return RequestInterface|null
      */
     public function getRequest()
     {
@@ -155,7 +163,7 @@ class WebhookCall extends BaseResource
     }
 
     /**
-     * @return Response|null
+     * @return ResponseInterface|null
      */
     public function getResponse()
     {

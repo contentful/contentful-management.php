@@ -145,11 +145,11 @@ class ContentType extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param string|null $name
+     * @param string $name
      *
      * @return static
      */
-    public function setName(string $name = null)
+    public function setName(string $name)
     {
         $this->name = $name;
 
@@ -261,10 +261,10 @@ class ContentType extends BaseResource implements CreatableInterface
     /**
      * Adds a new content type field, and returns it.
      *
-     * @param string $type    A valid field type, must be a class in the Contentful\Management\Resource\ContentType\Field namespace
-     * @param string $fieldId The field ID
-     * @param string $name    The field name
-     * @param mixed  $params  Extra parameters that will be forwarded to the field object constructor
+     * @param string            $type    A valid field type, must be a class in the Contentful\Management\Resource\ContentType\Field namespace
+     * @param string            $fieldId The field ID
+     * @param string            $name    The field name
+     * @param array<int, mixed> $params  Extra parameters that will be forwarded to the field object constructor
      *
      * @return FieldInterface
      */
@@ -279,10 +279,10 @@ class ContentType extends BaseResource implements CreatableInterface
     /**
      * Shortcut for creating a new field object.
      *
-     * @param string $type    A valid field type, must be a class in the Contentful\Management\Resource\ContentType\Field namespace
-     * @param string $fieldId The field ID
-     * @param string $name    The field name
-     * @param mixed  $params  Extra parameters that will be forwarded to the field object constructor
+     * @param string            $type    A valid field type, must be a class in the Contentful\Management\Resource\ContentType\Field namespace
+     * @param string            $fieldId The field ID
+     * @param string            $name    The field name
+     * @param array<int, mixed> $params  Extra parameters that will be forwarded to the field object constructor
      *
      * @return FieldInterface
      */

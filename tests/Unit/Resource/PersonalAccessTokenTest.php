@@ -29,6 +29,17 @@ class PersonalAccessTokenTest extends BaseTestCase
         $this->assertNull($personalAccessToken->getToken());
     }
 
+    /**
+     * @expectedException        \LogicException
+     * @expectedExceptionMessage Trying to revoke a token which has not been fetched from the API.
+     */
+    public function testRevokeWithoutCreation()
+    {
+        $personalAccessToken = new PersonalAccessToken();
+
+        $personalAccessToken->revoke();
+    }
+
     public function testJsonSerialize()
     {
         $personalAccessToken = new PersonalAccessToken('Test token', true);

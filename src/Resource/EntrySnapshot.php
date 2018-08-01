@@ -17,6 +17,8 @@ namespace Contentful\Management\Resource;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
  * @see https://www.contentful.com/faq/versioning/
+ *
+ * @property Entry $snapshot
  */
 class EntrySnapshot extends Snapshot
 {

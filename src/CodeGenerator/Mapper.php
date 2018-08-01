@@ -20,6 +20,7 @@ use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 use Contentful\Management\Resource\ContentType\Field\LinkField;
 use Contentful\Management\SystemProperties;
 use PhpParser\Node;
+use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 
@@ -58,7 +59,8 @@ class Mapper extends BaseCodeGenerator
 
         $class = $this->generateClass($contentType);
 
-        $stmts = $this->generateUses([
+        /** @var Stmt[] $statements */
+        $statements = $this->generateUses([
             $namespace.'\\'.$className,
             BaseMapper::class,
             SystemProperties::class,
@@ -66,10 +68,10 @@ class Mapper extends BaseCodeGenerator
             $this->uses['link'] ? Link::class : null,
         ]);
 
-        $stmts[] = $class;
+        $statements[] = $class;
 
         return $this->render(
-            new Node\Stmt\Namespace_(new Node\Name($namespace.'\\Mapper'), $stmts)
+            new Node\Stmt\Namespace_(new Node\Name($namespace.'\\Mapper'), $statements)
         );
     }
 
@@ -162,7 +164,7 @@ class Mapper extends BaseCodeGenerator
      *
      * @param string $className
      *
-     * @return Node\Expr[]
+     * @return Node\Arg[]
      */
     private function generateMapperMethodHydrateArgs(string $className): array
     {
@@ -273,7 +275,7 @@ class Mapper extends BaseCodeGenerator
     /**
      * @param FieldInterface $field
      *
-     * @return Node\Expr[]
+     * @return Node[]
      */
     private function generateFieldAssignment(FieldInterface $field): array
     {
@@ -310,7 +312,7 @@ class Mapper extends BaseCodeGenerator
      *
      * @param ArrayField $field
      *
-     * @return Node\Expr[]
+     * @return Node[]
      */
     private function generateArrayLinkFieldAssignment(ArrayField $field): array
     {
@@ -336,7 +338,7 @@ class Mapper extends BaseCodeGenerator
     /**
      * @param LinkField $field
      *
-     * @return Node\Expr[]
+     * @return Node[]
      */
     private function generateLinkFieldAssignment(LinkField $field): array
     {
@@ -360,7 +362,7 @@ class Mapper extends BaseCodeGenerator
      *
      * @param DateField $field
      *
-     * @return Node\Expr[]
+     * @return Node[]
      */
     private function generateDateFieldAssignment(DateField $field): array
     {
@@ -370,7 +372,9 @@ class Mapper extends BaseCodeGenerator
             $field,
             new Node\Expr\New_(
                 new Node\Name('DateTimeImmutable'),
-                [new Node\Expr\Variable('value')]
+                [
+                    new Node\Arg(new Node\Expr\Variable('value')),
+                ]
             )
         );
     }
@@ -456,7 +460,7 @@ class Mapper extends BaseCodeGenerator
      * @param FieldInterface $field
      * @param Node\Expr      $expr
      *
-     * @return Node\Stmt[]
+     * @return Node[]
      */
     private function generateForeachAssignment(FieldInterface $field, Node\Expr $expr): array
     {
