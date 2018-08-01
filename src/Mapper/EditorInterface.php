@@ -29,7 +29,7 @@ class EditorInterface extends BaseMapper
     {
         return $this->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
-            'controls' => \array_map([$this, 'buildControl'], $data['controls']),
+            'controls' => \array_map([$this, 'mapControl'], $data['controls']),
         ]);
     }
 
@@ -38,7 +38,7 @@ class EditorInterface extends BaseMapper
      *
      * @return Control
      */
-    protected function buildControl(array $data): Control
+    protected function mapControl(array $data): Control
     {
         return $this->hydrate(Control::class, [
             'fieldId' => $data['fieldId'],

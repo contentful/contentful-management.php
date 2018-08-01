@@ -21,6 +21,7 @@ use Contentful\Management\Resource\ContentType\Field\LinkField;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
 use Contentful\Management\Resource\Entry as EntryResource;
 use PhpParser\Node;
+use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 
@@ -59,7 +60,8 @@ class Entry extends BaseCodeGenerator
 
         $class = $this->generateClass($contentType);
 
-        $stmts = $this->generateUses([
+        /** @var Stmt[] $statements */
+        $statements = $this->generateUses([
             EntryResource::class,
             $this->uses['date'] ? DateTimeImmutable::class : null,
             $this->uses['asset'] ? Asset::class : null,
@@ -67,10 +69,10 @@ class Entry extends BaseCodeGenerator
             $this->uses['resource_interface'] ? ResourceInterface::class : null,
         ]);
 
-        $stmts[] = $class;
+        $statements[] = $class;
 
         return $this->render(
-            new Node\Stmt\Namespace_(new Node\Name($namespace), $stmts)
+            new Node\Stmt\Namespace_(new Node\Name($namespace), $statements)
         );
     }
 
@@ -107,7 +109,7 @@ class Entry extends BaseCodeGenerator
      */
     private function generateClassMethods(ContentType $contentType): array
     {
-        $stmts = [
+        $statements = [
             $this->generateConstructor($contentType),
         ];
 
@@ -120,18 +122,18 @@ class Entry extends BaseCodeGenerator
                 $this->uses['date'] = true;
             }
 
-            $stmts[] = $this->generateGetter($field, $type);
-            $stmts[] = $this->generateSetter($field, $type);
+            $statements[] = $this->generateGetter($field, $type);
+            $statements[] = $this->generateSetter($field, $type);
 
-            if ('Link' === $type) {
-                $stmts[] = $this->generateLinkResolverMethod($field);
+            if ($field instanceof LinkField) {
+                $statements[] = $this->generateLinkResolverMethod($field);
             }
-            if ('Link[]' === $type) {
-                $stmts[] = $this->generateArrayLinkResolverMethod($field);
+            if ($field instanceof ArrayField && 'Link' === $field->getItemsType()) {
+                $statements[] = $this->generateArrayLinkResolverMethod($field);
             }
         }
 
-        return $stmts;
+        return $statements;
     }
 
     /**
@@ -140,7 +142,7 @@ class Entry extends BaseCodeGenerator
      * ```
      * public function __construct()
      * {
-     *     parent::__costruct('<contentTypeId>');
+     *     parent::__construct('<contentTypeId>');
      * }
      * ```
      *
@@ -403,7 +405,7 @@ class Entry extends BaseCodeGenerator
      */
     private function generateArrayLinkResolverMethod(ArrayField $field): ClassMethod
     {
-        $returnTypes = $this->determineLinkReturnType($field->getItemsLinkType(), $field->getItemsValidations());
+        $returnTypes = $this->determineLinkReturnType((string) $field->getItemsLinkType(), $field->getItemsValidations());
 
         return new ClassMethod(
             'resolve'.$this->convertToStudlyCaps($field->getId()).'Links',

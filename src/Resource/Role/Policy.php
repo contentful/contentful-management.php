@@ -50,7 +50,7 @@ class Policy implements \JsonSerializable
     private $actions;
 
     /**
-     * @var ConstraintInterface
+     * @var ConstraintInterface|null
      */
     private $constraint;
 
@@ -58,7 +58,7 @@ class Policy implements \JsonSerializable
      * Policy constructor.
      *
      * @param string                   $effect     Either "allow" or "deny"
-     * @param string|array             $actions    Either "all" or an array
+     * @param string|string[]          $actions    Either "all" or an array
      * @param ConstraintInterface|null $constraint
      */
     public function __construct(string $effect, $actions = [], ConstraintInterface $constraint = null)

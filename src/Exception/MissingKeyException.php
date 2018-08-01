@@ -12,6 +12,7 @@ namespace Contentful\Management\Exception;
 
 use Contentful\Core\Api\Exception;
 use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\ResponseInterface;
 use function GuzzleHttp\json_decode as guzzle_json_decode;
 
 /**
@@ -19,6 +20,8 @@ use function GuzzleHttp\json_decode as guzzle_json_decode;
  *
  * A MissingKeyException is thrown when persisting an object
  * without a key that is required.
+ *
+ * @method ResponseInterface getResponse()
  */
 class MissingKeyException extends Exception
 {
@@ -34,7 +37,7 @@ class MissingKeyException extends Exception
     {
         parent::__construct($previous, $message);
 
-        $result = guzzle_json_decode($this->getResponse()->getBody(), true);
+        $result = guzzle_json_decode((string) $this->getResponse()->getBody(), true);
 
         $this->key = $result['details']['key'];
     }

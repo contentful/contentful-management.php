@@ -22,12 +22,12 @@ use Contentful\Core\Resource\SystemPropertiesInterface;
 class SystemProperties implements SystemPropertiesInterface
 {
     /**
-     * @var string|null
+     * @var string
      */
     private $id;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $type;
 
@@ -200,7 +200,7 @@ class SystemProperties implements SystemPropertiesInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     public function getId()
     {
@@ -208,7 +208,7 @@ class SystemProperties implements SystemPropertiesInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     public function getType()
     {

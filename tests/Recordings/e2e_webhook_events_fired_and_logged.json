@@ -11,7 +11,7 @@
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json"
         },
-        "body": "{\"fields\":{\"title\":{\"en-US\":\"Burt Macklin\"},\"description\":{\"en-US\":\"FBI\"}}}"
+        "body": "{\"fields\":{\"title\":{\"en-US\":\"Burt Macklin\"},\"description\":{\"en-US\":\"FBI\"},\"file\":{}}}"
     },
     "response": {
         "status": {
@@ -104,7 +104,7 @@
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json"
         },
-        "body": "{\"fields\":{\"title\":{\"en-US\":\"Dwight Schrute\"},\"description\":{\"en-US\":\"Assistant (to the) Regional Manager\"}}}"
+        "body": "{\"fields\":{\"title\":{\"en-US\":\"Dwight Schrute\"},\"description\":{\"en-US\":\"Assistant (to the) Regional Manager\"},\"file\":{}}}"
     },
     "response": {
         "status": {

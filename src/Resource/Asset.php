@@ -35,17 +35,17 @@ class Asset extends BaseResource implements CreatableInterface
     /**
      * @var string[]
      */
-    protected $title;
+    protected $title = [];
 
     /**
      * @var string[]
      */
-    protected $description;
+    protected $description = [];
 
     /**
      * @var FileInterface[]
      */
-    protected $file;
+    protected $file = [];
 
     /**
      * Asset constructor.
@@ -62,24 +62,14 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function jsonSerialize(): array
     {
-        $asset = [
+        return [
             'sys' => $this->sys,
-            'fields' => new \stdClass(),
+            'fields' => [
+                'title' => (object) $this->title,
+                'description' => (object) $this->description,
+                'file' => (object) $this->file,
+            ],
         ];
-
-        if (null !== $this->file) {
-            $asset['fields']->file = $this->file;
-        }
-
-        if (null !== $this->title) {
-            $asset['fields']->title = $this->title;
-        }
-
-        if (null !== $this->description) {
-            $asset['fields']->description = $this->description;
-        }
-
-        return $asset;
     }
 
     /**
@@ -107,8 +97,6 @@ class Asset extends BaseResource implements CreatableInterface
      *
      * @param string|null $locale
      *
-     * @return static
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
      */
     public function process(string $locale = null)
@@ -123,7 +111,12 @@ class Asset extends BaseResource implements CreatableInterface
             ], false);
         }
 
-        return $this->client->fetchResource(static::class, $this->asUriParameters(), null, $this);
+        $this->client->fetchResource(
+            \get_class($this),
+            $this->asUriParameters(),
+            null,
+            $this
+        );
     }
 
     /**
@@ -133,11 +126,7 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function getTitle(string $locale)
     {
-        if (null === $this->title || !isset($this->title[$locale])) {
-            return null;
-        }
-
-        return $this->title[$locale];
+        return $this->title[$locale] ?? null;
     }
 
     /**
@@ -148,6 +137,12 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function setTitle(string $locale, string $title = null)
     {
+        if (!$title) {
+            unset($this->title[$locale]);
+
+            return $this;
+        }
+
         $this->title[$locale] = $title;
 
         return $this;
@@ -168,11 +163,7 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function getDescription(string $locale)
     {
-        if (null === $this->description || !isset($this->description[$locale])) {
-            return null;
-        }
-
-        return $this->description[$locale];
+        return $this->description[$locale] ?? null;
     }
 
     /**
@@ -183,6 +174,12 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function setDescription(string $locale, string $description = null)
     {
+        if (!$description) {
+            unset($this->description[$locale]);
+
+            return $this;
+        }
+
         $this->description[$locale] = $description;
 
         return $this;
@@ -203,11 +200,7 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function getFile(string $locale)
     {
-        if (null === $this->file || !isset($this->file[$locale])) {
-            return null;
-        }
-
-        return $this->file[$locale];
+        return $this->file[$locale] ?? null;
     }
 
     /**
@@ -218,6 +211,12 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function setFile(string $locale, UnprocessedFileInterface $file = null)
     {
+        if (!$file) {
+            unset($this->file[$locale]);
+
+            return $this;
+        }
+
         $this->file[$locale] = $file;
 
         return $this;

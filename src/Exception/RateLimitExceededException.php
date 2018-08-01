@@ -12,9 +12,12 @@ namespace Contentful\Management\Exception;
 
 use Contentful\Core\Exception\RateLimitExceededException as BaseRateLimitExceededException;
 use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * RateLimitExceededException class.
+ *
+ * @method ResponseInterface getResponse()
  */
 class RateLimitExceededException extends BaseRateLimitExceededException
 {

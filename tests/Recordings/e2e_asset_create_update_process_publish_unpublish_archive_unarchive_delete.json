@@ -11,7 +11,7 @@
             "Accept-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json"
         },
-        "body": "{\"fields\":{\"file\":{\"en-US\":{\"fileName\":\"contentful.svg\",\"contentType\":\"image\\\/svg+xml\",\"upload\":\"https:\\\/\\\/pbs.twimg.com\\\/profile_images\\\/488880764323250177\\\/CrqV-RjR_normal.jpeg\"}},\"title\":{\"en-US\":\"An asset\"},\"description\":{\"en-US\":\"A really cool asset\"}}}"
+        "body": "{\"fields\":{\"title\":{\"en-US\":\"An asset\"},\"description\":{\"en-US\":\"A really cool asset\"},\"file\":{\"en-US\":{\"fileName\":\"contentful.svg\",\"contentType\":\"image\\\/svg+xml\",\"upload\":\"https:\\\/\\\/pbs.twimg.com\\\/profile_images\\\/488880764323250177\\\/CrqV-RjR_normal.jpeg\"}}}}"
     },
     "response": {
         "status": {
@@ -248,7 +248,7 @@
             "Content-Type": "application\/vnd.contentful.management.v1+json",
             "X-Contentful-Version": "2"
         },
-        "body": "{\"fields\":{\"file\":{\"en-US\":{\"fileName\":\"contentful.svg\",\"contentType\":\"image\\\/jpeg\",\"details\":{\"size\":1807,\"image\":{\"width\":48,\"height\":48}},\"url\":\"\\\/\\\/images.ctfassets.net\\\/pmgjoasidv3w\\\/5u9msaXnkQq6cYIaImkIkc\\\/f455b042888259ed47f5e0e01acbabfe\\\/contentful.svg\"}},\"title\":{\"en-US\":\"Even better asset\"},\"description\":{\"en-US\":\"A really cool asset\"}}}"
+        "body": "{\"fields\":{\"title\":{\"en-US\":\"Even better asset\"},\"description\":{\"en-US\":\"A really cool asset\"},\"file\":{\"en-US\":{\"fileName\":\"contentful.svg\",\"contentType\":\"image\\\/jpeg\",\"details\":{\"size\":1807,\"image\":{\"width\":48,\"height\":48}},\"url\":\"\\\/\\\/images.ctfassets.net\\\/pmgjoasidv3w\\\/5u9msaXnkQq6cYIaImkIkc\\\/f455b042888259ed47f5e0e01acbabfe\\\/contentful.svg\"}}}}"
     },
     "response": {
         "status": {

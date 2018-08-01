@@ -43,7 +43,7 @@ class Loader extends BaseCodeGenerator
      *
      * ```
      * function (array $data) {
-     *     swtich ({{ var }}) {
+     *     switch ({{ var }}) {
      *         {{ cases }}
      *     }
      * }
