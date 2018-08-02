@@ -108,7 +108,7 @@ class SpaceTest extends BaseTestCase
     {
         $client = $this->getClient();
 
-        $space = new Space('DELETEME - PHP CMA IT', $this->testOrganizationId, 'it-IT');
+        $space = new Space('DELETEME - PHP CMA IT', $this->organizationId, 'it-IT');
 
         $client->create($space);
 
@@ -133,7 +133,7 @@ class SpaceTest extends BaseTestCase
     {
         $client = $this->getClient();
 
-        $space = new Space('DELETEME - PHP CMA', $this->testOrganizationId);
+        $space = new Space('DELETEME - PHP CMA', $this->organizationId);
 
         $client->create($space);
 

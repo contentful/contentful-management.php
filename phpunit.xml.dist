@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/bootstrap.php">
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="unit">
             <directory>tests/Unit</directory>
@@ -13,8 +13,7 @@
     </testsuites>
 
     <logging>
-        <log type="coverage-html" target="build/coverage" title="contentful-management.php" charset="UTF-8" yui="true" highlight="true"
-             lowUpperBound="35" highLowerBound="70" />
+        <log type="coverage-html" target="build/coverage" lowUpperBound="35" highLowerBound="70" />
         <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
 
@@ -27,4 +26,13 @@
             <directory suffix=".php">src</directory>
         </whitelist>
     </filter>
+
+    <php>
+        <env name="CONTENTFUL_PHP_MANAGEMENT_SDK_ENV" value="test" />
+
+        <env name="CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_READ_ONLY" value="34luz0flcmxt" />
+        <env name="CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_READ_WRITE" value="pmgjoasidv3w" />
+        <env name="CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_CODE_GENERATION" value="t7rprcaoexcq" />
+        <env name="CONTENTFUL_PHP_MANAGEMENT_ORGANIZATION_ID" value="4Q3Lza73mxcjmluLU7V5EG" />
+    </php>
 </phpunit>
