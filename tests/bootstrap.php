@@ -13,6 +13,10 @@ use VCR\Request;
 use VCR\VCR;
 use VCR\VCREvents;
 
+if ('api-coverage' === \getenv('CONTENTFUL_PHP_MANAGEMENT_SDK_ENV')) {
+    return;
+}
+
 /**
  * @param Request $request
  *
@@ -25,22 +29,17 @@ function clean_headers_array(Request $request)
             return false;
         }
 
-        if ('user-agent' === \mb_strtolower($name) || 'x-contentful-user-agent' === \mb_strtolower($name)) {
-            return false;
-        }
-
-        // Since we omit the Authorization header from recordings we can't match on it
-        if ('authorization' === \mb_strtolower($name)) {
-            return false;
-        }
-
-        return true;
+        return !\in_array(\mb_strtolower($name), [
+            'user-agent',
+            'x-contentful-user-agent',
+            'authorization',
+        ], true);
     }, ARRAY_FILTER_USE_BOTH);
 }
 
 // The VCR needs to be loaded before the Client is loaded for the first time or it will fail
 VCR::configure()
-    ->setMode('once')
+    ->setMode(VCR::MODE_ONCE)
     ->setStorage('json')
     ->setCassettePath('tests/Recordings')
     ->addRequestMatcher('custom_headers', function (Request $first, Request $second) {
@@ -48,11 +47,10 @@ VCR::configure()
     })
     ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers']);
 
+// Remove the Authorization header to prevent leaking CMA tokens
 VCR::getEventDispatcher()
     ->addListener(VCREvents::VCR_BEFORE_RECORD, function (BeforeRecordEvent $event) {
-        $request = $event->getRequest();
-        // Remove the Authorization header to prevent leaking CMA tokens
-        $request->removeHeader('Authorization');
+        $event->getRequest()->removeHeader('Authorization');
     });
 
 VCR::turnOn();

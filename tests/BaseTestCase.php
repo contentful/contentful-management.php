@@ -27,26 +27,31 @@ class BaseTestCase extends TestCase
     /**
      * @var string
      */
-    protected $readOnlySpaceId = '34luz0flcmxt';
+    protected $readOnlySpaceId;
 
     /**
      * @var string
      */
-    protected $readWriteSpaceId = 'pmgjoasidv3w';
+    protected $readWriteSpaceId;
 
     /**
      * @var string
      */
-    protected $codeGenerationSpaceId = 't7rprcaoexcq';
+    protected $codeGenerationSpaceId;
 
     /**
      * @var string
      */
-    protected $testOrganizationId = '4Q3Lza73mxcjmluLU7V5EG';
+    protected $organizationId;
 
     public function setUp()
     {
-        $this->token = \getenv('CONTENTFUL_CMA_TEST_TOKEN');
+        $this->token = \getenv('CONTENTFUL_PHP_MANAGEMENT_TEST_TOKEN');
+
+        $this->readOnlySpaceId = \getenv('CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_READ_ONLY');
+        $this->readWriteSpaceId = \getenv('CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_READ_WRITE');
+        $this->codeGenerationSpaceId = \getenv('CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_CODE_GENERATION');
+        $this->organizationId = \getenv('CONTENTFUL_PHP_MANAGEMENT_ORGANIZATION_ID');
     }
 
     /**
@@ -54,7 +59,12 @@ class BaseTestCase extends TestCase
      */
     protected function getClient(): Client
     {
-        return new Client($this->token);
+        $host = \getenv('CONTENTFUL_PHP_MANAGEMENT_SDK_HOST');
+        $options = $host
+            ? ['baseUri' => $host]
+            : [];
+
+        return new Client($this->token, $options);
     }
 
     /**
@@ -93,11 +103,22 @@ class BaseTestCase extends TestCase
             ->getEnvironmentProxy('master');
     }
 
+    /**
+     * @return EnvironmentProxy
+     */
     protected function getCodeGenerationProxy(): EnvironmentProxy
     {
         return $this->getClient()->getEnvironmentProxy($this->codeGenerationSpaceId, 'master');
     }
 
+    /**
+     * Convenience method for performing assertions on link objects.
+     *
+     * @param        $id
+     * @param        $linkType
+     * @param Link   $link
+     * @param string $message
+     */
     protected function assertLink($id, $linkType, Link $link, $message = '')
     {
         $this->assertSame($id, $link->getId(), $message);
