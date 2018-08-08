@@ -4,8 +4,8 @@
         "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/assets\/2TEG7c2zYkSSuKmsqEwCS",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.54.0 PHP\/7.2.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.1.0-dev; platform PHP\/7.2.8; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -25,23 +25,24 @@
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Mon, 16 Apr 2018 09:47:57 GMT",
-            "ETag": "W\/\"635d0cdce7f26f0ef9dbe614ec920bdd\"",
+            "Contentful-Api": "cma",
+            "Date": "Wed, 08 Aug 2018 14:20:25 GMT",
+            "ETag": "W\/\"5406e811cd8de0b47fd056709e2193e9\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179846",
+            "X-Contentful-RateLimit-Hour-Remaining": "179335",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "0c783789a043e643f9f77b739e3740b2",
-            "Content-Length": "527",
+            "X-Contentful-Request-Id": "0c6e9310d66650c4b5508ac17abee494",
+            "Content-Length": "530",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=CsQTcbJWQdK0Y+BqDSny4Uxx1FoAAAAAQUIPAAAAAAC\/xbFDk3zgKJrPmZk\/GH4h; expires=Mon, 15 Apr 2019 12:13:54 GMT; path=\/; Domain=.contentful.com, nlbi_673446=jq41QBugiwsKkoFV6lKYhQAAAADpeUjhu5ACiq0\/xD\/AeWJH; path=\/; Domain=.contentful.com, incap_ses_477_673446=cNJ+PYKjcyvZY\/WH5qWeBkxx1FoAAAAA11YEn1n7n0HyMp0Uz8Ev7g==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "5-78338675-78338684 NNNN CT(127 128 0) RT(1523872075819 51) q(0 0 3 -1) r(7 7) U5",
+            "Set-Cookie": "visid_incap_673446=QVaT4k1kS\/iC3R+03RasUCn8alsAAAAAQUIPAAAAAAAnhro2lAnAin5hJKJxK0ov; expires=Thu, 08 Aug 2019 08:05:00 GMT; path=\/; Domain=.contentful.com, nlbi_673446=uVVfSbnWB1RTyIkD6lKYhQAAAAD6CyU0zbg3xkgxuMaqA+ZN; path=\/; Domain=.contentful.com, incap_ses_476_673446=klFZEROZDR+SjSN97BebBin8alsAAAAAizBxKYS8QhVZRK4D8PUIoA==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-97432078-97432090 NNNN CT(101 206 0) RT(1533738024280 59) q(0 0 3 -1) r(7 7) U5",
             "X-CDN": "Incapsula"
         },
-        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"2TEG7c2zYkSSuKmsqEwCS\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-08-22T15:41:45.127Z\",\n    \"updatedAt\": \"2017-08-22T15:42:20.946Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedCounter\": 1,\n    \"version\": 11,\n    \"publishedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedVersion\": 10,\n    \"firstPublishedAt\": \"2017-08-22T15:42:20.946Z\",\n    \"publishedAt\": \"2017-08-22T15:42:20.946Z\"\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"Contentful Logo\"\n    },\n    \"file\": {\n      \"en-US\": {\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/2TEG7c2zYkSSuKmsqEwCS\/22da0779cac76ba6b74b5c2cbf084b97\/contentful-logo-C395C545BF-seeklogo.com.png\",\n        \"details\": {\n          \"size\": 15241,\n          \"image\": {\n            \"width\": 266,\n            \"height\": 300\n          }\n        },\n        \"fileName\": \"contentful-logo-C395C545BF-seeklogo.com.png\",\n        \"contentType\": \"image\/png\"\n      }\n    }\n  }\n}\n"
+        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"2TEG7c2zYkSSuKmsqEwCS\",\n    \"type\": \"Asset\",\n    \"createdAt\": \"2017-08-22T15:41:45.127Z\",\n    \"updatedAt\": \"2017-08-22T15:42:20.969Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedCounter\": 1,\n    \"version\": 11,\n    \"publishedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"1CECdY5ZhqJapGieg6QS9P\"\n      }\n    },\n    \"publishedVersion\": 10,\n    \"firstPublishedAt\": \"2017-08-22T15:42:20.946Z\",\n    \"publishedAt\": \"2017-08-22T15:42:20.946Z\"\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"Contentful Logo\"\n    },\n    \"file\": {\n      \"en-US\": {\n        \"url\": \"\/\/images.ctfassets.net\/34luz0flcmxt\/2TEG7c2zYkSSuKmsqEwCS\/22da0779cac76ba6b74b5c2cbf084b97\/contentful-logo-C395C545BF-seeklogo.com.png\",\n        \"details\": {\n          \"size\": 15241,\n          \"image\": {\n            \"width\": 266,\n            \"height\": 300\n          }\n        },\n        \"fileName\": \"contentful-logo-C395C545BF-seeklogo.com.png\",\n        \"contentType\": \"image\/png\"\n      }\n    }\n  }\n}\n"
     }
 }]

@@ -37,7 +37,7 @@ class EntryTest extends BaseTestCase
         $this->assertSame(6, $sys->getVersion());
         $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-08-22T11:50:19.841Z', (string) $sys->getCreatedAt());
-        $this->assertSame('2017-08-22T11:50:26.991Z', (string) $sys->getUpdatedAt());
+        $this->assertSame('2017-08-22T11:50:27.087Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
         $this->assertSame(5, $sys->getPublishedVersion());
@@ -65,7 +65,7 @@ class EntryTest extends BaseTestCase
         $this->assertSame(6, $sys->getVersion());
         $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-08-22T11:50:19.841Z', (string) $sys->getCreatedAt());
-        $this->assertSame('2017-08-22T11:50:26.991Z', (string) $sys->getUpdatedAt());
+        $this->assertSame('2017-08-22T11:50:27.087Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
         $this->assertSame(5, $sys->getPublishedVersion());

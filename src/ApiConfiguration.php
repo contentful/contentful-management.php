@@ -157,7 +157,7 @@ class ApiConfiguration
      * This array defines the configuration for mapping
      * a Contentful type to a specific SDK resource.
      *
-     * @var array
+     * @var array<string, string>
      */
     private static $linkMap = [
         'Asset' => Resource\Asset::class,
