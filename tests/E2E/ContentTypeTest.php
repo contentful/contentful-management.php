@@ -52,7 +52,7 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame(3, $sys->getVersion());
         $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-10-17T12:23:16.461Z', (string) $sys->getCreatedAt());
-        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
+        $this->assertSame('2017-10-17T12:23:46.396Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getPublishedBy());
@@ -101,7 +101,7 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame(3, $sys->getVersion());
         $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-10-17T12:23:16.461Z', (string) $sys->getCreatedAt());
-        $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
+        $this->assertSame('2017-10-17T12:23:46.396Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getPublishedBy());

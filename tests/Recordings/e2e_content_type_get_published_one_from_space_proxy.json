@@ -4,8 +4,8 @@
         "url": "https:\/\/api.contentful.com\/spaces\/34luz0flcmxt\/environments\/master\/public\/content_types\/cat",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.54.0 PHP\/7.2.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.1.0-dev; platform PHP\/7.2.8; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
@@ -25,21 +25,22 @@
             "CF-Space-Id": "34luz0flcmxt",
             "Content-Encoding": "gzip",
             "Content-Type": "application\/vnd.contentful.management.v1+json",
-            "Date": "Mon, 16 Apr 2018 10:00:41 GMT",
+            "Contentful-Api": "cma",
+            "Date": "Wed, 08 Aug 2018 14:20:30 GMT",
             "ETag": "W\/\"dc282424eb5b7374228ce644547cdcbf\"",
             "Server": "Contentful",
             "Strict-Transport-Security": "max-age=15768000",
             "X-Content-Type-Options": "nosniff",
             "X-Contentful-RateLimit-Hour-Limit": "180000",
-            "X-Contentful-RateLimit-Hour-Remaining": "179798",
+            "X-Contentful-RateLimit-Hour-Remaining": "179322",
             "X-Contentful-RateLimit-Reset": "0",
             "X-Contentful-RateLimit-Second-Limit": "50",
             "X-Contentful-RateLimit-Second-Remaining": "49",
-            "X-Contentful-Request-Id": "f2dca72e26d42fb79bdc6b6f981c4ae0",
+            "X-Contentful-Request-Id": "9a54ffd4f23c11d649b2efceb1ffa015",
             "Content-Length": "556",
             "Connection": "keep-alive",
-            "Set-Cookie": "visid_incap_673446=QOcp9TyCTmmzrizQtFsO30Z01FoAAAAAQUIPAAAAAADkbtFKwpv1kuPQuTbJLeAd; expires=Mon, 15 Apr 2019 12:14:06 GMT; path=\/; Domain=.contentful.com, nlbi_673446=iyG+eX4bx3Sskhla6lKYhQAAAACVFdEoR2zqF5j+fCZkIzhH; path=\/; Domain=.contentful.com, incap_ses_477_673446=QlgzR5sw6TZA0PeH5qWeBkh01FoAAAAAgRQRhhyvgHbuJ7h7ux7X6g==; path=\/; Domain=.contentful.com",
-            "X-Iinfo": "2-16775914-16775915 NNNN CT(107 107 0) RT(1523872840394 17) q(0 0 2 0) r(3 3) U5",
+            "Set-Cookie": "visid_incap_673446=pFoHJy1rSUK1OBzF5TcS\/i78alsAAAAAQUIPAAAAAAB2lFkIX3PntUC2\/TYCghmA; expires=Thu, 08 Aug 2019 08:05:00 GMT; path=\/; Domain=.contentful.com, nlbi_673446=7xI8ETZwvEyKa5v96lKYhQAAAAB+Sz5RD7wp\/jHXbhe7kNUc; path=\/; Domain=.contentful.com, incap_ses_476_673446=f9zZTNv0nFVbjyN97BebBi78alsAAAAAAsUI2FM3asc33B1EKxyJuQ==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "9-24534657-24534659 NNNN CT(0 0 0) RT(1533738029851 44) q(0 0 0 -1) r(6 6) U5",
             "X-CDN": "Incapsula"
         },
         "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"34luz0flcmxt\"\n      }\n    },\n    \"id\": \"cat\",\n    \"type\": \"ContentType\",\n    \"createdAt\": \"2017-10-17T12:23:46.365Z\",\n    \"updatedAt\": \"2017-10-17T12:23:46.365Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"revision\": 1\n  },\n  \"displayField\": \"name\",\n  \"name\": \"Cat\",\n  \"description\": \"Meow.\",\n  \"fields\": [\n    {\n      \"id\": \"name\",\n      \"name\": \"Name\",\n      \"type\": \"Text\",\n      \"localized\": true,\n      \"required\": true,\n      \"validations\": [\n        {\n          \"size\": {\n            \"min\": 3\n          }\n        }\n      ],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"likes\",\n      \"name\": \"Likes\",\n      \"type\": \"Array\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"items\": {\n        \"type\": \"Symbol\",\n        \"validations\": []\n      }\n    },\n    {\n      \"id\": \"color\",\n      \"name\": \"Color\",\n      \"type\": \"Symbol\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"bestFriend\",\n      \"name\": \"Best Friend\",\n      \"type\": \"Link\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"linkType\": \"Entry\"\n    },\n    {\n      \"id\": \"birthday\",\n      \"name\": \"Birthday\",\n      \"type\": \"Date\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"lifes\",\n      \"name\": \"Lifes left\",\n      \"type\": \"Integer\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": true,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"lives\",\n      \"name\": \"Lives left\",\n      \"type\": \"Integer\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false\n    },\n    {\n      \"id\": \"image\",\n      \"name\": \"Image\",\n      \"type\": \"Link\",\n      \"localized\": false,\n      \"required\": false,\n      \"validations\": [],\n      \"disabled\": false,\n      \"omitted\": false,\n      \"linkType\": \"Asset\"\n    }\n  ]\n}\n"

@@ -18,6 +18,5 @@
 
         <env name="CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_READ_ONLY" value="34luz0flcmxt" />
         <env name="CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_CODE_GENERATION" value="t7rprcaoexcq" />
-        <env name="CONTENTFUL_PHP_MANAGEMENT_ORGANIZATION_ID" value="4Q3Lza73mxcjmluLU7V5EG" />
     </php>
 </phpunit>

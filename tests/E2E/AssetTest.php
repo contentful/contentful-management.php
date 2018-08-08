@@ -44,7 +44,7 @@ class AssetTest extends BaseTestCase
         $this->assertSame(11, $sys->getVersion());
         $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertSame('2017-08-22T15:41:45.127Z', (string) $sys->getCreatedAt());
-        $this->assertSame('2017-08-22T15:42:20.946Z', (string) $sys->getUpdatedAt());
+        $this->assertSame('2017-08-22T15:42:20.969Z', (string) $sys->getUpdatedAt());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
         $this->assertSame(10, $sys->getPublishedVersion());
