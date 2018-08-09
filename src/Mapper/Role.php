@@ -16,6 +16,7 @@ use Contentful\Management\Resource\Role\Constraint\ConstraintInterface;
 use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
 use Contentful\Management\Resource\Role\Constraint\NotConstraint;
 use Contentful\Management\Resource\Role\Constraint\OrConstraint;
+use Contentful\Management\Resource\Role\Constraint\PathsConstraint;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
 use Contentful\Management\SystemProperties;
@@ -84,6 +85,10 @@ class Role extends BaseMapper
             case 'not':
                 return $this->hydrate(NotConstraint::class, [
                     'child' => $this->mapConstraint($data[$key][0]),
+                ]);
+            case 'paths':
+                return $this->hydrate(PathsConstraint::class, [
+                    'doc' => $data[$key][0]['doc'],
                 ]);
             case 'equals':
                 // The $data[$key] array *should* be in the form
