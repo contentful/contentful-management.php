@@ -38,7 +38,7 @@ class EqualityConstraint implements ConstraintInterface
     private $value;
 
     /**
-     * InConstraint constructor.
+     * EqualityConstraint constructor.
      *
      * @param string     $doc
      * @param mixed|null $value

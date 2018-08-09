@@ -16,6 +16,7 @@ use Contentful\Management\Resource\Role\Constraint\AndConstraint;
 use Contentful\Management\Resource\Role\Constraint\EqualityConstraint;
 use Contentful\Management\Resource\Role\Constraint\NotConstraint;
 use Contentful\Management\Resource\Role\Constraint\OrConstraint;
+use Contentful\Management\Resource\Role\Constraint\PathsConstraint;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
 use Contentful\Tests\Management\BaseTestCase;
@@ -104,6 +105,7 @@ class RoleTest extends BaseTestCase
 
         $constraint = new AndConstraint([
             new EqualityConstraint('sys.type', 'Entry'),
+            new PathsConstraint('fields.%.%'),
             new OrConstraint([
                 new EqualityConstraint('sys.type', 'Asset'),
                 new NotConstraint(new EqualityConstraint('sys.type', 'ContentType')),

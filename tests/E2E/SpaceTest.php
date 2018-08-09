@@ -31,8 +31,8 @@ class SpaceTest extends BaseTestCase
         $this->assertSame($this->readOnlySpaceId, $sys->getId());
         $this->assertSame('Space', $sys->getType());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
-        $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
-        $this->assertSame(5, $sys->getVersion());
+        $this->assertSame('2018-05-24T05:54:12Z', (string) $sys->getUpdatedAt());
+        $this->assertSame(6, $sys->getVersion());
         $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
         $this->assertSame('PHP CMA', $space->getName());
@@ -52,8 +52,8 @@ class SpaceTest extends BaseTestCase
         $this->assertSame($this->readOnlySpaceId, $sys->getId());
         $this->assertSame('Space', $sys->getType());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
-        $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
-        $this->assertSame(5, $sys->getVersion());
+        $this->assertSame('2018-05-24T05:54:12Z', (string) $sys->getUpdatedAt());
+        $this->assertSame(6, $sys->getVersion());
         $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
         $this->assertSame('PHP CMA', $space->getName());
@@ -75,8 +75,8 @@ class SpaceTest extends BaseTestCase
         $this->assertSame($this->readOnlySpaceId, $sys->getId());
         $this->assertSame('Space', $sys->getType());
         $this->assertSame('2017-05-18T13:35:42Z', (string) $sys->getCreatedAt());
-        $this->assertSame('2017-07-06T10:12:00Z', (string) $sys->getUpdatedAt());
-        $this->assertSame(5, $sys->getVersion());
+        $this->assertSame('2018-05-24T05:54:12Z', (string) $sys->getUpdatedAt());
+        $this->assertSame(6, $sys->getVersion());
         $this->assertLink('5wTIctqPekjOi9TGctNW7L', 'User', $sys->getCreatedBy());
         $this->assertLink('1CECdY5ZhqJapGieg6QS9P', 'User', $sys->getUpdatedBy());
         $this->assertSame('PHP CMA', $space->getName());

@@ -18,6 +18,10 @@
                     "doc": "sys.type"
                 }, "Entry"]
             }, {
+                "paths": [{
+                    "doc": "fields.%.%"
+                }]
+            }, {
                 "or": [{
                     "equals": [{
                         "doc": "sys.type"
