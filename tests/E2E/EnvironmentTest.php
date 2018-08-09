@@ -12,6 +12,7 @@ namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Core\Exception\NotFoundException;
 use Contentful\Core\Resource\ResourceArray;
+use Contentful\Management\Exception\VersionMismatchException;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\Environment;
 use Contentful\Tests\Management\BaseTestCase;
@@ -104,7 +105,7 @@ class EnvironmentTest extends BaseTestCase
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $limit = 5;
-        do {
+        while (true) {
             $query = (new Query())
                 ->setLimit($limit);
 
@@ -115,6 +116,10 @@ class EnvironmentTest extends BaseTestCase
                 }
             }
 
+            if ('ready' === $environment->getSystemProperties()->getStatus()->getId()) {
+                break;
+            }
+
             // This is arbitrary
             if ($limit > 50) {
                 throw new \RuntimeException(
@@ -122,11 +127,29 @@ class EnvironmentTest extends BaseTestCase
                 );
             }
             ++$limit;
-        } while ('ready' !== $environment->getSystemProperties()->getStatus()->getId());
+            \usleep(500000);
+        }
 
-        $environment->setName('CI Environment');
+        // Environments might suffer from race conditions after creation,
+        // so a VersionMismatch error might be thrown.
+        // In the case, we simply keep refreshing the object until this works
+        $limit = 0;
+        do {
+            ++$limit;
+            if ($limit > 50) {
+                throw new \RuntimeException(
+                    'Environment update keeps yielding a VersionMismatch error, aborting.'
+                );
+            }
 
-        $environment->update();
+            try {
+                $environment->setName('CI Environment');
+                $environment->update();
+                break;
+            } catch (VersionMismatchException $exception) {
+                $environment = $proxy->getEnvironment($environmentId);
+            }
+        } while (true);
         $this->assertSame($environmentId, $environment->getId());
         $this->assertSame('CI Environment', $environment->getName());
 

@@ -158,7 +158,7 @@ class ApiKeyTest extends BaseTestCase
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $limit = 5;
-        do {
+        while (true) {
             $query = (new Query())
                 ->setLimit($limit);
 
@@ -169,6 +169,10 @@ class ApiKeyTest extends BaseTestCase
                 }
             }
 
+            if ('ready' === $environment->getSystemProperties()->getStatus()->getId()) {
+                break;
+            }
+
             // This is arbitrary
             if ($limit > 50) {
                 throw new \RuntimeException(
@@ -176,7 +180,8 @@ class ApiKeyTest extends BaseTestCase
                 );
             }
             ++$limit;
-        } while ('ready' !== $environment->getSystemProperties()->getStatus()->getId());
+            \usleep(500000);
+        }
 
         // If now environments property is set, the key will only be configured for master.
         $deliveryApiKey = new DeliveryApiKey('[TEMP] Key after environments (1/2)');
