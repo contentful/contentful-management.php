@@ -46,6 +46,12 @@ class PersonalAccessTokenTest extends BaseTestCase
      */
     public function testGetCollection()
     {
+        $personalAccessTokens = $this->getClient()->getPersonalAccessTokens();
+
+        // This check is useful to make sure that
+        // all space memberships objects were properly created.
+        $this->assertCount($personalAccessTokens->getTotal(), $personalAccessTokens);
+
         $query = (new Query())
             ->setLimit(1);
         $personalAccessTokens = $this->getClient()->getPersonalAccessTokens($query);
