@@ -1,11 +1,59 @@
 [{
     "request": {
         "method": "GET",
+        "url": "https:\/\/api.contentful.com\/users\/me\/access_tokens",
+        "headers": {
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.54.0 PHP\/7.2.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.1.0-dev; platform PHP\/7.2.8; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Accept-Ranges": "bytes",
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "Cache-Control": "max-age=0",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Contentful-Api": "cma",
+            "Date": "Thu, 09 Aug 2018 12:48:23 GMT",
+            "ETag": "W\/\"c5823c8ed7e5e11d0e281244fbbef8ba\"",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-Request-Id": "c4306d1ca49a2e153d2a7ffedb4a7505",
+            "X-Download-Options": "noopen",
+            "X-Frame-Options": "ALLOWALL",
+            "X-Permitted-Cross-Domain-Policies": "none",
+            "X-XSS-Protection": "1; mode=block",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=1n3hTZs9QTW3qpCYQWNeFxY4bFsAAAAAQUIPAAAAAAAvKZOgGsCTNmw2G9RUrdJB; expires=Fri, 09 Aug 2019 08:05:01 GMT; path=\/; Domain=.contentful.com, nlbi_673446=czfQVn+MzW7ZgqOT6lKYhQAAAABsHVYjcuoriTn5C61faanK; path=\/; Domain=.contentful.com, incap_ses_476_673446=a6cFcuX8sUF4inN97BebBhc4bFsAAAAAIBzmjV9fR5ZnffEqEl\/TTg==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "4-75819428-75819430 NNNN CT(109 222 0) RT(1533818902951 45) q(0 1 4 2) r(5 5) U5",
+            "X-CDN": "Incapsula",
+            "Content-Encoding": "gzip",
+            "Transfer-Encoding": "chunked"
+        },
+        "body": "{\n  \"total\":1,\n  \"limit\":25,\n  \"skip\":0,\n  \"sys\":{\n    \"type\":\"Array\"\n  },\n  \"items\":[\n    {\n      \"name\":\"TravisCI\",\n      \"revokedAt\":null,\n      \"sys\":{\n        \"type\":\"PersonalAccessToken\",\n        \"id\":\"4BkpKaEaHxzPfX5UZ49aUm\",\n        \"createdAt\":\"2017-07-13T09:35:54Z\",\n        \"updatedAt\":\"2017-07-13T09:35:54Z\"\n      },\n      \"scopes\":[\"content_management_manage\"]\n    }\n  ]\n}\n\n"
+    }
+},{
+    "request": {
+        "method": "GET",
         "url": "https:\/\/api.contentful.com\/users\/me\/access_tokens?limit=1",
         "headers": {
             "Host": "api.contentful.com",
-            "User-Agent": "GuzzleHttp\/6.2.1 curl\/7.54.0 PHP\/7.1.14",
-            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.0.0-dev; platform PHP\/7.1.14; os macOS;",
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.54.0 PHP\/7.2.8",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/1.1.0-dev; platform PHP\/7.2.8; os macOS;",
             "Accept": "application\/vnd.contentful.management.v1+json",
             "Accept-Encoding": "gzip"
         }
