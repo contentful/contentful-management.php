@@ -9,12 +9,12 @@ env:
 matrix:
   fast_finish: true
   include:
-    - php: 7.1
+    - php: 7.2
       env: SYNTAX_TEST=1
     - php: 7.0
     - php: 7.1
-      env: BUILD_LEAD=1
     - php: 7.2
+      env: BUILD_LEAD=1
 
 branches:
   only:
