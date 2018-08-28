@@ -1,11 +1,12 @@
 <?php
 
 /**
- * This file is part of the contentful-management.php package.
+ * This file is part of the contentful/contentful-management package.
  *
  * @copyright 2015-2018 Contentful GmbH
  * @license   MIT
  */
+
 declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
@@ -198,7 +199,7 @@ class AssetTest extends BaseTestCase
         $environmentProxy = $spaceProxy->getEnvironmentProxy('master');
 
         // Creates upload using fopen
-        $fopenUpload = new Upload(\fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'r'));
+        $fopenUpload = new Upload(\fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'rb'));
         $spaceProxy->create($fopenUpload);
         $this->assertNotNull($fopenUpload->getId());
         $this->assertInstanceOf(DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());

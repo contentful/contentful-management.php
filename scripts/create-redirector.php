@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is part of the contentful/contentful-management package.
+ *
+ * @copyright 2015-2018 Contentful GmbH
+ * @license   MIT
+ */
+
+declare(strict_types=1);
+
 $travisRepoSlug = \getenv('TRAVIS_REPO_SLUG');
 $indexFile = $argv[1];
 
