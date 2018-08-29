@@ -17,7 +17,7 @@ The SDK requires at least PHP 7.0.
 To add this package to your `composer.json` and install it execute the following command:
 
 ``` bash
-composer require contentful/contentful-management:@dev
+composer require contentful/contentful-management
 ```
 
 Then, if not already done, include the Composer autoloader:
