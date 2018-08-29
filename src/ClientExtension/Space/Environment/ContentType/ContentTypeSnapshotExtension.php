@@ -59,7 +59,7 @@ trait ContentTypeSnapshotExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
-    public function getContentTypeSnapshots(string $spaceId, string $environmentId, string $contentTypeId, Query $query = null): ResourceArray
+    public function getContentTypeSnapshots(string $spaceId, string $environmentId, string $contentTypeId, Query $query = \null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,

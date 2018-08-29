@@ -25,10 +25,10 @@ class AssetImageDimensionsValidation extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         return $this->hydrate(ResourceClass::class, [
-            'minWidth' => $data['assetImageDimensions']['width']['min'] ?? null,
-            'maxWidth' => $data['assetImageDimensions']['width']['max'] ?? null,
-            'minHeight' => $data['assetImageDimensions']['height']['min'] ?? null,
-            'maxHeight' => $data['assetImageDimensions']['height']['max'] ?? null,
+            'minWidth' => $data['assetImageDimensions']['width']['min'] ?? \null,
+            'maxWidth' => $data['assetImageDimensions']['width']['max'] ?? \null,
+            'minHeight' => $data['assetImageDimensions']['height']['min'] ?? \null,
+            'maxHeight' => $data['assetImageDimensions']['height']['max'] ?? \null,
         ]);
     }
 }

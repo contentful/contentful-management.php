@@ -98,7 +98,8 @@ class ExtensionTest extends BaseTestCase
             ->addNewFieldType('Array', ['Symbol'])
             ->addNewFieldType('Link', ['Entry'])
             ->setSource($source)
-            ->setSidebar(false);
+            ->setSidebar(\false)
+        ;
 
         $proxy->create($extension);
 

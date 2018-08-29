@@ -42,7 +42,8 @@ class EntryTest extends BaseTestCase
         $entry = (new Entry('blogPost'))
             ->setField('title', 'en-US', 'My summer holidays')
             ->setField('publishedAt', 'en-US', new DateTimeImmutable('2017-01-01 16:30:00'))
-            ->setField('tags', 'en-US', ['italy', 'venice', 'rome', 'sicily']);
+            ->setField('tags', 'en-US', ['italy', 'venice', 'rome', 'sicily'])
+        ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/entry.json', $entry);
     }

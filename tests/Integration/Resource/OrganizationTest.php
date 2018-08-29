@@ -34,7 +34,7 @@ class OrganizationTest extends BaseTestCase
         $class = new \ReflectionClass(Organization::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(true);
+        $constructor->setAccessible(\true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();
@@ -69,7 +69,8 @@ class OrganizationTest extends BaseTestCase
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'Organization',
-            ]], $organization);
+            ]], $organization)
+        ;
     }
 
     /**

@@ -53,7 +53,7 @@ trait DeliveryApiKeyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection
      */
-    public function getDeliveryApiKeys(string $spaceId, Query $query = null): ResourceArray
+    public function getDeliveryApiKeys(string $spaceId, Query $query = \null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,

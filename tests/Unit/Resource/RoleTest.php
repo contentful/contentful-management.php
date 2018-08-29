@@ -62,7 +62,8 @@ class RoleTest extends BaseTestCase
         $role->getPermissions()
             ->setContentDelivery('manage')
             ->setContentModel('read')
-            ->setSettings('all');
+            ->setSettings('all')
+        ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/role.json', $role);
     }

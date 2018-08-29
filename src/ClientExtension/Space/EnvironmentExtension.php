@@ -74,7 +74,7 @@ trait EnvironmentExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environments-collection
      */
-    public function getEnvironments(string $spaceId, Query $query = null): ResourceArray
+    public function getEnvironments(string $spaceId, Query $query = \null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,

@@ -46,16 +46,16 @@ class AssetImageDimensionsValidationTest extends BaseTestCase
         $validation->setMaxHeight(180);
         $this->assertSame(180, $validation->getMaxHeight());
 
-        $validation->setMinWidth(null);
+        $validation->setMinWidth(\null);
         $this->assertNull($validation->getMinWidth());
 
-        $validation->setMaxWidth(null);
+        $validation->setMaxWidth(\null);
         $this->assertNull($validation->getMaxWidth());
 
-        $validation->setMinHeight(null);
+        $validation->setMinHeight(\null);
         $this->assertNull($validation->getMinHeight());
 
-        $validation->setMaxHeight(null);
+        $validation->setMaxHeight(\null);
         $this->assertNull($validation->getMaxHeight());
     }
 }

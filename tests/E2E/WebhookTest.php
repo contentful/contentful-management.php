@@ -52,7 +52,8 @@ class WebhookTest extends BaseTestCase
     public function testGetOneFromSpace()
     {
         $space = $this->getReadOnlySpaceProxy()
-            ->toResource();
+            ->toResource()
+        ;
 
         $webhook = $space->getWebhook('3tilCowN1lI1rDCe9vhK0C');
 
@@ -83,7 +84,8 @@ class WebhookTest extends BaseTestCase
         $this->assertInstanceOf(Webhook::class, $webhooks[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $webhooks = $proxy->getWebhooks($query);
         $this->assertInstanceOf(Webhook::class, $webhooks[0]);
         $this->assertCount(1, $webhooks);
@@ -179,7 +181,8 @@ class WebhookTest extends BaseTestCase
         $this->assertSame('https://www.example.com/cf-xrLThVn5uBzHqB6tIbpV4aycgyisr5UAEQSafzkG', $webhookCalls[0]->getUrl());
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $webhookCalls = $webhook->getCalls($query);
         $this->assertInstanceOf(WebhookCall::class, $webhookCalls[0]);
         $this->assertSame(404, $webhookCalls[0]->getStatusCode());
@@ -200,7 +203,7 @@ class WebhookTest extends BaseTestCase
             'call' => $webhookCallId,
         ], $webhookCall->asUriParameters());
         $this->assertLink($webhookCall->getId(), 'WebhookCallDetails', $webhookCall->asLink());
-        $requestPayload = guzzle_json_decode((string) $webhookCall->getRequest()->getBody(), true);
+        $requestPayload = guzzle_json_decode((string) $webhookCall->getRequest()->getBody(), \true);
         $this->assertSame('Dwight Schrute', $requestPayload['fields']['title']['en-US']);
         $this->assertSame('ContentManagement.Asset.create', $webhookCall->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
         $this->assertSame('ClientError', $webhookCall->getError());

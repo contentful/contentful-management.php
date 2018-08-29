@@ -82,7 +82,8 @@ class AssetTest extends BaseTestCase
         $this->assertInstanceOf(Asset::class, $assets[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $assets = $proxy->getAssets($query);
         $this->assertInstanceOf(Asset::class, $assets[0]);
         $this->assertCount(1, $assets);
@@ -99,7 +100,8 @@ class AssetTest extends BaseTestCase
         $this->assertInstanceOf(Asset::class, $assets[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $assets = $proxy->getAssets('master', $query);
         $this->assertInstanceOf(Asset::class, $assets[0]);
         $this->assertCount(1, $assets);
@@ -114,7 +116,8 @@ class AssetTest extends BaseTestCase
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
-            ->setDescription('en-US', 'A really cool asset');
+            ->setDescription('en-US', 'A really cool asset')
+        ;
 
         $file = new RemoteUploadFile('contentful.svg', 'image/svg+xml', 'https://pbs.twimg.com/profile_images/488880764323250177/CrqV-RjR_normal.jpeg');
 
@@ -181,7 +184,8 @@ class AssetTest extends BaseTestCase
 
         $asset = (new Asset())
             ->setTitle('en-US', 'An asset')
-            ->setDescription('en-US', 'A really cool asset');
+            ->setDescription('en-US', 'A really cool asset')
+        ;
 
         $proxy->create($asset, 'myCustomTestAsset');
         $this->assertSame('myCustomTestAsset', $asset->getId());

@@ -121,7 +121,7 @@ class CodeGenerationTest extends BaseTestCase
         $author = new Author();
         $author->setName('en-US', 'Lee Adama');
         $author->setLocation('en-US', ['lat' => 50, 'lon' => 50]);
-        $author->setIsActive('en-US', true);
+        $author->setIsActive('en-US', \true);
         $author->setMisc('en-US', ['codename' => 'Apollo']);
         $author->setPicture('en-US', new Link('24jR8tPh6cWyQyWecs8USO', 'Asset'));
         $proxy->create($author);

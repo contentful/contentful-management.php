@@ -80,8 +80,8 @@ class WebhookCall extends BaseResource
     {
         $call = [
             'sys' => $this->sys,
-            'request' => null,
-            'response' => null,
+            'request' => \null,
+            'response' => \null,
             'statusCode' => $this->statusCode,
             'errors' => $this->error ? [$this->error] : [],
             'eventType' => $this->eventType,

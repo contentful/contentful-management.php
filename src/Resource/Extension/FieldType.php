@@ -94,7 +94,7 @@ class FieldType implements \JsonSerializable
      */
     private function isValidFieldType(string $type): bool
     {
-        return \in_array($type, ['Symbol', 'Text', 'Integer', 'Number', 'Date', 'Boolean', 'Object', 'Link', 'Array'], true);
+        return \in_array($type, ['Symbol', 'Text', 'Integer', 'Number', 'Date', 'Boolean', 'Object', 'Link', 'Array'], \true);
     }
 
     /**
@@ -104,7 +104,7 @@ class FieldType implements \JsonSerializable
      */
     private function setLinkFieldType(string $linkType)
     {
-        if (!\in_array($linkType, ['Entry', 'Asset'], true)) {
+        if (!\in_array($linkType, ['Entry', 'Asset'], \true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Trying to create link field type, but link type must be either "Entry" or "Asset", "%s" given.',
                 $linkType
@@ -123,7 +123,7 @@ class FieldType implements \JsonSerializable
      * @param string      $arrayType Either "Symbol" or "Link"
      * @param string|null $linkType  Either "Asset" or "Entry" if $arrayType is "Link", null otherwise
      */
-    private function setArrayFieldType(string $arrayType, string $linkType = null)
+    private function setArrayFieldType(string $arrayType, string $linkType = \null)
     {
         if ('Symbol' !== $arrayType && 'Link' !== $arrayType) {
             throw new \InvalidArgumentException(\sprintf(
@@ -133,7 +133,7 @@ class FieldType implements \JsonSerializable
         }
 
         if ('Link' === $arrayType) {
-            if (!\in_array($linkType, ['Entry', 'Asset'], true)) {
+            if (!\in_array($linkType, ['Entry', 'Asset'], \true)) {
                 throw new \InvalidArgumentException(\sprintf(
                     'Trying to create array field type with items type "Link", but link type must be either "Entry" or "Asset", "%s" given.',
                     $linkType

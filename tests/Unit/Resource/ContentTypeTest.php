@@ -25,7 +25,8 @@ class ContentTypeTest extends BaseTestCase
             ->setFields([
                 new SymbolField('name', 'Name'),
             ])
-            ->setDisplayField('name');
+            ->setDisplayField('name')
+        ;
 
         $this->assertSame('ContentType', $contentType->getSystemProperties()->getType());
         $this->assertSame('ContentType', $contentType->getType());
@@ -47,7 +48,8 @@ class ContentTypeTest extends BaseTestCase
                 new SymbolField('name', 'Name'),
                 new NumberField('number', 'Number'),
             ])
-            ->setDisplayField('name');
+            ->setDisplayField('name')
+        ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/content_type.json', $contentType);
     }

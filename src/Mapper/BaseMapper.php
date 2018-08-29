@@ -52,7 +52,8 @@ abstract class BaseMapper implements MapperInterface
         $class = \is_object($target) ? \get_class($target) : $target;
         if (\is_string($target)) {
             $target = (new \ReflectionClass($class))
-                ->newInstanceWithoutConstructor();
+                ->newInstanceWithoutConstructor()
+            ;
         }
 
         $hydrator = $this->getHydrator($class);
@@ -77,6 +78,6 @@ abstract class BaseMapper implements MapperInterface
             foreach ($properties as $property => $value) {
                 $object->$property = $value;
             }
-        }, null, $class);
+        }, \null, $class);
     }
 }

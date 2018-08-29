@@ -33,17 +33,18 @@ class MapperTest extends BaseTestCase
         // The generator works with the system ID, which is not usually accessible,
         // hence this hack
         $property = (new \ReflectionClass(ContentType::class))->getProperty('sys');
-        $property->setAccessible(true);
+        $property->setAccessible(\true);
         $property->setValue($contentType, new SystemProperties([
             'id' => 'blogPost',
             'type' => 'contentType',
         ]));
 
-        $contentType->addNewField('Symbol', 'title', 'Title')->setRequired(true);
+        $contentType->addNewField('Symbol', 'title', 'Title')->setRequired(\true);
         $contentType->addNewField('Boolean', 'isPublished', 'Is published');
         $contentType->addNewField('Date', 'publishedAt', 'Published at');
         $contentType->addNewField('Link', 'previous', 'Previous', 'Entry')
-            ->addValidation(new LinkContentTypeValidation(['blogPost']));
+            ->addValidation(new LinkContentTypeValidation(['blogPost']))
+        ;
         $contentType->addNewField('Link', 'heroImage', 'Hero image', 'Asset');
         $contentType->addNewField('Link', 'randomEntry', 'Random entry', 'Entry');
         $contentType->addNewField('Object', 'misc', 'Misc');
@@ -53,7 +54,8 @@ class MapperTest extends BaseTestCase
         $contentType->addNewField('Number', 'rating', 'Rating');
         $contentType->addNewField('Array', 'images', 'Images', 'Link', 'Asset');
         $contentType->addNewField('Array', 'related', 'Related', 'Link', 'Entry')
-            ->addItemsValidation(new LinkContentTypeValidation(['blogPost']));
+            ->addItemsValidation(new LinkContentTypeValidation(['blogPost']))
+        ;
         $contentType->addNewField('Array', 'tags', 'Tags', 'Symbol');
 
         $generator = new Mapper('en-US');
@@ -102,7 +104,7 @@ class MapperTest extends BaseTestCase
             ],
             'fields' => [
                 'title' => ['en-US' => 'title'],
-                'isPublished' => ['en-US' => true],
+                'isPublished' => ['en-US' => \true],
                 'publishedAt' => ['en-US' => '2017-10-06T09:30:30.123Z'],
                 'previous' => ['en-US' => [
                     'sys' => [
@@ -174,7 +176,7 @@ class MapperTest extends BaseTestCase
                 'tags' => ['en-US' => ['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads']],
             ],
         ];
-        $entry = $mapper->map(null, $data);
+        $entry = $mapper->map(\null, $data);
         $entry->setClient(new MapperFakeClient('irrelevant'));
 
         $this->assertSame('title', $entry->getTitle('en-US'));

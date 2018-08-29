@@ -57,7 +57,8 @@ class ContentTypeSnapshotTest extends BaseTestCase
     public function testGetOneFromContentType()
     {
         $contentType = $this->getReadOnlyEnvironmentProxy()
-            ->getContentType('versionedContentType');
+            ->getContentType('versionedContentType')
+        ;
 
         $snapshot = $contentType->getSnapshot('1Qvx64r3Nq0MOtftdcAXJO');
 
@@ -132,7 +133,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
-        $this->assertSame(2, \count($fields));
+        $this->assertCount(2, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame('Description', $fields[1]->getName());
         $this->assertSame(2, $contentType->getSystemProperties()->getPublishedCounter());
@@ -142,12 +143,13 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('1Qvx64r3Nq0MOtftdcAXJO', $snapshot->getId());
-        $this->assertSame(1, \count($fields));
+        $this->assertCount(1, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame(1, $contentType->getSystemProperties()->getPublishedCounter());
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $snapshots = $proxy->getContentTypeSnapshots('versionedContentType', $query);
         $this->assertCount(1, $snapshots);
 
@@ -156,7 +158,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
-        $this->assertSame(2, \count($fields));
+        $this->assertCount(2, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame('Description', $fields[1]->getName());
         $this->assertSame(2, $contentType->getSystemProperties()->getPublishedCounter());
@@ -168,7 +170,8 @@ class ContentTypeSnapshotTest extends BaseTestCase
     public function testGetCollectionFromContentType()
     {
         $originalContentType = $this->getReadOnlyEnvironmentProxy()
-            ->getContentType('versionedContentType');
+            ->getContentType('versionedContentType')
+        ;
 
         $snapshots = $originalContentType->getSnapshots();
 
@@ -177,7 +180,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
-        $this->assertSame(2, \count($fields));
+        $this->assertCount(2, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame('Description', $fields[1]->getName());
         $this->assertSame(2, $contentType->getSystemProperties()->getPublishedCounter());
@@ -187,12 +190,13 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('1Qvx64r3Nq0MOtftdcAXJO', $snapshot->getId());
-        $this->assertSame(1, \count($fields));
+        $this->assertCount(1, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame(1, $contentType->getSystemProperties()->getPublishedCounter());
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $snapshots = $originalContentType->getSnapshots($query);
         $this->assertCount(1, $snapshots);
 
@@ -201,7 +205,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
-        $this->assertSame(2, \count($fields));
+        $this->assertCount(2, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame('Description', $fields[1]->getName());
         $this->assertSame(2, $contentType->getSystemProperties()->getPublishedCounter());
@@ -221,7 +225,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
-        $this->assertSame(2, \count($fields));
+        $this->assertCount(2, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame('Description', $fields[1]->getName());
         $this->assertSame(2, $contentType->getSystemProperties()->getPublishedCounter());
@@ -231,12 +235,13 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('1Qvx64r3Nq0MOtftdcAXJO', $snapshot->getId());
-        $this->assertSame(1, \count($fields));
+        $this->assertCount(1, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame(1, $contentType->getSystemProperties()->getPublishedCounter());
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $snapshots = $proxy->getContentTypeSnapshots('master', 'versionedContentType', $query);
         $this->assertCount(1, $snapshots);
 
@@ -245,7 +250,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $fields = $contentType->getFields();
         $this->assertInstanceOf(ContentTypeSnapshot::class, $snapshot);
         $this->assertSame('S9fDVyecKeNclEq1BPwuD', $snapshot->getId());
-        $this->assertSame(2, \count($fields));
+        $this->assertCount(2, $fields);
         $this->assertSame('Title', $fields[0]->getName());
         $this->assertSame('Description', $fields[1]->getName());
         $this->assertSame(2, $contentType->getSystemProperties()->getPublishedCounter());

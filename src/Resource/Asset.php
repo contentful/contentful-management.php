@@ -100,7 +100,7 @@ class Asset extends BaseResource implements CreatableInterface
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
      */
-    public function process(string $locale = null)
+    public function process(string $locale = \null)
     {
         $locales = $locale
             ? [$locale]
@@ -109,13 +109,13 @@ class Asset extends BaseResource implements CreatableInterface
         foreach ($locales as $locale) {
             $this->client->requestWithResource($this, 'PUT', '/files/'.$locale.'/process', [
                 'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
-            ], false);
+            ], \false);
         }
 
         $this->client->fetchResource(
             \get_class($this),
             $this->asUriParameters(),
-            null,
+            \null,
             $this
         );
     }
@@ -127,7 +127,7 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function getTitle(string $locale)
     {
-        return $this->title[$locale] ?? null;
+        return $this->title[$locale] ?? \null;
     }
 
     /**
@@ -136,7 +136,7 @@ class Asset extends BaseResource implements CreatableInterface
      *
      * @return static
      */
-    public function setTitle(string $locale, string $title = null)
+    public function setTitle(string $locale, string $title = \null)
     {
         if (!$title) {
             unset($this->title[$locale]);
@@ -164,7 +164,7 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function getDescription(string $locale)
     {
-        return $this->description[$locale] ?? null;
+        return $this->description[$locale] ?? \null;
     }
 
     /**
@@ -173,7 +173,7 @@ class Asset extends BaseResource implements CreatableInterface
      *
      * @return static
      */
-    public function setDescription(string $locale, string $description = null)
+    public function setDescription(string $locale, string $description = \null)
     {
         if (!$description) {
             unset($this->description[$locale]);
@@ -201,7 +201,7 @@ class Asset extends BaseResource implements CreatableInterface
      */
     public function getFile(string $locale)
     {
-        return $this->file[$locale] ?? null;
+        return $this->file[$locale] ?? \null;
     }
 
     /**
@@ -210,7 +210,7 @@ class Asset extends BaseResource implements CreatableInterface
      *
      * @return static
      */
-    public function setFile(string $locale, UnprocessedFileInterface $file = null)
+    public function setFile(string $locale, UnprocessedFileInterface $file = \null)
     {
         if (!$file) {
             unset($this->file[$locale]);

@@ -32,17 +32,18 @@ class EntryTest extends BaseTestCase
         // The generator works with the system ID, which is not usually accessible,
         // hence this hack
         $property = (new \ReflectionClass(ContentType::class))->getProperty('sys');
-        $property->setAccessible(true);
+        $property->setAccessible(\true);
         $property->setValue($contentType, new SystemProperties([
             'id' => 'blogPost',
             'type' => 'contentType',
         ]));
 
-        $contentType->addNewField('Symbol', 'title', 'Title')->setRequired(true);
+        $contentType->addNewField('Symbol', 'title', 'Title')->setRequired(\true);
         $contentType->addNewField('Boolean', 'isPublished', 'Is published');
         $contentType->addNewField('Date', 'publishedAt', 'Published at');
         $contentType->addNewField('Link', 'previous', 'Previous', 'Entry')
-            ->addValidation(new LinkContentTypeValidation(['blogPost']));
+            ->addValidation(new LinkContentTypeValidation(['blogPost']))
+        ;
         $contentType->addNewField('Link', 'heroImage', 'Hero image', 'Asset');
         $contentType->addNewField('Link', 'randomEntry', 'Random entry', 'Entry');
         $contentType->addNewField('Object', 'misc', 'Misc');
@@ -52,7 +53,8 @@ class EntryTest extends BaseTestCase
         $contentType->addNewField('Number', 'rating', 'Rating');
         $contentType->addNewField('Array', 'images', 'Images', 'Link', 'Asset');
         $contentType->addNewField('Array', 'related', 'Related', 'Link', 'Entry')
-            ->addItemsValidation(new LinkContentTypeValidation(['blogPost']));
+            ->addItemsValidation(new LinkContentTypeValidation(['blogPost']))
+        ;
         $contentType->addNewField('Array', 'tags', 'Tags', 'Symbol');
 
         $generator = new Entry('en-US');
@@ -82,14 +84,14 @@ class EntryTest extends BaseTestCase
 
         $reflection = new \ReflectionObject($entry);
         $property = $reflection->getProperty('sys');
-        $property->setAccessible(true);
+        $property->setAccessible(\true);
         $previousSys = $property->getValue($entry);
         $property->setValue($entry, $sys);
 
         $entry->setTitle('en-US', 'title');
         $this->assertSame('title', $entry->getTitle('en-US'));
 
-        $entry->setIsPublished('en-US', true);
+        $entry->setIsPublished('en-US', \true);
         $this->assertTrue($entry->getIsPublished('en-US'));
 
         $publishedAt = new DateTimeImmutable('2017-10-06T09:30:30.123');

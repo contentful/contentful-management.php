@@ -48,10 +48,10 @@ abstract class BaseField extends BaseMapper
         return $this->hydrate($fieldTypes[$type], [
             'id' => $data['id'],
             'name' => $data['name'],
-            'required' => $data['required'] ?? null,
-            'localized' => $data['localized'] ?? null,
-            'disabled' => $data['disabled'] ?? null,
-            'omitted' => $data['omitted'] ?? null,
+            'required' => $data['required'] ?? \null,
+            'localized' => $data['localized'] ?? \null,
+            'disabled' => $data['disabled'] ?? \null,
+            'omitted' => $data['omitted'] ?? \null,
             'validations' => isset($data['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['validations'])
                 : [],
@@ -68,6 +68,7 @@ abstract class BaseField extends BaseMapper
         $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Validation\\'.\ucfirst(\array_keys($data)[0]).'Validation';
 
         return $this->builder->getMapper($fqcn)
-            ->map(null, $data);
+            ->map(\null, $data)
+        ;
     }
 }

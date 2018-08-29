@@ -53,7 +53,7 @@ trait SpaceMembershipExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships
      */
-    public function getSpaceMemberships(string $spaceId, Query $query = null): ResourceArray
+    public function getSpaceMemberships(string $spaceId, Query $query = \null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,

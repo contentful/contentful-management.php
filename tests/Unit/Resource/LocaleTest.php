@@ -29,15 +29,15 @@ class LocaleTest extends BaseTestCase
         $this->assertSame('it-IT', $locale->getCode());
 
         $this->assertFalse($locale->isOptional());
-        $locale->setOptional(true);
+        $locale->setOptional(\true);
         $this->assertTrue($locale->isOptional());
 
         $this->assertTrue($locale->isContentDeliveryApi());
-        $locale->setContentDeliveryApi(false);
+        $locale->setContentDeliveryApi(\false);
         $this->assertFalse($locale->isContentDeliveryApi());
 
         $this->assertTrue($locale->isContentManagementApi());
-        $locale->setContentManagementApi(false);
+        $locale->setContentManagementApi(\false);
         $this->assertFalse($locale->isContentManagementApi());
 
         $this->assertNull($locale->getFallbackCode());
@@ -52,9 +52,10 @@ class LocaleTest extends BaseTestCase
     public function testJsonSerialize()
     {
         $locale = (new Locale('Swiss Italian', 'it-CH'))
-            ->setContentDeliveryApi(false)
-            ->setOptional(true)
-            ->setFallbackCode('en-US');
+            ->setContentDeliveryApi(\false)
+            ->setOptional(\true)
+            ->setFallbackCode('en-US')
+        ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/locale.json', $locale);
     }

@@ -83,7 +83,7 @@ class LinkField extends BaseField
      */
     private function isValidLinkType(string $type): bool
     {
-        return \in_array($type, self::VALID_LINK_TYPES, true);
+        return \in_array($type, self::VALID_LINK_TYPES, \true);
     }
 
     /**

@@ -74,7 +74,8 @@ class BaseTestCase extends TestCase
     protected function getReadOnlySpaceProxy(): SpaceProxy
     {
         return $this->getClient()
-            ->getSpaceProxy($this->readOnlySpaceId);
+            ->getSpaceProxy($this->readOnlySpaceId)
+        ;
     }
 
     /**
@@ -83,7 +84,8 @@ class BaseTestCase extends TestCase
     protected function getReadOnlyEnvironmentProxy(): EnvironmentProxy
     {
         return $this->getReadOnlySpaceProxy()
-            ->getEnvironmentProxy('master');
+            ->getEnvironmentProxy('master')
+        ;
     }
 
     /**
@@ -92,7 +94,8 @@ class BaseTestCase extends TestCase
     protected function getReadWriteSpaceProxy(): SpaceProxy
     {
         return $this->getClient()
-            ->getSpaceProxy($this->readWriteSpaceId);
+            ->getSpaceProxy($this->readWriteSpaceId)
+        ;
     }
 
     /**
@@ -101,7 +104,8 @@ class BaseTestCase extends TestCase
     protected function getReadWriteEnvironmentProxy(): EnvironmentProxy
     {
         return $this->getReadWriteSpaceProxy()
-            ->getEnvironmentProxy('master');
+            ->getEnvironmentProxy('master')
+        ;
     }
 
     /**
@@ -148,6 +152,6 @@ class BaseTestCase extends TestCase
      */
     protected function markTestAsPassed()
     {
-        $this->assertTrue(true, 'Test case did not throw an exception and passed.');
+        $this->assertTrue(\true, 'Test case did not throw an exception and passed.');
     }
 }

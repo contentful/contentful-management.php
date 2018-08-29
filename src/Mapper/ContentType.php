@@ -31,8 +31,8 @@ class ContentType extends BaseMapper
         return $this->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
-            'description' => $data['description'] ?? null,
-            'displayField' => $data['displayField'] ?? null,
+            'description' => $data['description'] ?? \null,
+            'displayField' => $data['displayField'] ?? \null,
             'fields' => \array_map([$this, 'mapField'], $data['fields']),
             'isPublished' => isset($data['sys']['revision']),
         ]);
@@ -48,6 +48,7 @@ class ContentType extends BaseMapper
         $fqcn = __NAMESPACE__.'\\ContentType\\Field\\'.$data['type'].'Field';
 
         return $this->builder->getMapper($fqcn)
-            ->map(null, $data);
+            ->map(\null, $data)
+        ;
     }
 }

@@ -54,7 +54,7 @@ class Role extends BaseMapper
         return $this->hydrate(Policy::class, [
             'effect' => $data['effect'],
             'actions' => $data['actions'],
-            'constraint' => isset($data['constraint']) ? $this->mapConstraint($data['constraint']) : null,
+            'constraint' => isset($data['constraint']) ? $this->mapConstraint($data['constraint']) : \null,
         ]);
     }
 
@@ -135,7 +135,7 @@ class Role extends BaseMapper
     protected function convertPermission($permission)
     {
         if ($permission === []) {
-            return null;
+            return \null;
         }
 
         if ($permission === ['read']) {

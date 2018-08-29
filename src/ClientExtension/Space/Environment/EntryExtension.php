@@ -58,7 +58,7 @@ trait EntryExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection
      */
-    public function getEntries(string $spaceId, string $environmentId, Query $query = null): ResourceArray
+    public function getEntries(string $spaceId, string $environmentId, Query $query = \null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,

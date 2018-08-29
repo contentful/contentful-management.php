@@ -100,7 +100,8 @@ class EntryTest extends BaseTestCase
         $this->assertInstanceOf(Entry::class, $entries[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $entries = $proxy->getEntries($query);
         $this->assertInstanceOf(Entry::class, $entries[0]);
         $this->assertCount(1, $entries);
@@ -117,7 +118,8 @@ class EntryTest extends BaseTestCase
         $this->assertInstanceOf(Entry::class, $entries[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $entries = $proxy->getEntries('master', $query);
         $this->assertInstanceOf(Entry::class, $entries[0]);
         $this->assertCount(1, $entries);
@@ -131,7 +133,8 @@ class EntryTest extends BaseTestCase
         $proxy = $this->getReadWriteEnvironmentProxy();
 
         $entry = (new Entry('testCt'))
-            ->setField('name', 'en-US', 'A name');
+            ->setField('name', 'en-US', 'A name')
+        ;
 
         $proxy->create($entry);
         $this->assertNotNull($entry->getId());
@@ -181,7 +184,8 @@ class EntryTest extends BaseTestCase
         $proxy = $this->getReadWriteEnvironmentProxy();
 
         $entry = (new Entry('testCt'))
-            ->setField('name', 'en-US', 'A name');
+            ->setField('name', 'en-US', 'A name')
+        ;
 
         $proxy->create($entry, 'myCustomTestEntry');
         $this->assertSame('myCustomTestEntry', $entry->getId());

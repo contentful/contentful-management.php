@@ -38,7 +38,7 @@ class MissingKeyException extends Exception
     {
         parent::__construct($previous, $message);
 
-        $result = guzzle_json_decode((string) $this->getResponse()->getBody(), true);
+        $result = guzzle_json_decode((string) $this->getResponse()->getBody(), \true);
 
         $this->key = $result['details']['key'];
     }

@@ -4,13 +4,13 @@ env:
   global:
     - GH_REPO="github.com/${TRAVIS_REPO_SLUG}.git"
     - BUILD_LEAD=0
-    - SYNTAX_TEST=0
+    - QUALITY_CHECK=0
 
 matrix:
   fast_finish: true
   include:
     - php: 7.2
-      env: SYNTAX_TEST=1
+      env: QUALITY_CHECK=1
     - php: 7.0
     - php: 7.1
     - php: 7.2
@@ -33,36 +33,27 @@ before_install:
     fi
 
 install:
-  - |
-    # Install dependencies
-    # We don't need to install dependencies when doing the syntax check.
-    if [ $SYNTAX_TEST == 0 ]
-    then
-      composer install
-    fi
+  - composer install
 
 script:
   - |
     # PHPUnit tests
-    if [ $SYNTAX_TEST == 0 ]
+    if [ $QUALITY_CHECK == 0 ]
     then
       php vendor/bin/phpunit --stop-on-error --stop-on-failure -v
     fi
 
   - |
-    # Static analysis (build lead only since PHPStan requires dependencies to be installed)
-    if [ $BUILD_LEAD == 1 ]
+    # Static analysis
+    if [ $QUALITY_CHECK == 1 ]
     then
       wget https://github.com/phpstan/phpstan/releases/download/0.9.2/phpstan.phar -q -O phpstan.phar
       php phpstan.phar analyse --level=max --configuration=phpstan.neon src/
     fi
 
   - |
-    # Syntax tests
-    #
-    # We use PHP-CS-Fixer to check for syntax and style errors,
-    # but we run a separate build for that to take advantage of build parallelism.
-    if [ $SYNTAX_TEST == 1 ]
+    # Syntax check
+    if [ $QUALITY_CHECK == 1 ]
     then
       wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -q -O php-cs-fixer.phar
       php php-cs-fixer.phar fix --dry-run --stop-on-violation -v

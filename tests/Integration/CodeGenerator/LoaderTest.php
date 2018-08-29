@@ -28,7 +28,7 @@ class LoaderTest extends BaseTestCase
         // The generator works with the system ID, which is not usually accessible,
         // hence this hack
         $property = (new \ReflectionClass(ContentType::class))->getProperty('sys');
-        $property->setAccessible(true);
+        $property->setAccessible(\true);
         $property->setValue($contentType1, new SystemProperties([
             'id' => 'blogPost',
             'type' => 'contentType',
@@ -59,7 +59,7 @@ class LoaderTest extends BaseTestCase
 
         require __DIR__.'/../../Fixtures/Integration/CodeGenerator/_loader.php';
         $property = (new \ReflectionClass(BaseResourceBuilder::class))->getProperty('dataMapperMatchers');
-        $property->setAccessible(true);
+        $property->setAccessible(\true);
         $matchers = $property->getValue($builder);
 
         $this->assertInstanceOf(\Closure::class, $matchers['Entry']);

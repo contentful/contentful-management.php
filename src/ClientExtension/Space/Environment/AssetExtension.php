@@ -56,7 +56,7 @@ trait AssetExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection
      */
-    public function getAssets(string $spaceId, string $environmentId, Query $query = null): ResourceArray
+    public function getAssets(string $spaceId, string $environmentId, Query $query = \null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
