@@ -49,7 +49,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
      * @param int|null $minHeight
      * @param int|null $maxHeight
      */
-    public function __construct(int $minWidth = null, int $maxWidth = null, int $minHeight = null, int $maxHeight = null)
+    public function __construct(int $minWidth = \null, int $maxWidth = \null, int $minHeight = \null, int $maxHeight = \null)
     {
         $this->minWidth = $minWidth;
         $this->maxWidth = $maxWidth;
@@ -78,7 +78,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
      *
      * @return static
      */
-    public function setMinWidth(int $minWidth = null)
+    public function setMinWidth(int $minWidth = \null)
     {
         $this->minWidth = $minWidth;
 
@@ -98,7 +98,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
      *
      * @return static
      */
-    public function setMaxWidth(int $maxWidth = null)
+    public function setMaxWidth(int $maxWidth = \null)
     {
         $this->maxWidth = $maxWidth;
 
@@ -118,7 +118,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
      *
      * @return static
      */
-    public function setMinHeight(int $minHeight = null)
+    public function setMinHeight(int $minHeight = \null)
     {
         $this->minHeight = $minHeight;
 
@@ -138,7 +138,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
      *
      * @return static
      */
-    public function setMaxHeight(int $maxHeight = null)
+    public function setMaxHeight(int $maxHeight = \null)
     {
         $this->maxHeight = $maxHeight;
 
@@ -153,23 +153,23 @@ class AssetImageDimensionsValidation implements ValidationInterface
     public function jsonSerialize(): array
     {
         $data = [];
-        if (null !== $this->minWidth || null !== $this->maxWidth) {
+        if (\null !== $this->minWidth || \null !== $this->maxWidth) {
             $withData = [];
-            if (null !== $this->minWidth) {
+            if (\null !== $this->minWidth) {
                 $withData['min'] = $this->minWidth;
             }
-            if (null !== $this->maxWidth) {
+            if (\null !== $this->maxWidth) {
                 $withData['max'] = $this->maxWidth;
             }
 
             $data['width'] = $withData;
         }
-        if (null !== $this->minHeight || null !== $this->maxHeight) {
+        if (\null !== $this->minHeight || \null !== $this->maxHeight) {
             $heightData = [];
-            if (null !== $this->minHeight) {
+            if (\null !== $this->minHeight) {
                 $heightData['min'] = $this->minHeight;
             }
-            if (null !== $this->maxHeight) {
+            if (\null !== $this->maxHeight) {
                 $heightData['max'] = $this->maxHeight;
             }
 

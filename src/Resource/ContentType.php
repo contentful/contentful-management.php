@@ -56,7 +56,7 @@ class ContentType extends BaseResource implements CreatableInterface
     /**
      * @var bool
      */
-    protected $isPublished = false;
+    protected $isPublished = \false;
 
     /**
      * ContentType constructor.
@@ -82,11 +82,11 @@ class ContentType extends BaseResource implements CreatableInterface
             'fields' => $this->fields,
         ];
 
-        if (null !== $this->description) {
+        if (\null !== $this->description) {
             $data['description'] = $this->description;
         }
 
-        if (null !== $this->displayField) {
+        if (\null !== $this->displayField) {
             $data['displayField'] = $this->displayField;
         }
 
@@ -170,7 +170,7 @@ class ContentType extends BaseResource implements CreatableInterface
      *
      * @return static
      */
-    public function setDescription(string $description = null)
+    public function setDescription(string $description = \null)
     {
         $this->description = $description;
 
@@ -190,7 +190,7 @@ class ContentType extends BaseResource implements CreatableInterface
      *
      * @return static
      */
-    public function setDisplayField(string $displayField = null)
+    public function setDisplayField(string $displayField = \null)
     {
         $this->displayField = $displayField;
 

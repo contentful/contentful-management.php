@@ -195,7 +195,8 @@ class ContentTypeTest extends BaseTestCase
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $contentTypes = $proxy->getContentTypes($query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
@@ -212,7 +213,8 @@ class ContentTypeTest extends BaseTestCase
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $contentTypes = $proxy->getContentTypes('master', $query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
@@ -229,7 +231,8 @@ class ContentTypeTest extends BaseTestCase
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $contentTypes = $proxy->getPublishedContentTypes($query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
@@ -246,7 +249,8 @@ class ContentTypeTest extends BaseTestCase
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $contentTypes = $proxy->getPublishedContentTypes('master', $query);
         $this->assertInstanceOf(ContentType::class, $contentTypes[0]);
         $this->assertCount(1, $contentTypes);
@@ -260,7 +264,8 @@ class ContentTypeTest extends BaseTestCase
         $proxy = $this->getReadWriteEnvironmentProxy();
 
         $contentType = (new ContentType('Test CT'))
-            ->setDescription('THE best content type');
+            ->setDescription('THE best content type')
+        ;
 
         $proxy->create($contentType);
         $this->assertNotNull($contentType->getId());
@@ -291,7 +296,8 @@ class ContentTypeTest extends BaseTestCase
         $proxy = $this->getReadWriteEnvironmentProxy();
 
         $contentType = (new ContentType('Test CT'))
-            ->setDescription('This content type will have `myCustomTestCt` as ID');
+            ->setDescription('This content type will have `myCustomTestCt` as ID')
+        ;
 
         $proxy->create($contentType, 'myCustomTestCt');
         $this->assertSame('myCustomTestCt', $contentType->getId());
@@ -307,7 +313,8 @@ class ContentTypeTest extends BaseTestCase
     public function testInvalidFieldAccess()
     {
         $contentType = $this->getReadOnlyEnvironmentProxy()
-            ->getContentType('bookmark');
+            ->getContentType('bookmark')
+        ;
         $contentType->getField('invalidField');
     }
 
@@ -362,24 +369,30 @@ class ContentTypeTest extends BaseTestCase
         $contentType->addNewField('array', 'arrayField', 'Array Field', 'Link', 'Asset')
             ->addValidation(new SizeValidation(1, 10))
             ->setItemsValidations([
-                new AssetFileSizeValidation(null, 10485760),
+                new AssetFileSizeValidation(\null, 10485760),
                 new AssetImageDimensionsValidation(50, 1000, 50, 1000),
                 new LinkMimetypeGroupValidation(['image']),
-            ]);
+            ])
+        ;
         $contentType->addNewField('boolean', 'booleanField', 'Boolean Field');
         $contentType->addNewField('date', 'dateField', 'Date Field')
-            ->addValidation(new DateRangeValidation('2010-01-01', '2020-12-31'));
+            ->addValidation(new DateRangeValidation('2010-01-01', '2020-12-31'))
+        ;
         $contentType->addNewField('integer', 'integerField', 'Integer Field')
-            ->addValidation(new RangeValidation(1, 10));
+            ->addValidation(new RangeValidation(1, 10))
+        ;
         $contentType->addNewField('link', 'linkField', 'Link Field', 'Entry')
-            ->addValidation(new LinkContentTypeValidation(['bookmark']));
+            ->addValidation(new LinkContentTypeValidation(['bookmark']))
+        ;
         $contentType->addNewField('location', 'locationField', 'Location Field');
         $contentType->addNewField('number', 'numberField', 'Number Field')
-            ->addValidation(new InValidation([1, 2, 3]));
+            ->addValidation(new InValidation([1, 2, 3]))
+        ;
         $contentType->addNewField('object', 'objectField', 'Object Field');
         $contentType->addNewField('symbol', 'symbolField', 'Symbol Field')
             ->addValidation(new UniqueValidation())
-            ->addValidation(new RegexpValidation('^such', 'im'));
+            ->addValidation(new RegexpValidation('^such', 'im'))
+        ;
         $contentType->addNewField('text', 'textField', 'Text Field');
 
         $proxy->create($contentType, 'fullContentType');

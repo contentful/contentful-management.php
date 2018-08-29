@@ -25,7 +25,7 @@ class PersonalAccessTokenTest extends BaseTestCase
     {
         $client = $this->getClient();
 
-        $personalAccessToken = new PersonalAccessToken('Test access token', true);
+        $personalAccessToken = new PersonalAccessToken('Test access token', \true);
         $client->create($personalAccessToken);
 
         $this->assertNotNull($personalAccessToken->getToken());
@@ -54,7 +54,8 @@ class PersonalAccessTokenTest extends BaseTestCase
         $this->assertCount($personalAccessTokens->getTotal(), $personalAccessTokens);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $personalAccessTokens = $this->getClient()->getPersonalAccessTokens($query);
 
         $this->assertCount(1, $personalAccessTokens);

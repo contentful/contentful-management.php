@@ -38,10 +38,10 @@ class AssetFileSizeValidationTest extends BaseTestCase
         $validation->setMax(450);
         $this->assertSame(450, $validation->getMax());
 
-        $validation->setMin(null);
+        $validation->setMin(\null);
         $this->assertNull($validation->getMin());
 
-        $validation->setMax(null);
+        $validation->setMax(\null);
         $this->assertNull($validation->getMax());
     }
 }

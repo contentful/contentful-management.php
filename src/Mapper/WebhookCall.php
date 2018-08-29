@@ -30,7 +30,7 @@ class WebhookCall extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        if (null !== $resource) {
+        if (\null !== $resource) {
             throw new \LogicException(\sprintf(
                 'Trying to update resource object in mapper of type "%s", but only creation from scratch is supported.',
                 static::class
@@ -44,15 +44,15 @@ class WebhookCall extends BaseMapper
                 $data['request']['url'],
                 $data['request']['headers'],
                 $data['request']['body']
-            ) : null,
+            ) : \null,
             'response' => isset($data['response']) ? new Response(
                 $data['response']['statusCode'],
                 $data['response']['headers'],
                 $data['response']['body']
-            ) : null,
+            ) : \null,
             'statusCode' => $data['statusCode'],
             'eventType' => $data['eventType'],
-            'error' => $data['errors'] ? $data['errors'][0] : null,
+            'error' => $data['errors'] ? $data['errors'][0] : \null,
             'url' => $data['url'],
             'requestAt' => new DateTimeImmutable($data['requestAt']),
             'responseAt' => new DateTimeImmutable($data['responseAt']),

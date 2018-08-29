@@ -65,7 +65,8 @@ class PermissionsTest extends BaseTestCase
         $permissions = (new Permissions())
             ->setContentDelivery('all')
             ->setContentModel('all')
-            ->setSettings('all');
+            ->setSettings('all')
+        ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/Role/permissions.json', $permissions);
     }

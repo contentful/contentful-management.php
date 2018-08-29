@@ -44,7 +44,7 @@ class EqualityConstraint implements ConstraintInterface
      * @param string     $doc
      * @param mixed|null $value
      */
-    public function __construct(string $doc = '', $value = null)
+    public function __construct(string $doc = '', $value = \null)
     {
         $this->doc = $doc;
         $this->value = $value;

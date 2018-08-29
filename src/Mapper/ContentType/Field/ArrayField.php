@@ -27,15 +27,15 @@ class ArrayField extends BaseField
         return $this->hydrate(ResourceClass::class, [
             'id' => $data['id'],
             'name' => $data['name'],
-            'required' => $data['required'] ?? null,
-            'localized' => $data['localized'] ?? null,
-            'disabled' => $data['disabled'] ?? null,
-            'omitted' => $data['omitted'] ?? null,
+            'required' => $data['required'] ?? \null,
+            'localized' => $data['localized'] ?? \null,
+            'disabled' => $data['disabled'] ?? \null,
+            'omitted' => $data['omitted'] ?? \null,
             'validations' => isset($data['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['validations'])
                 : [],
             'itemsType' => $data['items']['type'],
-            'itemsLinkType' => $data['items']['linkType'] ?? null,
+            'itemsLinkType' => $data['items']['linkType'] ?? \null,
             'itemsValidations' => isset($data['items']['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['items']['validations'])
                 : [],

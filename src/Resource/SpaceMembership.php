@@ -31,7 +31,7 @@ class SpaceMembership extends BaseResource implements CreatableInterface
     /**
      * @var bool
      */
-    protected $admin = false;
+    protected $admin = \false;
 
     /**
      * @var string|null

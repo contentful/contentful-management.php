@@ -34,7 +34,7 @@ class PreviewApiKeyTest extends BaseTestCase
         $class = new \ReflectionClass(PreviewApiKey::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(true);
+        $constructor->setAccessible(\true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();
@@ -50,7 +50,7 @@ class PreviewApiKeyTest extends BaseTestCase
                 'type' => 'PreviewApiKey',
             ],
             'name' => 'Preview Key',
-            'description' => null,
+            'description' => \null,
             'accessToken' => 'ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f',
             'environments' => [
                 [
@@ -80,7 +80,8 @@ class PreviewApiKeyTest extends BaseTestCase
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'PreviewApiKey',
-            ]], $previewApiKey);
+            ]], $previewApiKey)
+        ;
     }
 
     /**

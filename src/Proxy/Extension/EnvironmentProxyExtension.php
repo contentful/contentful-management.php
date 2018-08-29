@@ -75,7 +75,7 @@ trait EnvironmentProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection
      */
-    public function getAssets(Query $query = null): ResourceArray
+    public function getAssets(Query $query = \null): ResourceArray
     {
         return $this->client->getAssets(
             $this->getSpaceId(),
@@ -111,7 +111,7 @@ trait EnvironmentProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection
      */
-    public function getContentTypes(Query $query = null): ResourceArray
+    public function getContentTypes(Query $query = \null): ResourceArray
     {
         return $this->client->getContentTypes(
             $this->getSpaceId(),
@@ -147,7 +147,7 @@ trait EnvironmentProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
      */
-    public function getPublishedContentTypes(Query $query = null): ResourceArray
+    public function getPublishedContentTypes(Query $query = \null): ResourceArray
     {
         return $this->client->getPublishedContentTypes(
             $this->getSpaceId(),
@@ -186,7 +186,7 @@ trait EnvironmentProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
-    public function getContentTypeSnapshots(string $contentTypeId, Query $query = null): ResourceArray
+    public function getContentTypeSnapshots(string $contentTypeId, Query $query = \null): ResourceArray
     {
         return $this->client->getContentTypeSnapshots(
             $this->getSpaceId(),
@@ -241,7 +241,7 @@ trait EnvironmentProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection
      */
-    public function getEntries(Query $query = null): ResourceArray
+    public function getEntries(Query $query = \null): ResourceArray
     {
         return $this->client->getEntries(
             $this->getSpaceId(),
@@ -280,7 +280,7 @@ trait EnvironmentProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
      */
-    public function getEntrySnapshots(string $entryId, Query $query = null): ResourceArray
+    public function getEntrySnapshots(string $entryId, Query $query = \null): ResourceArray
     {
         return $this->client->getEntrySnapshots(
             $this->getSpaceId(),

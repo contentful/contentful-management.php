@@ -79,7 +79,8 @@ class EnvironmentTest extends BaseTestCase
         $this->assertInstanceOf(Environment::class, $environments[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $environments = $proxy->getEnvironments($query);
         $this->assertInstanceOf(Environment::class, $environments[0]);
         $this->assertCount(1, $environments);
@@ -106,9 +107,10 @@ class EnvironmentTest extends BaseTestCase
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $limit = 5;
-        while (true) {
+        while (\true) {
             $query = (new Query())
-                ->setLimit($limit);
+                ->setLimit($limit)
+            ;
 
             foreach ($proxy->getEnvironments($query) as $resultEnvironment) {
                 if ($environmentId === $resultEnvironment->getId()) {
@@ -150,7 +152,7 @@ class EnvironmentTest extends BaseTestCase
             } catch (VersionMismatchException $exception) {
                 $environment = $proxy->getEnvironment($environmentId);
             }
-        } while (true);
+        } while (\true);
         $this->assertSame($environmentId, $environment->getId());
         $this->assertSame('CI Environment', $environment->getName());
 

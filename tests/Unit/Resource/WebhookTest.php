@@ -94,7 +94,7 @@ class WebhookTest extends BaseTestCase
             $this->assertSame('Invalid topic "Entry.archive" provided.', $exception->getMessage());
         }
         $webhook->removeTopic('*.publish');
-        $this->assertSame(['Entry.create', 'Asset.*', 'Entry.publish'], $webhook->getTopics(), '', 0, 10, true);
+        $this->assertSame(['Entry.create', 'Asset.*', 'Entry.publish'], $webhook->getTopics(), '', 0, 10, \true);
     }
 
     public function testJsonSerialize()

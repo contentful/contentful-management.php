@@ -53,7 +53,7 @@ class Extension extends BaseMapper
         if ('Array' === $data['type']) {
             $secondParam = [
                 $data['items']['type'],
-                $data['items']['linkType'] ?? null,
+                $data['items']['linkType'] ?? \null,
             ];
         }
 

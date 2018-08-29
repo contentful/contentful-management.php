@@ -72,7 +72,7 @@ trait SpaceExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces/spaces-collection
      */
-    public function getSpaces(Query $query = null): ResourceArray
+    public function getSpaces(Query $query = \null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [], $query);
     }

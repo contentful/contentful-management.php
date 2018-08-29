@@ -51,7 +51,8 @@ class GenerateEntryClassesCommand extends Command
                 new InputOption('environment-id', 'e', InputOption::VALUE_REQUIRED, 'ID of the environment to use', 'master'),
                 new InputOption('dir', 'd', InputOption::VALUE_REQUIRED, 'The directory to write the files in'),
                 new InputOption('namespace', 'ns', InputOption::VALUE_OPTIONAL, 'The base namespace to use'),
-            ]);
+            ])
+        ;
     }
 
     /**
@@ -110,7 +111,8 @@ class GenerateEntryClassesCommand extends Command
         $mapperGenerator = new Mapper($defaultLocale);
 
         $this->loaderFile = (new Loader($defaultLocale))
-            ->generate(['content_types' => $contentTypes, 'namespace' => $namespace]);
+            ->generate(['content_types' => $contentTypes, 'namespace' => $namespace])
+        ;
 
         foreach ($contentTypes as $contentType) {
             $contentTypeId = $contentType->getId();
@@ -142,7 +144,8 @@ class GenerateEntryClassesCommand extends Command
 
         $allContentTypes = [];
         $query = (new Query())
-            ->setLimit($limit);
+            ->setLimit($limit)
+        ;
 
         do {
             $query->setSkip($skip);
@@ -219,7 +222,7 @@ class GenerateEntryClassesCommand extends Command
     private function writeFile(string $path, string $content)
     {
         if (!\is_dir(\dirname($path))) {
-            \mkdir(\dirname($path), 0777, true);
+            \mkdir(\dirname($path), 0777, \true);
         }
 
         return \file_put_contents($path, $content);

@@ -34,7 +34,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
         $class = new \ReflectionClass(ContentTypeSnapshot::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(true);
+        $constructor->setAccessible(\true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();
@@ -91,7 +91,8 @@ class ContentTypeSnapshotTest extends BaseTestCase
             ->build(['sys' => [
                 'type' => 'Snapshot',
                 'snapshotEntityType' => 'ContentType',
-            ]], $contentTypeSnapshot);
+            ]], $contentTypeSnapshot)
+        ;
     }
 
     /**

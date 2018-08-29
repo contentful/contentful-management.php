@@ -96,7 +96,8 @@ class SpaceTest extends BaseTestCase
         $this->assertInstanceOf(Space::class, $spaces[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $spaces = $client->getSpaces($query);
         $this->assertInstanceOf(Space::class, $spaces[0]);
         $this->assertCount(1, $spaces);

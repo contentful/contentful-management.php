@@ -110,7 +110,8 @@ class EntrySnapshotTest extends BaseTestCase
         $this->assertInstanceOf(EntrySnapshot::class, $snapshots[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $snapshots = $proxy->getEntrySnapshots('3LM5FlCdGUIM0Miqc664q6', $query);
         $this->assertInstanceOf(EntrySnapshot::class, $snapshots[0]);
         $this->assertCount(1, $snapshots);
@@ -128,7 +129,8 @@ class EntrySnapshotTest extends BaseTestCase
         $this->assertInstanceOf(EntrySnapshot::class, $snapshots[0]);
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $snapshots = $proxy->getEntrySnapshots('master', '3LM5FlCdGUIM0Miqc664q6', $query);
         $this->assertInstanceOf(EntrySnapshot::class, $snapshots[0]);
         $this->assertCount(1, $snapshots);
@@ -142,7 +144,8 @@ class EntrySnapshotTest extends BaseTestCase
         $originalEntry = $this->getReadOnlyEnvironmentProxy()->getEntry('3LM5FlCdGUIM0Miqc664q6');
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $snapshots = $originalEntry->getSnapshots($query);
 
         $this->assertCount(1, $snapshots);

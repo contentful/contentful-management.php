@@ -21,7 +21,8 @@ class EditorInterfaceTest extends BaseTestCase
     public function testGetUpdate()
     {
         $editorInterface = $this->getReadWriteEnvironmentProxy()
-            ->getEditorInterface('bookmark');
+            ->getEditorInterface('bookmark')
+        ;
 
         $control = $editorInterface->getControl('name');
         $this->assertSame('name', $control->getFieldId());
@@ -79,7 +80,8 @@ class EditorInterfaceTest extends BaseTestCase
     public function testGetFromContentType()
     {
         $contentType = $this->getReadOnlyEnvironmentProxy()
-            ->getContentType('bookmark');
+            ->getContentType('bookmark')
+        ;
 
         $editorInterface = $contentType->getEditorInterface();
 
@@ -108,7 +110,8 @@ class EditorInterfaceTest extends BaseTestCase
     public function testGetFromSpaceProxy()
     {
         $editorInterface = $this->getReadOnlySpaceProxy()
-            ->getEditorInterface('master', 'bookmark');
+            ->getEditorInterface('master', 'bookmark')
+        ;
 
         $control = $editorInterface->getControl('name');
         $this->assertSame('name', $control->getFieldId());

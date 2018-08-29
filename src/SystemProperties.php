@@ -147,15 +147,15 @@ class SystemProperties implements SystemPropertiesInterface
      */
     public function __construct(array $sys = [])
     {
-        $this->id = $sys['id'] ?? null;
-        $this->type = $sys['type'] ?? null;
-        $this->version = $sys['version'] ?? null;
-        $this->revision = $sys['revision'] ?? null;
-        $this->publishedCounter = $sys['publishedCounter'] ?? null;
-        $this->publishedVersion = $sys['publishedVersion'] ?? null;
-        $this->archivedVersion = $sys['archivedVersion'] ?? null;
-        $this->snapshotType = $sys['snapshotType'] ?? null;
-        $this->snapshotEntityType = $sys['snapshotEntityType'] ?? null;
+        $this->id = $sys['id'] ?? \null;
+        $this->type = $sys['type'] ?? \null;
+        $this->version = $sys['version'] ?? \null;
+        $this->revision = $sys['revision'] ?? \null;
+        $this->publishedCounter = $sys['publishedCounter'] ?? \null;
+        $this->publishedVersion = $sys['publishedVersion'] ?? \null;
+        $this->archivedVersion = $sys['archivedVersion'] ?? \null;
+        $this->snapshotType = $sys['snapshotType'] ?? \null;
+        $this->snapshotEntityType = $sys['snapshotEntityType'] ?? \null;
 
         $this->createdAt = $this->checkAndBuildDate($sys, 'createdAt');
         $this->updatedAt = $this->checkAndBuildDate($sys, 'updatedAt');
@@ -184,7 +184,7 @@ class SystemProperties implements SystemPropertiesInterface
     {
         return isset($data[$field])
             ? new DateTimeImmutable($data[$field])
-            : null;
+            : \null;
     }
 
     /**
@@ -197,7 +197,7 @@ class SystemProperties implements SystemPropertiesInterface
     {
         return isset($data[$field])
             ? new Link($data[$field]['sys']['id'], $data[$field]['sys']['linkType'])
-            : null;
+            : \null;
     }
 
     /**
@@ -389,7 +389,7 @@ class SystemProperties implements SystemPropertiesInterface
      */
     public function isDraft(): bool
     {
-        return null === $this->publishedVersion;
+        return \null === $this->publishedVersion;
     }
 
     /**
@@ -397,7 +397,7 @@ class SystemProperties implements SystemPropertiesInterface
      */
     public function isPublished(): bool
     {
-        return null !== $this->publishedVersion;
+        return \null !== $this->publishedVersion;
     }
 
     /**
@@ -407,7 +407,7 @@ class SystemProperties implements SystemPropertiesInterface
     {
         // The act of publishing an entity increases its version by 1, so any entry which has
         // 2 versions higher or more than the publishedVersion has unpublished changes.
-        return null !== $this->publishedVersion && $this->version > $this->publishedVersion + 1;
+        return \null !== $this->publishedVersion && $this->version > $this->publishedVersion + 1;
     }
 
     /**
@@ -415,7 +415,7 @@ class SystemProperties implements SystemPropertiesInterface
      */
     public function isArchived(): bool
     {
-        return null !== $this->archivedVersion;
+        return \null !== $this->archivedVersion;
     }
 
     /**
@@ -450,7 +450,7 @@ class SystemProperties implements SystemPropertiesInterface
             'snapshotEntityType' => $this->snapshotEntityType,
             'status' => $this->status,
         ], function ($value): bool {
-            return null !== $value && '' !== $value;
+            return \null !== $value && '' !== $value;
         });
     }
 }

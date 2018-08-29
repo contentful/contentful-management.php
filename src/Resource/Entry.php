@@ -152,7 +152,7 @@ class Entry extends BaseResource implements CreatableInterface
      */
     public function getField(string $name, string $locale)
     {
-        return $this->fields[$name][$locale] ?? null;
+        return $this->fields[$name][$locale] ?? \null;
     }
 
     /**
@@ -160,15 +160,15 @@ class Entry extends BaseResource implements CreatableInterface
      *
      * @return array
      */
-    public function getFields(string $locale = null): array
+    public function getFields(string $locale = \null): array
     {
-        if (null === $locale) {
+        if (\null === $locale) {
             return $this->fields;
         }
 
         $fields = [];
         foreach ($this->fields as $name => $field) {
-            $fields[$name] = $field[$locale] ?? null;
+            $fields[$name] = $field[$locale] ?? \null;
         }
 
         return $fields;
@@ -209,7 +209,7 @@ class Entry extends BaseResource implements CreatableInterface
                 'Call to undefined method %s::%s()',
                 static::class,
                 $name
-            ), E_USER_ERROR);
+            ), \E_USER_ERROR);
         }
 
         $field = $this->extractFieldName($name);

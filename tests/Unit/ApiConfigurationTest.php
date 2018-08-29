@@ -22,7 +22,8 @@ class ApiConfigurationTest extends BaseTestCase
     public function testGetFromString()
     {
         $config = (new ApiConfiguration())
-            ->getConfigFor(Upload::class);
+            ->getConfigFor(Upload::class)
+        ;
 
         $this->assertSame([
             'class' => Upload::class,
@@ -36,7 +37,8 @@ class ApiConfigurationTest extends BaseTestCase
     public function testGetFromStringWithoutInitialBackslash()
     {
         $config = (new ApiConfiguration())
-            ->getConfigFor('\\Contentful\\Management\\Resource\\PersonalAccessToken');
+            ->getConfigFor('\\Contentful\\Management\\Resource\\PersonalAccessToken')
+        ;
 
         $this->assertSame([
             'class' => 'Contentful\\Management\\Resource\\PersonalAccessToken',
@@ -49,7 +51,8 @@ class ApiConfigurationTest extends BaseTestCase
     public function testGetFromBaseObject()
     {
         $config = (new ApiConfiguration())
-            ->getConfigFor(new Asset());
+            ->getConfigFor(new Asset())
+        ;
 
         $this->assertSame([
             'class' => Asset::class,
@@ -62,7 +65,8 @@ class ApiConfigurationTest extends BaseTestCase
     public function testGetFromExtendedObject()
     {
         $config = (new ApiConfiguration())
-            ->getConfigFor(new ExtendedResource('contentType'));
+            ->getConfigFor(new ExtendedResource('contentType'))
+        ;
 
         $this->assertSame([
             'class' => ExtendedResource::class,
@@ -79,7 +83,8 @@ class ApiConfigurationTest extends BaseTestCase
     public function testThrowOnInvalidObject()
     {
         (new ApiConfiguration())
-            ->getConfigFor(new \stdClass());
+            ->getConfigFor(new \stdClass())
+        ;
     }
 
     /**
@@ -89,13 +94,15 @@ class ApiConfigurationTest extends BaseTestCase
     public function testThrowOnInvalidResourceObject()
     {
         (new ApiConfiguration())
-            ->getConfigFor(\stdClass::class);
+            ->getConfigFor(\stdClass::class)
+        ;
     }
 
     public function testGetLinkConfiguration()
     {
         $config = (new ApiConfiguration())
-            ->getLinkConfigFor('WebhookDefinition');
+            ->getLinkConfigFor('WebhookDefinition')
+        ;
 
         $this->assertSame([
             'class' => 'Contentful\\Management\\Resource\\Webhook',
@@ -113,7 +120,8 @@ class ApiConfigurationTest extends BaseTestCase
     public function testGetConfigForInvalidLinkType()
     {
         (new ApiConfiguration())
-            ->getLinkConfigFor('Invalid');
+            ->getLinkConfigFor('Invalid')
+        ;
     }
 }
 

@@ -35,7 +35,7 @@ class RangeValidationTest extends BaseTestCase
         $validation->setMin(17);
         $this->assertSame(17, $validation->getMin());
 
-        $validation->setMax(null);
+        $validation->setMax(\null);
         $this->assertNull($validation->getMax());
     }
 }

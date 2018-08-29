@@ -88,8 +88,8 @@ class Client extends BaseClient
         parent::__construct(
             $accessToken,
             $options['baseUri'] ?? self::URI_MANAGEMENT,
-            $options['logger'] ?? null,
-            $options['guzzle'] ?? null
+            $options['logger'] ?? \null,
+            $options['guzzle'] ?? \null
         );
 
         $this->builder = new ResourceBuilder();
@@ -120,7 +120,7 @@ class Client extends BaseClient
      *
      * @return ResourceInterface|ResourceArray|null
      */
-    public function makeRequest(string $method, string $path, array $options = [], ResourceInterface $resource = null)
+    public function makeRequest(string $method, string $path, array $options = [], ResourceInterface $resource = \null)
     {
         $path = \rtrim($path, '/');
 
@@ -176,7 +176,7 @@ class Client extends BaseClient
         $this->makeRequest($resourceId ? 'PUT' : 'POST', $uri, [
             'body' => $resource->asRequestBody(),
             'headers' => $resource->getHeadersForCreation(),
-            'baseUri' => $config['baseUri'] ?? null,
+            'baseUri' => $config['baseUri'] ?? \null,
         ], $resource);
     }
 
@@ -197,13 +197,13 @@ class Client extends BaseClient
         string $method,
         string $path = '',
         array $options = [],
-        bool $hydrateResource = true
+        bool $hydrateResource = \true
     ) {
         $config = $this->configuration->getConfigFor($resource);
         $uri = $this->requestUriBuilder->build($config, $resource->asUriParameters());
 
-        $options['baseUri'] = $config['baseUri'] ?? null;
-        $targetResource = $hydrateResource ? $resource : null;
+        $options['baseUri'] = $config['baseUri'] ?? \null;
+        $targetResource = $hydrateResource ? $resource : \null;
 
         return $this->makeRequest($method, $uri.$path, $options, $targetResource);
     }
@@ -219,15 +219,15 @@ class Client extends BaseClient
     public function fetchResource(
         string $class,
         array $parameters,
-        Query $query = null,
-        ResourceInterface $resource = null
+        Query $query = \null,
+        ResourceInterface $resource = \null
     ) {
         $config = $this->configuration->getConfigFor($class);
         $uri = $this->requestUriBuilder->build($config, $parameters);
 
         /** @var ResourceInterface|ResourceArray $resource */
         $resource = $this->makeRequest('GET', $uri, [
-            'baseUri' => $config['baseUri'] ?? null,
+            'baseUri' => $config['baseUri'] ?? \null,
             'query' => $query ? $query->getQueryData() : [],
         ], $resource);
 

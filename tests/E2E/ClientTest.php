@@ -29,7 +29,7 @@ class ClientTest extends BaseTestCase
         $client = $this->getClient();
 
         $property = (new \ReflectionClass(BaseClient::class))->getProperty('userAgentGenerator');
-        $property->setAccessible(true);
+        $property->setAccessible(\true);
         $generator = $property->getValue($client);
 
         // PHP doesn't support the "g" modifier
@@ -107,7 +107,8 @@ class ClientTest extends BaseTestCase
 
         $environment = $client->getEnvironment($this->readWriteSpaceId, 'master');
         $asset = (new Asset())
-            ->setTitle('en-US', 'A title');
+            ->setTitle('en-US', 'A title')
+        ;
         $client->create($asset, 'deleteme', $environment);
 
         $this->assertNotNull($asset->getId());

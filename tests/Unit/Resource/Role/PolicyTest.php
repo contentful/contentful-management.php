@@ -60,7 +60,7 @@ class PolicyTest extends BaseTestCase
         $policy->addAction('read');
         $this->assertSame(['read'], $policy->getActions());
 
-        $policy->setConstraint(null);
+        $policy->setConstraint(\null);
         $this->assertNull($policy->getConstraint());
     }
 

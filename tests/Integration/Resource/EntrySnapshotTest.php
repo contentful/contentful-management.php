@@ -34,7 +34,7 @@ class EntrySnapshotTest extends BaseTestCase
         $class = new \ReflectionClass(EntrySnapshot::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(true);
+        $constructor->setAccessible(\true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();
@@ -91,7 +91,8 @@ class EntrySnapshotTest extends BaseTestCase
                 'type' => 'Snapshot',
                 'snapshotType' => 'publish',
                 'snapshotEntityType' => 'Entry',
-            ]], $entrySnapshot);
+            ]], $entrySnapshot)
+        ;
     }
 
     /**

@@ -34,7 +34,7 @@ class UserTest extends BaseTestCase
         $class = new \ReflectionClass(User::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(true);
+        $constructor->setAccessible(\true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();
@@ -53,9 +53,9 @@ class UserTest extends BaseTestCase
             'lastName' => 'Andromedon',
             'avatarUrl' => 'https://www.example.com/avatar.jpg',
             'email' => 'pinotnoir@example.com',
-            'activated' => true,
+            'activated' => \true,
             'signInCount' => 10,
-            'confirmed' => true,
+            'confirmed' => \true,
         ]);
 
         $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/user.json', $user);
@@ -75,7 +75,8 @@ class UserTest extends BaseTestCase
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'User',
-            ]], $user);
+            ]], $user)
+        ;
     }
 
     /**

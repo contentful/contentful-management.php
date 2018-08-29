@@ -76,7 +76,8 @@ class RoleTest extends BaseTestCase
         $this->assertSame('Allows reading Entries and managing API Keys', $role->getDescription());
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $roles = $proxy->getRoles($query);
         $role = $roles[0];
 
@@ -99,7 +100,8 @@ class RoleTest extends BaseTestCase
         $role->getPermissions()
             ->setContentDelivery('manage')
             ->setContentModel('manage')
-            ->setSettings('manage');
+            ->setSettings('manage')
+        ;
 
         $policy = new Policy('allow', 'all');
         $role->addPolicy($policy);
@@ -138,7 +140,8 @@ class RoleTest extends BaseTestCase
         $permissions = (new Permissions())
             ->setContentDelivery('all')
             ->setContentModel('all')
-            ->setSettings('all');
+            ->setSettings('all')
+        ;
         $this->assertJsonStringEqualsJsonString(
             guzzle_json_encode($permissions, \JSON_UNESCAPED_UNICODE),
             guzzle_json_encode($role->getPermissions(), \JSON_UNESCAPED_UNICODE)

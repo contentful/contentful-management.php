@@ -39,7 +39,8 @@ class OrganizationTest extends BaseTestCase
         $this->assertSame([], $organization->asUriParameters());
 
         $query = (new Query())
-            ->setLimit(3);
+            ->setLimit(3)
+        ;
         $organizations = $this->getClient()->getOrganizations($query);
 
         $this->assertCount(3, $organizations);

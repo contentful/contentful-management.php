@@ -77,7 +77,7 @@ trait ContentTypeProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
-    public function getSnapshots(Query $query = null): ResourceArray
+    public function getSnapshots(Query $query = \null): ResourceArray
     {
         return $this->client->getContentTypeSnapshots(
             $this->getSpaceId(),

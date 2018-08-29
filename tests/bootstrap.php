@@ -26,16 +26,16 @@ if ('api-coverage' === \getenv('CONTENTFUL_PHP_MANAGEMENT_SDK_ENV')) {
 function clean_headers_array(Request $request)
 {
     return \array_filter($request->getHeaders(), function ($value, $name) {
-        if (false === $value) {
-            return false;
+        if (\false === $value) {
+            return \false;
         }
 
         return !\in_array(\mb_strtolower($name), [
             'user-agent',
             'x-contentful-user-agent',
             'authorization',
-        ], true);
-    }, ARRAY_FILTER_USE_BOTH);
+        ], \true);
+    }, \ARRAY_FILTER_USE_BOTH);
 }
 
 // The VCR needs to be loaded before the Client is loaded for the first time or it will fail
@@ -46,13 +46,15 @@ VCR::configure()
     ->addRequestMatcher('custom_headers', function (Request $first, Request $second) {
         return clean_headers_array($first) === clean_headers_array($second);
     })
-    ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers']);
+    ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers'])
+;
 
 // Remove the Authorization header to prevent leaking CMA tokens
 VCR::getEventDispatcher()
     ->addListener(VCREvents::VCR_BEFORE_RECORD, function (BeforeRecordEvent $event) {
         $event->getRequest()->removeHeader('Authorization');
-    });
+    })
+;
 
 VCR::turnOn();
 VCR::turnOff();

@@ -54,7 +54,7 @@ abstract class BaseCodeGenerator
     protected function render(Node $node): string
     {
         $prettyPrinter = new StandardPrettyPrinter([
-            'shortArraySyntax' => true,
+            'shortArraySyntax' => \true,
         ]);
 
         $code = $prettyPrinter->prettyPrintFile([$node]);

@@ -22,7 +22,7 @@ class ExtensionTest extends BaseTestCase
         $extension = new Extension('Test');
         $this->assertSame('Test', $extension->getName());
 
-        $extension->setSidebar(false);
+        $extension->setSidebar(\false);
         $this->assertFalse($extension->isSidebar());
 
         $fieldTypes = [new FieldType('Symbol')];
@@ -38,8 +38,9 @@ class ExtensionTest extends BaseTestCase
         $extension = (new Extension(''))
             ->setName('My extension')
             ->addFieldType(new FieldType('Symbol'))
-            ->setSidebar(true)
-            ->setSource('https://www.example.com/cf-ui-extension-test');
+            ->setSidebar(\true)
+            ->setSource('https://www.example.com/cf-ui-extension-test')
+        ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/extension.json', $extension);
     }

@@ -197,7 +197,7 @@ class Extension extends BaseResource implements CreatableInterface
      */
     public function jsonSerialize(): array
     {
-        $sourceType = \filter_var($this->source, FILTER_VALIDATE_URL)
+        $sourceType = \filter_var($this->source, \FILTER_VALIDATE_URL)
             ? 'src'
             : 'srcdoc';
 

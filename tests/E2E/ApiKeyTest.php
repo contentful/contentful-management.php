@@ -44,7 +44,8 @@ class ApiKeyTest extends BaseTestCase
         $this->assertInstanceOf(Link::class, $deliveryApiKey->getPreviewApiKey());
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $deliveryApiKeys = $proxy->getDeliveryApiKeys($query);
 
         $this->assertCount(1, $deliveryApiKeys);
@@ -81,7 +82,8 @@ class ApiKeyTest extends BaseTestCase
         $this->assertNull($previewApiKey->getDescription());
 
         $query = (new Query())
-            ->setLimit(1);
+            ->setLimit(1)
+        ;
         $previewApiKeys = $proxy->getPreviewApiKeys($query);
 
         $this->assertCount(1, $previewApiKeys);
@@ -159,9 +161,10 @@ class ApiKeyTest extends BaseTestCase
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $limit = 5;
-        while (true) {
+        while (\true) {
             $query = (new Query())
-                ->setLimit($limit);
+                ->setLimit($limit)
+            ;
 
             foreach ($proxy->getEnvironments($query) as $resultEnvironment) {
                 if ($environmentId === $resultEnvironment->getId()) {

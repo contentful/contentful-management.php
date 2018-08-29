@@ -29,7 +29,7 @@ class Upload extends BaseMapper
     {
         return $this->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
-            'body' => null,
+            'body' => \null,
         ]);
     }
 }

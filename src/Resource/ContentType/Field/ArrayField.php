@@ -63,7 +63,7 @@ class ArrayField extends BaseField
      * @param string      $itemsType
      * @param string|null $itemsLinkType
      */
-    public function __construct(string $id, string $name, string $itemsType, string $itemsLinkType = null)
+    public function __construct(string $id, string $name, string $itemsType, string $itemsLinkType = \null)
     {
         parent::__construct($id, $name);
 
@@ -124,7 +124,7 @@ class ArrayField extends BaseField
      *
      * @return static
      */
-    public function setItemsLinkType(string $itemsLinkType = null)
+    public function setItemsLinkType(string $itemsLinkType = \null)
     {
         if ($itemsLinkType && 'Link' === $this->itemsType && !$this->isValidLinkType($itemsLinkType)) {
             throw new \InvalidArgumentException(\sprintf(
@@ -170,7 +170,7 @@ class ArrayField extends BaseField
      */
     public function addItemsValidation(ValidationInterface $validation)
     {
-        if (!\in_array($this->itemsType, $validation::getValidFieldTypes(), true)) {
+        if (!\in_array($this->itemsType, $validation::getValidFieldTypes(), \true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'The validation "%s" can not be used for fields of type "%s".',
                 \get_class($validation),
@@ -190,7 +190,7 @@ class ArrayField extends BaseField
      */
     private function isValidItemType(string $type): bool
     {
-        return \in_array($type, self::VALID_ITEM_TYPES, true);
+        return \in_array($type, self::VALID_ITEM_TYPES, \true);
     }
 
     /**
@@ -200,7 +200,7 @@ class ArrayField extends BaseField
      */
     private function isValidLinkType(string $type): bool
     {
-        return \in_array($type, self::VALID_LINK_TYPES, true);
+        return \in_array($type, self::VALID_LINK_TYPES, \true);
     }
 
     /**
