@@ -24,9 +24,9 @@ class RegexpValidation extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate(ResourceClass::class, [
-            'pattern' => $data['regexp']['pattern'] ?? \null,
-            'flags' => $data['regexp']['flags'] ?? \null,
-        ]);
+        return new ResourceClass(
+            $data['regexp']['pattern'] ?? \null,
+            $data['regexp']['flags'] ?? \null
+        );
     }
 }

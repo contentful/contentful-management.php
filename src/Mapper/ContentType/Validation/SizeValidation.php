@@ -24,9 +24,9 @@ class SizeValidation extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate(ResourceClass::class, [
-            'min' => $data['size']['min'] ?? \null,
-            'max' => $data['size']['max'] ?? \null,
-        ]);
+        return new ResourceClass(
+            $data['size']['min'] ?? \null,
+            $data['size']['max'] ?? \null
+        );
     }
 }

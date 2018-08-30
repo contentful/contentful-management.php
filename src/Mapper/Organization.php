@@ -34,7 +34,7 @@ class Organization extends BaseMapper
             ));
         }
 
-        return $this->hydrate(ResourceClass::class, [
+        return $this->hydrator->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
         ]);

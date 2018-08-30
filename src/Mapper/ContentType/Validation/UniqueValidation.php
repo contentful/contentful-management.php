@@ -24,6 +24,6 @@ class UniqueValidation extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate(ResourceClass::class, []);
+        return new ResourceClass();
     }
 }

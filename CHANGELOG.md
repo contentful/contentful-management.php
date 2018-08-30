@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/contentful/contentful-management.php/compare/1.0.0...HEAD)
 
+### Changed
+
+* `BaseMapper::hydrate()` has been deprecated and will be removed in version 2. If you are subclassing the mapper, use `$this->hydrator->hydrate()` instead.
+
 ## [1.0.0](https://github.com/contentful/contentful-management.php/tree/1.0.0) (2018-04-18)
 
 No significant changes compared to previous release.

@@ -30,7 +30,7 @@ class Webhook extends BaseMapper
         // The API never returns the password in the response.
         // This means that the object that the user requested will have its "httpBasicPassword" field set to null.
         // It's a destructive behavior, but it's consistent with the way the API works.
-        return $this->hydrate($resource ?: ResourceClass::class, [
+        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'url' => $data['url'],

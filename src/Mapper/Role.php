@@ -35,7 +35,7 @@ class Role extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate($resource ?: ResourceClass::class, [
+        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'description' => $data['description'],
@@ -51,11 +51,11 @@ class Role extends BaseMapper
      */
     protected function mapPolicy(array $data): Policy
     {
-        return $this->hydrate(Policy::class, [
-            'effect' => $data['effect'],
-            'actions' => $data['actions'],
-            'constraint' => isset($data['constraint']) ? $this->mapConstraint($data['constraint']) : \null,
-        ]);
+        return new Policy(
+            $data['effect'],
+            $data['actions'],
+            isset($data['constraint']) ? $this->mapConstraint($data['constraint']) : \null
+        );
     }
 
     /**
@@ -76,21 +76,21 @@ class Role extends BaseMapper
         // This is the expected behavior.
         switch ($key) {
             case 'and':
-                return $this->hydrate(AndConstraint::class, [
-                    'children' => \array_map([$this, 'mapConstraint'], $data[$key]),
-                ]);
+                return new AndConstraint(
+                    \array_map([$this, 'mapConstraint'], $data[$key])
+                );
             case 'or':
-                return $this->hydrate(OrConstraint::class, [
-                    'children' => \array_map([$this, 'mapConstraint'], $data[$key]),
-                ]);
+                return new OrConstraint(
+                    \array_map([$this, 'mapConstraint'], $data[$key])
+                );
             case 'not':
-                return $this->hydrate(NotConstraint::class, [
-                    'child' => $this->mapConstraint($data[$key][0]),
-                ]);
+                return new NotConstraint(
+                    $this->mapConstraint($data[$key][0])
+                );
             case 'paths':
-                return $this->hydrate(PathsConstraint::class, [
-                    'doc' => $data[$key][0]['doc'],
-                ]);
+                return new PathsConstraint(
+                    $data[$key][0]['doc']
+                );
             case 'equals':
                 // The $data[$key] array *should* be in the form
                 // [{"doc": "sys.type"}, "Entry"]
@@ -101,10 +101,10 @@ class Role extends BaseMapper
                 $docKey = isset($data[$key][0]['doc']) ? 0 : 1;
                 $valueKey = 1 - $docKey;
 
-                return $this->hydrate(EqualityConstraint::class, [
-                    'doc' => $data[$key][$docKey]['doc'],
-                    'value' => $data[$key][$valueKey],
-                ]);
+                return new EqualityConstraint(
+                    $data[$key][$docKey]['doc'],
+                    $data[$key][$valueKey]
+                );
             default:
                 throw new \RuntimeException(\sprintf(
                     'Trying to build a constraint object using invalid key "%s".',
@@ -120,7 +120,7 @@ class Role extends BaseMapper
      */
     protected function mapPermissions(array $data): Permissions
     {
-        return $this->hydrate(Permissions::class, [
+        return $this->hydrator->hydrate(Permissions::class, [
             'contentDelivery' => $this->convertPermission($data['ContentDelivery']),
             'contentModel' => $this->convertPermission($data['ContentModel']),
             'settings' => $this->convertPermission($data['Settings']),

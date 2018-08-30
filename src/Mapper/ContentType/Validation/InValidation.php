@@ -24,8 +24,6 @@ class InValidation extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate(ResourceClass::class, [
-            'values' => $data['in'],
-        ]);
+        return new ResourceClass($data['in']);
     }
 }

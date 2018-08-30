@@ -111,7 +111,7 @@ class Mapper extends BaseCodeGenerator
      * ```
      * public function map($resource, array $data): ClassName
      * {
-     *     return $this->hydrate($resource ?? ClassName::class, [
+     *     return $this->hydrator->hydrate($resource ?? ClassName::class, [
      *         'sys' => new SystemProperties($data['sys']),
      *         // Delegate the formatting of all fields
      *         'fields' => $this->formatFields($data),
@@ -139,7 +139,7 @@ class Mapper extends BaseCodeGenerator
                 'stmts' => [
                     new Node\Stmt\Return_(
                         new Node\Expr\MethodCall(
-                            new Node\Expr\Variable('this'),
+                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'hydrator'),
                             'hydrate',
                             $this->generateMapperMethodHydrateArgs($className)
                         )

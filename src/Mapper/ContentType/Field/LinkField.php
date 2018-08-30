@@ -24,17 +24,17 @@ class LinkField extends BaseField
      */
     public function map($resource, array $data): FieldInterface
     {
-        return $this->hydrate(ResourceClass::class, [
-            'id' => $data['id'],
-            'name' => $data['name'],
-            'required' => $data['required'] ?? \null,
-            'localized' => $data['localized'] ?? \null,
-            'disabled' => $data['disabled'] ?? \null,
-            'omitted' => $data['omitted'] ?? \null,
-            'validations' => isset($data['validations'])
+        return (new ResourceClass(
+            $data['id'],
+            $data['name'],
+            $data['linkType']
+        ))->setRequired($data['required'] ?? \false)
+            ->setLocalized($data['localized'] ?? \false)
+            ->setDisabled($data['disabled'] ?? \false)
+            ->setOmitted($data['omitted'] ?? \false)
+            ->setValidations(isset($data['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['validations'])
-                : [],
-            'linkType' => $data['linkType'],
-        ]);
+                : [])
+            ;
     }
 }

@@ -14,6 +14,7 @@ namespace Contentful\Management\Mapper;
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Core\Resource\ResourceInterface;
 use Contentful\Core\ResourceBuilder\MapperInterface;
+use Contentful\Core\ResourceBuilder\ObjectHydrator;
 use Contentful\Management\ResourceBuilder;
 
 /**
@@ -22,14 +23,14 @@ use Contentful\Management\ResourceBuilder;
 abstract class BaseMapper implements MapperInterface
 {
     /**
-     * @var \Closure[]
-     */
-    private static $hydrators = [];
-
-    /**
      * @var ResourceBuilder
      */
     protected $builder;
+
+    /**
+     * @var ObjectHydrator
+     */
+    protected $hydrator;
 
     /**
      * BaseMapper constructor.
@@ -39,6 +40,7 @@ abstract class BaseMapper implements MapperInterface
     public function __construct(ResourceBuilder $builder)
     {
         $this->builder = $builder;
+        $this->hydrator = new ObjectHydrator();
     }
 
     /**
@@ -46,38 +48,14 @@ abstract class BaseMapper implements MapperInterface
      * @param array         $data
      *
      * @return ResourceInterface|ResourceArray
+     *
+     * @deprecated 1.1 Use $this->hydrator->hydrate() instead
      */
     protected function hydrate($target, array $data)
     {
-        $class = \is_object($target) ? \get_class($target) : $target;
-        if (\is_string($target)) {
-            $target = (new \ReflectionClass($class))
-                ->newInstanceWithoutConstructor()
-            ;
-        }
+        /** @var ResourceInterface|ResourceArray $resource */
+        $resource = $this->hydrator->hydrate($target, $data);
 
-        $hydrator = $this->getHydrator($class);
-
-        $hydrator($target, $data);
-
-        return $target;
-    }
-
-    /**
-     * @param string $class
-     *
-     * @return \Closure
-     */
-    private function getHydrator(string $class): \Closure
-    {
-        if (isset(self::$hydrators[$class])) {
-            return self::$hydrators[$class];
-        }
-
-        return self::$hydrators[$class] = \Closure::bind(function ($object, $properties) {
-            foreach ($properties as $property => $value) {
-                $object->$property = $value;
-            }
-        }, \null, $class);
+        return $resource;
     }
 }

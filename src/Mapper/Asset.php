@@ -35,7 +35,7 @@ class Asset extends BaseMapper
     {
         $fields = $data['fields'];
 
-        return $this->hydrate($resource ?: ResourceClass::class, [
+        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'title' => $fields['title'] ?? \null,
             'description' => $fields['description'] ?? \null,
