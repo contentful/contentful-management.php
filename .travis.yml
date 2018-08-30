@@ -21,62 +21,49 @@ branches:
     - master
 
 before_install:
+  # Disable XDebug
   - |
-    # Disable XDebug
-    #
-    # XDebug makes PHPUnit and PHP-CS-Fixer slow.
-    # We need it only for generating the code coverage report,
-    # so we disable it everywhere but for the build lead.
-    if [ $BUILD_LEAD == 0 ]
-    then
+    if [ $BUILD_LEAD == 0 ]; then
       phpenv config-rm xdebug.ini
     fi
 
 install:
   - composer install
+  - |
+    if [ $QUALITY_CHECK == 1 ]; then
+      wget https://github.com/phpstan/phpstan/releases/download/0.9.2/phpstan.phar -q -O phpstan.phar
+      wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -q -O php-cs-fixer.phar
+    fi
 
 script:
+  # PHPUnit tests
   - |
-    # PHPUnit tests
-    if [ $QUALITY_CHECK == 0 ]
-    then
+    if [ $QUALITY_CHECK == 0 ]; then
       php vendor/bin/phpunit --stop-on-error --stop-on-failure -v
     fi
 
+  # Static analysis
   - |
-    # Static analysis
-    if [ $QUALITY_CHECK == 1 ]
-    then
-      wget https://github.com/phpstan/phpstan/releases/download/0.9.2/phpstan.phar -q -O phpstan.phar
+    if [ $QUALITY_CHECK == 1 ]; then
       php phpstan.phar analyse --level=max --configuration=phpstan.neon src/
     fi
 
+  # Syntax tests
   - |
-    # Syntax check
-    if [ $QUALITY_CHECK == 1 ]
-    then
-      wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -q -O php-cs-fixer.phar
+    if [ $QUALITY_CHECK == 1 ]; then
       php php-cs-fixer.phar fix --dry-run --stop-on-violation -v
     fi
 
 after_success:
+  # Upload code coverage
   - |
-    # Upload code coverage
-    #
-    # The code coverage report is only generated when BUILD_LEAD is 1.
-    if [ $BUILD_LEAD == 1 ]
-    then
+    if [ $BUILD_LEAD == 1 ]; then
       travis_retry bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml
     fi
 
+  # Generate API docs
   - |
-    # Generate API docs
-    #
-    # We generate API docs only for the build lead (to avoid wasting time on all builds),
-    # and when on merges to master, which is the result of this condition and the setting
-    # branches: only: master above.
-    if [[ ($TRAVIS_PULL_REQUEST == false || $TRAVIS_TAG != '') && $BUILD_LEAD == 1 ]]
-    then
+    if [[ ($TRAVIS_PULL_REQUEST == false || $TRAVIS_TAG != '') && $BUILD_LEAD == 1 ]]; then
       sh ./scripts/prepare-docs.sh
     fi
 

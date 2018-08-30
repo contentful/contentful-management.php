@@ -34,7 +34,7 @@ class User extends BaseMapper
             ));
         }
 
-        return $this->hydrate(ResourceClass::class, [
+        return $this->hydrator->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],

@@ -37,7 +37,7 @@ class WebhookCall extends BaseMapper
             ));
         }
 
-        return $this->hydrate(ResourceClass::class, [
+        return $this->hydrator->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'request' => isset($data['request']) ? new Request(
                 $data['request']['method'],

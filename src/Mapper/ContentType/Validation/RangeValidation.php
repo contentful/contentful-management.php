@@ -24,9 +24,9 @@ class RangeValidation extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate(ResourceClass::class, [
-            'min' => $data['range']['min'] ?? \null,
-            'max' => $data['range']['max'] ?? \null,
-        ]);
+        return new ResourceClass(
+            $data['range']['min'] ?? \null,
+            $data['range']['max'] ?? \null
+        );
     }
 }

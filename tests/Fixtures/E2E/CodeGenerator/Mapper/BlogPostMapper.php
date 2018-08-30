@@ -20,7 +20,7 @@ class BlogPostMapper extends BaseMapper
      */
     public function map($resource, array $data): BlogPost
     {
-        return $this->hydrate($resource ?? BlogPost::class, [
+        return $this->hydrator->hydrate($resource ?? BlogPost::class, [
             'sys' => new SystemProperties($data['sys']),
             // Delegate the formatting of all fields
             'fields' => $this->formatFields($data['fields'] ?? []),

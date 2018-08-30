@@ -45,7 +45,7 @@ abstract class BaseField extends BaseMapper
             'Text' => TextField::class,
         ];
 
-        return $this->hydrate($fieldTypes[$type], [
+        return $this->hydrator->hydrate($fieldTypes[$type], [
             'id' => $data['id'],
             'name' => $data['name'],
             'required' => $data['required'] ?? \null,
@@ -67,8 +67,11 @@ abstract class BaseField extends BaseMapper
     {
         $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Validation\\'.\ucfirst(\array_keys($data)[0]).'Validation';
 
-        return $this->builder->getMapper($fqcn)
+        /** @var ValidationInterface $validation */
+        $validation = $this->builder->getMapper($fqcn)
             ->map(\null, $data)
         ;
+
+        return $validation;
     }
 }

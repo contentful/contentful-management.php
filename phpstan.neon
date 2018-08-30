@@ -1,6 +1,6 @@
 parameters:
     ignoreErrors:
-        - "#Method Contentful\\\\Management\\\\Mapper\\\\([a-zA-Z\\\\]+)\\:\\:map([a-zA-Z]*)\\(\\) should return Contentful\\\\Management\\\\Resource\\\\([a-zA-Z\\\\]+) but returns Contentful\\\\Core\\\\Resource\\\\ResourceArray\\|Contentful\\\\Core\\\\Resource\\\\ResourceInterface\\.#"
+        - "#Method Contentful\\\\Management\\\\Mapper\\\\([a-zA-Z\\\\]+)\\:\\:map([a-zA-Z]*)\\(\\) should return Contentful\\\\Management\\\\Resource\\\\([a-zA-Z\\\\]+) but returns object.#"
         - "#Method Contentful\\\\Management\\\\Client\\:\\:get([a-zA-Z]+)\\(\\) should return Contentful\\\\Management\\\\Resource\\\\([a-zA-Z]+) but returns Contentful\\\\Core\\\\Resource\\\\ResourceArray\\|Contentful\\\\Management\\\\Resource\\\\ResourceInterface\\.#"
         - "#Method Contentful\\\\Management\\\\Client\\:\\:get([a-zA-Z]+)\\(\\) should return Contentful\\\\Core\\\\Resource\\\\ResourceArray but returns Contentful\\\\Core\\\\Resource\\\\ResourceArray\\|Contentful\\\\Management\\\\Resource\\\\ResourceInterface\\.#"
         - "#Calling method get([a-zA-Z]+)\\(\\) on possibly null value of type Contentful\\\\Core\\\\Api\\\\Link\\|null#"

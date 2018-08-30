@@ -19,7 +19,7 @@ class AuthorMapper extends BaseMapper
      */
     public function map($resource, array $data): Author
     {
-        return $this->hydrate($resource ?? Author::class, [
+        return $this->hydrator->hydrate($resource ?? Author::class, [
             'sys' => new SystemProperties($data['sys']),
             // Delegate the formatting of all fields
             'fields' => $this->formatFields($data['fields'] ?? []),

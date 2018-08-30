@@ -24,21 +24,21 @@ class ArrayField extends BaseField
      */
     public function map($resource, array $data): FieldInterface
     {
-        return $this->hydrate(ResourceClass::class, [
-            'id' => $data['id'],
-            'name' => $data['name'],
-            'required' => $data['required'] ?? \null,
-            'localized' => $data['localized'] ?? \null,
-            'disabled' => $data['disabled'] ?? \null,
-            'omitted' => $data['omitted'] ?? \null,
-            'validations' => isset($data['validations'])
+        return (new ResourceClass(
+            $data['id'],
+            $data['name'],
+            $data['items']['type'],
+            $data['items']['linkType'] ?? \null
+        ))->setRequired($data['required'] ?? \false)
+            ->setLocalized($data['localized'] ?? \false)
+            ->setDisabled($data['disabled'] ?? \false)
+            ->setOmitted($data['omitted'] ?? \false)
+            ->setValidations(isset($data['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['validations'])
-                : [],
-            'itemsType' => $data['items']['type'],
-            'itemsLinkType' => $data['items']['linkType'] ?? \null,
-            'itemsValidations' => isset($data['items']['validations'])
+                : [])
+            ->setItemsValidations(isset($data['items']['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['items']['validations'])
-                : [],
-        ]);
+                : [])
+            ;
     }
 }

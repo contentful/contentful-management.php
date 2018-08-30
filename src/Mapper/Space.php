@@ -27,7 +27,7 @@ class Space extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate($resource ?: ResourceClass::class, [
+        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
         ]);

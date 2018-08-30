@@ -24,9 +24,9 @@ class AssetFileSizeValidation extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate(ResourceClass::class, [
-            'min' => $data['assetFileSize']['min'] ?? \null,
-            'max' => $data['assetFileSize']['max'] ?? \null,
-        ]);
+        return new ResourceClass(
+            $data['assetFileSize']['min'] ?? \null,
+            $data['assetFileSize']['max'] ?? \null
+        );
     }
 }

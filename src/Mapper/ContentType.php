@@ -28,7 +28,7 @@ class ContentType extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrate($resource ?: ResourceClass::class, [
+        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'description' => $data['description'] ?? \null,
@@ -47,8 +47,11 @@ class ContentType extends BaseMapper
     {
         $fqcn = __NAMESPACE__.'\\ContentType\\Field\\'.$data['type'].'Field';
 
-        return $this->builder->getMapper($fqcn)
+        /** @var FieldInterface $field */
+        $field = $this->builder->getMapper($fqcn)
             ->map(\null, $data)
         ;
+
+        return $field;
     }
 }
