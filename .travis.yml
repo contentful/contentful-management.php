@@ -31,7 +31,6 @@ install:
   - composer install
   - |
     if [ $QUALITY_CHECK == 1 ]; then
-      wget https://github.com/phpstan/phpstan/releases/download/0.9.2/phpstan.phar -q -O phpstan.phar
       wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -q -O php-cs-fixer.phar
     fi
 
@@ -40,12 +39,6 @@ script:
   - |
     if [ $QUALITY_CHECK == 0 ]; then
       php vendor/bin/phpunit --stop-on-error --stop-on-failure -v
-    fi
-
-  # Static analysis
-  - |
-    if [ $QUALITY_CHECK == 1 ]; then
-      php phpstan.phar analyse --level=max --configuration=phpstan.neon src/
     fi
 
   # Syntax tests

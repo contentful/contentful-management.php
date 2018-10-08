@@ -8,6 +8,24 @@
             "type": "Symbol"
         }],
         "src": "https:\/\/www.example.com\/cf-ui-extension-test",
-        "sidebar": true
+        "sidebar": true,
+        "parameters": {
+            "installation": [
+                {
+                    "id": "id",
+                    "name": "Name",
+                    "type": "Symbol",
+                    "required": false
+                }
+            ],
+            "instance": [
+                {
+                    "id": "anotherId",
+                    "name": "Another name",
+                    "type": "Number",
+                    "required": false
+                }
+            ]
+        }
     }
 }

@@ -15,6 +15,7 @@ use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\Extension\FieldType;
+use Contentful\Management\Resource\Extension\Parameter;
 
 /**
  * Extension class.
@@ -23,9 +24,6 @@ use Contentful\Management\Resource\Extension\FieldType;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions
  * @see https://www.contentful.com/r/knowledgebase/ui-extensions-guide/
- *
- * @method void update()
- * @method void delete()
  */
 class Extension extends BaseResource implements CreatableInterface
 {
@@ -51,6 +49,16 @@ class Extension extends BaseResource implements CreatableInterface
      * @var bool
      */
     protected $sidebar;
+
+    /**
+     * @var Parameter[]
+     */
+    protected $installationParameters = [];
+
+    /**
+     * @var Parameter[]
+     */
+    protected $instanceParameters = [];
 
     /**
      * Extension construct.
@@ -191,6 +199,70 @@ class Extension extends BaseResource implements CreatableInterface
     }
 
     /**
+     * @return Parameter[]
+     */
+    public function getInstallationParameters(): array
+    {
+        return $this->installationParameters;
+    }
+
+    /**
+     * @param Parameter $parameter
+     *
+     * @return static
+     */
+    public function addInstallationParameter(Parameter $parameter)
+    {
+        $this->installationParameters[] = $parameter;
+
+        return $this;
+    }
+
+    /**
+     * @param Parameter[] $parameters
+     *
+     * @return static
+     */
+    public function setInstallationParameters($parameters = [])
+    {
+        $this->installationParameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * @return Parameter[]
+     */
+    public function getInstanceParameters(): array
+    {
+        return $this->instanceParameters;
+    }
+
+    /**
+     * @param Parameter $parameter
+     *
+     * @return static
+     */
+    public function addInstanceParameter(Parameter $parameter)
+    {
+        $this->instanceParameters[] = $parameter;
+
+        return $this;
+    }
+
+    /**
+     * @param Parameter[] $parameters
+     *
+     * @return static
+     */
+    public function setInstanceParameters($parameters = [])
+    {
+        $this->instanceParameters = $parameters;
+
+        return $this;
+    }
+
+    /**
      * Returns an array to be used by "json_encode" to serialize objects of this class.
      *
      * @return array
@@ -201,7 +273,7 @@ class Extension extends BaseResource implements CreatableInterface
             ? 'src'
             : 'srcdoc';
 
-        return [
+        $extension = [
             'sys' => $this->sys,
             'extension' => [
                 'name' => $this->name,
@@ -210,5 +282,19 @@ class Extension extends BaseResource implements CreatableInterface
                 'sidebar' => $this->sidebar,
             ],
         ];
+
+        $parameters = [];
+        if ($this->installationParameters) {
+            $parameters['installation'] = $this->installationParameters;
+        }
+        if ($this->instanceParameters) {
+            $parameters['instance'] = $this->instanceParameters;
+        }
+
+        if ($parameters) {
+            $extension['extension']['parameters'] = $parameters;
+        }
+
+        return $extension;
     }
 }
