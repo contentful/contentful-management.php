@@ -1,0 +1,13 @@
+{
+    "id": "someId",
+    "name": "Name",
+    "type":"Symbol",
+    "required": true,
+    "description": "Some description",
+    "default": "Some default",
+    "options": ["one", "two"],
+    "labels": {
+        "some": "value",
+        "another": "something"
+    }
+}

@@ -13,6 +13,7 @@ namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\Extension;
 use Contentful\Management\Resource\Extension\FieldType;
+use Contentful\Management\Resource\Extension\Parameter;
 use Contentful\Tests\Management\BaseTestCase;
 
 class ExtensionTest extends BaseTestCase
@@ -31,6 +32,24 @@ class ExtensionTest extends BaseTestCase
 
         $extension->setSource('https://www.example.com/cf-ui-extension-test');
         $this->assertSame('https://www.example.com/cf-ui-extension-test', $extension->getSource());
+
+        $this->assertSame([], $extension->getInstallationParameters());
+        $parameter = new Parameter('id', 'Name', 'Symbol');
+        $extension->addInstallationParameter($parameter);
+        $this->assertSame([$parameter], $extension->getInstallationParameters());
+        $extension->setInstallationParameters([]);
+        $this->assertSame([], $extension->getInstallationParameters());
+        $extension->setInstallationParameters([$parameter]);
+        $this->assertSame([$parameter], $extension->getInstallationParameters());
+
+        $this->assertSame([], $extension->getInstanceParameters());
+        $parameter = new Parameter('id', 'Name', 'Symbol');
+        $extension->addInstanceParameter($parameter);
+        $this->assertSame([$parameter], $extension->getInstanceParameters());
+        $extension->setInstanceParameters([]);
+        $this->assertSame([], $extension->getInstanceParameters());
+        $extension->setInstanceParameters([$parameter]);
+        $this->assertSame([$parameter], $extension->getInstanceParameters());
     }
 
     public function testJsonSerialize()
@@ -40,6 +59,8 @@ class ExtensionTest extends BaseTestCase
             ->addFieldType(new FieldType('Symbol'))
             ->setSidebar(\true)
             ->setSource('https://www.example.com/cf-ui-extension-test')
+            ->addInstallationParameter(new Parameter('id', 'Name', 'Symbol'))
+            ->addInstanceParameter(new Parameter('anotherId', 'Another name', 'Number'))
         ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/extension.json', $extension);
