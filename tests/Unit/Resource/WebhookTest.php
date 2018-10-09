@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Resource;
 
 use Contentful\Management\Resource\Webhook;
+use Contentful\Management\Resource\Webhook\EqualityFilter;
 use Contentful\Tests\Management\BaseTestCase;
 
 class WebhookTest extends BaseTestCase
@@ -94,7 +95,11 @@ class WebhookTest extends BaseTestCase
             $this->assertSame('Invalid topic "Entry.archive" provided.', $exception->getMessage());
         }
         $webhook->removeTopic('*.publish');
-        $this->assertSame(['Entry.create', 'Asset.*', 'Entry.publish'], $webhook->getTopics(), '', 0, 10, \true);
+        $this->assertSame(['Entry.create', 'Asset.*', 'Entry.publish'], $webhook->getTopics());
+
+        $filters = [new EqualityFilter('sys.environment.sys.id', 'master')];
+        $webhook->setFilters($filters);
+        $this->assertSame($filters, $webhook->getFilters());
     }
 
     public function testJsonSerialize()
@@ -104,6 +109,7 @@ class WebhookTest extends BaseTestCase
             ->setHttpBasicPassword('k3de[@fds-54f')
             ->addHeader('X-Header-1', 'Value1')
             ->addHeader('X-Header-2', 'Value2')
+            ->setFilters([new EqualityFilter('sys.environment.sys.id', 'master')])
         ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/webhook.json', $webhook);
