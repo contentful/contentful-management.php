@@ -13,5 +13,12 @@
     }, {
         "key": "X-Header-2",
         "value": "Value2"
-    }]
+    }],
+    "filters": [
+        {
+            "equals": [{
+                "doc": "sys.environment.sys.id"
+            }, "master"]
+        }
+    ]
 }

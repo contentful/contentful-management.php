@@ -1,0 +1,5 @@
+{
+    "in": [{
+        "doc": "sys.environment.sys.id"
+    }, ["master", "staging"]]
+}

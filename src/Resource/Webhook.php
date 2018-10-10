@@ -15,6 +15,7 @@ use Contentful\Management\Proxy\Extension\WebhookProxyExtension;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
+use Contentful\Management\Resource\Webhook\FilterInterface;
 
 /**
  * Webhook class.
@@ -60,6 +61,11 @@ class Webhook extends BaseResource implements CreatableInterface
     protected $headers = [];
 
     /**
+     * @var FilterInterface[]
+     */
+    protected $filters = [];
+
+    /**
      * Webhook constructor.
      *
      * @param string   $name
@@ -102,6 +108,10 @@ class Webhook extends BaseResource implements CreatableInterface
             if ($this->httpBasicPassword) {
                 $values['httpBasicPassword'] = $this->httpBasicPassword;
             }
+        }
+
+        if ($this->filters) {
+            $values['filters'] = $this->filters;
         }
 
         return $values;
@@ -375,6 +385,26 @@ class Webhook extends BaseResource implements CreatableInterface
 
         unset($this->topics[$key]);
         $this->topics = \array_values($this->topics);
+
+        return $this;
+    }
+
+    /**
+     * @return FilterInterface[]
+     */
+    public function getFilters(): array
+    {
+        return $this->filters;
+    }
+
+    /**
+     * @param FilterInterface[] $filters
+     *
+     * @return static
+     */
+    public function setFilters(array $filters)
+    {
+        $this->filters = $filters;
 
         return $this;
     }

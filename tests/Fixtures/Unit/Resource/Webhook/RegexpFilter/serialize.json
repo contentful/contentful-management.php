@@ -1,0 +1,7 @@
+{
+    "equals": [{
+        "doc": "sys.environment.sys.id"
+    }, {
+        "pattern": "^ci-.+$"}
+    ]
+}
