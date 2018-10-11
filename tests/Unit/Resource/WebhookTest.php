@@ -100,6 +100,9 @@ class WebhookTest extends BaseTestCase
         $filters = [new EqualityFilter('sys.environment.sys.id', 'master')];
         $webhook->setFilters($filters);
         $this->assertSame($filters, $webhook->getFilters());
+
+        $webhook->setTransformations(['method' => 'GET']);
+        $this->assertSame(['method' => 'GET'], $webhook->getTransformations());
     }
 
     public function testJsonSerialize()
@@ -110,6 +113,7 @@ class WebhookTest extends BaseTestCase
             ->addHeader('X-Header-1', 'Value1')
             ->addHeader('X-Header-2', 'Value2')
             ->setFilters([new EqualityFilter('sys.environment.sys.id', 'master')])
+            ->setTransformations(['method' => 'GET'])
         ;
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/webhook.json', $webhook);
