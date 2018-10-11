@@ -20,5 +20,8 @@
                 "doc": "sys.environment.sys.id"
             }, "master"]
         }
-    ]
+    ],
+    "transformations": {
+        "method": "GET"
+    }
 }
