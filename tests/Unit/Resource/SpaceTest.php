@@ -26,7 +26,7 @@ class SpaceTest extends BaseTestCase
         $this->assertSame('A better space', $space->getName());
 
         $sys = $space->getSystemProperties();
-        $this->assertNull($sys->getId());
+        $this->assertSame('', $sys->getId());
         $this->assertSame('Space', $sys->getType());
     }
 

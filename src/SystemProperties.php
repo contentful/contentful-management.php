@@ -147,8 +147,8 @@ class SystemProperties implements SystemPropertiesInterface
      */
     public function __construct(array $sys = [])
     {
-        $this->id = $sys['id'] ?? \null;
-        $this->type = $sys['type'] ?? \null;
+        $this->id = $sys['id'] ?? '';
+        $this->type = $sys['type'] ?? '';
         $this->version = $sys['version'] ?? \null;
         $this->revision = $sys['revision'] ?? \null;
         $this->publishedCounter = $sys['publishedCounter'] ?? \null;
@@ -203,7 +203,7 @@ class SystemProperties implements SystemPropertiesInterface
     /**
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -211,7 +211,7 @@ class SystemProperties implements SystemPropertiesInterface
     /**
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }

@@ -36,7 +36,7 @@ class ApiConfiguration
      * "uri": The URI, with placeholder parameters, which identifies the resource.
      * "parameters": A list of required parameters for building the URI.
      * "id": The name of the placeholder parameter which represents the actual resource ID.
-     * "baseUri": Optionally, the host that is used for a specific endpoint.
+     * "host": Optionally, the host that is used for a specific endpoint.
      *
      * @var array
      */
@@ -128,7 +128,7 @@ class ApiConfiguration
         ],
         Resource\Upload::class => [
             'uri' => '/spaces/{space}/uploads/{upload}',
-            'baseUri' => 'https://upload.contentful.com',
+            'host' => 'https://upload.contentful.com',
             'parameters' => ['space'],
             'id' => 'upload',
         ],
@@ -183,13 +183,6 @@ class ApiConfiguration
      */
     public function getConfigFor($resource): array
     {
-        if (\is_object($resource) && !($resource instanceof ResourceInterface)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Trying to get configuration for an object of class "%s" which does not implement ResourceInterface.',
-                \get_class($resource)
-            ));
-        }
-
         $class = \is_object($resource) ? \get_class($resource) : $resource;
         if ('\\' === \mb_substr($class, 0, 1)) {
             $class = \mb_substr($class, 1);

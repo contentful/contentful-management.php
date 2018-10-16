@@ -57,7 +57,7 @@ class FantasticCreatureEntryMapper extends BaseMapper
      */
     public function map($resource, array $data): FantasticCreatureEntry
     {
-        return $this->hydrate($resource ?? FantasticCreatureEntry::class, [
+        return $this->hydrator->hydrate($resource ?? FantasticCreatureEntry::class, [
             'sys' => new SystemProperties($data['sys']),
             'fields' => $data['fields'] ?? [],
         ]);

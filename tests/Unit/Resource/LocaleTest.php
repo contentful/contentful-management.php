@@ -45,7 +45,7 @@ class LocaleTest extends BaseTestCase
         $this->assertSame('en-GB', $locale->getFallbackCode());
 
         $sys = $locale->getSystemProperties();
-        $this->assertNull($sys->getId());
+        $this->assertSame('', $sys->getId());
         $this->assertSame('Locale', $sys->getType());
     }
 

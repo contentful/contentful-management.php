@@ -40,6 +40,7 @@ abstract class BaseResource implements ResourceInterface
     protected function initialize(string $type, array $sys = [])
     {
         $sys['type'] = $type;
+        $sys['id'] = '';
         $this->sys = new SystemProperties($sys);
     }
 
@@ -54,7 +55,7 @@ abstract class BaseResource implements ResourceInterface
     /**
      * {@inheritdoc}
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->sys->getId();
     }
@@ -62,7 +63,7 @@ abstract class BaseResource implements ResourceInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->sys->getType();
     }
@@ -72,7 +73,7 @@ abstract class BaseResource implements ResourceInterface
      */
     public function asLink(): Link
     {
-        return new Link($this->sys->getId(), $this->sys->getType());
+        return new Link($this->getId(), $this->getType());
     }
 
     /**

@@ -5,6 +5,7 @@ env:
     - GH_REPO="github.com/${TRAVIS_REPO_SLUG}.git"
     - BUILD_LEAD=0
     - QUALITY_CHECK=0
+    - CC_TEST_REPORTER_ID=20d0810d3a632c678309b5c0f2ffd62696e01af79e021e80d1f5092b839e11a9
 
 matrix:
   fast_finish: true
@@ -34,6 +35,14 @@ install:
       wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -q -O php-cs-fixer.phar
     fi
 
+before_script:
+  - |
+    if [ $BUILD_LEAD == 1 ]; then
+      curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+      chmod +x ./cc-test-reporter
+     ./cc-test-reporter before-build
+    fi
+
 script:
   # PHPUnit tests
   - |
@@ -47,13 +56,13 @@ script:
       php php-cs-fixer.phar fix --dry-run --stop-on-violation -v
     fi
 
-after_success:
-  # Upload code coverage
+after_script:
   - |
     if [ $BUILD_LEAD == 1 ]; then
-      travis_retry bash <(curl -s https://codecov.io/bash) -f build/logs/clover.xml
+      ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
     fi
 
+after_success:
   # Generate API docs
   - |
     if [[ ($TRAVIS_PULL_REQUEST == false || $TRAVIS_TAG != '') && $BUILD_LEAD == 1 ]]; then

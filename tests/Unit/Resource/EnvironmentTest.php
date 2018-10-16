@@ -26,7 +26,7 @@ class EnvironmentTest extends BaseTestCase
         $this->assertSame('QA Environment', $environment->getName());
 
         $sys = $environment->getSystemProperties();
-        $this->assertNull($sys->getId());
+        $this->assertSame('', $sys->getId());
         $this->assertSame('Environment', $sys->getType());
     }
 

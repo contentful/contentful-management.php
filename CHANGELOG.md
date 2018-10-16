@@ -5,9 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/contentful/contentful-management.php/compare/1.0.0...HEAD)
 
+### Added
+
+* `DeliveryApiKey` and `PreviewApiKey` now expose the `environments` property.
+* Added support for role constraint `PathsConstraint`.
+* Extensions can now be configured with installation or instance parameters, using the `Contentful\Management\Resource\Extension\Parameter` class.
+* Webhooks can now define filters, see classes defined in the `Contentful\Management\Resource\Webhook` namespace for more.
+* Webhooks now accept a transformations array, see the [documentation](https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks) for more.
+
 ### Changed
 
-* `BaseMapper::hydrate()` has been deprecated and will be removed in version 2. If you are subclassing the mapper, use `$this->hydrator->hydrate()` instead.
+* Link resolution is now delegated to the `Contentful\Management\LinkResolver` class.
+* The SDK now uses version 2 of the `contentful/core` package. **[BREAKING]**
+
+### Removed
+
+* `BaseMapper::hydrate()` has been removed. Use `$this->hydrator->hydrate()` instead. **[BREAKING]**
 
 ## [1.0.0](https://github.com/contentful/contentful-management.php/tree/1.0.0) (2018-04-18)
 

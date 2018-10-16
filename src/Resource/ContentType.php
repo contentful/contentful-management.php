@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Core\Resource\ContentTypeInterface;
 use Contentful\Management\Proxy\Extension\ContentTypeProxyExtension;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
@@ -26,7 +27,7 @@ use Contentful\Management\Resource\ContentType\Field\FieldInterface;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types
  * @see https://www.contentful.com/developers/docs/concepts/data-model/
  */
-class ContentType extends BaseResource implements CreatableInterface
+class ContentType extends BaseResource implements ContentTypeInterface, CreatableInterface
 {
     use ContentTypeProxyExtension,
         DeletableTrait,
