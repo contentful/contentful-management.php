@@ -28,7 +28,7 @@ class ApiConfigurationTest extends BaseTestCase
         $this->assertSame([
             'class' => Upload::class,
             'uri' => '/spaces/{space}/uploads/{upload}',
-            'baseUri' => 'https://upload.contentful.com',
+            'host' => 'https://upload.contentful.com',
             'parameters' => ['space'],
             'id' => 'upload',
         ], $config);
@@ -74,17 +74,6 @@ class ApiConfigurationTest extends BaseTestCase
             'parameters' => ['space', 'environment'],
             'id' => 'entry',
         ], $config);
-    }
-
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Trying to get configuration for an object of class "stdClass" which does not implement ResourceInterface.
-     */
-    public function testThrowOnInvalidObject()
-    {
-        (new ApiConfiguration())
-            ->getConfigFor(new \stdClass())
-        ;
     }
 
     /**

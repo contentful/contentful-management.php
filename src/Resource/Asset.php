@@ -13,6 +13,7 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Core\File\FileInterface;
 use Contentful\Core\File\UnprocessedFileInterface;
+use Contentful\Core\Resource\AssetInterface;
 use Contentful\Management\Resource\Behavior\ArchivableTrait;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
@@ -26,7 +27,7 @@ use Contentful\Management\Resource\Behavior\UpdatableTrait;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
  */
-class Asset extends BaseResource implements CreatableInterface
+class Asset extends BaseResource implements AssetInterface, CreatableInterface
 {
     use ArchivableTrait,
         DeletableTrait,

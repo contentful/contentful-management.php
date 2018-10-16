@@ -13,7 +13,7 @@ namespace Contentful\Management;
 
 use Contentful\Core\Api\Link;
 use Contentful\Core\Api\LinkResolverInterface;
-use Contentful\Management\Resource\ResourceInterface;
+use Contentful\Core\Resource\ResourceInterface;
 
 class LinkResolver implements LinkResolverInterface
 {
@@ -42,14 +42,14 @@ class LinkResolver implements LinkResolverInterface
     /**
      * {@inheritdoc}
      */
-    public function resolveLink(Link $link, array $parameters = [])
+    public function resolveLink(Link $link, array $parameters = []): ResourceInterface
     {
         $config = $this->configuration->getLinkConfigFor($link->getLinkType());
         $uri = $this->requestUriBuilder->build($config, $parameters, $link->getId());
 
         /** @var ResourceInterface $resource */
-        $resource = $this->client->makeRequest('GET', $uri, [
-            'baseUri' => $config['baseUri'] ?? \null,
+        $resource = $this->client->request('GET', $uri, [
+            'host' => $config['host'] ?? \null,
         ]);
 
         return $resource;

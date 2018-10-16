@@ -14,6 +14,7 @@ namespace Contentful\Management;
 use Contentful\Core\Api\BaseClient;
 use Contentful\Core\Api\Link;
 use Contentful\Core\Resource\ResourceArray;
+use Contentful\Core\Resource\ResourceInterface as CoreResourceInterface;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\ResourceInterface;
 
@@ -27,13 +28,6 @@ class Client extends BaseClient
     use ClientExtension\OrganizationExtension,
         ClientExtension\SpaceExtension,
         ClientExtension\UserExtension;
-
-    /**
-     * The current version of the SDK.
-     *
-     * @var string
-     */
-    const VERSION = '1.1.0-dev';
 
     /**
      * The default URI to which all requests should be made.
@@ -81,13 +75,13 @@ class Client extends BaseClient
      * @param array  $options     An array of options, with the following supported values:
      *                            * guzzle: an instance of the Guzzle client
      *                            * logger: a PSR-3 logger
-     *                            * baseUri: a string that will replace the default Contentful URI
+     *                            * host: a string that will replace the default Contentful URI
      */
     public function __construct(string $accessToken, array $options = [])
     {
         parent::__construct(
             $accessToken,
-            $options['baseUri'] ?? self::URI_MANAGEMENT,
+            $options['host'] ?? self::URI_MANAGEMENT,
             $options['logger'] ?? \null,
             $options['guzzle'] ?? \null
         );
@@ -109,22 +103,13 @@ class Client extends BaseClient
     }
 
     /**
-     * @param string                 $method   The HTTP method
-     * @param string                 $path     The URI path
-     * @param array                  $options  An array of optional parameters. The following keys are accepted:
-     *                                         * query   An array of query parameters that will be appended to the URI
-     *                                         * headers An array of headers that will be added to the request
-     *                                         * body    The request body
-     *                                         * baseUri A string that can be used to override the default client base URI
-     * @param ResourceInterface|null $resource Optionally, a resource whose properties will be overwritten
-     *
-     * @return ResourceInterface|ResourceArray|null
+     * {@inheritdoc}
      */
-    public function makeRequest(string $method, string $path, array $options = [], ResourceInterface $resource = \null)
+    public function request(string $method, string $uri, array $options = []): CoreResourceInterface
     {
-        $path = \rtrim($path, '/');
+        $response = $this->callApi($method, \rtrim($uri, '/'), $options);
 
-        $response = $this->request($method, $path, $options);
+        $resource = $options['resource'] ?? \null;
 
         if ($response) {
             /** @var ResourceInterface|ResourceArray|null $resource */
@@ -173,22 +158,22 @@ class Client extends BaseClient
         $config = $this->configuration->getConfigFor($resource);
         $uri = $this->requestUriBuilder->build($config, $parameters, $resourceId);
 
-        $this->makeRequest($resourceId ? 'PUT' : 'POST', $uri, [
+        $this->request($resourceId ? 'PUT' : 'POST', $uri, [
+            'resource' => $resource,
             'body' => $resource->asRequestBody(),
             'headers' => $resource->getHeadersForCreation(),
-            'baseUri' => $config['baseUri'] ?? \null,
-        ], $resource);
+            'host' => $config['host'] ?? \null,
+        ]);
     }
 
     /**
      * Make an API request using the given resource.
      * The object will be used to infer the API endpoint.
      *
-     * @param ResourceInterface $resource        An SDK resource object
-     * @param string            $method          The HTTP method
-     * @param string            $path            Optionally, a path to be added at the of the URI (like "/published")
-     * @param array             $options         An array of valid options (baseUri, body, headers)
-     * @param bool              $hydrateResource Whether to update the given resource using the result of the API call
+     * @param ResourceInterface $resource An SDK resource object
+     * @param string            $method   The HTTP method
+     * @param string            $path     Optionally, a path to be added at the of the URI (like "/published")
+     * @param array             $options  An array of valid options (host, body, headers)
      *
      * @return ResourceInterface|ResourceArray|null
      */
@@ -196,16 +181,19 @@ class Client extends BaseClient
         ResourceInterface $resource,
         string $method,
         string $path = '',
-        array $options = [],
-        bool $hydrateResource = \true
+        array $options = []
     ) {
         $config = $this->configuration->getConfigFor($resource);
         $uri = $this->requestUriBuilder->build($config, $resource->asUriParameters());
 
-        $options['baseUri'] = $config['baseUri'] ?? \null;
-        $targetResource = $hydrateResource ? $resource : \null;
+        $options = \array_merge($options, [
+            'host' => $config['host'] ?? \null,
+            'resource' => $resource,
+        ]);
 
-        return $this->makeRequest($method, $uri.$path, $options, $targetResource);
+        $this->request($method, $uri.$path, $options);
+
+        return $resource;
     }
 
     /**
@@ -226,10 +214,11 @@ class Client extends BaseClient
         $uri = $this->requestUriBuilder->build($config, $parameters);
 
         /** @var ResourceInterface|ResourceArray $resource */
-        $resource = $this->makeRequest('GET', $uri, [
-            'baseUri' => $config['baseUri'] ?? \null,
+        $resource = $this->request('GET', $uri, [
+            'resource' => $resource,
+            'host' => $config['host'] ?? \null,
             'query' => $query ? $query->getQueryData() : [],
-        ], $resource);
+        ]);
 
         return $resource;
     }
@@ -253,7 +242,7 @@ class Client extends BaseClient
     /**
      * {@inheritdoc}
      */
-    public function getApi()
+    public function getApi(): string
     {
         return 'MANAGEMENT';
     }
@@ -269,7 +258,7 @@ class Client extends BaseClient
     /**
      * {@inheritdoc}
      */
-    protected function getSdkName(): string
+    protected static function getSdkName(): string
     {
         return 'contentful-management.php';
     }
@@ -277,15 +266,15 @@ class Client extends BaseClient
     /**
      * {@inheritdoc}
      */
-    protected function getSdkVersion(): string
+    protected static function getPackageName(): string
     {
-        return self::VERSION;
+        return 'contentful/contentful-management';
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getApiContentType(): string
+    protected static function getApiContentType(): string
     {
         return 'application/vnd.contentful.management.v1+json';
     }

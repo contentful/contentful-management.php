@@ -62,7 +62,7 @@ class BaseTestCase extends TestCase
     {
         $host = \getenv('CONTENTFUL_PHP_MANAGEMENT_SDK_HOST');
         $options = $host
-            ? ['baseUri' => $host]
+            ? ['host' => $host]
             : [];
 
         return new Client($this->token, $options);

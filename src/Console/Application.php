@@ -22,7 +22,7 @@ class Application extends ConsoleApplication
 {
     public function __construct()
     {
-        parent::__construct('contentful-management', Client::VERSION);
+        parent::__construct('contentful-management', Client::getVersion());
     }
 
     protected function getDefaultCommands()
