@@ -1,0 +1,57 @@
+{
+    "sys": {
+        "type": "EditorInterface",
+        "id": "default",
+        "createdAt": "2018-01-01T12:00:00.123Z",
+        "updatedAt": "2018-01-01T12:00:00.123Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "irrelevant"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "irrelevant"
+            }
+        },
+        "version": 1,
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "irrelevant"
+            }
+        },
+        "environment": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Environment",
+                "id": "irrelevant"
+            }
+        },
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "irrelevant"
+            }
+        }
+    },
+    "controls": [{
+        "fieldId": "name",
+        "widgetId": "singleLine"
+    }, {
+        "fieldId": "url",
+        "widgetId": "urlEditor"
+    }, {
+        "fieldId": "rating",
+        "widgetId": "rating",
+        "settings": {
+            "stars": 5
+        }
+    }]
+}

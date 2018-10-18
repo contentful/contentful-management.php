@@ -1,0 +1,41 @@
+{
+    "sys": {
+        "type": "WebhookCallDetails",
+        "id": "irrelevant",
+        "createdAt": "2018-01-01T12:00:00.123Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "WebhookDefinition",
+                "id": "irrelevant"
+            }
+        },
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "irrelevant"
+            }
+        }
+    },
+    "request": {
+        "method": "POST",
+        "url": "https://www.example.com",
+        "headers": {},
+        "body": "{}"
+    },
+    "response": {
+        "statusCode": 200,
+        "url": "https://www.example.com",
+        "headers": {
+            "X-Breaking-Bad-Favorite-Character": "Jesse Pinkman"
+        },
+        "body": ""
+    },
+    "statusCode": 200,
+    "errors": [],
+    "eventType": "publish",
+    "url": "https:\/\/webhooks.example.com\/endpoint",
+    "requestAt": "2016-03-01T08:43:22.024Z",
+    "responseAt": "2016-03-01T08:43:22.330Z"
+}

@@ -5,7 +5,7 @@ namespace Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\Mapper;
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Core\Api\Link;
 use Contentful\Management\Mapper\BaseMapper;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Entry as SystemProperties;
 use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\BlogPost;
 
 /**

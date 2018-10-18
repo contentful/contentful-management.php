@@ -149,11 +149,13 @@ class GenerateEntryClassesCommand extends Command
 
         do {
             $query->setSkip($skip);
-            $contentTypes = $environment->getContentTypes($query);
-            $allContentTypes += $contentTypes->getItems();
+            $array = $environment->getContentTypes($query);
+            /** @var ContentType[] $contentTypes */
+            $contentTypes = $array->getItems();
+            $allContentTypes += $contentTypes;
 
             $skip += $limit;
-        } while ($contentTypes->getTotal() > $skip);
+        } while ($array->getTotal() > $skip);
 
         return $allContentTypes;
     }
@@ -219,13 +221,13 @@ class GenerateEntryClassesCommand extends Command
      *
      * @return bool
      */
-    private function writeFile(string $path, string $content)
+    private function writeFile(string $path, string $content): bool
     {
         if (!\is_dir(\dirname($path))) {
             \mkdir(\dirname($path), 0777, \true);
         }
 
-        return \file_put_contents($path, $content);
+        return (bool) \file_put_contents($path, $content);
     }
 
     /**
@@ -237,7 +239,7 @@ class GenerateEntryClassesCommand extends Command
     private function writeReport(OutputInterface $output, string $spaceId, string $environmentId, string $dir)
     {
         $output->writeln(\sprintf(
-            '<info>Result of content type classes generation for space "%s" and environment "%s".</info>',
+            '<info>Result of content type classes generator for space "%s" and environment "%s".</info>',
             $spaceId,
             $environmentId
         ));

@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\Upload as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Upload as SystemProperties;
 
 /**
  * Upload class.
@@ -27,9 +27,12 @@ class Upload extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $upload */
+        $upload = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'body' => \null,
         ]);
+
+        return $upload;
     }
 }

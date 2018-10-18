@@ -18,6 +18,7 @@ use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\PublishableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\ContentType\Field\FieldInterface;
+use Contentful\Management\SystemProperties\ContentType as SystemProperties;
 
 /**
  * ContentType class.
@@ -33,6 +34,11 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
         DeletableTrait,
         PublishableTrait,
         UpdatableTrait;
+
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
 
     /**
      * @var string
@@ -66,14 +72,19 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
      */
     public function __construct($name)
     {
-        $this->initialize('ContentType');
         $this->name = $name;
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

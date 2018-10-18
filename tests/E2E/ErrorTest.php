@@ -14,9 +14,11 @@ namespace Contentful\Tests\Management\E2E;
 use Contentful\Management\Exception\VersionMismatchException;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Locale;
-use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
-use function GuzzleHttp\json_encode as guzzle_json_encode;
+use Contentful\Tests\Management\Implementation\EmptyBodyLocale;
+use Contentful\Tests\Management\Implementation\FakeAsset;
+use Contentful\Tests\Management\Implementation\UnknownKeyLocale;
+use Contentful\Tests\Management\Implementation\ValidationFailedLocale;
 
 class ErrorTest extends BaseTestCase
 {
@@ -146,64 +148,5 @@ class ErrorTest extends BaseTestCase
                 $locale->update();
             }
         }
-    }
-}
-
-class UnknownKeyLocale extends Locale
-{
-    public function asRequestBody(): string
-    {
-        $body = $this->jsonSerialize();
-
-        unset($body['sys']);
-        unset($body['default']);
-
-        $body['unknownKey'] = 'unknownValue';
-
-        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
-    }
-}
-
-class EmptyBodyLocale extends Locale
-{
-    public function asRequestBody(): string
-    {
-        return '{}';
-    }
-}
-
-class ValidationFailedLocale extends Locale
-{
-    public function asRequestBody(): string
-    {
-        return '{"name":"A cool locale"}';
-    }
-}
-
-class FakeAsset extends Asset
-{
-    public function __construct(string $id, string $spaceId)
-    {
-        parent::__construct();
-
-        $this->sys = new SystemProperties([
-            'type' => 'Asset',
-            'id' => $id,
-            'version' => 23,
-            'space' => [
-                'sys' => [
-                    'type' => 'Link',
-                    'linkType' => 'Space',
-                    'id' => $spaceId,
-                ],
-            ],
-            'environment' => [
-                'sys' => [
-                    'type' => 'Link',
-                    'linkType' => 'Environment',
-                    'id' => 'master',
-                ],
-            ],
-        ]);
     }
 }

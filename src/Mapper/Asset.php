@@ -18,7 +18,7 @@ use Contentful\Core\File\ImageFile;
 use Contentful\Core\File\LocalUploadFile;
 use Contentful\Core\File\RemoteUploadFile;
 use Contentful\Management\Resource\Asset as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Asset as SystemProperties;
 
 /**
  * Asset class.
@@ -35,12 +35,15 @@ class Asset extends BaseMapper
     {
         $fields = $data['fields'];
 
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $asset */
+        $asset = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'title' => $fields['title'] ?? \null,
             'description' => $fields['description'] ?? \null,
             'file' => isset($fields['file']) ? \array_map([$this, 'buildFile'], $fields['file']) : \null,
         ]);
+
+        return $asset;
     }
 
     /**

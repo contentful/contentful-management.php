@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Management\SystemProperties\Snapshot as SystemProperties;
+
 /**
  * EntrySnapshot class.
  *
@@ -23,6 +25,19 @@ namespace Contentful\Management\Resource;
  */
 class EntrySnapshot extends Snapshot
 {
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
     /**
      * {@inheritdoc}
      */

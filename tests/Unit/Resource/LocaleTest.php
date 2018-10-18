@@ -43,10 +43,6 @@ class LocaleTest extends BaseTestCase
         $this->assertNull($locale->getFallbackCode());
         $locale->setFallbackCode('en-GB');
         $this->assertSame('en-GB', $locale->getFallbackCode());
-
-        $sys = $locale->getSystemProperties();
-        $this->assertSame('', $sys->getId());
-        $this->assertSame('Locale', $sys->getType());
     }
 
     public function testJsonSerialize()

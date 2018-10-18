@@ -19,7 +19,7 @@ use Contentful\Management\Resource\ContentType\Field\ArrayField;
 use Contentful\Management\Resource\ContentType\Field\DateField;
 use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 use Contentful\Management\Resource\ContentType\Field\LinkField;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Entry as SystemProperties;
 use PhpParser\Node;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_;
@@ -64,7 +64,7 @@ class Mapper extends BaseCodeGenerator
         $statements = $this->generateUses([
             $namespace.'\\'.$className,
             BaseMapper::class,
-            SystemProperties::class,
+            ['class' => SystemProperties::class, 'alias' => 'SystemProperties'],
             $this->uses['date'] ? DateTimeImmutable::class : \null,
             $this->uses['link'] ? Link::class : \null,
         ]);

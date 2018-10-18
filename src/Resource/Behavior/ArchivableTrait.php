@@ -12,15 +12,16 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource\Behavior;
 
 use Contentful\Management\Client;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\VersionableSystemPropertiesInterface;
 
 /**
  * ArchivableTrait.
  *
  * This trait is supposed to be applied to resources that can be archived.
  *
- * @property Client           $client
- * @property SystemProperties $sys
+ * @property Client $client
+ *
+ * @method VersionableSystemPropertiesInterface getSystemProperties()
  */
 trait ArchivableTrait
 {
@@ -30,7 +31,7 @@ trait ArchivableTrait
     public function archive()
     {
         return $this->client->requestWithResource($this, 'PUT', '/archived', [
-            'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
+            'headers' => ['X-Contentful-Version' => $this->getSystemProperties()->getVersion()],
         ]);
     }
 
@@ -40,7 +41,7 @@ trait ArchivableTrait
     public function unarchive()
     {
         return $this->client->requestWithResource($this, 'DELETE', '/archived', [
-            'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
+            'headers' => ['X-Contentful-Version' => $this->getSystemProperties()->getVersion()],
         ]);
     }
 }

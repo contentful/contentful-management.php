@@ -24,10 +24,6 @@ class SpaceTest extends BaseTestCase
 
         $space->setName('A better space');
         $this->assertSame('A better space', $space->getName());
-
-        $sys = $space->getSystemProperties();
-        $this->assertSame('', $sys->getId());
-        $this->assertSame('Space', $sys->getType());
     }
 
     public function testJsonSerialize()

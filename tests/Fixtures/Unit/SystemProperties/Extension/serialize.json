@@ -1,0 +1,35 @@
+{
+    "id": "3GKNbc6ddeIYgmWuUc0ami",
+    "type": "Extension",
+    "space": {
+        "sys": {
+            "id": "34luz0flcmxt",
+            "type": "Link",
+            "linkType": "Space"
+        }
+    },
+    "version": 1,
+    "createdAt": "2017-09-08T09:56:52.152Z",
+    "createdBy": {
+        "sys": {
+            "id": "1CECdY5ZhqJapGieg6QS9P",
+            "type": "Link",
+            "linkType": "User"
+        }
+    },
+    "updatedAt": "2017-09-08T09:56:52.152Z",
+    "updatedBy": {
+        "sys": {
+            "id": "1CECdY5ZhqJapGieg6QS9P",
+            "type": "Link",
+            "linkType": "User"
+        }
+    },
+    "environment": {
+        "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+        }
+    }
+}

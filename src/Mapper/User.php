@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\User as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\User as SystemProperties;
 
 /**
  * User class.
@@ -34,7 +34,8 @@ class User extends BaseMapper
             ));
         }
 
-        return $this->hydrator->hydrate(ResourceClass::class, [
+        /** @var ResourceClass $user */
+        $user = $this->hydrator->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
@@ -44,5 +45,7 @@ class User extends BaseMapper
             'signInCount' => $data['signInCount'],
             'confirmed' => $data['confirmed'],
         ]);
+
+        return $user;
     }
 }

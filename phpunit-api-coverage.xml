@@ -17,6 +17,6 @@
         <env name="CONTENTFUL_PHP_MANAGEMENT_SDK_HOST" value="http://localhost:5000/" />
 
         <env name="CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_READ_ONLY" value="34luz0flcmxt" />
-        <env name="CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_CODE_GENERATION" value="t7rprcaoexcq" />
+        <env name="CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_CODE_GENERATOR" value="t7rprcaoexcq" />
     </php>
 </phpunit>

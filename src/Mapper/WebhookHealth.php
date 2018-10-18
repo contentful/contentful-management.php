@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\WebhookHealth as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\WebhookHealth as SystemProperties;
 
 /**
  * WebhookHealth class.
@@ -34,10 +34,13 @@ class WebhookHealth extends BaseMapper
             ));
         }
 
-        return $this->hydrator->hydrate(ResourceClass::class, [
+        /** @var ResourceClass $webhookHealth */
+        $webhookHealth = $this->hydrator->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'total' => $data['calls']['total'],
             'healthy' => $data['calls']['healthy'],
         ]);
+
+        return $webhookHealth;
     }
 }

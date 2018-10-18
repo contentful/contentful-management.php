@@ -19,6 +19,7 @@ use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\PublishableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
+use Contentful\Management\SystemProperties\Asset as SystemProperties;
 
 /**
  * Asset class.
@@ -33,6 +34,11 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
         DeletableTrait,
         PublishableTrait,
         UpdatableTrait;
+
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
 
     /**
      * @var string[]
@@ -50,17 +56,15 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     protected $file = [];
 
     /**
-     * Asset constructor.
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function getSystemProperties(): SystemProperties
     {
-        $this->initialize('Asset');
+        return $this->sys;
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {
@@ -110,7 +114,7 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
         foreach ($locales as $locale) {
             $this->client->requestWithResource($this, 'PUT', '/files/'.$locale.'/process', [
                 'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
-            ], \false);
+            ]);
         }
 
         $this->client->fetchResource(

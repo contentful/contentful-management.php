@@ -1,7 +1,5 @@
 {
-    "sys": {
-        "type": "SpaceMembership"
-    },
+    "sys": null,
     "email": "php-cma-sdk-tests-eb2a4f5@contentful.com",
     "admin": false,
     "roles": [{

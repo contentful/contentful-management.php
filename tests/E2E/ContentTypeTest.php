@@ -157,7 +157,7 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
         $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertLink('master', 'Environment', $sys->getEnvironment());
-        $this->assertSame(1, $sys->getRevision());
+        $this->assertSame(1, $sys->getVersion());
     }
 
     /**
@@ -181,7 +181,7 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame('2017-10-17T12:23:46.365Z', (string) $sys->getUpdatedAt());
         $this->assertLink($this->readOnlySpaceId, 'Space', $sys->getSpace());
         $this->assertLink('master', 'Environment', $sys->getEnvironment());
-        $this->assertSame(1, $sys->getRevision());
+        $this->assertSame(1, $sys->getVersion());
     }
 
     /**

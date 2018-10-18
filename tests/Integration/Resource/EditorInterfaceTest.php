@@ -42,29 +42,10 @@ class EditorInterfaceTest extends BaseTestCase
 
     public function testJsonSerialize()
     {
-        $editorInterface = (new ResourceBuilder())->build([
-            'sys' => [
-                'type' => 'EditorInterface',
-            ],
-            'controls' => [
-                [
-                    'fieldId' => 'name',
-                    'widgetId' => 'singleLine',
-                ],
-                [
-                    'fieldId' => 'url',
-                    'widgetId' => 'urlEditor',
-                ],
-                [
-                    'fieldId' => 'rating',
-                    'widgetId' => 'rating',
-                    'settings' => [
-                        'stars' => 5,
-                    ],
-                ],
-            ],
-        ]);
+        $resource = (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
 
-        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/editor_interface.json', $editorInterface);
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/EditorInterface/serialize.json', $resource);
     }
 }

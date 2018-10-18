@@ -45,22 +45,13 @@ class UserTest extends BaseTestCase
      */
     public function testJsonSerialize(): User
     {
-        $user = (new ResourceBuilder())->build([
-            'sys' => [
-                'type' => 'User',
-            ],
-            'firstName' => 'Titus',
-            'lastName' => 'Andromedon',
-            'avatarUrl' => 'https://www.example.com/avatar.jpg',
-            'email' => 'pinotnoir@example.com',
-            'activated' => \true,
-            'signInCount' => 10,
-            'confirmed' => \true,
-        ]);
+        $resource = (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
 
-        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/user.json', $user);
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/User/serialize.json', $resource);
 
-        return $user;
+        return $resource;
     }
 
     /**

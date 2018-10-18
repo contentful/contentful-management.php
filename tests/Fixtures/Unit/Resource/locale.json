@@ -1,7 +1,5 @@
 {
-    "sys": {
-        "type": "Locale"
-    },
+    "sys": null,
     "name": "Swiss Italian",
     "code": "it-CH",
     "fallbackCode": "en-US",

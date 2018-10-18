@@ -44,7 +44,7 @@ class Parameter implements \JsonSerializable
     protected $default;
 
     /**
-     * @var array<int, array<string, string>>
+     * @var array
      */
     protected $options = [];
 
@@ -207,7 +207,7 @@ class Parameter implements \JsonSerializable
     }
 
     /**
-     * @return string[]
+     * @return array
      */
     public function getOptions(): array
     {
@@ -215,7 +215,7 @@ class Parameter implements \JsonSerializable
     }
 
     /**
-     * @param string[] $options
+     * @param array $options
      *
      * @return static
      */

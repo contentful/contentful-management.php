@@ -14,6 +14,7 @@ namespace Contentful\Management\Resource;
 use Contentful\Core\File\LocalUploadFile;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\SystemProperties\Upload as SystemProperties;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -26,6 +27,11 @@ use Psr\Http\Message\StreamInterface;
 class Upload extends BaseResource implements CreatableInterface
 {
     use DeletableTrait;
+
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
 
     /**
      * @var string|resource|StreamInterface|null
@@ -43,14 +49,19 @@ class Upload extends BaseResource implements CreatableInterface
      */
     public function __construct($body)
     {
-        $this->initialize('Upload');
         $this->body = $body;
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

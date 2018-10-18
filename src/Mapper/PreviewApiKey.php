@@ -13,7 +13,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\PreviewApiKey as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\ApiKey as SystemProperties;
 
 /**
  * PreviewApiKey class.
@@ -35,13 +35,16 @@ class PreviewApiKey extends BaseMapper
             ));
         }
 
-        return $this->hydrator->hydrate(ResourceClass::class, [
+        /** @var ResourceClass $previewApiKey */
+        $previewApiKey = $this->hydrator->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'accessToken' => $data['accessToken'],
             'description' => $data['description'],
             'environments' => $this->buildEnvironments($data['environments'] ?? []),
         ]);
+
+        return $previewApiKey;
     }
 
     /**

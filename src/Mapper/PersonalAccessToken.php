@@ -13,7 +13,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\PersonalAccessToken as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\PersonalAccessToken as SystemProperties;
 
 /**
  * PersonalAccessToken class.
@@ -28,12 +28,15 @@ class PersonalAccessToken extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $personalAccessToken */
+        $personalAccessToken = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'isReadOnly' => !\in_array('content_management_manage', $data['scopes'], \true),
             'revokedAt' => isset($data['revokedAt']) ? new DateTimeImmutable($data['revokedAt']) : \null,
             'token' => $data['token'] ?? \null,
         ]);
+
+        return $personalAccessToken;
     }
 }

@@ -13,7 +13,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\ContentType as ResourceClass;
 use Contentful\Management\Resource\ContentType\Field\FieldInterface;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\ContentType as SystemProperties;
 
 /**
  * ContentType class.
@@ -28,7 +28,8 @@ class ContentType extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $contentType */
+        $contentType = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'description' => $data['description'] ?? \null,
@@ -36,6 +37,8 @@ class ContentType extends BaseMapper
             'fields' => \array_map([$this, 'mapField'], $data['fields']),
             'isPublished' => isset($data['sys']['revision']),
         ]);
+
+        return $contentType;
     }
 
     /**

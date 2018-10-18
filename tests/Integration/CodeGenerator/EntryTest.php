@@ -9,19 +9,18 @@
 
 declare(strict_types=1);
 
-namespace Contentful\Tests\Management\Integration\Generator;
+namespace Contentful\Tests\Management\Integration\CodeGenerator;
 
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Core\Api\Link;
-use Contentful\Management\Client;
 use Contentful\Management\CodeGenerator\Entry;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
-use Contentful\Management\Resource\ResourceInterface;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\ContentType as SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
 use Contentful\Tests\Management\Fixtures\Integration\CodeGenerator\BlogPost;
+use Contentful\Tests\Management\Implementation\EntryFakeClient;
 
 class EntryTest extends BaseTestCase
 {
@@ -35,7 +34,38 @@ class EntryTest extends BaseTestCase
         $property->setAccessible(\true);
         $property->setValue($contentType, new SystemProperties([
             'id' => 'blogPost',
-            'type' => 'contentType',
+            'type' => 'ContentType',
+            'createdAt' => '2018-01-01T12:00:00.123Z',
+            'updatedAt' => '2018-01-01T12:00:00.123Z',
+            'createdBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'updatedBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'version' => 1,
+            'space' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Space',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'environment' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Environment',
+                    'id' => 'irrelevant',
+                ],
+            ],
         ]));
 
         $contentType->addNewField('Symbol', 'title', 'Title')->setRequired(\true);
@@ -80,6 +110,12 @@ class EntryTest extends BaseTestCase
         $sys = new SystemProperties([
             'space' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'Space', 'type' => 'Link']],
             'environment' => ['sys' => ['id' => 'master', 'linkType' => 'Environment', 'type' => 'Link']],
+            'contentType' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'ContentType', 'type' => 'Link']],
+            'createdAt' => '2018-01-01T12:00:00.123Z',
+            'updatedAt' => '2018-01-01T12:00:00.123Z',
+            'createdBy' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'User', 'type' => 'Link']],
+            'updatedBy' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'User', 'type' => 'Link']],
+            'version' => 1,
         ]);
 
         $reflection = new \ReflectionObject($entry);
@@ -163,19 +199,5 @@ class EntryTest extends BaseTestCase
         // Restore previous sys values
         $property->setValue($entry, $previousSys);
         $this->assertJsonFixtureEqualsJsonObject('Integration/CodeGenerator/entry.json', $entry);
-    }
-}
-
-class EntryFakeClient extends Client
-{
-    public function resolveLink(Link $link, array $parameters = []): ResourceInterface
-    {
-        if ('Asset' === $link->getLinkType()) {
-            return new Asset();
-        }
-
-        if ('Entry' === $link->getLinkType()) {
-            return new BlogPost();
-        }
     }
 }

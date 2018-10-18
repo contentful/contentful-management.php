@@ -41,7 +41,6 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
      */
     public function __construct(string $name = '')
     {
-        $this->initialize('DeliveryApiKey');
         $this->name = $name;
     }
 
@@ -80,8 +79,8 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
     public function asUriParameters(): array
     {
         return [
-            'space' => $this->sys->getSpace()->getId(),
-            'deliveryApiKey' => $this->sys->getId(),
+            'space' => $this->getSystemProperties()->getSpace()->getId(),
+            'deliveryApiKey' => $this->getSystemProperties()->getId(),
         ];
     }
 

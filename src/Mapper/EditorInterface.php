@@ -13,7 +13,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\EditorInterface as ResourceClass;
 use Contentful\Management\Resource\EditorInterface\Control;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\EditorInterface as SystemProperties;
 
 /**
  * DeliveryApiKey class.
@@ -28,10 +28,13 @@ class EditorInterface extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $editorInterface */
+        $editorInterface = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'controls' => \array_map([$this, 'mapControl'], $data['controls']),
         ]);
+
+        return $editorInterface;
     }
 
     /**
@@ -41,10 +44,13 @@ class EditorInterface extends BaseMapper
      */
     protected function mapControl(array $data): Control
     {
-        return $this->hydrator->hydrate(Control::class, [
+        /** @var Control $control */
+        $control = $this->hydrator->hydrate(Control::class, [
             'fieldId' => $data['fieldId'],
             'widgetId' => $data['widgetId'],
             'settings' => $data['settings'] ?? [],
         ]);
+
+        return $control;
     }
 }

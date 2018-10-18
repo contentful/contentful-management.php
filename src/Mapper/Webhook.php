@@ -17,7 +17,7 @@ use Contentful\Management\Resource\Webhook\FilterInterface;
 use Contentful\Management\Resource\Webhook\InclusionFilter;
 use Contentful\Management\Resource\Webhook\NotFilter;
 use Contentful\Management\Resource\Webhook\RegexpFilter;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Webhook as SystemProperties;
 
 /**
  * Webhook class.
@@ -35,7 +35,8 @@ class Webhook extends BaseMapper
         // The API never returns the password in the response.
         // This means that the object that the user requested will have its "httpBasicPassword" field set to null.
         // It's a destructive behavior, but it's consistent with the way the API works.
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $webhook */
+        $webhook = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'url' => $data['url'],
@@ -46,6 +47,8 @@ class Webhook extends BaseMapper
             'transformation' => $data['transformation'] ?? [],
             'filters' => \array_map([$this, 'formatFilter'], $data['filters'] ?? []),
         ]);
+
+        return $webhook;
     }
 
     /**

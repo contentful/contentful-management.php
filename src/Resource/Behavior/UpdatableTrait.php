@@ -12,15 +12,16 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource\Behavior;
 
 use Contentful\Management\Client;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\VersionableSystemPropertiesInterface;
 
 /**
  * UpdatableTrait.
  *
  * This trait is supposed to be applied to resources that can be updated.
  *
- * @property Client           $client
- * @property SystemProperties $sys
+ * @property Client $client
+ *
+ * @method VersionableSystemPropertiesInterface getSystemProperties()
  */
 trait UpdatableTrait
 {
@@ -39,7 +40,7 @@ trait UpdatableTrait
     public function update()
     {
         return $this->client->requestWithResource($this, 'PUT', '', [
-            'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
+            'headers' => ['X-Contentful-Version' => $this->getSystemProperties()->getVersion()],
             'body' => $this->asRequestBody(),
         ]);
     }

@@ -22,23 +22,8 @@ class WebhookTest extends BaseTestCase
      */
     public function testInvalidCreation()
     {
-        $builder = new ResourceBuilder();
-
-        $data = [
-            'sys' => [
-                'type' => 'WebhookDefinition',
-            ],
-            'name' => 'Custom webhook',
-            'url' => '',
-            'topics' => [],
-            'headers' => [],
-            'filters' => [
-                [
-                    'invalidKey' => [],
-                ],
-            ],
-        ];
-
-        $builder->build($data);
+        (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
     }
 }

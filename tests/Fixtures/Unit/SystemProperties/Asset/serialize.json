@@ -1,0 +1,35 @@
+{
+    "space": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "34luz0flcmxt"
+        }
+    },
+    "id": "2TEG7c2zYkSSuKmsqEwCS",
+    "type": "Asset",
+    "createdAt": "2017-08-22T15:41:45.127Z",
+    "updatedAt": "2017-08-22T15:42:20.969Z",
+    "environment": {
+        "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+        }
+    },
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "updatedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "version": 11
+}

@@ -1,0 +1,28 @@
+{
+    "id": "0fzYxkdlzzatS7EhcEN6Gq",
+    "type": "ApiKey",
+    "createdAt": "2018-07-30T15:56:23Z",
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "id": "4Q3e6duhma7V6czH7UXHzE",
+            "linkType": "User"
+        }
+    },
+    "updatedAt": "2018-07-30T15:56:23Z",
+    "updatedBy": {
+        "sys": {
+            "type": "Link",
+            "id": "4Q3e6duhma7V6czH7UXHzE",
+            "linkType": "User"
+        }
+    },
+    "version": 1,
+    "space": {
+        "sys": {
+            "type": "Link",
+            "id": "pmgjoasidv3w",
+            "linkType": "Space"
+        }
+    }
+}

@@ -45,35 +45,13 @@ class WebhookCallTest extends BaseTestCase
      */
     public function testJsonSerialize(): WebhookCall
     {
-        $webhookCall = (new ResourceBuilder())->build([
-            'sys' => [
-                'type' => 'WebhookCallDetails',
-            ],
-            'request' => [
-                'method' => 'POST',
-                'url' => 'https://www.example.com',
-                'headers' => [],
-                'body' => '{}',
-            ],
-            'response' => [
-                'statusCode' => 200,
-                'headers' => [
-                    'Host' => 'www.example.com',
-                    'X-Breaking-Bad-Favorite-Character' => 'Jesse Pinkman',
-                ],
-                'body' => '',
-            ],
-            'statusCode' => 200,
-            'errors' => [],
-            'eventType' => 'publish',
-            'url' => 'https://webhooks.example.com/endpoint',
-            'requestAt' => '2016-03-01T08:43:22.024Z',
-            'responseAt' => '2016-03-01T08:43:22.330Z',
-        ]);
+        $resource = (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
 
-        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/webhook_call.json', $webhookCall);
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/WebhookCall/serialize.json', $resource);
 
-        return $webhookCall;
+        return $resource;
     }
 
     /**

@@ -1,14 +1,5 @@
 {
-    "sys": {
-        "type": "Entry",
-        "contentType": {
-            "sys": {
-                "type": "Link",
-                "id": "blogPost",
-                "linkType": "ContentType"
-            }
-        }
-    },
+    "sys": null,
     "fields": {
         "title": {
             "en-US": "title"

@@ -1,0 +1,19 @@
+{
+    "id": "3zMjh2AhTG6owsSsAYq6OY",
+    "type": "WebhookCallDetails",
+    "space": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "pmgjoasidv3w"
+        }
+    },
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "WebhookDefinition",
+            "id": "3j8J6mQoWOsAK6iUQIcSbI"
+        }
+    },
+    "createdAt": "2018-07-30T16:49:21.931Z"
+}

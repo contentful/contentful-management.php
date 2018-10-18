@@ -1,0 +1,28 @@
+{
+    "type": "WebhookDefinition",
+    "id": "3tilCowN1lI1rDCe9vhK0C",
+    "version": 1,
+    "space": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "34luz0flcmxt"
+        }
+    },
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "createdAt": "2017-06-13T08:30:13Z",
+    "updatedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "updatedAt": "2017-06-13T08:30:51Z"
+}

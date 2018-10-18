@@ -16,6 +16,7 @@ use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
+use Contentful\Management\SystemProperties\Role as SystemProperties;
 
 /**
  * Role class.
@@ -28,6 +29,11 @@ class Role extends BaseResource implements CreatableInterface
 {
     use DeletableTrait,
         UpdatableTrait;
+
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
 
     /**
      * @var string
@@ -57,16 +63,21 @@ class Role extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '', string $description = '')
     {
-        $this->initialize('Role');
         $this->name = $name;
         $this->description = $description;
         $this->permissions = new Permissions();
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

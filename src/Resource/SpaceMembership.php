@@ -15,6 +15,7 @@ use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
+use Contentful\Management\SystemProperties\SpaceMembership as SystemProperties;
 
 /**
  * SpaceMembership class.
@@ -27,6 +28,11 @@ class SpaceMembership extends BaseResource implements CreatableInterface
 {
     use DeletableTrait,
         UpdatableTrait;
+
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
 
     /**
      * @var bool
@@ -49,17 +55,15 @@ class SpaceMembership extends BaseResource implements CreatableInterface
     protected $user;
 
     /**
-     * SpaceMembership constructor.
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function getSystemProperties(): SystemProperties
     {
-        $this->initialize('SpaceMembership');
+        return $this->sys;
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

@@ -26,9 +26,6 @@ class WebhookTest extends BaseTestCase
         $webhook->setName('Another name');
         $this->assertSame('Another name', $webhook->getName());
 
-        $sys = $webhook->getSystemProperties();
-        $this->assertSame('WebhookDefinition', $sys->getType());
-
         $webhook->setHttpBasicUsername('my_username');
         $this->assertSame('my_username', $webhook->getHttpBasicUsername());
         $webhook->setHttpBasicPassword('k3de[@fds-54f');

@@ -1,0 +1,86 @@
+{
+    "sys": {
+        "id": "irrelevant",
+        "type": "Snapshot",
+        "snapshotType": "publish",
+        "snapshotEntityType": "ContentType",
+        "createdAt": "2018-01-01T12:00:00.123Z",
+        "updatedAt": "2018-01-01T12:00:00.123Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "irrelevant"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "irrelevant"
+            }
+        },
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "irrelevant"
+            }
+        },
+        "environment": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Environment",
+                "id": "irrelevant"
+            }
+        }
+    },
+    "snapshot": {
+        "name": "Versioned Content Type",
+        "displayField": "title",
+        "fields": [{
+            "name": "Title",
+            "id": "title",
+            "type": "Symbol"
+        }, {
+            "name": "Description",
+            "id": "description",
+            "type": "Text"
+        }],
+        "sys": {
+            "id": "versionedContentType",
+            "type": "ContentType",
+            "createdAt": "2018-01-01T12:00:00.123Z",
+            "updatedAt": "2018-01-01T12:00:00.123Z",
+            "createdBy": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "User",
+                    "id": "irrelevant"
+                }
+            },
+            "updatedBy": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "User",
+                    "id": "irrelevant"
+                }
+            },
+            "version": 1,
+            "space": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "irrelevant"
+                }
+            },
+            "environment": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Environment",
+                    "id": "irrelevant"
+                }
+            }
+        }
+    }
+}
