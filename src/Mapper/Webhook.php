@@ -12,6 +12,11 @@ declare(strict_types=1);
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\Webhook as ResourceClass;
+use Contentful\Management\Resource\Webhook\EqualityFilter;
+use Contentful\Management\Resource\Webhook\FilterInterface;
+use Contentful\Management\Resource\Webhook\InclusionFilter;
+use Contentful\Management\Resource\Webhook\NotFilter;
+use Contentful\Management\Resource\Webhook\RegexpFilter;
 use Contentful\Management\SystemProperties;
 
 /**
@@ -38,6 +43,8 @@ class Webhook extends BaseMapper
             'httpBasicPassword' => \null,
             'topics' => $data['topics'],
             'headers' => $this->formatHeaders($data['headers']),
+            'transformation' => $data['transformation'] ?? [],
+            'filters' => \array_map([$this, 'formatFilter'], $data['filters'] ?? []),
         ]);
     }
 
@@ -54,5 +61,52 @@ class Webhook extends BaseMapper
         }
 
         return $headers;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return FilterInterface
+     */
+    protected function formatFilter(array $data): FilterInterface
+    {
+        \reset($data);
+        $key = \key($data);
+
+        switch ($key) {
+            case 'equals':
+                $docKey = isset($data[$key][0]['doc']) ? 0 : 1;
+                $valueKey = 1 - $docKey;
+
+                return new EqualityFilter(
+                    $data[$key][$docKey]['doc'],
+                    $data[$key][$valueKey]
+                );
+            case 'in':
+                $docKey = isset($data[$key][0]['doc']) ? 0 : 1;
+                $valueKey = 1 - $docKey;
+
+                return new InclusionFilter(
+                    $data[$key][$docKey]['doc'],
+                    $data[$key][$valueKey]
+                );
+            case 'not':
+                return new NotFilter(
+                    $this->formatFilter($data[$key])
+                );
+            case 'regexp':
+                $docKey = isset($data[$key][0]['doc']) ? 0 : 1;
+                $valueKey = 1 - $docKey;
+
+                return new RegexpFilter(
+                    $data[$key][$docKey]['doc'],
+                    $data[$key][$valueKey]['pattern']
+                );
+            default:
+                throw new \RuntimeException(\sprintf(
+                    'Trying to build a filter object using invalid key "%s".',
+                    $key
+                ));
+        }
     }
 }
