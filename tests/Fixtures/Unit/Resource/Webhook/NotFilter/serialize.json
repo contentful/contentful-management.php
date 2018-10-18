@@ -1,8 +1,7 @@
 {
-    "not": [{
+    "not": {
         "equals": [{
             "doc": "sys.environment.sys.id"
         }, "staging"
-        ]}
-    ]
+    ]}
 }

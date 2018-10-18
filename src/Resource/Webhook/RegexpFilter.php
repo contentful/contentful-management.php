@@ -92,7 +92,7 @@ class RegexpFilter implements FilterInterface
      */
     public function jsonSerialize(): array
     {
-        return ['equals' => [
+        return ['regexp' => [
             ['doc' => $this->doc],
             ['pattern' => $this->pattern],
         ]];

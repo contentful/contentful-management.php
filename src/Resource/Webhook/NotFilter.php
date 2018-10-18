@@ -69,8 +69,6 @@ class NotFilter implements FilterInterface
      */
     public function jsonSerialize(): array
     {
-        return ['not' => [
-            $this->child,
-        ]];
+        return ['not' => $this->child];
     }
 }

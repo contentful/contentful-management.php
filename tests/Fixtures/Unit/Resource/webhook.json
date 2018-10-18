@@ -21,7 +21,7 @@
             }, "master"]
         }
     ],
-    "transformations": {
+    "transformation": {
         "method": "GET"
     }
 }

@@ -13,6 +13,7 @@ namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Management\Resource\Extension;
 use Contentful\Management\Resource\Extension\FieldType;
+use Contentful\Management\Resource\Extension\Parameter;
 use Contentful\Tests\Management\BaseTestCase;
 
 class ExtensionTest extends BaseTestCase
@@ -99,6 +100,12 @@ class ExtensionTest extends BaseTestCase
             ->addNewFieldType('Link', ['Entry'])
             ->setSource($source)
             ->setSidebar(\false)
+            ->setInstallationParameters([
+                new Parameter('name', 'Name', 'Symbol'),
+            ])
+            ->setInstanceParameters([
+                new Parameter('age', 'Age', 'Number'),
+            ])
         ;
 
         $proxy->create($extension);
@@ -114,11 +121,29 @@ class ExtensionTest extends BaseTestCase
         $this->assertSame(['type' => 'Array', 'items' => ['type' => 'Symbol']], $fieldTypes[1]->getData());
         $this->assertSame(['type' => 'Link', 'linkType' => 'Entry'], $fieldTypes[2]->getData());
 
+        $parameters = $extension->getInstallationParameters();
+        $this->assertCount(1, $parameters);
+        $this->assertContainsOnlyInstancesOf(Parameter::class, $parameters);
+        $parameter = $parameters[0];
+        $this->assertSame('name', $parameter->getId());
+        $this->assertSame('Name', $parameter->getName());
+        $this->assertSame('Symbol', $parameter->getType());
+
+        $parameters = $extension->getInstanceParameters();
+        $this->assertCount(1, $parameters);
+        $this->assertContainsOnlyInstancesOf(Parameter::class, $parameters);
+        $parameter = $parameters[0];
+        $this->assertSame('age', $parameter->getId());
+        $this->assertSame('Age', $parameter->getName());
+        $this->assertSame('Number', $parameter->getType());
+
         $extension->setName('Maybe not-so-awesome extension');
         $extension->setSource('https://www.example.com/cf-ui-extension');
         $extension->setFieldTypes([
             new FieldType('Array', ['Link', 'Asset']),
         ]);
+        $extension->setInstanceParameters([]);
+        $extension->setInstallationParameters([]);
         $extension->update();
 
         $this->assertSame('Maybe not-so-awesome extension', $extension->getName());

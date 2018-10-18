@@ -13,6 +13,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\Extension as ResourceClass;
 use Contentful\Management\Resource\Extension\FieldType;
+use Contentful\Management\Resource\Extension\Parameter;
 use Contentful\Management\SystemProperties;
 
 /**
@@ -34,6 +35,14 @@ class Extension extends BaseMapper
             'source' => $data['extension']['src'] ?? $data['extension']['srcdoc'] ?? '',
             'fieldTypes' => \array_map([$this, 'buildFieldTypes'], $data['extension']['fieldTypes']),
             'sidebar' => $data['extension']['sidebar'],
+            'installationParameters' => \array_map(
+                [$this, 'buildParameter'],
+                $data['extension']['parameters']['installation'] ?? []
+            ),
+            'instanceParameters' => \array_map(
+                [$this, 'buildParameter'],
+                $data['extension']['parameters']['instance'] ?? []
+            ),
         ]);
     }
 
@@ -61,5 +70,21 @@ class Extension extends BaseMapper
             $data['type'],
             $secondParam
         );
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Parameter
+     */
+    protected function buildParameter(array $data): Parameter
+    {
+        return (new Parameter($data['id'], $data['name'], $data['type']))
+            ->setDescription($data['description'] ?? \null)
+            ->setRequired($data['required'] ?? \false)
+            ->setDefault($data['default'] ?? \null)
+            ->setOptions($data['options'] ?? [])
+            ->setLabels($data['labels'] ?? [])
+        ;
     }
 }

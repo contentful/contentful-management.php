@@ -92,6 +92,58 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
+     * @vcr e2e_webhook_create_with_filters_and_transformations.json
+     */
+    public function testCreateWithFiltersAndTransformations()
+    {
+        $proxy = $this->getReadWriteSpaceProxy();
+
+        $webhook = (new Webhook('cf-webhook-deleteme-filter-transform', 'https://www.example.com/cf-44mPCxGYNobexO7BCe4k6HSaxlpFf3d9YWNvRGb4'))
+            ->addTopic('Entry.create')
+            ->setTransformation(['method' => 'GET'])
+            ->setFilters([
+                new Webhook\NotFilter(
+                    new Webhook\EqualityFilter('sys.environment.sys.id', 'master')
+                ),
+                new Webhook\InclusionFilter('sys.id', ['main_nav', 'footer_nav']),
+                new Webhook\RegexpFilter('sys.contentType.sys.id', '^nav-.+$'),
+            ])
+        ;
+
+        $proxy->create($webhook);
+
+        $this->assertSame(['method' => 'GET'], $webhook->getTransformation());
+
+        $filters = $webhook->getFilters();
+        $this->assertContainsOnlyInstancesOf(Webhook\FilterInterface::class, $filters);
+        $this->assertCount(3, $filters);
+
+        /** @var Webhook\NotFilter $filter */
+        $filter = $filters[0];
+        $this->assertInstanceOf(Webhook\NotFilter::class, $filter);
+
+        /** @var Webhook\EqualityFilter $child */
+        $child = $filter->getChild();
+        $this->assertInstanceOf(Webhook\EqualityFilter::class, $child);
+        $this->assertSame('sys.environment.sys.id', $child->getDoc());
+        $this->assertSame('master', $child->getValue());
+
+        /** @var Webhook\InclusionFilter $filter */
+        $filter = $filters[1];
+        $this->assertInstanceOf(Webhook\InclusionFilter::class, $filter);
+        $this->assertSame('sys.id', $filter->getDoc());
+        $this->assertSame(['main_nav', 'footer_nav'], $filter->getValues());
+
+        /** @var Webhook\RegexpFilter $filter */
+        $filter = $filters[2];
+        $this->assertInstanceOf(Webhook\RegexpFilter::class, $filter);
+        $this->assertSame('sys.contentType.sys.id', $filter->getDoc());
+        $this->assertSame('^nav-.+$', $filter->getPattern());
+
+        $webhook->delete();
+    }
+
+    /**
      * @return Webhook
      *
      * @vcr e2e_webhook_create_update.json

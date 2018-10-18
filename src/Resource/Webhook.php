@@ -68,7 +68,7 @@ class Webhook extends BaseResource implements CreatableInterface
     /**
      * @var array
      */
-    protected $transformations = [];
+    protected $transformation = [];
 
     /**
      * Webhook constructor.
@@ -119,8 +119,8 @@ class Webhook extends BaseResource implements CreatableInterface
             $values['filters'] = $this->filters;
         }
 
-        if ($this->transformations) {
-            $values['transformations'] = (object) $this->transformations;
+        if ($this->transformation) {
+            $values['transformation'] = (object) $this->transformation;
         }
 
         return $values;
@@ -421,19 +421,19 @@ class Webhook extends BaseResource implements CreatableInterface
     /**
      * @return array
      */
-    public function getTransformations(): array
+    public function getTransformation(): array
     {
-        return $this->transformations;
+        return $this->transformation;
     }
 
     /**
-     * @param array $transformations
+     * @param array $transformation
      *
      * @return static
      */
-    public function setTransformations(array $transformations)
+    public function setTransformation(array $transformation)
     {
-        $this->transformations = $transformations;
+        $this->transformation = $transformation;
 
         return $this;
     }
