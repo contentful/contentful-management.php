@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource\Behavior;
 
-use Contentful\Management\Client;
+use Contentful\Management\Proxy\ProxyInterface;
 
 /**
  * DeletableTrait.
  *
  * This trait is supposed to be applied to resources that can be deleted.
  *
- * @property Client $client
+ * @property ProxyInterface $proxy
  */
 trait DeletableTrait
 {
@@ -27,6 +27,6 @@ trait DeletableTrait
      */
     public function delete()
     {
-        return $this->client->requestWithResource($this, 'DELETE');
+        $this->proxy->delete($this);
     }
 }

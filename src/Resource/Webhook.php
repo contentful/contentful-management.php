@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Management\Proxy\Extension\WebhookProxyExtension;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\RestfulInterface;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\Webhook\FilterInterface;
 use Contentful\Management\SystemProperties\Webhook as SystemProperties;
@@ -25,7 +25,7 @@ use Contentful\Management\SystemProperties\Webhook as SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks
  */
-class Webhook extends BaseResource implements CreatableInterface
+class Webhook extends BaseResource implements RestfulInterface
 {
     use WebhookProxyExtension,
         DeletableTrait,

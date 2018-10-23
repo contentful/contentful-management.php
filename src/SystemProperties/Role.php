@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class Role extends BaseSystemProperties implements VersionableSystemPropertiesInterface
+class Role extends BaseSystemProperties implements VersionableSystemPropertiesInterface, SpaceScopedSystemPropertiesInterface
 {
     use Component\EditedTrait,
         Component\SpaceTrait;

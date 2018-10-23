@@ -105,7 +105,7 @@ class EntryTest extends BaseTestCase
     {
         $client = new EntryFakeClient('irrelevant');
         $entry = new BlogPost();
-        $entry->setClient($client);
+        $entry->setProxy($client->getEnvironmentProxy('irrelevant', 'irrelevant'));
 
         $sys = new SystemProperties([
             'space' => ['sys' => ['id' => 'irrelevant', 'linkType' => 'Space', 'type' => 'Link']],

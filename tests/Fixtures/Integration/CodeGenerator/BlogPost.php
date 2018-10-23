@@ -132,13 +132,7 @@ class BlogPost extends Entry
      */
     public function resolvePreviousLink(string $locale = 'en-US')
     {
-        $parameters = [
-            // Representation of the URI parameters
-            'space' => $this->sys->getSpace()->getId(),
-            'environment' => $this->sys->getEnvironment()->getId(),
-        ];
-
-        return $this->client->resolveLink($this->getField('previous', $locale), $parameters);
+        return $this->proxy->resolveLink($this->getField('previous', $locale));
     }
 
     /**
@@ -175,13 +169,7 @@ class BlogPost extends Entry
      */
     public function resolveHeroImageLink(string $locale = 'en-US')
     {
-        $parameters = [
-            // Representation of the URI parameters
-            'space' => $this->sys->getSpace()->getId(),
-            'environment' => $this->sys->getEnvironment()->getId(),
-        ];
-
-        return $this->client->resolveLink($this->getField('heroImage', $locale), $parameters);
+        return $this->proxy->resolveLink($this->getField('heroImage', $locale));
     }
 
     /**
@@ -218,13 +206,7 @@ class BlogPost extends Entry
      */
     public function resolveRandomEntryLink(string $locale = 'en-US')
     {
-        $parameters = [
-            // Representation of the URI parameters
-            'space' => $this->sys->getSpace()->getId(),
-            'environment' => $this->sys->getEnvironment()->getId(),
-        ];
-
-        return $this->client->resolveLink($this->getField('randomEntry', $locale), $parameters);
+        return $this->proxy->resolveLink($this->getField('randomEntry', $locale));
     }
 
     /**
@@ -386,14 +368,8 @@ class BlogPost extends Entry
      */
     public function resolveImagesLinks(string $locale = 'en-US')
     {
-        $parameters = [
-            // Representation of the URI parameters
-            'space' => $this->sys->getSpace()->getId(),
-            'environment' => $this->sys->getEnvironment()->getId(),
-        ];
-
-        return \array_map(function (Link $link) use ($parameters) {
-            return $this->client->resolveLink($link, $parameters);
+        return \array_map(function (Link $link) {
+            return $this->proxy->resolveLink($link);
         }, (array) $this->getField('images', $locale));
     }
 
@@ -431,14 +407,8 @@ class BlogPost extends Entry
      */
     public function resolveRelatedLinks(string $locale = 'en-US')
     {
-        $parameters = [
-            // Representation of the URI parameters
-            'space' => $this->sys->getSpace()->getId(),
-            'environment' => $this->sys->getEnvironment()->getId(),
-        ];
-
-        return \array_map(function (Link $link) use ($parameters) {
-            return $this->client->resolveLink($link, $parameters);
+        return \array_map(function (Link $link) {
+            return $this->proxy->resolveLink($link);
         }, (array) $this->getField('related', $locale));
     }
 

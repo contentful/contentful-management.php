@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class EditorInterface extends BaseSystemProperties implements VersionableSystemPropertiesInterface
+class EditorInterface extends BaseSystemProperties implements VersionableSystemPropertiesInterface, EnvironmentScopedSystemPropertiesInterface
 {
     use Component\ContentTypeTrait,
         Component\EditedTrait,

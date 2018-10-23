@@ -131,13 +131,7 @@ class BlogPost extends Entry
      */
     public function resolveImageLink(string $locale = 'en-US')
     {
-        $parameters = [
-            // Representation of the URI parameters
-            'space' => $this->sys->getSpace()->getId(),
-            'environment' => $this->sys->getEnvironment()->getId(),
-        ];
-
-        return $this->client->resolveLink($this->getField('image', $locale), $parameters);
+        return $this->proxy->resolveLink($this->getField('image', $locale));
     }
 
     /**
@@ -174,14 +168,8 @@ class BlogPost extends Entry
      */
     public function resolveRelatedLinks(string $locale = 'en-US')
     {
-        $parameters = [
-            // Representation of the URI parameters
-            'space' => $this->sys->getSpace()->getId(),
-            'environment' => $this->sys->getEnvironment()->getId(),
-        ];
-
-        return \array_map(function (Link $link) use ($parameters) {
-            return $this->client->resolveLink($link, $parameters);
+        return \array_map(function (Link $link) {
+            return $this->proxy->resolveLink($link);
         }, (array) $this->getField('related', $locale));
     }
 
@@ -244,12 +232,6 @@ class BlogPost extends Entry
      */
     public function resolveAuthorLink(string $locale = 'en-US')
     {
-        $parameters = [
-            // Representation of the URI parameters
-            'space' => $this->sys->getSpace()->getId(),
-            'environment' => $this->sys->getEnvironment()->getId(),
-        ];
-
-        return $this->client->resolveLink($this->getField('author', $locale), $parameters);
+        return $this->proxy->resolveLink($this->getField('author', $locale));
     }
 }

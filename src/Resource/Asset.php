@@ -14,10 +14,12 @@ namespace Contentful\Management\Resource;
 use Contentful\Core\File\FileInterface;
 use Contentful\Core\File\UnprocessedFileInterface;
 use Contentful\Core\Resource\AssetInterface;
+use Contentful\Management\Resource\Behavior\ArchivableInterface;
 use Contentful\Management\Resource\Behavior\ArchivableTrait;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\PublishableInterface;
 use Contentful\Management\Resource\Behavior\PublishableTrait;
+use Contentful\Management\Resource\Behavior\RestfulInterface;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\SystemProperties\Asset as SystemProperties;
 
@@ -28,7 +30,7 @@ use Contentful\Management\SystemProperties\Asset as SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets
  */
-class Asset extends BaseResource implements AssetInterface, CreatableInterface
+class Asset extends BaseResource implements AssetInterface, RestfulInterface, ArchivableInterface, PublishableInterface
 {
     use ArchivableTrait,
         DeletableTrait,
@@ -112,12 +114,12 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
             : \array_keys($this->file);
 
         foreach ($locales as $locale) {
-            $this->client->requestWithResource($this, 'PUT', '/files/'.$locale.'/process', [
+            $this->proxy->getClient()->requestWithResource($this, 'PUT', '/files/'.$locale.'/process', [
                 'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
             ]);
         }
 
-        $this->client->fetchResource(
+        $this->proxy->getClient()->fetchResource(
             \get_class($this),
             $this->asUriParameters(),
             \null,

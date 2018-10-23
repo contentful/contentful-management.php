@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class Snapshot extends BaseSystemProperties
+class Snapshot extends BaseSystemProperties implements EnvironmentScopedSystemPropertiesInterface
 {
     use Component\EnvironmentTrait,
         Component\CreatedTrait,

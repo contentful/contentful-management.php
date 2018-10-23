@@ -11,11 +11,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Proxy;
 
-use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Environment;
-use Contentful\Management\Resource\ResourceInterface;
 
 /**
  * EnvironmentProxy class.
@@ -46,8 +43,10 @@ use Contentful\Management\Resource\ResourceInterface;
  * $entries = $environment->getEntries();
  * ```
  */
-class EnvironmentProxy
+class EnvironmentProxy implements ProxyInterface
 {
+    use ApiActionTrait;
+
     use Extension\EnvironmentProxyExtension;
 
     /**
@@ -105,43 +104,6 @@ class EnvironmentProxy
     }
 
     /**
-     * Persist a new resource in Contentful.
-     * This is a convenience method which just forwards to Client::create(),
-     * but setting the `space` and `environment` keys to the current space and environment IDs in the parameters array.
-     *
-     * @param CreatableInterface         $resource
-     * @param string                     $resourceId
-     * @param ResourceInterface|string[] $parameters
-     *
-     * @see \Contentful\Management\Client::create()
-     */
-    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
-    {
-        if (\is_array($parameters)) {
-            $parameters['space'] = $this->spaceId;
-            $parameters['environment'] = $this->environmentId;
-        }
-
-        $this->client->create($resource, $resourceId, $parameters);
-    }
-
-    /**
-     * Resolves a Contentful link scoped to the current space and environment.
-     *
-     * @param Link     $link
-     * @param string[] $parameters
-     *
-     * @return ResourceInterface
-     */
-    public function resolveLink(Link $link, array $parameters = []): ResourceInterface
-    {
-        $parameters['space'] = $this->spaceId;
-        $parameters['environment'] = $this->environmentId;
-
-        return $this->client->resolveLink($link, $parameters);
-    }
-
-    /**
      * Returns the Environment resource which corresponds to this proxy.
      *
      * @return Environment
@@ -151,5 +113,24 @@ class EnvironmentProxy
     public function toResource(): Environment
     {
         return $this->client->getEnvironment($this->spaceId, $this->environmentId);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getProxyParameters(): array
+    {
+        return [
+            'space' => $this->spaceId,
+            'environment' => $this->environmentId,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getClient(): Client
+    {
+        return $this->client;
     }
 }

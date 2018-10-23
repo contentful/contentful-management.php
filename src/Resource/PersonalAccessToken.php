@@ -125,11 +125,11 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
      */
     public function revoke()
     {
-        if (!$this->client) {
+        if (!$this->proxy) {
             throw new \LogicException('Trying to revoke a token which has not been fetched from the API.');
         }
 
-        $this->client->requestWithResource($this, 'PUT', '/revoked');
+        $this->proxy->getClient()->requestWithResource($this, 'PUT', '/revoked');
     }
 
     /**

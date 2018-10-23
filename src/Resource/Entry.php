@@ -14,10 +14,12 @@ namespace Contentful\Management\Resource;
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Core\Resource\EntryInterface;
 use Contentful\Management\Proxy\Extension\EntryProxyExtension;
+use Contentful\Management\Resource\Behavior\ArchivableInterface;
 use Contentful\Management\Resource\Behavior\ArchivableTrait;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\PublishableInterface;
 use Contentful\Management\Resource\Behavior\PublishableTrait;
+use Contentful\Management\Resource\Behavior\RestfulInterface;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\SystemProperties\Entry as SystemProperties;
 
@@ -28,7 +30,7 @@ use Contentful\Management\SystemProperties\Entry as SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries
  */
-class Entry extends BaseResource implements EntryInterface, CreatableInterface
+class Entry extends BaseResource implements EntryInterface, RestfulInterface, ArchivableInterface, PublishableInterface
 {
     use EntryProxyExtension,
         ArchivableTrait,

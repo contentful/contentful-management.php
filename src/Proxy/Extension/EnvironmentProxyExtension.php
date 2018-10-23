@@ -39,14 +39,19 @@ trait EnvironmentProxyExtension
      *
      * @return string
      */
-    abstract protected function getSpaceId();
+    abstract protected function getSpaceId(): string;
 
     /**
      * Returns the ID associated to the current environment.
      *
      * @return string
      */
-    abstract protected function getEnvironmentId();
+    abstract protected function getEnvironmentId(): string;
+
+    /**
+     * @return Client
+     */
+    abstract protected function getClient(): Client;
 
     /**
      * Returns an Asset resource.
@@ -59,7 +64,7 @@ trait EnvironmentProxyExtension
      */
     public function getAsset(string $assetId): Asset
     {
-        return $this->client->getAsset(
+        return $this->getClient()->getAsset(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $assetId
@@ -77,7 +82,7 @@ trait EnvironmentProxyExtension
      */
     public function getAssets(Query $query = \null): ResourceArray
     {
-        return $this->client->getAssets(
+        return $this->getClient()->getAssets(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $query
@@ -95,7 +100,7 @@ trait EnvironmentProxyExtension
      */
     public function getContentType(string $contentTypeId): ContentType
     {
-        return $this->client->getContentType(
+        return $this->getClient()->getContentType(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $contentTypeId
@@ -113,7 +118,7 @@ trait EnvironmentProxyExtension
      */
     public function getContentTypes(Query $query = \null): ResourceArray
     {
-        return $this->client->getContentTypes(
+        return $this->getClient()->getContentTypes(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $query
@@ -131,7 +136,7 @@ trait EnvironmentProxyExtension
      */
     public function getPublishedContentType(string $contentTypeId): ContentType
     {
-        return $this->client->getPublishedContentType(
+        return $this->getClient()->getPublishedContentType(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $contentTypeId
@@ -149,7 +154,7 @@ trait EnvironmentProxyExtension
      */
     public function getPublishedContentTypes(Query $query = \null): ResourceArray
     {
-        return $this->client->getPublishedContentTypes(
+        return $this->getClient()->getPublishedContentTypes(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $query
@@ -168,7 +173,7 @@ trait EnvironmentProxyExtension
      */
     public function getContentTypeSnapshot(string $contentTypeId, string $snapshotId): ContentTypeSnapshot
     {
-        return $this->client->getContentTypeSnapshot(
+        return $this->getClient()->getContentTypeSnapshot(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $contentTypeId,
@@ -188,7 +193,7 @@ trait EnvironmentProxyExtension
      */
     public function getContentTypeSnapshots(string $contentTypeId, Query $query = \null): ResourceArray
     {
-        return $this->client->getContentTypeSnapshots(
+        return $this->getClient()->getContentTypeSnapshots(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $contentTypeId,
@@ -207,7 +212,7 @@ trait EnvironmentProxyExtension
      */
     public function getEditorInterface(string $contentTypeId): EditorInterface
     {
-        return $this->client->getEditorInterface(
+        return $this->getClient()->getEditorInterface(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $contentTypeId
@@ -225,7 +230,7 @@ trait EnvironmentProxyExtension
      */
     public function getEntry(string $entryId): Entry
     {
-        return $this->client->getEntry(
+        return $this->getClient()->getEntry(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $entryId
@@ -243,7 +248,7 @@ trait EnvironmentProxyExtension
      */
     public function getEntries(Query $query = \null): ResourceArray
     {
-        return $this->client->getEntries(
+        return $this->getClient()->getEntries(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $query
@@ -262,7 +267,7 @@ trait EnvironmentProxyExtension
      */
     public function getEntrySnapshot(string $entryId, string $snapshotId): EntrySnapshot
     {
-        return $this->client->getEntrySnapshot(
+        return $this->getClient()->getEntrySnapshot(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $entryId,
@@ -282,7 +287,7 @@ trait EnvironmentProxyExtension
      */
     public function getEntrySnapshots(string $entryId, Query $query = \null): ResourceArray
     {
-        return $this->client->getEntrySnapshots(
+        return $this->getClient()->getEntrySnapshots(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $entryId,
@@ -301,7 +306,7 @@ trait EnvironmentProxyExtension
      */
     public function getExtension(string $extensionId): Extension
     {
-        return $this->client->getExtension(
+        return $this->getClient()->getExtension(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $extensionId
@@ -317,7 +322,7 @@ trait EnvironmentProxyExtension
      */
     public function getExtensions(): ResourceArray
     {
-        return $this->client->getExtensions(
+        return $this->getClient()->getExtensions(
             $this->getSpaceId(),
             $this->getEnvironmentId()
         );
@@ -334,7 +339,7 @@ trait EnvironmentProxyExtension
      */
     public function getLocale(string $localeId): Locale
     {
-        return $this->client->getLocale(
+        return $this->getClient()->getLocale(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $localeId
@@ -350,7 +355,7 @@ trait EnvironmentProxyExtension
      */
     public function getLocales(): ResourceArray
     {
-        return $this->client->getLocales(
+        return $this->getClient()->getLocales(
             $this->getSpaceId(),
             $this->getEnvironmentId()
         );

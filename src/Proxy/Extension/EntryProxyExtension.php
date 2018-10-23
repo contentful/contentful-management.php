@@ -39,14 +39,19 @@ trait EntryProxyExtension
      *
      * @return string
      */
-    abstract protected function getEnvironmentId();
+    abstract protected function getEnvironmentId(): string;
 
     /**
      * Returns the ID associated to the current entry.
      *
      * @return string
      */
-    abstract protected function getEntryId();
+    abstract protected function getEntryId(): string;
+
+    /**
+     * @return Client
+     */
+    abstract protected function getClient(): Client;
 
     /**
      * Returns a EntrySnapshot resource.
@@ -59,7 +64,7 @@ trait EntryProxyExtension
      */
     public function getSnapshot(string $snapshotId): EntrySnapshot
     {
-        return $this->client->getEntrySnapshot(
+        return $this->getClient()->getEntrySnapshot(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $this->getEntryId(),
@@ -78,7 +83,7 @@ trait EntryProxyExtension
      */
     public function getSnapshots(Query $query = \null): ResourceArray
     {
-        return $this->client->getEntrySnapshots(
+        return $this->getClient()->getEntrySnapshots(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $this->getEntryId(),

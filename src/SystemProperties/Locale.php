@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class Locale extends BaseSystemProperties implements VersionableSystemPropertiesInterface
+class Locale extends BaseSystemProperties implements VersionableSystemPropertiesInterface, EnvironmentScopedSystemPropertiesInterface
 {
     use Component\EditedTrait,
         Component\EnvironmentTrait,

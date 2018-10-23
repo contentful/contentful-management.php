@@ -298,7 +298,7 @@ class Entry extends BaseCodeGenerator
      *         'environment' => $this->sys->getEnvironment()->getId(),
      *     ];
      *
-     *     return $this->client->resolveLink($this->getField('x', $locale), $parameters);
+     *     return $this->proxy->resolveLink($this->getField('x', $locale), $parameters);
      * }
      * ```
      *
@@ -327,17 +327,14 @@ class Entry extends BaseCodeGenerator
                     new Node\Param('locale', new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
-                    $this->generateParametersParameter(),
                     new Node\Stmt\Return_(
                         new Node\Expr\MethodCall(
-                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
+                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'proxy'),
                             'resolveLink',
                             [
                                 new Node\Arg($resolveLinkParameter),
-                                new Node\Arg(new Node\Expr\Variable('parameters')),
                             ]
-                        ),
-                        $this->generateCommentAttributes('')
+                        )
                     ),
                 ],
             ],
@@ -356,57 +353,16 @@ class Entry extends BaseCodeGenerator
     }
 
     /**
-     * Generates the following code.
-     *
-     * ```
-     * $parameters = [
-     *     // Representation of the URI parameters
-     *     'space' => $this->sys->getSpace()->getId(),
-     *     'environment' => $this->sys->getEnvironment()->getId(),
-     * ];
-     * ```
-     *
-     * @return Node\Expr\Assign
-     */
-    private function generateParametersParameter(): Node\Expr\Assign
-    {
-        return new Node\Expr\Assign(
-            new Node\Expr\Variable('parameters'),
-            new Node\Expr\Array_([
-                new Node\Expr\ArrayItem(
-                    new Node\Expr\MethodCall(
-                        new Node\Expr\MethodCall(
-                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
-                            'getSpace'
-                        ),
-                        'getId'
-                    ),
-                    new Node\Scalar\String_('space'),
-                    \false,
-                    $this->generateCommentAttributes('// Representation of the URI parameters')
-                ),
-                new Node\Expr\ArrayItem(
-                    new Node\Expr\MethodCall(
-                        new Node\Expr\MethodCall(
-                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
-                            'getEnvironment'
-                        ),
-                        'getId'
-                    ),
-                    new Node\Scalar\String_('environment')
-                ),
-            ])
-        );
-    }
-
-    /**
      * @param ArrayField $field
      *
      * @return ClassMethod
      */
     private function generateArrayLinkResolverMethod(ArrayField $field): ClassMethod
     {
-        $returnTypes = $this->determineLinkReturnType((string) $field->getItemsLinkType(), $field->getItemsValidations());
+        $returnTypes = $this->determineLinkReturnType(
+            (string) $field->getItemsLinkType(),
+            $field->getItemsValidations()
+        );
 
         return new ClassMethod(
             'resolve'.$this->convertToStudlyCaps($field->getId()).'Links',
@@ -416,7 +372,6 @@ class Entry extends BaseCodeGenerator
                     new Node\Param('locale', new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
-                    $this->generateParametersParameter(),
                     new Node\Stmt\Return_(
                         new Node\Expr\FuncCall(
                             new Node\Name('\\array_map'),
@@ -424,8 +379,7 @@ class Entry extends BaseCodeGenerator
                                 new Node\Arg($this->generateArrayLinkResolverClosure()),
                                 new Node\Arg($this->generateArrayLinkResolverMapArray($field)),
                             ]
-                        ),
-                        $this->generateCommentAttributes('')
+                        )
                     ),
                 ],
             ],
@@ -498,17 +452,13 @@ class Entry extends BaseCodeGenerator
             'stmts' => [
                 new Node\Stmt\Return_(
                     new Node\Expr\MethodCall(
-                        new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
+                        new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'proxy'),
                         'resolveLink',
                         [
                             new Node\Arg(new Node\Expr\Variable('link')),
-                            new Node\Arg(new Node\Expr\Variable('parameters')),
                         ]
                     )
                 ),
-            ],
-            'uses' => [
-                new Node\Expr\ClosureUse('parameters'),
             ],
         ]);
     }

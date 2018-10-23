@@ -23,8 +23,6 @@ use Contentful\Management\Resource\EditorInterface;
  * This trait is an extension to the ContentType resource class.
  * It is built here and included as a trait to better separate concerns.
  * This trait provides shortcuts for fetching resources that belong to a content type.
- *
- * @property Client $client
  */
 trait ContentTypeProxyExtension
 {
@@ -33,14 +31,19 @@ trait ContentTypeProxyExtension
      *
      * @return string
      */
-    abstract protected function getSpaceId();
+    abstract protected function getSpaceId(): string;
 
     /**
      * Returns the ID associated to the current environment.
      *
      * @return string
      */
-    abstract protected function getEnvironmentId();
+    abstract protected function getEnvironmentId(): string;
+
+    /**
+     * @return Client
+     */
+    abstract protected function getClient(): Client;
 
     /**
      * Returns the ID associated to the current content type.
@@ -60,7 +63,7 @@ trait ContentTypeProxyExtension
      */
     public function getSnapshot(string $snapshotId): ContentTypeSnapshot
     {
-        return $this->client->getContentTypeSnapshot(
+        return $this->getClient()->getContentTypeSnapshot(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $this->getContentTypeId(),
@@ -79,7 +82,7 @@ trait ContentTypeProxyExtension
      */
     public function getSnapshots(Query $query = \null): ResourceArray
     {
-        return $this->client->getContentTypeSnapshots(
+        return $this->getClient()->getContentTypeSnapshots(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $this->getContentTypeId(),
@@ -96,7 +99,7 @@ trait ContentTypeProxyExtension
      */
     public function getEditorInterface(): EditorInterface
     {
-        return $this->client->getEditorInterface(
+        return $this->getClient()->getEditorInterface(
             $this->getSpaceId(),
             $this->getEnvironmentId(),
             $this->getContentTypeId()

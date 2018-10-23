@@ -33,14 +33,19 @@ trait WebhookProxyExtension
      *
      * @return string
      */
-    abstract protected function getSpaceId();
+    abstract protected function getSpaceId(): string;
 
     /**
      * Returns the ID associated to the current webhook.
      *
      * @return string
      */
-    abstract protected function getWebhookId();
+    abstract protected function getWebhookId(): string;
+
+    /**
+     * @return Client
+     */
+    abstract protected function getClient(): Client;
 
     /**
      * Returns a WebhookCall resource.
@@ -53,7 +58,7 @@ trait WebhookProxyExtension
      */
     public function getCall(string $callId): WebhookCall
     {
-        return $this->client->getWebhookCall(
+        return $this->getClient()->getWebhookCall(
             $this->getSpaceId(),
             $this->getWebhookId(),
             $callId
@@ -71,7 +76,7 @@ trait WebhookProxyExtension
      */
     public function getCalls(Query $query = \null): ResourceArray
     {
-        return $this->client->getWebhookCalls(
+        return $this->getClient()->getWebhookCalls(
             $this->getSpaceId(),
             $this->getWebhookId(),
             $query
@@ -87,7 +92,7 @@ trait WebhookProxyExtension
      */
     public function getHealth(): WebhookHealth
     {
-        return $this->client->getWebhookHealth(
+        return $this->getClient()->getWebhookHealth(
             $this->getSpaceId(),
             $this->getWebhookId()
         );

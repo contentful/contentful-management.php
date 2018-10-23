@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
-use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\RestfulInterface;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\Extension\FieldType;
 use Contentful\Management\Resource\Extension\Parameter;
@@ -26,7 +26,7 @@ use Contentful\Management\SystemProperties\Extension as SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions
  * @see https://www.contentful.com/r/knowledgebase/ui-extensions-guide/
  */
-class Extension extends BaseResource implements CreatableInterface
+class Extension extends BaseResource implements RestfulInterface
 {
     use DeletableTrait,
         UpdatableTrait;

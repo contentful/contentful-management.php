@@ -13,6 +13,7 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Core\File\LocalUploadFile;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\Resource\Behavior\DeletableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\SystemProperties\Upload as SystemProperties;
 use Psr\Http\Message\StreamInterface;
@@ -24,7 +25,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads
  */
-class Upload extends BaseResource implements CreatableInterface
+class Upload extends BaseResource implements CreatableInterface, DeletableInterface
 {
     use DeletableTrait;
 

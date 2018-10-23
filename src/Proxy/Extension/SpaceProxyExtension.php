@@ -48,7 +48,12 @@ trait SpaceProxyExtension
      *
      * @return string
      */
-    abstract protected function getSpaceId();
+    abstract protected function getSpaceId(): string;
+
+    /**
+     * @return Client
+     */
+    abstract protected function getClient(): Client;
 
     /**
      * Returns an Asset resource.
@@ -62,7 +67,7 @@ trait SpaceProxyExtension
      */
     public function getAsset(string $environmentId, string $assetId): Asset
     {
-        return $this->client->getAsset(
+        return $this->getClient()->getAsset(
             $this->getSpaceId(),
             $environmentId,
             $assetId
@@ -81,7 +86,7 @@ trait SpaceProxyExtension
      */
     public function getAssets(string $environmentId, Query $query = \null): ResourceArray
     {
-        return $this->client->getAssets(
+        return $this->getClient()->getAssets(
             $this->getSpaceId(),
             $environmentId,
             $query
@@ -100,7 +105,7 @@ trait SpaceProxyExtension
      */
     public function getContentType(string $environmentId, string $contentTypeId): ContentType
     {
-        return $this->client->getContentType(
+        return $this->getClient()->getContentType(
             $this->getSpaceId(),
             $environmentId,
             $contentTypeId
@@ -119,7 +124,7 @@ trait SpaceProxyExtension
      */
     public function getContentTypes(string $environmentId, Query $query = \null): ResourceArray
     {
-        return $this->client->getContentTypes(
+        return $this->getClient()->getContentTypes(
             $this->getSpaceId(),
             $environmentId,
             $query
@@ -138,7 +143,7 @@ trait SpaceProxyExtension
      */
     public function getPublishedContentType(string $environmentId, string $contentTypeId): ContentType
     {
-        return $this->client->getPublishedContentType(
+        return $this->getClient()->getPublishedContentType(
             $this->getSpaceId(),
             $environmentId,
             $contentTypeId
@@ -157,7 +162,7 @@ trait SpaceProxyExtension
      */
     public function getPublishedContentTypes(string $environmentId, Query $query = \null): ResourceArray
     {
-        return $this->client->getPublishedContentTypes(
+        return $this->getClient()->getPublishedContentTypes(
             $this->getSpaceId(),
             $environmentId,
             $query
@@ -177,7 +182,7 @@ trait SpaceProxyExtension
      */
     public function getContentTypeSnapshot(string $environmentId, string $contentTypeId, string $snapshotId): ContentTypeSnapshot
     {
-        return $this->client->getContentTypeSnapshot(
+        return $this->getClient()->getContentTypeSnapshot(
             $this->getSpaceId(),
             $environmentId,
             $contentTypeId,
@@ -198,7 +203,7 @@ trait SpaceProxyExtension
      */
     public function getContentTypeSnapshots(string $environmentId, string $contentTypeId, Query $query = \null): ResourceArray
     {
-        return $this->client->getContentTypeSnapshots(
+        return $this->getClient()->getContentTypeSnapshots(
             $this->getSpaceId(),
             $environmentId,
             $contentTypeId,
@@ -217,7 +222,7 @@ trait SpaceProxyExtension
      */
     public function getDeliveryApiKey(string $deliveryApiKeyId): DeliveryApiKey
     {
-        return $this->client->getDeliveryApiKey(
+        return $this->getClient()->getDeliveryApiKey(
             $this->getSpaceId(),
             $deliveryApiKeyId
         );
@@ -234,7 +239,7 @@ trait SpaceProxyExtension
      */
     public function getDeliveryApiKeys(Query $query = \null): ResourceArray
     {
-        return $this->client->getDeliveryApiKeys(
+        return $this->getClient()->getDeliveryApiKeys(
             $this->getSpaceId(),
             $query
         );
@@ -252,7 +257,7 @@ trait SpaceProxyExtension
      */
     public function getEditorInterface(string $environmentId, string $contentTypeId): EditorInterface
     {
-        return $this->client->getEditorInterface(
+        return $this->getClient()->getEditorInterface(
             $this->getSpaceId(),
             $environmentId,
             $contentTypeId
@@ -271,7 +276,7 @@ trait SpaceProxyExtension
      */
     public function getEntry(string $environmentId, string $entryId): Entry
     {
-        return $this->client->getEntry(
+        return $this->getClient()->getEntry(
             $this->getSpaceId(),
             $environmentId,
             $entryId
@@ -290,7 +295,7 @@ trait SpaceProxyExtension
      */
     public function getEntries(string $environmentId, Query $query = \null): ResourceArray
     {
-        return $this->client->getEntries(
+        return $this->getClient()->getEntries(
             $this->getSpaceId(),
             $environmentId,
             $query
@@ -310,7 +315,7 @@ trait SpaceProxyExtension
      */
     public function getEntrySnapshot(string $environmentId, string $entryId, string $snapshotId): EntrySnapshot
     {
-        return $this->client->getEntrySnapshot(
+        return $this->getClient()->getEntrySnapshot(
             $this->getSpaceId(),
             $environmentId,
             $entryId,
@@ -331,7 +336,7 @@ trait SpaceProxyExtension
      */
     public function getEntrySnapshots(string $environmentId, string $entryId, Query $query = \null): ResourceArray
     {
-        return $this->client->getEntrySnapshots(
+        return $this->getClient()->getEntrySnapshots(
             $this->getSpaceId(),
             $environmentId,
             $entryId,
@@ -350,7 +355,7 @@ trait SpaceProxyExtension
      */
     public function getEnvironment(string $environmentId): Environment
     {
-        return $this->client->getEnvironment(
+        return $this->getClient()->getEnvironment(
             $this->getSpaceId(),
             $environmentId
         );
@@ -367,7 +372,7 @@ trait SpaceProxyExtension
      */
     public function getEnvironments(Query $query = \null): ResourceArray
     {
-        return $this->client->getEnvironments(
+        return $this->getClient()->getEnvironments(
             $this->getSpaceId(),
             $query
         );
@@ -385,7 +390,7 @@ trait SpaceProxyExtension
      */
     public function getExtension(string $environmentId, string $extensionId): Extension
     {
-        return $this->client->getExtension(
+        return $this->getClient()->getExtension(
             $this->getSpaceId(),
             $environmentId,
             $extensionId
@@ -403,7 +408,7 @@ trait SpaceProxyExtension
      */
     public function getExtensions(string $environmentId): ResourceArray
     {
-        return $this->client->getExtensions(
+        return $this->getClient()->getExtensions(
             $this->getSpaceId(),
             $environmentId
         );
@@ -421,7 +426,7 @@ trait SpaceProxyExtension
      */
     public function getLocale(string $environmentId, string $localeId): Locale
     {
-        return $this->client->getLocale(
+        return $this->getClient()->getLocale(
             $this->getSpaceId(),
             $environmentId,
             $localeId
@@ -439,7 +444,7 @@ trait SpaceProxyExtension
      */
     public function getLocales(string $environmentId): ResourceArray
     {
-        return $this->client->getLocales(
+        return $this->getClient()->getLocales(
             $this->getSpaceId(),
             $environmentId
         );
@@ -456,7 +461,7 @@ trait SpaceProxyExtension
      */
     public function getPreviewApiKey(string $previewApiKeyId): PreviewApiKey
     {
-        return $this->client->getPreviewApiKey(
+        return $this->getClient()->getPreviewApiKey(
             $this->getSpaceId(),
             $previewApiKeyId
         );
@@ -473,7 +478,7 @@ trait SpaceProxyExtension
      */
     public function getPreviewApiKeys(Query $query = \null): ResourceArray
     {
-        return $this->client->getPreviewApiKeys(
+        return $this->getClient()->getPreviewApiKeys(
             $this->getSpaceId(),
             $query
         );
@@ -490,7 +495,7 @@ trait SpaceProxyExtension
      */
     public function getRole(string $roleId): Role
     {
-        return $this->client->getRole(
+        return $this->getClient()->getRole(
             $this->getSpaceId(),
             $roleId
         );
@@ -507,7 +512,7 @@ trait SpaceProxyExtension
      */
     public function getRoles(Query $query = \null): ResourceArray
     {
-        return $this->client->getRoles(
+        return $this->getClient()->getRoles(
             $this->getSpaceId(),
             $query
         );
@@ -524,7 +529,7 @@ trait SpaceProxyExtension
      */
     public function getSpaceMembership(string $spaceMembershipId): SpaceMembership
     {
-        return $this->client->getSpaceMembership(
+        return $this->getClient()->getSpaceMembership(
             $this->getSpaceId(),
             $spaceMembershipId
         );
@@ -541,7 +546,7 @@ trait SpaceProxyExtension
      */
     public function getSpaceMemberships(Query $query = \null): ResourceArray
     {
-        return $this->client->getSpaceMemberships(
+        return $this->getClient()->getSpaceMemberships(
             $this->getSpaceId(),
             $query
         );
@@ -558,7 +563,7 @@ trait SpaceProxyExtension
      */
     public function getUpload(string $uploadId): Upload
     {
-        return $this->client->getUpload(
+        return $this->getClient()->getUpload(
             $this->getSpaceId(),
             $uploadId
         );
@@ -575,7 +580,7 @@ trait SpaceProxyExtension
      */
     public function getWebhook(string $webhookId): Webhook
     {
-        return $this->client->getWebhook(
+        return $this->getClient()->getWebhook(
             $this->getSpaceId(),
             $webhookId
         );
@@ -592,7 +597,7 @@ trait SpaceProxyExtension
      */
     public function getWebhooks(Query $query = \null): ResourceArray
     {
-        return $this->client->getWebhooks(
+        return $this->getClient()->getWebhooks(
             $this->getSpaceId(),
             $query
         );
@@ -610,7 +615,7 @@ trait SpaceProxyExtension
      */
     public function getWebhookCall(string $webhookId, string $callId): WebhookCall
     {
-        return $this->client->getWebhookCall(
+        return $this->getClient()->getWebhookCall(
             $this->getSpaceId(),
             $webhookId,
             $callId
@@ -629,7 +634,7 @@ trait SpaceProxyExtension
      */
     public function getWebhookCalls(string $webhookId, Query $query = \null): ResourceArray
     {
-        return $this->client->getWebhookCalls(
+        return $this->getClient()->getWebhookCalls(
             $this->getSpaceId(),
             $webhookId,
             $query
@@ -647,7 +652,7 @@ trait SpaceProxyExtension
      */
     public function getWebhookHealth(string $webhookId): WebhookHealth
     {
-        return $this->client->getWebhookHealth(
+        return $this->getClient()->getWebhookHealth(
             $this->getSpaceId(),
             $webhookId
         );

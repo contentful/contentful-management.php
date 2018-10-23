@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class WebhookCall extends BaseSystemProperties
+class WebhookCall extends BaseSystemProperties implements SpaceScopedSystemPropertiesInterface
 {
     use Component\CreatedTrait,
         Component\SpaceTrait;

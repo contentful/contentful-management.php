@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class ContentType extends BaseSystemProperties implements VersionableSystemPropertiesInterface
+class ContentType extends BaseSystemProperties implements VersionableSystemPropertiesInterface, EnvironmentScopedSystemPropertiesInterface
 {
     use Component\ArchivedTrait,
         Component\EnvironmentTrait,

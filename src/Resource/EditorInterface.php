@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource;
 
+use Contentful\Management\Resource\Behavior\UpdatableInterface;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\EditorInterface\Control;
 use Contentful\Management\SystemProperties\EditorInterface as SystemProperties;
@@ -22,7 +23,7 @@ use Contentful\Management\SystemProperties\EditorInterface as SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
  */
-class EditorInterface extends BaseResource
+class EditorInterface extends BaseResource implements UpdatableInterface
 {
     use UpdatableTrait;
 

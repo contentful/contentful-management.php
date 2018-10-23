@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\Link;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\RestfulInterface;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\SystemProperties\SpaceMembership as SystemProperties;
 
@@ -24,7 +24,7 @@ use Contentful\Management\SystemProperties\SpaceMembership as SystemProperties;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships
  */
-class SpaceMembership extends BaseResource implements CreatableInterface
+class SpaceMembership extends BaseResource implements RestfulInterface
 {
     use DeletableTrait,
         UpdatableTrait;

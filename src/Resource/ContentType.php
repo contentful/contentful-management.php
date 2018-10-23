@@ -13,9 +13,10 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Core\Resource\ContentTypeInterface;
 use Contentful\Management\Proxy\Extension\ContentTypeProxyExtension;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\PublishableInterface;
 use Contentful\Management\Resource\Behavior\PublishableTrait;
+use Contentful\Management\Resource\Behavior\RestfulInterface;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 use Contentful\Management\SystemProperties\ContentType as SystemProperties;
@@ -28,7 +29,7 @@ use Contentful\Management\SystemProperties\ContentType as SystemProperties;
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types
  * @see https://www.contentful.com/developers/docs/concepts/data-model/
  */
-class ContentType extends BaseResource implements ContentTypeInterface, CreatableInterface
+class ContentType extends BaseResource implements ContentTypeInterface, RestfulInterface, PublishableInterface
 {
     use ContentTypeProxyExtension,
         DeletableTrait,

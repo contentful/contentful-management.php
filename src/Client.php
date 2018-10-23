@@ -15,8 +15,11 @@ use Contentful\Core\Api\BaseClient;
 use Contentful\Core\Api\Link;
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Core\Resource\ResourceInterface as CoreResourceInterface;
+use Contentful\Management\Proxy\GlobalProxy;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\ResourceInterface;
+use Contentful\Management\SystemProperties\EnvironmentScopedSystemPropertiesInterface;
+use Contentful\Management\SystemProperties\SpaceScopedSystemPropertiesInterface;
 
 /**
  * Client class.
@@ -117,14 +120,37 @@ class Client extends BaseClient
         }
 
         if ($resource) {
-            // If it's not an instance of ResourceInterface,
-            // it's an instance of ResourceArray
-            foreach ($resource instanceof ResourceArray ? $resource : [$resource] as $resourceObject) {
-                $resourceObject->setClient($this);
-            }
+            $this->assignProxy($resource instanceof ResourceArray
+                ? $resource->getItems()
+                : [$resource]
+            );
         }
 
         return $resource;
+    }
+
+    /**
+     * @param ResourceInterface[] $resources
+     */
+    private function assignProxy(array $resources)
+    {
+        foreach ($resources as $resource) {
+            $sys = $resource->getSystemProperties();
+            if ($sys instanceof SpaceScopedSystemPropertiesInterface) {
+                $proxy = $this->getSpaceProxy(
+                    $sys->getSpace()->getId()
+                );
+            } elseif ($sys instanceof EnvironmentScopedSystemPropertiesInterface) {
+                $proxy = $this->getEnvironmentProxy(
+                    $sys->getSpace()->getId(),
+                    $sys->getEnvironment()->getId()
+                );
+            } else {
+                $proxy = new GlobalProxy($this);
+            }
+
+            $resource->setProxy($proxy);
+        }
     }
 
     /**

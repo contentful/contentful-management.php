@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Management\Proxy\Extension\EnvironmentProxyExtension;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\RestfulInterface;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\SystemProperties\Environment as SystemProperties;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
@@ -25,7 +25,7 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
  *
  * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments
  */
-class Environment extends BaseResource implements CreatableInterface
+class Environment extends BaseResource implements RestfulInterface
 {
     use EnvironmentProxyExtension,
         DeletableTrait,

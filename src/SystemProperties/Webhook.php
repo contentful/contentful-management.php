@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class Webhook extends BaseSystemProperties implements VersionableSystemPropertiesInterface
+class Webhook extends BaseSystemProperties implements VersionableSystemPropertiesInterface, SpaceScopedSystemPropertiesInterface
 {
     use Component\EditedTrait,
         Component\SpaceTrait;

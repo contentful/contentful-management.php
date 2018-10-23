@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class ApiKey extends BaseSystemProperties
+class ApiKey extends BaseSystemProperties implements SpaceScopedSystemPropertiesInterface
 {
     use Component\EditedTrait,
         Component\SpaceTrait;

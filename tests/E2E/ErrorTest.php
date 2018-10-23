@@ -75,7 +75,7 @@ class ErrorTest extends BaseTestCase
         $proxy->create($asset);
 
         $fakeAsset = new FakeAsset($asset->getId(), $this->readWriteSpaceId);
-        $fakeAsset->setClient($this->getClient());
+        $fakeAsset->setProxy($proxy);
 
         try {
             $fakeAsset->update();

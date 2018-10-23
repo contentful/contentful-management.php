@@ -14,6 +14,7 @@ namespace Contentful\Management\Resource;
 use Contentful\Core\Api\Link;
 use Contentful\Core\Resource\SystemPropertiesInterface;
 use Contentful\Management\Client;
+use Contentful\Management\Proxy\ProxyInterface;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
@@ -27,9 +28,9 @@ abstract class BaseResource implements ResourceInterface
     protected $sys;
 
     /**
-     * @var Client|null
+     * @var ProxyInterface|null
      */
-    protected $client;
+    protected $proxy;
 
     /**
      * {@inheritdoc}
@@ -68,18 +69,17 @@ abstract class BaseResource implements ResourceInterface
     }
 
     /**
-     * Sets the current Client object instance.
-     * This is done automatically when performing API calls,
-     * so it shouldn't be used manually.
-     *
-     * @param Client $client
-     *
-     * @return static
+     * {@inheritdoc}
      */
-    public function setClient(Client $client)
+    public function setProxy(ProxyInterface $proxy)
     {
-        $this->client = $client;
+        $this->proxy = $proxy;
 
         return $this;
+    }
+
+    protected function getClient(): Client
+    {
+        return $this->proxy->getClient();
     }
 }

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class Upload extends BaseSystemProperties
+class Upload extends BaseSystemProperties implements SpaceScopedSystemPropertiesInterface
 {
     use Component\CreatedTrait,
         Component\ExpiredTrait,

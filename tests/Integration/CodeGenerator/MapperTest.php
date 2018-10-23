@@ -223,7 +223,8 @@ class MapperTest extends BaseTestCase
             ],
         ];
         $entry = $mapper->map(\null, $data);
-        $entry->setClient(new MapperFakeClient('irrelevant'));
+        $client = new MapperFakeClient('irrelevant');
+        $entry->setProxy($client->getEnvironmentProxy('irrelevant', 'irrelevant'));
 
         $this->assertSame('title', $entry->getTitle('en-US'));
         $this->assertTrue($entry->getIsPublished('en-US'));

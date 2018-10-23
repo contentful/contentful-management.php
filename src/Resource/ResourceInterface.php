@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Resource\ResourceInterface as CoreResourceInterface;
+use Contentful\Management\Proxy\ProxyInterface;
 
 interface ResourceInterface extends CoreResourceInterface
 {
@@ -31,4 +32,13 @@ interface ResourceInterface extends CoreResourceInterface
      * @return string[]
      */
     public function asUriParameters(): array;
+
+    /**
+     * Sets the current proxy object instance.
+     * This is done automatically when performing API calls,
+     * so it shouldn't be used manually.
+     *
+     * @param ProxyInterface $proxy
+     */
+    public function setProxy(ProxyInterface $proxy);
 }

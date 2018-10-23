@@ -11,10 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Proxy;
 
-use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
-use Contentful\Management\Resource\ResourceInterface;
 use Contentful\Management\Resource\Space;
 
 /**
@@ -46,8 +43,10 @@ use Contentful\Management\Resource\Space;
  * $entries = $space->getEntries();
  * ```
  */
-class SpaceProxy
+class SpaceProxy implements ProxyInterface
 {
+    use ApiActionTrait;
+
     use Extension\SpaceProxyExtension;
 
     /**
@@ -92,41 +91,6 @@ class SpaceProxy
     }
 
     /**
-     * Persist a new resource in Contentful.
-     * This is a convenience method which just forwards to Client::create(),
-     * but setting the `space` key to the current space ID in the parameters array.
-     *
-     * @param CreatableInterface         $resource
-     * @param string                     $resourceId
-     * @param ResourceInterface|string[] $parameters
-     *
-     * @see \Contentful\Management\Client::create()
-     */
-    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
-    {
-        if (\is_array($parameters)) {
-            $parameters['space'] = $this->spaceId;
-        }
-
-        $this->client->create($resource, $resourceId, $parameters);
-    }
-
-    /**
-     * Resolves a Contentful link scoped to the current space.
-     *
-     * @param Link     $link
-     * @param string[] $parameters
-     *
-     * @return ResourceInterface
-     */
-    public function resolveLink(Link $link, array $parameters = []): ResourceInterface
-    {
-        $parameters['space'] = $this->spaceId;
-
-        return $this->client->resolveLink($link, $parameters);
-    }
-
-    /**
      * Returns the Space resource which corresponds to this proxy.
      *
      * @return Space
@@ -136,5 +100,23 @@ class SpaceProxy
     public function toResource(): Space
     {
         return $this->client->getSpace($this->spaceId);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getProxyParameters(): array
+    {
+        return [
+            'space' => $this->spaceId,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getClient(): Client
+    {
+        return $this->client;
     }
 }

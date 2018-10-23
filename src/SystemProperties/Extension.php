@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties;
 
-class Extension extends BaseSystemProperties implements VersionableSystemPropertiesInterface
+class Extension extends BaseSystemProperties implements VersionableSystemPropertiesInterface, EnvironmentScopedSystemPropertiesInterface
 {
     use Component\EditedTrait,
         Component\EnvironmentTrait,
