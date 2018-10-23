@@ -9,13 +9,13 @@
 
 declare(strict_types=1);
 
-namespace Contentful\Tests\Management\Integration\Generator;
+namespace Contentful\Tests\Management\Integration\CodeGenerator;
 
 use Contentful\Core\ResourceBuilder\BaseResourceBuilder;
 use Contentful\Management\CodeGenerator\Loader;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\ResourceBuilder;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\ContentType as SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
 
 class LoaderTest extends BaseTestCase
@@ -31,11 +31,73 @@ class LoaderTest extends BaseTestCase
         $property->setAccessible(\true);
         $property->setValue($contentType1, new SystemProperties([
             'id' => 'blogPost',
-            'type' => 'contentType',
+            'type' => 'ContentType',
+            'createdAt' => '2018-01-01T12:00:00.123Z',
+            'updatedAt' => '2018-01-01T12:00:00.123Z',
+            'createdBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'updatedBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'version' => 1,
+            'space' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Space',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'environment' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Environment',
+                    'id' => 'irrelevant',
+                ],
+            ],
         ]));
         $property->setValue($contentType2, new SystemProperties([
             'id' => 'author',
-            'type' => 'contentType',
+            'type' => 'ContentType',
+            'createdAt' => '2018-01-01T12:00:00.123Z',
+            'updatedAt' => '2018-01-01T12:00:00.123Z',
+            'createdBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'updatedBy' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'User',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'version' => 1,
+            'space' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Space',
+                    'id' => 'irrelevant',
+                ],
+            ],
+            'environment' => [
+                'sys' => [
+                    'type' => 'Link',
+                    'linkType' => 'Environment',
+                    'id' => 'irrelevant',
+                ],
+            ],
         ]));
 
         $generator = new Loader('en-US');

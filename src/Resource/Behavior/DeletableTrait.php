@@ -12,15 +12,13 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource\Behavior;
 
 use Contentful\Management\Client;
-use Contentful\Management\SystemProperties;
 
 /**
  * DeletableTrait.
  *
  * This trait is supposed to be applied to resources that can be deleted.
  *
- * @property Client           $client
- * @property SystemProperties $sys
+ * @property Client $client
  */
 trait DeletableTrait
 {

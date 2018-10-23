@@ -20,7 +20,7 @@ use Contentful\Management\Resource\Role\Constraint\OrConstraint;
 use Contentful\Management\Resource\Role\Constraint\PathsConstraint;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Role as SystemProperties;
 
 /**
  * Role class.
@@ -35,13 +35,16 @@ class Role extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $role */
+        $role = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'description' => $data['description'],
             'policies' => \array_map([$this, 'mapPolicy'], $data['policies']),
             'permissions' => $this->mapPermissions($data['permissions']),
         ]);
+
+        return $role;
     }
 
     /**
@@ -120,11 +123,14 @@ class Role extends BaseMapper
      */
     protected function mapPermissions(array $data): Permissions
     {
-        return $this->hydrator->hydrate(Permissions::class, [
+        /** @var Permissions $permissions */
+        $permissions = $this->hydrator->hydrate(Permissions::class, [
             'contentDelivery' => $this->convertPermission($data['ContentDelivery']),
             'contentModel' => $this->convertPermission($data['ContentModel']),
             'settings' => $this->convertPermission($data['Settings']),
         ]);
+
+        return $permissions;
     }
 
     /**

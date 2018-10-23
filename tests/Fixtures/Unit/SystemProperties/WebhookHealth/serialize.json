@@ -1,0 +1,18 @@
+{
+    "id": "3j8J6mQoWOsAK6iUQIcSbI",
+    "type": "Webhook",
+    "space": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "pmgjoasidv3w"
+        }
+    },
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "WebhookDefinition",
+            "id": "3j8J6mQoWOsAK6iUQIcSbI"
+        }
+    }
+}

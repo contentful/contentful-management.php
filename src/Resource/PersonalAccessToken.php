@@ -13,6 +13,7 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
+use Contentful\Management\SystemProperties\PersonalAccessToken as SystemProperties;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
@@ -24,6 +25,11 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
  */
 class PersonalAccessToken extends BaseResource implements CreatableInterface
 {
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
+
     /**
      * @var string
      */
@@ -52,15 +58,20 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '', bool $isReadOnly = \false)
     {
-        $this->initialize('PersonalAccessToken');
         $this->name = $name;
         $this->isReadOnly = $isReadOnly;
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

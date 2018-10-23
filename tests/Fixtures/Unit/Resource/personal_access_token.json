@@ -1,7 +1,5 @@
 {
-    "sys": {
-        "type": "PersonalAccessToken"
-    },
+    "sys": null,
     "name": "Test token",
     "scopes": ["content_management_read"],
     "token": null,

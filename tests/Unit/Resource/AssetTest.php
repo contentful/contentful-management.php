@@ -21,9 +21,6 @@ class AssetTest extends BaseTestCase
     {
         $asset = new Asset();
 
-        $this->assertSame('Asset', $asset->getSystemProperties()->getType());
-        $this->assertSame('Asset', $asset->getType());
-
         $asset->setTitle('en-US', 'A cool asset');
         $this->assertSame('A cool asset', $asset->getTitle('en-US'));
         $this->assertNull($asset->getTitle('it-IT'));

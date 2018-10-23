@@ -24,10 +24,6 @@ class EnvironmentTest extends BaseTestCase
 
         $environment->setName('QA Environment');
         $this->assertSame('QA Environment', $environment->getName());
-
-        $sys = $environment->getSystemProperties();
-        $this->assertSame('', $sys->getId());
-        $this->assertSame('Environment', $sys->getType());
     }
 
     public function testJsonSerialize()

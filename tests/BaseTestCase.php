@@ -11,11 +11,10 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management;
 
-use Contentful\Core\Api\Link;
 use Contentful\Management\Client;
 use Contentful\Management\Proxy\EnvironmentProxy;
 use Contentful\Management\Proxy\SpaceProxy;
-use PHPUnit\Framework\TestCase;
+use Contentful\Tests\TestCase;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 class BaseTestCase extends TestCase
@@ -38,7 +37,7 @@ class BaseTestCase extends TestCase
     /**
      * @var string
      */
-    protected $codeGenerationSpaceId;
+    protected $codeGeneratorSpaceId;
 
     /**
      * @var string
@@ -51,7 +50,7 @@ class BaseTestCase extends TestCase
 
         $this->readOnlySpaceId = \getenv('CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_READ_ONLY');
         $this->readWriteSpaceId = \getenv('CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_READ_WRITE');
-        $this->codeGenerationSpaceId = \getenv('CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_CODE_GENERATION');
+        $this->codeGeneratorSpaceId = \getenv('CONTENTFUL_PHP_MANAGEMENT_SPACE_ID_CODE_GENERATOR');
         $this->organizationId = \getenv('CONTENTFUL_PHP_MANAGEMENT_ORGANIZATION_ID');
     }
 
@@ -111,23 +110,9 @@ class BaseTestCase extends TestCase
     /**
      * @return EnvironmentProxy
      */
-    protected function getCodeGenerationProxy(): EnvironmentProxy
+    protected function getCodeGeneratorProxy(): EnvironmentProxy
     {
-        return $this->getClient()->getEnvironmentProxy($this->codeGenerationSpaceId, 'master');
-    }
-
-    /**
-     * Convenience method for performing assertions on link objects.
-     *
-     * @param        $id
-     * @param        $linkType
-     * @param Link   $link
-     * @param string $message
-     */
-    protected function assertLink($id, $linkType, Link $link, $message = '')
-    {
-        $this->assertSame($id, $link->getId(), $message);
-        $this->assertSame($linkType, $link->getLinkType(), $message);
+        return $this->getClient()->getEnvironmentProxy($this->codeGeneratorSpaceId, 'master');
     }
 
     /**
@@ -139,19 +124,17 @@ class BaseTestCase extends TestCase
     {
         $this->assertJsonStringEqualsJsonFile(
             __DIR__.'/Fixtures/'.$file,
-            guzzle_json_encode($object, \JSON_UNESCAPED_UNICODE),
+            guzzle_json_encode($object, \JSON_UNESCAPED_UNICODE | \JSON_PRETTY_PRINT),
             $message
         );
     }
 
-    /**
-     * Creates an empty assertion (true == true).
-     * This is done to mark tests that are expected to simply work (i.e. not throw exceptions).
-     * As PHPUnit does not provide convenience methods for marking a test as passed,
-     * we define one.
-     */
-    protected function markTestAsPassed()
+    protected function assertJsonStructuresAreEqual($expected, $object, string $message = '')
     {
-        $this->assertTrue(\true, 'Test case did not throw an exception and passed.');
+        $this->assertJsonStringEqualsJsonString(
+            guzzle_json_encode($expected, \JSON_UNESCAPED_UNICODE | \JSON_PRETTY_PRINT),
+            guzzle_json_encode($object, \JSON_UNESCAPED_UNICODE | \JSON_PRETTY_PRINT),
+            $message
+        );
     }
 }

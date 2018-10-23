@@ -1,7 +1,5 @@
 {
-    "sys": {
-        "type": "ContentType"
-    },
+    "sys": null,
     "name": "Test CT",
     "fields": [{
         "id": "name",

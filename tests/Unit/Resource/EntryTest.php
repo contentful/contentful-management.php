@@ -17,16 +17,6 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class EntryTest extends BaseTestCase
 {
-    public function testGetSetData()
-    {
-        $entry = new Entry('blogPost');
-
-        $sys = $entry->getSystemProperties();
-        $this->assertSame('Entry', $sys->getType());
-        $this->assertSame('Entry', $entry->getType());
-        $this->assertLink('blogPost', 'ContentType', $sys->getContentType());
-    }
-
     /**
      * @expectedException \PHPUnit\Framework\Error\Error
      */

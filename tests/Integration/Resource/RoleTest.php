@@ -22,30 +22,8 @@ class RoleTest extends BaseTestCase
      */
     public function testInvalidCreation()
     {
-        $builder = new ResourceBuilder();
-
-        $data = [
-          'sys' => [
-            'type' => 'Role',
-          ],
-          'name' => 'Custom role',
-          'description' => 'This is a custom test role',
-          'permissions' => [
-              'ContentDelivery' => ['read', 'manage'],
-              'ContentModel' => ['read'],
-              'Settings' => 'all',
-          ],
-          'policies' => [
-              [
-                  'effect' => 'allow',
-                  'actions' => 'all',
-                  'constraint' => [
-                      'invalidKey' => [],
-                  ],
-              ],
-          ],
-        ];
-
-        $builder->build($data);
+        (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
     }
 }

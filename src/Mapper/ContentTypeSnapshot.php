@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\ContentTypeSnapshot as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Snapshot as SystemProperties;
 
 /**
  * ContentTypeSnapshot class.
@@ -34,9 +34,12 @@ class ContentTypeSnapshot extends BaseMapper
             ));
         }
 
-        return $this->hydrator->hydrate(ResourceClass::class, [
+        /** @var ResourceClass $contentTypeSnapshot */
+        $contentTypeSnapshot = $this->hydrator->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'snapshot' => $this->builder->build($data['snapshot']),
         ]);
+
+        return $contentTypeSnapshot;
     }
 }

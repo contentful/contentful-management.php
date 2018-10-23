@@ -2,6 +2,23 @@
     "sys": {
         "id": "<entryId>",
         "type": "Entry",
+        "createdAt": "2018-01-01T12:00:00.123Z",
+        "createdBy": {
+            "sys": {
+                "id": "irrelevant",
+                "linkType": "User",
+                "type": "Link"
+            }
+        },
+        "updatedAt": "2018-01-01T12:00:00.123Z",
+        "updatedBy": {
+            "sys": {
+                "id": "irrelevant",
+                "linkType": "User",
+                "type": "Link"
+            }
+        },
+        "version": 1,
         "space": {
             "sys": {
                 "type": "Link",
@@ -43,19 +60,6 @@
                 }
             }
         },
-        "misc": {
-            "en-US": {
-                "seasons": [1, 2, 3, 4, 5, 6, "...and a movie!"],
-                "name": "Allura",
-                "job": "Princess and pilot of the Blue Lion"
-            }
-        },
-        "body": {
-            "en-US": "Now, this is a story all about how, my life got flipped-turned upside down"
-        },
-        "minimumAge": {
-            "en-US": 18
-        },
         "heroImage": {
             "en-US": {
                 "sys": {
@@ -73,6 +77,19 @@
                     "linkType": "Entry"
                 }
             }
+        },
+        "misc": {
+            "en-US": {
+                "seasons": [1, 2, 3, 4, 5, 6, "...and a movie!"],
+                "name": "Allura",
+                "job": "Princess and pilot of the Blue Lion"
+            }
+        },
+        "body": {
+            "en-US": "Now, this is a story all about how, my life got flipped-turned upside down"
+        },
+        "minimumAge": {
+            "en-US": 18
         },
         "location": {
             "en-US": {

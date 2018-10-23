@@ -10,14 +10,5 @@
             "en-US": ["italy", "venice", "rome", "sicily"]
         }
     },
-    "sys": {
-        "type": "Entry",
-        "contentType": {
-            "sys": {
-                "type": "Link",
-                "id": "blogPost",
-                "linkType": "ContentType"
-            }
-        }
-    }
+    "sys": null
 }

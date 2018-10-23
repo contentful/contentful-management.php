@@ -16,6 +16,7 @@ use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\Extension\FieldType;
 use Contentful\Management\Resource\Extension\Parameter;
+use Contentful\Management\SystemProperties\Extension as SystemProperties;
 
 /**
  * Extension class.
@@ -29,6 +30,11 @@ class Extension extends BaseResource implements CreatableInterface
 {
     use DeletableTrait,
         UpdatableTrait;
+
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
 
     /**
      * @var string
@@ -67,8 +73,15 @@ class Extension extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name = '')
     {
-        $this->initialize('Extension');
         $this->name = $name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
     }
 
     /**
@@ -263,9 +276,7 @@ class Extension extends BaseResource implements CreatableInterface
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

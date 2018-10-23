@@ -45,20 +45,13 @@ class WebhookHealthTest extends BaseTestCase
      */
     public function testJsonSerialize(): WebhookHealth
     {
-        $webhookHealth = (new ResourceBuilder())->build([
-            'sys' => [
-                'type' => 'Webhook',
-            ],
-            'calls' => [
-                'total' => 233,
-                'healthy' => 102,
-                ],
-            ]
-        );
+        $resource = (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
 
-        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/webhook_health.json', $webhookHealth);
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/WebhookHealth/serialize.json', $resource);
 
-        return $webhookHealth;
+        return $resource;
     }
 
     /**

@@ -13,6 +13,7 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\EditorInterface\Control;
+use Contentful\Management\SystemProperties\EditorInterface as SystemProperties;
 
 /**
  * EditorInterface class.
@@ -24,6 +25,11 @@ use Contentful\Management\Resource\EditorInterface\Control;
 class EditorInterface extends BaseResource
 {
     use UpdatableTrait;
+
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
 
     /**
      * @var Control[]
@@ -38,9 +44,15 @@ class EditorInterface extends BaseResource
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

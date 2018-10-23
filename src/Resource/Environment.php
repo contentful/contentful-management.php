@@ -15,6 +15,7 @@ use Contentful\Management\Proxy\Extension\EnvironmentProxyExtension;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
+use Contentful\Management\SystemProperties\Environment as SystemProperties;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
@@ -31,6 +32,11 @@ class Environment extends BaseResource implements CreatableInterface
         UpdatableTrait;
 
     /**
+     * @var SystemProperties
+     */
+    protected $sys;
+
+    /**
      * @var string
      */
     protected $name;
@@ -42,14 +48,19 @@ class Environment extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name)
     {
-        $this->initialize('Environment');
         $this->name = $name;
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

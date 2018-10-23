@@ -92,13 +92,19 @@ abstract class BaseCodeGenerator
     {
         $classes = \array_filter($classes);
 
-        \usort($classes, function (string $classA, string $classB): int {
+        \usort($classes, function ($classA, $classB): int {
+            $classA = \is_array($classA) ? $classA['class'] : $classA;
+            $classB = \is_array($classB) ? $classB['class'] : $classB;
+
             return $classA <=> $classB;
         });
 
-        return \array_map(function (string $class): Node\Stmt\Use_ {
+        return \array_map(function ($class): Node\Stmt\Use_ {
+            $alias = \is_array($class) ? $class['alias'] : \null;
+            $className = \is_array($class) ? $class['class'] : $class;
+
             return new Node\Stmt\Use_(
-                [new Node\Stmt\UseUse(new Node\Name($class))]
+                [new Node\Stmt\UseUse(new Node\Name($className), $alias)]
             );
         }, $classes);
     }

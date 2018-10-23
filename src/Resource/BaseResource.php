@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\Link;
+use Contentful\Core\Resource\SystemPropertiesInterface;
 use Contentful\Management\Client;
-use Contentful\Management\SystemProperties;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
@@ -22,7 +22,7 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
 abstract class BaseResource implements ResourceInterface
 {
     /**
-     * @var SystemProperties
+     * @var SystemPropertiesInterface
      */
     protected $sys;
 
@@ -32,32 +32,11 @@ abstract class BaseResource implements ResourceInterface
     protected $client;
 
     /**
-     * Initialize system properties.
-     *
-     * @param string $type The system type
-     * @param array  $sys
-     */
-    protected function initialize(string $type, array $sys = [])
-    {
-        $sys['type'] = $type;
-        $sys['id'] = '';
-        $this->sys = new SystemProperties($sys);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSystemProperties(): SystemProperties
-    {
-        return $this->sys;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getId(): string
     {
-        return $this->sys->getId();
+        return $this->getSystemProperties()->getId();
     }
 
     /**
@@ -65,7 +44,7 @@ abstract class BaseResource implements ResourceInterface
      */
     public function getType(): string
     {
-        return $this->sys->getType();
+        return $this->getSystemProperties()->getType();
     }
 
     /**

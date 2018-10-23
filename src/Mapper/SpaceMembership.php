@@ -13,7 +13,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\SpaceMembership as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\SpaceMembership as SystemProperties;
 
 /**
  * SpaceMembership class.
@@ -28,14 +28,17 @@ class SpaceMembership extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $spaceMembership */
+        $spaceMembership = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'admin' => $data['admin'],
             'email' => $data['email'] ?? \null,
-            'roles' => \array_map(function (array $role) {
+            'roles' => \array_map(function (array $role): Link {
                 return new Link($role['sys']['id'], 'Role');
             }, $data['roles'] ?? []),
             'user' => new Link($data['user']['sys']['id'], 'User'),
         ]);
+
+        return $spaceMembership;
     }
 }

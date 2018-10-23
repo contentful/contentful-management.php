@@ -12,12 +12,18 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\Link;
+use Contentful\Management\SystemProperties\ApiKey as SystemProperties;
 
 /**
  * ApiKey class.
  */
 abstract class ApiKey extends BaseResource
 {
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
+
     /**
      * @var string
      */
@@ -37,6 +43,14 @@ abstract class ApiKey extends BaseResource
      * @var Link[]
      */
     protected $environments = [];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
 
     /**
      * @return string
@@ -87,9 +101,7 @@ abstract class ApiKey extends BaseResource
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

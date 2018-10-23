@@ -1,0 +1,35 @@
+{
+    "type": "Environment",
+    "id": "master",
+    "version": 3,
+    "space": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "34luz0flcmxt"
+        }
+    },
+    "status": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Status",
+            "id": "ready"
+        }
+    },
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "createdAt": "2017-12-07T11:07:09Z",
+    "updatedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "updatedAt": "2018-03-19T09:59:34Z"
+}

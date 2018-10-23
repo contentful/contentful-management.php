@@ -1,0 +1,51 @@
+{
+    "sys": {
+        "id": "irrelevant",
+        "type": "Role",
+        "createdAt": "2018-01-01T12:00:00.123Z",
+        "updatedAt": "2018-01-01T12:00:00.123Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "irrelevant"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "irrelevant"
+            }
+        },
+        "version": 1,
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "irrelevant"
+            }
+        }
+    },
+    "name": "Custom role",
+    "description": "This is a custom test role",
+    "permissions": {
+        "ContentDelivery": [
+            "read",
+            "manage"
+        ],
+        "ContentModel": [
+            "read"
+        ],
+        "Settings": "all"
+    },
+    "policies": [
+        {
+            "effect": "allow",
+            "actions": "all",
+            "constraint": {
+                "invalidKey": []
+            }
+        }
+    ]
+}

@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\Environment as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Environment as SystemProperties;
 
 /**
  * Environment class.
@@ -27,9 +27,12 @@ class Environment extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $environment */
+        $environment = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
         ]);
+
+        return $environment;
     }
 }

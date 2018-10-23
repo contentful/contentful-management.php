@@ -45,37 +45,13 @@ class ContentTypeSnapshotTest extends BaseTestCase
      */
     public function testJsonSerialize(): ContentTypeSnapshot
     {
-        $contentTypeSnapshot = (new ResourceBuilder())->build([
-            'sys' => [
-                'type' => 'Snapshot',
-                'snapshotType' => 'publish',
-                'snapshotEntityType' => 'ContentType',
-            ],
-            'snapshot' => [
-                'name' => 'Versioned Content Type',
-                'displayField' => 'title',
-                'fields' => [
-                    [
-                        'name' => 'Title',
-                        'id' => 'title',
-                        'type' => 'Symbol',
-                    ],
-                    [
-                        'name' => 'Description',
-                        'id' => 'description',
-                        'type' => 'Text',
-                    ],
-                ],
-                'sys' => [
-                    'id' => 'versionedContentType',
-                    'type' => 'ContentType',
-                ],
-            ],
-        ]);
+        $resource = (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
 
-        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/content_type_snapshot.json', $contentTypeSnapshot);
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/ContentTypeSnapshot/serialize.json', $resource);
 
-        return $contentTypeSnapshot;
+        return $resource;
     }
 
     /**

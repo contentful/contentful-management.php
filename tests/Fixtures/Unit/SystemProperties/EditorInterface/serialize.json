@@ -1,0 +1,42 @@
+{
+    "id": "default",
+    "type": "EditorInterface",
+    "space": {
+        "sys": {
+            "id": "pmgjoasidv3w",
+            "type": "Link",
+            "linkType": "Space"
+        }
+    },
+    "version": 2,
+    "createdAt": "2018-07-30T17:51:38.611Z",
+    "createdBy": {
+        "sys": {
+            "id": "1CECdY5ZhqJapGieg6QS9P",
+            "type": "Link",
+            "linkType": "User"
+        }
+    },
+    "updatedAt": "2018-07-30T17:51:41.289Z",
+    "updatedBy": {
+        "sys": {
+            "id": "1CECdY5ZhqJapGieg6QS9P",
+            "type": "Link",
+            "linkType": "User"
+        }
+    },
+    "contentType": {
+        "sys": {
+            "id": "bookmark",
+            "type": "Link",
+            "linkType": "ContentType"
+        }
+    },
+    "environment": {
+        "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+        }
+    }
+}

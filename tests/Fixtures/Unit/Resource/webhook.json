@@ -1,7 +1,5 @@
 {
-    "sys": {
-        "type": "WebhookDefinition"
-    },
+    "sys": null,
     "name": "My webhook",
     "url": "https://www.example.com/webhooks",
     "topics": ["Entry.create", "ContentType.create", "*.publish", "Asset.*"],

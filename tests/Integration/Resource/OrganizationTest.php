@@ -45,16 +45,13 @@ class OrganizationTest extends BaseTestCase
      */
     public function testJsonSerialize(): Organization
     {
-        $organization = (new ResourceBuilder())->build([
-            'sys' => [
-                'type' => 'Organization',
-            ],
-            'name' => 'Test Org',
-        ]);
+        $resource = (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
 
-        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/organization.json', $organization);
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/Organization/serialize.json', $resource);
 
-        return $organization;
+        return $resource;
     }
 
     /**

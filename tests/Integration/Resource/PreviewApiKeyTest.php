@@ -45,27 +45,13 @@ class PreviewApiKeyTest extends BaseTestCase
      */
     public function testJsonSerialize(): PreviewApiKey
     {
-        $previewApiKey = (new ResourceBuilder())->build([
-            'sys' => [
-                'type' => 'PreviewApiKey',
-            ],
-            'name' => 'Preview Key',
-            'description' => \null,
-            'accessToken' => 'ee8b264bf66ca66e0c005411cff6009456b256d0011f617bfbe128d0f0c99f9f',
-            'environments' => [
-                [
-                    'sys' => [
-                        'type' => 'Link',
-                        'id' => 'master',
-                        'linkType' => 'Environment',
-                    ],
-                ],
-            ],
-        ]);
+        $resource = (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
 
-        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/preview_api_key.json', $previewApiKey);
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/PreviewApiKey/serialize.json', $resource);
 
-        return $previewApiKey;
+        return $resource;
     }
 
     /**

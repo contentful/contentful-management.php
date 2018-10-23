@@ -1,0 +1,62 @@
+{
+    "space": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "34luz0flcmxt"
+        }
+    },
+    "id": "4OuC4z6qs0yEWMeqkGmokw",
+    "type": "Entry",
+    "createdAt": "2017-08-22T11:50:19.841Z",
+    "updatedAt": "2017-08-22T11:50:27.087Z",
+    "environment": {
+        "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+        }
+    },
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "updatedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "publishedCounter": 1,
+    "version": 6,
+    "publishedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "publishedVersion": 5,
+    "firstPublishedAt": "2017-08-22T11:50:26.990Z",
+    "publishedAt": "2017-08-22T11:50:26.990Z",
+    "contentType": {
+        "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "fantasticCreature"
+        }
+    },
+    "archivedVersion": 5,
+    "archivedAt": "2017-08-22T11:50:26.990Z",
+    "archivedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    }
+}

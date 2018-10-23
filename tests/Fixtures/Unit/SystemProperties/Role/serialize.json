@@ -1,0 +1,28 @@
+{
+    "type": "Role",
+    "id": "6khUMmsfVslYd7tRcThTgE",
+    "version": 0,
+    "space": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "34luz0flcmxt"
+        }
+    },
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5wTIctqPekjOi9TGctNW7L"
+        }
+    },
+    "createdAt": "2017-05-18T13:35:42Z",
+    "updatedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5wTIctqPekjOi9TGctNW7L"
+        }
+    },
+    "updatedAt": "2017-05-18T13:35:42Z"
+}

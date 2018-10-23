@@ -13,7 +13,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\DeliveryApiKey as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\ApiKey as SystemProperties;
 
 /**
  * DeliveryApiKey class.
@@ -28,7 +28,8 @@ class DeliveryApiKey extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $deliveryApiKey */
+        $deliveryApiKey = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'accessToken' => $data['accessToken'],
@@ -38,6 +39,8 @@ class DeliveryApiKey extends BaseMapper
                 ? new Link($data['preview_api_key']['sys']['id'], 'PreviewApiKey')
                 : \null,
         ]);
+
+        return $deliveryApiKey;
     }
 
     /**

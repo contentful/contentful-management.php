@@ -45,36 +45,13 @@ class EntrySnapshotTest extends BaseTestCase
      */
     public function testJsonSerialize(): EntrySnapshot
     {
-        $entrySnapshot = (new ResourceBuilder())->build([
-            'sys' => [
-                'type' => 'Snapshot',
-                'snapshotType' => 'publish',
-                'snapshotEntityType' => 'Entry',
-            ],
-            'snapshot' => [
-                'fields' => [
-                    'name' => [
-                        'en-US' => 'Consuela Bananahammock',
-                    ],
-                    'jobTitle' => [
-                        'en-US' => 'Princess',
-                    ],
-                ],
-                'sys' => [
-                    'type' => 'Entry',
-                    'contentType' => [
-                        'sys' => [
-                            'linkType' => 'ContentType',
-                            'id' => 'person',
-                        ],
-                    ],
-                ],
-            ],
-        ]);
+        $resource = (new ResourceBuilder())
+            ->build($this->getParsedFixture('serialize.json'))
+        ;
 
-        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/entry_snapshot.json', $entrySnapshot);
+        $this->assertJsonFixtureEqualsJsonObject('Integration/Resource/EntrySnapshot/serialize.json', $resource);
 
-        return $entrySnapshot;
+        return $resource;
     }
 
     /**

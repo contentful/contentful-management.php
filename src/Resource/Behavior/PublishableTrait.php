@@ -12,15 +12,16 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource\Behavior;
 
 use Contentful\Management\Client;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\VersionableSystemPropertiesInterface;
 
 /**
  * PublishableTrait.
  *
  * This trait is supposed to be applied to resources that can be published.
  *
- * @property Client           $client
- * @property SystemProperties $sys
+ * @property Client $client
+ *
+ * @method VersionableSystemPropertiesInterface getSystemProperties()
  */
 trait PublishableTrait
 {
@@ -30,7 +31,7 @@ trait PublishableTrait
     public function publish()
     {
         return $this->client->requestWithResource($this, 'PUT', '/published', [
-            'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
+            'headers' => ['X-Contentful-Version' => $this->getSystemProperties()->getVersion()],
         ]);
     }
 
@@ -40,7 +41,7 @@ trait PublishableTrait
     public function unpublish()
     {
         return $this->client->requestWithResource($this, 'DELETE', '/published', [
-            'headers' => ['X-Contentful-Version' => $this->sys->getVersion()],
+            'headers' => ['X-Contentful-Version' => $this->getSystemProperties()->getVersion()],
         ]);
     }
 }

@@ -1,7 +1,5 @@
 {
-    "sys": {
-        "type": "Extension"
-    },
+    "sys": null,
     "extension": {
         "name": "My extension",
         "fieldTypes": [{

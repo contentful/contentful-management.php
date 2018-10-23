@@ -1,0 +1,46 @@
+{
+    "space": {
+        "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "34luz0flcmxt"
+        }
+    },
+    "id": "cat",
+    "type": "ContentType",
+    "createdAt": "2017-10-17T12:23:16.461Z",
+    "updatedAt": "2017-10-17T12:23:46.396Z",
+    "environment": {
+        "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+        }
+    },
+    "createdBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "updatedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "publishedCounter": 1,
+    "version": 3,
+    "publishedBy": {
+        "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "1CECdY5ZhqJapGieg6QS9P"
+        }
+    },
+    "publishedVersion": 2,
+    "firstPublishedAt": "2017-10-17T12:23:46.365Z",
+    "publishedAt": "2017-10-17T12:23:46.365Z"
+}

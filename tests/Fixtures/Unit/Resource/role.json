@@ -1,7 +1,5 @@
 {
-    "sys": {
-        "type": "Role"
-    },
+    "sys": null,
     "name": "Custom role",
     "description": "This is a custom test role",
     "permissions": {

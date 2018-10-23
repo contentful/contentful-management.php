@@ -1,6 +1,4 @@
 {
-    "sys": {
-        "type": "Space"
-    },
+    "sys": null,
     "name": "A space"
 }

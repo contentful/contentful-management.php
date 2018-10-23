@@ -1,6 +1,4 @@
 {
-    "sys": {
-        "type": "Environment"
-    },
+    "sys": null,
     "name": "CI Environment"
 }

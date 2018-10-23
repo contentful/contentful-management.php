@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\Resource\Entry;
-use Contentful\Management\SystemProperties;
 use Contentful\Tests\Management\BaseTestCase;
+use Contentful\Tests\Management\Implementation\FantasticCreatureEntry;
+use Contentful\Tests\Management\Implementation\FantasticCreatureEntryMapper;
 
 class ResourceBuilderTest extends BaseTestCase
 {
@@ -47,32 +47,5 @@ class ResourceBuilderTest extends BaseTestCase
         $this->assertInstanceOf(Entry::class, $entry);
         $this->assertSame('Josh Lyman', $entry->getField('name', 'en-US'));
         $this->assertSame('Chief of Staff', $entry->getField('jobTitle', 'en-US'));
-    }
-}
-
-class FantasticCreatureEntryMapper extends BaseMapper
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function map($resource, array $data): FantasticCreatureEntry
-    {
-        return $this->hydrator->hydrate($resource ?? FantasticCreatureEntry::class, [
-            'sys' => new SystemProperties($data['sys']),
-            'fields' => $data['fields'] ?? [],
-        ]);
-    }
-}
-
-class FantasticCreatureEntry extends Entry
-{
-    /**
-     * @param string $locale
-     *
-     * @return string|null
-     */
-    public function getName(string $locale = 'en-US')
-    {
-        return $this->getField('name', $locale);
     }
 }

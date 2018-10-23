@@ -16,6 +16,7 @@ use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\Resource\Webhook\FilterInterface;
+use Contentful\Management\SystemProperties\Webhook as SystemProperties;
 
 /**
  * Webhook class.
@@ -29,6 +30,11 @@ class Webhook extends BaseResource implements CreatableInterface
     use WebhookProxyExtension,
         DeletableTrait,
         UpdatableTrait;
+
+    /**
+     * @var SystemProperties
+     */
+    protected $sys;
 
     /**
      * @var string
@@ -79,16 +85,21 @@ class Webhook extends BaseResource implements CreatableInterface
      */
     public function __construct(string $name, string $url, array $topics = [])
     {
-        $this->initialize('WebhookDefinition');
         $this->name = $name;
         $this->url = $url;
         $this->setTopics($topics);
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * {@inheritdoc}
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {

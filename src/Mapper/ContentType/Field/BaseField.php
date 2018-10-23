@@ -45,7 +45,8 @@ abstract class BaseField extends BaseMapper
             'Text' => TextField::class,
         ];
 
-        return $this->hydrator->hydrate($fieldTypes[$type], [
+        /** @var FieldInterface $field */
+        $field = $this->hydrator->hydrate($fieldTypes[$type], [
             'id' => $data['id'],
             'name' => $data['name'],
             'required' => $data['required'] ?? \null,
@@ -56,6 +57,8 @@ abstract class BaseField extends BaseMapper
                 ? \array_map([$this, 'mapValidation'], $data['validations'])
                 : [],
         ]);
+
+        return $field;
     }
 
     /**

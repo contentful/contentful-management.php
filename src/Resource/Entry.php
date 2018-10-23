@@ -19,6 +19,7 @@ use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\PublishableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
+use Contentful\Management\SystemProperties\Entry as SystemProperties;
 
 /**
  * Entry class.
@@ -36,6 +37,16 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
         UpdatableTrait;
 
     /**
+     * @var SystemProperties
+     */
+    protected $sys;
+
+    /**
+     * @var string
+     */
+    protected $contentTypeId;
+
+    /**
      * @var array[]
      */
     protected $fields = [];
@@ -47,21 +58,19 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
      */
     public function __construct(string $contentTypeId)
     {
-        $this->initialize('Entry', [
-            'contentType' => [
-                'sys' => [
-                    'id' => $contentTypeId,
-                    'type' => 'Link',
-                    'linkType' => 'ContentType',
-                ],
-            ],
-        ]);
+        $this->contentTypeId = $contentTypeId;
     }
 
     /**
-     * Returns an array to be used by "json_encode" to serialize objects of this class.
-     *
-     * @return array
+     * @return SystemProperties
+     */
+    public function getSystemProperties(): SystemProperties
+    {
+        return $this->sys;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function jsonSerialize(): array
     {
@@ -122,7 +131,7 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
      */
     public function getHeadersForCreation(): array
     {
-        return ['X-Contentful-Content-Type' => $this->sys->getContentType()->getId()];
+        return ['X-Contentful-Content-Type' => $this->contentTypeId];
     }
 
     /**

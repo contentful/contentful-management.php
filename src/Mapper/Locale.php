@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Management\Mapper;
 
 use Contentful\Management\Resource\Locale as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Locale as SystemProperties;
 
 /**
  * Locale class.
@@ -27,7 +27,8 @@ class Locale extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $locale */
+        $locale = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
             'code' => $data['code'],
@@ -36,5 +37,7 @@ class Locale extends BaseMapper
             'default' => $data['default'],
             'optional' => $data['optional'],
         ]);
+
+        return $locale;
     }
 }

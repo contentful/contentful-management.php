@@ -14,7 +14,7 @@ namespace Contentful\Management\Mapper;
 use Contentful\Management\Resource\Extension as ResourceClass;
 use Contentful\Management\Resource\Extension\FieldType;
 use Contentful\Management\Resource\Extension\Parameter;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\Extension as SystemProperties;
 
 /**
  * Extension class.
@@ -29,7 +29,8 @@ class Extension extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return $this->hydrator->hydrate($resource ?: ResourceClass::class, [
+        /** @var ResourceClass $extension */
+        $extension = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['extension']['name'],
             'source' => $data['extension']['src'] ?? $data['extension']['srcdoc'] ?? '',
@@ -44,6 +45,8 @@ class Extension extends BaseMapper
                 $data['extension']['parameters']['instance'] ?? []
             ),
         ]);
+
+        return $extension;
     }
 
     /**

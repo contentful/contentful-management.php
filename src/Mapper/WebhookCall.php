@@ -13,7 +13,7 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\WebhookCall as ResourceClass;
-use Contentful\Management\SystemProperties;
+use Contentful\Management\SystemProperties\WebhookCall as SystemProperties;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
@@ -37,7 +37,8 @@ class WebhookCall extends BaseMapper
             ));
         }
 
-        return $this->hydrator->hydrate(ResourceClass::class, [
+        /** @var ResourceClass $webhookCall */
+        $webhookCall = $this->hydrator->hydrate(ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'request' => isset($data['request']) ? new Request(
                 $data['request']['method'],
@@ -57,5 +58,7 @@ class WebhookCall extends BaseMapper
             'requestAt' => new DateTimeImmutable($data['requestAt']),
             'responseAt' => new DateTimeImmutable($data['responseAt']),
         ]);
+
+        return $webhookCall;
     }
 }
