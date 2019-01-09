@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2018 Contentful GmbH
+ * @copyright 2015-2019 Contentful GmbH
  * @license   MIT
  */
 
@@ -84,7 +84,21 @@ class ClientTest extends BaseTestCase
         $link = new Link($this->readOnlySpaceId, 'Space');
         $space = $client->resolveLink($link);
         $this->assertInstanceOf(Space::class, $space);
-        $this->assertSame('PHP CMA', $space->getName());
+        $this->assertSame('[PHP CMA] Read only', $space->getName());
+
+        $links = [
+            new Link('2TEG7c2zYkSSuKmsqEwCS', 'Asset'),
+            new Link('3LM5FlCdGUIM0Miqc664q6', 'Entry'),
+        ];
+        $parameters = [
+            'space' => $this->readOnlySpaceId,
+            'environment' => 'master',
+        ];
+        $resources = $client->resolveLinkCollection($links, $parameters);
+        $this->assertInstanceOf(Asset::class, $resources[0]);
+        $this->assertSame('Contentful Logo', $resources[0]->getTitle('en-US'));
+        $this->assertInstanceOf(Entry::class, $resources[1]);
+        $this->assertSame('Josh Lyman', $resources[1]->getField('name', 'en-US'));
     }
 
     /**

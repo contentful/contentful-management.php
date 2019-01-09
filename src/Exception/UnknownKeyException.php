@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2018 Contentful GmbH
+ * @copyright 2015-2019 Contentful GmbH
  * @license   MIT
  */
 
@@ -13,8 +13,8 @@ namespace Contentful\Management\Exception;
 
 use Contentful\Core\Api\Exception;
 use GuzzleHttp\Exception\RequestException;
-use Psr\Http\Message\ResponseInterface;
 use function GuzzleHttp\json_decode as guzzle_json_decode;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * UnknownKeyException class.

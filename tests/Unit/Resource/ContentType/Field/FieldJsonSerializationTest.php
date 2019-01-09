@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2018 Contentful GmbH
+ * @copyright 2015-2019 Contentful GmbH
  * @license   MIT
  */
 
@@ -62,6 +62,10 @@ class FieldJsonSerializationTest extends BaseTestCase
             'object field' => [
                 'Unit/Resource/ContentType/Field/object_field.json',
                 new Field\ObjectField('someId', 'A name'),
+            ],
+            'rich text field' => [
+                'Unit/Resource/ContentType/Field/rich_text_field.json',
+                new Field\RichTextField('someId', 'A name'),
             ],
             'symbol field' => [
                 'Unit/Resource/ContentType/Field/symbol_field.json',

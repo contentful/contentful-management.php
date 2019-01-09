@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2018 Contentful GmbH
+ * @copyright 2015-2019 Contentful GmbH
  * @license   MIT
  */
 
@@ -22,6 +22,7 @@ use Contentful\Management\Resource\ContentType\Field\LinkField;
 use Contentful\Management\Resource\ContentType\Field\LocationField;
 use Contentful\Management\Resource\ContentType\Field\NumberField;
 use Contentful\Management\Resource\ContentType\Field\ObjectField;
+use Contentful\Management\Resource\ContentType\Field\RichTextField;
 use Contentful\Management\Resource\ContentType\Field\SymbolField;
 use Contentful\Management\Resource\ContentType\Field\TextField;
 use Contentful\Management\Resource\ContentType\Validation\AssetFileSizeValidation;
@@ -366,7 +367,7 @@ class ContentTypeTest extends BaseTestCase
         $contentType->setName('Full Content Type');
         $contentType->setDescription('This content type includes all field types');
 
-        $contentType->addNewField('array', 'arrayField', 'Array Field', 'Link', 'Asset')
+        $contentType->addNewField('Array', 'arrayField', 'Array Field', 'Link', 'Asset')
             ->addValidation(new SizeValidation(1, 10))
             ->setItemsValidations([
                 new AssetFileSizeValidation(\null, 10485760),
@@ -374,26 +375,27 @@ class ContentTypeTest extends BaseTestCase
                 new LinkMimetypeGroupValidation(['image']),
             ])
         ;
-        $contentType->addNewField('boolean', 'booleanField', 'Boolean Field');
-        $contentType->addNewField('date', 'dateField', 'Date Field')
+        $contentType->addNewField('Boolean', 'booleanField', 'Boolean Field');
+        $contentType->addNewField('Date', 'dateField', 'Date Field')
             ->addValidation(new DateRangeValidation('2010-01-01', '2020-12-31'))
         ;
-        $contentType->addNewField('integer', 'integerField', 'Integer Field')
+        $contentType->addNewField('Integer', 'integerField', 'Integer Field')
             ->addValidation(new RangeValidation(1, 10))
         ;
-        $contentType->addNewField('link', 'linkField', 'Link Field', 'Entry')
+        $contentType->addNewField('Link', 'linkField', 'Link Field', 'Entry')
             ->addValidation(new LinkContentTypeValidation(['bookmark']))
         ;
-        $contentType->addNewField('location', 'locationField', 'Location Field');
-        $contentType->addNewField('number', 'numberField', 'Number Field')
+        $contentType->addNewField('Location', 'locationField', 'Location Field');
+        $contentType->addNewField('Number', 'numberField', 'Number Field')
             ->addValidation(new InValidation([1, 2, 3]))
         ;
-        $contentType->addNewField('object', 'objectField', 'Object Field');
+        $contentType->addNewField('Object', 'objectField', 'Object Field');
+        $contentType->addNewField('RichText', 'richTextField', 'Rich Text Field');
         $contentType->addNewField('symbol', 'symbolField', 'Symbol Field')
             ->addValidation(new UniqueValidation())
             ->addValidation(new RegexpValidation('^such', 'im'))
         ;
-        $contentType->addNewField('text', 'textField', 'Text Field');
+        $contentType->addNewField('Text', 'textField', 'Text Field');
 
         $proxy->create($contentType, 'fullContentType');
         $this->assertNotNull($contentType->getId());
@@ -486,6 +488,11 @@ class ContentTypeTest extends BaseTestCase
         $this->assertInstanceOf(ObjectField::class, $field);
         $this->assertSame('Object', $field->getType());
         $this->assertSame('Object Field', $field->getName());
+
+        $field = $contentType->getField('richTextField');
+        $this->assertInstanceOf(RichTextField::class, $field);
+        $this->assertSame('RichText', $field->getType());
+        $this->assertSame('Rich Text Field', $field->getName());
 
         $field = $contentType->getField('symbolField');
         $this->assertInstanceOf(SymbolField::class, $field);
