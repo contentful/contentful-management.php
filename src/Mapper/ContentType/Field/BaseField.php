@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2018 Contentful GmbH
+ * @copyright 2015-2019 Contentful GmbH
  * @license   MIT
  */
 
@@ -19,6 +19,7 @@ use Contentful\Management\Resource\ContentType\Field\IntegerField;
 use Contentful\Management\Resource\ContentType\Field\LocationField;
 use Contentful\Management\Resource\ContentType\Field\NumberField;
 use Contentful\Management\Resource\ContentType\Field\ObjectField;
+use Contentful\Management\Resource\ContentType\Field\RichTextField;
 use Contentful\Management\Resource\ContentType\Field\SymbolField;
 use Contentful\Management\Resource\ContentType\Field\TextField;
 use Contentful\Management\Resource\ContentType\Validation\ValidationInterface;
@@ -41,6 +42,7 @@ abstract class BaseField extends BaseMapper
             'Location' => LocationField::class,
             'Number' => NumberField::class,
             'Object' => ObjectField::class,
+            'RichText' => RichTextField::class,
             'Symbol' => SymbolField::class,
             'Text' => TextField::class,
         ];

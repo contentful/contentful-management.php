@@ -9,13 +9,11 @@
 
 declare(strict_types=1);
 
-namespace Contentful\Management\Exception;
-
-use Contentful\Core\Api\Exception;
+namespace Contentful\Management\Mapper\ContentType\Field;
 
 /**
- * FallbackLocaleNotDeletableException class.
+ * RichTextField class.
  */
-class FallbackLocaleNotDeletableException extends Exception
+class RichTextField extends BaseField
 {
 }

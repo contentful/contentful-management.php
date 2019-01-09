@@ -12,15 +12,15 @@ declare(strict_types=1);
 namespace Contentful\Management\Resource\ContentType\Field;
 
 /**
- * LocationField class.
+ * RichTextField class.
  */
-class LocationField extends BaseField
+class RichTextField extends BaseField
 {
     /**
      * @return string
      */
     public function getType(): string
     {
-        return 'Location';
+        return 'RichText';
     }
 }

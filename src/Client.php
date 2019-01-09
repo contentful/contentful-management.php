@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2018 Contentful GmbH
+ * @copyright 2015-2019 Contentful GmbH
  * @license   MIT
  */
 
@@ -237,6 +237,19 @@ class Client extends BaseClient
         $resource = $this->linkResolver->resolveLink($link, $parameters);
 
         return $resource;
+    }
+
+    /**
+     * Resolves a collection of links to a Contentful resources.
+     *
+     * @param Link[]   $links
+     * @param string[] $parameters
+     *
+     * @return ResourceInterface[]
+     */
+    public function resolveLinkCollection(array $links, array $parameters = []): array
+    {
+        return $this->linkResolver->resolveLinkCollection($links, $parameters);
     }
 
     /**
