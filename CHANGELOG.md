@@ -3,9 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/contentful/contentful-management.php/compare/1.0.0...HEAD)
+## [Unreleased](https://github.com/contentful/contentful-management.php/compare/2.0.0...HEAD)
 
 <!-- PENDING-CHANGES -->
+> No meaningful changes since last release.
+<!-- /PENDING-CHANGES -->
+
+## [2.0.0](https://github.com/contentful/contentful-management.php/tree/2.0.0) (2019-01-25)
+
 **ATTENTION**: This release contains breaking changes. Please take extra care when updating to this version. See [the upgrade guide](UPGRADE-2.0.md) for more.
 
 ### Added
@@ -26,7 +31,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 
 * `BaseMapper::hydrate()` has been removed. Use `$this->hydrator->hydrate()` instead. **[BREAKING]**
-<!-- /PENDING-CHANGES -->
 
 ## [1.0.0](https://github.com/contentful/contentful-management.php/tree/1.0.0) (2018-04-18)
 
