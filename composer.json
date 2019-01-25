@@ -24,11 +24,13 @@
         "psr-4": {
             "Contentful\\Tests\\Management\\": "tests/"
         },
-        "files": ["vendor/contentful/core/scripts/TestCase.php"]
+        "files": [
+            "vendor/contentful/core/scripts/TestCase.php"
+        ]
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.0-dev"
+            "dev-master": "2.1.0-dev"
         }
     },
     "scripts": {
