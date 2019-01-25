@@ -32,7 +32,8 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "release": "php vendor/contentful/core/scripts/release.php"
     },
     "suggest": {
         "nikic/php-parser": "Allows generating content type classes"
