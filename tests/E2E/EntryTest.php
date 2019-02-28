@@ -208,4 +208,179 @@ class EntryTest extends BaseTestCase
 
         $this->markTestAsPassed();
     }
+
+    /**
+     * @vcr e2e_entry_edit_with_rich_text.json
+     */
+    public function testEditWithRichText()
+    {
+        $proxy = $this->getReadWriteEnvironmentProxy();
+
+        $entry = new Entry('richTextContentType');
+        $entry->setField('title', 'en-US', 'Some title');
+
+        $bodyValue = [
+            'data' => [],
+            'content' => [
+                [
+                    'data' => [],
+                    'content' => [
+                        [
+                            'data' => [],
+                            'marks' => [],
+                            'value' => 'Some title',
+                            'nodeType' => 'text',
+                        ],
+                    ],
+                    'nodeType' => 'heading-1',
+                ],
+                [
+                    'data' => [],
+                    'content' => [],
+                    'nodeType' => 'hr',
+                ],
+                [
+                    'nodeType' => 'unordered-list',
+                    'content' => [
+                        [
+                            'nodeType' => 'list-item',
+                            'data' => [],
+                            'content' => [
+                                [
+                                    'nodeType' => 'paragraph',
+                                    'content' => [
+                                        [
+                                            'nodeType' => 'text',
+                                            'value' => 'First',
+                                            'marks' => [
+                                                ['type' => 'underline'],
+                                            ],
+                                            'data' => [],
+                                        ],
+                                        [
+                                            'nodeType' => 'text',
+                                            'value' => ' element',
+                                            'marks' => [],
+                                            'data' => [],
+                                        ],
+                                    ],
+                                    'data' => [],
+                                ],
+                            ],
+                        ],
+                        [
+                            'nodeType' => 'list-item',
+                            'content' => [
+                                [
+                                    'nodeType' => 'paragraph',
+                                    'content' => [
+                                        [
+                                            'nodeType' => 'text',
+                                            'value' => 'Second',
+                                            'marks' => [
+                                                ['type' => 'bold'],
+                                            ],
+                                            'data' => [],
+                                        ],
+                                        [
+                                            'nodeType' => 'text',
+                                            'value' => ' element',
+                                            'marks' => [],
+                                            'data' => [],
+                                        ],
+                                    ],
+                                    'data' => [],
+                                ],
+                            ],
+                            'data' => [],
+                        ],
+                        [
+                            'nodeType' => 'list-item',
+                            'content' => [
+                                [
+                                    'nodeType' => 'paragraph',
+                                    'content' => [
+                                        [
+                                            'nodeType' => 'text',
+                                            'value' => 'Third',
+                                            'marks' => [
+                                                ['type' => 'italic'],
+                                            ],
+                                            'data' => [],
+                                        ],
+                                        [
+                                            'nodeType' => 'text',
+                                            'value' => ' element',
+                                            'marks' => [],
+                                            'data' => [],
+                                        ],
+                                    ],
+                                    'data' => [],
+                                ],
+                            ],
+                            'data' => [],
+                        ],
+                    ],
+                    'data' => [],
+                ],
+                [
+                    'nodeType' => 'paragraph',
+                    'content' => [
+                        [
+                            'nodeType' => 'text',
+                            'data' => [],
+                            'value' => 'Hello, is it me you\'re looking for?',
+                            'marks' => [
+                                ['type' => 'code'],
+                            ],
+                        ],
+                    ],
+                    'data' => [],
+                ],
+                [
+                    'nodeType' => 'paragraph',
+                    'content' => [
+                        [
+                            'nodeType' => 'text',
+                            'value' => '',
+                            'marks' => [],
+                            'data' => [],
+                        ],
+                        [
+                            'nodeType' => 'hyperlink',
+                            'content' => [
+                                [
+                                    'nodeType' => 'text',
+                                    'value' => 'Contentful',
+                                    'marks' => [],
+                                    'data' => [],
+                                ],
+                            ],
+                            'data' => [
+                                'uri' => 'https://www.contentful.com',
+                            ],
+                        ],
+                        [
+                            'nodeType' => 'text',
+                            'value' => ' is great.',
+                            'marks' => [],
+                            'data' => [],
+                        ],
+                    ],
+                    'data' => [],
+                ],
+            ],
+            'nodeType' => 'document',
+        ];
+        $entry->setField('body', 'en-US', $bodyValue);
+
+        $proxy->create($entry);
+
+        $entry->setField('title', 'en-US', 'Another title');
+        $entry->update();
+
+        $entry->delete();
+
+        $this->markTestAsPassed();
+    }
 }
