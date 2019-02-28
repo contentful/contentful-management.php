@@ -148,10 +148,41 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
         }
 
         if (\is_array($data)) {
+            if (isset($data['nodeType'])) {
+                return $this->formatRichTextField($data);
+            }
+
             return \array_map([$this, 'getFormattedData'], $data);
         }
 
         return $data;
+    }
+
+    /**
+     * Rich text fields have a data object which PHP converts
+     * to a simple array when empty.
+     * The Management API does not recognize the value and throws an errors,
+     * so we make an educated guess and force the data property to be an object.
+     *
+     * @param array $value
+     *
+     * @return array
+     */
+    private function formatRichTextField(array $value): array
+    {
+        if (\array_key_exists('data', $value) && !$value['data']) {
+            $value['data'] = new \stdClass();
+        }
+
+        if (isset($value['content']) && \is_array($value['content'])) {
+            foreach ($value['content'] as $index => $content) {
+                if (\is_array($content) && isset($content['nodeType'])) {
+                    $value['content'][$index] = $this->formatRichTextField($content);
+                }
+            }
+        }
+
+        return $value;
     }
 
     /**

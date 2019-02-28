@@ -1,0 +1,146 @@
+[{
+    "request": {
+        "method": "POST",
+        "url": "https:\/\/api.contentful.com\/spaces\/pmgjoasidv3w\/environments\/master\/entries",
+        "headers": {
+            "Host": "api.contentful.com",
+            "Expect": null,
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.63.0 PHP\/7.2.13",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/2.0.0-dev; platform PHP\/7.2.13; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "X-Contentful-Content-Type": "richTextContentType"
+        },
+        "body": "{\"fields\":{\"title\":{\"en-US\":\"Some title\"},\"body\":{\"en-US\":{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Some title\",\"nodeType\":\"text\"}],\"nodeType\":\"heading-1\"},{\"data\":{},\"content\":[],\"nodeType\":\"hr\"},{\"nodeType\":\"unordered-list\",\"content\":[{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"value\":\"First\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" element\",\"marks\":[],\"data\":{}}],\"data\":{}}]},{\"nodeType\":\"list-item\",\"content\":[{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"value\":\"Second\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" element\",\"marks\":[],\"data\":{}}],\"data\":{}}],\"data\":{}},{\"nodeType\":\"list-item\",\"content\":[{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"value\":\"Third\",\"marks\":[{\"type\":\"italic\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" element\",\"marks\":[],\"data\":{}}],\"data\":{}}],\"data\":{}}],\"data\":{}},{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"data\":{},\"value\":\"Hello, is it me you're looking for?\",\"marks\":[{\"type\":\"code\"}]}],\"data\":{}},{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"value\":\"\",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"content\":[{\"nodeType\":\"text\",\"value\":\"Contentful\",\"marks\":[],\"data\":{}}],\"data\":{\"uri\":\"https:\\\/\\\/www.contentful.com\"}},{\"nodeType\":\"text\",\"value\":\" is great.\",\"marks\":[],\"data\":{}}],\"data\":{}}],\"nodeType\":\"document\"}}}}"
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "201",
+            "message": "Created"
+        },
+        "headers": {
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature,X-Contentful-Source-Environment",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "CF-Space-Id": "pmgjoasidv3w",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Contentful-Api": "cma",
+            "Date": "Thu, 28 Feb 2019 19:44:12 GMT",
+            "ETag": "\"db04e7f2cfdd2373d08424304461e08e\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179999",
+            "X-Contentful-RateLimit-Reset": "0",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "3ed18aec44efb06c59b3e4f346dab171",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=ihb71CpZRN2oIxqOWJM4bgw6eFwAAAAAQUIPAAAAAAAsJqlnqkPcTA2wVeaYPGRp; expires=Fri, 28 Feb 2020 12:45:34 GMT; path=\/; Domain=.contentful.com, nlbi_673446=3AOzeqSq\/g2mFyS5YMlkBAAAAACBOnbrjqoRdIdHy0MzsXAf; path=\/; Domain=.contentful.com, incap_ses_477_673446=70LhEJQ1eStTwnZJT6aeBgw6eFwAAAAA0uW4Mhmjh9yrlsUxbc\/R8w==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "2-9521775-9521783 NNNN CT(109 223 0) RT(1551383051819 50) q(0 0 4 -1) r(6 6) U5",
+            "X-CDN": "Incapsula",
+            "Content-Encoding": "gzip",
+            "Transfer-Encoding": "chunked"
+        },
+        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"pmgjoasidv3w\"\n      }\n    },\n    \"id\": \"1JaZPBYSksbpKW5iXNNcQM\",\n    \"type\": \"Entry\",\n    \"createdAt\": \"2019-02-28T19:44:12.737Z\",\n    \"updatedAt\": \"2019-02-28T19:44:12.737Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"publishedCounter\": 0,\n    \"version\": 1,\n    \"contentType\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"ContentType\",\n        \"id\": \"richTextContentType\"\n      }\n    }\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"Some title\"\n    },\n    \"body\": {\n      \"en-US\": {\n        \"data\": {},\n        \"content\": [\n          {\n            \"data\": {},\n            \"content\": [\n              {\n                \"data\": {},\n                \"marks\": [],\n                \"value\": \"Some title\",\n                \"nodeType\": \"text\"\n              }\n            ],\n            \"nodeType\": \"heading-1\"\n          },\n          {\n            \"data\": {},\n            \"content\": [],\n            \"nodeType\": \"hr\"\n          },\n          {\n            \"nodeType\": \"unordered-list\",\n            \"content\": [\n              {\n                \"nodeType\": \"list-item\",\n                \"data\": {},\n                \"content\": [\n                  {\n                    \"nodeType\": \"paragraph\",\n                    \"content\": [\n                      {\n                        \"nodeType\": \"text\",\n                        \"value\": \"First\",\n                        \"marks\": [\n                          {\n                            \"type\": \"underline\"\n                          }\n                        ],\n                        \"data\": {}\n                      },\n                      {\n                        \"nodeType\": \"text\",\n                        \"value\": \" element\",\n                        \"marks\": [],\n                        \"data\": {}\n                      }\n                    ],\n                    \"data\": {}\n                  }\n                ]\n              },\n              {\n                \"nodeType\": \"list-item\",\n                \"content\": [\n                  {\n                    \"nodeType\": \"paragraph\",\n                    \"content\": [\n                      {\n                        \"nodeType\": \"text\",\n                        \"value\": \"Second\",\n                        \"marks\": [\n                          {\n                            \"type\": \"bold\"\n                          }\n                        ],\n                        \"data\": {}\n                      },\n                      {\n                        \"nodeType\": \"text\",\n                        \"value\": \" element\",\n                        \"marks\": [],\n                        \"data\": {}\n                      }\n                    ],\n                    \"data\": {}\n                  }\n                ],\n                \"data\": {}\n              },\n              {\n                \"nodeType\": \"list-item\",\n                \"content\": [\n                  {\n                    \"nodeType\": \"paragraph\",\n                    \"content\": [\n                      {\n                        \"nodeType\": \"text\",\n                        \"value\": \"Third\",\n                        \"marks\": [\n                          {\n                            \"type\": \"italic\"\n                          }\n                        ],\n                        \"data\": {}\n                      },\n                      {\n                        \"nodeType\": \"text\",\n                        \"value\": \" element\",\n                        \"marks\": [],\n                        \"data\": {}\n                      }\n                    ],\n                    \"data\": {}\n                  }\n                ],\n                \"data\": {}\n              }\n            ],\n            \"data\": {}\n          },\n          {\n            \"nodeType\": \"paragraph\",\n            \"content\": [\n              {\n                \"nodeType\": \"text\",\n                \"data\": {},\n                \"value\": \"Hello, is it me you're looking for?\",\n                \"marks\": [\n                  {\n                    \"type\": \"code\"\n                  }\n                ]\n              }\n            ],\n            \"data\": {}\n          },\n          {\n            \"nodeType\": \"paragraph\",\n            \"content\": [\n              {\n                \"nodeType\": \"text\",\n                \"value\": \"\",\n                \"marks\": [],\n                \"data\": {}\n              },\n              {\n                \"nodeType\": \"hyperlink\",\n                \"content\": [\n                  {\n                    \"nodeType\": \"text\",\n                    \"value\": \"Contentful\",\n                    \"marks\": [],\n                    \"data\": {}\n                  }\n                ],\n                \"data\": {\n                  \"uri\": \"https:\/\/www.contentful.com\"\n                }\n              },\n              {\n                \"nodeType\": \"text\",\n                \"value\": \" is great.\",\n                \"marks\": [],\n                \"data\": {}\n              }\n            ],\n            \"data\": {}\n          }\n        ],\n        \"nodeType\": \"document\"\n      }\n    }\n  }\n}\n"
+    }
+},{
+    "request": {
+        "method": "PUT",
+        "url": "https:\/\/api.contentful.com\/spaces\/pmgjoasidv3w\/environments\/master\/entries\/1JaZPBYSksbpKW5iXNNcQM",
+        "headers": {
+            "Host": "api.contentful.com",
+            "Expect": null,
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.63.0 PHP\/7.2.13",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/2.0.0-dev; platform PHP\/7.2.13; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "X-Contentful-Version": "1"
+        },
+        "body": "{\"fields\":{\"title\":{\"en-US\":\"Another title\"},\"body\":{\"en-US\":{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Some title\",\"nodeType\":\"text\"}],\"nodeType\":\"heading-1\"},{\"data\":{},\"content\":[],\"nodeType\":\"hr\"},{\"nodeType\":\"unordered-list\",\"content\":[{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"value\":\"First\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" element\",\"marks\":[],\"data\":{}}],\"data\":{}}]},{\"nodeType\":\"list-item\",\"content\":[{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"value\":\"Second\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" element\",\"marks\":[],\"data\":{}}],\"data\":{}}],\"data\":{}},{\"nodeType\":\"list-item\",\"content\":[{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"value\":\"Third\",\"marks\":[{\"type\":\"italic\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" element\",\"marks\":[],\"data\":{}}],\"data\":{}}],\"data\":{}}],\"data\":{}},{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"data\":{},\"value\":\"Hello, is it me you're looking for?\",\"marks\":[{\"type\":\"code\"}]}],\"data\":{}},{\"nodeType\":\"paragraph\",\"content\":[{\"nodeType\":\"text\",\"value\":\"\",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"content\":[{\"nodeType\":\"text\",\"value\":\"Contentful\",\"marks\":[],\"data\":{}}],\"data\":{\"uri\":\"https:\\\/\\\/www.contentful.com\"}},{\"nodeType\":\"text\",\"value\":\" is great.\",\"marks\":[],\"data\":{}}],\"data\":{}}],\"nodeType\":\"document\"}}}}"
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature,X-Contentful-Source-Environment",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "CF-Space-Id": "pmgjoasidv3w",
+            "Content-Encoding": "gzip",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Contentful-Api": "cma",
+            "Date": "Thu, 28 Feb 2019 19:44:14 GMT",
+            "ETag": "W\/\"7b32102926c9a26f35bb0ee0101344e7\"",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179999",
+            "X-Contentful-RateLimit-Reset": "0",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "ba18f730fd7e4a5801dd5dcc5dcac725",
+            "Content-Length": "951",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=jkY9QaIqS1ae1+hHf+D2cg06eFwAAAAAQUIPAAAAAADVlgMEnGSlKIZUtt5\/MzG+; expires=Fri, 28 Feb 2020 12:45:21 GMT; path=\/; Domain=.contentful.com, nlbi_673446=wVlIZP+\/EgzfUJ4CYMlkBAAAAACMVyf+nQEtLdcsRu+gJrZG; path=\/; Domain=.contentful.com, incap_ses_477_673446=KSeiJkN3IUeRwnZJT6aeBg06eFwAAAAAcyeQeqoBBP8ESIY0\/8qSCw==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "4-18216000-18216008 NNNN CT(120 119 0) RT(1551383052689 51) q(0 0 2 -1) r(11 11) U5",
+            "X-CDN": "Incapsula"
+        },
+        "body": "{\n  \"sys\": {\n    \"space\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"Space\",\n        \"id\": \"pmgjoasidv3w\"\n      }\n    },\n    \"id\": \"1JaZPBYSksbpKW5iXNNcQM\",\n    \"type\": \"Entry\",\n    \"createdAt\": \"2019-02-28T19:44:12.737Z\",\n    \"updatedAt\": \"2019-02-28T19:44:14.193Z\",\n    \"environment\": {\n      \"sys\": {\n        \"id\": \"master\",\n        \"type\": \"Link\",\n        \"linkType\": \"Environment\"\n      }\n    },\n    \"createdBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"updatedBy\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"User\",\n        \"id\": \"4Q3e6duhma7V6czH7UXHzE\"\n      }\n    },\n    \"publishedCounter\": 0,\n    \"version\": 2,\n    \"contentType\": {\n      \"sys\": {\n        \"type\": \"Link\",\n        \"linkType\": \"ContentType\",\n        \"id\": \"richTextContentType\"\n      }\n    }\n  },\n  \"fields\": {\n    \"title\": {\n      \"en-US\": \"Another title\"\n    },\n    \"body\": {\n      \"en-US\": {\n        \"data\": {},\n        \"content\": [\n          {\n            \"data\": {},\n            \"content\": [\n              {\n                \"data\": {},\n                \"marks\": [],\n                \"value\": \"Some title\",\n                \"nodeType\": \"text\"\n              }\n            ],\n            \"nodeType\": \"heading-1\"\n          },\n          {\n            \"data\": {},\n            \"content\": [],\n            \"nodeType\": \"hr\"\n          },\n          {\n            \"data\": {},\n            \"content\": [\n              {\n                \"data\": {},\n                \"content\": [\n                  {\n                    \"data\": {},\n                    \"content\": [\n                      {\n                        \"data\": {},\n                        \"marks\": [\n                          {\n                            \"type\": \"underline\"\n                          }\n                        ],\n                        \"value\": \"First\",\n                        \"nodeType\": \"text\"\n                      },\n                      {\n                        \"data\": {},\n                        \"marks\": [],\n                        \"value\": \" element\",\n                        \"nodeType\": \"text\"\n                      }\n                    ],\n                    \"nodeType\": \"paragraph\"\n                  }\n                ],\n                \"nodeType\": \"list-item\"\n              },\n              {\n                \"data\": {},\n                \"content\": [\n                  {\n                    \"data\": {},\n                    \"content\": [\n                      {\n                        \"data\": {},\n                        \"marks\": [\n                          {\n                            \"type\": \"bold\"\n                          }\n                        ],\n                        \"value\": \"Second\",\n                        \"nodeType\": \"text\"\n                      },\n                      {\n                        \"data\": {},\n                        \"marks\": [],\n                        \"value\": \" element\",\n                        \"nodeType\": \"text\"\n                      }\n                    ],\n                    \"nodeType\": \"paragraph\"\n                  }\n                ],\n                \"nodeType\": \"list-item\"\n              },\n              {\n                \"data\": {},\n                \"content\": [\n                  {\n                    \"data\": {},\n                    \"content\": [\n                      {\n                        \"data\": {},\n                        \"marks\": [\n                          {\n                            \"type\": \"italic\"\n                          }\n                        ],\n                        \"value\": \"Third\",\n                        \"nodeType\": \"text\"\n                      },\n                      {\n                        \"data\": {},\n                        \"marks\": [],\n                        \"value\": \" element\",\n                        \"nodeType\": \"text\"\n                      }\n                    ],\n                    \"nodeType\": \"paragraph\"\n                  }\n                ],\n                \"nodeType\": \"list-item\"\n              }\n            ],\n            \"nodeType\": \"unordered-list\"\n          },\n          {\n            \"data\": {},\n            \"content\": [\n              {\n                \"data\": {},\n                \"marks\": [\n                  {\n                    \"type\": \"code\"\n                  }\n                ],\n                \"value\": \"Hello, is it me you're looking for?\",\n                \"nodeType\": \"text\"\n              }\n            ],\n            \"nodeType\": \"paragraph\"\n          },\n          {\n            \"data\": {},\n            \"content\": [\n              {\n                \"data\": {},\n                \"marks\": [],\n                \"value\": \"\",\n                \"nodeType\": \"text\"\n              },\n              {\n                \"data\": {\n                  \"uri\": \"https:\/\/www.contentful.com\"\n                },\n                \"content\": [\n                  {\n                    \"data\": {},\n                    \"marks\": [],\n                    \"value\": \"Contentful\",\n                    \"nodeType\": \"text\"\n                  }\n                ],\n                \"nodeType\": \"hyperlink\"\n              },\n              {\n                \"data\": {},\n                \"marks\": [],\n                \"value\": \" is great.\",\n                \"nodeType\": \"text\"\n              }\n            ],\n            \"nodeType\": \"paragraph\"\n          }\n        ],\n        \"nodeType\": \"document\"\n      }\n    }\n  }\n}\n"
+    }
+},{
+    "request": {
+        "method": "DELETE",
+        "url": "https:\/\/api.contentful.com\/spaces\/pmgjoasidv3w\/environments\/master\/entries\/1JaZPBYSksbpKW5iXNNcQM",
+        "headers": {
+            "Host": "api.contentful.com",
+            "User-Agent": "GuzzleHttp\/6.3.3 curl\/7.63.0 PHP\/7.2.13",
+            "X-Contentful-User-Agent": "sdk contentful-management.php\/2.0.0-dev; platform PHP\/7.2.13; os macOS;",
+            "Accept": "application\/vnd.contentful.management.v1+json",
+            "Accept-Encoding": "gzip"
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "204",
+            "message": "No Content"
+        },
+        "headers": {
+            "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature,X-Contentful-Source-Environment",
+            "Access-Control-Allow-Methods": "DELETE,GET,HEAD,POST,PUT,OPTIONS",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Expose-Headers": "Etag",
+            "Access-Control-Max-Age": "1728000",
+            "CF-Space-Id": "pmgjoasidv3w",
+            "Content-Type": "application\/vnd.contentful.management.v1+json",
+            "Contentful-Api": "cma",
+            "Date": "Thu, 28 Feb 2019 19:44:15 GMT",
+            "Server": "Contentful",
+            "Strict-Transport-Security": "max-age=15768000",
+            "X-Content-Type-Options": "nosniff",
+            "X-Contentful-RateLimit-Hour-Limit": "180000",
+            "X-Contentful-RateLimit-Hour-Remaining": "179999",
+            "X-Contentful-RateLimit-Reset": "0",
+            "X-Contentful-RateLimit-Second-Limit": "50",
+            "X-Contentful-RateLimit-Second-Remaining": "49",
+            "X-Contentful-Request-Id": "033d2918887fe0aee953913f802705ea",
+            "Connection": "keep-alive",
+            "Set-Cookie": "visid_incap_673446=mdUwRLzGTnO2TTwbAKi0JQ46eFwAAAAAQUIPAAAAAABeNaj6Fx0ZhhresP+HwDix; expires=Fri, 28 Feb 2020 12:45:34 GMT; path=\/; Domain=.contentful.com, nlbi_673446=c9+WBcwgF3AwQmJCYMlkBAAAAAA2F7eSFR52E\/pGts8VhKDO; path=\/; Domain=.contentful.com, incap_ses_477_673446=Jw13QwhpXD66wnZJT6aeBg46eFwAAAAA7voUhaYrRC\/4u1rMAqC2Pw==; path=\/; Domain=.contentful.com",
+            "X-Iinfo": "5-23213856-23213871 NNNN CT(0 0 0) RT(1551383054459 50) q(0 0 0 -1) r(3 3) U5",
+            "X-CDN": "Incapsula"
+        }
+    }
+}]
