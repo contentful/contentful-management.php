@@ -50,7 +50,7 @@ class User extends BaseResource
     /**
      * @var bool
      */
-    protected $activated = \false;
+    protected $activated = false;
 
     /**
      * @var int
@@ -60,7 +60,7 @@ class User extends BaseResource
     /**
      * @var bool
      */
-    protected $confirmed = \false;
+    protected $confirmed = false;
 
     /**
      * User constructor.

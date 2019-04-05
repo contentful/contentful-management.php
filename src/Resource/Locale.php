@@ -53,22 +53,22 @@ class Locale extends BaseResource implements CreatableInterface
     /**
      * @var bool
      */
-    protected $contentDeliveryApi = \true;
+    protected $contentDeliveryApi = true;
 
     /**
      * @var bool
      */
-    protected $contentManagementApi = \true;
+    protected $contentManagementApi = true;
 
     /**
      * @var bool
      */
-    protected $default = \false;
+    protected $default = false;
 
     /**
      * @var bool
      */
-    protected $optional = \false;
+    protected $optional = false;
 
     /**
      * Locale constructor.
@@ -77,7 +77,7 @@ class Locale extends BaseResource implements CreatableInterface
      * @param string      $code
      * @param string|null $fallbackCode
      */
-    public function __construct(string $name, string $code, string $fallbackCode = \null)
+    public function __construct(string $name, string $code, string $fallbackCode = null)
     {
         $this->name = $name;
         $this->code = $code;
@@ -196,7 +196,7 @@ class Locale extends BaseResource implements CreatableInterface
      *
      * @return static
      */
-    public function setFallbackCode(string $fallbackCode = \null)
+    public function setFallbackCode(string $fallbackCode = null)
     {
         $this->fallbackCode = $fallbackCode;
 

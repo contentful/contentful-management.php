@@ -31,7 +31,7 @@ class MapperTest extends BaseTestCase
         // The generator works with the system ID, which is not usually accessible,
         // hence this hack
         $property = (new \ReflectionClass(ContentType::class))->getProperty('sys');
-        $property->setAccessible(\true);
+        $property->setAccessible(true);
         $property->setValue($contentType, new SystemProperties([
             'id' => 'blogPost',
             'type' => 'ContentType',
@@ -68,7 +68,7 @@ class MapperTest extends BaseTestCase
             ],
         ]));
 
-        $contentType->addNewField('Symbol', 'title', 'Title')->setRequired(\true);
+        $contentType->addNewField('Symbol', 'title', 'Title')->setRequired(true);
         $contentType->addNewField('Boolean', 'isPublished', 'Is published');
         $contentType->addNewField('Date', 'publishedAt', 'Published at');
         $contentType->addNewField('Link', 'previous', 'Previous', 'Entry')
@@ -150,7 +150,7 @@ class MapperTest extends BaseTestCase
             ],
             'fields' => [
                 'title' => ['en-US' => 'title'],
-                'isPublished' => ['en-US' => \true],
+                'isPublished' => ['en-US' => true],
                 'publishedAt' => ['en-US' => '2017-10-06T09:30:30.123Z'],
                 'previous' => ['en-US' => [
                     'sys' => [
@@ -222,7 +222,7 @@ class MapperTest extends BaseTestCase
                 'tags' => ['en-US' => ['Fire Nation', 'Water Tribe', 'Earth Kingdom', 'Air Nomads']],
             ],
         ];
-        $entry = $mapper->map(\null, $data);
+        $entry = $mapper->map(null, $data);
         $entry->setClient(new MapperFakeClient('irrelevant'));
 
         $this->assertSame('title', $entry->getTitle('en-US'));

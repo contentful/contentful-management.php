@@ -370,7 +370,7 @@ class ContentTypeTest extends BaseTestCase
         $contentType->addNewField('Array', 'arrayField', 'Array Field', 'Link', 'Asset')
             ->addValidation(new SizeValidation(1, 10))
             ->setItemsValidations([
-                new AssetFileSizeValidation(\null, 10485760),
+                new AssetFileSizeValidation(null, 10485760),
                 new AssetImageDimensionsValidation(50, 1000, 50, 1000),
                 new LinkMimetypeGroupValidation(['image']),
             ])

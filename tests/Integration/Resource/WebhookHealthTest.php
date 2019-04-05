@@ -34,7 +34,7 @@ class WebhookHealthTest extends BaseTestCase
         $class = new \ReflectionClass(WebhookHealth::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(\true);
+        $constructor->setAccessible(true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();

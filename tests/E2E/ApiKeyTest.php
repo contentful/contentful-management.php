@@ -161,7 +161,7 @@ class ApiKeyTest extends BaseTestCase
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $limit = 5;
-        while (\true) {
+        while (true) {
             $query = (new Query())
                 ->setLimit($limit)
             ;

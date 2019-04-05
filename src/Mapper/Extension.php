@@ -65,7 +65,7 @@ class Extension extends BaseMapper
         if ('Array' === $data['type']) {
             $secondParam = [
                 $data['items']['type'],
-                $data['items']['linkType'] ?? \null,
+                $data['items']['linkType'] ?? null,
             ];
         }
 
@@ -83,9 +83,9 @@ class Extension extends BaseMapper
     protected function buildParameter(array $data): Parameter
     {
         return (new Parameter($data['id'], $data['name'], $data['type']))
-            ->setDescription($data['description'] ?? \null)
-            ->setRequired($data['required'] ?? \false)
-            ->setDefault($data['default'] ?? \null)
+            ->setDescription($data['description'] ?? null)
+            ->setRequired($data['required'] ?? false)
+            ->setDefault($data['default'] ?? null)
             ->setOptions($data['options'] ?? [])
             ->setLabels($data['labels'] ?? [])
         ;

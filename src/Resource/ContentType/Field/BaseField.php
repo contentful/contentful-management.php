@@ -39,28 +39,28 @@ abstract class BaseField implements FieldInterface
      *
      * @var bool
      */
-    protected $required = \false;
+    protected $required = false;
 
     /**
      * Describes whether the Field is localized.
      *
      * @var bool
      */
-    protected $localized = \false;
+    protected $localized = false;
 
     /**
      * Describes whether the Field is disabled.
      *
      * @var bool
      */
-    protected $disabled = \false;
+    protected $disabled = false;
 
     /**
      * True if the field is omitted from CDA responses.
      *
      * @var bool
      */
-    protected $omitted = \false;
+    protected $omitted = false;
 
     /**
      * @var ValidationInterface[]
@@ -112,7 +112,7 @@ abstract class BaseField implements FieldInterface
      */
     public function isRequired(): bool
     {
-        return \true === $this->required;
+        return true === $this->required;
     }
 
     /**
@@ -132,7 +132,7 @@ abstract class BaseField implements FieldInterface
      */
     public function isLocalized(): bool
     {
-        return \true === $this->localized;
+        return true === $this->localized;
     }
 
     /**
@@ -152,7 +152,7 @@ abstract class BaseField implements FieldInterface
      */
     public function isDisabled(): bool
     {
-        return \true === $this->disabled;
+        return true === $this->disabled;
     }
 
     /**
@@ -172,7 +172,7 @@ abstract class BaseField implements FieldInterface
      */
     public function isOmitted(): bool
     {
-        return \true === $this->omitted;
+        return true === $this->omitted;
     }
 
     /**
@@ -216,7 +216,7 @@ abstract class BaseField implements FieldInterface
      */
     public function addValidation(ValidationInterface $validation)
     {
-        if (!\in_array($this->getType(), $validation->getValidFieldTypes(), \true)) {
+        if (!\in_array($this->getType(), $validation->getValidFieldTypes(), true)) {
             throw new \RuntimeException(\sprintf(
                 'The validation "%s" can not be used for fields of type "%s".',
                 \get_class($validation),
@@ -240,19 +240,19 @@ abstract class BaseField implements FieldInterface
             'type' => $this->getType(),
         ];
 
-        if (\null !== $this->required) {
+        if (null !== $this->required) {
             $data['required'] = $this->required;
         }
 
-        if (\null !== $this->localized) {
+        if (null !== $this->localized) {
             $data['localized'] = $this->localized;
         }
 
-        if (\null !== $this->disabled) {
+        if (null !== $this->disabled) {
             $data['disabled'] = $this->disabled;
         }
 
-        if (\null !== $this->omitted) {
+        if (null !== $this->omitted) {
             $data['omitted'] = $this->omitted;
         }
 

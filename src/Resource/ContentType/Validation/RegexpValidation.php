@@ -38,7 +38,7 @@ class RegexpValidation implements ValidationInterface
      * @param string|null $pattern
      * @param string|null $flags
      */
-    public function __construct(string $pattern = \null, string $flags = \null)
+    public function __construct(string $pattern = null, string $flags = null)
     {
         $this->pattern = $pattern;
         $this->flags = $flags;
@@ -55,7 +55,7 @@ class RegexpValidation implements ValidationInterface
     /**
      * @param string|null $flags
      */
-    public function setFlags(string $flags = \null)
+    public function setFlags(string $flags = null)
     {
         $this->flags = $flags;
     }
@@ -71,7 +71,7 @@ class RegexpValidation implements ValidationInterface
     /**
      * @param string|null $pattern
      */
-    public function setPattern(string $pattern = \null)
+    public function setPattern(string $pattern = null)
     {
         $this->pattern = $pattern;
     }
@@ -90,10 +90,10 @@ class RegexpValidation implements ValidationInterface
     public function jsonSerialize(): array
     {
         $data = [];
-        if (\null !== $this->pattern) {
+        if (null !== $this->pattern) {
             $data['pattern'] = $this->pattern;
         }
-        if (\null !== $this->flags) {
+        if (null !== $this->flags) {
             $data['flags'] = $this->flags;
         }
 

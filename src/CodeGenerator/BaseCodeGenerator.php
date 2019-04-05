@@ -54,7 +54,7 @@ abstract class BaseCodeGenerator
     protected function render(Node $node): string
     {
         $prettyPrinter = new StandardPrettyPrinter([
-            'shortArraySyntax' => \true,
+            'shortArraySyntax' => true,
         ]);
 
         $code = $prettyPrinter->prettyPrintFile([$node]);
@@ -100,7 +100,7 @@ abstract class BaseCodeGenerator
         });
 
         return \array_map(function ($class): Node\Stmt\Use_ {
-            $alias = \is_array($class) ? $class['alias'] : \null;
+            $alias = \is_array($class) ? $class['alias'] : null;
             $className = \is_array($class) ? $class['class'] : $class;
 
             return new Node\Stmt\Use_(

@@ -37,7 +37,7 @@ class AssetFileSizeValidation implements ValidationInterface
      * @param int|null $min
      * @param int|null $max
      */
-    public function __construct($min = \null, $max = \null)
+    public function __construct($min = null, $max = null)
     {
         $this->min = $min;
         $this->max = $max;
@@ -56,7 +56,7 @@ class AssetFileSizeValidation implements ValidationInterface
      *
      * @return static
      */
-    public function setMin(int $min = \null)
+    public function setMin(int $min = null)
     {
         $this->min = $min;
 
@@ -76,7 +76,7 @@ class AssetFileSizeValidation implements ValidationInterface
      *
      * @return static
      */
-    public function setMax(int $max = \null)
+    public function setMax(int $max = null)
     {
         $this->max = $max;
 
@@ -97,10 +97,10 @@ class AssetFileSizeValidation implements ValidationInterface
     public function jsonSerialize(): array
     {
         $data = [];
-        if (\null !== $this->min) {
+        if (null !== $this->min) {
             $data['min'] = $this->min;
         }
-        if (\null !== $this->max) {
+        if (null !== $this->max) {
             $data['max'] = $this->max;
         }
 

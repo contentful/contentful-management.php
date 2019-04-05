@@ -255,7 +255,7 @@ class WebhookTest extends BaseTestCase
             'call' => $webhookCallId,
         ], $webhookCall->asUriParameters());
         $this->assertLink($webhookCall->getId(), 'WebhookCallDetails', $webhookCall->asLink());
-        $requestPayload = guzzle_json_decode((string) $webhookCall->getRequest()->getBody(), \true);
+        $requestPayload = guzzle_json_decode((string) $webhookCall->getRequest()->getBody(), true);
         $this->assertSame('Dwight Schrute', $requestPayload['fields']['title']['en-US']);
         $this->assertSame('ContentManagement.Asset.create', $webhookCall->getRequest()->getHeaders()['X-Contentful-Topic'][0]);
         $this->assertSame('ClientError', $webhookCall->getError());

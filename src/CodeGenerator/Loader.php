@@ -58,7 +58,7 @@ class Loader extends BaseCodeGenerator
     private function generateMatcherClosure(array $contentTypes, string $namespace): Node\Expr\Closure
     {
         return new Node\Expr\Closure([
-            'params' => [new Node\Param('data', \null, 'array')],
+            'params' => [new Node\Param('data', null, 'array')],
             'stmts' => [
                 new Node\Stmt\Switch_(
                     $this->generateSwitchVar(),

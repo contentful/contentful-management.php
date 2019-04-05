@@ -43,7 +43,7 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
     /**
      * @var bool
      */
-    protected $isReadOnly = \false;
+    protected $isReadOnly = false;
 
     /**
      * @var string|null
@@ -56,7 +56,7 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
      * @param string $name
      * @param bool   $isReadOnly
      */
-    public function __construct(string $name = '', bool $isReadOnly = \false)
+    public function __construct(string $name = '', bool $isReadOnly = false)
     {
         $this->name = $name;
         $this->isReadOnly = $isReadOnly;
@@ -82,7 +82,7 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
                 ? ['content_management_read']
                 : ['content_management_manage'],
             'token' => $this->token,
-            'revokedAt' => $this->revokedAt ? (string) $this->revokedAt : \null,
+            'revokedAt' => $this->revokedAt ? (string) $this->revokedAt : null,
         ];
     }
 

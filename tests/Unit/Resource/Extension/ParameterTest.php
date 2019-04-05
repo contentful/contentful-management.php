@@ -28,7 +28,7 @@ class ParameterTest extends BaseTestCase
         $this->assertSame('Some text', $parameter->getDescription());
 
         $this->assertFalse($parameter->isRequired());
-        $parameter->setRequired(\true);
+        $parameter->setRequired(true);
         $this->assertTrue($parameter->isRequired());
 
         $parameter->setDefault('Some value');
@@ -54,7 +54,7 @@ class ParameterTest extends BaseTestCase
     {
         $parameter = (new Parameter('someId', 'Name', 'Symbol'))
             ->setDescription('Some description')
-            ->setRequired(\true)
+            ->setRequired(true)
             ->setDefault('Some default')
             ->setOptions(['one', 'two'])
             ->setLabels(['some' => 'value', 'another' => 'something'])

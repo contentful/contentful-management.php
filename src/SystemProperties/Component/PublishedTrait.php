@@ -67,21 +67,21 @@ trait PublishedTrait
     protected function jsonSerializePublished(): array
     {
         return \array_filter(\array_merge($this->jsonSerializeEdited(), [
-            'firstPublishedAt' => \null !== $this->firstPublishedAt
+            'firstPublishedAt' => null !== $this->firstPublishedAt
                 ? $this->firstPublishedAt->jsonSerialize()
-                : \null,
-            'publishedCounter' => \null !== $this->publishedCounter
+                : null,
+            'publishedCounter' => null !== $this->publishedCounter
                 ? $this->publishedCounter
-                : \null,
-            'publishedAt' => \null !== $this->publishedAt
+                : null,
+            'publishedAt' => null !== $this->publishedAt
                 ? $this->publishedAt->jsonSerialize()
-                : \null,
-            'publishedBy' => \null !== $this->publishedBy
+                : null,
+            'publishedBy' => null !== $this->publishedBy
                 ? $this->publishedBy->jsonSerialize()
-                : \null,
-            'publishedVersion' => \null !== $this->publishedVersion
+                : null,
+            'publishedVersion' => null !== $this->publishedVersion
                 ? $this->publishedVersion
-                : \null,
+                : null,
         ]));
     }
 
@@ -130,7 +130,7 @@ trait PublishedTrait
      */
     public function isDraft(): bool
     {
-        return \null === $this->publishedVersion;
+        return null === $this->publishedVersion;
     }
 
     /**
@@ -138,7 +138,7 @@ trait PublishedTrait
      */
     public function isPublished(): bool
     {
-        return \null !== $this->publishedVersion;
+        return null !== $this->publishedVersion;
     }
 
     /**
@@ -148,6 +148,6 @@ trait PublishedTrait
     {
         // The act of publishing an entity increases its version by 1, so any entry which has
         // 2 versions higher or more than the publishedVersion has unpublished changes.
-        return \null !== $this->publishedVersion && $this->version > $this->publishedVersion + 1;
+        return null !== $this->publishedVersion && $this->version > $this->publishedVersion + 1;
     }
 }

@@ -57,7 +57,7 @@ class Role extends BaseMapper
         return new Policy(
             $data['effect'],
             $data['actions'],
-            isset($data['constraint']) ? $this->mapConstraint($data['constraint']) : \null
+            isset($data['constraint']) ? $this->mapConstraint($data['constraint']) : null
         );
     }
 
@@ -141,7 +141,7 @@ class Role extends BaseMapper
     protected function convertPermission($permission)
     {
         if ($permission === []) {
-            return \null;
+            return null;
         }
 
         if ($permission === ['read']) {

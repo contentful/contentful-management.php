@@ -25,8 +25,8 @@ class DateRangeValidation extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         return new ResourceClass(
-            $data['dateRange']['min'] ?? \null,
-            $data['dateRange']['max'] ?? \null
+            $data['dateRange']['min'] ?? null,
+            $data['dateRange']['max'] ?? null
         );
     }
 }

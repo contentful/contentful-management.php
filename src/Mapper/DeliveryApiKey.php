@@ -37,7 +37,7 @@ class DeliveryApiKey extends BaseMapper
             'environments' => $this->buildEnvironments($data['environments'] ?? []),
             'previewApiKey' => isset($data['preview_api_key'])
                 ? new Link($data['preview_api_key']['sys']['id'], 'PreviewApiKey')
-                : \null,
+                : null,
         ]);
 
         return $deliveryApiKey;

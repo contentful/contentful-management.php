@@ -82,8 +82,8 @@ class Client extends BaseClient
         parent::__construct(
             $accessToken,
             $options['host'] ?? self::URI_MANAGEMENT,
-            $options['logger'] ?? \null,
-            $options['guzzle'] ?? \null
+            $options['logger'] ?? null,
+            $options['guzzle'] ?? null
         );
 
         $this->builder = new ResourceBuilder();
@@ -109,7 +109,7 @@ class Client extends BaseClient
     {
         $response = $this->callApi($method, \rtrim($uri, '/'), $options);
 
-        $resource = $options['resource'] ?? \null;
+        $resource = $options['resource'] ?? null;
 
         if ($response) {
             /** @var ResourceInterface|ResourceArray|null $resource */
@@ -162,7 +162,7 @@ class Client extends BaseClient
             'resource' => $resource,
             'body' => $resource->asRequestBody(),
             'headers' => $resource->getHeadersForCreation(),
-            'host' => $config['host'] ?? \null,
+            'host' => $config['host'] ?? null,
         ]);
     }
 
@@ -187,7 +187,7 @@ class Client extends BaseClient
         $uri = $this->requestUriBuilder->build($config, $resource->asUriParameters());
 
         $options = \array_merge($options, [
-            'host' => $config['host'] ?? \null,
+            'host' => $config['host'] ?? null,
             'resource' => $resource,
         ]);
 
@@ -207,8 +207,8 @@ class Client extends BaseClient
     public function fetchResource(
         string $class,
         array $parameters,
-        Query $query = \null,
-        ResourceInterface $resource = \null
+        Query $query = null,
+        ResourceInterface $resource = null
     ) {
         $config = $this->configuration->getConfigFor($class);
         $uri = $this->requestUriBuilder->build($config, $parameters);
@@ -216,7 +216,7 @@ class Client extends BaseClient
         /** @var ResourceInterface|ResourceArray $resource */
         $resource = $this->request('GET', $uri, [
             'resource' => $resource,
-            'host' => $config['host'] ?? \null,
+            'host' => $config['host'] ?? null,
             'query' => $query ? $query->getQueryData() : [],
         ]);
 

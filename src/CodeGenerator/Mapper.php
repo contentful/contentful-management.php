@@ -41,8 +41,8 @@ class Mapper extends BaseCodeGenerator
     private function setDefaultUses()
     {
         $this->uses = [
-            'link' => \false,
-            'date' => \false,
+            'link' => false,
+            'date' => false,
         ];
     }
 
@@ -65,8 +65,8 @@ class Mapper extends BaseCodeGenerator
             $namespace.'\\'.$className,
             BaseMapper::class,
             ['class' => SystemProperties::class, 'alias' => 'SystemProperties'],
-            $this->uses['date'] ? DateTimeImmutable::class : \null,
-            $this->uses['link'] ? Link::class : \null,
+            $this->uses['date'] ? DateTimeImmutable::class : null,
+            $this->uses['link'] ? Link::class : null,
         ]);
 
         $statements[] = $class;
@@ -133,7 +133,7 @@ class Mapper extends BaseCodeGenerator
                 'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
                 'params' => [
                     new Node\Param('resource'),
-                    new Node\Param('data', \null, 'array'),
+                    new Node\Param('data', null, 'array'),
                 ],
                 'returnType' => new Node\Name($className),
                 'stmts' => [
@@ -212,7 +212,7 @@ class Mapper extends BaseCodeGenerator
                     ]
                 ),
                 new Node\Scalar\String_('fields'),
-                \false,
+                false,
                 // This is actually a hack for forcing arrays
                 // to be displayed on multiple lines. Oh, well...
                 $this->generateCommentAttributes('// Delegate the formatting of all fields')
@@ -244,7 +244,7 @@ class Mapper extends BaseCodeGenerator
             [
                 'flags' => Node\Stmt\Class_::MODIFIER_PRIVATE,
                 'params' => [
-                    new Node\Param('data', \null, 'array'),
+                    new Node\Param('data', null, 'array'),
                 ],
                 'returnType' => new Node\Name('array'),
                 'stmts' => [
@@ -317,14 +317,14 @@ class Mapper extends BaseCodeGenerator
      */
     private function generateArrayLinkFieldAssignment(ArrayField $field): array
     {
-        $this->uses['link'] = \true;
+        $this->uses['link'] = true;
 
         return $this->generateForeachAssignment($field, new Node\Expr\FuncCall(
             new Node\Name('\\array_map'),
             [
                 new Node\Arg(
                     new Node\Expr\Closure([
-                        'params' => [new Node\Param('link', \null, 'array')],
+                        'params' => [new Node\Param('link', null, 'array')],
                         'returnType' => new Node\Name('Link'),
                         'stmts' => [
                             new Node\Stmt\Return_($this->generateNewLinkStatement('link')),
@@ -343,7 +343,7 @@ class Mapper extends BaseCodeGenerator
      */
     private function generateLinkFieldAssignment(LinkField $field): array
     {
-        $this->uses['link'] = \true;
+        $this->uses['link'] = true;
 
         return $this->generateForeachAssignment(
             $field,
@@ -367,7 +367,7 @@ class Mapper extends BaseCodeGenerator
      */
     private function generateDateFieldAssignment(DateField $field): array
     {
-        $this->uses['date'] = \true;
+        $this->uses['date'] = true;
 
         return $this->generateForeachAssignment(
             $field,

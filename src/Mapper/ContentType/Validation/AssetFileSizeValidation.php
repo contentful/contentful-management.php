@@ -25,8 +25,8 @@ class AssetFileSizeValidation extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         return new ResourceClass(
-            $data['assetFileSize']['min'] ?? \null,
-            $data['assetFileSize']['max'] ?? \null
+            $data['assetFileSize']['min'] ?? null,
+            $data['assetFileSize']['max'] ?? null
         );
     }
 }

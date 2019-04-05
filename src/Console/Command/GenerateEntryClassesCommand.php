@@ -224,7 +224,7 @@ class GenerateEntryClassesCommand extends Command
     private function writeFile(string $path, string $content): bool
     {
         if (!\is_dir(\dirname($path))) {
-            \mkdir(\dirname($path), 0777, \true);
+            \mkdir(\dirname($path), 0777, true);
         }
 
         return (bool) \file_put_contents($path, $content);

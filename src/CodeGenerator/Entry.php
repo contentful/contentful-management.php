@@ -42,10 +42,10 @@ class Entry extends BaseCodeGenerator
     private function setDefaultUses()
     {
         $this->uses = [
-            'asset' => \false,
-            'resource_interface' => \false,
-            'link' => \false,
-            'date' => \false,
+            'asset' => false,
+            'resource_interface' => false,
+            'link' => false,
+            'date' => false,
         ];
     }
 
@@ -64,10 +64,10 @@ class Entry extends BaseCodeGenerator
         /** @var Stmt[] $statements */
         $statements = $this->generateUses([
             EntryResource::class,
-            $this->uses['date'] ? DateTimeImmutable::class : \null,
-            $this->uses['asset'] ? Asset::class : \null,
-            $this->uses['link'] ? Link::class : \null,
-            $this->uses['resource_interface'] ? ResourceInterface::class : \null,
+            $this->uses['date'] ? DateTimeImmutable::class : null,
+            $this->uses['asset'] ? Asset::class : null,
+            $this->uses['link'] ? Link::class : null,
+            $this->uses['resource_interface'] ? ResourceInterface::class : null,
         ]);
 
         $statements[] = $class;
@@ -117,10 +117,10 @@ class Entry extends BaseCodeGenerator
         foreach ($contentType->getFields() as $field) {
             $type = $this->getFieldType($field);
             if ('Link' === $type || 'Link[]' === $type) {
-                $this->uses['link'] = \true;
+                $this->uses['link'] = true;
             }
             if ('DateTimeImmutable' === $type) {
-                $this->uses['date'] = \true;
+                $this->uses['date'] = true;
             }
 
             $statements[] = $this->generateGetter($field, $type);
@@ -245,8 +245,8 @@ class Entry extends BaseCodeGenerator
     private function generateSetter(FieldInterface $field, string $type): ClassMethod
     {
         $methodType = 'mixed' === $type
-            ? \null
-            : (\false !== \mb_strpos($type, '[]') ? 'array' : $type);
+            ? null
+            : (false !== \mb_strpos($type, '[]') ? 'array' : $type);
 
         return new ClassMethod(
             'set'.$this->convertToStudlyCaps($field->getId()),
@@ -382,7 +382,7 @@ class Entry extends BaseCodeGenerator
                         'getId'
                     ),
                     new Node\Scalar\String_('space'),
-                    \false,
+                    false,
                     $this->generateCommentAttributes('// Representation of the URI parameters')
                 ),
                 new Node\Expr\ArrayItem(
@@ -438,7 +438,7 @@ class Entry extends BaseCodeGenerator
                  * @return %s[]
                  */',
                 $field->getId(),
-                \false !== \mb_strpos($returnTypes, '|') ? '('.$returnTypes.')' : $returnTypes
+                false !== \mb_strpos($returnTypes, '|') ? '('.$returnTypes.')' : $returnTypes
             ))
         );
     }
@@ -456,17 +456,17 @@ class Entry extends BaseCodeGenerator
     private function determineLinkReturnType(string $linkType, array $validations): string
     {
         $returnTypes = ['Asset'];
-        $usesAsset = \true;
-        $usesResource = \false;
+        $usesAsset = true;
+        $usesResource = false;
 
         if ('Entry' === $linkType) {
             $returnTypes = ['ResourceInterface'];
-            $usesAsset = \false;
-            $usesResource = \true;
+            $usesAsset = false;
+            $usesResource = true;
 
             foreach ($validations as $validation) {
                 if ($validation instanceof LinkContentTypeValidation) {
-                    $usesResource = \false;
+                    $usesResource = false;
                     $returnTypes = \array_map(function (string $contentType) {
                         return $this->convertToStudlyCaps($contentType);
                     }, $validation->getContentTypes());
@@ -477,10 +477,10 @@ class Entry extends BaseCodeGenerator
         }
 
         if ($usesAsset) {
-            $this->uses['asset'] = \true;
+            $this->uses['asset'] = true;
         }
         if ($usesResource) {
-            $this->uses['resource_interface'] = \true;
+            $this->uses['resource_interface'] = true;
         }
 
         return \implode('|', $returnTypes);
@@ -493,7 +493,7 @@ class Entry extends BaseCodeGenerator
     {
         return new Node\Expr\Closure([
             'params' => [
-                new Node\Param('link', \null, 'Link'),
+                new Node\Param('link', null, 'Link'),
             ],
             'stmts' => [
                 new Node\Stmt\Return_(
