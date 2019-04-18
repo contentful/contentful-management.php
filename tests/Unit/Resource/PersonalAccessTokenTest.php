@@ -23,7 +23,7 @@ class PersonalAccessTokenTest extends BaseTestCase
         $personalAccessToken->setName('Test token');
         $this->assertSame('Test token', $personalAccessToken->getName());
 
-        $personalAccessToken->setReadOnly(\true);
+        $personalAccessToken->setReadOnly(true);
         $this->assertTrue($personalAccessToken->isReadOnly());
 
         $this->assertNull($personalAccessToken->getRevokedAt());
@@ -43,7 +43,7 @@ class PersonalAccessTokenTest extends BaseTestCase
 
     public function testJsonSerialize()
     {
-        $personalAccessToken = new PersonalAccessToken('Test token', \true);
+        $personalAccessToken = new PersonalAccessToken('Test token', true);
 
         $this->assertJsonFixtureEqualsJsonObject('Unit/Resource/personal_access_token.json', $personalAccessToken);
     }

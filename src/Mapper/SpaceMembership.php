@@ -32,7 +32,7 @@ class SpaceMembership extends BaseMapper
         $spaceMembership = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'admin' => $data['admin'],
-            'email' => $data['email'] ?? \null,
+            'email' => $data['email'] ?? null,
             'roles' => \array_map(function (array $role): Link {
                 return new Link($role['sys']['id'], 'Role');
             }, $data['roles'] ?? []),

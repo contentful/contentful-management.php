@@ -99,7 +99,7 @@ class ExtensionTest extends BaseTestCase
             ->addNewFieldType('Array', ['Symbol'])
             ->addNewFieldType('Link', ['Entry'])
             ->setSource($source)
-            ->setSidebar(\false)
+            ->setSidebar(false)
             ->setInstallationParameters([
                 new Parameter('name', 'Name', 'Symbol'),
             ])

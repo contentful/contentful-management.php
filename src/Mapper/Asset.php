@@ -38,9 +38,9 @@ class Asset extends BaseMapper
         /** @var ResourceClass $asset */
         $asset = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
-            'title' => $fields['title'] ?? \null,
-            'description' => $fields['description'] ?? \null,
-            'file' => isset($fields['file']) ? \array_map([$this, 'buildFile'], $fields['file']) : \null,
+            'title' => $fields['title'] ?? null,
+            'description' => $fields['description'] ?? null,
+            'file' => isset($fields['file']) ? \array_map([$this, 'buildFile'], $fields['file']) : null,
         ]);
 
         return $asset;

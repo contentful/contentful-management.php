@@ -69,7 +69,7 @@ trait WebhookProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
      */
-    public function getCalls(Query $query = \null): ResourceArray
+    public function getCalls(Query $query = null): ResourceArray
     {
         return $this->client->getWebhookCalls(
             $this->getSpaceId(),

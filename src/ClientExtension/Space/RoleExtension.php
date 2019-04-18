@@ -53,7 +53,7 @@ trait RoleExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/roles-collection
      */
-    public function getRoles(string $spaceId, Query $query = \null): ResourceArray
+    public function getRoles(string $spaceId, Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,

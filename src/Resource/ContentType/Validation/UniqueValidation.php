@@ -44,7 +44,7 @@ class UniqueValidation implements ValidationInterface
     public function jsonSerialize(): array
     {
         return [
-            'unique' => \true,
+            'unique' => true,
         ];
     }
 }

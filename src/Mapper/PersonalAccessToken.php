@@ -32,9 +32,9 @@ class PersonalAccessToken extends BaseMapper
         $personalAccessToken = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'name' => $data['name'],
-            'isReadOnly' => !\in_array('content_management_manage', $data['scopes'], \true),
-            'revokedAt' => isset($data['revokedAt']) ? new DateTimeImmutable($data['revokedAt']) : \null,
-            'token' => $data['token'] ?? \null,
+            'isReadOnly' => !\in_array('content_management_manage', $data['scopes'], true),
+            'revokedAt' => isset($data['revokedAt']) ? new DateTimeImmutable($data['revokedAt']) : null,
+            'token' => $data['token'] ?? null,
         ]);
 
         return $personalAccessToken;

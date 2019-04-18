@@ -34,7 +34,7 @@ trait OrganizationExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/organizations
      */
-    public function getOrganizations(Query $query = \null): ResourceArray
+    public function getOrganizations(Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [], $query);
     }

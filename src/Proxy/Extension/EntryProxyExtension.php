@@ -76,7 +76,7 @@ trait EntryProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
      */
-    public function getSnapshots(Query $query = \null): ResourceArray
+    public function getSnapshots(Query $query = null): ResourceArray
     {
         return $this->client->getEntrySnapshots(
             $this->getSpaceId(),

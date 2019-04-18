@@ -38,10 +38,10 @@ class DateRangeValidationTest extends BaseTestCase
         $validation->setMax('2020-12-24');
         $this->assertSame('2020-12-24', $validation->getMax());
 
-        $validation->setMin(\null);
+        $validation->setMin(null);
         $this->assertNull($validation->getMin());
 
-        $validation->setMax(\null);
+        $validation->setMax(null);
         $this->assertNull($validation->getMax());
     }
 }

@@ -29,7 +29,7 @@ class ClientTest extends BaseTestCase
         $client = $this->getClient();
 
         $property = (new \ReflectionClass(BaseClient::class))->getProperty('userAgentGenerator');
-        $property->setAccessible(\true);
+        $property->setAccessible(true);
         $generator = $property->getValue($client);
 
         // PHP doesn't support the "g" modifier

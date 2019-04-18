@@ -62,7 +62,7 @@ class Policy implements \JsonSerializable
      * @param string|string[]          $actions    Either "all" or an array
      * @param ConstraintInterface|null $constraint
      */
-    public function __construct(string $effect, $actions = [], ConstraintInterface $constraint = \null)
+    public function __construct(string $effect, $actions = [], ConstraintInterface $constraint = null)
     {
         $this->setEffect($effect);
         $this->setActions($actions);
@@ -84,7 +84,7 @@ class Policy implements \JsonSerializable
      */
     public function setEffect(string $effect)
     {
-        if (!\in_array($effect, self::EFFECTS, \true)) {
+        if (!\in_array($effect, self::EFFECTS, true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Parameter "$effect" in "Policy::setEffect()" must have either the value "allow" or "deny", "%s" given.',
                 $effect
@@ -140,7 +140,7 @@ class Policy implements \JsonSerializable
             );
         }
 
-        if (!\in_array($action, self::ACTIONS, \true)) {
+        if (!\in_array($action, self::ACTIONS, true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Argument "$action" in "Policy::addAction()" must be one of these values: %s.',
                 \implode(', ', self::ACTIONS)
@@ -166,7 +166,7 @@ class Policy implements \JsonSerializable
      *
      * @return static
      */
-    public function setConstraint(ConstraintInterface $constraint = \null)
+    public function setConstraint(ConstraintInterface $constraint = null)
     {
         $this->constraint = $constraint;
 

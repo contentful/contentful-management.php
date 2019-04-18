@@ -24,7 +24,7 @@ class SpaceMembershipTest extends BaseTestCase
         $spaceMembership->setEmail('php-cma-sdk-tests-eb2a4f5@contentful.com');
         $this->assertSame('php-cma-sdk-tests-eb2a4f5@contentful.com', $spaceMembership->getEmail());
 
-        $spaceMembership->setAdmin(\true);
+        $spaceMembership->setAdmin(true);
         $this->assertTrue($spaceMembership->isAdmin());
 
         $this->assertEmpty($spaceMembership->getRoles());
@@ -54,7 +54,7 @@ class SpaceMembershipTest extends BaseTestCase
     {
         $spaceMembership = (new SpaceMembership())
             ->setEmail('php-cma-sdk-tests-eb2a4f5@contentful.com')
-            ->setAdmin(\false)
+            ->setAdmin(false)
             ->addRole(new Link('6khUMmsfVslYd7tRcThTgE', 'Role'))
         ;
 

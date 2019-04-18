@@ -25,10 +25,10 @@ class AssetImageDimensionsValidation extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         return new ResourceClass(
-            $data['assetImageDimensions']['width']['min'] ?? \null,
-            $data['assetImageDimensions']['width']['max'] ?? \null,
-            $data['assetImageDimensions']['height']['min'] ?? \null,
-            $data['assetImageDimensions']['height']['max'] ?? \null
+            $data['assetImageDimensions']['width']['min'] ?? null,
+            $data['assetImageDimensions']['width']['max'] ?? null,
+            $data['assetImageDimensions']['height']['min'] ?? null,
+            $data['assetImageDimensions']['height']['max'] ?? null
         );
     }
 }

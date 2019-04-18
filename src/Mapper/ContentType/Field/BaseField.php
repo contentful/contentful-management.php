@@ -51,10 +51,10 @@ abstract class BaseField extends BaseMapper
         $field = $this->hydrator->hydrate($fieldTypes[$type], [
             'id' => $data['id'],
             'name' => $data['name'],
-            'required' => $data['required'] ?? \null,
-            'localized' => $data['localized'] ?? \null,
-            'disabled' => $data['disabled'] ?? \null,
-            'omitted' => $data['omitted'] ?? \null,
+            'required' => $data['required'] ?? null,
+            'localized' => $data['localized'] ?? null,
+            'disabled' => $data['disabled'] ?? null,
+            'omitted' => $data['omitted'] ?? null,
             'validations' => isset($data['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['validations'])
                 : [],
@@ -74,7 +74,7 @@ abstract class BaseField extends BaseMapper
 
         /** @var ValidationInterface $validation */
         $validation = $this->builder->getMapper($fqcn)
-            ->map(\null, $data)
+            ->map(null, $data)
         ;
 
         return $validation;

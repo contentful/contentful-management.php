@@ -37,7 +37,7 @@ class DateRangeValidation implements ValidationInterface
      * @param string|null $min
      * @param string|null $max
      */
-    public function __construct(string $min = \null, string $max = \null)
+    public function __construct(string $min = null, string $max = null)
     {
         $this->min = $min;
         $this->max = $max;
@@ -56,7 +56,7 @@ class DateRangeValidation implements ValidationInterface
      *
      * @return static
      */
-    public function setMin(string $min = \null)
+    public function setMin(string $min = null)
     {
         $this->min = $min;
 
@@ -76,7 +76,7 @@ class DateRangeValidation implements ValidationInterface
      *
      * @return static
      */
-    public function setMax(string $max = \null)
+    public function setMax(string $max = null)
     {
         $this->max = $max;
 
@@ -97,10 +97,10 @@ class DateRangeValidation implements ValidationInterface
     public function jsonSerialize(): array
     {
         $data = [];
-        if (\null !== $this->min) {
+        if (null !== $this->min) {
             $data['min'] = $this->min;
         }
-        if (\null !== $this->max) {
+        if (null !== $this->max) {
             $data['max'] = $this->max;
         }
 

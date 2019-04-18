@@ -94,7 +94,7 @@ class SpaceMembershipTest extends BaseTestCase
         $spaceMembership = new SpaceMembership();
         $spaceMembership
             ->setEmail('php-cma-sdk-tests-eb2a4f5@contentful.com')
-            ->setAdmin(\true)
+            ->setAdmin(true)
         ;
 
         $proxy->create($spaceMembership);
@@ -108,11 +108,11 @@ class SpaceMembershipTest extends BaseTestCase
 
         /** @var Role $role */
         $role = \array_reduce($proxy->getRoles()->getItems(), function ($carry, Role $role) {
-            return $carry ?: ('Developer' === $role->getName() ? $role : \null);
+            return $carry ?: ('Developer' === $role->getName() ? $role : null);
         });
 
         $spaceMembership
-            ->setAdmin(\false)
+            ->setAdmin(false)
             ->addRole($role->asLink())
         ;
 

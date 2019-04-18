@@ -107,7 +107,7 @@ class EnvironmentTest extends BaseTestCase
         // Limit is used because repeated requests will be recorded
         // and the same response will be returned
         $limit = 5;
-        while (\true) {
+        while (true) {
             $query = (new Query())
                 ->setLimit($limit)
             ;
@@ -152,7 +152,7 @@ class EnvironmentTest extends BaseTestCase
             } catch (VersionMismatchException $exception) {
                 $environment = $proxy->getEnvironment($environmentId);
             }
-        } while (\true);
+        } while (true);
         $this->assertSame($environmentId, $environment->getId());
         $this->assertSame('CI Environment', $environment->getName());
 

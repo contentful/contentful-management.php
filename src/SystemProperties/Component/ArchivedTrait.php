@@ -86,6 +86,6 @@ trait ArchivedTrait
      */
     public function isArchived(): bool
     {
-        return \null !== $this->archivedVersion;
+        return null !== $this->archivedVersion;
     }
 }

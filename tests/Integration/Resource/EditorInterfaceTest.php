@@ -34,7 +34,7 @@ class EditorInterfaceTest extends BaseTestCase
         $class = new \ReflectionClass(EditorInterface::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(\true);
+        $constructor->setAccessible(true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();

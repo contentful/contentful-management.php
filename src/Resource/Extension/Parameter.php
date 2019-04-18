@@ -36,7 +36,7 @@ class Parameter implements \JsonSerializable
     /**
      * @var bool
      */
-    protected $required = \false;
+    protected $required = false;
 
     /**
      * @var string|int|bool
@@ -131,7 +131,7 @@ class Parameter implements \JsonSerializable
      *
      * @return static
      */
-    public function setDescription(string $description = \null)
+    public function setDescription(string $description = null)
     {
         $this->description = $description;
 
@@ -153,7 +153,7 @@ class Parameter implements \JsonSerializable
      */
     public function setType(string $type)
     {
-        if (!\in_array($type, self::$validTypes, \true)) {
+        if (!\in_array($type, self::$validTypes, true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Invalid type "%s" given for parameter with ID "%s".',
                 $type,
@@ -261,7 +261,7 @@ class Parameter implements \JsonSerializable
             'options' => $this->options,
             'labels' => $this->labels,
         ], function ($item) {
-            return \null !== $item && [] !== $item;
+            return null !== $item && [] !== $item;
         });
     }
 }

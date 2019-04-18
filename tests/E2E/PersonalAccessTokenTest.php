@@ -25,7 +25,7 @@ class PersonalAccessTokenTest extends BaseTestCase
     {
         $client = $this->getClient();
 
-        $personalAccessToken = new PersonalAccessToken('Test access token', \true);
+        $personalAccessToken = new PersonalAccessToken('Test access token', true);
         $client->create($personalAccessToken);
 
         $this->assertNotNull($personalAccessToken->getToken());

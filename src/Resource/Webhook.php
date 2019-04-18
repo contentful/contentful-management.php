@@ -225,7 +225,7 @@ class Webhook extends BaseResource implements CreatableInterface
      *
      * @return static
      */
-    public function setHttpBasicUsername(string $httpBasicUsername = \null)
+    public function setHttpBasicUsername(string $httpBasicUsername = null)
     {
         $this->httpBasicUsername = $httpBasicUsername;
 
@@ -245,7 +245,7 @@ class Webhook extends BaseResource implements CreatableInterface
      *
      * @return static
      */
-    public function setHttpBasicPassword(string $httpBasicPassword = \null)
+    public function setHttpBasicPassword(string $httpBasicPassword = null)
     {
         $this->httpBasicPassword = $httpBasicPassword;
 
@@ -383,7 +383,7 @@ class Webhook extends BaseResource implements CreatableInterface
      */
     public function hasTopic(string $topic): bool
     {
-        return \in_array($topic, $this->topics, \true);
+        return \in_array($topic, $this->topics, true);
     }
 
     /**
@@ -395,8 +395,8 @@ class Webhook extends BaseResource implements CreatableInterface
      */
     public function removeTopic(string $topic)
     {
-        $key = \array_search($topic, $this->topics, \true);
-        if (\false === $key) {
+        $key = \array_search($topic, $this->topics, true);
+        if (false === $key) {
             throw new \InvalidArgumentException(\sprintf(
                 'Invalid topic "%s" provided.',
                 $topic

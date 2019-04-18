@@ -34,7 +34,7 @@ class UserTest extends BaseTestCase
         $class = new \ReflectionClass(User::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(\true);
+        $constructor->setAccessible(true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();

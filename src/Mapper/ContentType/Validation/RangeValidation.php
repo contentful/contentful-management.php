@@ -25,8 +25,8 @@ class RangeValidation extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         return new ResourceClass(
-            $data['range']['min'] ?? \null,
-            $data['range']['max'] ?? \null
+            $data['range']['min'] ?? null,
+            $data['range']['max'] ?? null
         );
     }
 }

@@ -56,7 +56,7 @@ trait WebhookExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhooks-collection
      */
-    public function getWebhooks(string $spaceId, Query $query = \null): ResourceArray
+    public function getWebhooks(string $spaceId, Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,

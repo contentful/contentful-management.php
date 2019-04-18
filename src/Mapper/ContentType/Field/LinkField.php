@@ -28,10 +28,10 @@ class LinkField extends BaseField
             $data['id'],
             $data['name'],
             $data['linkType']
-        ))->setRequired($data['required'] ?? \false)
-            ->setLocalized($data['localized'] ?? \false)
-            ->setDisabled($data['disabled'] ?? \false)
-            ->setOmitted($data['omitted'] ?? \false)
+        ))->setRequired($data['required'] ?? false)
+            ->setLocalized($data['localized'] ?? false)
+            ->setDisabled($data['disabled'] ?? false)
+            ->setOmitted($data['omitted'] ?? false)
             ->setValidations(isset($data['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['validations'])
                 : [])

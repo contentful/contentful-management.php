@@ -34,7 +34,7 @@ class WebhookCallTest extends BaseTestCase
         $class = new \ReflectionClass(WebhookCall::class);
         $object = $class->newInstanceWithoutConstructor();
         $constructor = $class->getConstructor();
-        $constructor->setAccessible(\true);
+        $constructor->setAccessible(true);
         $constructor->invoke($object);
 
         $this->markTestAsPassed();

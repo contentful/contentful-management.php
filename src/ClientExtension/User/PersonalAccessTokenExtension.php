@@ -50,7 +50,7 @@ trait PersonalAccessTokenExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/personal-access-tokens-collection
      */
-    public function getPersonalAccessTokens(Query $query = \null): ResourceArray
+    public function getPersonalAccessTokens(Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [], $query);
     }

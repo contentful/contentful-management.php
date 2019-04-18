@@ -49,7 +49,7 @@ class LinkResolver implements LinkResolverInterface
 
         /** @var ResourceInterface $resource */
         $resource = $this->client->request('GET', $uri, [
-            'host' => $config['host'] ?? \null,
+            'host' => $config['host'] ?? null,
         ]);
 
         return $resource;

@@ -26,15 +26,15 @@ if ('api-coverage' === \getenv('CONTENTFUL_PHP_MANAGEMENT_SDK_ENV')) {
 function clean_headers_array(Request $request)
 {
     return \array_filter($request->getHeaders(), function ($value, $name) {
-        if (\false === $value) {
-            return \false;
+        if (false === $value) {
+            return false;
         }
 
         return !\in_array(\mb_strtolower($name), [
             'user-agent',
             'x-contentful-user-agent',
             'authorization',
-        ], \true);
+        ], true);
     }, \ARRAY_FILTER_USE_BOTH);
 }
 

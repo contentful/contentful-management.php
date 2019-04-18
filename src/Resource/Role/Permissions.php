@@ -44,9 +44,9 @@ class Permissions implements \JsonSerializable
      *
      * @return static
      */
-    public function setContentDelivery(string $access = \null)
+    public function setContentDelivery(string $access = null)
     {
-        if (\null !== $access && !\in_array($access, ['read', 'manage', 'all'], \true)) {
+        if (null !== $access && !\in_array($access, ['read', 'manage', 'all'], true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Parameter $access in Permissions::setContentDelivery() must be either null or one of "read", "manage", "all", "%s" given.',
                 $access
@@ -71,9 +71,9 @@ class Permissions implements \JsonSerializable
      *
      * @return static
      */
-    public function setContentModel(string $access = \null)
+    public function setContentModel(string $access = null)
     {
-        if (\null !== $access && !\in_array($access, ['read', 'manage', 'all'], \true)) {
+        if (null !== $access && !\in_array($access, ['read', 'manage', 'all'], true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Parameter $access in Permissions::setContentModel() must be either null or one of "read", "manage", "all", "%s" given.',
                 $access
@@ -98,9 +98,9 @@ class Permissions implements \JsonSerializable
      *
      * @return static
      */
-    public function setSettings(string $access = \null)
+    public function setSettings(string $access = null)
     {
-        if (\null !== $access && !\in_array($access, ['manage', 'all'], \true)) {
+        if (null !== $access && !\in_array($access, ['manage', 'all'], true)) {
             throw new \InvalidArgumentException(\sprintf(
                 'Parameter $access in Permissions::setSettings() must be either null or one of "manage", "all", "%s" given.',
                 $access
@@ -119,21 +119,21 @@ class Permissions implements \JsonSerializable
     {
         $permissions = [];
 
-        if (\null !== $this->contentDelivery) {
+        if (null !== $this->contentDelivery) {
             $permissions['ContentDelivery'] = 'all' === $this->contentDelivery
                 ? 'all'
                 : ('manage' === $this->contentDelivery
                     ? ['read', 'manage']
                     : ['read']);
         }
-        if (\null !== $this->contentModel) {
+        if (null !== $this->contentModel) {
             $permissions['ContentModel'] = 'all' === $this->contentModel
                 ? 'all'
                 : ('manage' === $this->contentModel
                     ? ['read', 'manage']
                     : ['read']);
         }
-        if (\null !== $this->settings) {
+        if (null !== $this->settings) {
             $permissions['Settings'] = 'all' === $this->settings
                 ? 'all'
                 : ['manage'];

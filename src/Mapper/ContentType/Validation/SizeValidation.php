@@ -25,8 +25,8 @@ class SizeValidation extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         return new ResourceClass(
-            $data['size']['min'] ?? \null,
-            $data['size']['max'] ?? \null
+            $data['size']['min'] ?? null,
+            $data['size']['max'] ?? null
         );
     }
 }

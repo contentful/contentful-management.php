@@ -36,19 +36,19 @@ class SimpleFieldTest extends BaseTestCase
         $this->assertSame('Better Name', $field->getName());
 
         $this->assertFalse($field->isOmitted());
-        $field->setOmitted(\true);
+        $field->setOmitted(true);
         $this->assertTrue($field->isOmitted());
 
         $this->assertFalse($field->isRequired());
-        $field->setRequired(\true);
+        $field->setRequired(true);
         $this->assertTrue($field->isRequired());
 
         $this->assertFalse($field->isDisabled());
-        $field->setDisabled(\true);
+        $field->setDisabled(true);
         $this->assertTrue($field->isDisabled());
 
         $this->assertFalse($field->isLocalized());
-        $field->setLocalized(\true);
+        $field->setLocalized(true);
         $this->assertTrue($field->isLocalized());
 
         $field->setValidations([new SizeValidation(5)]);

@@ -28,11 +28,11 @@ class ArrayField extends BaseField
             $data['id'],
             $data['name'],
             $data['items']['type'],
-            $data['items']['linkType'] ?? \null
-        ))->setRequired($data['required'] ?? \false)
-            ->setLocalized($data['localized'] ?? \false)
-            ->setDisabled($data['disabled'] ?? \false)
-            ->setOmitted($data['omitted'] ?? \false)
+            $data['items']['linkType'] ?? null
+        ))->setRequired($data['required'] ?? false)
+            ->setLocalized($data['localized'] ?? false)
+            ->setDisabled($data['disabled'] ?? false)
+            ->setOmitted($data['omitted'] ?? false)
             ->setValidations(isset($data['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['validations'])
                 : [])

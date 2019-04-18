@@ -42,7 +42,7 @@ class NotConstraint implements ConstraintInterface
      *
      * @param ConstraintInterface|null $child
      */
-    public function __construct(ConstraintInterface $child = \null)
+    public function __construct(ConstraintInterface $child = null)
     {
         $this->child = $child;
     }
