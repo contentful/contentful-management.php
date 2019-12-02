@@ -26,17 +26,12 @@ use Contentful\Management\Resource\ResourceInterface;
  */
 trait ContentTypeExtension
 {
-    use ContentType\ContentTypeSnapshotExtension,
+    use ContentType\ContentTypeSnapshotExtension;
+    use
         ContentType\EditorInterfaceExtension;
 
     /**
      * Returns a ContentType resource.
-     *
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $contentTypeId
-     *
-     * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type
      */
@@ -52,12 +47,6 @@ trait ContentTypeExtension
     /**
      * Returns a ResourceArray object which contains ContentType resources.
      *
-     * @param string     $spaceId
-     * @param string     $environmentId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection
      */
     public function getContentTypes(string $spaceId, string $environmentId, Query $query = null): ResourceArray
@@ -70,12 +59,6 @@ trait ContentTypeExtension
 
     /**
      * Returns a published ContentType resource.
-     *
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $contentTypeId
-     *
-     * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
      */
@@ -90,12 +73,6 @@ trait ContentTypeExtension
 
     /**
      * Returns a ResourceArray object which contains published ContentType resources.
-     *
-     * @param string     $spaceId
-     * @param string     $environmentId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
      */

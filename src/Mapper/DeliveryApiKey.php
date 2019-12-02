@@ -44,8 +44,6 @@ class DeliveryApiKey extends BaseMapper
     }
 
     /**
-     * @param array $environments
-     *
      * @return Link[]
      */
     private function buildEnvironments(array $environments): array

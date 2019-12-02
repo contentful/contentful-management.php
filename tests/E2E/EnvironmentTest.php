@@ -125,9 +125,7 @@ class EnvironmentTest extends BaseTestCase
 
             // This is arbitrary
             if ($limit > 50) {
-                throw new \RuntimeException(
-                    'Repeated requests are not yielding a ready environment, something is wrong.'
-                );
+                throw new \RuntimeException('Repeated requests are not yielding a ready environment, something is wrong.');
             }
             ++$limit;
             \usleep(500000);
@@ -140,9 +138,7 @@ class EnvironmentTest extends BaseTestCase
         do {
             ++$limit;
             if ($limit > 50) {
-                throw new \RuntimeException(
-                    'Environment update keeps yielding a VersionMismatch error, aborting.'
-                );
+                throw new \RuntimeException('Environment update keeps yielding a VersionMismatch error, aborting.');
             }
 
             try {

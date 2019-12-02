@@ -28,11 +28,6 @@ trait RoleExtension
     /**
      * Returns a Role resource.
      *
-     * @param string $spaceId
-     * @param string $roleId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/role
      */
     public function getRole(string $spaceId, string $roleId): ResourceClass
@@ -45,11 +40,6 @@ trait RoleExtension
 
     /**
      * Returns a ResourceArray object containing Role resources.
-     *
-     * @param string     $spaceId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/roles-collection
      */

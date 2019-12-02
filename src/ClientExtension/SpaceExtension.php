@@ -26,21 +26,23 @@ use Contentful\Management\Resource\Space as ResourceClass;
  */
 trait SpaceExtension
 {
-    use Space\DeliveryApiKeyExtension,
-        Space\EnvironmentExtension,
-        Space\PreviewApiKeyExtension,
-        Space\RoleExtension,
-        Space\SpaceMembershipExtension,
-        Space\UploadExtension,
+    use Space\DeliveryApiKeyExtension;
+    use
+        Space\EnvironmentExtension;
+    use
+        Space\PreviewApiKeyExtension;
+    use
+        Space\RoleExtension;
+    use
+        Space\SpaceMembershipExtension;
+    use
+        Space\UploadExtension;
+    use
         Space\WebhookExtension;
 
     /**
      * Returns a proxy to a space resource.
      * Useful for all space-scoped operations.
-     *
-     * @param string $spaceId
-     *
-     * @return SpaceProxy
      */
     public function getSpaceProxy(string $spaceId): SpaceProxy
     {
@@ -49,10 +51,6 @@ trait SpaceExtension
 
     /**
      * Returns a Space resource.
-     *
-     * @param string $spaceId
-     *
-     * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces/space
      */
@@ -65,10 +63,6 @@ trait SpaceExtension
 
     /**
      * Returns a ResourceArray object containing Space objects.
-     *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces/spaces-collection
      */

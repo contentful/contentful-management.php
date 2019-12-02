@@ -28,10 +28,6 @@ trait OrganizationExtension
     /**
      * Returns a ResourceArray object containing Organization resources.
      *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/organizations
      */
     public function getOrganizations(Query $query = null): ResourceArray

@@ -39,8 +39,6 @@ class NotConstraint implements ConstraintInterface
 
     /**
      * NotConstraint constructor.
-     *
-     * @param ConstraintInterface|null $child
      */
     public function __construct(ConstraintInterface $child = null)
     {
@@ -56,8 +54,6 @@ class NotConstraint implements ConstraintInterface
     }
 
     /**
-     * @param ConstraintInterface $child
-     *
      * @return static
      */
     public function setChild(ConstraintInterface $child)

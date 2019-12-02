@@ -27,7 +27,8 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
  */
 class Locale extends BaseResource implements CreatableInterface
 {
-    use DeletableTrait,
+    use DeletableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -72,10 +73,6 @@ class Locale extends BaseResource implements CreatableInterface
 
     /**
      * Locale constructor.
-     *
-     * @param string      $name
-     * @param string      $code
-     * @param string|null $fallbackCode
      */
     public function __construct(string $name, string $code, string $fallbackCode = null)
     {
@@ -143,17 +140,12 @@ class Locale extends BaseResource implements CreatableInterface
         return [];
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)
@@ -163,17 +155,12 @@ class Locale extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getCode(): string
     {
         return $this->code;
     }
 
     /**
-     * @param string $code
-     *
      * @return static
      */
     public function setCode(string $code)
@@ -192,8 +179,6 @@ class Locale extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param string|null $fallbackCode
-     *
      * @return static
      */
     public function setFallbackCode(string $fallbackCode = null)
@@ -203,17 +188,12 @@ class Locale extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isContentDeliveryApi(): bool
     {
         return $this->contentDeliveryApi;
     }
 
     /**
-     * @param bool $contentDeliveryApi
-     *
      * @return static
      */
     public function setContentDeliveryApi(bool $contentDeliveryApi)
@@ -223,17 +203,12 @@ class Locale extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isContentManagementApi(): bool
     {
         return $this->contentManagementApi;
     }
 
     /**
-     * @param bool $contentManagementApi
-     *
      * @return static
      */
     public function setContentManagementApi(bool $contentManagementApi)
@@ -243,25 +218,17 @@ class Locale extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isDefault(): bool
     {
         return $this->default;
     }
 
-    /**
-     * @return bool
-     */
     public function isOptional(): bool
     {
         return $this->optional;
     }
 
     /**
-     * @param bool $optional
-     *
      * @return static
      */
     public function setOptional(bool $optional)

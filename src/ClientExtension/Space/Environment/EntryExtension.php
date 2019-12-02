@@ -30,12 +30,6 @@ trait EntryExtension
     /**
      * Returns an Entry resource.
      *
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $entryId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry
      */
     public function getEntry(string $spaceId, string $environmentId, string $entryId): ResourceClass
@@ -49,12 +43,6 @@ trait EntryExtension
 
     /**
      * Returns a ResourceArray object which contains Entry resources.
-     *
-     * @param string     $spaceId
-     * @param string     $environmentId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection
      */

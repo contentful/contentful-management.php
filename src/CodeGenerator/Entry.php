@@ -77,11 +77,6 @@ class Entry extends BaseCodeGenerator
         );
     }
 
-    /**
-     * @param ContentType $contentType
-     *
-     * @return Class_
-     */
     private function generateClass(ContentType $contentType): Class_
     {
         $className = $this->convertToStudlyCaps($contentType->getId());
@@ -104,8 +99,6 @@ class Entry extends BaseCodeGenerator
     }
 
     /**
-     * @param ContentType $contentType
-     *
      * @return ClassMethod[]
      */
     private function generateClassMethods(ContentType $contentType): array
@@ -146,10 +139,6 @@ class Entry extends BaseCodeGenerator
      *     parent::__construct('<contentTypeId>');
      * }
      * ```
-     *
-     * @param ContentType $contentType
-     *
-     * @return ClassMethod
      */
     private function generateConstructor(ContentType $contentType): ClassMethod
     {
@@ -185,11 +174,6 @@ class Entry extends BaseCodeGenerator
      *     return $this->getField('x', $locale);
      * }
      * ```
-     *
-     * @param FieldInterface $field
-     * @param string         $type
-     *
-     * @return ClassMethod
      */
     private function generateGetter(FieldInterface $field, string $type): ClassMethod
     {
@@ -236,11 +220,6 @@ class Entry extends BaseCodeGenerator
      *     return $this->setField('x', $locale, $value);
      * }
      * ```
-     *
-     * @param FieldInterface $field
-     * @param string         $type
-     *
-     * @return ClassMethod
      */
     private function generateSetter(FieldInterface $field, string $type): ClassMethod
     {
@@ -301,10 +280,6 @@ class Entry extends BaseCodeGenerator
      *     return $this->client->resolveLink($this->getField('x', $locale), $parameters);
      * }
      * ```
-     *
-     * @param LinkField $field
-     *
-     * @return ClassMethod
      */
     private function generateLinkResolverMethod(LinkField $field): ClassMethod
     {
@@ -365,8 +340,6 @@ class Entry extends BaseCodeGenerator
      *     'environment' => $this->sys->getEnvironment()->getId(),
      * ];
      * ```
-     *
-     * @return Node\Expr\Assign
      */
     private function generateParametersParameter(): Node\Expr\Assign
     {
@@ -399,11 +372,6 @@ class Entry extends BaseCodeGenerator
         );
     }
 
-    /**
-     * @param ArrayField $field
-     *
-     * @return ClassMethod
-     */
     private function generateArrayLinkResolverMethod(ArrayField $field): ClassMethod
     {
         $returnTypes = $this->determineLinkReturnType((string) $field->getItemsLinkType(), $field->getItemsValidations());
@@ -448,9 +416,6 @@ class Entry extends BaseCodeGenerator
      * and using that information, a "use" statement will be set to true
      * so it will be added to the beginning of the file.
      *
-     * @param string $linkType
-     * @param array  $validations
-     *
      * @return string Either "Asset", "ResourceInterface", or a list of values with "|" as separator
      */
     private function determineLinkReturnType(string $linkType, array $validations): string
@@ -486,9 +451,6 @@ class Entry extends BaseCodeGenerator
         return \implode('|', $returnTypes);
     }
 
-    /**
-     * @return Node\Expr
-     */
     private function generateArrayLinkResolverClosure(): Node\Expr
     {
         return new Node\Expr\Closure([
@@ -513,11 +475,6 @@ class Entry extends BaseCodeGenerator
         ]);
     }
 
-    /**
-     * @param FieldInterface $field
-     *
-     * @return Node\Expr
-     */
     private function generateArrayLinkResolverMapArray(FieldInterface $field): Node\Expr
     {
         return new Node\Expr\Cast\Array_(

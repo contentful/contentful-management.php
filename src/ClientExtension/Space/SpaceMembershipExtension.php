@@ -28,11 +28,6 @@ trait SpaceMembershipExtension
     /**
      * Returns a SpaceMembership resource.
      *
-     * @param string $spaceId
-     * @param string $spaceMembershipId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships/space-membership
      */
     public function getSpaceMembership(string $spaceId, string $spaceMembershipId): ResourceClass
@@ -45,11 +40,6 @@ trait SpaceMembershipExtension
 
     /**
      * Returns a ResourceArray object containing SpaceMembership resources.
-     *
-     * @param string     $spaceId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships
      */

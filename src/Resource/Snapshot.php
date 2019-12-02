@@ -60,15 +60,9 @@ abstract class Snapshot extends BaseResource
      */
     public function asRequestBody()
     {
-        throw new \LogicException(\sprintf(
-            'Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.',
-            static::class
-        ));
+        throw new \LogicException(\sprintf('Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.', static::class));
     }
 
-    /**
-     * @return ResourceInterface
-     */
     public function getSnapshot(): ResourceInterface
     {
         return $this->snapshot;

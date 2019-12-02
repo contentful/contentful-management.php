@@ -28,12 +28,6 @@ trait ExtensionExtension
     /**
      * Returns an Extension resource.
      *
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $extensionId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extension
      */
     public function getExtension(string $spaceId, string $environmentId, string $extensionId): ResourceClass
@@ -47,11 +41,6 @@ trait ExtensionExtension
 
     /**
      * Returns a ResourceArray object containing Extension resources.
-     *
-     * @param string $spaceId
-     * @param string $environmentId
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extensions-collection
      */

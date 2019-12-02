@@ -18,17 +18,11 @@ trait VersionedTrait
      */
     protected $version;
 
-    /**
-     * @param array $data
-     */
     protected function initVersioned(array $data)
     {
         $this->version = $data['version'] ?? $data['revision'];
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeVersioned(): array
     {
         return [
@@ -36,9 +30,6 @@ trait VersionedTrait
         ];
     }
 
-    /**
-     * @return int
-     */
     public function getVersion(): int
     {
         return $this->version;

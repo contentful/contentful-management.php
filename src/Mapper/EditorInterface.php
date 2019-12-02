@@ -37,11 +37,6 @@ class EditorInterface extends BaseMapper
         return $editorInterface;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Control
-     */
     protected function mapControl(array $data): Control
     {
         /** @var Control $control */

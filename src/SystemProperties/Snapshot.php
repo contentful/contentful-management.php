@@ -13,16 +13,18 @@ namespace Contentful\Management\SystemProperties;
 
 class Snapshot extends BaseSystemProperties
 {
-    use Component\EnvironmentTrait,
-        Component\CreatedTrait,
-        Component\SnapshotTrait,
-        Component\SpaceTrait,
+    use Component\EnvironmentTrait;
+    use
+        Component\CreatedTrait;
+    use
+        Component\SnapshotTrait;
+    use
+        Component\SpaceTrait;
+    use
         Component\UpdatedTrait;
 
     /**
      * Snapshot constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

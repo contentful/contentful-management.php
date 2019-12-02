@@ -26,20 +26,19 @@ use Contentful\Management\Resource\ResourceInterface;
  */
 trait EnvironmentExtension
 {
-    use Environment\AssetExtension,
-        Environment\ContentTypeExtension,
-        Environment\EntryExtension,
-        Environment\ExtensionExtension,
+    use Environment\AssetExtension;
+    use
+        Environment\ContentTypeExtension;
+    use
+        Environment\EntryExtension;
+    use
+        Environment\ExtensionExtension;
+    use
         Environment\LocaleExtension;
 
     /**
      * Returns a proxy to an environment resource.
      * Useful for all environment-scoped operations.
-     *
-     * @param string $spaceId
-     * @param string $environmentId
-     *
-     * @return EnvironmentProxy
      */
     public function getEnvironmentProxy(string $spaceId, string $environmentId = 'master'): EnvironmentProxy
     {
@@ -48,11 +47,6 @@ trait EnvironmentExtension
 
     /**
      * Returns an Environment resource.
-     *
-     * @param string $spaceId
-     * @param string $environmentId
-     *
-     * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environment
      */
@@ -66,11 +60,6 @@ trait EnvironmentExtension
 
     /**
      * Returns a ResourceArray object which contains Environment resources.
-     *
-     * @param string     $spaceId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environments-collection
      */

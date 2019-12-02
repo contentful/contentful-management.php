@@ -13,14 +13,14 @@ namespace Contentful\Management\SystemProperties;
 
 class Organization extends BaseSystemProperties
 {
-    use Component\CreatedAtTrait,
-        Component\UpdatedAtTrait,
+    use Component\CreatedAtTrait;
+    use
+        Component\UpdatedAtTrait;
+    use
         Component\VersionedTrait;
 
     /**
      * Organization constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

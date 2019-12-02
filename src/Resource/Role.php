@@ -27,7 +27,8 @@ use Contentful\Management\SystemProperties\Role as SystemProperties;
  */
 class Role extends BaseResource implements CreatableInterface
 {
-    use DeletableTrait,
+    use DeletableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -57,9 +58,6 @@ class Role extends BaseResource implements CreatableInterface
 
     /**
      * Role constructor.
-     *
-     * @param string $name
-     * @param string $description
      */
     public function __construct(string $name = '', string $description = '')
     {
@@ -109,17 +107,12 @@ class Role extends BaseResource implements CreatableInterface
         return [];
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)
@@ -129,9 +122,6 @@ class Role extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
@@ -178,8 +168,6 @@ class Role extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param Policy $policy
-     *
      * @return static
      */
     public function addPolicy(Policy $policy)

@@ -19,8 +19,6 @@ if ('api-coverage' === \getenv('CONTENTFUL_PHP_MANAGEMENT_SDK_ENV')) {
 }
 
 /**
- * @param Request $request
- *
  * @return array
  */
 function clean_headers_array(Request $request)

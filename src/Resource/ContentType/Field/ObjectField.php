@@ -16,9 +16,6 @@ namespace Contentful\Management\Resource\ContentType\Field;
  */
 class ObjectField extends BaseField
 {
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return 'Object';

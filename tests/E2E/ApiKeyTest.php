@@ -179,9 +179,7 @@ class ApiKeyTest extends BaseTestCase
 
             // This is arbitrary
             if ($limit > 50) {
-                throw new \RuntimeException(
-                    'Repeated requests are not yielding a ready environment, something is wrong.'
-                );
+                throw new \RuntimeException('Repeated requests are not yielding a ready environment, something is wrong.');
             }
             ++$limit;
             \usleep(500000);

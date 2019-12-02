@@ -43,9 +43,6 @@ trait PublishedTrait
      */
     private $publishedVersion;
 
-    /**
-     * @param array $data
-     */
     protected function initPublished(array $data)
     {
         $this->initEdited($data);
@@ -61,9 +58,6 @@ trait PublishedTrait
         $this->publishedVersion = $data['publishedVersion'];
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializePublished(): array
     {
         return \array_filter(\array_merge($this->jsonSerializeEdited(), [
@@ -125,25 +119,16 @@ trait PublishedTrait
         return $this->publishedVersion;
     }
 
-    /**
-     * @return bool
-     */
     public function isDraft(): bool
     {
         return null === $this->publishedVersion;
     }
 
-    /**
-     * @return bool
-     */
     public function isPublished(): bool
     {
         return null !== $this->publishedVersion;
     }
 
-    /**
-     * @return bool
-     */
     public function isUpdated(): bool
     {
         // The act of publishing an entity increases its version by 1, so any entry which has

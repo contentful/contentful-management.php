@@ -45,10 +45,6 @@ trait WebhookProxyExtension
     /**
      * Returns a WebhookCall resource.
      *
-     * @param string $callId
-     *
-     * @return WebhookCall
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details
      */
     public function getCall(string $callId): WebhookCall
@@ -63,10 +59,6 @@ trait WebhookProxyExtension
     /**
      * Returns a ResourceArray object containing WebhookCall resources.
      *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
      */
     public function getCalls(Query $query = null): ResourceArray
@@ -80,8 +72,6 @@ trait WebhookProxyExtension
 
     /**
      * Returns an WebhookHealth resource.
-     *
-     * @return WebhookHealth
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health
      */

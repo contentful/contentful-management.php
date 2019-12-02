@@ -13,14 +13,14 @@ namespace Contentful\Management\SystemProperties;
 
 class Environment extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
-    use Component\EditedTrait,
-        Component\SpaceTrait,
+    use Component\EditedTrait;
+    use
+        Component\SpaceTrait;
+    use
         Component\StatusTrait;
 
     /**
      * Environment constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

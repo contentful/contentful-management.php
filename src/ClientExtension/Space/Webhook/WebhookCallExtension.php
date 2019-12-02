@@ -28,12 +28,6 @@ trait WebhookCallExtension
     /**
      * Returns a WebhookCall resource.
      *
-     * @param string $spaceId
-     * @param string $webhookId
-     * @param string $webhookCallId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details
      */
     public function getWebhookCall(string $spaceId, string $webhookId, string $webhookCallId): ResourceClass
@@ -47,12 +41,6 @@ trait WebhookCallExtension
 
     /**
      * Returns a ResourceArray object containing WebhookCall resources.
-     *
-     * @param string     $spaceId
-     * @param string     $webhookId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
      */

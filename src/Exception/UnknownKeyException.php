@@ -34,8 +34,7 @@ class UnknownKeyException extends Exception
     /**
      * UnknownKeyException constructor.
      *
-     * @param RequestException $previous
-     * @param string           $message
+     * @param string $message
      */
     public function __construct(RequestException $previous, $message = '')
     {

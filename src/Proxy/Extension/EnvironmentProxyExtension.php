@@ -51,10 +51,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns an Asset resource.
      *
-     * @param string $assetId
-     *
-     * @return Asset
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset
      */
     public function getAsset(string $assetId): Asset
@@ -68,10 +64,6 @@ trait EnvironmentProxyExtension
 
     /**
      * Returns a ResourceArray object which contains Asset resources.
-     *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection
      */
@@ -87,10 +79,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns a ContentType resource.
      *
-     * @param string $contentTypeId
-     *
-     * @return ContentType
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type
      */
     public function getContentType(string $contentTypeId): ContentType
@@ -104,10 +92,6 @@ trait EnvironmentProxyExtension
 
     /**
      * Returns a ResourceArray object which contains ContentType resources.
-     *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection
      */
@@ -123,10 +107,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns a published ContentType resource.
      *
-     * @param string $contentTypeId
-     *
-     * @return ContentType
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
      */
     public function getPublishedContentType(string $contentTypeId): ContentType
@@ -141,10 +121,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns a ResourceArray object which contains published ContentType resources.
      *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
      */
     public function getPublishedContentTypes(Query $query = null): ResourceArray
@@ -158,11 +134,6 @@ trait EnvironmentProxyExtension
 
     /**
      * Returns a ContentTypeSnapshot resource.
-     *
-     * @param string $contentTypeId
-     * @param string $snapshotId
-     *
-     * @return ContentTypeSnapshot
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot
      */
@@ -179,11 +150,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns a ResourceArray object which contains ContentTypeSnapshot resources.
      *
-     * @param string     $contentTypeId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
     public function getContentTypeSnapshots(string $contentTypeId, Query $query = null): ResourceArray
@@ -199,10 +165,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns an EditorInterface resource.
      *
-     * @param string $contentTypeId
-     *
-     * @return EditorInterface
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
      */
     public function getEditorInterface(string $contentTypeId): EditorInterface
@@ -216,10 +178,6 @@ trait EnvironmentProxyExtension
 
     /**
      * Returns an Entry resource.
-     *
-     * @param string $entryId
-     *
-     * @return Entry
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry
      */
@@ -235,10 +193,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns a ResourceArray object which contains Entry resources.
      *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection
      */
     public function getEntries(Query $query = null): ResourceArray
@@ -252,11 +206,6 @@ trait EnvironmentProxyExtension
 
     /**
      * Returns a EntrySnapshot resource.
-     *
-     * @param string $entryId
-     * @param string $snapshotId
-     *
-     * @return EntrySnapshot
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshot
      */
@@ -273,11 +222,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns a ResourceArray object which contains EntrySnapshot resources.
      *
-     * @param string     $entryId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
      */
     public function getEntrySnapshots(string $entryId, Query $query = null): ResourceArray
@@ -293,10 +237,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns an Extension resource.
      *
-     * @param string $extensionId
-     *
-     * @return Extension
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extension
      */
     public function getExtension(string $extensionId): Extension
@@ -311,8 +251,6 @@ trait EnvironmentProxyExtension
     /**
      * Returns a ResourceArray object containing Extension resources.
      *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extensions-collection
      */
     public function getExtensions(): ResourceArray
@@ -325,10 +263,6 @@ trait EnvironmentProxyExtension
 
     /**
      * Returns a Locale resource.
-     *
-     * @param string $localeId
-     *
-     * @return Locale
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale
      */
@@ -343,8 +277,6 @@ trait EnvironmentProxyExtension
 
     /**
      * Returns a ResourceArray object containing Locale resources.
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale-collection
      */

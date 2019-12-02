@@ -31,9 +31,6 @@ abstract class LogicConstraint implements ConstraintInterface
         $this->setChildren($children);
     }
 
-    /**
-     * @return string
-     */
     abstract protected function getOperator(): string;
 
     /**
@@ -45,8 +42,6 @@ abstract class LogicConstraint implements ConstraintInterface
     }
 
     /**
-     * @param ConstraintInterface $child
-     *
      * @return static
      */
     public function addChild(ConstraintInterface $child)
@@ -65,10 +60,7 @@ abstract class LogicConstraint implements ConstraintInterface
     {
         foreach ($children as $child) {
             if (!$child instanceof ConstraintInterface) {
-                throw new \InvalidArgumentException(\sprintf(
-                    'Argument "$children" of "%s::setChildren()" must be an array of "ConstraintInterface" objects.',
-                    static::class
-                ));
+                throw new \InvalidArgumentException(\sprintf('Argument "$children" of "%s::setChildren()" must be an array of "ConstraintInterface" objects.', static::class));
             }
         }
 

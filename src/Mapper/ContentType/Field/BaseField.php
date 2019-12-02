@@ -63,11 +63,6 @@ abstract class BaseField extends BaseMapper
         return $field;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return ValidationInterface
-     */
     protected function mapValidation(array $data): ValidationInterface
     {
         $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Validation\\'.\ucfirst(\array_keys($data)[0]).'Validation';

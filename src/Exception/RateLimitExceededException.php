@@ -57,33 +57,21 @@ class RateLimitExceededException extends BaseRateLimitExceededException
         $this->secondRemaining = (int) $response->getHeader('X-Contentful-RateLimit-Second-Remaining')[0];
     }
 
-    /**
-     * @return int
-     */
     public function getHourLimit(): int
     {
         return $this->hourLimit;
     }
 
-    /**
-     * @return int
-     */
     public function getHourRemaining(): int
     {
         return $this->hourRemaining;
     }
 
-    /**
-     * @return int
-     */
     public function getSecondLimit(): int
     {
         return $this->secondLimit;
     }
 
-    /**
-     * @return int
-     */
     public function getSecondRemaining(): int
     {
         return $this->secondRemaining;

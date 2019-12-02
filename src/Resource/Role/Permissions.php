@@ -47,10 +47,7 @@ class Permissions implements \JsonSerializable
     public function setContentDelivery(string $access = null)
     {
         if (null !== $access && !\in_array($access, ['read', 'manage', 'all'], true)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Parameter $access in Permissions::setContentDelivery() must be either null or one of "read", "manage", "all", "%s" given.',
-                $access
-            ));
+            throw new \InvalidArgumentException(\sprintf('Parameter $access in Permissions::setContentDelivery() must be either null or one of "read", "manage", "all", "%s" given.', $access));
         }
 
         $this->contentDelivery = $access;
@@ -74,10 +71,7 @@ class Permissions implements \JsonSerializable
     public function setContentModel(string $access = null)
     {
         if (null !== $access && !\in_array($access, ['read', 'manage', 'all'], true)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Parameter $access in Permissions::setContentModel() must be either null or one of "read", "manage", "all", "%s" given.',
-                $access
-            ));
+            throw new \InvalidArgumentException(\sprintf('Parameter $access in Permissions::setContentModel() must be either null or one of "read", "manage", "all", "%s" given.', $access));
         }
 
         $this->contentModel = $access;
@@ -101,10 +95,7 @@ class Permissions implements \JsonSerializable
     public function setSettings(string $access = null)
     {
         if (null !== $access && !\in_array($access, ['manage', 'all'], true)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Parameter $access in Permissions::setSettings() must be either null or one of "manage", "all", "%s" given.',
-                $access
-            ));
+            throw new \InvalidArgumentException(\sprintf('Parameter $access in Permissions::setSettings() must be either null or one of "manage", "all", "%s" given.', $access));
         }
 
         $this->settings = $access;

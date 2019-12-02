@@ -36,25 +36,18 @@ class NotFilter implements FilterInterface
 
     /**
      * NotConstraint constructor.
-     *
-     * @param FilterInterface $child
      */
     public function __construct(FilterInterface $child)
     {
         $this->child = $child;
     }
 
-    /**
-     * @return FilterInterface
-     */
     public function getChild(): FilterInterface
     {
         return $this->child;
     }
 
     /**
-     * @param FilterInterface $child
-     *
      * @return static
      */
     public function setChild(FilterInterface $child)

@@ -36,9 +36,6 @@ class ContentTypeSnapshot extends Snapshot
         ];
     }
 
-    /**
-     * @return ContentType
-     */
     public function getContentType(): ContentType
     {
         return $this->snapshot;

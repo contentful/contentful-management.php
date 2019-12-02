@@ -28,11 +28,6 @@ trait PreviewApiKeyExtension
     /**
      * Returns a PreviewApiKey resource.
      *
-     * @param string $spaceId
-     * @param string $previewApiKeyId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys
      */
     public function getPreviewApiKey(string $spaceId, string $previewApiKeyId): ResourceClass
@@ -45,11 +40,6 @@ trait PreviewApiKeyExtension
 
     /**
      * Returns a ResourceArray object containing PreviewApiKey resources.
-     *
-     * @param string     $spaceId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection
      */

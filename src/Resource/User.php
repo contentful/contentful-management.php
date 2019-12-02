@@ -99,10 +99,7 @@ class User extends BaseResource
      */
     public function asRequestBody()
     {
-        throw new \LogicException(\sprintf(
-            'Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.',
-            static::class
-        ));
+        throw new \LogicException(\sprintf('Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.', static::class));
     }
 
     /**
@@ -113,57 +110,36 @@ class User extends BaseResource
         return [];
     }
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * @return string
-     */
     public function getAvatarUrl(): string
     {
         return $this->avatarUrl;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @return bool
-     */
     public function isActivated(): bool
     {
         return $this->activated;
     }
 
-    /**
-     * @return int
-     */
     public function getSignInCount(): int
     {
         return $this->signInCount;
     }
 
-    /**
-     * @return bool
-     */
     public function isConfirmed(): bool
     {
         return $this->confirmed;

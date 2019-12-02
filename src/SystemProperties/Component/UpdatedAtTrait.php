@@ -20,17 +20,11 @@ trait UpdatedAtTrait
      */
     protected $updatedAt;
 
-    /**
-     * @param array $data
-     */
     protected function initUpdatedAt(array $data)
     {
         $this->updatedAt = new DateTimeImmutable($data['updatedAt']);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeUpdatedAt(): array
     {
         return [
@@ -38,9 +32,6 @@ trait UpdatedAtTrait
         ];
     }
 
-    /**
-     * @return DateTimeImmutable
-     */
     public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;

@@ -77,9 +77,6 @@ class ResourceBuilder extends BaseResourceBuilder
                 return 'Webhook';
         }
 
-        throw new \InvalidArgumentException(\sprintf(
-            'Unexpected system type "%s" while trying to build a resource.',
-            $data['sys']['type']
-        ));
+        throw new \InvalidArgumentException(\sprintf('Unexpected system type "%s" while trying to build a resource.', $data['sys']['type']));
     }
 }

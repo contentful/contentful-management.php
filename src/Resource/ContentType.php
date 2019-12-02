@@ -30,9 +30,12 @@ use Contentful\Management\SystemProperties\ContentType as SystemProperties;
  */
 class ContentType extends BaseResource implements ContentTypeInterface, CreatableInterface
 {
-    use ContentTypeProxyExtension,
-        DeletableTrait,
-        PublishableTrait,
+    use ContentTypeProxyExtension;
+    use
+        DeletableTrait;
+    use
+        PublishableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -149,17 +152,12 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
         return $this->sys->getId();
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)
@@ -178,8 +176,6 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
     }
 
     /**
-     * @param string|null $description
-     *
      * @return static
      */
     public function setDescription(string $description = null)
@@ -198,8 +194,6 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
     }
 
     /**
-     * @param string|null $displayField
-     *
      * @return static
      */
     public function setDisplayField(string $displayField = null)
@@ -218,11 +212,7 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
     }
 
     /**
-     * @param string $fieldId
-     *
      * @throws \InvalidArgumentException
-     *
-     * @return FieldInterface
      */
     public function getField(string $fieldId): FieldInterface
     {
@@ -232,11 +222,7 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
             }
         }
 
-        throw new \InvalidArgumentException(\sprintf(
-            'Trying to access invalid field "%s" on content type "%s".',
-            $fieldId,
-            $this->getId()
-        ));
+        throw new \InvalidArgumentException(\sprintf('Trying to access invalid field "%s" on content type "%s".', $fieldId, $this->getId()));
     }
 
     /**
@@ -252,8 +238,6 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
     }
 
     /**
-     * @param FieldInterface $contentTypeField
-     *
      * @return static
      */
     public function addField(FieldInterface $contentTypeField)
@@ -263,9 +247,6 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isPublished(): bool
     {
         return $this->isPublished;
@@ -278,8 +259,6 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
      * @param string            $fieldId The field ID
      * @param string            $name    The field name
      * @param array<int, mixed> $params  Extra parameters that will be forwarded to the field object constructor
-     *
-     * @return FieldInterface
      */
     public function addNewField(string $type, string $fieldId, string $name, ...$params): FieldInterface
     {
@@ -296,18 +275,13 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
      * @param string            $fieldId The field ID
      * @param string            $name    The field name
      * @param array<int, mixed> $params  Extra parameters that will be forwarded to the field object constructor
-     *
-     * @return FieldInterface
      */
     public function createField(string $type, string $fieldId, string $name, ...$params): FieldInterface
     {
         $class = __NAMESPACE__.'\\ContentType\\Field\\'.\ucfirst($type).'Field';
 
         if (!\class_exists($class)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Trying to instantiate invalid field class "%s".',
-                $type
-            ));
+            throw new \InvalidArgumentException(\sprintf('Trying to instantiate invalid field class "%s".', $type));
         }
 
         return new $class($fieldId, $name, ...$params);

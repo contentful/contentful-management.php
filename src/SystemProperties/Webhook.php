@@ -13,13 +13,12 @@ namespace Contentful\Management\SystemProperties;
 
 class Webhook extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
-    use Component\EditedTrait,
+    use Component\EditedTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * Webhook constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

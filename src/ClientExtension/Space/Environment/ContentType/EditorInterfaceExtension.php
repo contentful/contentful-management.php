@@ -28,12 +28,6 @@ trait EditorInterfaceExtension
     /**
      * Returns an EditorInterface resource.
      *
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $contentTypeId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
      */
     public function getEditorInterface(string $spaceId, string $environmentId, string $contentTypeId): ResourceClass

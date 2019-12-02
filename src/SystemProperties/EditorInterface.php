@@ -13,15 +13,16 @@ namespace Contentful\Management\SystemProperties;
 
 class EditorInterface extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
-    use Component\ContentTypeTrait,
-        Component\EditedTrait,
-        Component\EnvironmentTrait,
+    use Component\ContentTypeTrait;
+    use
+        Component\EditedTrait;
+    use
+        Component\EnvironmentTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * EditorInterface constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

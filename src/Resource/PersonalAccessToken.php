@@ -52,9 +52,6 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
 
     /**
      * PersonalAccessToken constructor.
-     *
-     * @param string $name
-     * @param bool   $isReadOnly
      */
     public function __construct(string $name = '', bool $isReadOnly = false)
     {
@@ -161,8 +158,6 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param bool $isReadOnly
-     *
      * @return static
      */
     public function setReadOnly(bool $isReadOnly)
@@ -172,9 +167,6 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isReadOnly(): bool
     {
         return $this->isReadOnly;

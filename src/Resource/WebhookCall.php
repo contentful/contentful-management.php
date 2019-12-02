@@ -136,10 +136,6 @@ class WebhookCall extends BaseResource
     /**
      * PSR-7 Headers can contain multiple values for every key.
      * We simplify management by only defining one.
-     *
-     * @param array $headers
-     *
-     * @return \stdClass
      */
     private function formatPsr7Headers(array $headers): \stdClass
     {
@@ -161,10 +157,7 @@ class WebhookCall extends BaseResource
      */
     public function asRequestBody()
     {
-        throw new \LogicException(\sprintf(
-            'Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.',
-            static::class
-        ));
+        throw new \LogicException(\sprintf('Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.', static::class));
     }
 
     /**
@@ -183,9 +176,6 @@ class WebhookCall extends BaseResource
         return $this->response;
     }
 
-    /**
-     * @return int
-     */
     public function getStatusCode(): int
     {
         return $this->statusCode;
@@ -199,33 +189,21 @@ class WebhookCall extends BaseResource
         return $this->error;
     }
 
-    /**
-     * @return string
-     */
     public function getEventType(): string
     {
         return $this->eventType;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return DateTimeImmutable
-     */
     public function getRequestAt(): DateTimeImmutable
     {
         return $this->requestAt;
     }
 
-    /**
-     * @return DateTimeImmutable
-     */
     public function getResponseAt(): DateTimeImmutable
     {
         return $this->responseAt;

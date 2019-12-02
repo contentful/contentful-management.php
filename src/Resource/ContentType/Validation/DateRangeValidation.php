@@ -33,9 +33,6 @@ class DateRangeValidation implements ValidationInterface
 
     /**
      * RangeValidation constructor.
-     *
-     * @param string|null $min
-     * @param string|null $max
      */
     public function __construct(string $min = null, string $max = null)
     {
@@ -52,8 +49,6 @@ class DateRangeValidation implements ValidationInterface
     }
 
     /**
-     * @param string|null $min
-     *
      * @return static
      */
     public function setMin(string $min = null)
@@ -72,8 +67,6 @@ class DateRangeValidation implements ValidationInterface
     }
 
     /**
-     * @param string|null $max
-     *
      * @return static
      */
     public function setMax(string $max = null)

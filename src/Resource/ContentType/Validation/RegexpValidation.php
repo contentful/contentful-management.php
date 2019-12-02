@@ -34,9 +34,6 @@ class RegexpValidation implements ValidationInterface
 
     /**
      * RegexpValidation constructor.
-     *
-     * @param string|null $pattern
-     * @param string|null $flags
      */
     public function __construct(string $pattern = null, string $flags = null)
     {
@@ -52,9 +49,6 @@ class RegexpValidation implements ValidationInterface
         return $this->flags;
     }
 
-    /**
-     * @param string|null $flags
-     */
     public function setFlags(string $flags = null)
     {
         $this->flags = $flags;
@@ -68,9 +62,6 @@ class RegexpValidation implements ValidationInterface
         return $this->pattern;
     }
 
-    /**
-     * @param string|null $pattern
-     */
     public function setPattern(string $pattern = null)
     {
         $this->pattern = $pattern;

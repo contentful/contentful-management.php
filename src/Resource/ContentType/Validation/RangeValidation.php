@@ -34,9 +34,6 @@ class RangeValidation implements ValidationInterface
 
     /**
      * RangeValidation constructor.
-     *
-     * @param int|null $min
-     * @param int|null $max
      */
     public function __construct(int $min = null, int $max = null)
     {
@@ -53,8 +50,6 @@ class RangeValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $min
-     *
      * @return static
      */
     public function setMin(int $min = null)
@@ -73,8 +68,6 @@ class RangeValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $max
-     *
      * @return static
      */
     public function setMax(int $max = null)

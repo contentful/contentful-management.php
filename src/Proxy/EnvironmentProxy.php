@@ -65,11 +65,6 @@ class EnvironmentProxy
      */
     private $environmentId;
 
-    /**
-     * @param Client $client
-     * @param string $spaceId
-     * @param string $environmentId
-     */
     public function __construct(Client $client, string $spaceId, string $environmentId)
     {
         $this->client = $client;
@@ -96,8 +91,6 @@ class EnvironmentProxy
     /**
      * Returns a proxy to a space resource.
      * Useful for all space-scoped operations.
-     *
-     * @return SpaceProxy
      */
     public function getSpaceProxy(): SpaceProxy
     {
@@ -109,8 +102,6 @@ class EnvironmentProxy
      * This is a convenience method which just forwards to Client::create(),
      * but setting the `space` and `environment` keys to the current space and environment IDs in the parameters array.
      *
-     * @param CreatableInterface         $resource
-     * @param string                     $resourceId
      * @param ResourceInterface|string[] $parameters
      *
      * @see \Contentful\Management\Client::create()
@@ -128,10 +119,7 @@ class EnvironmentProxy
     /**
      * Resolves a Contentful link scoped to the current space and environment.
      *
-     * @param Link     $link
      * @param string[] $parameters
-     *
-     * @return ResourceInterface
      */
     public function resolveLink(Link $link, array $parameters = []): ResourceInterface
     {
@@ -143,8 +131,6 @@ class EnvironmentProxy
 
     /**
      * Returns the Environment resource which corresponds to this proxy.
-     *
-     * @return Environment
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environment
      */

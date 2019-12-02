@@ -20,17 +20,11 @@ trait SpaceTrait
      */
     protected $space;
 
-    /**
-     * @param array $data
-     */
     protected function initSpace(array $data)
     {
         $this->space = new Link($data['space']['sys']['id'], $data['space']['sys']['linkType']);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeSpace(): array
     {
         return [
@@ -38,9 +32,6 @@ trait SpaceTrait
         ];
     }
 
-    /**
-     * @return Link
-     */
     public function getSpace(): Link
     {
         return $this->space;

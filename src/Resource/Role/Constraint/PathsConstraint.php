@@ -32,25 +32,18 @@ class PathsConstraint implements ConstraintInterface
 
     /**
      * PathsConstraint constructor.
-     *
-     * @param string $doc
      */
     public function __construct(string $doc = '')
     {
         $this->doc = $doc;
     }
 
-    /**
-     * @return string
-     */
     public function getDoc(): string
     {
         return $this->doc;
     }
 
     /**
-     * @param string $doc
-     *
      * @return static
      */
     public function setDoc(string $doc)

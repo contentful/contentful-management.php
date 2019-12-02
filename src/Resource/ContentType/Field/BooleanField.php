@@ -16,9 +16,6 @@ namespace Contentful\Management\Resource\ContentType\Field;
  */
 class BooleanField extends BaseField
 {
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return 'Boolean';

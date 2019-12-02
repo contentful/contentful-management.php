@@ -28,27 +28,17 @@ abstract class BaseSystemProperties implements SystemPropertiesInterface
      */
     protected $type;
 
-    /**
-     * @param string $type
-     * @param string $id
-     */
     protected function init(string $type, string $id)
     {
         $this->type = $type;
         $this->id = $id;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;

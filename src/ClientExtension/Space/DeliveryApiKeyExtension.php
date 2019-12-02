@@ -28,11 +28,6 @@ trait DeliveryApiKeyExtension
     /**
      * Returns a DeliveryApiKey resource.
      *
-     * @param string $spaceId
-     * @param string $deliveryApiKeyId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys
      */
     public function getDeliveryApiKey(string $spaceId, string $deliveryApiKeyId): ResourceClass
@@ -45,11 +40,6 @@ trait DeliveryApiKeyExtension
 
     /**
      * Returns a ResourceArray object containing DeliveryApiKey objects.
-     *
-     * @param string     $spaceId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection
      */

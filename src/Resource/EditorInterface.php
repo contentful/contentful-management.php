@@ -74,11 +74,6 @@ class EditorInterface extends BaseResource
         ];
     }
 
-    /**
-     * @param string $fieldId
-     *
-     * @return Control
-     */
     public function getControl(string $fieldId): Control
     {
         foreach ($this->controls as $control) {
@@ -87,10 +82,7 @@ class EditorInterface extends BaseResource
             }
         }
 
-        throw new \InvalidArgumentException(\sprintf(
-            'Trying to access unavailable control "%s".',
-            $fieldId
-        ));
+        throw new \InvalidArgumentException(\sprintf('Trying to access unavailable control "%s".', $fieldId));
     }
 
     /**

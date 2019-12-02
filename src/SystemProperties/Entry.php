@@ -13,16 +13,18 @@ namespace Contentful\Management\SystemProperties;
 
 class Entry extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
-    use Component\ArchivedTrait,
-        Component\ContentTypeTrait,
-        Component\EnvironmentTrait,
-        Component\PublishedTrait,
+    use Component\ArchivedTrait;
+    use
+        Component\ContentTypeTrait;
+    use
+        Component\EnvironmentTrait;
+    use
+        Component\PublishedTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * Entry constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

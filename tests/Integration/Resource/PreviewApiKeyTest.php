@@ -40,9 +40,6 @@ class PreviewApiKeyTest extends BaseTestCase
         $this->markTestAsPassed();
     }
 
-    /**
-     * @return PreviewApiKey
-     */
     public function testJsonSerialize(): PreviewApiKey
     {
         $resource = (new ResourceBuilder())
@@ -55,8 +52,6 @@ class PreviewApiKeyTest extends BaseTestCase
     }
 
     /**
-     * @param PreviewApiKey $previewApiKey
-     *
      * @depends testJsonSerialize
      * @expectedException \LogicException
      * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\PreviewApiKey", but only creation from scratch is supported.
@@ -71,8 +66,6 @@ class PreviewApiKeyTest extends BaseTestCase
     }
 
     /**
-     * @param PreviewApiKey $previewApiKey
-     *
      * @depends testJsonSerialize
      * @expectedException \LogicException
      * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\PreviewApiKey" to a request body format, but operation is not supported on this class.

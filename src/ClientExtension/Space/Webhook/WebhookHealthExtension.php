@@ -28,11 +28,6 @@ trait WebhookHealthExtension
     /**
      * Returns an WebhookHealth resource.
      *
-     * @param string $spaceId
-     * @param string $webhookId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health
      */
     public function getWebhookHealth(string $spaceId, string $webhookId): ResourceClass

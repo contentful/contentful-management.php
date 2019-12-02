@@ -52,17 +52,12 @@ abstract class ApiKey extends BaseResource
         return $this->sys;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)
@@ -81,8 +76,6 @@ abstract class ApiKey extends BaseResource
     }
 
     /**
-     * @param string $description
-     *
      * @return static
      */
     public function setDescription(string $description)
@@ -135,8 +128,6 @@ abstract class ApiKey extends BaseResource
     }
 
     /**
-     * @param Link $environment
-     *
      * @return self
      */
     public function addEnvironment(Link $environment)

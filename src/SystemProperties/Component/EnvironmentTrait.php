@@ -20,17 +20,11 @@ trait EnvironmentTrait
      */
     protected $environment;
 
-    /**
-     * @param array $data
-     */
     protected function initEnvironment(array $data)
     {
         $this->environment = new Link($data['environment']['sys']['id'], $data['environment']['sys']['linkType']);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeEnvironment(): array
     {
         return [
@@ -38,9 +32,6 @@ trait EnvironmentTrait
         ];
     }
 
-    /**
-     * @return Link
-     */
     public function getEnvironment(): Link
     {
         return $this->environment;

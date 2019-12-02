@@ -20,17 +20,11 @@ trait StatusTrait
      */
     protected $status;
 
-    /**
-     * @param array $data
-     */
     protected function initStatus(array $data)
     {
         $this->status = new Link($data['status']['sys']['id'], $data['status']['sys']['linkType']);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeStatus(): array
     {
         return [
@@ -38,9 +32,6 @@ trait StatusTrait
         ];
     }
 
-    /**
-     * @return Link
-     */
     public function getStatus(): Link
     {
         return $this->status;

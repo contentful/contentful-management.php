@@ -49,11 +49,6 @@ class Extension extends BaseMapper
         return $extension;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return FieldType
-     */
     protected function buildFieldTypes(array $data): FieldType
     {
         $secondParam = [];
@@ -75,11 +70,6 @@ class Extension extends BaseMapper
         );
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Parameter
-     */
     protected function buildParameter(array $data): Parameter
     {
         return (new Parameter($data['id'], $data['name'], $data['type']))

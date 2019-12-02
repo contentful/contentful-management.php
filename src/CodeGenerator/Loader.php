@@ -49,11 +49,6 @@ class Loader extends BaseCodeGenerator
      *     }
      * }
      * ```
-     *
-     * @param array  $contentTypes
-     * @param string $namespace
-     *
-     * @return Node\Expr\Closure
      */
     private function generateMatcherClosure(array $contentTypes, string $namespace): Node\Expr\Closure
     {
@@ -74,8 +69,6 @@ class Loader extends BaseCodeGenerator
      * ```
      * $data['sys']['contentType']['sys']['id']
      * ```
-     *
-     * @return Node\Expr
      */
     private function generateSwitchVar(): Node\Expr
     {
@@ -103,7 +96,6 @@ class Loader extends BaseCodeGenerator
      * ```
      *
      * @param ContentType[] $contentTypes
-     * @param string        $namespace
      *
      * @return Node\Stmt\Case_[]
      */

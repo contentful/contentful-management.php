@@ -13,21 +13,16 @@ namespace Contentful\Management\SystemProperties\Component;
 
 trait CreatedTrait
 {
-    use CreatedAtTrait,
+    use CreatedAtTrait;
+    use
         CreatedByTrait;
 
-    /**
-     * @param array $data
-     */
     protected function initCreated(array $data)
     {
         $this->initCreatedAt($data);
         $this->initCreatedBy($data);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeCreated(): array
     {
         return \array_merge(

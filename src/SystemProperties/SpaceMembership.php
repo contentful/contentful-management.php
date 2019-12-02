@@ -13,13 +13,12 @@ namespace Contentful\Management\SystemProperties;
 
 class SpaceMembership extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
-    use Component\EditedTrait,
+    use Component\EditedTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * SpaceMembership constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {
