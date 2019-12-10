@@ -235,11 +235,6 @@ class Client extends BaseClient
 
     /**
      * Resolves a collection of links to a Contentful resources.
-     *
-     * @param Link[]   $links
-     * @param string[] $parameters
-     *
-     * @return ResourceInterface[]
      */
     public function resolveLinkCollection(array $links, array $parameters = []): array
     {
