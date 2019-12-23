@@ -16,8 +16,6 @@ use Contentful\Management\Resource\Entry;
 class FantasticCreatureEntry extends Entry
 {
     /**
-     * @param string $locale
-     *
      * @return string|null
      */
     public function getName(string $locale = 'en-US')

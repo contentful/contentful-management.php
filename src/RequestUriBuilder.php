@@ -17,11 +17,7 @@ class RequestUriBuilder
      * Given a configuration array an a set of parameters,
      * builds the URI that identifies the current request.
      *
-     * @param array    $config
      * @param string[] $parameters
-     * @param string   $resourceId
-     *
-     * @return string
      */
     public function build(array $config, array $parameters, string $resourceId = ''): string
     {
@@ -71,11 +67,7 @@ class RequestUriBuilder
         }
 
         if ($missing) {
-            throw new \RuntimeException(\sprintf(
-                'Trying to make an API call on resource of class "%s" without required parameters "%s".',
-                $class,
-                \implode(', ', $missing)
-            ));
+            throw new \RuntimeException(\sprintf('Trying to make an API call on resource of class "%s" without required parameters "%s".', $class, \implode(', ', $missing)));
         }
 
         if ($idParameter && isset($current[$idParameter])) {

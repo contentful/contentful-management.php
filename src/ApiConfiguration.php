@@ -178,8 +178,6 @@ class ApiConfiguration
      * @param string|ResourceInterface $resource Either the FQCN of a resource, or an object implementing ResourceInterface
      *
      * @throws \InvalidArgumentException When passing an invalid or unrecognized resource
-     *
-     * @return array
      */
     public function getConfigFor($resource): array
     {
@@ -198,28 +196,18 @@ class ApiConfiguration
             }
         }
 
-        throw new \InvalidArgumentException(\sprintf(
-            'Trying to access invalid configuration for class "%s".',
-            $class
-        ));
+        throw new \InvalidArgumentException(\sprintf('Trying to access invalid configuration for class "%s".', $class));
     }
 
     /**
      * Returns the configuration for a specific link type.
      *
-     * @param string $linkType
-     *
      * @throws \InvalidArgumentException When passing an unrecognized link type
-     *
-     * @return array
      */
     public function getLinkConfigFor(string $linkType): array
     {
         if (!isset(self::$linkMap[$linkType])) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Trying to get link configuration for an invalid link type "%s".',
-                $linkType
-            ));
+            throw new \InvalidArgumentException(\sprintf('Trying to get link configuration for an invalid link type "%s".', $linkType));
         }
 
         $class = self::$linkMap[$linkType];

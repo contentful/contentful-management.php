@@ -20,17 +20,11 @@ trait ContentTypeTrait
      */
     protected $contentType;
 
-    /**
-     * @param array $data
-     */
     protected function initContentType(array $data)
     {
         $this->contentType = new Link($data['contentType']['sys']['id'], $data['contentType']['sys']['linkType']);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeContentType(): array
     {
         return [
@@ -38,9 +32,6 @@ trait ContentTypeTrait
         ];
     }
 
-    /**
-     * @return Link
-     */
     public function getContentType(): Link
     {
         return $this->contentType;

@@ -38,7 +38,6 @@ class InclusionFilter implements FilterInterface
     /**
      * InclusionFilter constructor.
      *
-     * @param string   $doc
      * @param string[] $values
      */
     public function __construct(string $doc, array $values)
@@ -47,17 +46,12 @@ class InclusionFilter implements FilterInterface
         $this->values = $values;
     }
 
-    /**
-     * @return string
-     */
     public function getDoc(): string
     {
         return $this->doc;
     }
 
     /**
-     * @param string $doc
-     *
      * @return static
      */
     public function setDoc(string $doc)

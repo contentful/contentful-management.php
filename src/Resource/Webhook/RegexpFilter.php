@@ -37,9 +37,6 @@ class RegexpFilter implements FilterInterface
 
     /**
      * RegexpFilter constructor.
-     *
-     * @param string $doc
-     * @param string $pattern
      */
     public function __construct(string $doc, string $pattern)
     {
@@ -47,17 +44,12 @@ class RegexpFilter implements FilterInterface
         $this->pattern = $pattern;
     }
 
-    /**
-     * @return string
-     */
     public function getDoc(): string
     {
         return $this->doc;
     }
 
     /**
-     * @param string $doc
-     *
      * @return static
      */
     public function setDoc(string $doc)
@@ -67,17 +59,12 @@ class RegexpFilter implements FilterInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPattern(): string
     {
         return $this->pattern;
     }
 
     /**
-     * @param string $pattern
-     *
      * @return static
      */
     public function setPattern(string $pattern)

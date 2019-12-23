@@ -28,10 +28,6 @@ trait PersonalAccessTokenExtension
     /**
      * Returns a PersonalAccessToken resource.
      *
-     * @param string $personalAccessTokenId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/personal-access-token
      */
     public function getPersonalAccessToken(string $personalAccessTokenId): ResourceClass
@@ -43,10 +39,6 @@ trait PersonalAccessTokenExtension
 
     /**
      * Returns a ResourceArray object containing PersonalAccessToken resources.
-     *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/personal-access-tokens-collection
      */

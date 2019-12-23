@@ -28,13 +28,6 @@ trait EntrySnapshotExtension
     /**
      * Returns an EntrySnapshot resource.
      *
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $entryId
-     * @param string $snapshotId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshot
      */
     public function getEntrySnapshot(string $spaceId, string $environmentId, string $entryId, string $snapshotId): ResourceClass
@@ -49,13 +42,6 @@ trait EntrySnapshotExtension
 
     /**
      * Returns a ResourceArray object which contains EntrySnapshot resources.
-     *
-     * @param string     $spaceId
-     * @param string     $environmentId
-     * @param string     $entryId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
      */

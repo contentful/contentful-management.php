@@ -57,11 +57,6 @@ class ArrayField extends BaseField
 
     /**
      * ArrayField constructor.
-     *
-     * @param string      $id
-     * @param string      $name
-     * @param string      $itemsType
-     * @param string|null $itemsLinkType
      */
     public function __construct(string $id, string $name, string $itemsType, string $itemsLinkType = null)
     {
@@ -71,25 +66,17 @@ class ArrayField extends BaseField
         $this->setItemsLinkType($itemsLinkType);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return 'Array';
     }
 
-    /**
-     * @return string
-     */
     public function getItemsType(): string
     {
         return $this->itemsType;
     }
 
     /**
-     * @param string $itemsType
-     *
      * @throws \InvalidArgumentException
      *
      * @return static
@@ -97,11 +84,7 @@ class ArrayField extends BaseField
     public function setItemsType(string $itemsType)
     {
         if (!$this->isValidItemType($itemsType)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Invalid items type "%s". Valid values are %s.',
-                $itemsType,
-                \implode(', ', self::VALID_ITEM_TYPES)
-            ));
+            throw new \InvalidArgumentException(\sprintf('Invalid items type "%s". Valid values are %s.', $itemsType, \implode(', ', self::VALID_ITEM_TYPES)));
         }
 
         $this->itemsType = $itemsType;
@@ -118,8 +101,6 @@ class ArrayField extends BaseField
     }
 
     /**
-     * @param string|null $itemsLinkType
-     *
      * @throws \InvalidArgumentException
      *
      * @return static
@@ -127,11 +108,7 @@ class ArrayField extends BaseField
     public function setItemsLinkType(string $itemsLinkType = null)
     {
         if ($itemsLinkType && 'Link' === $this->itemsType && !$this->isValidLinkType($itemsLinkType)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Invalid items link type "%s". Valid values are %s.',
-                $itemsLinkType,
-                \implode(', ', self::VALID_LINK_TYPES)
-            ));
+            throw new \InvalidArgumentException(\sprintf('Invalid items link type "%s". Valid values are %s.', $itemsLinkType, \implode(', ', self::VALID_LINK_TYPES)));
         }
 
         $this->itemsLinkType = $itemsLinkType;
@@ -162,8 +139,6 @@ class ArrayField extends BaseField
     }
 
     /**
-     * @param ValidationInterface $validation
-     *
      * @throws \InvalidArgumentException
      *
      * @return static
@@ -171,11 +146,7 @@ class ArrayField extends BaseField
     public function addItemsValidation(ValidationInterface $validation)
     {
         if (!\in_array($this->itemsType, $validation::getValidFieldTypes(), true)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'The validation "%s" can not be used for fields of type "%s".',
-                \get_class($validation),
-                $this->itemsType
-            ));
+            throw new \InvalidArgumentException(\sprintf('The validation "%s" can not be used for fields of type "%s".', \get_class($validation), $this->itemsType));
         }
 
         $this->itemsValidations[] = $validation;
@@ -183,21 +154,11 @@ class ArrayField extends BaseField
         return $this;
     }
 
-    /**
-     * @param string $type
-     *
-     * @return bool
-     */
     private function isValidItemType(string $type): bool
     {
         return \in_array($type, self::VALID_ITEM_TYPES, true);
     }
 
-    /**
-     * @param string $type
-     *
-     * @return bool
-     */
     private function isValidLinkType(string $type): bool
     {
         return \in_array($type, self::VALID_LINK_TYPES, true);

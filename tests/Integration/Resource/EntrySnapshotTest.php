@@ -40,9 +40,6 @@ class EntrySnapshotTest extends BaseTestCase
         $this->markTestAsPassed();
     }
 
-    /**
-     * @return EntrySnapshot
-     */
     public function testJsonSerialize(): EntrySnapshot
     {
         $resource = (new ResourceBuilder())
@@ -55,8 +52,6 @@ class EntrySnapshotTest extends BaseTestCase
     }
 
     /**
-     * @param EntrySnapshot $entrySnapshot
-     *
      * @depends testJsonSerialize
      * @expectedException \LogicException
      * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\EntrySnapshot", but only creation from scratch is supported.
@@ -73,8 +68,6 @@ class EntrySnapshotTest extends BaseTestCase
     }
 
     /**
-     * @param EntrySnapshot $entrySnapshot
-     *
      * @depends testJsonSerialize
      * @expectedException \LogicException
      * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\EntrySnapshot" to a request body format, but operation is not supported on this class.

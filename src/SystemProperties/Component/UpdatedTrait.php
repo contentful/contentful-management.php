@@ -13,21 +13,16 @@ namespace Contentful\Management\SystemProperties\Component;
 
 trait UpdatedTrait
 {
-    use UpdatedAtTrait,
+    use UpdatedAtTrait;
+    use
         UpdatedByTrait;
 
-    /**
-     * @param array $data
-     */
     protected function initUpdated(array $data)
     {
         $this->initUpdatedAt($data);
         $this->initUpdatedBy($data);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeUpdated(): array
     {
         return \array_merge(

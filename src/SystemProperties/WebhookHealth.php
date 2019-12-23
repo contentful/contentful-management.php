@@ -13,13 +13,12 @@ namespace Contentful\Management\SystemProperties;
 
 class WebhookHealth extends BaseSystemProperties
 {
-    use Component\CreatedByTrait,
+    use Component\CreatedByTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * WebhookHealth constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

@@ -27,8 +27,10 @@ use Contentful\Management\SystemProperties\Webhook as SystemProperties;
  */
 class Webhook extends BaseResource implements CreatableInterface
 {
-    use WebhookProxyExtension,
-        DeletableTrait,
+    use WebhookProxyExtension;
+    use
+        DeletableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -79,8 +81,6 @@ class Webhook extends BaseResource implements CreatableInterface
     /**
      * Webhook constructor.
      *
-     * @param string   $name
-     * @param string   $url
      * @param string[] $topics
      */
     public function __construct(string $name, string $url, array $topics = [])
@@ -172,17 +172,12 @@ class Webhook extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)
@@ -192,17 +187,12 @@ class Webhook extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
     /**
-     * @param string $url
-     *
      * @return static
      */
     public function setUrl(string $url)
@@ -221,8 +211,6 @@ class Webhook extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param string|null $httpBasicUsername
-     *
      * @return static
      */
     public function setHttpBasicUsername(string $httpBasicUsername = null)
@@ -241,8 +229,6 @@ class Webhook extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param string|null $httpBasicPassword
-     *
      * @return static
      */
     public function setHttpBasicPassword(string $httpBasicPassword = null)
@@ -261,38 +247,23 @@ class Webhook extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param string $key
-     *
      * @throws \InvalidArgumentException
-     *
-     * @return string
      */
     public function getHeader(string $key): string
     {
         if (!$this->hasHeader($key)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Invalid header key "%s" provided.',
-                $key
-            ));
+            throw new \InvalidArgumentException(\sprintf('Invalid header key "%s" provided.', $key));
         }
 
         return $this->headers[$key];
     }
 
-    /**
-     * @param string $key
-     *
-     * @return bool
-     */
     public function hasHeader(string $key): bool
     {
         return isset($this->headers[$key]);
     }
 
     /**
-     * @param string $key
-     * @param string $value
-     *
      * @return Webhook
      */
     public function addHeader(string $key, string $value)
@@ -311,9 +282,7 @@ class Webhook extends BaseResource implements CreatableInterface
     {
         foreach ($headers as $key => $value) {
             if (!\is_string($key) || !\is_string($value)) {
-                throw new \InvalidArgumentException(
-                    'Argument "$headers" of "Webhook::setHeaders()" must be an array where all keys and values are strings.'
-                );
+                throw new \InvalidArgumentException('Argument "$headers" of "Webhook::setHeaders()" must be an array where all keys and values are strings.');
             }
         }
 
@@ -323,8 +292,6 @@ class Webhook extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param string $key
-     *
      * @throws \InvalidArgumentException
      *
      * @return static
@@ -332,10 +299,7 @@ class Webhook extends BaseResource implements CreatableInterface
     public function removeHeader(string $key)
     {
         if (!$this->hasHeader($key)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Invalid header key "%s" provided.',
-                $key
-            ));
+            throw new \InvalidArgumentException(\sprintf('Invalid header key "%s" provided.', $key));
         }
 
         unset($this->headers[$key]);
@@ -352,8 +316,6 @@ class Webhook extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param string $topic
-     *
      * @return static
      */
     public function addTopic(string $topic)
@@ -376,19 +338,12 @@ class Webhook extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @param string $topic
-     *
-     * @return bool
-     */
     public function hasTopic(string $topic): bool
     {
         return \in_array($topic, $this->topics, true);
     }
 
     /**
-     * @param string $topic
-     *
      * @throws \InvalidArgumentException
      *
      * @return static
@@ -397,10 +352,7 @@ class Webhook extends BaseResource implements CreatableInterface
     {
         $key = \array_search($topic, $this->topics, true);
         if (false === $key) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Invalid topic "%s" provided.',
-                $topic
-            ));
+            throw new \InvalidArgumentException(\sprintf('Invalid topic "%s" provided.', $topic));
         }
 
         unset($this->topics[$key]);
@@ -429,17 +381,12 @@ class Webhook extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getTransformation(): array
     {
         return $this->transformation;
     }
 
     /**
-     * @param array $transformation
-     *
      * @return static
      */
     public function setTransformation(array $transformation)

@@ -25,16 +25,12 @@ use Contentful\Management\Resource\Webhook as ResourceClass;
  */
 trait WebhookExtension
 {
-    use Webhook\WebhookCallExtension,
+    use Webhook\WebhookCallExtension;
+    use
         Webhook\WebhookHealthExtension;
 
     /**
      * Returns a Webhook resource.
-     *
-     * @param string $spaceId
-     * @param string $webhookId
-     *
-     * @return ResourceClass
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhook
      */
@@ -48,11 +44,6 @@ trait WebhookExtension
 
     /**
      * Returns a ResourceArray object containing Webhook resources.
-     *
-     * @param string     $spaceId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhooks-collection
      */

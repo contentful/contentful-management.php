@@ -28,7 +28,8 @@ use Contentful\Management\SystemProperties\Extension as SystemProperties;
  */
 class Extension extends BaseResource implements CreatableInterface
 {
-    use DeletableTrait,
+    use DeletableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -68,8 +69,6 @@ class Extension extends BaseResource implements CreatableInterface
 
     /**
      * Extension construct.
-     *
-     * @param string $name
      */
     public function __construct(string $name = '')
     {
@@ -104,17 +103,12 @@ class Extension extends BaseResource implements CreatableInterface
         return [];
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)
@@ -124,9 +118,6 @@ class Extension extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSource(): string
     {
         return $this->source;
@@ -167,8 +158,6 @@ class Extension extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param FieldType $fieldType
-     *
      * @return static
      */
     public function addFieldType(FieldType $fieldType)
@@ -181,9 +170,6 @@ class Extension extends BaseResource implements CreatableInterface
     /**
      * Shortcut for adding a new field type.
      *
-     * @param string $type
-     * @param array  $options
-     *
      * @return static
      */
     public function addNewFieldType(string $type, array $options = [])
@@ -191,17 +177,12 @@ class Extension extends BaseResource implements CreatableInterface
         return $this->addFieldType(new FieldType($type, $options));
     }
 
-    /**
-     * @return bool
-     */
     public function isSidebar(): bool
     {
         return $this->sidebar;
     }
 
     /**
-     * @param bool $sidebar
-     *
      * @return static
      */
     public function setSidebar(bool $sidebar)
@@ -220,8 +201,6 @@ class Extension extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param Parameter $parameter
-     *
      * @return static
      */
     public function addInstallationParameter(Parameter $parameter)
@@ -252,8 +231,6 @@ class Extension extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param Parameter $parameter
-     *
      * @return static
      */
     public function addInstanceParameter(Parameter $parameter)

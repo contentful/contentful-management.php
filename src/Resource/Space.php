@@ -28,8 +28,10 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
  */
 class Space extends BaseResource implements CreatableInterface
 {
-    use SpaceProxyExtension,
-        DeletableTrait,
+    use SpaceProxyExtension;
+    use
+        DeletableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -54,10 +56,6 @@ class Space extends BaseResource implements CreatableInterface
 
     /**
      * Space constructor.
-     *
-     * @param string      $name
-     * @param string      $organizationId
-     * @param string|null $defaultLocale
      */
     public function __construct(string $name, string $organizationId, string $defaultLocale = null)
     {
@@ -127,17 +125,12 @@ class Space extends BaseResource implements CreatableInterface
         return ['X-Contentful-Organization' => $this->organizationId];
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)

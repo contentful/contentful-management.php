@@ -72,8 +72,6 @@ abstract class BaseResource implements ResourceInterface
      * This is done automatically when performing API calls,
      * so it shouldn't be used manually.
      *
-     * @param Client $client
-     *
      * @return static
      */
     public function setClient(Client $client)

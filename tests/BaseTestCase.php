@@ -54,9 +54,6 @@ class BaseTestCase extends TestCase
         $this->organizationId = \getenv('CONTENTFUL_PHP_MANAGEMENT_ORGANIZATION_ID');
     }
 
-    /**
-     * @return Client
-     */
     protected function getClient(): Client
     {
         $host = \getenv('CONTENTFUL_PHP_MANAGEMENT_SDK_HOST');
@@ -67,9 +64,6 @@ class BaseTestCase extends TestCase
         return new Client($this->token, $options);
     }
 
-    /**
-     * @return SpaceProxy
-     */
     protected function getReadOnlySpaceProxy(): SpaceProxy
     {
         return $this->getClient()
@@ -77,9 +71,6 @@ class BaseTestCase extends TestCase
         ;
     }
 
-    /**
-     * @return EnvironmentProxy
-     */
     protected function getReadOnlyEnvironmentProxy(): EnvironmentProxy
     {
         return $this->getReadOnlySpaceProxy()
@@ -87,9 +78,6 @@ class BaseTestCase extends TestCase
         ;
     }
 
-    /**
-     * @return SpaceProxy
-     */
     protected function getReadWriteSpaceProxy(): SpaceProxy
     {
         return $this->getClient()
@@ -97,9 +85,6 @@ class BaseTestCase extends TestCase
         ;
     }
 
-    /**
-     * @return EnvironmentProxy
-     */
     protected function getReadWriteEnvironmentProxy(): EnvironmentProxy
     {
         return $this->getReadWriteSpaceProxy()
@@ -107,18 +92,13 @@ class BaseTestCase extends TestCase
         ;
     }
 
-    /**
-     * @return EnvironmentProxy
-     */
     protected function getCodeGeneratorProxy(): EnvironmentProxy
     {
         return $this->getClient()->getEnvironmentProxy($this->codeGeneratorSpaceId, 'master');
     }
 
     /**
-     * @param string $file
      * @param object $object
-     * @param string $message
      */
     protected function assertJsonFixtureEqualsJsonObject(string $file, $object, string $message = '')
     {

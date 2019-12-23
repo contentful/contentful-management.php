@@ -31,9 +31,6 @@ trait ArchivedTrait
      */
     private $archivedVersion;
 
-    /**
-     * @param array $data
-     */
     protected function initArchived(array $data)
     {
         if (!isset($data['archivedAt'])) {
@@ -45,9 +42,6 @@ trait ArchivedTrait
         $this->archivedVersion = $data['archivedVersion'];
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeArchived(): array
     {
         return \array_filter([
@@ -81,9 +75,6 @@ trait ArchivedTrait
         return $this->archivedVersion;
     }
 
-    /**
-     * @return bool
-     */
     public function isArchived(): bool
     {
         return null !== $this->archivedVersion;

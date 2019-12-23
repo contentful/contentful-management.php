@@ -13,13 +13,12 @@ namespace Contentful\Management\SystemProperties\Component;
 
 trait EditedTrait
 {
-    use CreatedTrait,
-        UpdatedTrait,
+    use CreatedTrait;
+    use
+        UpdatedTrait;
+    use
         VersionedTrait;
 
-    /**
-     * @param array $data
-     */
     protected function initEdited(array $data)
     {
         $this->initCreated($data);
@@ -27,9 +26,6 @@ trait EditedTrait
         $this->initVersioned($data);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeEdited(): array
     {
         return \array_merge(

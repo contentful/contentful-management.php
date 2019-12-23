@@ -32,8 +32,6 @@ abstract class BaseMapper implements MapperInterface
 
     /**
      * BaseMapper constructor.
-     *
-     * @param ResourceBuilder $builder
      */
     public function __construct(ResourceBuilder $builder)
     {

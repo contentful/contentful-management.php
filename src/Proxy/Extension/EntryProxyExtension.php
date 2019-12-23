@@ -51,10 +51,6 @@ trait EntryProxyExtension
     /**
      * Returns a EntrySnapshot resource.
      *
-     * @param string $snapshotId
-     *
-     * @return EntrySnapshot
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshot
      */
     public function getSnapshot(string $snapshotId): EntrySnapshot
@@ -69,10 +65,6 @@ trait EntryProxyExtension
 
     /**
      * Returns a ResourceArray object which contains EntrySnapshot resources.
-     *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
      */

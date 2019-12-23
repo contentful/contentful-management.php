@@ -26,7 +26,8 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
  */
 class DeliveryApiKey extends ApiKey implements CreatableInterface
 {
-    use DeletableTrait,
+    use DeletableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -36,8 +37,6 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
 
     /**
      * ApiKey constructor.
-     *
-     * @param string $name
      */
     public function __construct(string $name = '')
     {

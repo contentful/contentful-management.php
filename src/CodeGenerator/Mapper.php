@@ -76,11 +76,6 @@ class Mapper extends BaseCodeGenerator
         );
     }
 
-    /**
-     * @param ContentType $contentType
-     *
-     * @return Class_
-     */
     private function generateClass(ContentType $contentType): Class_
     {
         $className = $this->convertToStudlyCaps($contentType->getId());
@@ -118,10 +113,6 @@ class Mapper extends BaseCodeGenerator
      *     ]);
      * }
      * ```
-     *
-     * @param ContentType $contentType
-     *
-     * @return ClassMethod
      */
     private function generateMapMethod(ContentType $contentType): ClassMethod
     {
@@ -162,8 +153,6 @@ class Mapper extends BaseCodeGenerator
      *     'fields' => $this->formatFields($data),
      * ]
      * ```
-     *
-     * @param string $className
      *
      * @return Node\Arg[]
      */
@@ -232,10 +221,6 @@ class Mapper extends BaseCodeGenerator
      *     return $fields;
      * }
      * ```
-     *
-     * @param ContentType $contentType
-     *
-     * @return ClassMethod
      */
     private function generateFormatMethod(ContentType $contentType): ClassMethod
     {
@@ -274,8 +259,6 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * @param FieldInterface $field
-     *
      * @return Node[]
      */
     private function generateFieldAssignment(FieldInterface $field): array
@@ -311,8 +294,6 @@ class Mapper extends BaseCodeGenerator
      * }
      * ```
      *
-     * @param ArrayField $field
-     *
      * @return Node[]
      */
     private function generateArrayLinkFieldAssignment(ArrayField $field): array
@@ -337,8 +318,6 @@ class Mapper extends BaseCodeGenerator
     }
 
     /**
-     * @param LinkField $field
-     *
      * @return Node[]
      */
     private function generateLinkFieldAssignment(LinkField $field): array
@@ -360,8 +339,6 @@ class Mapper extends BaseCodeGenerator
      *     $fields['name'][$locale] = new DateTimeImmutable($value);
      * }
      * ```
-     *
-     * @param DateField $field
      *
      * @return Node[]
      */
@@ -386,8 +363,6 @@ class Mapper extends BaseCodeGenerator
      * ```
      * $fields['name'] = $data['name'] ?? null
      * ```
-     *
-     * @param FieldInterface $field
      *
      * @return Node\Expr[]
      */
@@ -416,10 +391,6 @@ class Mapper extends BaseCodeGenerator
      * ```
      * new Link($varName['sys']['id'], $varName['sys']['linkType'])
      * ```
-     *
-     * @param string $varName
-     *
-     * @return Node\Expr\New_
      */
     private function generateNewLinkStatement(string $varName): Node\Expr\New_
     {
@@ -457,9 +428,6 @@ class Mapper extends BaseCodeGenerator
      *     $fields['name'][$locale] = {{ $expr }};
      * }
      * ```
-     *
-     * @param FieldInterface $field
-     * @param Node\Expr      $expr
      *
      * @return Node[]
      */

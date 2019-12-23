@@ -28,11 +28,6 @@ trait UploadExtension
     /**
      * Returns an Upload resource.
      *
-     * @param string $spaceId
-     * @param string $uploadId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads/retrieving-an-upload
      */
     public function getUpload(string $spaceId, string $uploadId): ResourceClass

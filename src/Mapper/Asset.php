@@ -50,8 +50,6 @@ class Asset extends BaseMapper
      * Returns a PHP object representation of a file stored in Contentful.
      *
      * @param array $data The contents of the "asset.file.[locale]" array
-     *
-     * @return FileInterface
      */
     protected function buildFile(array $data): FileInterface
     {

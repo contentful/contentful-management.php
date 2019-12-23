@@ -28,12 +28,6 @@ trait LocaleExtension
     /**
      * Returns a Locale resource.
      *
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $localeId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale
      */
     public function getLocale(string $spaceId, string $environmentId, string $localeId): ResourceClass
@@ -47,11 +41,6 @@ trait LocaleExtension
 
     /**
      * Returns a ResourceArray object containing Locale resources.
-     *
-     * @param string $spaceId
-     * @param string $environmentId
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale-collection
      */

@@ -25,8 +25,10 @@ use Contentful\Management\Resource\ResourceInterface;
  */
 class Client extends BaseClient
 {
-    use ClientExtension\OrganizationExtension,
-        ClientExtension\SpaceExtension,
+    use ClientExtension\OrganizationExtension;
+    use
+        ClientExtension\SpaceExtension;
+    use
         ClientExtension\UserExtension;
 
     /**
@@ -94,8 +96,6 @@ class Client extends BaseClient
 
     /**
      * Returns the active ResourceBuilder instance.
-     *
-     * @return ResourceBuilder
      */
     public function getBuilder(): ResourceBuilder
     {
@@ -197,10 +197,7 @@ class Client extends BaseClient
     }
 
     /**
-     * @param string                 $class
-     * @param string[]               $parameters
-     * @param Query|null             $query
-     * @param ResourceInterface|null $resource
+     * @param string[] $parameters
      *
      * @return ResourceInterface|ResourceArray
      */
@@ -226,10 +223,7 @@ class Client extends BaseClient
     /**
      * Resolves a link to a Contentful resource.
      *
-     * @param Link     $link
      * @param string[] $parameters
-     *
-     * @return ResourceInterface
      */
     public function resolveLink(Link $link, array $parameters = []): ResourceInterface
     {
@@ -241,11 +235,6 @@ class Client extends BaseClient
 
     /**
      * Resolves a collection of links to a Contentful resources.
-     *
-     * @param Link[]   $links
-     * @param string[] $parameters
-     *
-     * @return ResourceInterface[]
      */
     public function resolveLinkCollection(array $links, array $parameters = []): array
     {

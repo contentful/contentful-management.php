@@ -52,10 +52,6 @@ trait ContentTypeProxyExtension
     /**
      * Returns a ContentTypeSnapshot resource.
      *
-     * @param string $snapshotId
-     *
-     * @return ContentTypeSnapshot
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot
      */
     public function getSnapshot(string $snapshotId): ContentTypeSnapshot
@@ -71,10 +67,6 @@ trait ContentTypeProxyExtension
     /**
      * Returns a ResourceArray object which contains ContentTypeSnapshot resources.
      *
-     * @param Query|null $query
-     *
-     * @return ResourceArray
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
     public function getSnapshots(Query $query = null): ResourceArray
@@ -89,8 +81,6 @@ trait ContentTypeProxyExtension
 
     /**
      * Returns an EditorInterface resource.
-     *
-     * @return EditorInterface
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface
      */

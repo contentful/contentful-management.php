@@ -69,9 +69,6 @@ abstract class BaseField implements FieldInterface
 
     /**
      * BaseField constructor.
-     *
-     * @param string $id
-     * @param string $name
      */
     public function __construct(string $id, string $name)
     {
@@ -79,25 +76,17 @@ abstract class BaseField implements FieldInterface
         $this->name = $name;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)
@@ -107,17 +96,12 @@ abstract class BaseField implements FieldInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isRequired(): bool
     {
         return true === $this->required;
     }
 
     /**
-     * @param bool $required
-     *
      * @return static
      */
     public function setRequired(bool $required)
@@ -127,17 +111,12 @@ abstract class BaseField implements FieldInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isLocalized(): bool
     {
         return true === $this->localized;
     }
 
     /**
-     * @param bool $localized
-     *
      * @return static
      */
     public function setLocalized(bool $localized)
@@ -147,17 +126,12 @@ abstract class BaseField implements FieldInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isDisabled(): bool
     {
         return true === $this->disabled;
     }
 
     /**
-     * @param bool $disabled
-     *
      * @return static
      */
     public function setDisabled(bool $disabled)
@@ -167,17 +141,12 @@ abstract class BaseField implements FieldInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isOmitted(): bool
     {
         return true === $this->omitted;
     }
 
     /**
-     * @param bool $omitted
-     *
      * @return static
      */
     public function setOmitted(bool $omitted)
@@ -210,18 +179,12 @@ abstract class BaseField implements FieldInterface
     }
 
     /**
-     * @param ValidationInterface $validation
-     *
      * @return static
      */
     public function addValidation(ValidationInterface $validation)
     {
         if (!\in_array($this->getType(), $validation->getValidFieldTypes(), true)) {
-            throw new \RuntimeException(\sprintf(
-                'The validation "%s" can not be used for fields of type "%s".',
-                \get_class($validation),
-                $this->getType()
-            ));
+            throw new \RuntimeException(\sprintf('The validation "%s" can not be used for fields of type "%s".', \get_class($validation), $this->getType()));
         }
 
         $this->validations[] = $validation;

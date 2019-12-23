@@ -30,8 +30,6 @@ trait UserExtension
     /**
      * Returns a User resource.
      *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/users/user
      */
     public function getUserMe(): ResourceClass

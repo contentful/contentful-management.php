@@ -65,10 +65,6 @@ class Parameter implements \JsonSerializable
 
     /**
      * Parameter constructor.
-     *
-     * @param string $id
-     * @param string $name
-     * @param string $type
      */
     public function __construct(string $id, string $name, string $type)
     {
@@ -78,17 +74,12 @@ class Parameter implements \JsonSerializable
         ;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
-     *
      * @return static
      */
     public function setId(string $id)
@@ -98,17 +89,12 @@ class Parameter implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)
@@ -127,8 +113,6 @@ class Parameter implements \JsonSerializable
     }
 
     /**
-     * @param string|null $description
-     *
      * @return static
      */
     public function setDescription(string $description = null)
@@ -138,27 +122,18 @@ class Parameter implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * @param string $type
-     *
      * @return static
      */
     public function setType(string $type)
     {
         if (!\in_array($type, self::$validTypes, true)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Invalid type "%s" given for parameter with ID "%s".',
-                $type,
-                $this->id
-            ));
+            throw new \InvalidArgumentException(\sprintf('Invalid type "%s" given for parameter with ID "%s".', $type, $this->id));
         }
 
         $this->type = $type;
@@ -166,17 +141,12 @@ class Parameter implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isRequired(): bool
     {
         return $this->required;
     }
 
     /**
-     * @param bool $required
-     *
      * @return static
      */
     public function setRequired(bool $required)
@@ -206,17 +176,12 @@ class Parameter implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getOptions(): array
     {
         return $this->options;
     }
 
     /**
-     * @param array $options
-     *
      * @return static
      */
     public function setOptions(array $options)
@@ -226,17 +191,12 @@ class Parameter implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getLabels(): array
     {
         return $this->labels;
     }
 
     /**
-     * @param array $labels
-     *
      * @return static
      */
     public function setLabels(array $labels)

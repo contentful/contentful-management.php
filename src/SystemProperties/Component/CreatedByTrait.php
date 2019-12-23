@@ -20,9 +20,6 @@ trait CreatedByTrait
      */
     protected $createdBy;
 
-    /**
-     * @param array $data
-     */
     protected function initCreatedBy(array $data)
     {
         if (isset($data['createdBy'])) {
@@ -30,9 +27,6 @@ trait CreatedByTrait
         }
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeCreatedBy(): array
     {
         return [
@@ -40,9 +34,6 @@ trait CreatedByTrait
         ];
     }
 
-    /**
-     * @return Link
-     */
     public function getCreatedBy(): Link
     {
         return $this->createdBy;

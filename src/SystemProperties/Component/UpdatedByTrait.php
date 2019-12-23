@@ -20,9 +20,6 @@ trait UpdatedByTrait
      */
     protected $updatedBy;
 
-    /**
-     * @param array $data
-     */
     protected function initUpdatedBy(array $data)
     {
         if (isset($data['createdBy'])) {
@@ -30,9 +27,6 @@ trait UpdatedByTrait
         }
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeUpdatedBy(): array
     {
         return [
@@ -40,9 +34,6 @@ trait UpdatedByTrait
         ];
     }
 
-    /**
-     * @return Link
-     */
     public function getUpdatedBy(): Link
     {
         return $this->updatedBy;

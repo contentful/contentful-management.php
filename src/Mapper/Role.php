@@ -47,11 +47,6 @@ class Role extends BaseMapper
         return $role;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Policy
-     */
     protected function mapPolicy(array $data): Policy
     {
         return new Policy(
@@ -61,11 +56,6 @@ class Role extends BaseMapper
         );
     }
 
-    /**
-     * @param array $data
-     *
-     * @return ConstraintInterface
-     */
     protected function mapConstraint(array $data): ConstraintInterface
     {
         \reset($data);
@@ -109,18 +99,10 @@ class Role extends BaseMapper
                     $data[$key][$valueKey]
                 );
             default:
-                throw new \RuntimeException(\sprintf(
-                    'Trying to build a constraint object using invalid key "%s".',
-                    $key
-                ));
+                throw new \RuntimeException(\sprintf('Trying to build a constraint object using invalid key "%s".', $key));
         }
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Permissions
-     */
     protected function mapPermissions(array $data): Permissions
     {
         /** @var Permissions $permissions */

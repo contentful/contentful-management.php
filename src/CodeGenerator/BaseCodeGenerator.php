@@ -29,27 +29,16 @@ abstract class BaseCodeGenerator
 
     /**
      * BaseCodeGenerator constructor.
-     *
-     * @param string $defaultLocale
      */
     public function __construct(string $defaultLocale)
     {
         $this->defaultLocale = $defaultLocale;
     }
 
-    /**
-     * @param array $params
-     *
-     * @return string
-     */
     abstract public function generate(array $params): string;
 
     /**
      * Returns a rendered node.
-     *
-     * @param Node $node
-     *
-     * @return string
      */
     protected function render(Node $node): string
     {
@@ -73,10 +62,6 @@ abstract class BaseCodeGenerator
 
     /**
      * Converts a string to StudlyCaps.
-     *
-     * @param string $name
-     *
-     * @return string
      */
     protected function convertToStudlyCaps(string $name): string
     {
@@ -109,11 +94,6 @@ abstract class BaseCodeGenerator
         }, $classes);
     }
 
-    /**
-     * @param FieldInterface $field
-     *
-     * @return string
-     */
     protected function getFieldType(FieldInterface $field): string
     {
         if ($field instanceof ArrayField) {

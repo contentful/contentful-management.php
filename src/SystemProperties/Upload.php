@@ -13,14 +13,14 @@ namespace Contentful\Management\SystemProperties;
 
 class Upload extends BaseSystemProperties
 {
-    use Component\CreatedTrait,
-        Component\ExpiredTrait,
+    use Component\CreatedTrait;
+    use
+        Component\ExpiredTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * Upload constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

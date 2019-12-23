@@ -51,9 +51,6 @@ class EntrySnapshot extends Snapshot
         ];
     }
 
-    /**
-     * @return Entry
-     */
     public function getEntry(): Entry
     {
         return $this->snapshot;

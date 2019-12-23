@@ -119,11 +119,6 @@ class Upload extends BaseResource implements CreatableInterface
 
     /**
      * Returns an object representation of the upload that is compatible to an asset resource.
-     *
-     * @param string $filename
-     * @param string $contentType
-     *
-     * @return LocalUploadFile
      */
     public function asAssetFile(string $filename, string $contentType): LocalUploadFile
     {

@@ -40,9 +40,6 @@ class EqualityFilter implements FilterInterface
 
     /**
      * EqualityFilter constructor.
-     *
-     * @param string $doc
-     * @param string $value
      */
     public function __construct(string $doc, string $value)
     {
@@ -50,17 +47,12 @@ class EqualityFilter implements FilterInterface
         $this->value = $value;
     }
 
-    /**
-     * @return string
-     */
     public function getDoc(): string
     {
         return $this->doc;
     }
 
     /**
-     * @param string $doc
-     *
      * @return static
      */
     public function setDoc(string $doc)
@@ -70,17 +62,12 @@ class EqualityFilter implements FilterInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
     /**
-     * @param string $value
-     *
      * @return static
      */
     public function setValue(string $value)

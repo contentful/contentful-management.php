@@ -15,8 +15,5 @@ use Contentful\Core\Resource\SystemPropertiesInterface;
 
 interface VersionableSystemPropertiesInterface extends SystemPropertiesInterface
 {
-    /**
-     * @return int
-     */
     public function getVersion(): int;
 }

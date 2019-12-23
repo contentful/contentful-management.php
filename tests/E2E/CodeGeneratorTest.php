@@ -107,8 +107,6 @@ class CodeGeneratorTest extends BaseTestCase
     /**
      * @depends testCodeGenerator
      * @vcr e2e_code_generator_create_delete.json
-     *
-     * @param string $fixturesDir
      */
     public function testGeneratedClassesWork(string $fixturesDir)
     {

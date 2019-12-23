@@ -20,17 +20,11 @@ trait ExpiredTrait
      */
     protected $expiresAt;
 
-    /**
-     * @param array $data
-     */
     protected function initExpired(array $data)
     {
         $this->expiresAt = new DateTimeImmutable($data['expiresAt']);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeExpired(): array
     {
         return [
@@ -38,9 +32,6 @@ trait ExpiredTrait
         ];
     }
 
-    /**
-     * @return DateTimeImmutable
-     */
     public function getExpiresAt(): DateTimeImmutable
     {
         return $this->expiresAt;

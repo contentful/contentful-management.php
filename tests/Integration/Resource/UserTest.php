@@ -40,9 +40,6 @@ class UserTest extends BaseTestCase
         $this->markTestAsPassed();
     }
 
-    /**
-     * @return User
-     */
     public function testJsonSerialize(): User
     {
         $resource = (new ResourceBuilder())
@@ -55,8 +52,6 @@ class UserTest extends BaseTestCase
     }
 
     /**
-     * @param User $user
-     *
      * @depends testJsonSerialize
      * @expectedException \LogicException
      * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\User", but only creation from scratch is supported.
@@ -71,8 +66,6 @@ class UserTest extends BaseTestCase
     }
 
     /**
-     * @param User $user
-     *
      * @depends testJsonSerialize
      * @expectedException \LogicException
      * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\User" to a request body format, but operation is not supported on this class.

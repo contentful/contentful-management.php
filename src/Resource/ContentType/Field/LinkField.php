@@ -35,8 +35,6 @@ class LinkField extends BaseField
     /**
      * LinkField constructor.
      *
-     * @param string $id
-     * @param string $name
      * @param string $linkType Either Entry or Asset
      *
      * @throws \RuntimeException If $linkType is not a valid value
@@ -48,27 +46,18 @@ class LinkField extends BaseField
         $this->setLinkType($linkType);
     }
 
-    /**
-     * @return string
-     */
     public function getLinkType(): string
     {
         return $this->linkType;
     }
 
     /**
-     * @param string $linkType
-     *
      * @return static
      */
     public function setLinkType(string $linkType)
     {
         if (!$this->isValidLinkType($linkType)) {
-            throw new \RuntimeException(\sprintf(
-                'Invalid link type "%s". Valid values are %s.',
-                $linkType,
-                \implode(', ', self::VALID_LINK_TYPES)
-            ));
+            throw new \RuntimeException(\sprintf('Invalid link type "%s". Valid values are %s.', $linkType, \implode(', ', self::VALID_LINK_TYPES)));
         }
 
         $this->linkType = $linkType;
@@ -76,19 +65,11 @@ class LinkField extends BaseField
         return $this;
     }
 
-    /**
-     * @param string $type
-     *
-     * @return bool
-     */
     private function isValidLinkType(string $type): bool
     {
         return \in_array($type, self::VALID_LINK_TYPES, true);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return 'Link';

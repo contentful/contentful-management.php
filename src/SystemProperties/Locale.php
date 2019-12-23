@@ -13,14 +13,14 @@ namespace Contentful\Management\SystemProperties;
 
 class Locale extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
-    use Component\EditedTrait,
-        Component\EnvironmentTrait,
+    use Component\EditedTrait;
+    use
+        Component\EnvironmentTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * Locale constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

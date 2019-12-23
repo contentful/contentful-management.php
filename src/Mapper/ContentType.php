@@ -41,11 +41,6 @@ class ContentType extends BaseMapper
         return $contentType;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return FieldInterface
-     */
     protected function mapField(array $data): FieldInterface
     {
         $fqcn = __NAMESPACE__.'\\ContentType\\Field\\'.$data['type'].'Field';

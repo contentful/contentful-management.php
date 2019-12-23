@@ -79,26 +79,15 @@ class GenerateEntryClassesCommand extends Command
     }
 
     /**
-     * @param string $dir
-     *
      * @throws \RuntimeException
      */
     private function performDirectoryChecks(string $dir)
     {
         if (!\is_dir($dir) && !\is_writable(\dirname($dir))) {
-            throw new \RuntimeException(\sprintf(
-                'Directory "%s" does not exist and can not be created.',
-                $dir
-            ));
+            throw new \RuntimeException(\sprintf('Directory "%s" does not exist and can not be created.', $dir));
         }
     }
 
-    /**
-     * @param string $accessToken
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $namespace
-     */
     private function generate(string $accessToken, string $spaceId, string $environmentId, string $namespace)
     {
         $client = new Client($accessToken);
@@ -133,8 +122,6 @@ class GenerateEntryClassesCommand extends Command
     }
 
     /**
-     * @param EnvironmentProxy $environment
-     *
      * @return ContentType[]
      */
     private function getAllContentTypes(EnvironmentProxy $environment): array
@@ -160,11 +147,6 @@ class GenerateEntryClassesCommand extends Command
         return $allContentTypes;
     }
 
-    /**
-     * @param EnvironmentProxy $environment
-     *
-     * @return string
-     */
     private function determineDefaultLocale(EnvironmentProxy $environment): string
     {
         $defaultLocale = 'en-US';
@@ -183,19 +165,12 @@ class GenerateEntryClassesCommand extends Command
 
     /**
      * Converts a string to StudlyCaps.
-     *
-     * @param string $name
-     *
-     * @return string
      */
     protected function convertToStudlyCaps(string $name): string
     {
         return \ucwords(\str_replace(['-', '_'], ' ', $name));
     }
 
-    /**
-     * @param string $dir
-     */
     private function writeFiles(string $dir)
     {
         foreach ($this->createdFiles as $content) {
@@ -215,12 +190,6 @@ class GenerateEntryClassesCommand extends Command
         );
     }
 
-    /**
-     * @param string $path
-     * @param string $content
-     *
-     * @return bool
-     */
     private function writeFile(string $path, string $content): bool
     {
         if (!\is_dir(\dirname($path))) {
@@ -230,12 +199,6 @@ class GenerateEntryClassesCommand extends Command
         return (bool) \file_put_contents($path, $content);
     }
 
-    /**
-     * @param OutputInterface $output
-     * @param string          $spaceId
-     * @param string          $environmentId
-     * @param string          $dir
-     */
     private function writeReport(OutputInterface $output, string $spaceId, string $environmentId, string $dir)
     {
         $output->writeln(\sprintf(

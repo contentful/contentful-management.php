@@ -26,7 +26,8 @@ use Contentful\Management\SystemProperties\SpaceMembership as SystemProperties;
  */
 class SpaceMembership extends BaseResource implements CreatableInterface
 {
-    use DeletableTrait,
+    use DeletableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -99,17 +100,12 @@ class SpaceMembership extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * @return bool
-     */
     public function isAdmin(): bool
     {
         return $this->admin;
     }
 
     /**
-     * @param bool $admin
-     *
      * @return static
      */
     public function setAdmin(bool $admin)
@@ -128,8 +124,6 @@ class SpaceMembership extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param string $email
-     *
      * @return static
      */
     public function setEmail(string $email)
@@ -148,8 +142,6 @@ class SpaceMembership extends BaseResource implements CreatableInterface
     }
 
     /**
-     * @param Link $role
-     *
      * @return static
      */
     public function addRole(Link $role)
@@ -161,8 +153,6 @@ class SpaceMembership extends BaseResource implements CreatableInterface
 
     /**
      * Shortcut for adding a link to a role.
-     *
-     * @param string $roleId
      *
      * @return static
      */

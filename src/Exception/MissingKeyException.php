@@ -43,9 +43,6 @@ class MissingKeyException extends Exception
         $this->key = $result['details']['key'];
     }
 
-    /**
-     * @return string
-     */
     public function getKey(): string
     {
         return $this->key;

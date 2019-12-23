@@ -13,13 +13,12 @@ namespace Contentful\Management\SystemProperties;
 
 class WebhookCall extends BaseSystemProperties
 {
-    use Component\CreatedTrait,
+    use Component\CreatedTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * WebhookCall constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

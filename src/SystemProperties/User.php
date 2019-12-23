@@ -13,14 +13,14 @@ namespace Contentful\Management\SystemProperties;
 
 class User extends BaseSystemProperties
 {
-    use Component\CreatedAtTrait,
-        Component\UpdatedAtTrait,
+    use Component\CreatedAtTrait;
+    use
+        Component\UpdatedAtTrait;
+    use
         Component\VersionedTrait;
 
     /**
      * User constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

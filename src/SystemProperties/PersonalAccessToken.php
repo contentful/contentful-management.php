@@ -13,13 +13,12 @@ namespace Contentful\Management\SystemProperties;
 
 class PersonalAccessToken extends BaseSystemProperties
 {
-    use Component\CreatedAtTrait,
+    use Component\CreatedAtTrait;
+    use
         Component\UpdatedAtTrait;
 
     /**
      * PersonalAccessToken constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

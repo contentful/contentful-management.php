@@ -13,13 +13,12 @@ namespace Contentful\Management\SystemProperties;
 
 class ApiKey extends BaseSystemProperties
 {
-    use Component\EditedTrait,
+    use Component\EditedTrait;
+    use
         Component\SpaceTrait;
 
     /**
      * ApiKey constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

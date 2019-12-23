@@ -27,8 +27,10 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
  */
 class Environment extends BaseResource implements CreatableInterface
 {
-    use EnvironmentProxyExtension,
-        DeletableTrait,
+    use EnvironmentProxyExtension;
+    use
+        DeletableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -43,8 +45,6 @@ class Environment extends BaseResource implements CreatableInterface
 
     /**
      * Environment constructor.
-     *
-     * @param string $name
      */
     public function __construct(string $name)
     {
@@ -117,17 +117,12 @@ class Environment extends BaseResource implements CreatableInterface
         return $this->sys->getId();
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return static
      */
     public function setName(string $name)

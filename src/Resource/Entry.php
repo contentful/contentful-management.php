@@ -30,10 +30,14 @@ use Contentful\Management\SystemProperties\Entry as SystemProperties;
  */
 class Entry extends BaseResource implements EntryInterface, CreatableInterface
 {
-    use EntryProxyExtension,
-        ArchivableTrait,
-        DeletableTrait,
-        PublishableTrait,
+    use EntryProxyExtension;
+    use
+        ArchivableTrait;
+    use
+        DeletableTrait;
+    use
+        PublishableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -53,17 +57,12 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
 
     /**
      * Entry constructor.
-     *
-     * @param string $contentTypeId
      */
     public function __construct(string $contentTypeId)
     {
         $this->contentTypeId = $contentTypeId;
     }
 
-    /**
-     * @return SystemProperties
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
@@ -163,10 +162,6 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
      * to a simple array when empty.
      * The Management API does not recognize the value and throws an errors,
      * so we make an educated guess and force the data property to be an object.
-     *
-     * @param array $value
-     *
-     * @return array
      */
     private function formatRichTextField(array $value): array
     {
@@ -186,9 +181,6 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
     }
 
     /**
-     * @param string $name
-     * @param string $locale
-     *
      * @return mixed
      */
     public function getField(string $name, string $locale)
@@ -196,11 +188,6 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
         return $this->fields[$name][$locale] ?? null;
     }
 
-    /**
-     * @param string|null $locale
-     *
-     * @return array
-     */
     public function getFields(string $locale = null): array
     {
         if (null === $locale) {
@@ -216,9 +203,7 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
     }
 
     /**
-     * @param string $name
-     * @param string $locale
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return static
      */
@@ -236,9 +221,6 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
     /**
      * Provides simple setX/getX capabilities,
      * without recurring to code generation.
-     *
-     * @param string $name
-     * @param array  $arguments
      *
      * @return mixed
      */
@@ -260,11 +242,6 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
             : $this->setField($field, ...$arguments);
     }
 
-    /**
-     * @param string $name
-     *
-     * @return string
-     */
     private function extractFieldName(string $name): string
     {
         return \lcfirst(\mb_substr($name, 3));

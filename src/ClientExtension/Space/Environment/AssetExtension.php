@@ -28,12 +28,6 @@ trait AssetExtension
     /**
      * Returns an Asset resource.
      *
-     * @param string $spaceId
-     * @param string $environmentId
-     * @param string $assetId
-     *
-     * @return ResourceClass
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset
      */
     public function getAsset(string $spaceId, string $environmentId, string $assetId): ResourceClass
@@ -47,12 +41,6 @@ trait AssetExtension
 
     /**
      * Returns a ResourceArray object which contains Asset resources.
-     *
-     * @param string     $spaceId
-     * @param string     $environmentId
-     * @param Query|null $query
-     *
-     * @return ResourceArray
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection
      */

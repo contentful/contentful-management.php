@@ -41,7 +41,6 @@ class EqualityConstraint implements ConstraintInterface
     /**
      * EqualityConstraint constructor.
      *
-     * @param string     $doc
      * @param mixed|null $value
      */
     public function __construct(string $doc = '', $value = null)
@@ -50,17 +49,12 @@ class EqualityConstraint implements ConstraintInterface
         $this->value = $value;
     }
 
-    /**
-     * @return string
-     */
     public function getDoc(): string
     {
         return $this->doc;
     }
 
     /**
-     * @param string $doc
-     *
      * @return static
      */
     public function setDoc(string $doc)

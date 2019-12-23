@@ -40,9 +40,6 @@ class WebhookHealthTest extends BaseTestCase
         $this->markTestAsPassed();
     }
 
-    /**
-     * @return WebhookHealth
-     */
     public function testJsonSerialize(): WebhookHealth
     {
         $resource = (new ResourceBuilder())
@@ -55,8 +52,6 @@ class WebhookHealthTest extends BaseTestCase
     }
 
     /**
-     * @param WebhookHealth $webhookHealth
-     *
      * @depends testJsonSerialize
      * @expectedException \LogicException
      * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\WebhookHealth", but only creation from scratch is supported.
@@ -71,8 +66,6 @@ class WebhookHealthTest extends BaseTestCase
     }
 
     /**
-     * @param WebhookHealth $webhookHealth
-     *
      * @depends testJsonSerialize
      * @expectedException \LogicException
      * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\WebhookHealth" to a request body format, but operation is not supported on this class.

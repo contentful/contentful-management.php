@@ -144,8 +144,6 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
-     * @return Webhook
-     *
      * @vcr e2e_webhook_create_update.json
      */
     public function testCreateUpdate(): Webhook
@@ -187,10 +185,6 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
-     * @param Webhook $webhook
-     *
-     * @return Webhook
-     *
      * @depends testCreateUpdate
      * @vcr e2e_webhook_events_fired_and_logged.json
      */
@@ -273,8 +267,6 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
-     * @param Webhook $webhook
-     *
      * @depends testEventsFiredAndLogged
      * @vcr e2e_webhook_get_calls_from_space_proxy.json
      */
@@ -301,8 +293,6 @@ class WebhookTest extends BaseTestCase
     }
 
     /**
-     * @param Webhook $webhook
-     *
      * @depends testGetCallsFromSpaceProxy
      * @vcr e2e_webhook_delete.json
      */

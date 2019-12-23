@@ -58,9 +58,8 @@ class Policy implements \JsonSerializable
     /**
      * Policy constructor.
      *
-     * @param string                   $effect     Either "allow" or "deny"
-     * @param string|string[]          $actions    Either "all" or an array
-     * @param ConstraintInterface|null $constraint
+     * @param string          $effect  Either "allow" or "deny"
+     * @param string|string[] $actions Either "all" or an array
      */
     public function __construct(string $effect, $actions = [], ConstraintInterface $constraint = null)
     {
@@ -85,10 +84,7 @@ class Policy implements \JsonSerializable
     public function setEffect(string $effect)
     {
         if (!\in_array($effect, self::EFFECTS, true)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Parameter "$effect" in "Policy::setEffect()" must have either the value "allow" or "deny", "%s" given.',
-                $effect
-            ));
+            throw new \InvalidArgumentException(\sprintf('Parameter "$effect" in "Policy::setEffect()" must have either the value "allow" or "deny", "%s" given.', $effect));
         }
 
         $this->effect = $effect;
@@ -116,10 +112,7 @@ class Policy implements \JsonSerializable
             (\is_string($actions) && 'all' !== $actions) ||
             (\is_array($actions) && \array_diff($actions, self::ACTIONS))
         ) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Argument "$actions" in "Policy::setActions()" must be either a string "all", or an array containing a subset of these values: %s.',
-                \implode(', ', self::ACTIONS)
-            ));
+            throw new \InvalidArgumentException(\sprintf('Argument "$actions" in "Policy::setActions()" must be either a string "all", or an array containing a subset of these values: %s.', \implode(', ', self::ACTIONS)));
         }
 
         $this->actions = $actions;
@@ -128,23 +121,16 @@ class Policy implements \JsonSerializable
     }
 
     /**
-     * @param string $action
-     *
      * @return static
      */
     public function addAction(string $action)
     {
         if (\is_string($this->actions)) {
-            throw new \LogicException(
-                'Trying to add an action to a set, but the current value is a string. Use "Policy::setActions()" to initialize to an array.'
-            );
+            throw new \LogicException('Trying to add an action to a set, but the current value is a string. Use "Policy::setActions()" to initialize to an array.');
         }
 
         if (!\in_array($action, self::ACTIONS, true)) {
-            throw new \InvalidArgumentException(\sprintf(
-                'Argument "$action" in "Policy::addAction()" must be one of these values: %s.',
-                \implode(', ', self::ACTIONS)
-            ));
+            throw new \InvalidArgumentException(\sprintf('Argument "$action" in "Policy::addAction()" must be one of these values: %s.', \implode(', ', self::ACTIONS)));
         }
 
         $this->actions[] = $action;
@@ -162,8 +148,6 @@ class Policy implements \JsonSerializable
     }
 
     /**
-     * @param ConstraintInterface|null $constraint
-     *
      * @return static
      */
     public function setConstraint(ConstraintInterface $constraint = null)

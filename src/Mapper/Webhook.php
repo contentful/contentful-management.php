@@ -52,8 +52,6 @@ class Webhook extends BaseMapper
     }
 
     /**
-     * @param array $dataHeaders
-     *
      * @return string[]
      */
     protected function formatHeaders(array $dataHeaders): array
@@ -66,11 +64,6 @@ class Webhook extends BaseMapper
         return $headers;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return FilterInterface
-     */
     protected function formatFilter(array $data): FilterInterface
     {
         \reset($data);
@@ -106,10 +99,7 @@ class Webhook extends BaseMapper
                     $data[$key][$valueKey]['pattern']
                 );
             default:
-                throw new \RuntimeException(\sprintf(
-                    'Trying to build a filter object using invalid key "%s".',
-                    $key
-                ));
+                throw new \RuntimeException(\sprintf('Trying to build a filter object using invalid key "%s".', $key));
         }
     }
 }

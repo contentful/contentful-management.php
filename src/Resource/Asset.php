@@ -30,9 +30,12 @@ use Contentful\Management\SystemProperties\Asset as SystemProperties;
  */
 class Asset extends BaseResource implements AssetInterface, CreatableInterface
 {
-    use ArchivableTrait,
-        DeletableTrait,
-        PublishableTrait,
+    use ArchivableTrait;
+    use
+        DeletableTrait;
+    use
+        PublishableTrait;
+    use
         UpdatableTrait;
 
     /**
@@ -101,8 +104,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     /**
      * Call the endpoint for processing the file associated to the asset.
      *
-     * @param string|null $locale
-     *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
      */
     public function process(string $locale = null)
@@ -126,8 +127,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     }
 
     /**
-     * @param string $locale
-     *
      * @return string|null
      */
     public function getTitle(string $locale)
@@ -136,9 +135,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     }
 
     /**
-     * @param string      $locale
-     * @param string|null $title
-     *
      * @return static
      */
     public function setTitle(string $locale, string $title = null)
@@ -163,8 +159,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     }
 
     /**
-     * @param string $locale
-     *
      * @return string|null
      */
     public function getDescription(string $locale)
@@ -173,9 +167,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     }
 
     /**
-     * @param string      $locale
-     * @param string|null $description
-     *
      * @return static
      */
     public function setDescription(string $locale, string $description = null)
@@ -200,8 +191,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     }
 
     /**
-     * @param string $locale
-     *
      * @return FileInterface|null
      */
     public function getFile(string $locale)
@@ -210,9 +199,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     }
 
     /**
-     * @param string                        $locale
-     * @param UnprocessedFileInterface|null $file
-     *
      * @return static
      */
     public function setFile(string $locale, UnprocessedFileInterface $file = null)

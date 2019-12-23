@@ -31,25 +31,17 @@ class Control implements \JsonSerializable
      */
     protected $settings = [];
 
-    /**
-     * @return string
-     */
     public function getFieldId(): string
     {
         return $this->fieldId;
     }
 
-    /**
-     * @return string
-     */
     public function getWidgetId(): string
     {
         return $this->widgetId;
     }
 
     /**
-     * @param string $widgetId
-     *
      * @return static
      */
     public function setWidgetId(string $widgetId)
@@ -59,17 +51,12 @@ class Control implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getSettings(): array
     {
         return $this->settings;
     }
 
     /**
-     * @param array $settings
-     *
      * @return static
      */
     public function setSettings(array $settings)

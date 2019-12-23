@@ -20,17 +20,11 @@ trait CreatedAtTrait
      */
     protected $createdAt;
 
-    /**
-     * @param array $data
-     */
     protected function initCreatedAt(array $data)
     {
         $this->createdAt = new DateTimeImmutable($data['createdAt']);
     }
 
-    /**
-     * @return array
-     */
     protected function jsonSerializeCreatedAt(): array
     {
         return [
@@ -38,9 +32,6 @@ trait CreatedAtTrait
         ];
     }
 
-    /**
-     * @return DateTimeImmutable
-     */
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;

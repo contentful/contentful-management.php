@@ -43,11 +43,6 @@ class AssetImageDimensionsValidation implements ValidationInterface
 
     /**
      * AssetImageDimensionsValidation constructor.
-     *
-     * @param int|null $minWidth
-     * @param int|null $maxWidth
-     * @param int|null $minHeight
-     * @param int|null $maxHeight
      */
     public function __construct(int $minWidth = null, int $maxWidth = null, int $minHeight = null, int $maxHeight = null)
     {
@@ -74,8 +69,6 @@ class AssetImageDimensionsValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $minWidth
-     *
      * @return static
      */
     public function setMinWidth(int $minWidth = null)
@@ -94,8 +87,6 @@ class AssetImageDimensionsValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $maxWidth
-     *
      * @return static
      */
     public function setMaxWidth(int $maxWidth = null)
@@ -114,8 +105,6 @@ class AssetImageDimensionsValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $minHeight
-     *
      * @return static
      */
     public function setMinHeight(int $minHeight = null)
@@ -134,8 +123,6 @@ class AssetImageDimensionsValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $maxHeight
-     *
      * @return static
      */
     public function setMaxHeight(int $maxHeight = null)

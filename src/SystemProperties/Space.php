@@ -17,8 +17,6 @@ class Space extends BaseSystemProperties implements VersionableSystemPropertiesI
 
     /**
      * Space constructor.
-     *
-     * @param array $sys
      */
     public function __construct(array $sys)
     {

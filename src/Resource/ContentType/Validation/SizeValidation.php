@@ -55,8 +55,6 @@ class SizeValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $min
-     *
      * @return static
      */
     public function setMin(int $min = null)
@@ -75,8 +73,6 @@ class SizeValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $max
-     *
      * @return static
      */
     public function setMax(int $max = null)
