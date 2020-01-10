@@ -89,7 +89,7 @@ class SpaceProxy
      * but setting the `space` key to the current space ID in the parameters array.
      *
      * @param ResourceInterface|string[] $parameters
-     * @param string                      $source_environment_id
+     * @param string                     $source_environment_id
      *
      * @see \Contentful\Management\Client::create()
      */
