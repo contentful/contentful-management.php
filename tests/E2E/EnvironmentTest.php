@@ -97,28 +97,43 @@ class EnvironmentTest extends BaseTestCase
         $sourceEnv = new Environment('Branch from');
         $proxy->create($sourceEnv);
         $sourceEnvId = $sourceEnv->getId();
-
         $this->assertNotNull($sourceEnvId);
-        \sleep(3);
+        $this->waitForEnv($proxy, $sourceEnvId);
 
         //add an entry (so we can check it's cloned later)
         $entry = new \Contentful\Management\Resource\Entry('testCt');
         $entry->setField('name', 'en-US', 'my name');
         $this->getClient()->create($entry, '', ['space' => $this->readWriteSpaceId, 'environment' => $sourceEnvId]);
-        \sleep(3);
 
         //create the branched env
         $branchEnv = new Environment('Branch to');
         $proxy->create($branchEnv, '', [], $sourceEnvId);
         $branchedEnvId = $branchEnv->getId();
         $this->assertNotNull($branchedEnvId);
-        \sleep(3);
+        $this->waitForEnv($proxy, $branchedEnvId);
 
         //the entry we created in the source env was inherited in the branched env
         $this->assertSame(1, $branchEnv->getEntries()->count());
 
         $branchEnv->delete();
         $sourceEnv->delete();
+    }
+
+    protected function waitForEnv($proxy, $envId)
+    {
+        $tries = 0;
+
+        do {
+            ++$tries;
+            $environment = $proxy->getEnvironment($envId);
+            $status = $environment->getSystemProperties()->getStatus()->getId();
+            \sleep(1);
+
+            //arbitrary
+            if ($tries >= 10) {
+                break;
+            }
+        } while ('ready' !== $status);
     }
 
     /**
