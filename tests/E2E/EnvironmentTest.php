@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2019 Contentful GmbH
+ * @copyright 2015-2020 Contentful GmbH
  * @license   MIT
  */
 
@@ -84,6 +84,41 @@ class EnvironmentTest extends BaseTestCase
         $environments = $proxy->getEnvironments($query);
         $this->assertInstanceOf(Environment::class, $environments[0]);
         $this->assertCount(1, $environments);
+    }
+
+    /**
+     * @vcr e2e_environment_clone.json
+     */
+    public function testClone()
+    {
+        $proxy = $this->getReadWriteSpaceProxy();
+
+        //create a source env
+        $sourceEnv = new Environment('Branch from');
+        $proxy->create($sourceEnv);
+        $sourceEnvId = $sourceEnv->getId();
+
+        $this->assertNotNull($sourceEnvId);
+        \sleep(3);
+
+        //add an entry (so we can check it's cloned later)
+        $entry = new \Contentful\Management\Resource\Entry('testCt');
+        $entry->setField('name', 'en-US', 'my name');
+        $this->getClient()->create($entry, '', ['space' => $this->readWriteSpaceId, 'environment' => $sourceEnvId]);
+        \sleep(3);
+
+        //create the branched env
+        $branchEnv = new Environment('Branch to');
+        $proxy->create($branchEnv, '', [], $sourceEnvId);
+        $branchedEnvId = $branchEnv->getId();
+        $this->assertNotNull($branchedEnvId);
+        \sleep(3);
+
+        //the entry we created in the source env was inherited in the branched env
+        $this->assertSame(1, $branchEnv->getEntries()->count());
+
+        $branchEnv->delete();
+        $sourceEnv->delete();
     }
 
     /**

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2019 Contentful GmbH
+ * @copyright 2015-2020 Contentful GmbH
  * @license   MIT
  */
 
@@ -89,13 +89,17 @@ class SpaceProxy
      * but setting the `space` key to the current space ID in the parameters array.
      *
      * @param ResourceInterface|string[] $parameters
+     * @param string                      $source_environment_id
      *
      * @see \Contentful\Management\Client::create()
      */
-    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
+    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [], $source_environment_id = '')
     {
         if (\is_array($parameters)) {
             $parameters['space'] = $this->spaceId;
+        }
+        if (!empty($source_environment_id)) {
+            $resource->setSourceEnv($source_environment_id);
         }
 
         $this->client->create($resource, $resourceId, $parameters);
