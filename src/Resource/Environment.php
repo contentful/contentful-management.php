@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2019 Contentful GmbH
+ * @copyright 2015-2020 Contentful GmbH
  * @license   MIT
  */
 
@@ -42,6 +42,21 @@ class Environment extends BaseResource implements CreatableInterface
      * @var string
      */
     protected $name;
+
+    /**
+     * @var string
+     */
+    protected $sourceEnv;
+
+    public function getSourceEnv(): string
+    {
+        return $this->sourceEnv ? $this->sourceEnv : '';
+    }
+
+    public function setSourceEnv(string $sourceEnv)
+    {
+        $this->sourceEnv = $sourceEnv;
+    }
 
     /**
      * Environment constructor.
@@ -98,6 +113,10 @@ class Environment extends BaseResource implements CreatableInterface
      */
     public function getHeadersForCreation(): array
     {
+        if (!empty($this->getSourceEnv())) {
+            return ['X-Contentful-Source-Environment' => $this->getSourceEnv()];
+        }
+
         return [];
     }
 

@@ -57,7 +57,7 @@ $entries = $environmentProxy->getEntries();
 * [Content types and content type snapshots](#content-types-and-content-type-snapshots)
 * [Editor interfaces](#editor-interfaces)
 * [Entries and entry snapshots](#entries-and-entry-snapshots)
-* [Environments](#environment)
+* [Environments](#environments)
 * [Locales](#locales)
 * [Organizations](#organizations)
 * [Personal access tokens](#personal-access-tokens)
@@ -271,6 +271,23 @@ $environment = new \Contentful\Management\Resource\Environment('QA');
 $spaceProxy->create($environment);
 
 $environmentId = $environment->getSystemProperties()->getId();
+
+// An environment might take a while to create,
+// depending on the size of the master environment,
+// so it might be a good idea to poll it until it's ready.
+do {
+    $environment = $spaceProxy->getEnvironment($environmentId);
+    $status = $environment->getSystemProperties()->getStatus()->getId();
+} while ($status !== 'ready');
+
+$environment->delete();
+```
+
+Creating an environment with a different source:
+
+``` php
+$environment = new \Contentful\Management\Resource\Environment('QA');
+$spaceProxy->create($environment), '', [], 'source-env-id');
 
 // An environment might take a while to create,
 // depending on the size of the master environment,
