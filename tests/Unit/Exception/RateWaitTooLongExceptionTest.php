@@ -42,13 +42,10 @@ class RateWaitTooLongExceptionTest extends BaseTestCase
                     $this->getFixtureContent('rate_limit.json')
                 );
 
-                throw new RateLimitExceededException(
-                    new ClientException('Reached rate limit', $request, $response),
-                    'Reached rate limit'
-                );
+                throw new RateLimitExceededException(new ClientException('Reached rate limit', $request, $response), 'Reached rate limit');
             }
 
-            return new Response(200,[],$this->getFixtureContent('rate_limit.json'));
+            return new Response(200, [], $this->getFixtureContent('rate_limit.json'));
         });
 
         $client = new ClientCustomException('irrelevant', $httpClient, ['max_rate_limit_retries' => 2]);

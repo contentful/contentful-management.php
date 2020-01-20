@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the contentful/contentful-core package.
+ * This file is part of the contentful/contentful-management package.
  *
  * @copyright 2015-2020 Contentful GmbH
  * @license   MIT
@@ -12,15 +12,15 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Unit\Exception;
 
 use Contentful\Core\Exception\RateLimitExceededException;
-use Contentful\Tests\Management\Implementation\ClientCustomException;
 use Contentful\Tests\Management\BaseTestCase;
+use Contentful\Tests\Management\Implementation\ClientCustomException;
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
-use GuzzleHttp\Client as HttpClient;
 
 class RateLimitExceededExceptionTest extends BaseTestCase
 {
@@ -65,13 +65,10 @@ class RateLimitExceededExceptionTest extends BaseTestCase
                 $this->getFixtureContent('rate_limit.json')
             );
 
-            throw new RateLimitExceededException(
-                new ClientException('Reached rate limit', $request, $response),
-                'Reached rate limit'
-            );
+            throw new RateLimitExceededException(new ClientException('Reached rate limit', $request, $response), 'Reached rate limit');
         });
 
-        $client = new ClientCustomException('irrelevant', $httpClient,  ['max_rate_limit_retries' => 2]);
+        $client = new ClientCustomException('irrelevant', $httpClient, ['max_rate_limit_retries' => 2]);
         $client->request('GET', '/');
 
         $this->assertSame(429, $client->getMessages()[0]->getResponse()->getStatusCode());
@@ -92,10 +89,7 @@ class RateLimitExceededExceptionTest extends BaseTestCase
                 $this->getFixtureContent('rate_limit.json')
             );
 
-            throw new RateLimitExceededException(
-                new ClientException('Reached rate limit', $request, $response),
-                'Reached rate limit'
-            );
+            throw new RateLimitExceededException(new ClientException('Reached rate limit', $request, $response), 'Reached rate limit');
         });
 
         $client = new ClientCustomException('irrelevant', $httpClient);
@@ -106,7 +100,6 @@ class RateLimitExceededExceptionTest extends BaseTestCase
 
     public function testRetrylimitTwo()
     {
-
         $callCount = 0;
         $httpClient = $this->createHttpClient(function (RequestInterface $request) use (&$callCount) {
             ++$callCount;
@@ -121,16 +114,13 @@ class RateLimitExceededExceptionTest extends BaseTestCase
                     $this->getFixtureContent('rate_limit.json')
                 );
 
-                throw new RateLimitExceededException(
-                    new ClientException('Reached rate limit', $request, $response),
-                    'Reached rate limit'
-                );
+                throw new RateLimitExceededException(new ClientException('Reached rate limit', $request, $response), 'Reached rate limit');
             }
 
-            return new Response(200,[],$this->getFixtureContent('rate_limit.json'));
+            return new Response(200, [], $this->getFixtureContent('rate_limit.json'));
         });
 
-        $client = new ClientCustomException('irrelevant', $httpClient,  ['max_rate_limit_retries' => 2]);
+        $client = new ClientCustomException('irrelevant', $httpClient, ['max_rate_limit_retries' => 2]);
         $client->request('GET', '/');
 
         $this->assertSame(200, $client->getMessages()[0]->getResponse()->getStatusCode());
@@ -138,7 +128,6 @@ class RateLimitExceededExceptionTest extends BaseTestCase
 
     public function testRetryWithoutSecondsRemainingHeader()
     {
-
         $callCount = 0;
         $httpClient = $this->createHttpClient(function (RequestInterface $request) use (&$callCount) {
             ++$callCount;
@@ -152,21 +141,17 @@ class RateLimitExceededExceptionTest extends BaseTestCase
                     $this->getFixtureContent('rate_limit.json')
                 );
 
-                throw new RateLimitExceededException(
-                    new ClientException('Reached rate limit', $request, $response),
-                    'Reached rate limit'
-                );
+                throw new RateLimitExceededException(new ClientException('Reached rate limit', $request, $response), 'Reached rate limit');
             }
 
-            return new Response(200,[],$this->getFixtureContent('rate_limit.json'));
+            return new Response(200, [], $this->getFixtureContent('rate_limit.json'));
         });
 
-        $client = new ClientCustomException('irrelevant', $httpClient,  ['max_rate_limit_retries' => 2]);
+        $client = new ClientCustomException('irrelevant', $httpClient, ['max_rate_limit_retries' => 2]);
         $client->request('GET', '/');
 
         $this->assertSame(200, $client->getMessages()[0]->getResponse()->getStatusCode());
     }
-
 
     public function createHttpClient(callable $handlerOverride = \null)
     {
