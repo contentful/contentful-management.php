@@ -68,6 +68,7 @@ $entries = $environmentProxy->getEntries();
 * [UI extensions](#ui-extensions)
 * [User](#users)
 * [Webhooks](#webhooks)
+* [Rate limits and retrying](#rate-limits-and-retrying)
 
 ### Api Keys
 
@@ -574,6 +575,21 @@ $webhook->update();
 
 $webhook->delete();
 ```
+
+### Rate limits and retrying
+
+Some API calls are subject to rate limiting as described [here](https://www.contentful.com/developers/docs/technical-limits/). The SDK can be instructed to retry a call for a number of times via the max_rate_limit_retries option:
+
+``` php
+$client = new \Contentful\Management\Client('KEY',['max_rate_limit_retries' => 2]);
+$proxy = $client->getSpaceProxy('SPACE_ID');
+$envName = uniqid();
+$env = new \Contentful\Management\Resource\Environment($envName);
+$proxy->create($env); //this call will retry two times (so three calls couting the original one), before throwing an exception
+```
+
+If the retry should happen in more than 60 seconds (as defined by the X-Contentful-RateLimit-Second-Remaining header [here](https://www.contentful.com/developers/docs/references/content-management-api/#/introduction/api-rate-limits) ), the call will throw a RateWaitTooLongException exception. This was implemented so that your scripts do not run for too long.
+
 
 ## About Contentful
 

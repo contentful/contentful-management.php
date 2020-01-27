@@ -1,0 +1,26 @@
+{
+  "requestId":"d533d76293f8bb047467344a28beffe0",
+  "message":"Reached rate limit for environment creation for space pmgjoasidv3w",
+  "name": "Foo",
+  "sys": {
+    "type": "Space",
+    "id": "34luz0flcmxt",
+    "version": 7,
+    "createdBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "1CECdY5ZhqJapGieg6QS9P"
+      }
+    },
+    "createdAt": "2017-05-18T13:35:42Z",
+    "updatedBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "1CECdY5ZhqJapGieg6QS9P"
+      }
+    },
+    "updatedAt": "2018-08-20T14:19:50Z"
+  }
+}
