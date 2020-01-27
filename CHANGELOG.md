@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.2.0](https://github.com/contentful/contentful-management.php/tree/2.2.0) (2020-01-27)
 
 > Added feature to allow retrying throttled API calls
+> Refactored code for branching environments
 
 ## [2.1.0](https://github.com/contentful/contentful-management.php/tree/2.1.0) (2020-01-16)
 
