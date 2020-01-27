@@ -3,11 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/contentful/contentful-management.php/compare/2.0.1...HEAD)
+## [Unreleased](https://github.com/contentful/contentful-management.php/compare/2.1.0...HEAD)
 
 <!-- PENDING-CHANGES -->
 > No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
+
+## [2.1.0](https://github.com/contentful/contentful-management.php/tree/2.1.0) (2020-01-16)
+
+### Added
+
+* Support for Environment Cloning
 
 ## [2.0.1](https://github.com/contentful/contentful-management.php/tree/2.0.1) (2019-02-28)
 
