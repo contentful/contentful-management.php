@@ -93,13 +93,10 @@ class SpaceProxy
      *
      * @see \Contentful\Management\Client::create()
      */
-    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [], $source_environment_id = '')
+    public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
     {
         if (\is_array($parameters)) {
             $parameters['space'] = $this->spaceId;
-        }
-        if (!empty($source_environment_id)) {
-            $resource->setSourceEnv($source_environment_id);
         }
 
         $this->client->create($resource, $resourceId, $parameters);

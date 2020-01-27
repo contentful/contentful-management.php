@@ -106,8 +106,8 @@ class EnvironmentTest extends BaseTestCase
         $this->getClient()->create($entry, '', ['space' => $this->readWriteSpaceId, 'environment' => $sourceEnvId]);
 
         //create the branched env
-        $branchEnv = new Environment('Branch to');
-        $proxy->create($branchEnv, '', [], $sourceEnvId);
+        $branchEnv = new Environment('Branch to', $sourceEnvId);
+        $proxy->create($branchEnv);
         $branchedEnvId = $branchEnv->getId();
         $this->assertNotNull($branchedEnvId);
         $this->waitForEnv($proxy, $branchedEnvId);
