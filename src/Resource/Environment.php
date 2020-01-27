@@ -48,22 +48,15 @@ class Environment extends BaseResource implements CreatableInterface
      */
     protected $sourceEnv;
 
-    public function getSourceEnv(): string
-    {
-        return $this->sourceEnv ? $this->sourceEnv : '';
-    }
-
-    public function setSourceEnv(string $sourceEnv)
-    {
-        $this->sourceEnv = $sourceEnv;
-    }
-
     /**
      * Environment constructor.
+     *
+     * @param mixed $source_environment_id
      */
-    public function __construct(string $name)
+    public function __construct(string $name, $source_environment_id = '')
     {
         $this->name = $name;
+        $this->sourceEnv = $source_environment_id;
     }
 
     /**
@@ -113,8 +106,8 @@ class Environment extends BaseResource implements CreatableInterface
      */
     public function getHeadersForCreation(): array
     {
-        if (!empty($this->getSourceEnv())) {
-            return ['X-Contentful-Source-Environment' => $this->getSourceEnv()];
+        if (!empty($this->sourceEnv)) {
+            return ['X-Contentful-Source-Environment' => $this->sourceEnv];
         }
 
         return [];

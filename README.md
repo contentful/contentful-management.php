@@ -287,8 +287,8 @@ $environment->delete();
 Creating an environment with a different source:
 
 ``` php
-$environment = new \Contentful\Management\Resource\Environment('QA');
-$spaceProxy->create($environment), '', [], 'source-env-id');
+$environment = new \Contentful\Management\Resource\Environment('QA','source-env-id');
+$spaceProxy->create($environment);
 
 // An environment might take a while to create,
 // depending on the size of the master environment,
