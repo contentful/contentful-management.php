@@ -13,6 +13,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 > No meaningful changes since last release.
 
+## [2.2.0](https://github.com/contentful/contentful-management.php/tree/2.2.0) (2020-01-27)
+
+> No meaningful changes since last release.
+
 ## [2.1.0](https://github.com/contentful/contentful-management.php/tree/2.1.0) (2020-01-16)
 
 ### Added
