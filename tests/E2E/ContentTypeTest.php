@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\E2E;
 
 use Contentful\Core\Api\Link;
+use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
 use Contentful\Management\Resource\ContentType\Field\ArrayField;
@@ -513,5 +514,16 @@ class ContentTypeTest extends BaseTestCase
         $this->assertSame('Text Field', $field->getName());
 
         $contentType->delete();
+    }
+
+    /**
+     * @vcr e2e_content_type_all.json
+     */
+    public function testGetAll()
+    {
+        $proxy = $this->getReadOnlyEnvironmentProxy();
+        $contentTypes = $proxy->getContentTypes();
+
+        $this->assertInstanceOf(ResourceArray::class, $contentTypes);
     }
 }
