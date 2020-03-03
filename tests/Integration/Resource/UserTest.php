@@ -56,7 +56,7 @@ class UserTest extends BaseTestCase
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage("Trying to update resource object in mapper of type \"Contentful\Management\Mapper\User\", but only creation from scratch is supported.");
-        
+
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'User',
@@ -71,7 +71,7 @@ class UserTest extends BaseTestCase
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage("Trying to convert object of class \"Contentful\Management\Resource\User\" to a request body format, but operation is not supported on this class.");
-        
+
         $user->asRequestBody();
     }
 }

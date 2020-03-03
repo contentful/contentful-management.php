@@ -19,8 +19,8 @@ class WebhookTest extends BaseTestCase
     public function testInvalidCreation()
     {
         $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage("Trying to build a filter object using invalid key \"invalidKey\".");
-        
+        $this->expectExceptionMessage('Trying to build a filter object using invalid key "invalidKey".');
+
         (new ResourceBuilder())
             ->build($this->getParsedFixture('serialize.json'))
         ;

@@ -199,7 +199,6 @@ class AssetTest extends BaseTestCase
         // Uploads are scoped to spaces, but assets are scoped to environments
         $spaceProxy = $this->getReadWriteSpaceProxy();
         $environmentProxy = $spaceProxy->getEnvironmentProxy('master');
-        
 
         // Creates upload using stream
         $stream = stream_for(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));

@@ -56,7 +56,7 @@ class WebhookHealthTest extends BaseTestCase
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage("Trying to update resource object in mapper of type \"Contentful\Management\Mapper\WebhookHealth\", but only creation from scratch is supported.");
-        
+
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'Webhook',
@@ -71,7 +71,7 @@ class WebhookHealthTest extends BaseTestCase
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage("Trying to convert object of class \"Contentful\Management\Resource\WebhookHealth\" to a request body format, but operation is not supported on this class.");
-        
+
         $webhookHealth->asRequestBody();
     }
 }

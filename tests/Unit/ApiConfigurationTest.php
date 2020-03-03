@@ -75,12 +75,12 @@ class ApiConfigurationTest extends BaseTestCase
             'id' => 'entry',
         ], $config);
     }
-    
+
     public function testThrowOnInvalidResourceObject()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Trying to access invalid configuration for class \"stdClass\".");
-        
+        $this->expectExceptionMessage('Trying to access invalid configuration for class "stdClass".');
+
         (new ApiConfiguration())
             ->getConfigFor(\stdClass::class)
         ;
@@ -100,12 +100,12 @@ class ApiConfigurationTest extends BaseTestCase
             'class' => 'Contentful\Management\\Resource\\Webhook',
         ], $config);
     }
-    
+
     public function testGetConfigForInvalidLinkType()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Trying to get link configuration for an invalid link type \"Invalid\".");
-        
+        $this->expectExceptionMessage('Trying to get link configuration for an invalid link type "Invalid".');
+
         (new ApiConfiguration())
             ->getLinkConfigFor('Invalid')
         ;

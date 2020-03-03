@@ -35,7 +35,7 @@ class ErrorTest extends BaseTestCase
     {
         $this->expectException(UnknownKeyException::class);
         $this->expectExceptionMessage('The body you sent contains an unknown key.');
-        
+
         $proxy = $this->getReadWriteEnvironmentProxy();
 
         $locale = new UnknownKeyLocale('American Italian', 'it-US');
@@ -49,7 +49,7 @@ class ErrorTest extends BaseTestCase
     {
         $this->expectException(MissingKeyException::class);
         $this->expectExceptionMessage('Request body is missing a required key.');
-        
+
         $proxy = $this->getReadWriteEnvironmentProxy();
 
         $locale = new EmptyBodyLocale('American Italian', 'it-US');
@@ -63,7 +63,7 @@ class ErrorTest extends BaseTestCase
     {
         $this->expectException(ValidationFailedException::class);
         $this->expectExceptionMessage('The resource you sent in the body is invalid.');
-        
+
         $proxy = $this->getReadWriteEnvironmentProxy();
 
         $locale = new ValidationFailedLocale('American Italian', 'it-US');
@@ -103,7 +103,7 @@ class ErrorTest extends BaseTestCase
     {
         $this->expectException(DefaultLocaleNotDeletableException::class);
         $this->expectExceptionMessage('Cannot delete a default locale');
-        
+
         $proxy = $this->getReadWriteEnvironmentProxy();
         $locales = $proxy->getLocales();
 
@@ -122,7 +122,7 @@ class ErrorTest extends BaseTestCase
     {
         $this->expectException(FallbackLocaleNotDeletableException::class);
         $this->expectExceptionMessage('Cannot delete locale which is fallback of another one');
-        
+
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
         $proxy = $this->getReadOnlyEnvironmentProxy();
 
@@ -142,7 +142,7 @@ class ErrorTest extends BaseTestCase
     {
         $this->expectException(FallbackLocaleNotRenameableException::class);
         $this->expectExceptionMessage('Cannot change the code of a locale which is fallback of another one');
-        
+
         // The space has a fallback chain of en-AU -> en-GB -> en-US (default)
         $proxy = $this->getReadOnlyEnvironmentProxy();
 

@@ -21,7 +21,7 @@ class EntryTest extends BaseTestCase
     public function testInvalidCallMethod()
     {
         $this->expectException(Error::class);
-        
+
         $entry = new Entry('blogPost');
 
         $entry->invalidAction();

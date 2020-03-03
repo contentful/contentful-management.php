@@ -38,7 +38,7 @@ class ClientTest extends BaseTestCase
         // which returns "false" if no matches are found,
         // or a number otherwise
         $result = \preg_match_all('/(app|sdk|platform|integration|os) \S+(\/\d+.\d+.\d+(-[\w\d-]+)?)?;/im', $generator->getUserAgent());
-        $this->assertIsInt( $result);
+        $this->assertIsInt($result);
         $this->assertGreaterThanOrEqual(2, $result);
     }
 
@@ -100,12 +100,12 @@ class ClientTest extends BaseTestCase
         $this->assertInstanceOf(Entry::class, $resources[1]);
         $this->assertSame('Josh Lyman', $resources[1]->getField('name', 'en-US'));
     }
-    
+
     public function testCreateInvalidParameters()
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage("Trying to make an API call on resource of class \"Contentful\Management\Resource\Entry\" without required parameters \"space, environment\".");
-        
+
         $client = $this->getClient();
 
         $client->create(new Entry('someContentType'), '', ['invalidParameter' => 'invalidValue']);

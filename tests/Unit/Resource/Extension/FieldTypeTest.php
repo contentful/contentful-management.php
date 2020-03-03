@@ -33,36 +33,35 @@ class FieldTypeTest extends BaseTestCase
         $this->assertSame(['type' => 'Array', 'items' => ['type' => 'Link', 'linkType' => 'Entry']], (new FieldType('Array', ['Link', 'Entry']))->getData());
     }
 
-
     public function testInvalidType()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Trying to create invalid extension field type \"invalidType\".");
-        
+        $this->expectExceptionMessage('Trying to create invalid extension field type "invalidType".');
+
         new FieldType('invalidType');
     }
-    
+
     public function testInvalidLinkType()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Trying to create link field type, but link type must be either \"Entry\" or \"Asset\", \"invalidLinkType\" given.");
-        
+        $this->expectExceptionMessage('Trying to create link field type, but link type must be either "Entry" or "Asset", "invalidLinkType" given.');
+
         new FieldType('Link', ['invalidLinkType']);
     }
-    
+
     public function testInvalidArrayType()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Trying to create array field type using invalid type \"invalidArrayType\".");
-        
+        $this->expectExceptionMessage('Trying to create array field type using invalid type "invalidArrayType".');
+
         new FieldType('Array', ['invalidArrayType']);
     }
-    
+
     public function testInvalidArrayLinkType()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Trying to create array field type with items type \"Link\", but link type must be either \"Entry\" or \"Asset\", \"invalidArrayLinkType\" given.");
-        
+        $this->expectExceptionMessage('Trying to create array field type with items type "Link", but link type must be either "Entry" or "Asset", "invalidArrayLinkType" given.');
+
         new FieldType('Array', ['Link', 'invalidArrayLinkType']);
     }
 }

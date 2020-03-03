@@ -17,7 +17,6 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class ContentTypeSnapshotTest extends BaseTestCase
 {
-
     public function testInvalidCreation()
     {
         $this->expectException(\Error::class);
@@ -57,7 +56,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage("Trying to update resource object in mapper of type \"Contentful\Management\Mapper\ContentTypeSnapshot\", but only creation from scratch is supported.");
-        
+
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'Snapshot',
@@ -73,7 +72,7 @@ class ContentTypeSnapshotTest extends BaseTestCase
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage("Trying to convert object of class \"Contentful\Management\Resource\ContentTypeSnapshot\" to a request body format, but operation is not supported on this class.");
-        
+
         $contentTypeSnapshot->asRequestBody();
     }
 }

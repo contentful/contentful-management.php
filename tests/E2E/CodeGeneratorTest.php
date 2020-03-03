@@ -26,8 +26,8 @@ class CodeGeneratorTest extends BaseTestCase
     public function testInvalidOutputDirectory()
     {
         $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage("Directory \"/invalid-dir\" does not exist and can not be created.");
-        
+        $this->expectExceptionMessage('Directory "/invalid-dir" does not exist and can not be created.');
+
         $application = new Application();
 
         $dir = '/invalid-dir';
