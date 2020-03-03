@@ -14,14 +14,14 @@ namespace Contentful\Tests\Management\Unit\Resource;
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\Entry;
 use Contentful\Tests\Management\BaseTestCase;
+use PHPUnit\Framework\Error\Error;
 
 class EntryTest extends BaseTestCase
 {
-    /**
-     * @expectedException \PHPUnit\Framework\Error\Error
-     */
     public function testInvalidCallMethod()
     {
+        $this->expectException(Error::class);
+        
         $entry = new Entry('blogPost');
 
         $entry->invalidAction();

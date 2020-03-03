@@ -17,11 +17,9 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class OrganizationTest extends BaseTestCase
 {
-    /**
-     * @expectedException \Error
-     */
     public function testInvalidCreation()
     {
+        $this->expectException(\Error::class);
         new Organization();
     }
 
@@ -53,11 +51,12 @@ class OrganizationTest extends BaseTestCase
 
     /**
      * @depends testJsonSerialize
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\Organization", but only creation from scratch is supported.
      */
     public function testInvalidUpdate(Organization $organization)
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage("Trying to update resource object in mapper of type \"Contentful\Management\Mapper\Organization\", but only creation from scratch is supported.");
+        
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'Organization',
@@ -67,11 +66,12 @@ class OrganizationTest extends BaseTestCase
 
     /**
      * @depends testJsonSerialize
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\Organization" to a request body format, but operation is not supported on this class.
      */
     public function testInvalidConversionToRequestBody(Organization $organization)
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage("Trying to convert object of class \"Contentful\Management\Resource\Organization\" to a request body format, but operation is not supported on this class.");
+        
         $organization->asRequestBody();
     }
 }

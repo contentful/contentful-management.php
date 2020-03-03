@@ -17,11 +17,10 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class ResourceBuilderTest extends BaseTestCase
 {
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testInexistentMapper()
     {
+        $this->expectException(\RuntimeException::class);
+        
         $builder = new ResourceBuilder();
         $builder->setDataMapperMatcher('Asset', function (array $data) {
             return '\\Contentful\\Tests\\Integration\\InexistentAssetMapper';
@@ -31,12 +30,11 @@ class ResourceBuilderTest extends BaseTestCase
             'type' => 'Asset',
         ]]);
     }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
+    
     public function testInexistentSystemType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        
         $builder = new ResourceBuilder();
 
         $builder->build(['sys' => [

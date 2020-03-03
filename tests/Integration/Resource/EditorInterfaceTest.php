@@ -17,11 +17,9 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class EditorInterfaceTest extends BaseTestCase
 {
-    /**
-     * @expectedException \Error
-     */
     public function testInvalidCreation()
     {
+        $this->expectException(\Error::class);
         new EditorInterface();
     }
 

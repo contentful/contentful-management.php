@@ -25,22 +25,19 @@ class LinkFieldTest extends BaseTestCase
         $field->setLinkType('Asset');
         $this->assertSame('Asset', $field->getLinkType());
     }
-
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Invalid link type "Invalid". Valid values are Asset, Entry.
-     */
+    
     public function testConstructorInvalidLinkType()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("Invalid link type \"Invalid\". Valid values are Asset, Entry.");
         new LinkField('bestFriend', 'Best Friend', 'Invalid');
     }
-
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Invalid link type "Invalid". Valid values are Asset, Entry.
-     */
+    
     public function testSetterInvalidLinkType()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("Invalid link type \"Invalid\". Valid values are Asset, Entry.");
+        
         $field = new LinkField('bestFriend', 'Best Friend', 'Asset');
 
         $field->setLinkType('Invalid');

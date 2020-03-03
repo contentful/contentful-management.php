@@ -44,7 +44,7 @@ class BaseTestCase extends TestCase
      */
     protected $organizationId;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->token = \getenv('CONTENTFUL_PHP_MANAGEMENT_TEST_TOKEN');
 

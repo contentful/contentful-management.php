@@ -17,11 +17,9 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class EntrySnapshotTest extends BaseTestCase
 {
-    /**
-     * @expectedException \Error
-     */
     public function testInvalidCreation()
     {
+        $this->expectException(\Error::class);
         new EntrySnapshot();
     }
 
@@ -53,11 +51,13 @@ class EntrySnapshotTest extends BaseTestCase
 
     /**
      * @depends testJsonSerialize
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\EntrySnapshot", but only creation from scratch is supported.
      */
     public function testInvalidUpdate(EntrySnapshot $entrySnapshot)
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage("Trying to update resource object in mapper of type \"Contentful\Management\Mapper\EntrySnapshot\", but only creation from scratch is supported.");
+        
+        
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'Snapshot',
@@ -69,11 +69,12 @@ class EntrySnapshotTest extends BaseTestCase
 
     /**
      * @depends testJsonSerialize
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\EntrySnapshot" to a request body format, but operation is not supported on this class.
      */
     public function testInvalidConversionToRequestBody(EntrySnapshot $entrySnapshot)
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage("Trying to convert object of class \"Contentful\Management\Resource\EntrySnapshot\" to a request body format, but operation is not supported on this class.");
+        
         $entrySnapshot->asRequestBody();
     }
 }

@@ -17,11 +17,9 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class WebhookHealthTest extends BaseTestCase
 {
-    /**
-     * @expectedException \Error
-     */
     public function testInvalidCreation()
     {
+        $this->expectException(\Error::class);
         new WebhookHealth();
     }
 
@@ -53,11 +51,12 @@ class WebhookHealthTest extends BaseTestCase
 
     /**
      * @depends testJsonSerialize
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\WebhookHealth", but only creation from scratch is supported.
      */
     public function testInvalidUpdate(WebhookHealth $webhookHealth)
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage("Trying to update resource object in mapper of type \"Contentful\Management\Mapper\WebhookHealth\", but only creation from scratch is supported.");
+        
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'Webhook',
@@ -67,11 +66,12 @@ class WebhookHealthTest extends BaseTestCase
 
     /**
      * @depends testJsonSerialize
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\WebhookHealth" to a request body format, but operation is not supported on this class.
      */
     public function testInvalidConversionToRequestBody(WebhookHealth $webhookHealth)
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage("Trying to convert object of class \"Contentful\Management\Resource\WebhookHealth\" to a request body format, but operation is not supported on this class.");
+        
         $webhookHealth->asRequestBody();
     }
 }
