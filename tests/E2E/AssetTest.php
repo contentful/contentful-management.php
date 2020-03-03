@@ -199,13 +199,7 @@ class AssetTest extends BaseTestCase
         // Uploads are scoped to spaces, but assets are scoped to environments
         $spaceProxy = $this->getReadWriteSpaceProxy();
         $environmentProxy = $spaceProxy->getEnvironmentProxy('master');
-
-        // Creates upload using fopen
-        $fopenUpload = new Upload(\fopen(__DIR__.'/../Fixtures/E2E/contentful-lab.svg', 'r'));
-        $spaceProxy->create($fopenUpload);
-        $this->assertNotNull($fopenUpload->getId());
-        $this->assertInstanceOf(DateTimeImmutable::class, $fopenUpload->getSystemProperties()->getExpiresAt());
-        $fopenUpload->delete();
+        
 
         // Creates upload using stream
         $stream = stream_for(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));
@@ -250,7 +244,7 @@ class AssetTest extends BaseTestCase
 
         $this->assertSame('contentful.svg', $asset->getFile('en-US')->getFileName());
         $this->assertSame('image/svg+xml', $asset->getFile('en-US')->getContentType());
-        $this->assertContains('ctfassets.net', $asset->getFile('en-US')->getUrl());
+        $this->assertStringContainsStringIgnoringCase('ctfassets.net', $asset->getFile('en-US')->getUrl());
 
         $upload = $spaceProxy->getUpload($upload->getId());
         $this->assertLink($upload->getId(), 'Upload', $upload->asLink());
