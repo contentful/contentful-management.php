@@ -3,11 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/contentful/contentful-management.php/compare/2.2.1...HEAD)
+## [Unreleased](https://github.com/contentful/contentful-management.php/compare/3.0.0...HEAD)
 
 <!-- PENDING-CHANGES -->
 > No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
+
+## [3.0.0](https://github.com/contentful/contentful-management.php/tree/3.0.0) (2020-03-13)
+
+### Changed
+
+> Added support for PHP 7.4. Removed support for PHP 7.0 & 7.1. Updated dependencies.
 
 ## [2.2.1](https://github.com/contentful/contentful-management.php/tree/2.2.1) (2020-02-12)
 
