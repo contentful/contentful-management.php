@@ -76,6 +76,8 @@ class GenerateEntryClassesCommand extends Command
         $this->writeFiles($dir);
 
         $this->writeReport($output, $spaceId, $environmentId, $dir);
+
+        return 0;
     }
 
     /**
