@@ -16,12 +16,11 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class RoleTest extends BaseTestCase
 {
-    /**
-     * @expectedException        \RuntimeException
-     * @expectedExceptionMessage Trying to build a constraint object using invalid key "invalidKey".
-     */
     public function testInvalidCreation()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Trying to build a constraint object using invalid key "invalidKey".');
+
         (new ResourceBuilder())
             ->build($this->getParsedFixture('serialize.json'))
         ;

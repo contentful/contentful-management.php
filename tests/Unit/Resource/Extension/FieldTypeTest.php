@@ -33,39 +33,35 @@ class FieldTypeTest extends BaseTestCase
         $this->assertSame(['type' => 'Array', 'items' => ['type' => 'Link', 'linkType' => 'Entry']], (new FieldType('Array', ['Link', 'Entry']))->getData());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Trying to create invalid extension field type "invalidType".
-     */
     public function testInvalidType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Trying to create invalid extension field type "invalidType".');
+
         new FieldType('invalidType');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Trying to create link field type, but link type must be either "Entry" or "Asset", "invalidLinkType" given.
-     */
     public function testInvalidLinkType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Trying to create link field type, but link type must be either "Entry" or "Asset", "invalidLinkType" given.');
+
         new FieldType('Link', ['invalidLinkType']);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Trying to create array field type using invalid type "invalidArrayType".
-     */
     public function testInvalidArrayType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Trying to create array field type using invalid type "invalidArrayType".');
+
         new FieldType('Array', ['invalidArrayType']);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Trying to create array field type with items type "Link", but link type must be either "Entry" or "Asset", "invalidArrayLinkType" given.
-     */
     public function testInvalidArrayLinkType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Trying to create array field type with items type "Link", but link type must be either "Entry" or "Asset", "invalidArrayLinkType" given.');
+
         new FieldType('Array', ['Link', 'invalidArrayLinkType']);
     }
 }

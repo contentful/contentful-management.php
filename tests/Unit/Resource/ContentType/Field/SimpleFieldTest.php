@@ -59,23 +59,21 @@ class SimpleFieldTest extends BaseTestCase
         $this->assertCount(2, $field->getValidations());
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage The validation "Contentful\Management\Resource\ContentType\Validation\RangeValidation" can not be used for fields of type "Symbol".
-     */
     public function testAddInvalidValidation()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("The validation \"Contentful\Management\Resource\ContentType\Validation\RangeValidation\" can not be used for fields of type \"Symbol\".");
+
         $field = new SymbolField('name', 'Name');
 
         $field->addValidation(new RangeValidation(5, 15));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage The validation "Contentful\Management\Resource\ContentType\Validation\RangeValidation" can not be used for fields of type "Symbol".
-     */
     public function testSetInvalidValidation()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("The validation \"Contentful\Management\Resource\ContentType\Validation\RangeValidation\" can not be used for fields of type \"Symbol\".");
+
         $field = new SymbolField('name', 'Name');
 
         $field->setValidations([new RangeValidation(5, 15)]);

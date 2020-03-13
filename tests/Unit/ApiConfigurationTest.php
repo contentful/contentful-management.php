@@ -76,12 +76,11 @@ class ApiConfigurationTest extends BaseTestCase
         ], $config);
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Trying to access invalid configuration for class "stdClass".
-     */
     public function testThrowOnInvalidResourceObject()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Trying to access invalid configuration for class "stdClass".');
+
         (new ApiConfiguration())
             ->getConfigFor(\stdClass::class)
         ;
@@ -102,12 +101,11 @@ class ApiConfigurationTest extends BaseTestCase
         ], $config);
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Trying to get link configuration for an invalid link type "Invalid".
-     */
     public function testGetConfigForInvalidLinkType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Trying to get link configuration for an invalid link type "Invalid".');
+
         (new ApiConfiguration())
             ->getLinkConfigFor('Invalid')
         ;

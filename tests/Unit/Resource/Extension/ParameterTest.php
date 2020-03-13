@@ -41,12 +41,11 @@ class ParameterTest extends BaseTestCase
         $this->assertSame(['some' => 'value', 'another' => 'something'], $parameter->getLabels());
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Invalid type "invalidType" given for parameter with ID "id".
-     */
     public function testInvalidType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid type "invalidType" given for parameter with ID "id".');
+
         new Parameter('id', 'Name', 'invalidType');
     }
 

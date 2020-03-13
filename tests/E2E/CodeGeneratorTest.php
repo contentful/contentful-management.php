@@ -23,12 +23,11 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class CodeGeneratorTest extends BaseTestCase
 {
-    /**
-     * @expectedException        \RuntimeException
-     * @expectedExceptionMessage Directory "/invalid-dir" does not exist and can not be created.
-     */
     public function testInvalidOutputDirectory()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Directory "/invalid-dir" does not exist and can not be created.');
+
         $application = new Application();
 
         $dir = '/invalid-dir';
@@ -67,14 +66,14 @@ class CodeGeneratorTest extends BaseTestCase
 
         $output = $commandTester->getDisplay();
 
-        $this->assertContains('Result of content type classes generator for space "'.$this->codeGeneratorSpaceId.'"', $output);
-        $this->assertContains('* author (Author)', $output);
-        $this->assertContains('- Entry '.$dir.'/Author.php', $output);
-        $this->assertContains('- Mapper '.$dir.'/Mapper/AuthorMapper.php', $output);
-        $this->assertContains('* blogPost (Blog Post)', $output);
-        $this->assertContains('- Entry '.$dir.'/BlogPost.php', $output);
-        $this->assertContains('- Mapper '.$dir.'/Mapper/BlogPostMapper.php', $output);
-        $this->assertContains('Loader file generated at '.$dir.'/_loader.php', $output);
+        $this->assertStringContainsStringIgnoringCase('Result of content type classes generator for space "'.$this->codeGeneratorSpaceId.'"', $output);
+        $this->assertStringContainsStringIgnoringCase('* author (Author)', $output);
+        $this->assertStringContainsStringIgnoringCase('- Entry '.$dir.'/Author.php', $output);
+        $this->assertStringContainsStringIgnoringCase('- Mapper '.$dir.'/Mapper/AuthorMapper.php', $output);
+        $this->assertStringContainsStringIgnoringCase('* blogPost (Blog Post)', $output);
+        $this->assertStringContainsStringIgnoringCase('- Entry '.$dir.'/BlogPost.php', $output);
+        $this->assertStringContainsStringIgnoringCase('- Mapper '.$dir.'/Mapper/BlogPostMapper.php', $output);
+        $this->assertStringContainsStringIgnoringCase('Loader file generated at '.$dir.'/_loader.php', $output);
 
         $fixturesDir = __DIR__.'/../Fixtures/E2E/CodeGenerator';
         $this->assertSame(

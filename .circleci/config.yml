@@ -5,10 +5,9 @@ workflows:
   lint_and_test:
     jobs:
       - lint
-      - test70
-      - test71
       - test72
       - test73
+      - test74
 
 jobs:
   lint:
@@ -23,23 +22,6 @@ jobs:
             wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -q -O php-cs-fixer.phar
             composer run lint-syntax
 
-  test70:
-    docker:
-      - image: circleci/php:7.0-cli
-    steps:
-      - checkout
-      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
-      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
-      - run: { name: "Test suite", command: "composer test-quick-fail" }
-
-  test71:
-    docker:
-      - image: circleci/php:7.1-cli
-    steps:
-      - checkout
-      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
-      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
-      - run: { name: "Test suite", command: "composer test-quick-fail" }
 
   test72:
     environment:
@@ -66,6 +48,15 @@ jobs:
   test73:
     docker:
       - image: circleci/php:7.3-cli
+    steps:
+      - checkout
+      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
+      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
+      - run: { name: "Test suite", command: "composer test-quick-fail" }
+
+  test74:
+    docker:
+      - image: circleci/php:7.4-cli
     steps:
       - checkout
       - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap

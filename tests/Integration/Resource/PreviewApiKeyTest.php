@@ -17,11 +17,9 @@ use Contentful\Tests\Management\BaseTestCase;
 
 class PreviewApiKeyTest extends BaseTestCase
 {
-    /**
-     * @expectedException \Error
-     */
     public function testInvalidCreation()
     {
+        $this->expectException(\Error::class);
         new PreviewApiKey();
     }
 
@@ -53,11 +51,12 @@ class PreviewApiKeyTest extends BaseTestCase
 
     /**
      * @depends testJsonSerialize
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to update resource object in mapper of type "Contentful\Management\Mapper\PreviewApiKey", but only creation from scratch is supported.
      */
     public function testInvalidUpdate(PreviewApiKey $previewApiKey)
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage("Trying to update resource object in mapper of type \"Contentful\Management\Mapper\PreviewApiKey\", but only creation from scratch is supported.");
+
         (new ResourceBuilder())
             ->build(['sys' => [
                 'type' => 'PreviewApiKey',
@@ -67,11 +66,12 @@ class PreviewApiKeyTest extends BaseTestCase
 
     /**
      * @depends testJsonSerialize
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Trying to convert object of class "Contentful\Management\Resource\PreviewApiKey" to a request body format, but operation is not supported on this class.
      */
     public function testInvalidConversionToRequestBody(PreviewApiKey $previewApiKey)
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage("Trying to convert object of class \"Contentful\Management\Resource\PreviewApiKey\" to a request body format, but operation is not supported on this class.");
+
         $previewApiKey->asRequestBody();
     }
 }

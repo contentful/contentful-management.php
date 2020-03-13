@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Contentful\Tests\Management\E2E;
 
-use Contentful\Core\Api\Link;
 use Contentful\Core\Resource\ResourceArray;
 use Contentful\Management\Query;
 use Contentful\Management\Resource\ContentType;
@@ -308,52 +307,49 @@ class ContentTypeTest extends BaseTestCase
     }
 
     /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Trying to access invalid field "invalidField" on content type "bookmark".
      * @vcr e2e_content_type_invalid_field_access.json
      */
     public function testInvalidFieldAccess()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Trying to access invalid field "invalidField" on content type "bookmark".');
+
         $contentType = $this->getReadOnlyEnvironmentProxy()
             ->getContentType('bookmark')
         ;
         $contentType->getField('invalidField');
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Invalid items type "invalidItemsLink". Valid values are Symbol, Link.
-     */
     public function testInvalidItemsLink()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid items type "invalidItemsLink". Valid values are Symbol, Link.');
+
         new ArrayField('arrayField', 'Array Field', 'invalidItemsLink');
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Invalid items link type "invalidItemsLinkType". Valid values are Asset, Entry.
-     */
     public function testInvalidItemsLinkType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid items link type "invalidItemsLinkType". Valid values are Asset, Entry.');
+
         new ArrayField('arrayField', 'Array Field', 'Link', 'invalidItemsLinkType');
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage The validation "Contentful\Management\Resource\ContentType\Validation\RangeValidation" can not be used for fields of type "Link".
-     */
     public function testInvalidItemsValidation()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("The validation \"Contentful\Management\Resource\ContentType\Validation\RangeValidation\" can not be used for fields of type \"Link\".");
+
         $field = new ArrayField('arrayField', 'Array Field', 'Link', 'Asset');
         $field->addItemsValidation(new RangeValidation(0, 50));
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Trying to instantiate invalid field class "invalidField".
-     */
     public function testInvalidFieldCreation()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Trying to instantiate invalid field class "invalidField".');
+
         $contentType = new ContentType('test');
         $contentType->createField('invalidField', 'fieldId', 'Field Name');
     }
