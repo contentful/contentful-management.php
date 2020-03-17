@@ -466,4 +466,29 @@ class BlogPost extends Entry
     {
         return $this->setField('tags', $locale, $value);
     }
+
+    /**
+     * Returns the "richtext" field.
+     *
+     * @param string $locale
+     *
+     * @return string|null
+     */
+    public function getRichtext(string $locale = 'en-US')
+    {
+        return $this->getField('richtext', $locale);
+    }
+
+    /**
+     * Sets the "richtext" field.
+     *
+     * @param string      $locale
+     * @param string|null $value
+     *
+     * @return static
+     */
+    public function setRichtext(string $locale = 'en-US', string $value = null)
+    {
+        return $this->setField('richtext', $locale, $value);
+    }
 }

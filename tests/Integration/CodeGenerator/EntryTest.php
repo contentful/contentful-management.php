@@ -86,6 +86,7 @@ class EntryTest extends BaseTestCase
             ->addItemsValidation(new LinkContentTypeValidation(['blogPost']))
         ;
         $contentType->addNewField('Array', 'tags', 'Tags', 'Symbol');
+        $contentType->addNewField('RichText', 'richtext', 'RichText');
 
         $generator = new Entry('en-US');
         $code = $generator->generate([
