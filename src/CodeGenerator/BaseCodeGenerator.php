@@ -114,6 +114,7 @@ abstract class BaseCodeGenerator
             'Object' => 'mixed',
             'Symbol' => 'string',
             'Text' => 'string',
+            'RichText' => 'string',
         ];
 
         return $fields[$field->getType()];
