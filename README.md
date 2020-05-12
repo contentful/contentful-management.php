@@ -233,6 +233,13 @@ $entry = new \Contentful\Management\Resource\Entry($contentTypeId);
 $entry->setField('title', 'en-US', 'My awesome blog post');
 $entry->setField('body', 'en-US', 'Something something...');
 
+//Add existing assets
+$images = [
+    new \Contentful\Core\Api\Link('Example-existing-asset-id', 'Asset'),
+    new \Contentful\Core\Api\Link('Example-existing-asset-id-2', 'Asset'),
+];
+$entry->setField('productImages', 'en-US', $images);
+
 $environmentProxy->create($entry);
 
 $entry->setField('body', 'en-US', 'Updated body');
