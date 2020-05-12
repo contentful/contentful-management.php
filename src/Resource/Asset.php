@@ -119,7 +119,7 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
         }
 
         $this->client->fetchResource(
-            \get_class($this),
+            static::class,
             $this->asUriParameters(),
             null,
             $this
