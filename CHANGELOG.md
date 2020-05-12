@@ -3,11 +3,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/contentful/contentful-management.php/compare/3.1.0...HEAD)
+## [Unreleased](https://github.com/contentful/contentful-management.php/compare/3.1.2...HEAD)
 
 <!-- PENDING-CHANGES -->
 > No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
+
+## [3.1.2](https://github.com/contentful/contentful-management.php/tree/3.1.2) (2020-05-12)
+
+### Added
+
+* documentation on how to add existing assets
+* add documentation step in the internal build process
+* new PHP CS validations
 
 ## [3.1.0](https://github.com/contentful/contentful-management.php/tree/3.1.0) (2020-03-24)
 
