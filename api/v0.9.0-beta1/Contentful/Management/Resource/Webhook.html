@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Contentful\Management\Resource\Webhook | Contentful CMA SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Contentful_Management_Resource_Webhook" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                    <form action="#" method="GET">
+                <select id="version-switcher" name="version">
+                                            <option value="../../../../v0.9.0-beta1/index.html" data-version="v0.9.0-beta1">v0.9.0-beta1</option>
+                                            <option value="../../../../0.9.0-beta2/index.html" data-version="0.9.0-beta2">0.9.0-beta2</option>
+                                            <option value="../../../../1.0.0-beta1/index.html" data-version="1.0.0-beta1">1.0.0-beta1</option>
+                                            <option value="../../../../1.0.0/index.html" data-version="1.0.0">1.0.0</option>
+                                            <option value="../../../../2.0.0/index.html" data-version="2.0.0">2.0.0</option>
+                                            <option value="../../../../2.0.1/index.html" data-version="2.0.1">2.0.1</option>
+                                            <option value="../../../../2.1.0/index.html" data-version="2.1.0">2.1.0</option>
+                                            <option value="../../../../2.2.0/index.html" data-version="2.2.0">2.2.0</option>
+                                            <option value="../../../../2.2.1/index.html" data-version="2.2.1">2.2.1</option>
+                                            <option value="../../../../3.0.0/index.html" data-version="3.0.0">3.0.0</option>
+                                            <option value="../../../../3.0.1/index.html" data-version="3.0.1">3.0.1</option>
+                                            <option value="../../../../3.1.0/index.html" data-version="3.1.0">3.1.0</option>
+                                            <option value="../../../../3.1.1/index.html" data-version="3.1.1">3.1.1</option>
+                                            <option value="../../../../master/index.html" data-version="master">Master branch</option>
+                                    </select>
+            </form>
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Contentful CMA SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../Contentful.html">Contentful</a></li><li class="backslash">\</li><li><a href="../../../Contentful/Management.html">Management</a></li><li class="backslash">\</li><li><a href="../../../Contentful/Management/Resource.html">Resource</a></li><li class="backslash">\</li><li>Webhook</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            Webhook
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>Webhook</strong>        extends <a href="../../../Contentful/Management/Resource/BaseResource.html"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a>        implements
+        <a href="../../../Contentful/Management/Resource/Behavior/Creatable.html"><abbr title="Contentful\Management\Resource\Behavior\Creatable">Creatable</abbr></a>, <a href="../../../Contentful/Management/Resource/Behavior/Updatable.html"><abbr title="Contentful\Management\Resource\Behavior\Updatable">Updatable</abbr></a>, <a href="../../../Contentful/Management/Resource/Behavior/Deletable.html"><abbr title="Contentful\Management\Resource\Behavior\Deletable">Deletable</abbr></a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Webhook class.</p>            <p>This class represents a resource with type "WebhookDefinition" in Contentful.</p>                    </div>
+    
+    
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_sys">
+                                        protected                                        <a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a>
+                </td>
+                <td>$sys</td>
+                <td class="last"></td>
+                <td><small>from&nbsp;<a href="../../../Contentful/Management/Resource/BaseResource.html#property_sys"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_proxy">
+                                        protected                                        <a href="../../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a>
+                </td>
+                <td>$proxy</td>
+                <td class="last"></td>
+                <td><small>from&nbsp;<a href="../../../Contentful/Management/Resource/BaseResource.html#property_proxy"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_name">
+                                        protected                                        string
+                </td>
+                <td>$name</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_url">
+                                        protected                                        string
+                </td>
+                <td>$url</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_httpBasicUsername">
+                                        protected                                        string|null
+                </td>
+                <td>$httpBasicUsername</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_httpBasicPassword">
+                                        protected                                        string|null
+                </td>
+                <td>$httpBasicPassword</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_topics">
+                                        protected                                        string[]
+                </td>
+                <td>$topics</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_headers">
+                                        protected                                        string[]
+                </td>
+                <td>$headers</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $name, string $url, array $topics = [])
+        
+                                            <p>Webhook constructor.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSystemProperties">getSystemProperties</a>()
+        
+                                            <p>Returns the resource's system properties,
+defined in the object "sys" in Contentful's responses.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Contentful/Management/Resource/BaseResource.html#method_getSystemProperties"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|null
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getId">getId</a>()
+        
+                                            <p>Shortcut for accessing the resource ID through its system properties.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Contentful/Management/Resource/BaseResource.html#method_getId"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Link">Link</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_asLink">asLink</a>()
+        
+                                            <p>Creates a Link representation of the current resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Contentful/Management/Resource/BaseResource.html#method_asLink"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/BaseResource.html"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setProxy">setProxy</a>(<a href="../../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a> $proxy)
+        
+                                            <p>Sets the current BaseProxy object instance.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Contentful/Management/Resource/BaseResource.html#method_setProxy"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_asRequestBody">asRequestBody</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Contentful/Management/Resource/BaseResource.html#method_asRequestBody"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___call">__call</a>(string $name, array $arguments)
+        
+                                            <p>Shortcut for forwarding methods to the current proxy, using the current object as argument.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../Contentful/Management/Resource/BaseResource.html#method___call"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_jsonSerialize">jsonSerialize</a>()
+        
+                                            <p>Returns an array to be used by "json_encode" to serialize objects of this class.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getName">getName</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setName">setName</a>(string $name)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getUrl">getUrl</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setUrl">setUrl</a>(string $url)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|null
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getHttpBasicUsername">getHttpBasicUsername</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setHttpBasicUsername">setHttpBasicUsername</a>(string $httpBasicUsername = null)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|null
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getHttpBasicPassword">getHttpBasicPassword</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setHttpBasicPassword">setHttpBasicPassword</a>(string $httpBasicPassword = null)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getHeaders">getHeaders</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getHeader">getHeader</a>(string $key)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_hasHeader">hasHeader</a>(string $key)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addHeader">addHeader</a>(string $key, string $value)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setHeaders">setHeaders</a>(array $headers)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_removeHeader">removeHeader</a>(string $key)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTopics">getTopics</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addTopic">addTopic</a>(string $topic)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setTopics">setTopics</a>(array $topics)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_hasTopic">hasTopic</a>(string $topic)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_removeTopic">removeTopic</a>(string $topic)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at         line 62</div>
+        <code>                    
+    <strong>__construct</strong>(string $name, string $url, array $topics = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Webhook constructor.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$topics</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSystemProperties">
+        <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_getSystemProperties"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 47</div>
+        <code>                    <a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a>
+    <strong>getSystemProperties</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns the resource's system properties,
+defined in the object "sys" in Contentful's responses.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getId">
+        <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_getId"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 57</div>
+        <code>                    string|null
+    <strong>getId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Shortcut for accessing the resource ID through its system properties.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_asLink">
+        <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_asLink"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 65</div>
+        <code>                    <abbr title="Contentful\Link">Link</abbr>
+    <strong>asLink</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Creates a Link representation of the current resource.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Link">Link</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setProxy">
+        <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_setProxy"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 79</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/BaseResource.html"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a>
+    <strong>setProxy</strong>(<a href="../../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a> $proxy)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Sets the current BaseProxy object instance.</p>                    <p>This is done automatically when performing API calls,
+so it shouldn't be used manually.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a></td>
+                <td>$proxy</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/BaseResource.html"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_asRequestBody">
+        <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_asRequestBody"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 89</div>
+        <code>                    
+    <strong>asRequestBody</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___call">
+        <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method___call"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 111</div>
+        <code>                    
+    <strong>__call</strong>(string $name, array $arguments)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Shortcut for forwarding methods to the current proxy, using the current object as argument.</p>                    <p><pre><code class="php">// Instead of
+$client-&gt;asset-&gt;publish($asset);
+// You can use
+$asset-&gt;publish();
+</code></pre>
+</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$arguments</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_jsonSerialize">
+        <div class="location">at         line 75</div>
+        <code>                    array
+    <strong>jsonSerialize</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an array to be used by "json_encode" to serialize objects of this class.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getName">
+        <div class="location">at         line 106</div>
+        <code>                    string
+    <strong>getName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setName">
+        <div class="location">at         line 116</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>setName</strong>(string $name)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getUrl">
+        <div class="location">at         line 126</div>
+        <code>                    string
+    <strong>getUrl</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setUrl">
+        <div class="location">at         line 136</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>setUrl</strong>(string $url)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getHttpBasicUsername">
+        <div class="location">at         line 146</div>
+        <code>                    string|null
+    <strong>getHttpBasicUsername</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setHttpBasicUsername">
+        <div class="location">at         line 156</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>setHttpBasicUsername</strong>(string $httpBasicUsername = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$httpBasicUsername</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getHttpBasicPassword">
+        <div class="location">at         line 166</div>
+        <code>                    string|null
+    <strong>getHttpBasicPassword</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setHttpBasicPassword">
+        <div class="location">at         line 176</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>setHttpBasicPassword</strong>(string $httpBasicPassword = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$httpBasicPassword</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getHeaders">
+        <div class="location">at         line 186</div>
+        <code>                    array
+    <strong>getHeaders</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getHeader">
+        <div class="location">at         line 198</div>
+        <code>                    string
+    <strong>getHeader</strong>(string $key)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$key</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hasHeader">
+        <div class="location">at         line 215</div>
+        <code>                    bool
+    <strong>hasHeader</strong>(string $key)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$key</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addHeader">
+        <div class="location">at         line 226</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>addHeader</strong>(string $key, string $value)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$key</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$value</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setHeaders">
+        <div class="location">at         line 238</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>setHeaders</strong>(array $headers)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$headers</td>
+                <td>An array in the form 'X-Header-Name' => 'Header Value'</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_removeHeader">
+        <div class="location">at         line 260</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>removeHeader</strong>(string $key)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$key</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTopics">
+        <div class="location">at         line 277</div>
+        <code>                    array
+    <strong>getTopics</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addTopic">
+        <div class="location">at         line 287</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>addTopic</strong>(string $topic)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$topic</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setTopics">
+        <div class="location">at         line 300</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>setTopics</strong>(array $topics)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$topics</td>
+                <td>A simple list of topics; array keys will be discarded</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hasTopic">
+        <div class="location">at         line 312</div>
+        <code>                    bool
+    <strong>hasTopic</strong>(string $topic)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$topic</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_removeTopic">
+        <div class="location">at         line 324</div>
+        <code>                    <a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>removeTopic</strong>(string $topic)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$topic</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

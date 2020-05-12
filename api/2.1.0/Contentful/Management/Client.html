@@ -1,0 +1,3735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Contentful\Management\Client | Contentful CMA SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Contentful_Management_Client" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                    <form action="#" method="GET">
+                <select id="version-switcher" name="version">
+                                            <option value="../../../v0.9.0-beta1/index.html" data-version="v0.9.0-beta1">v0.9.0-beta1</option>
+                                            <option value="../../../0.9.0-beta2/index.html" data-version="0.9.0-beta2">0.9.0-beta2</option>
+                                            <option value="../../../1.0.0-beta1/index.html" data-version="1.0.0-beta1">1.0.0-beta1</option>
+                                            <option value="../../../1.0.0/index.html" data-version="1.0.0">1.0.0</option>
+                                            <option value="../../../2.0.0/index.html" data-version="2.0.0">2.0.0</option>
+                                            <option value="../../../2.0.1/index.html" data-version="2.0.1">2.0.1</option>
+                                            <option value="../../../2.1.0/index.html" data-version="2.1.0">2.1.0</option>
+                                            <option value="../../../2.2.0/index.html" data-version="2.2.0">2.2.0</option>
+                                            <option value="../../../2.2.1/index.html" data-version="2.2.1">2.2.1</option>
+                                            <option value="../../../3.0.0/index.html" data-version="3.0.0">3.0.0</option>
+                                            <option value="../../../3.0.1/index.html" data-version="3.0.1">3.0.1</option>
+                                            <option value="../../../3.1.0/index.html" data-version="3.1.0">3.1.0</option>
+                                            <option value="../../../3.1.1/index.html" data-version="3.1.1">3.1.1</option>
+                                            <option value="../../../master/index.html" data-version="master">Master branch</option>
+                                    </select>
+            </form>
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Contentful CMA SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../Contentful.html">Contentful</a></li><li class="backslash">\</li><li><a href="../../Contentful/Management.html">Management</a></li><li class="backslash">\</li><li>Client</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            Client
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>Client</strong>        extends <abbr title="Contentful\Core\Api\BaseClient">BaseClient</abbr>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Client class.</p>            <p>This class is responsible for querying Contentful's Content Management API.</p>                    </div>
+    
+            <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/OrganizationExtension.html"><abbr title="Contentful\Management\ClientExtension\OrganizationExtension">OrganizationExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    OrganizationExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/SpaceExtension.html"><abbr title="Contentful\Management\ClientExtension\SpaceExtension">SpaceExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    SpaceExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/UserExtension.html"><abbr title="Contentful\Management\ClientExtension\UserExtension">UserExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    UserExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/DeliveryApiKeyExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\DeliveryApiKeyExtension">DeliveryApiKeyExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    DeliveryApiKeyExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/EnvironmentExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\EnvironmentExtension">EnvironmentExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    EnvironmentExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/PreviewApiKeyExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\PreviewApiKeyExtension">PreviewApiKeyExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    PreviewApiKeyExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/RoleExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\RoleExtension">RoleExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    RoleExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/SpaceMembershipExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\SpaceMembershipExtension">SpaceMembershipExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    SpaceMembershipExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/UploadExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\UploadExtension">UploadExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    UploadExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/WebhookExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\WebhookExtension">WebhookExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    WebhookExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Environment/AssetExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Environment\AssetExtension">AssetExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    AssetExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    ContentTypeExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Environment/EntryExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Environment\EntryExtension">EntryExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    EntryExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Environment/ExtensionExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ExtensionExtension">ExtensionExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    ExtensionExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Environment/LocaleExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Environment\LocaleExtension">LocaleExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    LocaleExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentType/ContentTypeSnapshotExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentType\ContentTypeSnapshotExtension">ContentTypeSnapshotExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    ContentTypeSnapshotExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentType/EditorInterfaceExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentType\EditorInterfaceExtension">EditorInterfaceExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    EditorInterfaceExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Environment/Entry/EntrySnapshotExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Environment\Entry\EntrySnapshotExtension">EntrySnapshotExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    EntrySnapshotExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Webhook/WebhookCallExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Webhook\WebhookCallExtension">WebhookCallExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    WebhookCallExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/Space/Webhook/WebhookHealthExtension.html"><abbr title="Contentful\Management\ClientExtension\Space\Webhook\WebhookHealthExtension">WebhookHealthExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    WebhookHealthExtension trait.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../Contentful/Management/ClientExtension/User/PersonalAccessTokenExtension.html"><abbr title="Contentful\Management\ClientExtension\User\PersonalAccessTokenExtension">PersonalAccessTokenExtension</abbr></a>
+                                            
+                </div>
+                <div class="col-md-6">
+                    PersonalAccessTokenExtension trait.
+                </div>
+            </div>
+            </div>
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>URI_MANAGEMENT</td>
+                <td class="last">
+                    <p><em>The default URI to which all requests should be made.</em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>URI_UPLOAD</td>
+                <td class="last">
+                    <p><em>The special URI for uploading files.</em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getOrganizations">getOrganizations</a>(<a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing Organization resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/OrganizationExtension.html#method_getOrganizations"><abbr title="Contentful\Management\ClientExtension\OrganizationExtension">OrganizationExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|<abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_fetchResource">fetchResource</a>(string $class, array $parameters, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null, <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a> $resource = null)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/DeliveryApiKey.html"><abbr title="Contentful\Management\Resource\DeliveryApiKey">DeliveryApiKey</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getDeliveryApiKey">getDeliveryApiKey</a>(string $spaceId, string $deliveryApiKeyId)
+        
+                                            <p>Returns a DeliveryApiKey resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/DeliveryApiKeyExtension.html#method_getDeliveryApiKey"><abbr title="Contentful\Management\ClientExtension\Space\DeliveryApiKeyExtension">DeliveryApiKeyExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getDeliveryApiKeys">getDeliveryApiKeys</a>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing DeliveryApiKey objects.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/DeliveryApiKeyExtension.html#method_getDeliveryApiKeys"><abbr title="Contentful\Management\ClientExtension\Space\DeliveryApiKeyExtension">DeliveryApiKeyExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Asset.html"><abbr title="Contentful\Management\Resource\Asset">Asset</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAsset">getAsset</a>(string $spaceId, string $environmentId, string $assetId)
+        
+                                            <p>Returns an Asset resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/AssetExtension.html#method_getAsset"><abbr title="Contentful\Management\ClientExtension\Space\Environment\AssetExtension">AssetExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAssets">getAssets</a>(string $spaceId, string $environmentId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object which contains Asset resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/AssetExtension.html#method_getAssets"><abbr title="Contentful\Management\ClientExtension\Space\Environment\AssetExtension">AssetExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/ContentTypeSnapshot.html"><abbr title="Contentful\Management\Resource\ContentTypeSnapshot">ContentTypeSnapshot</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getContentTypeSnapshot">getContentTypeSnapshot</a>(string $spaceId, string $environmentId, string $contentTypeId, string $snapshotId)
+        
+                                            <p>Returns a ContentTypeSnapshot resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentType/ContentTypeSnapshotExtension.html#method_getContentTypeSnapshot"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentType\ContentTypeSnapshotExtension">ContentTypeSnapshotExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getContentTypeSnapshots">getContentTypeSnapshots</a>(string $spaceId, string $environmentId, string $contentTypeId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object which contains ContentTypeSnapshot resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentType/ContentTypeSnapshotExtension.html#method_getContentTypeSnapshots"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentType\ContentTypeSnapshotExtension">ContentTypeSnapshotExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/EditorInterface.html"><abbr title="Contentful\Management\Resource\EditorInterface">EditorInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEditorInterface">getEditorInterface</a>(string $spaceId, string $environmentId, string $contentTypeId)
+        
+                                            <p>Returns an EditorInterface resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentType/EditorInterfaceExtension.html#method_getEditorInterface"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentType\EditorInterfaceExtension">EditorInterfaceExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/ContentType.html"><abbr title="Contentful\Management\Resource\ContentType">ContentType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getContentType">getContentType</a>(string $spaceId, string $environmentId, string $contentTypeId)
+        
+                                            <p>Returns a ContentType resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html#method_getContentType"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getContentTypes">getContentTypes</a>(string $spaceId, string $environmentId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object which contains ContentType resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html#method_getContentTypes"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/ContentType.html"><abbr title="Contentful\Management\Resource\ContentType">ContentType</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPublishedContentType">getPublishedContentType</a>(string $spaceId, string $environmentId, string $contentTypeId)
+        
+                                            <p>Returns a published ContentType resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html#method_getPublishedContentType"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPublishedContentTypes">getPublishedContentTypes</a>(string $spaceId, string $environmentId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object which contains published ContentType resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html#method_getPublishedContentTypes"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/EntrySnapshot.html"><abbr title="Contentful\Management\Resource\EntrySnapshot">EntrySnapshot</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEntrySnapshot">getEntrySnapshot</a>(string $spaceId, string $environmentId, string $entryId, string $snapshotId)
+        
+                                            <p>Returns an EntrySnapshot resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/Entry/EntrySnapshotExtension.html#method_getEntrySnapshot"><abbr title="Contentful\Management\ClientExtension\Space\Environment\Entry\EntrySnapshotExtension">EntrySnapshotExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEntrySnapshots">getEntrySnapshots</a>(string $spaceId, string $environmentId, string $entryId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object which contains EntrySnapshot resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/Entry/EntrySnapshotExtension.html#method_getEntrySnapshots"><abbr title="Contentful\Management\ClientExtension\Space\Environment\Entry\EntrySnapshotExtension">EntrySnapshotExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Entry.html"><abbr title="Contentful\Management\Resource\Entry">Entry</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEntry">getEntry</a>(string $spaceId, string $environmentId, string $entryId)
+        
+                                            <p>Returns an Entry resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/EntryExtension.html#method_getEntry"><abbr title="Contentful\Management\ClientExtension\Space\Environment\EntryExtension">EntryExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEntries">getEntries</a>(string $spaceId, string $environmentId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object which contains Entry resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/EntryExtension.html#method_getEntries"><abbr title="Contentful\Management\ClientExtension\Space\Environment\EntryExtension">EntryExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Extension.html"><abbr title="Contentful\Management\Resource\Extension">Extension</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getExtension">getExtension</a>(string $spaceId, string $environmentId, string $extensionId)
+        
+                                            <p>Returns an Extension resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ExtensionExtension.html#method_getExtension"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ExtensionExtension">ExtensionExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getExtensions">getExtensions</a>(string $spaceId, string $environmentId)
+        
+                                            <p>Returns a ResourceArray object containing Extension resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/ExtensionExtension.html#method_getExtensions"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ExtensionExtension">ExtensionExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Locale.html"><abbr title="Contentful\Management\Resource\Locale">Locale</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getLocale">getLocale</a>(string $spaceId, string $environmentId, string $localeId)
+        
+                                            <p>Returns a Locale resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/LocaleExtension.html#method_getLocale"><abbr title="Contentful\Management\ClientExtension\Space\Environment\LocaleExtension">LocaleExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getLocales">getLocales</a>(string $spaceId, string $environmentId)
+        
+                                            <p>Returns a ResourceArray object containing Locale resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Environment/LocaleExtension.html#method_getLocales"><abbr title="Contentful\Management\ClientExtension\Space\Environment\LocaleExtension">LocaleExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Proxy/EnvironmentProxy.html"><abbr title="Contentful\Management\Proxy\EnvironmentProxy">EnvironmentProxy</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEnvironmentProxy">getEnvironmentProxy</a>(string $spaceId, string $environmentId = &#039;master&#039;)
+        
+                                            <p>Returns a proxy to an environment resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/EnvironmentExtension.html#method_getEnvironmentProxy"><abbr title="Contentful\Management\ClientExtension\Space\EnvironmentExtension">EnvironmentExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Environment.html"><abbr title="Contentful\Management\Resource\Environment">Environment</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEnvironment">getEnvironment</a>(string $spaceId, string $environmentId)
+        
+                                            <p>Returns an Environment resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/EnvironmentExtension.html#method_getEnvironment"><abbr title="Contentful\Management\ClientExtension\Space\EnvironmentExtension">EnvironmentExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEnvironments">getEnvironments</a>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object which contains Environment resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/EnvironmentExtension.html#method_getEnvironments"><abbr title="Contentful\Management\ClientExtension\Space\EnvironmentExtension">EnvironmentExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/PreviewApiKey.html"><abbr title="Contentful\Management\Resource\PreviewApiKey">PreviewApiKey</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPreviewApiKey">getPreviewApiKey</a>(string $spaceId, string $previewApiKeyId)
+        
+                                            <p>Returns a PreviewApiKey resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/PreviewApiKeyExtension.html#method_getPreviewApiKey"><abbr title="Contentful\Management\ClientExtension\Space\PreviewApiKeyExtension">PreviewApiKeyExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPreviewApiKeys">getPreviewApiKeys</a>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing PreviewApiKey resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/PreviewApiKeyExtension.html#method_getPreviewApiKeys"><abbr title="Contentful\Management\ClientExtension\Space\PreviewApiKeyExtension">PreviewApiKeyExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Role.html"><abbr title="Contentful\Management\Resource\Role">Role</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getRole">getRole</a>(string $spaceId, string $roleId)
+        
+                                            <p>Returns a Role resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/RoleExtension.html#method_getRole"><abbr title="Contentful\Management\ClientExtension\Space\RoleExtension">RoleExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getRoles">getRoles</a>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing Role resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/RoleExtension.html#method_getRoles"><abbr title="Contentful\Management\ClientExtension\Space\RoleExtension">RoleExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/SpaceMembership.html"><abbr title="Contentful\Management\Resource\SpaceMembership">SpaceMembership</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSpaceMembership">getSpaceMembership</a>(string $spaceId, string $spaceMembershipId)
+        
+                                            <p>Returns a SpaceMembership resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/SpaceMembershipExtension.html#method_getSpaceMembership"><abbr title="Contentful\Management\ClientExtension\Space\SpaceMembershipExtension">SpaceMembershipExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSpaceMemberships">getSpaceMemberships</a>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing SpaceMembership resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/SpaceMembershipExtension.html#method_getSpaceMemberships"><abbr title="Contentful\Management\ClientExtension\Space\SpaceMembershipExtension">SpaceMembershipExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Upload.html"><abbr title="Contentful\Management\Resource\Upload">Upload</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getUpload">getUpload</a>(string $spaceId, string $uploadId)
+        
+                                            <p>Returns an Upload resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/UploadExtension.html#method_getUpload"><abbr title="Contentful\Management\ClientExtension\Space\UploadExtension">UploadExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/WebhookCall.html"><abbr title="Contentful\Management\Resource\WebhookCall">WebhookCall</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getWebhookCall">getWebhookCall</a>(string $spaceId, string $webhookId, string $webhookCallId)
+        
+                                            <p>Returns a WebhookCall resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Webhook/WebhookCallExtension.html#method_getWebhookCall"><abbr title="Contentful\Management\ClientExtension\Space\Webhook\WebhookCallExtension">WebhookCallExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getWebhookCalls">getWebhookCalls</a>(string $spaceId, string $webhookId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing WebhookCall resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Webhook/WebhookCallExtension.html#method_getWebhookCalls"><abbr title="Contentful\Management\ClientExtension\Space\Webhook\WebhookCallExtension">WebhookCallExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/WebhookHealth.html"><abbr title="Contentful\Management\Resource\WebhookHealth">WebhookHealth</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getWebhookHealth">getWebhookHealth</a>(string $spaceId, string $webhookId)
+        
+                                            <p>Returns an WebhookHealth resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/Webhook/WebhookHealthExtension.html#method_getWebhookHealth"><abbr title="Contentful\Management\ClientExtension\Space\Webhook\WebhookHealthExtension">WebhookHealthExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getWebhook">getWebhook</a>(string $spaceId, string $webhookId)
+        
+                                            <p>Returns a Webhook resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/WebhookExtension.html#method_getWebhook"><abbr title="Contentful\Management\ClientExtension\Space\WebhookExtension">WebhookExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getWebhooks">getWebhooks</a>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing Webhook resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/Space/WebhookExtension.html#method_getWebhooks"><abbr title="Contentful\Management\ClientExtension\Space\WebhookExtension">WebhookExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Proxy/SpaceProxy.html"><abbr title="Contentful\Management\Proxy\SpaceProxy">SpaceProxy</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSpaceProxy">getSpaceProxy</a>(string $spaceId)
+        
+                                            <p>Returns a proxy to a space resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/SpaceExtension.html#method_getSpaceProxy"><abbr title="Contentful\Management\ClientExtension\SpaceExtension">SpaceExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/Space.html"><abbr title="Contentful\Management\Resource\Space">Space</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSpace">getSpace</a>(string $spaceId)
+        
+                                            <p>Returns a Space resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/SpaceExtension.html#method_getSpace"><abbr title="Contentful\Management\ClientExtension\SpaceExtension">SpaceExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSpaces">getSpaces</a>(<a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing Space objects.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/SpaceExtension.html#method_getSpaces"><abbr title="Contentful\Management\ClientExtension\SpaceExtension">SpaceExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/PersonalAccessToken.html"><abbr title="Contentful\Management\Resource\PersonalAccessToken">PersonalAccessToken</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPersonalAccessToken">getPersonalAccessToken</a>(string $personalAccessTokenId)
+        
+                                            <p>Returns a PersonalAccessToken resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/User/PersonalAccessTokenExtension.html#method_getPersonalAccessToken"><abbr title="Contentful\Management\ClientExtension\User\PersonalAccessTokenExtension">PersonalAccessTokenExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPersonalAccessTokens">getPersonalAccessTokens</a>(<a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        
+                                            <p>Returns a ResourceArray object containing PersonalAccessToken resources.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/User/PersonalAccessTokenExtension.html#method_getPersonalAccessTokens"><abbr title="Contentful\Management\ClientExtension\User\PersonalAccessTokenExtension">PersonalAccessTokenExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/User.html"><abbr title="Contentful\Management\Resource\User">User</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getUserMe">getUserMe</a>()
+        
+                                            <p>Returns a User resource.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Contentful/Management/ClientExtension/UserExtension.html#method_getUserMe"><abbr title="Contentful\Management\ClientExtension\UserExtension">UserExtension</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $accessToken, array $options = [])
+        
+                                            <p>Client constructor.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getBuilder">getBuilder</a>()
+        
+                                            <p>Returns the active ResourceBuilder instance.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\Core\Resource\ResourceInterface">ResourceInterface</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_request">request</a>(string $method, string $uri, array $options = [])
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_create">create</a>(<a href="../../Contentful/Management/Resource/Behavior/CreatableInterface.html"><abbr title="Contentful\Management\Resource\Behavior\CreatableInterface">CreatableInterface</abbr></a> $resource, string $resourceId = &#039;&#039;, <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|string[] $parameters = [])
+        
+                                            <p>Persists the current resource in the given scope.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|<abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>|null
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_requestWithResource">requestWithResource</a>(<a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a> $resource, string $method, string $path = &#039;&#039;, array $options = [])
+        
+                                            <p>Make an API request using the given resource.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_resolveLink">resolveLink</a>(<abbr title="Contentful\Core\Api\Link">Link</abbr> $link, array $parameters = [])
+        
+                                            <p>Resolves a link to a Contentful resource.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_resolveLinkCollection">resolveLinkCollection</a>(array $links, array $parameters = [])
+        
+                                            <p>Resolves a collection of links to a Contentful resources.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getApi">getApi</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getExceptionNamespace">getExceptionNamespace</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSdkName">getSdkName</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPackageName">getPackageName</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getApiContentType">getApiContentType</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_getOrganizations">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/OrganizationExtension.html#method_getOrganizations"><abbr title="Contentful\Management\ClientExtension\OrganizationExtension">OrganizationExtension</abbr></a> at         line 33</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getOrganizations</strong>(<a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing Organization resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/organizations">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/organizations</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_fetchResource">
+        <div class="location">at         line 204</div>
+        <code>                    <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|<abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>fetchResource</strong>(string $class, array $parameters, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null, <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a> $resource = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$class</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a></td>
+                <td>$resource</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|<abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getDeliveryApiKey">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/DeliveryApiKeyExtension.html#method_getDeliveryApiKey"><abbr title="Contentful\Management\ClientExtension\Space\DeliveryApiKeyExtension">DeliveryApiKeyExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/DeliveryApiKey.html"><abbr title="Contentful\Management\Resource\DeliveryApiKey">DeliveryApiKey</abbr></a>
+    <strong>getDeliveryApiKey</strong>(string $spaceId, string $deliveryApiKeyId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a DeliveryApiKey resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$deliveryApiKeyId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/DeliveryApiKey.html"><abbr title="Contentful\Management\Resource\DeliveryApiKey">DeliveryApiKey</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getDeliveryApiKeys">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/DeliveryApiKeyExtension.html#method_getDeliveryApiKeys"><abbr title="Contentful\Management\ClientExtension\Space\DeliveryApiKeyExtension">DeliveryApiKeyExtension</abbr></a> at         line 46</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getDeliveryApiKeys</strong>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing DeliveryApiKey objects.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAsset">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/AssetExtension.html#method_getAsset"><abbr title="Contentful\Management\ClientExtension\Space\Environment\AssetExtension">AssetExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Asset.html"><abbr title="Contentful\Management\Resource\Asset">Asset</abbr></a>
+    <strong>getAsset</strong>(string $spaceId, string $environmentId, string $assetId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an Asset resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$assetId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Asset.html"><abbr title="Contentful\Management\Resource\Asset">Asset</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAssets">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/AssetExtension.html#method_getAssets"><abbr title="Contentful\Management\ClientExtension\Space\Environment\AssetExtension">AssetExtension</abbr></a> at         line 47</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getAssets</strong>(string $spaceId, string $environmentId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object which contains Asset resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getContentTypeSnapshot">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentType/ContentTypeSnapshotExtension.html#method_getContentTypeSnapshot"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentType\ContentTypeSnapshotExtension">ContentTypeSnapshotExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/ContentTypeSnapshot.html"><abbr title="Contentful\Management\Resource\ContentTypeSnapshot">ContentTypeSnapshot</abbr></a>
+    <strong>getContentTypeSnapshot</strong>(string $spaceId, string $environmentId, string $contentTypeId, string $snapshotId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ContentTypeSnapshot resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$contentTypeId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$snapshotId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/ContentTypeSnapshot.html"><abbr title="Contentful\Management\Resource\ContentTypeSnapshot">ContentTypeSnapshot</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getContentTypeSnapshots">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentType/ContentTypeSnapshotExtension.html#method_getContentTypeSnapshots"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentType\ContentTypeSnapshotExtension">ContentTypeSnapshotExtension</abbr></a> at         line 48</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getContentTypeSnapshots</strong>(string $spaceId, string $environmentId, string $contentTypeId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object which contains ContentTypeSnapshot resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$contentTypeId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEditorInterface">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentType/EditorInterfaceExtension.html#method_getEditorInterface"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentType\EditorInterfaceExtension">EditorInterfaceExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/EditorInterface.html"><abbr title="Contentful\Management\Resource\EditorInterface">EditorInterface</abbr></a>
+    <strong>getEditorInterface</strong>(string $spaceId, string $environmentId, string $contentTypeId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an EditorInterface resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$contentTypeId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/EditorInterface.html"><abbr title="Contentful\Management\Resource\EditorInterface">EditorInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getContentType">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html#method_getContentType"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a> at         line 38</div>
+        <code>                    <a href="../../Contentful/Management/Resource/ContentType.html"><abbr title="Contentful\Management\Resource\ContentType">ContentType</abbr></a>
+    <strong>getContentType</strong>(string $spaceId, string $environmentId, string $contentTypeId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ContentType resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$contentTypeId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/ContentType.html"><abbr title="Contentful\Management\Resource\ContentType">ContentType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getContentTypes">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html#method_getContentTypes"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a> at         line 52</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getContentTypes</strong>(string $spaceId, string $environmentId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object which contains ContentType resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPublishedContentType">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html#method_getPublishedContentType"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a> at         line 65</div>
+        <code>                    <a href="../../Contentful/Management/Resource/ContentType.html"><abbr title="Contentful\Management\Resource\ContentType">ContentType</abbr></a>
+    <strong>getPublishedContentType</strong>(string $spaceId, string $environmentId, string $contentTypeId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a published ContentType resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$contentTypeId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/ContentType.html"><abbr title="Contentful\Management\Resource\ContentType">ContentType</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPublishedContentTypes">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ContentTypeExtension.html#method_getPublishedContentTypes"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ContentTypeExtension">ContentTypeExtension</abbr></a> at         line 79</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getPublishedContentTypes</strong>(string $spaceId, string $environmentId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object which contains published ContentType resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEntrySnapshot">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/Entry/EntrySnapshotExtension.html#method_getEntrySnapshot"><abbr title="Contentful\Management\ClientExtension\Space\Environment\Entry\EntrySnapshotExtension">EntrySnapshotExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/EntrySnapshot.html"><abbr title="Contentful\Management\Resource\EntrySnapshot">EntrySnapshot</abbr></a>
+    <strong>getEntrySnapshot</strong>(string $spaceId, string $environmentId, string $entryId, string $snapshotId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an EntrySnapshot resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$entryId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$snapshotId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/EntrySnapshot.html"><abbr title="Contentful\Management\Resource\EntrySnapshot">EntrySnapshot</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshot">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshot</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEntrySnapshots">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/Entry/EntrySnapshotExtension.html#method_getEntrySnapshots"><abbr title="Contentful\Management\ClientExtension\Space\Environment\Entry\EntrySnapshotExtension">EntrySnapshotExtension</abbr></a> at         line 48</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getEntrySnapshots</strong>(string $spaceId, string $environmentId, string $entryId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object which contains EntrySnapshot resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$entryId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEntry">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/EntryExtension.html#method_getEntry"><abbr title="Contentful\Management\ClientExtension\Space\Environment\EntryExtension">EntryExtension</abbr></a> at         line 35</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Entry.html"><abbr title="Contentful\Management\Resource\Entry">Entry</abbr></a>
+    <strong>getEntry</strong>(string $spaceId, string $environmentId, string $entryId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an Entry resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$entryId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Entry.html"><abbr title="Contentful\Management\Resource\Entry">Entry</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEntries">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/EntryExtension.html#method_getEntries"><abbr title="Contentful\Management\ClientExtension\Space\Environment\EntryExtension">EntryExtension</abbr></a> at         line 49</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getEntries</strong>(string $spaceId, string $environmentId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object which contains Entry resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getExtension">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ExtensionExtension.html#method_getExtension"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ExtensionExtension">ExtensionExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Extension.html"><abbr title="Contentful\Management\Resource\Extension">Extension</abbr></a>
+    <strong>getExtension</strong>(string $spaceId, string $environmentId, string $extensionId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an Extension resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$extensionId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Extension.html"><abbr title="Contentful\Management\Resource\Extension">Extension</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extension">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extension</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getExtensions">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/ExtensionExtension.html#method_getExtensions"><abbr title="Contentful\Management\ClientExtension\Space\Environment\ExtensionExtension">ExtensionExtension</abbr></a> at         line 47</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getExtensions</strong>(string $spaceId, string $environmentId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing Extension resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extensions-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/ui-extensions/extensions-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getLocale">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/LocaleExtension.html#method_getLocale"><abbr title="Contentful\Management\ClientExtension\Space\Environment\LocaleExtension">LocaleExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Locale.html"><abbr title="Contentful\Management\Resource\Locale">Locale</abbr></a>
+    <strong>getLocale</strong>(string $spaceId, string $environmentId, string $localeId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a Locale resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$localeId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Locale.html"><abbr title="Contentful\Management\Resource\Locale">Locale</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getLocales">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Environment/LocaleExtension.html#method_getLocales"><abbr title="Contentful\Management\ClientExtension\Space\Environment\LocaleExtension">LocaleExtension</abbr></a> at         line 47</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getLocales</strong>(string $spaceId, string $environmentId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing Locale resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/locales/locale-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEnvironmentProxy">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/EnvironmentExtension.html#method_getEnvironmentProxy"><abbr title="Contentful\Management\ClientExtension\Space\EnvironmentExtension">EnvironmentExtension</abbr></a> at         line 43</div>
+        <code>                    <a href="../../Contentful/Management/Proxy/EnvironmentProxy.html"><abbr title="Contentful\Management\Proxy\EnvironmentProxy">EnvironmentProxy</abbr></a>
+    <strong>getEnvironmentProxy</strong>(string $spaceId, string $environmentId = &#039;master&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a proxy to an environment resource.</p>                    <p>Useful for all environment-scoped operations.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Proxy/EnvironmentProxy.html"><abbr title="Contentful\Management\Proxy\EnvironmentProxy">EnvironmentProxy</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEnvironment">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/EnvironmentExtension.html#method_getEnvironment"><abbr title="Contentful\Management\ClientExtension\Space\EnvironmentExtension">EnvironmentExtension</abbr></a> at         line 53</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Environment.html"><abbr title="Contentful\Management\Resource\Environment">Environment</abbr></a>
+    <strong>getEnvironment</strong>(string $spaceId, string $environmentId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an Environment resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$environmentId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Environment.html"><abbr title="Contentful\Management\Resource\Environment">Environment</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environment">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environment</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEnvironments">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/EnvironmentExtension.html#method_getEnvironments"><abbr title="Contentful\Management\ClientExtension\Space\EnvironmentExtension">EnvironmentExtension</abbr></a> at         line 66</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getEnvironments</strong>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object which contains Environment resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environments-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environments-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPreviewApiKey">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/PreviewApiKeyExtension.html#method_getPreviewApiKey"><abbr title="Contentful\Management\ClientExtension\Space\PreviewApiKeyExtension">PreviewApiKeyExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/PreviewApiKey.html"><abbr title="Contentful\Management\Resource\PreviewApiKey">PreviewApiKey</abbr></a>
+    <strong>getPreviewApiKey</strong>(string $spaceId, string $previewApiKeyId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a PreviewApiKey resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$previewApiKeyId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/PreviewApiKey.html"><abbr title="Contentful\Management\Resource\PreviewApiKey">PreviewApiKey</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPreviewApiKeys">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/PreviewApiKeyExtension.html#method_getPreviewApiKeys"><abbr title="Contentful\Management\ClientExtension\Space\PreviewApiKeyExtension">PreviewApiKeyExtension</abbr></a> at         line 46</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getPreviewApiKeys</strong>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing PreviewApiKey resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRole">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/RoleExtension.html#method_getRole"><abbr title="Contentful\Management\ClientExtension\Space\RoleExtension">RoleExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Role.html"><abbr title="Contentful\Management\Resource\Role">Role</abbr></a>
+    <strong>getRole</strong>(string $spaceId, string $roleId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a Role resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$roleId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Role.html"><abbr title="Contentful\Management\Resource\Role">Role</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/role">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/role</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRoles">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/RoleExtension.html#method_getRoles"><abbr title="Contentful\Management\ClientExtension\Space\RoleExtension">RoleExtension</abbr></a> at         line 46</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getRoles</strong>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing Role resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/roles-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/roles-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSpaceMembership">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/SpaceMembershipExtension.html#method_getSpaceMembership"><abbr title="Contentful\Management\ClientExtension\Space\SpaceMembershipExtension">SpaceMembershipExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/SpaceMembership.html"><abbr title="Contentful\Management\Resource\SpaceMembership">SpaceMembership</abbr></a>
+    <strong>getSpaceMembership</strong>(string $spaceId, string $spaceMembershipId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a SpaceMembership resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$spaceMembershipId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/SpaceMembership.html"><abbr title="Contentful\Management\Resource\SpaceMembership">SpaceMembership</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships/space-membership">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships/space-membership</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSpaceMemberships">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/SpaceMembershipExtension.html#method_getSpaceMemberships"><abbr title="Contentful\Management\ClientExtension\Space\SpaceMembershipExtension">SpaceMembershipExtension</abbr></a> at         line 46</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getSpaceMemberships</strong>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing SpaceMembership resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getUpload">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/UploadExtension.html#method_getUpload"><abbr title="Contentful\Management\ClientExtension\Space\UploadExtension">UploadExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Upload.html"><abbr title="Contentful\Management\Resource\Upload">Upload</abbr></a>
+    <strong>getUpload</strong>(string $spaceId, string $uploadId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an Upload resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$uploadId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Upload.html"><abbr title="Contentful\Management\Resource\Upload">Upload</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads/retrieving-an-upload">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/uploads/retrieving-an-upload</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getWebhookCall">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Webhook/WebhookCallExtension.html#method_getWebhookCall"><abbr title="Contentful\Management\ClientExtension\Space\Webhook\WebhookCallExtension">WebhookCallExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/WebhookCall.html"><abbr title="Contentful\Management\Resource\WebhookCall">WebhookCall</abbr></a>
+    <strong>getWebhookCall</strong>(string $spaceId, string $webhookId, string $webhookCallId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a WebhookCall resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$webhookId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$webhookCallId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/WebhookCall.html"><abbr title="Contentful\Management\Resource\WebhookCall">WebhookCall</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-details</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getWebhookCalls">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Webhook/WebhookCallExtension.html#method_getWebhookCalls"><abbr title="Contentful\Management\ClientExtension\Space\Webhook\WebhookCallExtension">WebhookCallExtension</abbr></a> at         line 47</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getWebhookCalls</strong>(string $spaceId, string $webhookId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing WebhookCall resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$webhookId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getWebhookHealth">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/Webhook/WebhookHealthExtension.html#method_getWebhookHealth"><abbr title="Contentful\Management\ClientExtension\Space\Webhook\WebhookHealthExtension">WebhookHealthExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/WebhookHealth.html"><abbr title="Contentful\Management\Resource\WebhookHealth">WebhookHealth</abbr></a>
+    <strong>getWebhookHealth</strong>(string $spaceId, string $webhookId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an WebhookHealth resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$webhookId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/WebhookHealth.html"><abbr title="Contentful\Management\Resource\WebhookHealth">WebhookHealth</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-health</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getWebhook">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/WebhookExtension.html#method_getWebhook"><abbr title="Contentful\Management\ClientExtension\Space\WebhookExtension">WebhookExtension</abbr></a> at         line 37</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a>
+    <strong>getWebhook</strong>(string $spaceId, string $webhookId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a Webhook resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$webhookId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Webhook.html"><abbr title="Contentful\Management\Resource\Webhook">Webhook</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhook">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhook</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getWebhooks">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/Space/WebhookExtension.html#method_getWebhooks"><abbr title="Contentful\Management\ClientExtension\Space\WebhookExtension">WebhookExtension</abbr></a> at         line 50</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getWebhooks</strong>(string $spaceId, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing Webhook resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhooks-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhooks-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSpaceProxy">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/SpaceExtension.html#method_getSpaceProxy"><abbr title="Contentful\Management\ClientExtension\SpaceExtension">SpaceExtension</abbr></a> at         line 47</div>
+        <code>                    <a href="../../Contentful/Management/Proxy/SpaceProxy.html"><abbr title="Contentful\Management\Proxy\SpaceProxy">SpaceProxy</abbr></a>
+    <strong>getSpaceProxy</strong>(string $spaceId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a proxy to a space resource.</p>                    <p>Useful for all space-scoped operations.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Proxy/SpaceProxy.html"><abbr title="Contentful\Management\Proxy\SpaceProxy">SpaceProxy</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSpace">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/SpaceExtension.html#method_getSpace"><abbr title="Contentful\Management\ClientExtension\SpaceExtension">SpaceExtension</abbr></a> at         line 57</div>
+        <code>                    <a href="../../Contentful/Management/Resource/Space.html"><abbr title="Contentful\Management\Resource\Space">Space</abbr></a>
+    <strong>getSpace</strong>(string $spaceId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a Space resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/Space.html"><abbr title="Contentful\Management\Resource\Space">Space</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces/space">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces/space</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSpaces">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/SpaceExtension.html#method_getSpaces"><abbr title="Contentful\Management\ClientExtension\SpaceExtension">SpaceExtension</abbr></a> at         line 69</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getSpaces</strong>(<a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing Space objects.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces/spaces-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/spaces/spaces-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPersonalAccessToken">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/User/PersonalAccessTokenExtension.html#method_getPersonalAccessToken"><abbr title="Contentful\Management\ClientExtension\User\PersonalAccessTokenExtension">PersonalAccessTokenExtension</abbr></a> at         line 33</div>
+        <code>                    <a href="../../Contentful/Management/Resource/PersonalAccessToken.html"><abbr title="Contentful\Management\Resource\PersonalAccessToken">PersonalAccessToken</abbr></a>
+    <strong>getPersonalAccessToken</strong>(string $personalAccessTokenId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a PersonalAccessToken resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$personalAccessTokenId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/PersonalAccessToken.html"><abbr title="Contentful\Management\Resource\PersonalAccessToken">PersonalAccessToken</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/personal-access-token">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/personal-access-token</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPersonalAccessTokens">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/User/PersonalAccessTokenExtension.html#method_getPersonalAccessTokens"><abbr title="Contentful\Management\ClientExtension\User\PersonalAccessTokenExtension">PersonalAccessTokenExtension</abbr></a> at         line 45</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>
+    <strong>getPersonalAccessTokens</strong>(<a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a ResourceArray object containing PersonalAccessToken resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/personal-access-tokens-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens/personal-access-tokens-collection</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getUserMe">
+        <div class="location">in <a href="../../Contentful/Management/ClientExtension/UserExtension.html#method_getUserMe"><abbr title="Contentful\Management\ClientExtension\UserExtension">UserExtension</abbr></a> at         line 35</div>
+        <code>                    <a href="../../Contentful/Management/Resource/User.html"><abbr title="Contentful\Management\Resource\User">User</abbr></a>
+    <strong>getUserMe</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a User resource.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/User.html"><abbr title="Contentful\Management\Resource\User">User</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/users/user">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/users/user</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at         line 82</div>
+        <code>                    
+    <strong>__construct</strong>(string $accessToken, array $options = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Client constructor.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$accessToken</td>
+                <td>A OAuth token or personal access token generated by Contentful</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td>An array of options, with the following supported values:
+                           * guzzle: an instance of the Guzzle client
+                           * logger: a PSR-3 logger
+                           * host: a string that will replace the default Contentful URI</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getBuilder">
+        <div class="location">at         line 100</div>
+        <code>                    <a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a>
+    <strong>getBuilder</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns the active ResourceBuilder instance.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_request">
+        <div class="location">at         line 108</div>
+        <code>                    <abbr title="Contentful\Core\Resource\ResourceInterface">ResourceInterface</abbr>
+    <strong>request</strong>(string $method, string $uri, array $options = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\Core\Resource\ResourceInterface">ResourceInterface</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_create">
+        <div class="location">at         line 152</div>
+        <code>                    
+    <strong>create</strong>(<a href="../../Contentful/Management/Resource/Behavior/CreatableInterface.html"><abbr title="Contentful\Management\Resource\Behavior\CreatableInterface">CreatableInterface</abbr></a> $resource, string $resourceId = &#039;&#039;, <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|string[] $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Persists the current resource in the given scope.</p>                    <p>You can use this method in 2 ways.</p>
+
+<p>Creating using an actual resource object</p>
+
+<pre><code class="php">// $environment is an instance of Contentful\Management\Resource\Environment
+$client-&gt;create($entry, $environment);
+</code></pre>
+
+<p>Creating using an array with the required IDs</p>
+
+<pre><code class="php">$client-&gt;create($entry, $entryCustomId, ['space' =&gt; $spaceId, 'environment' =&gt; $environmentId]);
+</code></pre>
+</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Contentful/Management/Resource/Behavior/CreatableInterface.html"><abbr title="Contentful\Management\Resource\Behavior\CreatableInterface">CreatableInterface</abbr></a></td>
+                <td>$resource</td>
+                <td>The resource that needs to be created in Contentful</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$resourceId</td>
+                <td>If this parameter is specified, the SDK will attempt
+                                              to create a resource by making a PUT request on the endpoint
+                                              by also specifying the ID</td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|string[]</td>
+                <td>$parameters</td>
+                <td>Either an actual resource object,
+                                              or an array containing the required IDs</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_requestWithResource">
+        <div class="location">at         line 180</div>
+        <code>                    <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|<abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>|null
+    <strong>requestWithResource</strong>(<a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a> $resource, string $method, string $path = &#039;&#039;, array $options = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Make an API request using the given resource.</p>                    <p>The object will be used to infer the API endpoint.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a></td>
+                <td>$resource</td>
+                <td>An SDK resource object</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td>The HTTP method</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Optionally, a path to be added at the of the URI (like "/published")</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td>An array of valid options (host, body, headers)</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>|<abbr title="Contentful\Core\Resource\ResourceArray">ResourceArray</abbr>|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resolveLink">
+        <div class="location">at         line 228</div>
+        <code>                    <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>
+    <strong>resolveLink</strong>(<abbr title="Contentful\Core\Api\Link">Link</abbr> $link, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Resolves a link to a Contentful resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Contentful\Core\Api\Link">Link</abbr></td>
+                <td>$link</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resolveLinkCollection">
+        <div class="location">at         line 239</div>
+        <code>                    array
+    <strong>resolveLinkCollection</strong>(array $links, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Resolves a collection of links to a Contentful resources.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$links</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getApi">
+        <div class="location">at         line 247</div>
+        <code>                    string
+    <strong>getApi</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getExceptionNamespace">
+        <div class="location">at         line 255</div>
+        <code>            protected        
+    <strong>getExceptionNamespace</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSdkName">
+        <div class="location">at         line 263</div>
+        <code>        static    protected        string
+    <strong>getSdkName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPackageName">
+        <div class="location">at         line 271</div>
+        <code>        static    protected        string
+    <strong>getPackageName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getApiContentType">
+        <div class="location">at         line 279</div>
+        <code>        static    protected        string
+    <strong>getApiContentType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

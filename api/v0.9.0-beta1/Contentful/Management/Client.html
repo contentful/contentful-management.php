@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Contentful\Management\Client | Contentful CMA SDK for PHP</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Contentful_Management_Client" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                    <form action="#" method="GET">
+                <select id="version-switcher" name="version">
+                                            <option value="../../../v0.9.0-beta1/index.html" data-version="v0.9.0-beta1">v0.9.0-beta1</option>
+                                            <option value="../../../0.9.0-beta2/index.html" data-version="0.9.0-beta2">0.9.0-beta2</option>
+                                            <option value="../../../1.0.0-beta1/index.html" data-version="1.0.0-beta1">1.0.0-beta1</option>
+                                            <option value="../../../1.0.0/index.html" data-version="1.0.0">1.0.0</option>
+                                            <option value="../../../2.0.0/index.html" data-version="2.0.0">2.0.0</option>
+                                            <option value="../../../2.0.1/index.html" data-version="2.0.1">2.0.1</option>
+                                            <option value="../../../2.1.0/index.html" data-version="2.1.0">2.1.0</option>
+                                            <option value="../../../2.2.0/index.html" data-version="2.2.0">2.2.0</option>
+                                            <option value="../../../2.2.1/index.html" data-version="2.2.1">2.2.1</option>
+                                            <option value="../../../3.0.0/index.html" data-version="3.0.0">3.0.0</option>
+                                            <option value="../../../3.0.1/index.html" data-version="3.0.1">3.0.1</option>
+                                            <option value="../../../3.1.0/index.html" data-version="3.1.0">3.1.0</option>
+                                            <option value="../../../3.1.1/index.html" data-version="3.1.1">3.1.1</option>
+                                            <option value="../../../master/index.html" data-version="master">Master branch</option>
+                                    </select>
+            </form>
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Contentful CMA SDK for PHP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../Contentful.html">Contentful</a></li><li class="backslash">\</li><li><a href="../../Contentful/Management.html">Management</a></li><li class="backslash">\</li><li>Client</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            Client
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>Client</strong>        extends <abbr title="Contentful\Client">Client</abbr>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Client class.</p>            <p>This class is responsible for querying Contentful's Content Management API.</p>                    </div>
+    
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>VERSION</td>
+                <td class="last">
+                    <p><em>The current version of the SDK.</em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>URI_MANAGEMENT</td>
+                <td class="last">
+                    <p><em>The default URI to which all requests should be made.</em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>URI_UPLOAD</td>
+                <td class="last">
+                    <p><em>The special URI for uploading files.</em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_asset">
+                                                                                <a href="../../Contentful/Management/Proxy/Asset.html"><abbr title="Contentful\Management\Proxy\Asset">Asset</abbr></a>
+                </td>
+                <td>$asset</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_contentType">
+                                                                                <a href="../../Contentful/Management/Proxy/ContentType.html"><abbr title="Contentful\Management\Proxy\ContentType">ContentType</abbr></a>
+                </td>
+                <td>$contentType</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_contentTypeSnapshot">
+                                                                                <a href="../../Contentful/Management/Proxy/ContentTypeSnapshot.html"><abbr title="Contentful\Management\Proxy\ContentTypeSnapshot">ContentTypeSnapshot</abbr></a>
+                </td>
+                <td>$contentTypeSnapshot</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_deliveryApiKey">
+                                                                                <a href="../../Contentful/Management/Proxy/DeliveryApiKey.html"><abbr title="Contentful\Management\Proxy\DeliveryApiKey">DeliveryApiKey</abbr></a>
+                </td>
+                <td>$deliveryApiKey</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_editorInterface">
+                                                                                <a href="../../Contentful/Management/Proxy/EditorInterface.html"><abbr title="Contentful\Management\Proxy\EditorInterface">EditorInterface</abbr></a>
+                </td>
+                <td>$editorInterface</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_entry">
+                                                                                <a href="../../Contentful/Management/Proxy/Entry.html"><abbr title="Contentful\Management\Proxy\Entry">Entry</abbr></a>
+                </td>
+                <td>$entry</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_entrySnapshot">
+                                                                                <a href="../../Contentful/Management/Proxy/EntrySnapshot.html"><abbr title="Contentful\Management\Proxy\EntrySnapshot">EntrySnapshot</abbr></a>
+                </td>
+                <td>$entrySnapshot</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_extension">
+                                                                                <a href="../../Contentful/Management/Proxy/Extension.html"><abbr title="Contentful\Management\Proxy\Extension">Extension</abbr></a>
+                </td>
+                <td>$extension</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_locale">
+                                                                                <a href="../../Contentful/Management/Proxy/Locale.html"><abbr title="Contentful\Management\Proxy\Locale">Locale</abbr></a>
+                </td>
+                <td>$locale</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_organization">
+                                                                                <a href="../../Contentful/Management/Proxy/Organization.html"><abbr title="Contentful\Management\Proxy\Organization">Organization</abbr></a>
+                </td>
+                <td>$organization</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_personalAccessToken">
+                                                                                <a href="../../Contentful/Management/Proxy/PersonalAccessToken.html"><abbr title="Contentful\Management\Proxy\PersonalAccessToken">PersonalAccessToken</abbr></a>
+                </td>
+                <td>$personalAccessToken</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_previewApiKey">
+                                                                                <a href="../../Contentful/Management/Proxy/PreviewApiKey.html"><abbr title="Contentful\Management\Proxy\PreviewApiKey">PreviewApiKey</abbr></a>
+                </td>
+                <td>$previewApiKey</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_publishedContentType">
+                                                                                <a href="../../Contentful/Management/Proxy/PublishedContentType.html"><abbr title="Contentful\Management\Proxy\PublishedContentType">PublishedContentType</abbr></a>
+                </td>
+                <td>$publishedContentType</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_role">
+                                                                                <a href="../../Contentful/Management/Proxy/Role.html"><abbr title="Contentful\Management\Proxy\Role">Role</abbr></a>
+                </td>
+                <td>$role</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_space">
+                                                                                <a href="../../Contentful/Management/Proxy/Space.html"><abbr title="Contentful\Management\Proxy\Space">Space</abbr></a>
+                </td>
+                <td>$space</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_spaceMembership">
+                                                                                <a href="../../Contentful/Management/Proxy/SpaceMembership.html"><abbr title="Contentful\Management\Proxy\SpaceMembership">SpaceMembership</abbr></a>
+                </td>
+                <td>$spaceMembership</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_upload">
+                                                                                <a href="../../Contentful/Management/Proxy/Upload.html"><abbr title="Contentful\Management\Proxy\Upload">Upload</abbr></a>
+                </td>
+                <td>$upload</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_user">
+                                                                                <a href="../../Contentful/Management/Proxy/User.html"><abbr title="Contentful\Management\Proxy\User">User</abbr></a>
+                </td>
+                <td>$user</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_webhook">
+                                                                                <a href="../../Contentful/Management/Proxy/Webhook.html"><abbr title="Contentful\Management\Proxy\Webhook">Webhook</abbr></a>
+                </td>
+                <td>$webhook</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_webhookCall">
+                                                                                <a href="../../Contentful/Management/Proxy/WebhookCall.html"><abbr title="Contentful\Management\Proxy\WebhookCall">WebhookCall</abbr></a>
+                </td>
+                <td>$webhookCall</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_webhookHealth">
+                                                                                <a href="../../Contentful/Management/Proxy/WebhookHealth.html"><abbr title="Contentful\Management\Proxy\WebhookHealth">WebhookHealth</abbr></a>
+                </td>
+                <td>$webhookHealth</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(string $token, string $currentSpaceId = null, array $options = [])
+        
+                                            <p>Client constructor.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getBuilder">getBuilder</a>()
+        
+                                            <p>Returns the active ResourceBuilder instance.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Client.html"><abbr title="Contentful\Management\Client">Client</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setBuilder">setBuilder</a>(<a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a> $builder)
+        
+                                            <p>Sets the active ResourceBuilder instance.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|null
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getCurrentSpaceId">getCurrentSpaceId</a>()
+        
+                                            <p>Returns the space ID to which this client is currently bound.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Client.html"><abbr title="Contentful\Management\Client">Client</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setCurrentSpaceId">setCurrentSpaceId</a>(string $currentSpaceId = null)
+        
+                                            <p>Sets the space ID to which the client is currently bound.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getProxy">getProxy</a>(string $name, string $spaceId = null)
+        
+                                            <p>Returns a proxy instance responsible for querying certain endpoints.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___get">__get</a>(string $name)
+        
+                                            <p>Convenience method for accessing a proxy.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Contentful\ResourceArray">ResourceArray</abbr>|<a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getResource">getResource</a>(string $uri, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null, array $options = [], <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a> $resource = null)
+        
+                                            <p>Makes a GET call to an API endpoint,
+and returns the built object.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_requestResource">requestResource</a>(string $method, string $uri, array $options = [], <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a> $resource = null)
+        
+                                            <p>Requests an API resource and applies the result to the given object.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_resolveLink">resolveLink</a>(<abbr title="Contentful\Link">Link</abbr> $link, string $spaceId = null)
+        
+                                            <p>Resolves a Link object to the actual resource.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSdkName">getSdkName</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSdkVersion">getSdkVersion</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getApiContentType">getApiContentType</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getExceptionMap">getExceptionMap</a>()
+        
+                                            <p>{@inheritdoc}</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at         line 123</div>
+        <code>                    
+    <strong>__construct</strong>(string $token, string $currentSpaceId = null, array $options = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Client constructor.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$token</td>
+                <td>A oauth token or personal access token generated by Contentful</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$currentSpaceId</td>
+                <td>Optionally, the default space ID for querying operations</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td>An array of options, with the following supported values:
+                                   - guzzle: an instance of the Guzzle client
+                                   - logger: a logger implementing \Contentful\Log\LoggerInterface
+                                   - uriOverride: a string that will replace the default Contentful URI
+                                   - builder: a custom ResourceBuilder instance</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getBuilder">
+        <div class="location">at         line 141</div>
+        <code>                    <a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a>
+    <strong>getBuilder</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns the active ResourceBuilder instance.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setBuilder">
+        <div class="location">at         line 153</div>
+        <code>                    <a href="../../Contentful/Management/Client.html"><abbr title="Contentful\Management\Client">Client</abbr></a>
+    <strong>setBuilder</strong>(<a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a> $builder)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Sets the active ResourceBuilder instance.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Contentful/Management/ResourceBuilder.html"><abbr title="Contentful\Management\ResourceBuilder">ResourceBuilder</abbr></a></td>
+                <td>$builder</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Client.html"><abbr title="Contentful\Management\Client">Client</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCurrentSpaceId">
+        <div class="location">at         line 166</div>
+        <code>                    string|null
+    <strong>getCurrentSpaceId</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns the space ID to which this client is currently bound.</p>                    <p>It can be null, as certain operations are not done on a space level.</p>                            </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|null</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setCurrentSpaceId">
+        <div class="location">at         line 178</div>
+        <code>                    <a href="../../Contentful/Management/Client.html"><abbr title="Contentful\Management\Client">Client</abbr></a>
+    <strong>setCurrentSpaceId</strong>(string $currentSpaceId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Sets the space ID to which the client is currently bound.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$currentSpaceId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Client.html"><abbr title="Contentful\Management\Client">Client</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getProxy">
+        <div class="location">at         line 195</div>
+        <code>                    <a href="../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a>
+    <strong>getProxy</strong>(string $name, string $spaceId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns a proxy instance responsible for querying certain endpoints.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td>A valid proxy name, it will be resolved to a class in the namespace \Contentful\Management\Proxy</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td>Optionally, a space ID required by proxies that query Contentful's endpoints on a space level</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a></td>
+            <td>An object extending BaseProxy</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/InvalidArgumentException">InvalidArgumentException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___get">
+        <div class="location">at         line 229</div>
+        <code>                    <a href="../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a>
+    <strong>__get</strong>(string $name)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Convenience method for accessing a proxy.</p>                    <p>Allows for this usage.</p>
+
+<pre><code class="php">$entry = $client-&gt;entries-&gt;get($entryId);
+</code></pre>
+
+<p>Attention: if no space ID is provided and the proxy requires one,
+it will throw an exception.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Proxy/BaseProxy.html"><abbr title="Contentful\Management\Proxy\BaseProxy">BaseProxy</abbr></a></td>
+            <td>An object extending BaseProxy</td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="../../Contentful/Management/Client.html#method_getProxy"><abbr title="Contentful\Management\Client">Client</abbr>::getProxy</a>
+                                    </td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getResource">
+        <div class="location">at         line 245</div>
+        <code>                    <abbr title="Contentful\ResourceArray">ResourceArray</abbr>|<a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>
+    <strong>getResource</strong>(string $uri, <a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a> $query = null, array $options = [], <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a> $resource = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Makes a GET call to an API endpoint,
+and returns the built object.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td>The API endpoint</td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Query.html"><abbr title="Contentful\Management\Query">Query</abbr></a></td>
+                <td>$query</td>
+                <td>Optionally, a \Contentful\Management\Query object defining query string parameters</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td>An array of options for the HTTP client</td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a></td>
+                <td>$resource</td>
+                <td>If a resource object is given, its properties will be overwritten</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Contentful\ResourceArray">ResourceArray</abbr>|<a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_requestResource">
+        <div class="location">at         line 264</div>
+        <code>                    
+    <strong>requestResource</strong>(string $method, string $uri, array $options = [], <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a> $resource = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Requests an API resource and applies the result to the given object.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td>The HTTP method</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$uri</td>
+                <td>The API endpoint</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td>An array of options for the HTTP client</td>
+            </tr>
+                    <tr>
+                <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a></td>
+                <td>$resource</td>
+                <td>Optionally, an object whose properties will be overwritten</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_resolveLink">
+        <div class="location">at         line 285</div>
+        <code>                    <a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a>
+    <strong>resolveLink</strong>(<abbr title="Contentful\Link">Link</abbr> $link, string $spaceId = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Resolves a Link object to the actual resource.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Contentful\Link">Link</abbr></td>
+                <td>$link</td>
+                <td>A link object to a valid resource in Contentful</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$spaceId</td>
+                <td>Optionally, a space ID to override the one currently in use</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Contentful/Management/Resource/ResourceInterface.html"><abbr title="Contentful\Management\Resource\ResourceInterface">ResourceInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSdkName">
+        <div class="location">at         line 313</div>
+        <code>            protected        string
+    <strong>getSdkName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSdkVersion">
+        <div class="location">at         line 321</div>
+        <code>            protected        string
+    <strong>getSdkVersion</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getApiContentType">
+        <div class="location">at         line 329</div>
+        <code>            protected        string
+    <strong>getApiContentType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getExceptionMap">
+        <div class="location">at         line 337</div>
+        <code>            protected        array
+    <strong>getExceptionMap</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>{@inheritdoc}</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>
