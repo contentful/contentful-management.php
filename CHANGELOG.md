@@ -3,11 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/contentful/contentful-management.php/compare/3.1.3...HEAD)
+## [Unreleased](https://github.com/contentful/contentful-management.php/compare/3.1.4...HEAD)
 
 <!-- PENDING-CHANGES -->
 > No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
+
+## [3.1.4](https://github.com/contentful/contentful-management.php/tree/3.1.4) (2020-07-29)
+
+### Added
+
+* Upgraded code to allow passing the latest PHPCS validation
 
 ## [3.1.3](https://github.com/contentful/contentful-management.php/tree/3.1.3) (2020-07-29)
 
