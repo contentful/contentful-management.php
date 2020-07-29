@@ -122,7 +122,7 @@ class Role extends BaseMapper
      */
     protected function convertPermission($permission)
     {
-        if ($permission === []) {
+        if ([] === $permission) {
             return null;
         }
 
