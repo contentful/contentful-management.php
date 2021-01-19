@@ -19,7 +19,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * Applicable to:
  * - Link (to image assets)
  */
-class AssetImageDimensionsValidation implements ValidationInterface
+class AssetImageDimensionsValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var int|null
@@ -161,8 +161,11 @@ class AssetImageDimensionsValidation implements ValidationInterface
             $data['height'] = $heightData;
         }
 
-        return [
-            'assetImageDimensions' => $data,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'assetImageDimensions' => $data,
+            ]
+        );
     }
 }

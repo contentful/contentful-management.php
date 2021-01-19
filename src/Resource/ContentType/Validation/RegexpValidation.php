@@ -20,7 +20,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * - Symbol
  * - Text
  */
-class RegexpValidation implements ValidationInterface
+class RegexpValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var string|null
@@ -88,8 +88,11 @@ class RegexpValidation implements ValidationInterface
             $data['flags'] = $this->flags;
         }
 
-        return [
-            'regexp' => $data,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'regexp' => $data,
+            ]
+        );
     }
 }

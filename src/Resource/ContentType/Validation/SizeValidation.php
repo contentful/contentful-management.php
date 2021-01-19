@@ -22,7 +22,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * - Symbol
  * - Text
  */
-class SizeValidation implements ValidationInterface
+class SizeValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var int|null
@@ -103,8 +103,11 @@ class SizeValidation implements ValidationInterface
             $data['max'] = $this->max;
         }
 
-        return [
-            'size' => $data,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'size' => $data,
+            ]
+        );
     }
 }

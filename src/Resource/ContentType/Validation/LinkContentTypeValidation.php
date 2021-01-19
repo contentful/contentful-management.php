@@ -20,7 +20,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * Applicable to:
  * - Link (to entries)
  */
-class LinkContentTypeValidation implements ValidationInterface
+class LinkContentTypeValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var string[]
@@ -70,8 +70,11 @@ class LinkContentTypeValidation implements ValidationInterface
      */
     public function jsonSerialize(): array
     {
-        return [
-            'linkContentType' => $this->contentTypes,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'linkContentType' => $this->contentTypes,
+            ]
+        );
     }
 }

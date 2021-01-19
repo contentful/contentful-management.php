@@ -22,6 +22,7 @@ use Contentful\Management\Resource\ContentType\Field\ObjectField;
 use Contentful\Management\Resource\ContentType\Field\RichTextField;
 use Contentful\Management\Resource\ContentType\Field\SymbolField;
 use Contentful\Management\Resource\ContentType\Field\TextField;
+use Contentful\Management\Resource\ContentType\Validation\AbstractCustomMessageValidation;
 use Contentful\Management\Resource\ContentType\Validation\ValidationInterface;
 
 /**
@@ -73,8 +74,11 @@ abstract class BaseField extends BaseMapper
 
         /** @var ValidationInterface $validation */
         $validation = $this->builder->getMapper($fqcn)
-            ->map(null, $data)
-        ;
+            ->map(null, $data);
+
+        if ($validation instanceof AbstractCustomMessageValidation && isset($data['message'])) {
+            $validation->setMessage($data['message']);
+        }
 
         return $validation;
     }
