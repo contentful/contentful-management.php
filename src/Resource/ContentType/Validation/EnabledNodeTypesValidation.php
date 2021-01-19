@@ -16,12 +16,34 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  */
 class EnabledNodeTypesValidation implements ValidationInterface
 {
+    private const VALID_FIELD_TYPES = ['RichText'];
+
+    /**
+     * @var array
+     */
+    private $enabledNodeTypes;
+
+    public function __construct(array $enabledNodeTypes)
+    {
+        $this->enabledNodeTypes = $enabledNodeTypes;
+    }
+
     /**
      * {@inheritdoc}
      */
     public static function getValidFieldTypes(): array
     {
-        return [];
+        return self::VALID_FIELD_TYPES;
+    }
+
+    public function getEnabledNodeTypes(): array
+    {
+        return $this->enabledNodeTypes;
+    }
+
+    public function setEnabledNodeTypes(array $enabledNodeTypes)
+    {
+        $this->enabledNodeTypes = $enabledNodeTypes;
     }
 
     /**
@@ -29,6 +51,6 @@ class EnabledNodeTypesValidation implements ValidationInterface
      */
     public function jsonSerialize()
     {
-        return [];
+        return ['enabledNodeTypes' => $this->enabledNodeTypes];
     }
 }

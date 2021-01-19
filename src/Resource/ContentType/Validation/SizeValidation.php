@@ -11,6 +11,12 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource\ContentType\Validation;
 
+use Contentful\Management\Resource\ContentType\Validation\Nodes\AssetHyperlinkValidationInterface;
+use Contentful\Management\Resource\ContentType\Validation\Nodes\EmbeddedAssetBlockValidationInterface;
+use Contentful\Management\Resource\ContentType\Validation\Nodes\EmbeddedEntryBlockValidationInterface;
+use Contentful\Management\Resource\ContentType\Validation\Nodes\EmbeddedEntryInlineValidationInterface;
+use Contentful\Management\Resource\ContentType\Validation\Nodes\EntryHyperlinkValidationInterface;
+
 /**
  * SizeValidation class.
  *
@@ -22,7 +28,12 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * - Symbol
  * - Text
  */
-class SizeValidation extends AbstractCustomMessageValidation implements ValidationInterface
+class SizeValidation extends AbstractCustomMessageValidation implements ValidationInterface,
+    AssetHyperlinkValidationInterface,
+    EmbeddedAssetBlockValidationInterface,
+    EmbeddedEntryBlockValidationInterface,
+    EmbeddedEntryInlineValidationInterface,
+    EntryHyperlinkValidationInterface
 {
     /**
      * @var int|null
