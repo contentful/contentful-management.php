@@ -56,15 +56,19 @@ abstract class BaseField extends BaseMapper
             'disabled' => $data['disabled'] ?? null,
             'omitted' => $data['omitted'] ?? null,
             'validations' => isset($data['validations'])
-                ? \array_map([$this, 'mapValidation'], $data['validations'])
+                ? \array_filter(\array_map([$this, 'mapValidation'], $data['validations']))
                 : [],
         ]);
 
         return $field;
     }
 
-    protected function mapValidation(array $data): ValidationInterface
+    protected function mapValidation(array $data): ?ValidationInterface
     {
+        if (empty(array_values($data)[0])) {
+            return null;
+        }
+
         $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Validation\\'.\ucfirst(\array_keys($data)[0]).'Validation';
 
         /** @var ValidationInterface $validation */
