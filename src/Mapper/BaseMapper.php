@@ -43,18 +43,24 @@ abstract class BaseMapper implements MapperInterface
 
     protected function mapValidation(array $data): ?ValidationInterface
     {
+        $message = null;
+        if (isset($data['message'])) {
+            $message = $data['message'];
+            unset($data['message']);
+        }
+
         if (empty(array_values($data)[0])) {
             return null;
         }
 
-        $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Validation\\'.\ucfirst(\array_keys($data)[0]).'Validation';
+        $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Validation\\'.\ucfirst(key($data)).'Validation';
 
         /** @var ValidationInterface $validation */
         $validation = $this->builder->getMapper($fqcn)
             ->map(null, $data);
 
-        if ($validation instanceof AbstractCustomMessageValidation && isset($data['message'])) {
-            $validation->setMessage($data['message']);
+        if ($validation instanceof AbstractCustomMessageValidation && $message) {
+            $validation->setMessage($message);
         }
 
         return $validation;
