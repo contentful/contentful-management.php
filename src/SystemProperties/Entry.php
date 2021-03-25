@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -14,14 +14,10 @@ namespace Contentful\Management\SystemProperties;
 class Entry extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
     use Component\ArchivedTrait;
-    use
-        Component\ContentTypeTrait;
-    use
-        Component\EnvironmentTrait;
-    use
-        Component\PublishedTrait;
-    use
-        Component\SpaceTrait;
+    use Component\ContentTypeTrait;
+    use Component\EnvironmentTrait;
+    use Component\PublishedTrait;
+    use Component\SpaceTrait;
 
     /**
      * Entry constructor.

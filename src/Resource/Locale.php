@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -28,8 +28,7 @@ use function GuzzleHttp\json_encode as guzzle_json_encode;
 class Locale extends BaseResource implements CreatableInterface
 {
     use DeletableTrait;
-    use
-        UpdatableTrait;
+    use UpdatableTrait;
 
     /**
      * @var SystemProperties

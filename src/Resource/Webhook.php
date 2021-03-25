@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -27,11 +27,9 @@ use Contentful\Management\SystemProperties\Webhook as SystemProperties;
  */
 class Webhook extends BaseResource implements CreatableInterface
 {
+    use DeletableTrait;
+    use UpdatableTrait;
     use WebhookProxyExtension;
-    use
-        DeletableTrait;
-    use
-        UpdatableTrait;
 
     /**
      * @var SystemProperties

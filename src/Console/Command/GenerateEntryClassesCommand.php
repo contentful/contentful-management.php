@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -211,7 +211,7 @@ class GenerateEntryClassesCommand extends Command
         $output->writeln('');
 
         if ($this->createdFiles) {
-            $output->writeln(\sprintf('The following files were successfully generated:'));
+            $output->writeln('The following files were successfully generated:');
             foreach ($this->createdFiles as $created) {
                 $output->writeln(\sprintf(
                     '* <info>%s (%s)</info>

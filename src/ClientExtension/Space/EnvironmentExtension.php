@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -27,14 +27,10 @@ use Contentful\Management\Resource\ResourceInterface;
 trait EnvironmentExtension
 {
     use Environment\AssetExtension;
-    use
-        Environment\ContentTypeExtension;
-    use
-        Environment\EntryExtension;
-    use
-        Environment\ExtensionExtension;
-    use
-        Environment\LocaleExtension;
+    use Environment\ContentTypeExtension;
+    use Environment\EntryExtension;
+    use Environment\ExtensionExtension;
+    use Environment\LocaleExtension;
 
     /**
      * Returns a proxy to an environment resource.

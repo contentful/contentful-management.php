@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -28,24 +28,22 @@ use Contentful\Management\Resource\ResourceInterface;
 class Client extends BaseClient
 {
     use ClientExtension\OrganizationExtension;
-    use
-        ClientExtension\SpaceExtension;
-    use
-        ClientExtension\UserExtension;
+    use ClientExtension\SpaceExtension;
+    use ClientExtension\UserExtension;
 
     /**
      * The default URI to which all requests should be made.
      *
      * @var string
      */
-    const URI_MANAGEMENT = 'https://api.contentful.com';
+    public const URI_MANAGEMENT = 'https://api.contentful.com';
 
     /**
      * The special URI for uploading files.
      *
      * @var string
      */
-    const URI_UPLOAD = 'https://upload.contentful.com';
+    public const URI_UPLOAD = 'https://upload.contentful.com';
 
     /**
      * A ResourceBuilder instance,

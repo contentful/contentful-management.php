@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -14,10 +14,8 @@ namespace Contentful\Management\SystemProperties;
 class Locale extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
     use Component\EditedTrait;
-    use
-        Component\EnvironmentTrait;
-    use
-        Component\SpaceTrait;
+    use Component\EnvironmentTrait;
+    use Component\SpaceTrait;
 
     /**
      * Locale constructor.

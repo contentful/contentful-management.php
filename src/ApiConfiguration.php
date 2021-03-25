@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -27,7 +27,7 @@ class ApiConfiguration
      *
      * @var string
      */
-    const PUBLISHED_CONTENT_TYPE_RESOURCE = 'Contentful\\Management\\Resource\\PublishedContentType';
+    public const PUBLISHED_CONTENT_TYPE_RESOURCE = 'Contentful\\Management\\Resource\\PublishedContentType';
 
     /**
      * This array includes the configuration necessary for handling API calls for every resource type.

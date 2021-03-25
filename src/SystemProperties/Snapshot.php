@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -13,15 +13,11 @@ namespace Contentful\Management\SystemProperties;
 
 class Snapshot extends BaseSystemProperties
 {
+    use Component\CreatedTrait;
     use Component\EnvironmentTrait;
-    use
-        Component\CreatedTrait;
-    use
-        Component\SnapshotTrait;
-    use
-        Component\SpaceTrait;
-    use
-        Component\UpdatedTrait;
+    use Component\SnapshotTrait;
+    use Component\SpaceTrait;
+    use Component\UpdatedTrait;
 
     /**
      * Snapshot constructor.

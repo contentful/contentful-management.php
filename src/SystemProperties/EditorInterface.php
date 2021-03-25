@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -14,12 +14,9 @@ namespace Contentful\Management\SystemProperties;
 class EditorInterface extends BaseSystemProperties implements VersionableSystemPropertiesInterface
 {
     use Component\ContentTypeTrait;
-    use
-        Component\EditedTrait;
-    use
-        Component\EnvironmentTrait;
-    use
-        Component\SpaceTrait;
+    use Component\EditedTrait;
+    use Component\EnvironmentTrait;
+    use Component\SpaceTrait;
 
     /**
      * EditorInterface constructor.

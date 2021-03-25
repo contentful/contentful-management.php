@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -21,7 +21,7 @@ class Policy implements \JsonSerializable
     /**
      * @var string[]
      */
-    const EFFECTS = [
+    public const EFFECTS = [
         'allow',
         'deny',
     ];
@@ -29,7 +29,7 @@ class Policy implements \JsonSerializable
     /**
      * @var string[]
      */
-    const ACTIONS = [
+    public const ACTIONS = [
         'read',
         'create',
         'update',

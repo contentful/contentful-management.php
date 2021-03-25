@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -30,15 +30,11 @@ use Contentful\Management\SystemProperties\Entry as SystemProperties;
  */
 class Entry extends BaseResource implements EntryInterface, CreatableInterface
 {
+    use ArchivableTrait;
+    use DeletableTrait;
     use EntryProxyExtension;
-    use
-        ArchivableTrait;
-    use
-        DeletableTrait;
-    use
-        PublishableTrait;
-    use
-        UpdatableTrait;
+    use PublishableTrait;
+    use UpdatableTrait;
 
     /**
      * @var SystemProperties

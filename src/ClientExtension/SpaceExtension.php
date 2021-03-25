@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -27,18 +27,12 @@ use Contentful\Management\Resource\Space as ResourceClass;
 trait SpaceExtension
 {
     use Space\DeliveryApiKeyExtension;
-    use
-        Space\EnvironmentExtension;
-    use
-        Space\PreviewApiKeyExtension;
-    use
-        Space\RoleExtension;
-    use
-        Space\SpaceMembershipExtension;
-    use
-        Space\UploadExtension;
-    use
-        Space\WebhookExtension;
+    use Space\EnvironmentExtension;
+    use Space\PreviewApiKeyExtension;
+    use Space\RoleExtension;
+    use Space\SpaceMembershipExtension;
+    use Space\UploadExtension;
+    use Space\WebhookExtension;
 
     /**
      * Returns a proxy to a space resource.

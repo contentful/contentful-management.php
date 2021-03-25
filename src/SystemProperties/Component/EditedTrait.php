@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -14,10 +14,8 @@ namespace Contentful\Management\SystemProperties\Component;
 trait EditedTrait
 {
     use CreatedTrait;
-    use
-        UpdatedTrait;
-    use
-        VersionedTrait;
+    use UpdatedTrait;
+    use VersionedTrait;
 
     protected function initEdited(array $data)
     {

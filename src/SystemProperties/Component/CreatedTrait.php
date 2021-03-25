@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -14,8 +14,7 @@ namespace Contentful\Management\SystemProperties\Component;
 trait CreatedTrait
 {
     use CreatedAtTrait;
-    use
-        CreatedByTrait;
+    use CreatedByTrait;
 
     protected function initCreated(array $data)
     {

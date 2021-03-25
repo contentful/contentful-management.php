@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -31,12 +31,9 @@ use Contentful\Management\SystemProperties\ContentType as SystemProperties;
 class ContentType extends BaseResource implements ContentTypeInterface, CreatableInterface
 {
     use ContentTypeProxyExtension;
-    use
-        DeletableTrait;
-    use
-        PublishableTrait;
-    use
-        UpdatableTrait;
+    use DeletableTrait;
+    use PublishableTrait;
+    use UpdatableTrait;
 
     /**
      * @var SystemProperties

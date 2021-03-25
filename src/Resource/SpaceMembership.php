@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -27,8 +27,7 @@ use Contentful\Management\SystemProperties\SpaceMembership as SystemProperties;
 class SpaceMembership extends BaseResource implements CreatableInterface
 {
     use DeletableTrait;
-    use
-        UpdatableTrait;
+    use UpdatableTrait;
 
     /**
      * @var SystemProperties

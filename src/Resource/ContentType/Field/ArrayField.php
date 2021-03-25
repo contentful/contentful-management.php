@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2020 Contentful GmbH
+ * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
  */
 
@@ -21,12 +21,12 @@ class ArrayField extends BaseField
     /**
      * @var string[]
      */
-    const VALID_ITEM_TYPES = ['Symbol', 'Link'];
+    public const VALID_ITEM_TYPES = ['Symbol', 'Link'];
 
     /**
      * @var string[]
      */
-    const VALID_LINK_TYPES = ['Asset', 'Entry'];
+    public const VALID_LINK_TYPES = ['Asset', 'Entry'];
 
     /**
      * Type for items.
