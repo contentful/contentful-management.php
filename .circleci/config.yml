@@ -12,12 +12,14 @@ workflows:
       - test72
       - test73
       - test74
+      - test80
       - docs_build:
           requires:
             - lint
             - test72
             - test73
             - test74
+            - test80
           filters:
             branches:
               only: master
@@ -25,7 +27,7 @@ workflows:
 jobs:
   lint:
     docker:
-      - image: circleci/php:7.2-cli
+      - image: circleci/php:7.4-cli
     steps:
       - checkout
       - run: { name: "Install dependencies", command: sudo composer self-update && composer install -n --prefer-dist }
@@ -39,6 +41,7 @@ jobs:
   test72:
     environment:
       CC_TEST_REPORTER_ID: 20d0810d3a632c678309b5c0f2ffd62696e01af79e021e80d1f5092b839e11a9
+      XDEBUG_MODE: coverage
     docker:
       - image: circleci/php:7.2-cli
     steps:
@@ -75,7 +78,16 @@ jobs:
       - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
       - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
       - run: { name: "Test suite", command: "composer test-quick-fail" }
-        
+
+  test80:
+    docker:
+      - image: circleci/php:8.0-cli
+    steps:
+      - checkout
+      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
+      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
+      - run: { name: "Test suite", command: "composer test-quick-fail" }
+
   docs_build:
     environment:
       TRAVIS_REPO_SLUG: contentful/contentful-management.php
