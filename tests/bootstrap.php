@@ -40,7 +40,8 @@ function clean_headers_array(Request $request)
 
 // The VCR needs to be loaded before the Client is loaded for the first time or it will fail
 VCR::configure()
-    ->setMode(VCR::MODE_ONCE)
+    //->setMode(VCR::MODE_ONCE)
+    ->setMode('new_episodes')
     ->setStorage('json')
     ->setCassettePath('tests/Recordings')
     ->addRequestMatcher('custom_headers', function (Request $first, Request $second) {
