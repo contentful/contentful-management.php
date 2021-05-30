@@ -9,6 +9,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 > No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
 
+## [3.2.0](https://github.com/contentful/contentful-management.php/tree/3.2.0) (2021-03-25)
+
+### Added
+
+* Added support for PHP8
+
+### Internal
+
+* Small code clean-ups
+* Fixed CI jobs
+
 ## [3.1.4](https://github.com/contentful/contentful-management.php/tree/3.1.4) (2020-07-29)
 
 ### Added
