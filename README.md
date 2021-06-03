@@ -596,6 +596,10 @@ $proxy->create($env); //this call will retry two times (so three calls couting t
 
 If the retry should happen in more than 60 seconds (as defined by the X-Contentful-RateLimit-Second-Remaining header [here](https://www.contentful.com/developers/docs/references/content-management-api/#/introduction/api-rate-limits) ), the call will throw a RateWaitTooLongException exception. This was implemented so that your scripts do not run for too long.
 
+## Contributinng
+
+PRs are welcome! If you want to develop locally, however, you will need to install with `--ignore-platform-reqs`, as one of the libraries used for testing does currently not officially support PHP8.
+
 
 ## About Contentful
 
