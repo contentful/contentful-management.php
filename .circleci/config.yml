@@ -34,7 +34,7 @@ jobs:
       - run:
           name: Syntax tests
           command: |
-            wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -q -O php-cs-fixer.phar
+            composer require friendsofphp/php-cs-fixer
             composer run lint-syntax
 
 
@@ -76,7 +76,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
-      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
+      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist --ignore-platform-reqs" }
       - run: { name: "Test suite", command: "composer test-quick-fail" }
 
   test80:
