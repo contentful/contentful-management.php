@@ -23,26 +23,29 @@ namespace Contentful\Management\Resource\ContentType\Validation;
 class RangeValidation implements ValidationInterface
 {
     /**
-     * @var int|null
+     * @var float|null
      */
     private $min;
 
     /**
-     * @var int|null
+     * @var float|null
      */
     private $max;
 
     /**
      * RangeValidation constructor.
+     *
+     * @param float|null $min
+     * @param float|null $max
      */
-    public function __construct(int $min = null, int $max = null)
+    public function __construct(float $min = null, float $max = null)
     {
         $this->min = $min;
         $this->max = $max;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
     public function getMin()
     {
@@ -50,9 +53,11 @@ class RangeValidation implements ValidationInterface
     }
 
     /**
+     * @param float|null $min
+     *
      * @return static
      */
-    public function setMin(int $min = null)
+    public function setMin(float $min = null)
     {
         $this->min = $min;
 
@@ -60,7 +65,7 @@ class RangeValidation implements ValidationInterface
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
     public function getMax()
     {
@@ -68,9 +73,11 @@ class RangeValidation implements ValidationInterface
     }
 
     /**
+     * @param int|null $max
+     *
      * @return static
      */
-    public function setMax(int $max = null)
+    public function setMax(float $max = null)
     {
         $this->max = $max;
 
