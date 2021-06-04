@@ -34,7 +34,6 @@ jobs:
       - run:
           name: Syntax tests
           command: |
-            composer require friendsofphp/php-cs-fixer
             composer run lint-syntax
 
 
