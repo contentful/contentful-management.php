@@ -41,6 +41,7 @@
                                             <option value="../../../../3.1.2/index.html" data-version="3.1.2">3.1.2</option>
                                             <option value="../../../../3.1.3/index.html" data-version="3.1.3">3.1.3</option>
                                             <option value="../../../../3.1.4/index.html" data-version="3.1.4">3.1.4</option>
+                                            <option value="../../../../3.2.0/index.html" data-version="3.2.0">3.2.0</option>
                                             <option value="../../../../master/index.html" data-version="master">Master branch</option>
                                     </select>
             </form>
@@ -204,7 +205,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    <a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a>
+                    
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getSystemProperties">getSystemProperties</a>()
@@ -234,7 +235,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    <abbr title="Contentful\Core\Api\Link">Link</abbr>
+                    
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_asLink">asLink</a>()
@@ -304,7 +305,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    string[]
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_asUriParameters">asUriParameters</a>()
@@ -315,7 +316,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    string[]
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getHeadersForCreation">getHeadersForCreation</a>()
@@ -380,7 +381,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    <a href="../../../Contentful/Management/Resource/Role/Policy.html"><abbr title="Contentful\Management\Resource\Role\Policy">Policy</abbr></a>[]
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getPolicies">getPolicies</a>()
@@ -456,7 +457,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                     <div class="method-item">
                     <h3 id="method_getSystemProperties">
         <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_getSystemProperties"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 48</div>
-        <code>                    <a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a>
+        <code>                    
     <strong>getSystemProperties</strong>()
         </code>
     </h3>
@@ -468,15 +469,6 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                                     <p>{@inheritdoc}</p>                                                </div>
                 <div class="tags">
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
             
             
                     </div>
@@ -528,7 +520,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                     <div class="method-item">
                     <h3 id="method_asLink">
         <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_asLink"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 72</div>
-        <code>                    <abbr title="Contentful\Core\Api\Link">Link</abbr>
+        <code>                    
     <strong>asLink</strong>()
         </code>
     </h3>
@@ -540,15 +532,6 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                                     <p>{@inheritdoc}</p>                                                </div>
                 <div class="tags">
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><abbr title="Contentful\Core\Api\Link">Link</abbr></td>
-            <td></td>
-        </tr>
-    </table>
-
             
             
                     </div>
@@ -738,7 +721,7 @@ so it shouldn't be used manually.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_asUriParameters">
         <div class="location">at         line 84</div>
-        <code>                    array
+        <code>                    string[]
     <strong>asUriParameters</strong>()
         </code>
     </h3>
@@ -755,7 +738,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
+            <td>string[]</td>
             <td></td>
         </tr>
     </table>
@@ -769,7 +752,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
                     <div class="method-item">
                     <h3 id="method_getHeadersForCreation">
         <div class="location">at         line 95</div>
-        <code>                    array
+        <code>                    string[]
     <strong>getHeadersForCreation</strong>()
         </code>
     </h3>
@@ -785,7 +768,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
+            <td>string[]</td>
             <td></td>
         </tr>
     </table>
@@ -959,7 +942,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
                     <div class="method-item">
                     <h3 id="method_getPolicies">
         <div class="location">at         line 151</div>
-        <code>                    array
+        <code>                    <a href="../../../Contentful/Management/Resource/Role/Policy.html"><abbr title="Contentful\Management\Resource\Role\Policy">Policy</abbr></a>[]
     <strong>getPolicies</strong>()
         </code>
     </h3>
@@ -973,7 +956,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
+            <td><a href="../../../Contentful/Management/Resource/Role/Policy.html"><abbr title="Contentful\Management\Resource\Role\Policy">Policy</abbr></a>[]</td>
             <td></td>
         </tr>
     </table>

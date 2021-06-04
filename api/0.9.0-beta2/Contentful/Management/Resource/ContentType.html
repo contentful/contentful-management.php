@@ -41,6 +41,7 @@
                                             <option value="../../../../3.1.2/index.html" data-version="3.1.2">3.1.2</option>
                                             <option value="../../../../3.1.3/index.html" data-version="3.1.3">3.1.3</option>
                                             <option value="../../../../3.1.4/index.html" data-version="3.1.4">3.1.4</option>
+                                            <option value="../../../../3.2.0/index.html" data-version="3.2.0">3.2.0</option>
                                             <option value="../../../../master/index.html" data-version="master">Master branch</option>
                                     </select>
             </form>
@@ -326,7 +327,7 @@ defined in the object "sys" in Contentful's responses.</p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>[]
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getFields">getFields</a>()
@@ -384,7 +385,7 @@ defined in the object "sys" in Contentful's responses.</p>                </div>
                     <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_addNewField">addNewField</a>(string $type, string $fieldId, string $name, array ...$params)
+                    <a href="#method_addNewField">addNewField</a>(string $type, string $fieldId, string $name, array $params)
         
                                             <p>Adds a new content type field, and returns it.</p>                </div>
                 <div class="col-md-2"></div>
@@ -394,7 +395,7 @@ defined in the object "sys" in Contentful's responses.</p>                </div>
                     <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_createField">createField</a>(string $type, string $fieldId, string $name, array ...$params)
+                    <a href="#method_createField">createField</a>(string $type, string $fieldId, string $name, array $params)
         
                                             <p>Shortcut for creating a new field object.</p>                </div>
                 <div class="col-md-2"></div>
@@ -861,7 +862,7 @@ $asset-&gt;publish();
                     <div class="method-item">
                     <h3 id="method_getFields">
         <div class="location">at         line 152</div>
-        <code>                    array
+        <code>                    <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>[]
     <strong>getFields</strong>()
         </code>
     </h3>
@@ -875,7 +876,7 @@ $asset-&gt;publish();
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
+            <td><a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>[]</td>
             <td></td>
         </tr>
     </table>
@@ -1041,7 +1042,7 @@ $asset-&gt;publish();
                     <h3 id="method_addNewField">
         <div class="location">at         line 221</div>
         <code>                    <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>
-    <strong>addNewField</strong>(string $type, string $fieldId, string $name, array ...$params)
+    <strong>addNewField</strong>(string $type, string $fieldId, string $name, array $params)
         </code>
     </h3>
     <div class="details">
@@ -1071,7 +1072,7 @@ $asset-&gt;publish();
             </tr>
                     <tr>
                 <td>array</td>
-                <td>...$params</td>
+                <td>$params</td>
                 <td>Extra parameters that will be forwarded to the field object constructor</td>
             </tr>
             </table>
@@ -1096,7 +1097,7 @@ $asset-&gt;publish();
                     <h3 id="method_createField">
         <div class="location">at         line 239</div>
         <code>                    <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>
-    <strong>createField</strong>(string $type, string $fieldId, string $name, array ...$params)
+    <strong>createField</strong>(string $type, string $fieldId, string $name, array $params)
         </code>
     </h3>
     <div class="details">
@@ -1126,7 +1127,7 @@ $asset-&gt;publish();
             </tr>
                     <tr>
                 <td>array</td>
-                <td>...$params</td>
+                <td>$params</td>
                 <td>Extra parameters that will be forwarded to the field object constructor</td>
             </tr>
             </table>

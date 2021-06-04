@@ -41,6 +41,7 @@
                                             <option value="../../../../3.1.2/index.html" data-version="3.1.2">3.1.2</option>
                                             <option value="../../../../3.1.3/index.html" data-version="3.1.3">3.1.3</option>
                                             <option value="../../../../3.1.4/index.html" data-version="3.1.4">3.1.4</option>
+                                            <option value="../../../../3.2.0/index.html" data-version="3.2.0">3.2.0</option>
                                             <option value="../../../../master/index.html" data-version="master">Master branch</option>
                                     </select>
             </form>
@@ -230,7 +231,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    <a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a>
+                    
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getSystemProperties">getSystemProperties</a>()
@@ -260,7 +261,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    <abbr title="Contentful\Core\Api\Link">Link</abbr>
+                    
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_asLink">asLink</a>()
@@ -290,7 +291,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getSpaceId">getSpaceId</a>()
@@ -300,7 +301,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getEnvironmentId">getEnvironmentId</a>()
@@ -310,7 +311,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getContentTypeId">getContentTypeId</a>()
@@ -410,7 +411,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    string[]
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_asUriParameters">asUriParameters</a>()
@@ -421,7 +422,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    string[]
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getHeadersForCreation">getHeadersForCreation</a>()
@@ -497,7 +498,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    array
+                    <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>[]
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getFields">getFields</a>()
@@ -555,7 +556,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                     <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_addNewField">addNewField</a>(string $type, string $fieldId, string $name, mixed ...$params)
+                    <a href="#method_addNewField">addNewField</a>(string $type, string $fieldId, string $name, mixed $params)
         
                                             <p>Adds a new content type field, and returns it.</p>                </div>
                 <div class="col-md-2"></div>
@@ -565,7 +566,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                     <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_createField">createField</a>(string $type, string $fieldId, string $name, mixed ...$params)
+                    <a href="#method_createField">createField</a>(string $type, string $fieldId, string $name, mixed $params)
         
                                             <p>Shortcut for creating a new field object.</p>                </div>
                 <div class="col-md-2"></div>
@@ -615,7 +616,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                     <div class="method-item">
                     <h3 id="method_getSystemProperties">
         <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_getSystemProperties"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 48</div>
-        <code>                    <a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a>
+        <code>                    
     <strong>getSystemProperties</strong>()
         </code>
     </h3>
@@ -627,15 +628,6 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                                     <p>{@inheritdoc}</p>                                                </div>
                 <div class="tags">
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../Contentful/Management/SystemProperties.html"><abbr title="Contentful\Management\SystemProperties">SystemProperties</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
             
             
                     </div>
@@ -687,7 +679,7 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                     <div class="method-item">
                     <h3 id="method_asLink">
         <div class="location">in <a href="../../../Contentful/Management/Resource/BaseResource.html#method_asLink"><abbr title="Contentful\Management\Resource\BaseResource">BaseResource</abbr></a> at         line 72</div>
-        <code>                    <abbr title="Contentful\Core\Api\Link">Link</abbr>
+        <code>                    
     <strong>asLink</strong>()
         </code>
     </h3>
@@ -699,15 +691,6 @@ in a URI, and the values are the corresponding IDs.</p>                </div>
                                     <p>{@inheritdoc}</p>                                                </div>
                 <div class="tags">
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><abbr title="Contentful\Core\Api\Link">Link</abbr></td>
-            <td></td>
-        </tr>
-    </table>
-
             
             
                     </div>
@@ -789,7 +772,7 @@ so it shouldn't be used manually.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_getSpaceId">
         <div class="location">at         line 118</div>
-        <code>            protected        string
+        <code>            protected        
     <strong>getSpaceId</strong>()
         </code>
     </h3>
@@ -801,15 +784,6 @@ so it shouldn't be used manually.</p>                            </div>
                                     <p>{@inheritdoc}</p>                                                </div>
                 <div class="tags">
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td></td>
-        </tr>
-    </table>
-
             
             
                     </div>
@@ -819,7 +793,7 @@ so it shouldn't be used manually.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_getEnvironmentId">
         <div class="location">at         line 126</div>
-        <code>            protected        string
+        <code>            protected        
     <strong>getEnvironmentId</strong>()
         </code>
     </h3>
@@ -831,15 +805,6 @@ so it shouldn't be used manually.</p>                            </div>
                                     <p>{@inheritdoc}</p>                                                </div>
                 <div class="tags">
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td></td>
-        </tr>
-    </table>
-
             
             
                     </div>
@@ -849,7 +814,7 @@ so it shouldn't be used manually.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_getContentTypeId">
         <div class="location">at         line 134</div>
-        <code>            protected        string
+        <code>            protected        
     <strong>getContentTypeId</strong>()
         </code>
     </h3>
@@ -861,15 +826,6 @@ so it shouldn't be used manually.</p>                            </div>
                                     <p>{@inheritdoc}</p>                                                </div>
                 <div class="tags">
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td></td>
-        </tr>
-    </table>
-
             
             
                     </div>
@@ -916,9 +872,7 @@ so it shouldn't be used manually.</p>                            </div>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>
-                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot</a>
-                                    </td>
+                <td>https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshot</td>
                 <td></td>
             </tr>
             </table>
@@ -967,9 +921,7 @@ so it shouldn't be used manually.</p>                            </div>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>
-                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection</a>
-                                    </td>
+                <td>https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection</td>
                 <td></td>
             </tr>
             </table>
@@ -1008,9 +960,7 @@ so it shouldn't be used manually.</p>                            </div>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>
-                                            <a href="https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface">https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface</a>
-                                    </td>
+                <td>https://www.contentful.com/developers/docs/references/content-management-api/#/reference/editor-interface</td>
                 <td></td>
             </tr>
             </table>
@@ -1167,7 +1117,7 @@ so it shouldn't be used manually.</p>                            </div>
                     <div class="method-item">
                     <h3 id="method_asUriParameters">
         <div class="location">at         line 98</div>
-        <code>                    array
+        <code>                    string[]
     <strong>asUriParameters</strong>()
         </code>
     </h3>
@@ -1184,7 +1134,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
+            <td>string[]</td>
             <td></td>
         </tr>
     </table>
@@ -1198,7 +1148,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
                     <div class="method-item">
                     <h3 id="method_getHeadersForCreation">
         <div class="location">at         line 110</div>
-        <code>                    array
+        <code>                    string[]
     <strong>getHeadersForCreation</strong>()
         </code>
     </h3>
@@ -1214,7 +1164,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
+            <td>string[]</td>
             <td></td>
         </tr>
     </table>
@@ -1426,7 +1376,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
                     <div class="method-item">
                     <h3 id="method_getFields">
         <div class="location">at         line 202</div>
-        <code>                    array
+        <code>                    <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>[]
     <strong>getFields</strong>()
         </code>
     </h3>
@@ -1440,7 +1390,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
+            <td><a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>[]</td>
             <td></td>
         </tr>
     </table>
@@ -1606,7 +1556,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
                     <h3 id="method_addNewField">
         <div class="location">at         line 271</div>
         <code>                    <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>
-    <strong>addNewField</strong>(string $type, string $fieldId, string $name, mixed ...$params)
+    <strong>addNewField</strong>(string $type, string $fieldId, string $name, mixed $params)
         </code>
     </h3>
     <div class="details">
@@ -1636,7 +1586,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
             </tr>
                     <tr>
                 <td>mixed</td>
-                <td>...$params</td>
+                <td>$params</td>
                 <td>Extra parameters that will be forwarded to the field object constructor</td>
             </tr>
             </table>
@@ -1661,7 +1611,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
                     <h3 id="method_createField">
         <div class="location">at         line 289</div>
         <code>                    <a href="../../../Contentful/Management/Resource/ContentType/Field/FieldInterface.html"><abbr title="Contentful\Management\Resource\ContentType\Field\FieldInterface">FieldInterface</abbr></a>
-    <strong>createField</strong>(string $type, string $fieldId, string $name, mixed ...$params)
+    <strong>createField</strong>(string $type, string $fieldId, string $name, mixed $params)
         </code>
     </h3>
     <div class="details">
@@ -1691,7 +1641,7 @@ in a URI, and the values are the corresponding IDs.</p>                         
             </tr>
                     <tr>
                 <td>mixed</td>
-                <td>...$params</td>
+                <td>$params</td>
                 <td>Extra parameters that will be forwarded to the field object constructor</td>
             </tr>
             </table>
