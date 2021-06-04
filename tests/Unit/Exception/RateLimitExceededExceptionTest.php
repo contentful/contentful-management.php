@@ -153,7 +153,7 @@ class RateLimitExceededExceptionTest extends BaseTestCase
         $this->assertSame(200, $client->getMessages()[0]->getResponse()->getStatusCode());
     }
 
-    public function createHttpClient(callable $handlerOverride = \null)
+    public function createHttpClient(callable $handlerOverride = null)
     {
         $stack = new HandlerStack();
         $stack->setHandler(new CurlHandler());

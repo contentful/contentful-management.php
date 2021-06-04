@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the contentful/contentful-core package.
+ * This file is part of the contentful/contentful-management package.
  *
  * @copyright 2015-2021 Contentful GmbH
  * @license   MIT
@@ -55,7 +55,7 @@ return function (string $packageName, bool $usePhp7, array $directories, array $
         'native_constant_invocation' => [
             'exclude' => ['null', 'false', 'true'],
         ],
-        'native_function_invocation' => true,
+        'native_function_invocation' => false,
         'no_php4_constructor' => true,
         'no_unreachable_default_argument_value' => true,
         'no_useless_else' => true,

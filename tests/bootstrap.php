@@ -36,7 +36,7 @@ function clean_headers_array(Request $request)
             'user-agent',
             'x-contentful-user-agent',
             'authorization',
-            'expect'
+            'expect',
         ], true);
     }, \ARRAY_FILTER_USE_BOTH);
 }
@@ -50,10 +50,12 @@ VCR::configure()
         $a = clean_headers_array($first);
         $b = clean_headers_array($second);
         $result = $a === $b;
-        if ($result)
+        if ($result) {
             return $result;
+        }
         var_dump($a);
         var_dump($b);
+
         return $result;
     })
     ->enableRequestMatchers(['method', 'url', 'query_string', 'host', 'body', 'post_fields', 'custom_headers'])
@@ -64,7 +66,8 @@ VCR::getEventDispatcher()
     //->addListener(VCREvents::)
     ->addListener(VCREvents::VCR_BEFORE_RECORD, function (BeforeRecordEvent $event) {
         $event->getRequest()->removeHeader('Authorization');
-    }) ;
+    })
+;
 
 VCR::turnOn();
 VCR::turnOff();
