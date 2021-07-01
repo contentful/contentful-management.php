@@ -22,7 +22,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * - Integer
  * - Number
  */
-class InValidation implements ValidationInterface
+class InValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var string[]
@@ -72,8 +72,11 @@ class InValidation implements ValidationInterface
      */
     public function jsonSerialize(): array
     {
-        return [
-            'in' => $this->values,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'in' => $this->values,
+            ]
+        );
     }
 }

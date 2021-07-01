@@ -1,0 +1,55 @@
+{
+    "nodes": {
+        "asset-hyperlink": [
+            {
+                "size": {
+                    "min": 1
+                }
+            }
+        ],
+        "embedded-asset-block": [
+            {
+                "size": {
+                    "max": 1
+                }
+            }
+        ],
+        "embedded-entry-block": [
+            {
+                "linkContentType": [
+                    "test"
+                ]
+            },
+            {
+                "size": {
+                    "min": 1,
+                    "max": 2
+                }
+            }
+        ],
+        "embedded-entry-inline": [
+            {
+                "linkContentType": [
+                    "test"
+                ]
+            },
+            {
+                "size": {
+                    "min": 1
+                }
+            }
+        ],
+        "entry-hyperlink": [
+            {
+                "linkContentType": [
+                    "test"
+                ]
+            },
+            {
+                "size": {
+                    "min": 1
+                }
+            }
+        ]
+    }
+}

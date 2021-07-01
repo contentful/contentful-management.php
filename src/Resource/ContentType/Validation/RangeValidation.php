@@ -20,7 +20,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * - Integer
  * - Number
  */
-class RangeValidation implements ValidationInterface
+class RangeValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var int|null
@@ -98,8 +98,11 @@ class RangeValidation implements ValidationInterface
             $data['max'] = $this->max;
         }
 
-        return [
-            'range' => $data,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'range' => $data,
+            ]
+        );
     }
 }

@@ -20,7 +20,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * Applicable to:
  * - Link (to assets)
  */
-class LinkMimetypeGroupValidation implements ValidationInterface
+class LinkMimetypeGroupValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var string[]
@@ -70,8 +70,11 @@ class LinkMimetypeGroupValidation implements ValidationInterface
      */
     public function jsonSerialize(): array
     {
-        return [
-            'linkMimetypeGroup' => $this->mimeTypeGroups,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'linkMimetypeGroup' => $this->mimeTypeGroups,
+            ]
+        );
     }
 }

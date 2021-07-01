@@ -24,6 +24,6 @@ class EnabledMarksValidation extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return new ResourceClass();
+        return new ResourceClass($data['enabledMarks']);
     }
 }

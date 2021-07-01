@@ -19,7 +19,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * Applicable to:
  * - Date
  */
-class DateRangeValidation implements ValidationInterface
+class DateRangeValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var string|null
@@ -97,8 +97,11 @@ class DateRangeValidation implements ValidationInterface
             $data['max'] = $this->max;
         }
 
-        return [
-            'dateRange' => $data,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'dateRange' => $data,
+            ]
+        );
     }
 }

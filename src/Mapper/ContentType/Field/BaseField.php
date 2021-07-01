@@ -22,7 +22,6 @@ use Contentful\Management\Resource\ContentType\Field\ObjectField;
 use Contentful\Management\Resource\ContentType\Field\RichTextField;
 use Contentful\Management\Resource\ContentType\Field\SymbolField;
 use Contentful\Management\Resource\ContentType\Field\TextField;
-use Contentful\Management\Resource\ContentType\Validation\ValidationInterface;
 
 /**
  * BaseField class.
@@ -56,22 +55,10 @@ abstract class BaseField extends BaseMapper
             'disabled' => $data['disabled'] ?? null,
             'omitted' => $data['omitted'] ?? null,
             'validations' => isset($data['validations'])
-                ? \array_map([$this, 'mapValidation'], $data['validations'])
+                ? \array_filter(\array_map([$this, 'mapValidation'], $data['validations']))
                 : [],
         ]);
 
         return $field;
-    }
-
-    protected function mapValidation(array $data): ValidationInterface
-    {
-        $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Validation\\'.\ucfirst(\array_keys($data)[0]).'Validation';
-
-        /** @var ValidationInterface $validation */
-        $validation = $this->builder->getMapper($fqcn)
-            ->map(null, $data)
-        ;
-
-        return $validation;
     }
 }
