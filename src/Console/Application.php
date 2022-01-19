@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2021 Contentful GmbH
+ * @copyright 2015-2022 Contentful GmbH
  * @license   MIT
  */
 
@@ -25,7 +25,7 @@ class Application extends ConsoleApplication
         parent::__construct('contentful-management', Client::getVersion());
     }
 
-    protected function getDefaultCommands() : array
+    protected function getDefaultCommands(): array
     {
         $defaultCommands = parent::getDefaultCommands();
         $defaultCommands[] = new GenerateEntryClassesCommand();

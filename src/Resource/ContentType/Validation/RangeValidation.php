@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2021 Contentful GmbH
+ * @copyright 2015-2022 Contentful GmbH
  * @license   MIT
  */
 
@@ -34,9 +34,6 @@ class RangeValidation implements ValidationInterface
 
     /**
      * RangeValidation constructor.
-     *
-     * @param float|null $min
-     * @param float|null $max
      */
     public function __construct(float $min = null, float $max = null)
     {
@@ -53,8 +50,6 @@ class RangeValidation implements ValidationInterface
     }
 
     /**
-     * @param float|null $min
-     *
      * @return static
      */
     public function setMin(float $min = null)
