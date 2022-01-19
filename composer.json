@@ -15,7 +15,7 @@
         "php-vcr/php-vcr": "dev-curl_replace_assertion as 1.5",
         "nikic/php-parser": "^3.1",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "roave/backward-compatibility-check": "^3.0|^5.0|^6.1"
+        "roave/backward-compatibility-check": "^3.0|^4.0|^5.0|^6.1"
     },
     "autoload": {
         "psr-4": {
