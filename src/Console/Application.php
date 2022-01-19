@@ -25,7 +25,7 @@ class Application extends ConsoleApplication
         parent::__construct('contentful-management', Client::getVersion());
     }
 
-    protected function getDefaultCommands()
+    protected function getDefaultCommands() : array
     {
         $defaultCommands = parent::getDefaultCommands();
         $defaultCommands[] = new GenerateEntryClassesCommand();
