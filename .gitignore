@@ -7,3 +7,4 @@ clover.xml
 /php-cs-fixer.phar
 /.phpunit.result.cache
 /.idea
+/dev-scripts
