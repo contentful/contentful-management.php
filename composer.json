@@ -14,7 +14,8 @@
         "php-vcr/phpunit-testlistener-vcr": "^3.2",
         "php-vcr/php-vcr": "dev-curl_replace_assertion as 1.5",
         "nikic/php-parser": "^3.1",
-        "friendsofphp/php-cs-fixer": "^3.0"
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "roave/backward-compatibility-check": "^3.0|^5.0|^6.1"
     },
     "autoload": {
         "psr-4": {
@@ -38,6 +39,7 @@
         "test": "vendor/bin/phpunit",
         "release": "php vendor/contentful/core/scripts/release.php",
         "test-quick-fail": "php vendor/bin/phpunit --stop-on-error --stop-on-failure -v",
+        "test-for-bc-breaks": "php vendor/bin/roave-backward-compatibility-check",
         "lint-syntax": "$([ -f php-cs-fixer.phar ] && echo \"php php-cs-fixer.phar\" || echo \"vendor/bin/php-cs-fixer\") fix --dry-run --stop-on-violation -v",
         "lint-static-analysis": "$([ -f phpstan.phar ] && echo \"php phpstan.phar\" || echo \"phpstan\") analyse --level=max src/"
     },
