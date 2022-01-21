@@ -3,11 +3,26 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/contentful/contentful-management.php/compare/3.1.4...HEAD)
+## [Unreleased](https://github.com/contentful/contentful-management.php/compare/4.0.0...HEAD)
 
 <!-- PENDING-CHANGES -->
 > No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
+
+## [4.0.0](https://github.com/contentful/contentful-management.php/tree/4.0.0) (2022-01-21)
+
+### Added
+
+* Support for Symfony Version 6
+* **Breaking change** The range validator now uses floats instead of integers to be in line with the API. See [#165](https://github.com/contentful/contentful-management.php/issues/165) for details. Thanks @emsyzz !
+
+### Removed
+
+* **Breaking change** Support for PHP 7.2 and 7.3 was dropped, since they are now end-of-life. You can continue to use version 3.2.0 or install it with `--ignore-platform-reqs`, but compatibility will no longer be checked explicitely. Version 3 will still be maintained in case of security issues for the forseeable future.
+
+### Internal
+
+* Minor fixes to CI
 
 ## [3.2.0](https://github.com/contentful/contentful-management.php/tree/3.2.0) (2021-03-25)
 
