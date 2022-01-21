@@ -16,10 +16,9 @@ workflows:
       - docs_build:
           requires:
             - lint
-            - test72
-            - test73
             - test74
             - test80
+            - test81
           filters:
             branches:
               only: master
@@ -35,39 +34,6 @@ jobs:
           name: Syntax tests
           command: |
             composer run lint-syntax
-
-
-  test72:
-    environment:
-      CC_TEST_REPORTER_ID: 20d0810d3a632c678309b5c0f2ffd62696e01af79e021e80d1f5092b839e11a9
-      XDEBUG_MODE: coverage
-    docker:
-      - image: circleci/php:7.2-cli
-    steps:
-      - checkout
-      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
-      - run:
-          name: Set up Code Climate test-reporter
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
-      - run:
-          name: Test suite
-          command: |
-            sudo docker-php-ext-enable xdebug
-            ./cc-test-reporter before-build
-            composer test-quick-fail
-            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
-
-  test73:
-    docker:
-      - image: circleci/php:7.3-cli
-    steps:
-      - checkout
-      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
-      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
-      - run: { name: "Test suite", command: "composer test-quick-fail" }
 
   test74:
     docker:
@@ -86,6 +52,17 @@ jobs:
       - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
       - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist --ignore-platform-reqs" }
       - run: { name: "Test suite", command: "composer test-quick-fail" }
+
+  test81:
+    docker:
+      - image: circleci/php:8.1-cli
+    steps:
+      - checkout
+      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
+      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist --ignore-platform-reqs" }
+      - run: { name: "Test suite", command: "composer test-quick-fail" }
+
+
 
   docs_build:
     environment:
