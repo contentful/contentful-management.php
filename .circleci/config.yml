@@ -9,10 +9,9 @@ workflows:
   main:
     jobs:
       - lint
-      - test72
-      - test73
       - test74
       - test80
+      - test81
       - docs_build:
           requires:
             - lint
