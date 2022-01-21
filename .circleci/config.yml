@@ -54,7 +54,7 @@ jobs:
 
   test81:
     docker:
-      - image: circleci/php:8.1-cli
+      - image: cimg/php:8.1
     steps:
       - checkout
       - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
