@@ -29,13 +29,30 @@ class RangeValidationTest extends BaseTestCase
 
         $this->assertSame(['Number', 'Integer'], $validation->getValidFieldTypes());
 
-        $this->assertSame(5, $validation->getMin());
-        $this->assertSame(20, $validation->getMax());
+        $this->assertSame(5.0, $validation->getMin());
+        $this->assertSame(20.0, $validation->getMax());
 
         $validation->setMin(17);
-        $this->assertSame(17, $validation->getMin());
+        $this->assertSame(17.0, $validation->getMin());
 
         $validation->setMax(null);
         $this->assertNull($validation->getMax());
     }
+
+    public function testGetSetDataFloat()
+    {
+        $validation = new RangeValidation(5.0, 20.0);
+
+        $this->assertSame(['Number', 'Integer'], $validation->getValidFieldTypes());
+
+        $this->assertSame(5.0, $validation->getMin());
+        $this->assertSame(20.0, $validation->getMax());
+
+        $validation->setMin(17.0);
+        $this->assertSame(17.0, $validation->getMin());
+
+        $validation->setMax(null);
+        $this->assertNull($validation->getMax());
+    }
+
 }

@@ -452,8 +452,8 @@ class ContentTypeTest extends BaseTestCase
         $this->assertCount(1, $field->getValidations());
         $validation = $field->getValidations()[0];
         $this->assertInstanceOf(RangeValidation::class, $validation);
-        $this->assertSame(1, $validation->getMin());
-        $this->assertSame(10, $validation->getMax());
+        $this->assertSame(1.0, $validation->getMin());
+        $this->assertSame(10.0, $validation->getMax());
 
         $field = $contentType->getField('linkField');
         $this->assertInstanceOf(LinkField::class, $field);
