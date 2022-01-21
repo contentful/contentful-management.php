@@ -185,7 +185,7 @@ class EnvironmentTest extends BaseTestCase
         // so a VersionMismatch error might be thrown.
         // In the case, we simply keep refreshing the object until this works
         $limit = 0;
-        do {
+        while (true) {
             ++$limit;
             if ($limit > 50) {
                 throw new \RuntimeException('Environment update keeps yielding a VersionMismatch error, aborting.');
@@ -198,7 +198,7 @@ class EnvironmentTest extends BaseTestCase
             } catch (VersionMismatchException $exception) {
                 $environment = $proxy->getEnvironment($environmentId);
             }
-        } while (true);
+        }
         $this->assertSame($environmentId, $environment->getId());
         $this->assertSame('CI Environment', $environment->getName());
 

@@ -74,6 +74,7 @@ return function (string $packageName, bool $usePhp7, array $directories, array $
     if ($usePhp7) {
         $rules['declare_strict_types'] = true;
         $rules['ternary_to_null_coalescing'] = true;
+        $rules['assign_null_coalescing_to_coalesce_equal'] = false;
     }
 
     $cache = \tempnam(\sys_get_temp_dir(), $packageName).'-php_cs.cache';
