@@ -54,5 +54,4 @@ class RangeValidationTest extends BaseTestCase
         $validation->setMax(null);
         $this->assertNull($validation->getMax());
     }
-
 }
