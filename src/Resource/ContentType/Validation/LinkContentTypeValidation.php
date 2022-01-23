@@ -11,6 +11,10 @@ declare(strict_types=1);
 
 namespace Contentful\Management\Resource\ContentType\Validation;
 
+use Contentful\Management\Resource\ContentType\Validation\Nodes\EmbeddedEntryBlockValidationInterface;
+use Contentful\Management\Resource\ContentType\Validation\Nodes\EmbeddedEntryInlineValidationInterface;
+use Contentful\Management\Resource\ContentType\Validation\Nodes\EntryHyperlinkValidationInterface;
+
 /**
  * LinkContentTypeValidation class.
  *
@@ -20,7 +24,10 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * Applicable to:
  * - Link (to entries)
  */
-class LinkContentTypeValidation implements ValidationInterface
+class LinkContentTypeValidation extends AbstractCustomMessageValidation implements ValidationInterface,
+    EntryHyperlinkValidationInterface,
+    EmbeddedEntryBlockValidationInterface,
+    EmbeddedEntryInlineValidationInterface
 {
     /**
      * @var string[]
@@ -70,8 +77,11 @@ class LinkContentTypeValidation implements ValidationInterface
      */
     public function jsonSerialize(): array
     {
-        return [
-            'linkContentType' => $this->contentTypes,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'linkContentType' => $this->contentTypes,
+            ]
+        );
     }
 }

@@ -24,6 +24,22 @@ class NodesValidation extends BaseMapper
      */
     public function map($resource, array $data): ResourceClass
     {
-        return new ResourceClass();
+        return new ResourceClass(
+            isset($data['nodes']['asset-hyperlink']) ?
+                \array_map([$this, 'mapValidation'], $data['nodes']['asset-hyperlink']) :
+                [],
+            isset($data['nodes']['embedded-asset-block']) ?
+                \array_map([$this, 'mapValidation'], $data['nodes']['embedded-asset-block']) :
+                [],
+            isset($data['nodes']['embedded-entry-block']) ?
+                \array_map([$this, 'mapValidation'], $data['nodes']['embedded-entry-block']) :
+                [],
+            isset($data['nodes']['embedded-entry-inline']) ?
+                \array_map([$this, 'mapValidation'], $data['nodes']['embedded-entry-inline']) :
+                [],
+            isset($data['nodes']['entry-hyperlink']) ?
+                \array_map([$this, 'mapValidation'], $data['nodes']['entry-hyperlink']) :
+                []
+        );
     }
 }

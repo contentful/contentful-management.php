@@ -19,7 +19,7 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  * Applicable to:
  * - Link (to assets)
  */
-class AssetFileSizeValidation implements ValidationInterface
+class AssetFileSizeValidation extends AbstractCustomMessageValidation implements ValidationInterface
 {
     /**
      * @var int|null
@@ -100,8 +100,9 @@ class AssetFileSizeValidation implements ValidationInterface
             $data['max'] = $this->max;
         }
 
-        return [
+        return array_merge(
+            parent::jsonSerialize(), [
             'assetFileSize' => $data,
-        ];
+        ]);
     }
 }

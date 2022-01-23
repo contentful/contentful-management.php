@@ -13,6 +13,8 @@ namespace Contentful\Management\Mapper;
 
 use Contentful\Core\ResourceBuilder\MapperInterface;
 use Contentful\Core\ResourceBuilder\ObjectHydrator;
+use Contentful\Management\Resource\ContentType\Validation\AbstractCustomMessageValidation;
+use Contentful\Management\Resource\ContentType\Validation\ValidationInterface;
 use Contentful\Management\ResourceBuilder;
 
 /**
@@ -37,5 +39,30 @@ abstract class BaseMapper implements MapperInterface
     {
         $this->builder = $builder;
         $this->hydrator = new ObjectHydrator();
+    }
+
+    protected function mapValidation(array $data): ?ValidationInterface
+    {
+        $message = null;
+        if (isset($data['message'])) {
+            $message = $data['message'];
+            unset($data['message']);
+        }
+
+        if (empty(array_values($data)[0])) {
+            return null;
+        }
+
+        $fqcn = '\\Contentful\\Management\\Mapper\\ContentType\\Validation\\'.\ucfirst(key($data)).'Validation';
+
+        /** @var ValidationInterface $validation */
+        $validation = $this->builder->getMapper($fqcn)
+            ->map(null, $data);
+
+        if ($validation instanceof AbstractCustomMessageValidation && $message) {
+            $validation->setMessage($message);
+        }
+
+        return $validation;
     }
 }

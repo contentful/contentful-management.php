@@ -16,12 +16,34 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  */
 class EnabledMarksValidation implements ValidationInterface
 {
+    private const VALID_FIELD_TYPES = ['RichText'];
+
+    /**
+     * @var array
+     */
+    private $enabledMarks;
+
+    public function __construct(array $enabledMarks)
+    {
+        $this->enabledMarks = $enabledMarks;
+    }
+
     /**
      * {@inheritdoc}
      */
     public static function getValidFieldTypes(): array
     {
-        return [];
+        return self::VALID_FIELD_TYPES;
+    }
+
+    public function getEnabledMarks(): array
+    {
+        return $this->enabledMarks;
+    }
+
+    public function setEnabledMarks(array $enabledMarks)
+    {
+        $this->enabledMarks = $enabledMarks;
     }
 
     /**
@@ -29,6 +51,6 @@ class EnabledMarksValidation implements ValidationInterface
      */
     public function jsonSerialize()
     {
-        return [];
+        return ['enabledMarks' => $this->enabledMarks];
     }
 }
