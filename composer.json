@@ -55,5 +55,6 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": false
         }
-    }
+    },
+    "bin": ["bin/contentful-management"]
 }
