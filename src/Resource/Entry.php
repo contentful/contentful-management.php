@@ -262,6 +262,14 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
     {
         $tags = $this->getMetadataValue('tags') ?? [];
 
+        // Prevent attempting to set a duplicate tag
+
+        foreach ($tags as $tag) {
+            if ($tag['sys']['id'] === $tagId) {
+                return;
+            }
+        }
+
         $tags[] = [
             'sys' => [
                 'type' => 'Link',
@@ -271,6 +279,17 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
         ];
 
         return $this->setMetadataValue('tags', $tags);
+    }
+
+    /**
+     * @param string $tagId
+     * @return $this
+     */
+    public function removeTag(string $tagId)
+    {
+        return $this->setMetadataValue('tags', array_values(array_filter($this->getMetadataValue('tags') ?? [], function (array $tag) use ($tagId) {
+            return $tag['sys']['id'] !== $tagId;
+        })));
     }
 
     /**
