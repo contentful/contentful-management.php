@@ -15,7 +15,6 @@ use Contentful\Core\Api\Link;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
-use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
  * DeliveryApiKey class.
@@ -68,7 +67,7 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
             unset($body['environments']);
         }
 
-        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
+        return \GuzzleHttp\Utils::jsonEncode((object) $body, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
     }
 
     /**

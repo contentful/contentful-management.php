@@ -14,7 +14,6 @@ namespace Contentful\Management\Resource;
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\SystemProperties\PersonalAccessToken as SystemProperties;
-use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
  * PersonalAccessToken class.
@@ -94,7 +93,7 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
         unset($body['token']);
         unset($body['revokedAt']);
 
-        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
+        return \GuzzleHttp\Utils::jsonEncode((object) $body, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
     }
 
     /**
