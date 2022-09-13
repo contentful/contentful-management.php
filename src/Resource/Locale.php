@@ -15,7 +15,6 @@ use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\SystemProperties\Locale as SystemProperties;
-use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**
  * Locale class.
@@ -116,7 +115,7 @@ class Locale extends BaseResource implements CreatableInterface
         // The property 'default' has to be omitted for the API to work.
         unset($body['default']);
 
-        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
+        return \GuzzleHttp\Utils::jsonEncode((object) $body, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
     }
 
     /**

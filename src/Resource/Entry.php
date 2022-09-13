@@ -52,6 +52,11 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
     protected $fields = [];
 
     /**
+     * @var array[]
+     */
+    protected $metadata = [];
+
+    /**
      * Entry constructor.
      */
     public function __construct(string $contentTypeId)
@@ -79,10 +84,16 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
             }
         }
 
-        return [
+        $entry = [
             'sys' => $this->sys,
             'fields' => (object) $fields,
         ];
+
+        if ($this->metadata) {
+            $entry['metadata'] = (object) $this->metadata;
+        }
+
+        return $entry;
     }
 
     /**
@@ -212,6 +223,73 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
         $this->fields[$name][$locale] = $value;
 
         return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return array|null
+     */
+    public function getMetadataValue(string $name)
+    {
+        return $this->metadata[$name] ?? null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMetadata(): array
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $value
+     * @return $this
+     */
+    public function setMetadataValue(string $name, $value)
+    {
+        $this->metadata[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $tagId
+     * @return $this
+     */
+    public function addTag(string $tagId)
+    {
+        $tags = $this->getMetadataValue('tags') ?? [];
+
+        // Prevent attempting to set a duplicate tag
+
+        foreach ($tags as $tag) {
+            if ($tag['sys']['id'] === $tagId) {
+                return;
+            }
+        }
+
+        $tags[] = [
+            'sys' => [
+                'type' => 'Link',
+                'linkType' => 'Tag',
+                'id' => $tagId,
+            ],
+        ];
+
+        return $this->setMetadataValue('tags', $tags);
+    }
+
+    /**
+     * @param string $tagId
+     * @return $this
+     */
+    public function removeTag(string $tagId)
+    {
+        return $this->setMetadataValue('tags', array_values(array_filter($this->getMetadataValue('tags') ?? [], function (array $tag) use ($tagId) {
+            return $tag['sys']['id'] !== $tagId;
+        })));
     }
 
     /**
