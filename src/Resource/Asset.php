@@ -56,6 +56,11 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     protected $file = [];
 
     /**
+     * @var array[]
+     */
+    protected $metadata = [];
+
+    /**
      * {@inheritdoc}
      */
     public function getSystemProperties(): SystemProperties
@@ -68,7 +73,7 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
      */
     public function jsonSerialize(): array
     {
-        return [
+        $asset = [
             'sys' => $this->sys,
             'fields' => [
                 'title' => (object) $this->title,
@@ -76,6 +81,12 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
                 'file' => (object) $this->file,
             ],
         ];
+
+        if ($this->metadata) {
+            $asset['metadata'] = (object) $this->metadata;
+        }
+
+        return $asset;
     }
 
     /**
@@ -217,5 +228,53 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     public function getFiles(): array
     {
         return $this->file;
+    }
+
+    /**
+     * @param string $name
+     * @return array|null
+     */
+    public function getMetadataValue(string $name)
+    {
+        return $this->metadata[$name] ?? null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMetadata(): array
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $value
+     * @return $this
+     */
+    public function setMetadataValue(string $name, $value)
+    {
+        $this->metadata[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $tagId
+     * @return $this
+     */
+    public function addTag(string $tagId)
+    {
+        $tags = $this->getMetadataValue('tags') ?? [];
+
+        $tags[] = [
+            'sys' => [
+                'type' => 'Link',
+                'linkType' => 'Tag',
+                'id' => $tagId,
+            ],
+        ];
+
+        return $this->setMetadataValue('tags', $tags);
     }
 }
