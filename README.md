@@ -485,7 +485,8 @@ $upload = new \Contentful\Management\Resource\Upload(\fopen($myFile, 'r'));
 $spaceProxy->create($upload);
 
 $asset = new \Contentful\Management\Resource\Asset();
-$asset->setFile('en-US', $upload->asAssetFile());
+// To use the upload as an asset, you need to supply an asset name and a mime type
+$asset->setFile('en-US', $upload->asAssetFile('my-asset-name.png', 'image/png'));
 
 $environmentProxy->create($asset);
 
