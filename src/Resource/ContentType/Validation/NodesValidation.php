@@ -27,7 +27,7 @@ class NodesValidation implements ValidationInterface
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [];
     }

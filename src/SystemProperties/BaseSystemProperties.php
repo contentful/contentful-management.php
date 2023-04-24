@@ -47,7 +47,7 @@ abstract class BaseSystemProperties implements SystemPropertiesInterface
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'id' => $this->id,
