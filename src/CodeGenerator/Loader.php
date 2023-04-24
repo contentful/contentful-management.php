@@ -21,16 +21,18 @@ class Loader extends BaseCodeGenerator
      */
     public function generate(array $params): string
     {
-        return $this->render(new Node\Expr\MethodCall(
-            new Node\Expr\Variable('builder'),
-            'setDataMapperMatcher',
-            [
-                new Node\Arg(new Node\Scalar\String_('Entry')),
-                new Node\Arg($this->generateMatcherClosure(
-                    $params['content_types'],
-                    $params['namespace']
-                )),
-            ],
+        return $this->render(new Node\Stmt\Expression(
+            new Node\Expr\MethodCall(
+                new Node\Expr\Variable('builder'),
+                'setDataMapperMatcher',
+                [
+                    new Node\Arg(new Node\Scalar\String_('Entry')),
+                    new Node\Arg($this->generateMatcherClosure(
+                        $params['content_types'],
+                        $params['namespace']
+                    )),
+                ]
+            ),
             $this->generateCommentAttributes(
                 '// You can include this file in your code or simply copy/paste it'
                 ."\n"
@@ -53,7 +55,7 @@ class Loader extends BaseCodeGenerator
     private function generateMatcherClosure(array $contentTypes, string $namespace): Node\Expr\Closure
     {
         return new Node\Expr\Closure([
-            'params' => [new Node\Param('data', null, 'array')],
+            'params' => [new Node\Param(new Node\Expr\Variable('data'), null, 'array')],
             'stmts' => [
                 new Node\Stmt\Switch_(
                     $this->generateSwitchVar(),

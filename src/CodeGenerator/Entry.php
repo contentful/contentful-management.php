@@ -21,7 +21,9 @@ use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 use Contentful\Management\Resource\ContentType\Field\LinkField;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
 use Contentful\Management\Resource\Entry as EntryResource;
+use Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\BlogPost;
 use PhpParser\Node;
+use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -147,12 +149,14 @@ class Entry extends BaseCodeGenerator
             [
                 'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
                 'stmts' => [
-                    new Node\Expr\StaticCall(
-                        new Node\Name('parent'),
-                        '__construct',
-                        [
-                            new Node\Arg(new Node\Scalar\String_($contentType->getId())),
-                        ]
+                    new Node\Stmt\Expression(
+                        new Node\Expr\StaticCall(
+                            new Node\Name('parent'),
+                            '__construct',
+                            [
+                                new Node\Arg(new Node\Scalar\String_($contentType->getId())),
+                            ]
+                        )
                     ),
                 ],
             ],
@@ -182,7 +186,7 @@ class Entry extends BaseCodeGenerator
             [
                 'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
                 'params' => [
-                    new Node\Param('locale', new Node\Scalar\String_($this->defaultLocale), 'string'),
+                    new Node\Param(new Node\Expr\Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
                     new Node\Stmt\Return_(
@@ -232,8 +236,8 @@ class Entry extends BaseCodeGenerator
             [
                 'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
                 'params' => [
-                    new Node\Param('locale', new Node\Scalar\String_($this->defaultLocale), 'string'),
-                    new Node\Param('value', new Node\Expr\ConstFetch(new Node\Name('null')), $methodType),
+                    new Node\Param(new Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
+                    new Node\Param(new Variable('value'), new Node\Expr\ConstFetch(new Node\Name('null')), $methodType),
                 ],
                 'stmts' => [
                     new Node\Stmt\Return_(
@@ -299,10 +303,10 @@ class Entry extends BaseCodeGenerator
             [
                 'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
                 'params' => [
-                    new Node\Param('locale', new Node\Scalar\String_($this->defaultLocale), 'string'),
+                    new Node\Param(new Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
-                    $this->generateParametersParameter(),
+                    new Node\Stmt\Expression($this->generateParametersParameter()),
                     new Node\Stmt\Return_(
                         new Node\Expr\MethodCall(
                             new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
@@ -381,10 +385,10 @@ class Entry extends BaseCodeGenerator
             [
                 'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
                 'params' => [
-                    new Node\Param('locale', new Node\Scalar\String_($this->defaultLocale), 'string'),
+                    new Node\Param(new Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
-                    $this->generateParametersParameter(),
+                    new Node\Stmt\Expression($this->generateParametersParameter()),
                     new Node\Stmt\Return_(
                         new Node\Expr\FuncCall(
                             new Node\Name('\\array_map'),
@@ -455,7 +459,7 @@ class Entry extends BaseCodeGenerator
     {
         return new Node\Expr\Closure([
             'params' => [
-                new Node\Param('link', null, 'Link'),
+                new Node\Param(new Variable('link'), null, 'Link'),
             ],
             'stmts' => [
                 new Node\Stmt\Return_(
@@ -470,7 +474,7 @@ class Entry extends BaseCodeGenerator
                 ),
             ],
             'uses' => [
-                new Node\Expr\ClosureUse('parameters'),
+                new Node\Expr\ClosureUse(new Node\Expr\Variable('parameters')),
             ],
         ]);
     }
