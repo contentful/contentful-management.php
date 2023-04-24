@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -63,7 +63,7 @@ VCR::configure()
 
 // Remove the Authorization header to prevent leaking CMA tokens
 VCR::getEventDispatcher()
-    //->addListener(VCREvents::)
+    // ->addListener(VCREvents::)
     ->addListener(VCREvents::VCR_BEFORE_RECORD, function (BeforeRecordEvent $event) {
         $event->getRequest()->removeHeader('Authorization');
     })

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -14,6 +14,7 @@ namespace Contentful\Management\Resource;
 use Contentful\Core\Api\DateTimeImmutable;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\SystemProperties\PersonalAccessToken as SystemProperties;
+
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -21,6 +21,7 @@ use Contentful\Management\Resource\Role\Constraint\PathsConstraint;
 use Contentful\Management\Resource\Role\Permissions;
 use Contentful\Management\Resource\Role\Policy;
 use Contentful\Tests\Management\BaseTestCase;
+
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 class RoleTest extends BaseTestCase

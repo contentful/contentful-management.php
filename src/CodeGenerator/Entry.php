@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -21,7 +21,6 @@ use Contentful\Management\Resource\ContentType\Field\FieldInterface;
 use Contentful\Management\Resource\ContentType\Field\LinkField;
 use Contentful\Management\Resource\ContentType\Validation\LinkContentTypeValidation;
 use Contentful\Management\Resource\Entry as EntryResource;
-use Contentful\Tests\Management\Fixtures\E2E\CodeGenerator\BlogPost;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;

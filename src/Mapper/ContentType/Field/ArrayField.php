@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -39,6 +39,6 @@ class ArrayField extends BaseField
             ->setItemsValidations(isset($data['items']['validations'])
                 ? \array_map([$this, 'mapValidation'], $data['items']['validations'])
                 : [])
-            ;
+        ;
     }
 }

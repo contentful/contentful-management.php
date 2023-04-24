@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -13,7 +13,9 @@ namespace Contentful\Management\Exception;
 
 use Contentful\Core\Api\Exception;
 use GuzzleHttp\Exception\RequestException;
+
 use function GuzzleHttp\json_decode as guzzle_json_decode;
+
 use Psr\Http\Message\ResponseInterface;
 
 /**

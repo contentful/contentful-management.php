@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Contentful\Tests\Management\Implementation;
 
 use Contentful\Management\Resource\Locale;
+
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 class UnknownKeyLocale extends Locale

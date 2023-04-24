@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -14,6 +14,7 @@ namespace Contentful\Management\Resource;
 use Contentful\Core\Api\Link;
 use Contentful\Core\Resource\SystemPropertiesInterface;
 use Contentful\Management\Client;
+
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 /**

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -17,6 +17,7 @@ use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Webhook;
 use Contentful\Management\Resource\WebhookCall;
 use Contentful\Tests\Management\BaseTestCase;
+
 use function GuzzleHttp\json_decode as guzzle_json_decode;
 
 class WebhookTest extends BaseTestCase
@@ -186,6 +187,7 @@ class WebhookTest extends BaseTestCase
 
     /**
      * @depends testCreateUpdate
+     *
      * @vcr e2e_webhook_events_fired_and_logged.json
      */
     public function testEventsFiredAndLogged(Webhook $webhook): Webhook
@@ -268,6 +270,7 @@ class WebhookTest extends BaseTestCase
 
     /**
      * @depends testEventsFiredAndLogged
+     *
      * @vcr e2e_webhook_get_calls_from_space_proxy.json
      */
     public function testGetCallsFromSpaceProxy(Webhook $webhook)
@@ -294,6 +297,7 @@ class WebhookTest extends BaseTestCase
 
     /**
      * @depends testGetCallsFromSpaceProxy
+     *
      * @vcr e2e_webhook_delete.json
      */
     public function testDelete(Webhook $webhook)

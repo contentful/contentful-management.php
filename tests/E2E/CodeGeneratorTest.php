@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -105,6 +105,7 @@ class CodeGeneratorTest extends BaseTestCase
 
     /**
      * @depends testCodeGenerator
+     *
      * @vcr e2e_code_generator_create_delete.json
      */
     public function testGeneratedClassesWork(string $fixturesDir)

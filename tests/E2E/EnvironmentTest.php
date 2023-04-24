@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -93,26 +93,26 @@ class EnvironmentTest extends BaseTestCase
     {
         $proxy = $this->getReadWriteSpaceProxy();
 
-        //create a source env
+        // create a source env
         $sourceEnv = new Environment('Branch from');
         $proxy->create($sourceEnv);
         $sourceEnvId = $sourceEnv->getId();
         $this->assertNotNull($sourceEnvId);
         $this->waitForEnv($proxy, $sourceEnvId);
 
-        //add an entry (so we can check it's cloned later)
+        // add an entry (so we can check it's cloned later)
         $entry = new \Contentful\Management\Resource\Entry('testCt');
         $entry->setField('name', 'en-US', 'my name');
         $this->getClient()->create($entry, '', ['space' => $this->readWriteSpaceId, 'environment' => $sourceEnvId]);
 
-        //create the branched env
+        // create the branched env
         $branchEnv = new Environment('Branch to', $sourceEnvId);
         $proxy->create($branchEnv);
         $branchedEnvId = $branchEnv->getId();
         $this->assertNotNull($branchedEnvId);
         $this->waitForEnv($proxy, $branchedEnvId);
 
-        //the entry we created in the source env was inherited in the branched env
+        // the entry we created in the source env was inherited in the branched env
         $this->assertSame(1, $branchEnv->getEntries()->count());
 
         $branchEnv->delete();
@@ -129,7 +129,7 @@ class EnvironmentTest extends BaseTestCase
             $status = $environment->getSystemProperties()->getStatus()->getId();
             \sleep(1);
 
-            //arbitrary
+            // arbitrary
             if ($tries >= 10) {
                 break;
             }

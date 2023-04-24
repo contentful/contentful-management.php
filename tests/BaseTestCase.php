@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2022 Contentful GmbH
+ * @copyright 2015-2023 Contentful GmbH
  * @license   MIT
  */
 
@@ -15,6 +15,7 @@ use Contentful\Management\Client;
 use Contentful\Management\Proxy\EnvironmentProxy;
 use Contentful\Management\Proxy\SpaceProxy;
 use Contentful\Tests\TestCase;
+
 use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 class BaseTestCase extends TestCase
