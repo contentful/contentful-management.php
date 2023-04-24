@@ -37,4 +37,9 @@ class RateWaitTooLongException extends Exception
             $this->rateLimitReset = (int) $response->getHeader('X-Contentful-RateLimit-Reset')[0];
         }
     }
+
+    public function getRateLimitReset(): ?int
+    {
+        return $this->rateLimitReset;
+    }
 }

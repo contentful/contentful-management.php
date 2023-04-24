@@ -107,7 +107,10 @@ class Policy implements \JsonSerializable
      */
     public function setActions($actions)
     {
+        // The phpdoc limits the parameter range, but legacy implementations might not honor this. Therefore, we still
+        // check for multiple types here.
         if (
+            // @phpstan-ignore-next-line
             (!\is_string($actions) && !\is_array($actions)) ||
             (\is_string($actions) && 'all' !== $actions) ||
             (\is_array($actions) && \array_diff($actions, self::ACTIONS))

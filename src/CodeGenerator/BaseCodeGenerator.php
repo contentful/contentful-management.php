@@ -78,14 +78,21 @@ abstract class BaseCodeGenerator
         $classes = \array_filter($classes);
 
         \usort($classes, function ($classA, $classB): int {
+            // According to the doctype, this array never contains arrays and therefore the call to is_array should
+            // always return false. Old implementations might not honor this, though, so we will keep this check.
+            // @phpstan-ignore-next-line
             $classA = \is_array($classA) ? $classA['class'] : $classA;
+            // @phpstan-ignore-next-line
             $classB = \is_array($classB) ? $classB['class'] : $classB;
 
             return $classA <=> $classB;
         });
 
         return \array_map(function ($class): Node\Stmt\Use_ {
+            // Same as above.
+            // @phpstan-ignore-next-line
             $alias = \is_array($class) ? $class['alias'] : null;
+            // @phpstan-ignore-next-line
             $className = \is_array($class) ? $class['class'] : $class;
 
             return new Node\Stmt\Use_(

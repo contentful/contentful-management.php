@@ -16,8 +16,6 @@ use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 
-use function GuzzleHttp\json_encode as guzzle_json_encode;
-
 /**
  * DeliveryApiKey class.
  *
@@ -69,7 +67,7 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
             unset($body['environments']);
         }
 
-        return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
+        return json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -78,6 +76,7 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
     public function asUriParameters(): array
     {
         return [
+            // @phpstan-ignore-next-line
             'space' => $this->getSystemProperties()->getSpace()->getId(),
             'deliveryApiKey' => $this->getSystemProperties()->getId(),
         ];

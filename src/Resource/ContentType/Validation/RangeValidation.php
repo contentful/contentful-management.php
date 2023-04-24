@@ -68,8 +68,6 @@ class RangeValidation implements ValidationInterface
     }
 
     /**
-     * @param int|null $max
-     *
      * @return static
      */
     public function setMax(float $max = null)

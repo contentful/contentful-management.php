@@ -369,7 +369,7 @@ class Mapper extends BaseCodeGenerator
      * $fields['name'] = $data['name'] ?? null
      * ```
      *
-     * @return Node\Expr[]
+     * @return Node\Stmt\Expression[]
      */
     private function generateDefaultFieldAssignment(FieldInterface $field): array
     {

@@ -19,6 +19,7 @@ use Contentful\Core\Resource\ResourceInterface as CoreResourceInterface;
 use Contentful\Management\Exception\RateWaitTooLongException;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\ResourceInterface;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Client class.
@@ -130,7 +131,11 @@ class Client extends BaseClient
                 }
 
                 if ($secondsRemaing > $this->maxRateLimitWait) {
-                    throw new RateWaitTooLongException($exception->getPrevious(), "X-Contentful-RateLimit-Second-Remaining limit is over {$this->maxRateLimitWait} seconds");
+                    if ($exception->getPrevious() instanceof RequestException) {
+                        throw new RateWaitTooLongException($exception->getPrevious(), "X-Contentful-RateLimit-Second-Remaining limit is over {$this->maxRateLimitWait} seconds");
+                    }
+
+                    throw $exception;
                 }
 
                 if ($this->maxRateLimitRetries > 0) {
