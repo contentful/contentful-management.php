@@ -8,40 +8,61 @@ workflows:
 
   main:
     jobs:
-      - lint
-      - test74
+      - lintSyntax
+      - lintStaticAnalysis
+      - checkBcBreaks
       - test80
       - test81
+      - test82
       - docs_build:
           requires:
-            - lint
-            - test74
             - test80
             - test81
+            - test82
           filters:
             branches:
               only: master
 
-jobs:
-  lint:
-    docker:
-      - image: circleci/php:7.4-cli
-    steps:
-      - checkout
-      - run: { name: "Install dependencies", command: sudo composer self-update && composer install -n --prefer-dist }
-      - run:
-          name: Syntax tests
-          command: |
-            composer run lint-syntax
 
-  test74:
+jobs:
+  lintStaticAnalysis:
     docker:
-      - image: circleci/php:7.4-cli
+      - image: cimg/php:8.1
     steps:
       - checkout
-      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
-      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
-      - run: { name: "Test suite", command: "composer test-quick-fail" }
+      - run:
+          name: "Install dependencies"
+          command: sudo composer self-update && composer install -n --prefer-dist
+      - run:
+          name: Static analysis
+          command: composer run lint-static-analysis
+
+  lintSyntax:
+    docker:
+      - image: cimg/php:8.1
+    steps:
+      - checkout
+      - run:
+          name: "Install dependencies"
+          command: sudo composer self-update && composer install -n --prefer-dist
+      - run:
+          name: Install php-cs-fixer
+          command: mkdir -p tools/php-cs-fixer && composer require --working-dir=tools/php-cs-fixer friendsofphp/php-cs-fixer
+      - run:
+          name: Run syntax test
+          command: tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation -v
+
+  checkBcBreaks:
+    docker:
+      - image: cimg/php:8.1
+    steps:
+      - checkout
+      - run:
+          name: "Install dependencies"
+          command: sudo composer self-update && composer install -n --prefer-dist
+      - run:
+          name: Check for backwards-compatibility breaks
+          command: composer run test-for-bc-breaks || true
 
   test80:
     docker:
@@ -59,6 +80,15 @@ jobs:
       - checkout
       - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist --ignore-platform-reqs" }
       - run: { name: "Test suite", command: "composer test-quick-fail" }
+
+  test82:
+    docker:
+      - image: cimg/php:8.2
+    steps:
+      - checkout
+      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist --ignore-platform-reqs" }
+      - run: { name: "Test suite", command: "composer test-quick-fail" }
+
 
 
 
