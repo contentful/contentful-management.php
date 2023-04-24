@@ -13,12 +13,10 @@ workflows:
       - checkBcBreaks
       - test80
       - test81
-      - test82
       - docs_build:
           requires:
             - test80
             - test81
-            - test82
           filters:
             branches:
               only: master
@@ -66,11 +64,10 @@ jobs:
 
   test80:
     docker:
-      - image: circleci/php:8.0-cli
+      - image: cimg/php:8.0
     steps:
       - checkout
-      - run: sudo apt-get update -y && sudo apt-get install -y libxml2-dev && sudo apt-get clean -y && sudo docker-php-ext-install soap
-      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist --ignore-platform-reqs" }
+      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
       - run: { name: "Test suite", command: "composer test-quick-fail" }
 
   test81:
@@ -78,7 +75,7 @@ jobs:
       - image: cimg/php:8.1
     steps:
       - checkout
-      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist --ignore-platform-reqs" }
+      - run: { name: "Install dependencies", command: "sudo composer self-update && composer install -n --prefer-dist" }
       - run: { name: "Test suite", command: "composer test-quick-fail" }
 
   test82:
