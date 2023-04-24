@@ -9,6 +9,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 > No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
 
+## [4.1.0](https://github.com/contentful/contentful-management.php/tree/4.1.0) (2023-04-24)
+
+* Added support for `contentful/core` v4.
+* Fixed documentation for `Upload::asAssetFile()`
+* Fixed code generation
+* Minor CI and code smell cleanup
+
+
 ## [4.0.0](https://github.com/contentful/contentful-management.php/tree/4.0.0) (2022-01-21)
 
 ### Added
