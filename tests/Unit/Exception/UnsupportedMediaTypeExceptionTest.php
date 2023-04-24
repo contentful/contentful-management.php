@@ -26,7 +26,7 @@ class UnsupportedMediaTypeExceptionTest extends BaseTestCase
             415,
             ['X-Contentful-Request-Id' => '554f5306b9c15e43c1f50842e2544949'],
             '{"requestId":"554f5306b9c15e43c1f50842e2544949","message":"Please specify an HTTP \"Content-Type\" header with an API version, for example: \"application/vnd.contentful.management.v1+json\".","sys":{"type":"Error","id":"UnsupportedMediaType"}}',
-            1.1,
+            '1.1',
             'Unsupported Media Type'
         );
 

@@ -26,7 +26,7 @@ class InternalServerErrorExceptionTest extends BaseTestCase
             400,
             ['X-Contentful-Request-Id' => '6bf16c2ec5df8bbac2cb64feeb719558'],
             '{"requestId": "6bf16c2ec5df8bbac2cb64feeb719558","sys": {"type": "Error","id": "InternalServerError"}}',
-            1.1,
+            '1.1',
             'Bad Request'
         );
 

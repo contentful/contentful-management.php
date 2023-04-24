@@ -26,7 +26,7 @@ class FallbackLocaleNotDeletableExceptionTest extends BaseTestCase
             403,
             ['X-Contentful-Request-Id' => '0324c03ccf507f52515d39ab54e89516'],
             '{"requestId":"0324c03ccf507f52515d39ab54e89516","message":"Cannot delete locale which is fallback of another one.","sys":{"type":"Error","id":"FallbackLocaleNotDeletable"}}',
-            1.1,
+            '1.1',
             'Forbidden'
         );
 

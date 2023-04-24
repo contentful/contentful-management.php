@@ -26,7 +26,7 @@ class VersionMismatchExceptionTest extends BaseTestCase
             409,
             ['X-Contentful-Request-Id' => '0b22bcf71e0d624fbd878bc398746d2e'],
             '{"sys": {"type": "Error","id": "VersionMismatch"},"requestId": "0b22bcf71e0d624fbd878bc398746d2e"}',
-            1.1,
+            '1.1',
             'Conflict'
         );
 

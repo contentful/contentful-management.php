@@ -26,7 +26,7 @@ class FallbackLocaleNotRenameableExceptionTest extends BaseTestCase
             403,
             ['X-Contentful-Request-Id' => 'ba4351a9e72616cffffc3c175bcc5271'],
             '{"requestId":"ba4351a9e72616cffffc3c175bcc5271","message":"Cannot change the code of a locale which is fallback of another one.","sys":{"type":"Error","id":"FallbackLocaleNotRenameable"}}',
-            1.1,
+            '1.1',
             'Forbidden'
         );
 

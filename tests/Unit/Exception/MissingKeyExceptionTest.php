@@ -26,7 +26,7 @@ class MissingKeyExceptionTest extends BaseTestCase
             400,
             ['X-Contentful-Request-Id' => '761a55845f700069f3c3b4dae6ad1117'],
             '{"requestId":"761a55845f700069f3c3b4dae6ad1117","details":{"key":"resource"},"sys":{"type":"Error","id":"MissingKey"}}',
-            1.1,
+            '1.1',
             'Bad Request'
         );
 

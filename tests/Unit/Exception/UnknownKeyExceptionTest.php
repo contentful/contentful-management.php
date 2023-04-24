@@ -26,7 +26,7 @@ class UnknownKeyExceptionTest extends BaseTestCase
             400,
             ['X-Contentful-Request-Id' => '95cde6bc52fc73cb955059b5d6635671'],
             '{"requestId":"95cde6bc52fc73cb955059b5d6635671","message":"The body you sent contains an unknown key.","details":{"keys":["default","avx"]},"sys":{"type":"Error","id":"UnknownKey"}}',
-            1.1,
+            '1.1',
             'Bad Request'
         );
 

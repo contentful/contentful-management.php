@@ -26,7 +26,7 @@ class ValidationFailedExceptionTest extends BaseTestCase
             422,
             ['X-Contentful-Request-Id' => 'e60465b1bdeae58b22a4d3cac520356c'],
             '{"requestId":"e60465b1bdeae58b22a4d3cac520356c","message":"The resource you sent in the body is invalid.","details":{"errors":[{"name":"taken","path":"display_code","value":"en-US"},{"name":"fallback locale creates a loop","path":"fallback_code","value":"en-US"}]},"sys":{"type":"Error","id":"ValidationFailed"}}',
-            1.1,
+            '1.1',
             'Unprocessable Entity'
         );
 

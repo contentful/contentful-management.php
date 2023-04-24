@@ -19,7 +19,7 @@ use Contentful\Management\Query;
 use Contentful\Management\Resource\Asset;
 use Contentful\Management\Resource\Upload;
 use Contentful\Tests\Management\BaseTestCase;
-use function GuzzleHttp\Psr7\stream_for;
+use GuzzleHttp\Psr7\Utils;
 
 class AssetTest extends BaseTestCase
 {
@@ -201,7 +201,7 @@ class AssetTest extends BaseTestCase
         $environmentProxy = $spaceProxy->getEnvironmentProxy('master');
 
         // Creates upload using stream
-        $stream = stream_for(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));
+        $stream = Utils::streamFor(\file_get_contents(__DIR__.'/../Fixtures/E2E/contentful-logo.svg'));
         $streamUpload = new Upload($stream);
         $spaceProxy->create($streamUpload);
         $this->assertNotNull($streamUpload->getId());

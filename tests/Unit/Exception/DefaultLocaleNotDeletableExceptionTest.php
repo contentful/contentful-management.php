@@ -26,7 +26,7 @@ class DefaultLocaleNotDeletableExceptionTest extends BaseTestCase
             403,
             ['X-Contentful-Request-Id' => 'ba3ebdba60cc777f91746503330a6007'],
             '{"requestId":"ba3ebdba60cc777f91746503330a6007","message":"Cannot delete a default locale.","sys":{"type":"Error","id":"DefaultLocaleNotDeletable"}}',
-            1.1,
+            '1.1',
             'Forbidden'
         );
 
