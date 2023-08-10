@@ -44,6 +44,9 @@ class ResourceBuilder extends BaseResourceBuilder
     {
         switch ($data['sys']['type']) {
             case 'Array':
+                if (isset($data['includes'])) {
+                    return 'ResourceReferences';
+                }
                 return 'ResourceArray';
 
             case 'Asset':
