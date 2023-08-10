@@ -11,13 +11,13 @@
 
 Add this package to your application by using [Composer](https://getcomposer.org/) and executing the following command:
 
-``` bash
+```bash
 composer require contentful/contentful-management
 ```
 
 Then, if you haven't already, include the Composer autoloader:
 
-``` php
+```php
 require_once 'vendor/autoload.php';
 ```
 
@@ -25,13 +25,13 @@ require_once 'vendor/autoload.php';
 
 The first thing that needs to be done is initiating an instance of `Contentful\Management\Client` by giving it an access token. All actions performed using this instance of the `Client` will be performed with the privileges of the user this token belongs to.
 
-``` php
+```php
 $client = new \Contentful\Management\Client('access-token');
 ```
 
 When working with space-scoped or environment-scoped resources, you can use proxies. They are lazy-references to a space or an environment, and they allow you to avoid repeating the space and environment ID when making API calls:
 
-``` php
+```php
 // Without space proxy
 $deliveryApiKeys = $client->getDeliveryApiKeys($spaceId);
 $roles = $client->getRoles($spaceId);
@@ -51,29 +51,36 @@ $entries = $environmentProxy->getEntries();
 
 ## Usage
 
-* [Api Keys](#api-keys)
-* [Assets](#assets)
-* [Content types and content type snapshots](#content-types-and-content-type-snapshots)
-* [Editor interfaces](#editor-interfaces)
-* [Entries and entry snapshots](#entries-and-entry-snapshots)
-* [Environments](#environments)
-* [Locales](#locales)
-* [Organizations](#organizations)
-* [Personal access tokens](#personal-access-tokens)
-* [Roles](#roles)
-* [Spaces](#spaces)
-* [Space memberships](#space-memberships)
-* [Uploads](#uploads)
-* [UI extensions](#ui-extensions)
-* [User](#users)
-* [Webhooks](#webhooks)
-* [Rate limits and retrying](#rate-limits-and-retrying)
+- [contentful-management.php](#contentful-managementphp)
+  - [Setup](#setup)
+  - [Basic concepts](#basic-concepts)
+  - [Usage](#usage)
+    - [Api Keys](#api-keys)
+    - [Assets](#assets)
+    - [Content types and content type snapshots](#content-types-and-content-type-snapshots)
+    - [Editor interfaces](#editor-interfaces)
+    - [Entries and entry snapshots](#entries-and-entry-snapshots)
+    - [Environments](#environments)
+    - [Locales](#locales)
+    - [Organizations](#organizations)
+    - [Personal access tokens](#personal-access-tokens)
+    - [Roles](#roles)
+    - [Spaces](#spaces)
+    - [Space memberships](#space-memberships)
+    - [Uploads](#uploads)
+    - [UI extensions](#ui-extensions)
+    - [Users](#users)
+    - [Webhooks](#webhooks)
+    - [Rate limits and retrying](#rate-limits-and-retrying)
+  - [Contributing](#contributing)
+  - [About Contentful](#about-contentful)
+  - [License](#license)
 
 ### Api Keys
 
 Fetching:
 
-``` php
+```php
 $deliveryApiKeys = $spaceProxy->getDeliveryApiKeys();
 $deliveryApiKey = $spaceProxy->getDeliveryApiKey($deliveryApiKeyId);
 
@@ -88,7 +95,7 @@ echo $previewApiKey->getAccessToken();
 
 Creating and modifying:
 
-``` php
+```php
 $deliveryApiKey = new \Contentful\Management\Resource\DeliveryApiKey('Mobile');
 
 $spaceProxy->create($deliveryApiKey);
@@ -102,7 +109,7 @@ $deliveryApiKey->delete();
 
 Fetching:
 
-``` php
+```php
 $assets = $environmentProxy->getAssets();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -117,7 +124,7 @@ echo $asset->getTitle('en-US');
 
 Creating and modifying:
 
-``` php
+```php
 $asset = new \Contentful\Management\Resource\Asset();
 $file = new \Contentful\Core\File\RemoteUploadFile('Contentful.svg', 'image/svg+xml', $url);
 $asset->setTitle('en-US', 'My asset')
@@ -145,7 +152,7 @@ $asset->delete();
 
 Fetching:
 
-``` php
+```php
 $contentTypes = $environmentProxy->getContentTypes();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -171,7 +178,7 @@ $snapshot = $environmentProxy->getContentTypeSnapshot($contentTypeId, $snapshotI
 
 Creating and modifying:
 
-``` php
+```php
 $contentType = new \Contentful\Management\Resource\ContentType('Blog Post');
 $contentType->setDescription('My description');
 $contentType->addNewField('Symbol', 'title', 'Title');
@@ -193,7 +200,7 @@ $contentType->delete();
 
 Fetching and updating
 
-``` php
+```php
 $editorInterface = $environmentProxy->getEditorInterface($contentTypeId);
 
 $control = $editorInterface->getControl('website');
@@ -206,7 +213,7 @@ $editorInterface->update();
 
 Fetching:
 
-``` php
+```php
 $entries = $environmentProxy->getEntries();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -228,7 +235,7 @@ $snapshot = $environmentProxy->getEntrySnapshot($entryId, $snapshotId);
 
 Creating and modifying:
 
-``` php
+```php
 $entry = new \Contentful\Management\Resource\Entry($contentTypeId);
 $entry->setField('title', 'en-US', 'My awesome blog post');
 $entry->setField('body', 'en-US', 'Something something...');
@@ -258,7 +265,7 @@ $entry->delete();
 
 Fetching:
 
-``` php
+```php
 $environments = $spaceProxy->getEnvironments();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -273,7 +280,7 @@ echo $environment->getName();
 
 Creating and modifying:
 
-``` php
+```php
 $environment = new \Contentful\Management\Resource\Environment('QA');
 $spaceProxy->create($environment);
 
@@ -292,7 +299,7 @@ $environment->delete();
 
 Creating an environment with a different source:
 
-``` php
+```php
 $environment = new \Contentful\Management\Resource\Environment('QA','source-env-id');
 $spaceProxy->create($environment);
 
@@ -311,7 +318,7 @@ $environment->delete();
 
 Fetching:
 
-``` php
+```php
 $locales = $environmentProxy->getLocales();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -327,7 +334,7 @@ echo $locale->getCode();
 
 Creating and modifying:
 
-``` php
+```php
 $locale = new \Contentful\Management\Resource\Locale('English (United States)', 'en-US');
 $environmentProxy->create($locale);
 
@@ -338,7 +345,7 @@ $locale->delete();
 
 Fetching:
 
-``` php
+```php
 $organizations = $client->getOrganizations();
 $organization = $organizations[0];
 
@@ -350,7 +357,7 @@ echo $organization->getName();
 
 Fetching:
 
-``` php
+```php
 $personalAccessTokens = $client->getPersonalAccessTokens();
 // Optionally, pass a query object
 $personalAccessTokens = (new \Contentful\Management\Query())
@@ -365,7 +372,7 @@ echo $personalAccessToken->getName();
 
 Creating and modifying:
 
-``` php
+```php
 $readOnly = false;
 $personalAccessToken = new \Contentful\Management\Resource\PersonalAccessToken('Development access token', $readOnly);
 $client->create($personalAccessToken);
@@ -380,7 +387,7 @@ $personalAccessToken->revoke();
 
 Fetching:
 
-``` php
+```php
 $roles = $spaceProxy->getRoles();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -395,7 +402,7 @@ echo $role->getName();
 
 Creating and modifying:
 
-``` php
+```php
 $role = new \Contentful\Management\Resource\Role('Publisher');
 
 $policy = new \Contentful\Management\Resource\Policy('allow', 'publish');
@@ -416,7 +423,7 @@ $policy->delete();
 
 Fetching:
 
-``` php
+```php
 $spaces = $client->getSpaces();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -431,7 +438,7 @@ echo $space->getName();
 
 Creating and modifying:
 
-``` php
+```php
 $space = new \Contentful\Management\Resource\Space('Website', $organizationId, $defaultLocaleCode);
 $client->create($space);
 
@@ -442,7 +449,7 @@ $space->delete();
 
 Fetching:
 
-``` php
+```php
 $spaceMemberships = $spaceProxy->getSpaceMemberships();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -457,7 +464,7 @@ echo $spaceMembership->getUser()->getId();
 
 Creating and modifying:
 
-``` php
+```php
 $spaceMembership = new \Contentful\Management\Resource\SpaceMembership();
 $spaceMembership->setEmail($userEmail)
     ->setAdmin(false)
@@ -471,7 +478,7 @@ $spaceMembership->delete();
 
 Fetching:
 
-``` php
+```php
 $upload = $spaceProxy->getUpload($uploadId);
 
 echo $upload->getSystemProperties()->getId();
@@ -479,7 +486,7 @@ echo $upload->getSystemProperties()->getId();
 
 Creating and modifying:
 
-``` php
+```php
 // You can pass as argument an fopen resource, an actual string, or a PSR-7 compatible stream
 $upload = new \Contentful\Management\Resource\Upload(\fopen($myFile, 'r'));
 $spaceProxy->create($upload);
@@ -499,7 +506,7 @@ $upload->delete();
 
 Fetching:
 
-``` php
+```php
 $extensions = $environmentProxy->getExtensions();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -514,7 +521,7 @@ echo $extension->getName();
 
 Creating and modifying:
 
-``` php
+```php
 $extension = new \Contentful\Management\Resource\Extension('My awesome extension');
 $extension->setSource('https://www.example.com/extension-source')
     ->addNewFieldType('Symbol');
@@ -531,7 +538,7 @@ $extension->delete();
 
 Fetching:
 
-``` php
+```php
 $user = $client->getUserMe();
 
 echo $user->getSystemProperties()->getId();
@@ -542,7 +549,7 @@ echo $user->getEmail();
 
 Fetching:
 
-``` php
+```php
 $webhooks = $spaceProxy->getWebhooks();
 // Optionally, pass a query object
 $query = (new \Contentful\Management\Query())
@@ -573,7 +580,7 @@ echo $health->getHealthy();
 
 Creating and modifying:
 
-``` php
+```php
 $webhook = new \Contentful\Management\Resource\Webhook('Publish webhook', $url, ['Entry.publish']);
 $spaceProxy->create($webhook);
 
@@ -587,7 +594,7 @@ $webhook->delete();
 
 Some API calls are subject to rate limiting as described [here](https://www.contentful.com/developers/docs/technical-limits/). The SDK can be instructed to retry a call for a number of times via the max_rate_limit_retries option:
 
-``` php
+```php
 $client = new \Contentful\Management\Client('KEY',['max_rate_limit_retries' => 2]);
 $proxy = $client->getSpaceProxy('SPACE_ID');
 $envName = uniqid();
@@ -597,10 +604,9 @@ $proxy->create($env); //this call will retry two times (so three calls couting t
 
 If the retry should happen in more than 60 seconds (as defined by the X-Contentful-RateLimit-Second-Remaining header [here](https://www.contentful.com/developers/docs/references/content-management-api/#/introduction/api-rate-limits) ), the call will throw a RateWaitTooLongException exception. This was implemented so that your scripts do not run for too long.
 
-## Contributinng
+## Contributing
 
 PRs are welcome! If you want to develop locally, however, you will need to install with `--ignore-platform-reqs`, as one of the libraries used for testing does currently not officially support PHP8.
-
 
 ## About Contentful
 
