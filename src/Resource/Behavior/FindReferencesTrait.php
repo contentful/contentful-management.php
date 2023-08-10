@@ -22,7 +22,7 @@ trait FindReferencesTrait
     /**
      * Locates references to the resource
      */
-    public function getReferences(int $nestedLevels = 10)
+    public function findReferences(int $nestedLevels = 10)
     {
         if ($nestedLevels > 10) {
           throw new Exception("Can only retrieve references nested up to 10 levels deep. Set a smaller value for nestedLevels argument not exceeding 10.");
