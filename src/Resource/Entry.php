@@ -17,6 +17,7 @@ use Contentful\Management\Proxy\Extension\EntryProxyExtension;
 use Contentful\Management\Resource\Behavior\ArchivableTrait;
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use Contentful\Management\Resource\Behavior\DeletableTrait;
+use Contentful\Management\Resource\Behavior\FindReferencesTrait;
 use Contentful\Management\Resource\Behavior\PublishableTrait;
 use Contentful\Management\Resource\Behavior\UpdatableTrait;
 use Contentful\Management\SystemProperties\Entry as SystemProperties;
@@ -35,6 +36,7 @@ class Entry extends BaseResource implements EntryInterface, CreatableInterface
     use EntryProxyExtension;
     use PublishableTrait;
     use UpdatableTrait;
+    use FindReferencesTrait;
 
     /**
      * @var SystemProperties
