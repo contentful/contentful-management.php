@@ -233,8 +233,10 @@ class Client extends BaseClient
             'resource' => $resource,
         ]);
 
-        $this->request($method, $uri.$path, $options);
-
+        $resp = $this->request($method, $uri.$path, $options);
+        if ($method === "GET") {
+            return $resp;
+        }
         return $resource;
     }
 

@@ -6,14 +6,13 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Core\Api\Link;
 use Contentful\Core\Resource\ArraySystemProperties;
-use Contentful\Core\Resource\ResourceInterface;
 use Contentful\Core\Resource\SystemPropertiesInterface;
 
 /**
  * A ResourceReferences holds the response of an API request
  * that reports the items referencing a resource, typically an entry or asset.
  */
-class ResourceReferences implements ResourceInterface
+class ResourceReferences extends BaseResource
 {
     /**
      * @var array
@@ -68,6 +67,14 @@ class ResourceReferences implements ResourceInterface
     public function asLink(): Link
     {
         throw new \LogicException('Resource of type Array can not be represented as a Link object.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function asUriParameters(): array
+    {
+        throw new \LogicException('Resource of type ResourceReferences cannot be represented as URI parameters.');
     }
 
     /**
