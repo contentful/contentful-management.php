@@ -7,6 +7,7 @@ namespace Contentful\Management\Resource\Behavior;
 
 use Contentful\Management\Client;
 use Contentful\Management\SystemProperties\VersionableSystemPropertiesInterface;
+use Contentful\Management\Resource\ResourceReferences;
 
 /**
  * ArchivableTrait.
@@ -21,6 +22,7 @@ trait FindReferencesTrait
 {
     /**
      * Locates references to the resource
+     * @return ResourceReferences
      */
     public function findReferences(int $nestedLevels = 10)
     {
