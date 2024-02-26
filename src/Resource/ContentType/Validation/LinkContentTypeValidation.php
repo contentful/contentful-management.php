@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -57,17 +57,11 @@ class LinkContentTypeValidation implements ValidationInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return [

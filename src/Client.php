@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -74,7 +74,7 @@ class Client extends BaseClient
     /**
      * @var int|null
      */
-    private $maxRateLimitRetries = null;
+    private $maxRateLimitRetries;
 
     /**
      * @var int
@@ -114,9 +114,6 @@ class Client extends BaseClient
         return $this->builder;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function request(string $method, string $uri, array $options = []): CoreResourceInterface
     {
         try {
@@ -246,8 +243,8 @@ class Client extends BaseClient
     public function fetchResource(
         string $class,
         array $parameters,
-        Query $query = null,
-        ResourceInterface $resource = null
+        ?Query $query = null,
+        ?ResourceInterface $resource = null
     ) {
         $config = $this->configuration->getConfigFor($class);
         $uri = $this->requestUriBuilder->build($config, $parameters);
@@ -283,41 +280,26 @@ class Client extends BaseClient
         return $this->linkResolver->resolveLinkCollection($links, $parameters);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getApi(): string
     {
         return 'MANAGEMENT';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getExceptionNamespace()
     {
         return __NAMESPACE__.'\\Exception';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function getSdkName(): string
     {
         return 'contentful-management.php';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function getPackageName(): string
     {
         return 'contentful/contentful-management';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function getApiContentType(): string
     {
         return 'application/vnd.contentful.management.v1+json';

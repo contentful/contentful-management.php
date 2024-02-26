@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -36,17 +36,11 @@ abstract class Snapshot extends BaseResource
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return [
@@ -55,9 +49,6 @@ abstract class Snapshot extends BaseResource
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asRequestBody()
     {
         throw new \LogicException(\sprintf('Trying to convert object of class "%s" to a request body format, but operation is not supported on this class.', static::class));

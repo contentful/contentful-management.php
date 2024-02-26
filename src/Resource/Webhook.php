@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -88,17 +88,11 @@ class Webhook extends BaseResource implements CreatableInterface
         $this->setTopics($topics);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $headers = [];
@@ -135,33 +129,21 @@ class Webhook extends BaseResource implements CreatableInterface
         return $values;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getWebhookId()
     {
         return $this->sys->getId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getSpaceId()
     {
         return $this->sys->getSpace()->getId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -211,7 +193,7 @@ class Webhook extends BaseResource implements CreatableInterface
     /**
      * @return static
      */
-    public function setHttpBasicUsername(string $httpBasicUsername = null)
+    public function setHttpBasicUsername(?string $httpBasicUsername = null)
     {
         $this->httpBasicUsername = $httpBasicUsername;
 
@@ -229,7 +211,7 @@ class Webhook extends BaseResource implements CreatableInterface
     /**
      * @return static
      */
-    public function setHttpBasicPassword(string $httpBasicPassword = null)
+    public function setHttpBasicPassword(?string $httpBasicPassword = null)
     {
         $this->httpBasicPassword = $httpBasicPassword;
 

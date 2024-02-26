@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -75,17 +75,11 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
         $this->name = $name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $data = [
@@ -105,9 +99,6 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
         return $data;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -117,33 +108,21 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getSpaceId(): string
     {
         return $this->sys->getSpace()->getId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getEnvironmentId(): string
     {
         return $this->sys->getEnvironment()->getId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getContentTypeId(): string
     {
         return $this->sys->getId();
@@ -175,7 +154,7 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
     /**
      * @return static
      */
-    public function setDescription(string $description = null)
+    public function setDescription(?string $description = null)
     {
         $this->description = $description;
 
@@ -193,7 +172,7 @@ class ContentType extends BaseResource implements ContentTypeInterface, Creatabl
     /**
      * @return static
      */
-    public function setDisplayField(string $displayField = null)
+    public function setDisplayField(?string $displayField = null)
     {
         $this->displayField = $displayField;
 

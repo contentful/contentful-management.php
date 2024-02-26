@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -35,7 +35,7 @@ class RegexpValidation implements ValidationInterface
     /**
      * RegexpValidation constructor.
      */
-    public function __construct(string $pattern = null, string $flags = null)
+    public function __construct(?string $pattern = null, ?string $flags = null)
     {
         $this->pattern = $pattern;
         $this->flags = $flags;
@@ -49,7 +49,7 @@ class RegexpValidation implements ValidationInterface
         return $this->flags;
     }
 
-    public function setFlags(string $flags = null)
+    public function setFlags(?string $flags = null)
     {
         $this->flags = $flags;
     }
@@ -62,22 +62,16 @@ class RegexpValidation implements ValidationInterface
         return $this->pattern;
     }
 
-    public function setPattern(string $pattern = null)
+    public function setPattern(?string $pattern = null)
     {
         $this->pattern = $pattern;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getValidFieldTypes(): array
     {
         return ['Text', 'Symbol'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $data = [];

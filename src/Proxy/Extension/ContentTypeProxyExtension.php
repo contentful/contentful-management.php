@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -69,7 +69,7 @@ trait ContentTypeProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
-    public function getSnapshots(Query $query = null): ResourceArray
+    public function getSnapshots(?Query $query = null): ResourceArray
     {
         return $this->client->getContentTypeSnapshots(
             $this->getSpaceId(),

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -69,7 +69,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/assets-collection
      */
-    public function getAssets(string $environmentId, Query $query = null): ResourceArray
+    public function getAssets(string $environmentId, ?Query $query = null): ResourceArray
     {
         return $this->client->getAssets(
             $this->getSpaceId(),
@@ -97,7 +97,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection
      */
-    public function getContentTypes(string $environmentId, Query $query = null): ResourceArray
+    public function getContentTypes(string $environmentId, ?Query $query = null): ResourceArray
     {
         return $this->client->getContentTypes(
             $this->getSpaceId(),
@@ -125,7 +125,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
      */
-    public function getPublishedContentTypes(string $environmentId, Query $query = null): ResourceArray
+    public function getPublishedContentTypes(string $environmentId, ?Query $query = null): ResourceArray
     {
         return $this->client->getPublishedContentTypes(
             $this->getSpaceId(),
@@ -154,7 +154,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/content-type-snapshots-collection
      */
-    public function getContentTypeSnapshots(string $environmentId, string $contentTypeId, Query $query = null): ResourceArray
+    public function getContentTypeSnapshots(string $environmentId, string $contentTypeId, ?Query $query = null): ResourceArray
     {
         return $this->client->getContentTypeSnapshots(
             $this->getSpaceId(),
@@ -182,7 +182,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection
      */
-    public function getDeliveryApiKeys(Query $query = null): ResourceArray
+    public function getDeliveryApiKeys(?Query $query = null): ResourceArray
     {
         return $this->client->getDeliveryApiKeys(
             $this->getSpaceId(),
@@ -223,7 +223,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entries-collection
      */
-    public function getEntries(string $environmentId, Query $query = null): ResourceArray
+    public function getEntries(string $environmentId, ?Query $query = null): ResourceArray
     {
         return $this->client->getEntries(
             $this->getSpaceId(),
@@ -252,7 +252,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/snapshots/entry-snapshots-collection
      */
-    public function getEntrySnapshots(string $environmentId, string $entryId, Query $query = null): ResourceArray
+    public function getEntrySnapshots(string $environmentId, string $entryId, ?Query $query = null): ResourceArray
     {
         return $this->client->getEntrySnapshots(
             $this->getSpaceId(),
@@ -280,7 +280,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/environments/environments-collection
      */
-    public function getEnvironments(Query $query = null): ResourceArray
+    public function getEnvironments(?Query $query = null): ResourceArray
     {
         return $this->client->getEnvironments(
             $this->getSpaceId(),
@@ -360,7 +360,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection
      */
-    public function getPreviewApiKeys(Query $query = null): ResourceArray
+    public function getPreviewApiKeys(?Query $query = null): ResourceArray
     {
         return $this->client->getPreviewApiKeys(
             $this->getSpaceId(),
@@ -386,7 +386,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/roles/roles-collection
      */
-    public function getRoles(Query $query = null): ResourceArray
+    public function getRoles(?Query $query = null): ResourceArray
     {
         return $this->client->getRoles(
             $this->getSpaceId(),
@@ -412,7 +412,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/space-memberships
      */
-    public function getSpaceMemberships(Query $query = null): ResourceArray
+    public function getSpaceMemberships(?Query $query = null): ResourceArray
     {
         return $this->client->getSpaceMemberships(
             $this->getSpaceId(),
@@ -451,7 +451,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhooks/webhooks-collection
      */
-    public function getWebhooks(Query $query = null): ResourceArray
+    public function getWebhooks(?Query $query = null): ResourceArray
     {
         return $this->client->getWebhooks(
             $this->getSpaceId(),
@@ -478,7 +478,7 @@ trait SpaceProxyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/webhook-calls/webhook-call-overview
      */
-    public function getWebhookCalls(string $webhookId, Query $query = null): ResourceArray
+    public function getWebhookCalls(string $webhookId, ?Query $query = null): ResourceArray
     {
         return $this->client->getWebhookCalls(
             $this->getSpaceId(),

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -15,13 +15,10 @@ use Contentful\Management\Mapper\BaseMapper;
 use Contentful\Management\Resource\ContentType\Validation\RegexpValidation as ResourceClass;
 
 /**
-RegexpValidation class.
+ * RegexpValidation class.
  */
 class ProhibitRegexpValidation extends BaseMapper
 {
-    /**
-    {@inheritdoc}
-     */
     public function map($resource, array $data): ResourceClass
     {
         return new ResourceClass(

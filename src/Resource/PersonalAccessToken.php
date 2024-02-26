@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -60,17 +60,11 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
         $this->isReadOnly = $isReadOnly;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return [
@@ -84,9 +78,6 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asRequestBody(): string
     {
         $body = $this->jsonSerialize();
@@ -98,17 +89,11 @@ class PersonalAccessToken extends BaseResource implements CreatableInterface
         return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -74,24 +74,18 @@ class Locale extends BaseResource implements CreatableInterface
     /**
      * Locale constructor.
      */
-    public function __construct(string $name, string $code, string $fallbackCode = null)
+    public function __construct(string $name, string $code, ?string $fallbackCode = null)
     {
         $this->name = $name;
         $this->code = $code;
         $this->fallbackCode = $fallbackCode;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return [
@@ -106,9 +100,6 @@ class Locale extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asRequestBody(): string
     {
         $body = $this->jsonSerialize();
@@ -120,9 +111,6 @@ class Locale extends BaseResource implements CreatableInterface
         return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -132,9 +120,6 @@ class Locale extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return [];
@@ -181,7 +166,7 @@ class Locale extends BaseResource implements CreatableInterface
     /**
      * @return static
      */
-    public function setFallbackCode(string $fallbackCode = null)
+    public function setFallbackCode(?string $fallbackCode = null)
     {
         $this->fallbackCode = $fallbackCode;
 

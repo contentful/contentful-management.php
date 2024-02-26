@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -71,9 +71,6 @@ class FieldType implements \JsonSerializable
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return $this->getData();
@@ -105,7 +102,7 @@ class FieldType implements \JsonSerializable
      * @param string      $arrayType Either "Symbol" or "Link"
      * @param string|null $linkType  Either "Asset" or "Entry" if $arrayType is "Link", null otherwise
      */
-    private function setArrayFieldType(string $arrayType, string $linkType = null)
+    private function setArrayFieldType(string $arrayType, ?string $linkType = null)
     {
         if ('Symbol' !== $arrayType && 'Link' !== $arrayType) {
             throw new \InvalidArgumentException(\sprintf('Trying to create array field type using invalid type "%s".', $arrayType));

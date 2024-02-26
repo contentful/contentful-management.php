@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -30,7 +30,7 @@ trait OrganizationExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/organizations
      */
-    public function getOrganizations(Query $query = null): ResourceArray
+    public function getOrganizations(?Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [], $query);
     }

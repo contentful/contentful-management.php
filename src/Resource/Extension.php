@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -74,17 +74,11 @@ class Extension extends BaseResource implements CreatableInterface
         $this->name = $name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -94,9 +88,6 @@ class Extension extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return [];
@@ -251,9 +242,6 @@ class Extension extends BaseResource implements CreatableInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $sourceType = \filter_var($this->source, \FILTER_VALIDATE_URL)

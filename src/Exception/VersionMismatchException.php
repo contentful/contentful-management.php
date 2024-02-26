@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -22,9 +22,6 @@ use GuzzleHttp\Exception\RequestException;
  */
 class VersionMismatchException extends Exception
 {
-    /**
-     * {@inheritdoc}
-     */
     public function __construct(RequestException $previous, $message = 'The version number you supplied is invalid.')
     {
         parent::__construct($previous, $message);

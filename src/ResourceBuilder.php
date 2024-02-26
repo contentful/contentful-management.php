@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -21,25 +21,16 @@ use Contentful\Core\ResourceBuilder\BaseResourceBuilder;
  */
 class ResourceBuilder extends BaseResourceBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function getMapperNamespace()
     {
         return __NAMESPACE__.'\\Mapper';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function createMapper($fqcn)
     {
         return new $fqcn($this);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getSystemType(array $data): string
     {
         switch ($data['sys']['type']) {

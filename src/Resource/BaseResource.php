@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -32,33 +32,21 @@ abstract class BaseResource implements ResourceInterface
      */
     protected $client;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId(): string
     {
         return $this->getSystemProperties()->getId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType(): string
     {
         return $this->getSystemProperties()->getType();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asLink(): Link
     {
         return new Link($this->getId(), $this->getType());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asRequestBody()
     {
         $body = $this->jsonSerialize();

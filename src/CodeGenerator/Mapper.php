@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -46,9 +46,6 @@ class Mapper extends BaseCodeGenerator
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function generate(array $params): string
     {
         $contentType = $params['content_type'];
@@ -72,7 +69,7 @@ class Mapper extends BaseCodeGenerator
         $statements[] = $class;
 
         return $this->render(
-            new Node\Stmt\Namespace_(new Node\Name($namespace.'\\Mapper'), $statements)
+            new Stmt\Namespace_(new Node\Name($namespace.'\\Mapper'), $statements)
         );
     }
 
@@ -80,7 +77,7 @@ class Mapper extends BaseCodeGenerator
     {
         $className = $this->convertToStudlyCaps($contentType->getId());
 
-        return new Node\Stmt\Class_(
+        return new Class_(
             $className.'Mapper',
             [
                 'extends' => new Node\Name('BaseMapper'),
@@ -121,14 +118,14 @@ class Mapper extends BaseCodeGenerator
         return new ClassMethod(
             'map',
             [
-                'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
+                'flags' => Class_::MODIFIER_PUBLIC,
                 'params' => [
                     new Node\Param(new Node\Expr\Variable('resource')),
                     new Node\Param(new Node\Expr\Variable('data'), null, 'array'),
                 ],
                 'returnType' => new Node\Name($className),
                 'stmts' => [
-                    new Node\Stmt\Return_(
+                    new Stmt\Return_(
                         new Node\Expr\MethodCall(
                             new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'hydrator'),
                             'hydrate',
@@ -227,13 +224,13 @@ class Mapper extends BaseCodeGenerator
         $method = new ClassMethod(
             'formatFields',
             [
-                'flags' => Node\Stmt\Class_::MODIFIER_PRIVATE,
+                'flags' => Class_::MODIFIER_PRIVATE,
                 'params' => [
                     new Node\Param(new Node\Expr\Variable('data'), null, 'array'),
                 ],
                 'returnType' => new Node\Name('array'),
                 'stmts' => [
-                    new Node\Stmt\Expression(
+                    new Stmt\Expression(
                         new Node\Expr\Assign(
                             new Node\Expr\Variable('fields'),
                             new Node\Expr\Array_([])
@@ -255,7 +252,7 @@ class Mapper extends BaseCodeGenerator
             );
         }
 
-        $method->stmts[] = new Node\Stmt\Return_(
+        $method->stmts[] = new Stmt\Return_(
             new Node\Expr\Variable('fields'),
             $this->generateCommentAttributes('')
         );
@@ -313,7 +310,7 @@ class Mapper extends BaseCodeGenerator
                         'params' => [new Node\Param(new Node\Expr\Variable('link'), null, 'array')],
                         'returnType' => new Node\Name('Link'),
                         'stmts' => [
-                            new Node\Stmt\Return_($this->generateNewLinkStatement('link')),
+                            new Stmt\Return_($this->generateNewLinkStatement('link')),
                         ],
                     ])
                 ),
@@ -374,7 +371,7 @@ class Mapper extends BaseCodeGenerator
     private function generateDefaultFieldAssignment(FieldInterface $field): array
     {
         return [
-            new Node\Stmt\Expression(
+            new Stmt\Expression(
                 new Node\Expr\Assign(
                     new Node\Expr\ArrayDimFetch(
                         new Node\Expr\Variable('fields'),
@@ -441,13 +438,13 @@ class Mapper extends BaseCodeGenerator
     private function generateForeachAssignment(FieldInterface $field, Node\Expr $expr): array
     {
         return [
-            new Node\Stmt\Expression(
+            new Stmt\Expression(
                 new Node\Expr\Assign(
                     new Node\Expr\ArrayDimFetch(new Node\Expr\Variable('fields'), new Node\Scalar\String_($field->getId())),
                     new Node\Expr\Array_([])
                 )
             ),
-            new Node\Stmt\Foreach_(
+            new Stmt\Foreach_(
                 new Node\Expr\BinaryOp\Coalesce(
                     new Node\Expr\ArrayDimFetch(new Node\Expr\Variable('data'), new Node\Scalar\String_($field->getId())),
                     new Node\Expr\Array_([])
@@ -456,7 +453,7 @@ class Mapper extends BaseCodeGenerator
                 [
                     'keyVar' => new Node\Expr\Variable('locale'),
                     'stmts' => [
-                        new Node\Stmt\Expression(
+                        new Stmt\Expression(
                             new Node\Expr\Assign(
                                 new Node\Expr\ArrayDimFetch(
                                     new Node\Expr\ArrayDimFetch(new Node\Expr\Variable('fields'), new Node\Scalar\String_($field->getId())),

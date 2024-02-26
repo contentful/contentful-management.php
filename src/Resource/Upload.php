@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -52,17 +52,11 @@ class Upload extends BaseResource implements CreatableInterface
         $this->body = $body;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return [
@@ -70,17 +64,11 @@ class Upload extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asRequestBody()
     {
         return $this->body;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -89,9 +77,6 @@ class Upload extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return ['Content-Type' => 'application/octet-stream'];

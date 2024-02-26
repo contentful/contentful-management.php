@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -41,9 +41,6 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
         $this->name = $name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $deliveryApiKey = parent::jsonSerialize();
@@ -52,9 +49,6 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
         return $deliveryApiKey;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asRequestBody(): string
     {
         $body = $this->jsonSerialize();
@@ -70,9 +64,6 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
         return json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -82,9 +73,6 @@ class DeliveryApiKey extends ApiKey implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return [];

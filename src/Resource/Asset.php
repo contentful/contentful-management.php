@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -55,17 +55,11 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
      */
     protected $file = [];
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return [
@@ -78,9 +72,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -90,9 +81,6 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return [];
@@ -103,7 +91,7 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/assets/asset-processing
      */
-    public function process(string $locale = null)
+    public function process(?string $locale = null)
     {
         $locales = $locale
             ? [$locale]
@@ -134,7 +122,7 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     /**
      * @return static
      */
-    public function setTitle(string $locale, string $title = null)
+    public function setTitle(string $locale, ?string $title = null)
     {
         if (!$title) {
             unset($this->title[$locale]);
@@ -166,7 +154,7 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     /**
      * @return static
      */
-    public function setDescription(string $locale, string $description = null)
+    public function setDescription(string $locale, ?string $description = null)
     {
         if (!$description) {
             unset($this->description[$locale]);
@@ -198,7 +186,7 @@ class Asset extends BaseResource implements AssetInterface, CreatableInterface
     /**
      * @return static
      */
-    public function setFile(string $locale, UnprocessedFileInterface $file = null)
+    public function setFile(string $locale, ?UnprocessedFileInterface $file = null)
     {
         if (!$file) {
             unset($this->file[$locale]);

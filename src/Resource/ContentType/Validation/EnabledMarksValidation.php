@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -16,17 +16,11 @@ namespace Contentful\Management\Resource\ContentType\Validation;
  */
 class EnabledMarksValidation implements ValidationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function getValidFieldTypes(): array
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): mixed
     {
         return [];

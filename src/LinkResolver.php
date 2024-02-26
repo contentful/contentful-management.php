@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -39,9 +39,6 @@ class LinkResolver implements LinkResolverInterface
         $this->requestUriBuilder = $requestUriBuilder;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function resolveLink(Link $link, array $parameters = []): ResourceInterface
     {
         $config = $this->configuration->getLinkConfigFor($link->getLinkType());
@@ -55,9 +52,6 @@ class LinkResolver implements LinkResolverInterface
         return $resource;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function resolveLinkCollection(array $links, array $parameters = []): array
     {
         return \array_map(function (Link $link) use ($parameters) {

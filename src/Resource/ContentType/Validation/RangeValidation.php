@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -35,7 +35,7 @@ class RangeValidation implements ValidationInterface
     /**
      * RangeValidation constructor.
      */
-    public function __construct(float $min = null, float $max = null)
+    public function __construct(?float $min = null, ?float $max = null)
     {
         $this->min = $min;
         $this->max = $max;
@@ -52,7 +52,7 @@ class RangeValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMin(float $min = null)
+    public function setMin(?float $min = null)
     {
         $this->min = $min;
 
@@ -70,24 +70,18 @@ class RangeValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMax(float $max = null)
+    public function setMax(?float $max = null)
     {
         $this->max = $max;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getValidFieldTypes(): array
     {
         return ['Number', 'Integer'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $data = [];

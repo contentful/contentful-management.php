@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -28,9 +28,6 @@ use Contentful\Management\SystemProperties\Asset as SystemProperties;
  */
 class Asset extends BaseMapper
 {
-    /**
-     * {@inheritdoc}
-     */
     public function map($resource, array $data): ResourceClass
     {
         $fields = $data['fields'];

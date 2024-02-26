@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -184,7 +184,7 @@ abstract class BaseField implements FieldInterface
     public function addValidation(ValidationInterface $validation)
     {
         if (!\in_array($this->getType(), $validation->getValidFieldTypes(), true)) {
-            throw new \RuntimeException(\sprintf('The validation "%s" can not be used for fields of type "%s".', \get_class($validation), $this->getType()));
+            throw new \RuntimeException(\sprintf('The validation "%s" can not be used for fields of type "%s".', $validation::class, $this->getType()));
         }
 
         $this->validations[] = $validation;
@@ -192,9 +192,6 @@ abstract class BaseField implements FieldInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $data = [

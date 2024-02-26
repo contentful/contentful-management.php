@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -115,7 +115,7 @@ class Parameter implements \JsonSerializable
     /**
      * @return static
      */
-    public function setDescription(string $description = null)
+    public function setDescription(?string $description = null)
     {
         $this->description = $description;
 
@@ -206,9 +206,6 @@ class Parameter implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return \array_filter([

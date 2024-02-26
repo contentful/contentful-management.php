@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -181,7 +181,7 @@ class ApiConfiguration
      */
     public function getConfigFor($resource): array
     {
-        $class = \is_object($resource) ? \get_class($resource) : $resource;
+        $class = \is_object($resource) ? $resource::class : $resource;
         if ('\\' === \mb_substr($class, 0, 1)) {
             $class = \mb_substr($class, 1);
         }

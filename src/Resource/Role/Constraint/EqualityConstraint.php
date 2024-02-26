@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -73,8 +73,6 @@ class EqualityConstraint implements ConstraintInterface
     }
 
     /**
-     * @param mixed $value
-     *
      * @return static
      */
     public function setValue($value)
@@ -84,9 +82,6 @@ class EqualityConstraint implements ConstraintInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return ['equals' => [

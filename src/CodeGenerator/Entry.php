@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -50,9 +50,6 @@ class Entry extends BaseCodeGenerator
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function generate(array $params): string
     {
         $contentType = $params['content_type'];
@@ -74,7 +71,7 @@ class Entry extends BaseCodeGenerator
         $statements[] = $class;
 
         return $this->render(
-            new Node\Stmt\Namespace_(new Node\Name($namespace), $statements)
+            new Stmt\Namespace_(new Node\Name($namespace), $statements)
         );
     }
 
@@ -82,7 +79,7 @@ class Entry extends BaseCodeGenerator
     {
         $className = $this->convertToStudlyCaps($contentType->getId());
 
-        return new Node\Stmt\Class_(
+        return new Class_(
             $className,
             [
                 'extends' => new Node\Name('Entry'),
@@ -146,9 +143,9 @@ class Entry extends BaseCodeGenerator
         return new ClassMethod(
             '__construct',
             [
-                'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
+                'flags' => Class_::MODIFIER_PUBLIC,
                 'stmts' => [
-                    new Node\Stmt\Expression(
+                    new Stmt\Expression(
                         new Node\Expr\StaticCall(
                             new Node\Name('parent'),
                             '__construct',
@@ -183,18 +180,18 @@ class Entry extends BaseCodeGenerator
         return new ClassMethod(
             'get'.$this->convertToStudlyCaps($field->getId()),
             [
-                'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
+                'flags' => Class_::MODIFIER_PUBLIC,
                 'params' => [
-                    new Node\Param(new Node\Expr\Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
+                    new Node\Param(new Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
-                    new Node\Stmt\Return_(
+                    new Stmt\Return_(
                         new Node\Expr\MethodCall(
-                            new Node\Expr\Variable('this'),
+                            new Variable('this'),
                             'getField',
                             [
                                 new Node\Arg(new Node\Scalar\String_($field->getId())),
-                                new Node\Arg(new Node\Expr\Variable('locale')),
+                                new Node\Arg(new Variable('locale')),
                             ]
                         )
                     ),
@@ -233,20 +230,20 @@ class Entry extends BaseCodeGenerator
         return new ClassMethod(
             'set'.$this->convertToStudlyCaps($field->getId()),
             [
-                'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
+                'flags' => Class_::MODIFIER_PUBLIC,
                 'params' => [
                     new Node\Param(new Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
                     new Node\Param(new Variable('value'), new Node\Expr\ConstFetch(new Node\Name('null')), $methodType),
                 ],
                 'stmts' => [
-                    new Node\Stmt\Return_(
+                    new Stmt\Return_(
                         new Node\Expr\MethodCall(
-                            new Node\Expr\Variable('this'),
+                            new Variable('this'),
                             'setField',
                             [
                                 new Node\Arg(new Node\Scalar\String_($field->getId())),
-                                new Node\Arg(new Node\Expr\Variable('locale')),
-                                new Node\Arg(new Node\Expr\Variable('value')),
+                                new Node\Arg(new Variable('locale')),
+                                new Node\Arg(new Variable('value')),
                             ]
                         )
                     ),
@@ -262,7 +259,7 @@ class Entry extends BaseCodeGenerator
                 * @return static
                 */',
                 $field->getId(),
-                \str_pad('string', \mb_strlen($type.'|null'), ' ', \STR_PAD_RIGHT),
+                \mb_str_pad('string', \mb_strlen($type.'|null'), ' ', \STR_PAD_RIGHT),
                 $type
             ))
         );
@@ -289,30 +286,30 @@ class Entry extends BaseCodeGenerator
         $returnType = $this->determineLinkReturnType($field->getLinkType(), $field->getValidations());
 
         $resolveLinkParameter = new Node\Expr\MethodCall(
-            new Node\Expr\Variable('this'),
+            new Variable('this'),
             'getField',
             [
                 new Node\Arg(new Node\Scalar\String_($field->getId())),
-                new Node\Arg(new Node\Expr\Variable('locale')),
+                new Node\Arg(new Variable('locale')),
             ]
         );
 
         return new ClassMethod(
             'resolve'.$this->convertToStudlyCaps($field->getId()).'Link',
             [
-                'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
+                'flags' => Class_::MODIFIER_PUBLIC,
                 'params' => [
                     new Node\Param(new Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
-                    new Node\Stmt\Expression($this->generateParametersParameter()),
-                    new Node\Stmt\Return_(
+                    new Stmt\Expression($this->generateParametersParameter()),
+                    new Stmt\Return_(
                         new Node\Expr\MethodCall(
-                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
+                            new Node\Expr\PropertyFetch(new Variable('this'), 'client'),
                             'resolveLink',
                             [
                                 new Node\Arg($resolveLinkParameter),
-                                new Node\Arg(new Node\Expr\Variable('parameters')),
+                                new Node\Arg(new Variable('parameters')),
                             ]
                         ),
                         $this->generateCommentAttributes('')
@@ -347,12 +344,12 @@ class Entry extends BaseCodeGenerator
     private function generateParametersParameter(): Node\Expr\Assign
     {
         return new Node\Expr\Assign(
-            new Node\Expr\Variable('parameters'),
+            new Variable('parameters'),
             new Node\Expr\Array_([
                 new Node\Expr\ArrayItem(
                     new Node\Expr\MethodCall(
                         new Node\Expr\MethodCall(
-                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
+                            new Node\Expr\PropertyFetch(new Variable('this'), 'sys'),
                             'getSpace'
                         ),
                         'getId'
@@ -364,7 +361,7 @@ class Entry extends BaseCodeGenerator
                 new Node\Expr\ArrayItem(
                     new Node\Expr\MethodCall(
                         new Node\Expr\MethodCall(
-                            new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'sys'),
+                            new Node\Expr\PropertyFetch(new Variable('this'), 'sys'),
                             'getEnvironment'
                         ),
                         'getId'
@@ -382,13 +379,13 @@ class Entry extends BaseCodeGenerator
         return new ClassMethod(
             'resolve'.$this->convertToStudlyCaps($field->getId()).'Links',
             [
-                'flags' => Node\Stmt\Class_::MODIFIER_PUBLIC,
+                'flags' => Class_::MODIFIER_PUBLIC,
                 'params' => [
                     new Node\Param(new Variable('locale'), new Node\Scalar\String_($this->defaultLocale), 'string'),
                 ],
                 'stmts' => [
-                    new Node\Stmt\Expression($this->generateParametersParameter()),
-                    new Node\Stmt\Return_(
+                    new Stmt\Expression($this->generateParametersParameter()),
+                    new Stmt\Return_(
                         new Node\Expr\FuncCall(
                             new Node\Name('\\array_map'),
                             [
@@ -461,19 +458,19 @@ class Entry extends BaseCodeGenerator
                 new Node\Param(new Variable('link'), null, 'Link'),
             ],
             'stmts' => [
-                new Node\Stmt\Return_(
+                new Stmt\Return_(
                     new Node\Expr\MethodCall(
-                        new Node\Expr\PropertyFetch(new Node\Expr\Variable('this'), 'client'),
+                        new Node\Expr\PropertyFetch(new Variable('this'), 'client'),
                         'resolveLink',
                         [
-                            new Node\Arg(new Node\Expr\Variable('link')),
-                            new Node\Arg(new Node\Expr\Variable('parameters')),
+                            new Node\Arg(new Variable('link')),
+                            new Node\Arg(new Variable('parameters')),
                         ]
                     )
                 ),
             ],
             'uses' => [
-                new Node\Expr\ClosureUse(new Node\Expr\Variable('parameters')),
+                new Node\Expr\ClosureUse(new Variable('parameters')),
             ],
         ]);
     }
@@ -482,11 +479,11 @@ class Entry extends BaseCodeGenerator
     {
         return new Node\Expr\Cast\Array_(
             new Node\Expr\MethodCall(
-                new Node\Expr\Variable('this'),
+                new Variable('this'),
                 'getField',
                 [
                     new Node\Arg(new Node\Scalar\String_($field->getId())),
-                    new Node\Arg(new Node\Expr\Variable('locale')),
+                    new Node\Arg(new Variable('locale')),
                 ]
             )
         );

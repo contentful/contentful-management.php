@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -49,8 +49,6 @@ class Environment extends BaseResource implements CreatableInterface
 
     /**
      * Environment constructor.
-     *
-     * @param mixed $source_environment_id
      */
     public function __construct(string $name, $source_environment_id = '')
     {
@@ -58,17 +56,11 @@ class Environment extends BaseResource implements CreatableInterface
         $this->sourceEnv = $source_environment_id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return [
@@ -77,9 +69,6 @@ class Environment extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asRequestBody(): string
     {
         $body = $this->jsonSerialize();
@@ -89,9 +78,6 @@ class Environment extends BaseResource implements CreatableInterface
         return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -100,9 +86,6 @@ class Environment extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         if (!empty($this->sourceEnv)) {
@@ -112,17 +95,11 @@ class Environment extends BaseResource implements CreatableInterface
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getSpaceId()
     {
         return $this->sys->getSpace()->getId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getEnvironmentId()
     {
         return $this->sys->getId();

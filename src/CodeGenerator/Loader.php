@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -16,9 +16,6 @@ use PhpParser\Node;
 
 class Loader extends BaseCodeGenerator
 {
-    /**
-     * {@inheritdoc}
-     */
     public function generate(array $params): string
     {
         return $this->render(new Node\Stmt\Expression(

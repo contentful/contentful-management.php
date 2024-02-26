@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -56,24 +56,18 @@ class Space extends BaseResource implements CreatableInterface
     /**
      * Space constructor.
      */
-    public function __construct(string $name, string $organizationId, string $defaultLocale = null)
+    public function __construct(string $name, string $organizationId, ?string $defaultLocale = null)
     {
         $this->name = $name;
         $this->organizationId = $organizationId;
         $this->defaultLocale = $defaultLocale;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSystemProperties(): SystemProperties
     {
         return $this->sys;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         return [
@@ -82,9 +76,6 @@ class Space extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asRequestBody(): string
     {
         $body = $this->jsonSerialize();
@@ -98,9 +89,6 @@ class Space extends BaseResource implements CreatableInterface
         return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function asUriParameters(): array
     {
         return [
@@ -108,17 +96,11 @@ class Space extends BaseResource implements CreatableInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getSpaceId()
     {
         return $this->sys->getId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeadersForCreation(): array
     {
         return ['X-Contentful-Organization' => $this->organizationId];

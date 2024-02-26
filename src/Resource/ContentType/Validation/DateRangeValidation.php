@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -34,7 +34,7 @@ class DateRangeValidation implements ValidationInterface
     /**
      * RangeValidation constructor.
      */
-    public function __construct(string $min = null, string $max = null)
+    public function __construct(?string $min = null, ?string $max = null)
     {
         $this->min = $min;
         $this->max = $max;
@@ -51,7 +51,7 @@ class DateRangeValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMin(string $min = null)
+    public function setMin(?string $min = null)
     {
         $this->min = $min;
 
@@ -69,24 +69,18 @@ class DateRangeValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMax(string $max = null)
+    public function setMax(?string $max = null)
     {
         $this->max = $max;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getValidFieldTypes(): array
     {
         return ['Date'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $data = [];

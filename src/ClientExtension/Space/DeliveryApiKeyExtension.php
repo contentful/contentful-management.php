@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -43,7 +43,7 @@ trait DeliveryApiKeyExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/api-keys/api-keys-collection
      */
-    public function getDeliveryApiKeys(string $spaceId, Query $query = null): ResourceArray
+    public function getDeliveryApiKeys(string $spaceId, ?Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,

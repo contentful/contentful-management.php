@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -44,7 +44,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * AssetImageDimensionsValidation constructor.
      */
-    public function __construct(int $minWidth = null, int $maxWidth = null, int $minHeight = null, int $maxHeight = null)
+    public function __construct(?int $minWidth = null, ?int $maxWidth = null, ?int $minHeight = null, ?int $maxHeight = null)
     {
         $this->minWidth = $minWidth;
         $this->maxWidth = $maxWidth;
@@ -52,9 +52,6 @@ class AssetImageDimensionsValidation implements ValidationInterface
         $this->maxHeight = $maxHeight;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
@@ -71,7 +68,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMinWidth(int $minWidth = null)
+    public function setMinWidth(?int $minWidth = null)
     {
         $this->minWidth = $minWidth;
 
@@ -89,7 +86,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMaxWidth(int $maxWidth = null)
+    public function setMaxWidth(?int $maxWidth = null)
     {
         $this->maxWidth = $maxWidth;
 
@@ -107,7 +104,7 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMinHeight(int $minHeight = null)
+    public function setMinHeight(?int $minHeight = null)
     {
         $this->minHeight = $minHeight;
 
@@ -125,16 +122,13 @@ class AssetImageDimensionsValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMaxHeight(int $maxHeight = null)
+    public function setMaxHeight(?int $maxHeight = null)
     {
         $this->maxHeight = $maxHeight;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $data = [];

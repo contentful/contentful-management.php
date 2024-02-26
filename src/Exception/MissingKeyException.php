@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -33,9 +33,6 @@ class MissingKeyException extends Exception
      */
     private $key;
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct(RequestException $previous, $message = 'Request body is missing a required key.')
     {
         parent::__construct($previous, $message);

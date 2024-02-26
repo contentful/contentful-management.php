@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -54,7 +54,7 @@ class AssetFileSizeValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMin(int $min = null)
+    public function setMin(?int $min = null)
     {
         $this->min = $min;
 
@@ -72,24 +72,18 @@ class AssetFileSizeValidation implements ValidationInterface
     /**
      * @return static
      */
-    public function setMax(int $max = null)
+    public function setMax(?int $max = null)
     {
         $this->max = $max;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getValidFieldTypes(): array
     {
         return ['Link'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $data = [];

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -48,7 +48,7 @@ trait ContentTypeExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type-collection
      */
-    public function getContentTypes(string $spaceId, string $environmentId, Query $query = null): ResourceArray
+    public function getContentTypes(string $spaceId, string $environmentId, ?Query $query = null): ResourceArray
     {
         return $this->fetchResource(ResourceClass::class, [
             'space' => $spaceId,
@@ -75,7 +75,7 @@ trait ContentTypeExtension
      *
      * @see https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/activated-content-type-collection
      */
-    public function getPublishedContentTypes(string $spaceId, string $environmentId, Query $query = null): ResourceArray
+    public function getPublishedContentTypes(string $spaceId, string $environmentId, ?Query $query = null): ResourceArray
     {
         return $this->fetchResource(ApiConfiguration::PUBLISHED_CONTENT_TYPE_RESOURCE, [
             'space' => $spaceId,

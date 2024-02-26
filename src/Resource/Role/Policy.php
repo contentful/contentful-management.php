@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -61,7 +61,7 @@ class Policy implements \JsonSerializable
      * @param string          $effect  Either "allow" or "deny"
      * @param string|string[] $actions Either "all" or an array
      */
-    public function __construct(string $effect, $actions = [], ConstraintInterface $constraint = null)
+    public function __construct(string $effect, $actions = [], ?ConstraintInterface $constraint = null)
     {
         $this->setEffect($effect);
         $this->setActions($actions);
@@ -111,9 +111,9 @@ class Policy implements \JsonSerializable
         // check for multiple types here.
         if (
             // @phpstan-ignore-next-line
-            (!\is_string($actions) && !\is_array($actions)) ||
-            (\is_string($actions) && 'all' !== $actions) ||
-            (\is_array($actions) && \array_diff($actions, self::ACTIONS))
+            (!\is_string($actions) && !\is_array($actions))
+            || (\is_string($actions) && 'all' !== $actions)
+            || (\is_array($actions) && \array_diff($actions, self::ACTIONS))
         ) {
             throw new \InvalidArgumentException(\sprintf('Argument "$actions" in "Policy::setActions()" must be either a string "all", or an array containing a subset of these values: %s.', \implode(', ', self::ACTIONS)));
         }
@@ -153,16 +153,13 @@ class Policy implements \JsonSerializable
     /**
      * @return static
      */
-    public function setConstraint(ConstraintInterface $constraint = null)
+    public function setConstraint(?ConstraintInterface $constraint = null)
     {
         $this->constraint = $constraint;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $policy = [

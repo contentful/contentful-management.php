@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -58,7 +58,7 @@ class ArrayField extends BaseField
     /**
      * ArrayField constructor.
      */
-    public function __construct(string $id, string $name, string $itemsType, string $itemsLinkType = null)
+    public function __construct(string $id, string $name, string $itemsType, ?string $itemsLinkType = null)
     {
         parent::__construct($id, $name);
 
@@ -105,7 +105,7 @@ class ArrayField extends BaseField
      *
      * @return static
      */
-    public function setItemsLinkType(string $itemsLinkType = null)
+    public function setItemsLinkType(?string $itemsLinkType = null)
     {
         if ($itemsLinkType && 'Link' === $this->itemsType && !$this->isValidLinkType($itemsLinkType)) {
             throw new \InvalidArgumentException(\sprintf('Invalid items link type "%s". Valid values are %s.', $itemsLinkType, \implode(', ', self::VALID_LINK_TYPES)));
@@ -146,7 +146,7 @@ class ArrayField extends BaseField
     public function addItemsValidation(ValidationInterface $validation)
     {
         if (!\in_array($this->itemsType, $validation::getValidFieldTypes(), true)) {
-            throw new \InvalidArgumentException(\sprintf('The validation "%s" can not be used for fields of type "%s".', \get_class($validation), $this->itemsType));
+            throw new \InvalidArgumentException(\sprintf('The validation "%s" can not be used for fields of type "%s".', $validation::class, $this->itemsType));
         }
 
         $this->itemsValidations[] = $validation;
@@ -164,9 +164,6 @@ class ArrayField extends BaseField
         return \in_array($type, self::VALID_LINK_TYPES, true);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $data = parent::jsonSerialize();

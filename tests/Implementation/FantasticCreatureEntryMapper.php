@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -16,9 +16,6 @@ use Contentful\Management\SystemProperties\Entry as SystemProperties;
 
 class FantasticCreatureEntryMapper extends BaseMapper
 {
-    /**
-     * {@inheritdoc}
-     */
     public function map($resource, array $data): FantasticCreatureEntry
     {
         return $this->hydrator->hydrate($resource ?? FantasticCreatureEntry::class, [

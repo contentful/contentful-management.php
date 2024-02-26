@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -44,7 +44,7 @@ class Permissions implements \JsonSerializable
      *
      * @return static
      */
-    public function setContentDelivery(string $access = null)
+    public function setContentDelivery(?string $access = null)
     {
         if (null !== $access && !\in_array($access, ['read', 'manage', 'all'], true)) {
             throw new \InvalidArgumentException(\sprintf('Parameter $access in Permissions::setContentDelivery() must be either null or one of "read", "manage", "all", "%s" given.', $access));
@@ -68,7 +68,7 @@ class Permissions implements \JsonSerializable
      *
      * @return static
      */
-    public function setContentModel(string $access = null)
+    public function setContentModel(?string $access = null)
     {
         if (null !== $access && !\in_array($access, ['read', 'manage', 'all'], true)) {
             throw new \InvalidArgumentException(\sprintf('Parameter $access in Permissions::setContentModel() must be either null or one of "read", "manage", "all", "%s" given.', $access));
@@ -92,7 +92,7 @@ class Permissions implements \JsonSerializable
      *
      * @return static
      */
-    public function setSettings(string $access = null)
+    public function setSettings(?string $access = null)
     {
         if (null !== $access && !\in_array($access, ['manage', 'all'], true)) {
             throw new \InvalidArgumentException(\sprintf('Parameter $access in Permissions::setSettings() must be either null or one of "manage", "all", "%s" given.', $access));
@@ -103,9 +103,6 @@ class Permissions implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): array
     {
         $permissions = [];

@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2023 Contentful GmbH
+ * @copyright 2015-2024 Contentful GmbH
  * @license   MIT
  */
 
@@ -153,7 +153,7 @@ class RateLimitExceededExceptionTest extends BaseTestCase
         $this->assertSame(200, $client->getMessages()[0]->getResponse()->getStatusCode());
     }
 
-    public function createHttpClient(callable $handlerOverride = null)
+    public function createHttpClient(?callable $handlerOverride = null)
     {
         $stack = new HandlerStack();
         $stack->setHandler(new CurlHandler());
