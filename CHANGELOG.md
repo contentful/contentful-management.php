@@ -9,6 +9,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 > No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
 
+## [4.1.1](https://github.com/contentful/contentful-management.php/tree/4.1.1) (2024-02-25)
+
+* Bumped depency versions
+* Fixed code generation
+* Minor CI and code smell cleanup
+
+
+
 ## [4.1.0](https://github.com/contentful/contentful-management.php/tree/4.1.0) (2023-04-24)
 
 * Added support for `contentful/core` v4.
