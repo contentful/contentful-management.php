@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2024 Contentful GmbH
+ * @copyright 2015-2025 Contentful GmbH
  * @license   MIT
  */
 
@@ -366,7 +366,7 @@ class Mapper extends BaseCodeGenerator
      * $fields['name'] = $data['name'] ?? null
      * ```
      *
-     * @return Node\Stmt\Expression[]
+     * @return Stmt\Expression[]
      */
     private function generateDefaultFieldAssignment(FieldInterface $field): array
     {

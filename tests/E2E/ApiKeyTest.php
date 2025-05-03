@@ -3,7 +3,7 @@
 /**
  * This file is part of the contentful/contentful-management package.
  *
- * @copyright 2015-2024 Contentful GmbH
+ * @copyright 2015-2025 Contentful GmbH
  * @license   MIT
  */
 
@@ -212,8 +212,8 @@ class ApiKeyTest extends BaseTestCase
         // Let's try from scratch, defining immediately a key with 2 environments available.
         $deliveryApiKey = new DeliveryApiKey('[TEMP] Key after environments (2/2)');
         $deliveryApiKey->setEnvironments([
-           new Link('master', 'Environment'),
-           new Link('tempEnvApiKeysTest', 'Environment'),
+            new Link('master', 'Environment'),
+            new Link('tempEnvApiKeysTest', 'Environment'),
         ]);
         $proxy->create($deliveryApiKey);
 
