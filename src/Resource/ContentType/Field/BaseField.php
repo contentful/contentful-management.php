@@ -28,6 +28,13 @@ abstract class BaseField implements FieldInterface
     protected $id;
 
     /**
+     * New ID of the Field for renaming.
+     *
+     * @var ?string
+     */
+    protected $newId = null;
+
+    /**
      * Name of the Field.
      *
      * @var string
@@ -79,6 +86,21 @@ abstract class BaseField implements FieldInterface
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function getNewId(): ?string
+    {
+        return $this->newId;
+    }
+
+    /**
+     * @return static
+     */
+    public function setNewId(string $newId)
+    {
+        $this->newId = $newId;
+
+        return $this;
     }
 
     public function getName(): string
@@ -218,6 +240,10 @@ abstract class BaseField implements FieldInterface
 
         if (!empty($this->validations)) {
             $data['validations'] = $this->validations;
+        }
+
+        if (!is_null($this->newId)) {
+            $data['newId'] = $this->newId;
         }
 
         return $data;

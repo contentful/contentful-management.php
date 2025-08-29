@@ -189,6 +189,27 @@ $contentType->unpublish();
 $contentType->delete();
 ```
 
+Changing the ID of a content type field:
+
+``` php
+$oldFieldId = 'oldFieldId';
+$newFieldId = 'newFieldId';
+$contentType = $environmentProxy->getContentType($contentTypeId);
+$field = $contentType->getField($oldFieldId);
+$field->setNewId($newFieldId);
+$fields = $contentType->getFields();
+foreach ($fields as $index => $currentField) {
+    if ($currentField->getId() === $oldFieldId) {
+        $fields[$index] = $field;
+        break;
+    }
+}
+$contentType->setFields($fields);
+$contentType->update();
+$contentType->publish();
+```
+
+
 ### Editor interfaces
 
 Fetching and updating
