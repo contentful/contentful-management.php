@@ -48,10 +48,10 @@ class RateLimitExceededException extends BaseRateLimitExceededException
 
         $response = $this->getResponse();
 
-        $this->hourLimit = (int) $response->getHeader('X-Contentful-RateLimit-Hour-Limit')[0];
-        $this->hourRemaining = (int) $response->getHeader('X-Contentful-RateLimit-Hour-Remaining')[0];
-        $this->secondLimit = (int) $response->getHeader('X-Contentful-RateLimit-Second-Limit')[0];
-        $this->secondRemaining = (int) $response->getHeader('X-Contentful-RateLimit-Second-Remaining')[0];
+        $this->hourLimit = (int) $response->getHeader('X-Contentful-RateLimit-Hour-Limit')[0] ?? -1;
+        $this->hourRemaining = (int) $response->getHeader('X-Contentful-RateLimit-Hour-Remaining')[0] ?? 0;
+        $this->secondLimit = (int) $response->getHeader('X-Contentful-RateLimit-Second-Limit')[0] ?? -1;
+        $this->secondRemaining = (int) $response->getHeader('X-Contentful-RateLimit-Second-Remaining')[0] ?? 0;
     }
 
     public function getHourLimit(): int

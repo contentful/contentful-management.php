@@ -10,12 +10,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 <!-- /PENDING-CHANGES -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ## [4.1.3](https://github.com/contentful/contentful-management.php/tree/4.1.2) (2026-01-18)
 
 * Fixed exception when the rate limit is exceeded, but rate limit headers are not set by the backend
 * Support for PHP 8.4
 
+=======
+>>>>>>> v4.1.2
 ## [4.1.2](https://github.com/contentful/contentful-management.php/tree/4.1.2) (2024-05-30)
 
 * Re-added support for Symfony 4
