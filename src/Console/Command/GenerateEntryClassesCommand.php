@@ -55,7 +55,7 @@ class GenerateEntryClassesCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $spaceId = $input->getOption('space-id');
         $environmentId = $input->getOption('environment-id');
@@ -74,7 +74,7 @@ class GenerateEntryClassesCommand extends Command
 
         $this->writeReport($output, $spaceId, $environmentId, $dir);
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     /**
