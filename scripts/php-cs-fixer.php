@@ -12,7 +12,7 @@ declare(strict_types=1);
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
-return function (string $packageName, bool $usePhp7, array $directories, array $exclude = []): Config {
+return static function (string $packageName, bool $usePhp7, array $directories, array $exclude = []): Config {
     $year = \date('Y');
 
     $fileHeaderComment = <<<COMMENT

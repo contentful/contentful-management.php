@@ -3,7 +3,7 @@
 [![Packagist](https://img.shields.io/packagist/v/contentful/contentful-management.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management)
 [![PHP version](https://img.shields.io/packagist/php-v/contentful/contentful-management.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management)
 [![Packagist](https://img.shields.io/github/license/contentful/contentful-management.php.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management.php)
-[![CircleCI](https://circleci.com/gh/contentful/contentful-management.php.svg?style=shield)](https://circleci.com/gh/contentful/contentful-management.php)
+[![CI](https://github.com/contentful/contentful-management.php/actions/workflows/ci.yml/badge.svg)](https://github.com/contentful/contentful-management.php/actions/workflows/ci.yml)
 
 > PHP SDK for [Contentful's](https://www.contentful.com) Content Management API. The SDK requires at least PHP 7.2 or PHP 8.0 and up.
 
@@ -597,9 +597,17 @@ $proxy->create($env); //this call will retry two times (so three calls couting t
 
 If the retry should happen in more than 60 seconds (as defined by the X-Contentful-RateLimit-Second-Remaining header [here](https://www.contentful.com/developers/docs/references/content-management-api/#/introduction/api-rate-limits) ), the call will throw a RateWaitTooLongException exception. This was implemented so that your scripts do not run for too long.
 
-## Contributinng
+## Contributing
 
-PRs are welcome! If you want to develop locally, however, you will need to install with `--ignore-platform-reqs`, as one of the libraries used for testing does currently not officially support PHP8.
+PRs are welcome. For a reproducible local setup, open this repository in its included dev container. The container installs the project dependencies automatically when it is created.
+
+After the container is ready, run:
+
+```bash
+composer test-quick-fail
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contributor workflow.
 
 
 ## About Contentful
