@@ -98,7 +98,7 @@ class EnvironmentProxy
      *
      * @param ResourceInterface|string[] $parameters
      *
-     * @see \Contentful\Management\Client::create()
+     * @see Client::create()
      */
     public function create(CreatableInterface $resource, string $resourceId = '', $parameters = [])
     {

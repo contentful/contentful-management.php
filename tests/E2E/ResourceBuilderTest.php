@@ -27,7 +27,7 @@ class ResourceBuilderTest extends BaseTestCase
         $proxy = $client->getEnvironmentProxy($this->readOnlySpaceId, 'master');
 
         $builder = $client->getBuilder();
-        $builder->setDataMapperMatcher('Entry', function (array $data) {
+        $builder->setDataMapperMatcher('Entry', static function (array $data) {
             if ('fantasticCreature' === $data['sys']['contentType']['sys']['id']) {
                 return FantasticCreatureEntryMapper::class;
             }

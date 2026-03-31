@@ -157,8 +157,8 @@ class RateLimitExceededExceptionTest extends BaseTestCase
     {
         $stack = new HandlerStack();
         $stack->setHandler(new CurlHandler());
-        $stack->push(function (callable $handler) use ($handlerOverride) {
-            return function (RequestInterface $request, array $options) use ($handler, $handlerOverride) {
+        $stack->push(static function (callable $handler) use ($handlerOverride) {
+            return static function (RequestInterface $request, array $options) use ($handler, $handlerOverride) {
                 $handler = $handlerOverride ?: $handler;
 
                 return $handler($request, $options);

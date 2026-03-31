@@ -34,7 +34,7 @@ return static function (string $packageName, bool $usePhp7, array $directories, 
     $rules = [
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHP80Migration' => true,
+        '@PHP8x0Migration' => true,
         'array_syntax' => [
             'syntax' => 'short',
         ],

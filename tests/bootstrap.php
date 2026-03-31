@@ -25,7 +25,7 @@ if ('api-coverage' === \getenv('CONTENTFUL_PHP_MANAGEMENT_SDK_ENV')) {
  */
 function clean_headers_array(Request $request)
 {
-    return \array_filter($request->getHeaders(), function ($value, $name) {
+    return \array_filter($request->getHeaders(), static function ($value, $name) {
         if (false === $value) {
             return false;
         }
@@ -46,7 +46,7 @@ VCR::configure()
     ->setMode(VCR::MODE_ONCE)
     ->setStorage('json')
     ->setCassettePath('tests/Recordings')
-    ->addRequestMatcher('custom_headers', function (Request $first, Request $second) {
+    ->addRequestMatcher('custom_headers', static function (Request $first, Request $second) {
         $a = clean_headers_array($first);
         $b = clean_headers_array($second);
         $result = $a === $b;
@@ -64,7 +64,7 @@ VCR::configure()
 // Remove the Authorization header to prevent leaking CMA tokens
 VCR::getEventDispatcher()
     // ->addListener(VCREvents::)
-    ->addListener(VCREvents::VCR_BEFORE_RECORD, function (BeforeRecordEvent $event) {
+    ->addListener(VCREvents::VCR_BEFORE_RECORD, static function (BeforeRecordEvent $event) {
         $event->getRequest()->removeHeader('Authorization');
     })
 ;

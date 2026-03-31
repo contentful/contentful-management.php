@@ -217,7 +217,7 @@ class Parameter implements \JsonSerializable
             'default' => $this->default,
             'options' => $this->options,
             'labels' => $this->labels,
-        ], function ($item) {
+        ], static function ($item) {
             return null !== $item && [] !== $item;
         });
     }

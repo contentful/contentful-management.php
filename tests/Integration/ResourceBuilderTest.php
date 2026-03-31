@@ -22,7 +22,7 @@ class ResourceBuilderTest extends BaseTestCase
         $this->expectException(\RuntimeException::class);
 
         $builder = new ResourceBuilder();
-        $builder->setDataMapperMatcher('Asset', function (array $data) {
+        $builder->setDataMapperMatcher('Asset', static function (array $data) {
             return '\\Contentful\\Tests\\Integration\\InexistentAssetMapper';
         });
 
@@ -45,7 +45,7 @@ class ResourceBuilderTest extends BaseTestCase
     public function testCustomMapper()
     {
         $builder = new ResourceBuilder();
-        $builder->setDataMapperMatcher('Asset', function (array $data) {
+        $builder->setDataMapperMatcher('Asset', static function (array $data) {
             return PassthroughMapper::class;
         });
 

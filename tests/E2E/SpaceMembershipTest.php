@@ -107,7 +107,7 @@ class SpaceMembershipTest extends BaseTestCase
         $this->assertTrue($spaceMembership->isAdmin());
 
         /** @var Role $role */
-        $role = \array_reduce($proxy->getRoles()->getItems(), function ($carry, Role $role) {
+        $role = \array_reduce($proxy->getRoles()->getItems(), static function ($carry, Role $role) {
             return $carry ?: ('Developer' === $role->getName() ? $role : null);
         });
 
