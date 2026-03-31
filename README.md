@@ -1,5 +1,4 @@
 # contentful-management.php
-
 [![Packagist](https://img.shields.io/packagist/v/contentful/contentful-management.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management)
 [![PHP version](https://img.shields.io/packagist/php-v/contentful/contentful-management.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management)
 [![Packagist](https://img.shields.io/github/license/contentful/contentful-management.php.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management.php)
