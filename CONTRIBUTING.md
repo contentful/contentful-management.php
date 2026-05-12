@@ -28,8 +28,8 @@ composer test-quick-fail
 ## Other Useful Commands
 
 ```bash
-composer run lint-static-analysis
-composer run test-for-bc-breaks
+composer lint-static-analysis
+composer test-for-bc-breaks
 ```
 
 ## Pull Requests

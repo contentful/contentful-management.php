@@ -23,4 +23,4 @@ Evidence: `src/Client.php` extends `Contentful\Core\Api\BaseClient`; `src/Resour
 - Consistent behavior between CDA and CMA PHP SDKs at the HTTP layer.
 - Core changes (e.g. Guzzle version bumps, retry logic) are applied once and inherited.
 - This SDK has a hard runtime dependency on `contentful/core` — a major core version bump is a breaking change here too.
-- Contributers working on HTTP or auth behavior must work in `contentful/contentful-core.php`, not here.
+- Contributors working on HTTP or auth behavior must work in `contentful/contentful-core.php`, not here.
