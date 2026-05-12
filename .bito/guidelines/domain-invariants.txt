@@ -1,0 +1,32 @@
+Domain invariants for contentful-management.php — a PHP SDK for Contentful's Content Management API.
+
+RESOURCE REGISTRATION
+- Every resource class must have an entry in src/ApiConfiguration.php ($configuration array). Without it, the RequestUriBuilder cannot construct the URL and the call will fail at runtime.
+- Every resource type string returned in `data.sys.type` by the CMA must be handled in ResourceBuilder::getSystemType(). Unregistered types throw an InvalidArgumentException at runtime.
+- Both registrations are required together — adding one without the other will cause failures in different code paths.
+
+MUTATION METHODS (update / publish / unpublish / archive / unarchive / delete)
+- These methods read sys.version from the resource and send it as X-Contentful-Version. A resource that was not fetched from the API will have a null version, causing a 422 from the API.
+- Never call mutation methods on a resource that was just constructed with `new` without first persisting it via create() and re-fetching, or directly assigning a version.
+
+UPLOAD HOST OVERRIDE
+- The Upload resource must be sent to https://upload.contentful.com, not https://api.contentful.com. This override is declared in ApiConfiguration via the `host` key. Do not hard-code the upload host in the Upload resource class or mapper.
+
+PROXY LAZINESS
+- SpaceProxy and EnvironmentProxy do not make HTTP calls on construction. They only hit the API when a method is called. Code that checks "is this proxy ready?" is incorrect — proxies are always ready.
+
+PHP VERSION FLOOR
+- The minimum PHP version is 8.0 (composer.json: "php": "^8.0"). Do not introduce PHP 8.1+ syntax (enums, fibers, intersection types, readonly properties) without a composer.json change and a major version bump.
+
+BACKWARD COMPATIBILITY
+- This is a public library on Packagist. Any change to public method signatures, exception types, constructor parameters, or removed classes is a breaking change requiring a major version bump.
+- roave/backward-compatibility-check enforces this in CI, but behavioral regressions (same signature, different behavior) are not caught automatically.
+
+PHP-VCR CASSETTES
+- Integration tests in tests/Integration/ replay cassettes from tests/Recordings/. Cassettes are committed YAML files. If an API call shape changes (URL, method, headers, body), the cassette must be re-recorded — stale cassettes will cause tests to pass against wrong assumptions.
+
+CODE STYLE
+- php-cs-fixer (config: .php-cs-fixer.php) is the enforced code style. Run vendor/bin/php-cs-fixer fix before committing. Do not introduce hand-formatted divergences from the cs-fixer output.
+
+OPTIONAL DEPENDENCY: nikic/php-parser
+- The code generator (src/CodeGenerator/) requires nikic/php-parser, which is listed as `suggest` (optional). Guard any code generator path against the package not being present — do not add a hard require.
