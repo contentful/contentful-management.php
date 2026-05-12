@@ -63,7 +63,7 @@ composer run test-for-bc-breaks
 - **Framework:** PHPUnit 9
 - **Unit tests:** `tests/Unit/` — no HTTP, no fixtures
 - **Integration tests:** `tests/Integration/` — backed by php-vcr cassette recordings in `tests/Recordings/`; run without live credentials
-- **E2E tests:** `tests/E2E/` — require real Contentful credentials (`CONTENTFUL_PHP_MANAGEMENT_TEST_TOKEN`, space IDs from `phpunit.xml.dist`); not run in CI by default
+- **E2E tests:** `tests/E2E/` — backed by php-vcr cassette recordings; run in CI via `composer test-quick-fail` without requiring live credentials (placeholder values in `phpunit.xml.dist` are sufficient)
 - **Run all:** `composer test`
 - **Run with early exit:** `composer test-quick-fail`
 
