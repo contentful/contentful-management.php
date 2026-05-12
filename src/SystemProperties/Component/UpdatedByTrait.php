@@ -22,7 +22,7 @@ trait UpdatedByTrait
 
     protected function initUpdatedBy(array $data)
     {
-        if (isset($data['createdBy'])) {
+        if (isset($data['updatedBy'])) {
             $this->updatedBy = new Link($data['updatedBy']['sys']['id'], $data['updatedBy']['sys']['linkType']);
         }
     }
