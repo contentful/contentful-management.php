@@ -15,7 +15,7 @@
         "php-vcr/php-vcr": "^1.6.3",
         "nikic/php-parser": "^4.15.3",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "phpstan/phpstan": "^1.9",
+        "phpstan/phpstan": "^2.0",
         "roave/backward-compatibility-check": "^7.1|^8.5"
 
     },
