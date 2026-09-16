@@ -5,7 +5,7 @@
 [![Packagist](https://img.shields.io/github/license/contentful/contentful-management.php.svg?style=for-the-badge)](https://packagist.org/packages/contentful/contentful-management.php)
 [![CI](https://github.com/contentful/contentful-management.php/actions/workflows/ci.yml/badge.svg)](https://github.com/contentful/contentful-management.php/actions/workflows/ci.yml)
 
-> PHP SDK for [Contentful's](https://www.contentful.com) Content Management API. The SDK requires PHP 8.1 or later.
+> PHP SDK for [Contentful's](https://www.contentful.com) Content Management API. The SDK requires at least PHP 7.2 or PHP 8.0 and up.
 
 ## Setup
 

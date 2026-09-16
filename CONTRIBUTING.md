@@ -89,6 +89,6 @@ Releases are manual:
 | `lint-syntax` | push/PR to `master` | PHP syntax check (`php -l`) on all `.php` files via devcontainer (PHP 8.1) |
 | `static-analysis` | push/PR to `master` | PHPStan level 5 analysis via `composer run lint-static-analysis` (PHP 8.1) |
 | `backwards-compatibility` | push/PR to `master` | `roave/backward-compatibility-check` against previous tag (PHP 8.1, failures are soft — `|| true`) |
-| `test` (matrix) | push/PR to `master` | `composer test-quick-fail` across PHP 8.1, 8.2, 8.3, 8.4 via devcontainer |
+| `test` (matrix) | push/PR to `master` | `composer test-quick-fail` across PHP 8.0, 8.1, 8.2, 8.3, 8.4 via devcontainer |
 
 All CI jobs use the repo's `.devcontainer` (Docker) for a reproducible environment — the same container used for local development.

@@ -6,9 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased](https://github.com/contentful/contentful-management.php/compare/4.1.3...HEAD)
 
 <!-- PENDING-CHANGES -->
-### Removed
-
-* **Breaking change** Dropped support for PHP 8.0, which reached end-of-life in November 2023. The minimum supported version is now PHP 8.1.
+> No meaningful changes since last release.
 <!-- /PENDING-CHANGES -->
 
 

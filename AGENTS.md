@@ -24,7 +24,7 @@ Read this file first. It tells you where to find context in this repo.
 - **Proxies do not make HTTP calls on construction.** `SpaceProxy` and `EnvironmentProxy` are lazy references. They only hit the API when you call a method on them. Prefer proxies over fetching the full space/environment resource.
 - **php-vcr cassettes must be kept in sync.** Integration tests under `tests/Integration/` replay HTTP from `tests/Recordings/`. If you change an API call shape, re-record the cassette — stale cassettes will cause silent test mismatches.
 - **Backward compatibility is enforced.** `roave/backward-compatibility-check` runs in CI. Any public API change (method signature, removed class, changed return type) will be flagged. BC breaks require a major version bump and a `CHANGELOG.md` entry.
-- **PHP minimum is 8.1.** Do not use PHP 8.2+ syntax (readonly classes, etc.) without bumping the `composer.json` platform requirement and a changelog entry.
+- **PHP minimum is 8.0.** Do not use PHP 8.1+ syntax (enums, fibers, intersection types) without bumping the `composer.json` platform requirement and a changelog entry.
 - **`nikic/php-parser` is optional (suggested).** The code generator (`src/CodeGenerator/`) requires it, but the rest of the SDK does not. Guard generator code paths against its absence.
 
 ## Key Conventions

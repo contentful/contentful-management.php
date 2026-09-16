@@ -70,6 +70,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # 8.0 omitted: php:8.0 Bullseye devcontainer apt builds fail (ICU 404s). Drop in 5.0.0.
         php-version: ["8.1", "8.2", "8.3", "8.4"]
     steps:
       - uses: actions/checkout@v5

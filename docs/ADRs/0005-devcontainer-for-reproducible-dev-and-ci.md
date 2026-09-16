@@ -8,7 +8,7 @@ Accepted — introduced in DX-822 (2026-01-18)
 
 ## Context
 
-PHP version matrix compatibility (8.1–8.4), Composer dependency installation, and tool versions (php-cs-fixer, PHPStan) have historically caused "works on my machine" failures. CI used CircleCI-specific Docker images that diverged from local setups. External contributors without PHP installed could not run any checks.
+PHP version matrix compatibility (8.0–8.4), Composer dependency installation, and tool versions (php-cs-fixer, PHPStan) have historically caused "works on my machine" failures. CI used CircleCI-specific Docker images that diverged from local setups. External contributors without PHP installed could not run any checks.
 
 ## Decision
 
@@ -21,4 +21,4 @@ Evidence: `.devcontainer/devcontainer.json`, `.devcontainer/Dockerfile`, `.githu
 - Dev and CI environments are identical — environment-specific failures are eliminated.
 - CI jobs are slower due to Docker build overhead on every run (mitigated by layer caching).
 - Contributors need Docker installed; pure-PHP setups without Docker cannot run the standard test commands.
-- The PHP version for local development defaults to 8.1 (set via `PHP_VERSION` env var in devcontainer args); CI tests the full matrix (8.1–8.4).
+- The PHP version for local development defaults to 8.1 (set via `PHP_VERSION` env var in devcontainer args); CI tests the full matrix (8.0–8.4).
