@@ -1,6 +1,7 @@
 ARG PHP_VERSION=8.1
 FROM php:${PHP_VERSION}-cli
 
+# php:8.0 Bullseye: live security mirrors 404; use the image's pinned snapshot instead.
 RUN set -eux; \
     use_snapshot=false; \
     if [ -f /etc/apt/sources.list ] && grep -q 'snapshot.debian.org' /etc/apt/sources.list; then \
