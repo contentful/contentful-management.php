@@ -64,22 +64,13 @@ jobs:
           devcontainer up --workspace-folder .
           devcontainer exec --workspace-folder . bash -lc "composer install -n --prefer-dist && composer run test-for-bc-breaks || true"
 
-  test-php-80:
-    name: Test (PHP 8.0)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Skip PHP 8.0 tests
-        run: |
-          echo "php:8.0 devcontainer builds fail on Debian Bullseye ICU apt 404s."
-          echo "Formal PHP 8.0 drop tracked for a separate 5.0.0 release."
-
   test:
     name: Test (PHP ${{ matrix.php-version }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        php-version: ["8.1", "8.2", "8.3", "8.4"]
+        php-version: ["8.0", "8.1", "8.2", "8.3", "8.4"]
     steps:
       - uses: actions/checkout@v5
         with:
